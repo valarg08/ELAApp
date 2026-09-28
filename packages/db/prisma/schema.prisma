@@ -1,0 +1,572 @@
+// StoryForge database schema — see DESIGN.md §4.
+// JSON columns are validated with Zod schemas from @storyforge/shared before every write.
+
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ───────── Enums ─────────
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum AiFeedbackMode {
+  IMMEDIATE
+  TEACHER_APPROVAL
+  OFF
+}
+
+enum SubmissionStatus {
+  DRAFT
+  SUBMITTED
+  RETURNED
+  REVISING
+  GRADED
+}
+
+enum SnapshotReason {
+  AUTOSAVE
+  SUBMIT
+  MANUAL
+  RESTORE
+}
+
+enum FeedbackSource {
+  AI
+  TEACHER
+  PEER
+}
+
+enum FeedbackStatus {
+  QUEUED
+  PENDING_REVIEW
+  READY
+  RELEASED
+  HIDDEN
+  SUPERSEDED
+  FAILED
+}
+
+enum ActivityType {
+  QUICK_WRITE
+  CONSTRAINED_WRITE
+  SIX_WORD_STORY
+  SHOW_TELL_TRANSFORM
+  DESCRIBE_WITHOUT_NAMING
+  VIVID_REWRITE
+  MULTIPLE_CHOICE
+  SORT
+  HIGHLIGHT
+  CHARACTER_BUILDER
+  WORLD_BUILDER
+  PLOT_DIAGRAM
+  CONFLICT_SELECTOR
+  POV_REWRITE
+  SENSORY_LAB
+  FIGURATIVE_LAB
+  HAIKU
+  FREE_VERSE
+  SPOKEN_WORD
+  DIALOGUE_SCENE
+  MEMORY_TIMELINE
+  GENRE_STORY
+  REVISION_CHECKLIST
+  PEER_REVIEW
+  PROJECT
+  REFLECTION
+}
+
+enum ArtifactType {
+  CHARACTER
+  WORLD
+  PLOT
+  CONFLICT
+  TIMELINE
+  POEM_COLLECTION
+  COVER
+  TONE_PROFILE
+}
+
+enum XpReason {
+  LESSON_STEP
+  LESSON_COMPLETE
+  MISSION_COMPLETE
+  SUBMISSION
+  WORD_TARGET
+  REVISION
+  PROJECT
+  PEER_REVIEW
+  TEST
+  STREAK_MILESTONE
+  BADGE
+  ADMIN_ADJUST
+}
+
+enum PortfolioSlot {
+  SHORT_STORY
+  PERSONAL_NARRATIVE
+  POETRY_COLLECTION
+  GENRE_STORY
+  DIALOGUE_SCENE
+  REVISED_PIECE
+  REFLECTION
+}
+
+enum FlagType {
+  SELF_HARM
+  ABUSE_DISCLOSURE
+  VIOLENCE_THREAT
+  BULLYING
+  PERSONAL_INFO
+  PROFANITY
+  OTHER
+}
+
+enum FlagStatus {
+  OPEN
+  ACKNOWLEDGED
+  RESOLVED
+}
+
+// ───────── Identity & organisation ─────────
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  country   String?
+  timezone  String   @default("UTC")
+  teachers  User[]
+  classes   Class[]
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id                String        @id @default(cuid())
+  role              Role
+  orgId             String?
+  org               Organization? @relation(fields: [orgId], references: [id])
+  displayName       String // first name or nickname only for students
+  username          String        @unique // students: generated; teachers: email local-part
+  email             String?       @unique // null for students
+  passwordHash      String? // teachers/admins
+  studentSecretHash String? // students: picture sequence or word code
+  avatar            Json? // unlocked cosmetic choices
+  preferences       Json? // a11y: font, textSize, readAloud, reducedMotion, theme
+  failedLogins      Int           @default(0)
+  lockedUntil       DateTime?
+  enrollments       Enrollment[]
+  taughtClasses     Class[]       @relation("ClassTeacher")
+  submissions       Submission[]
+  stats             StudentStats?
+  createdAt         DateTime      @default(now())
+  deletedAt         DateTime? // soft delete, hard purge after retention window
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  userId    String
+  familyId  String
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([familyId])
+}
+
+model Class {
+  id              String         @id @default(cuid())
+  orgId           String?
+  org             Organization?  @relation(fields: [orgId], references: [id])
+  teacherId       String
+  teacher         User           @relation("ClassTeacher", fields: [teacherId], references: [id])
+  name            String
+  gradeLevel      Int // 6, 7, 8
+  joinCode        String         @unique // 6 chars, no ambiguous characters
+  timezone        String         @default("UTC")
+  aiFeedbackMode  AiFeedbackMode @default(TEACHER_APPROVAL)
+  settings        Json // leaderboardEnabled, schoolDaysOnlyStreaks, peerReviewEnabled, hardConstraints…
+  enrollments     Enrollment[]
+  unitAssignments ClassUnit[]
+  archivedAt      DateTime?
+  createdAt       DateTime       @default(now())
+}
+
+model Enrollment {
+  classId   String
+  studentId String
+  class     Class    @relation(fields: [classId], references: [id])
+  student   User     @relation(fields: [studentId], references: [id])
+  joinedAt  DateTime @default(now())
+
+  @@id([classId, studentId])
+  @@index([studentId])
+}
+
+// ───────── Curriculum ─────────
+model Unit {
+  id          String      @id @default(cuid())
+  number      Int         @unique // 1..12
+  slug        String      @unique
+  title       String
+  summary     String
+  bigIdeas    Json // string[]
+  projectSpec Json? // min/max words, rubricKey, portfolio slot
+  lessons     Lesson[]
+  activities  Activity[]
+  classUnits  ClassUnit[]
+  published   Boolean     @default(false)
+  contentHash String // detect drift from /content
+}
+
+model Lesson {
+  id         String     @id @default(cuid())
+  unitId     String
+  unit       Unit       @relation(fields: [unitId], references: [id])
+  order      Int
+  slug       String
+  title      String
+  estMinutes Int
+  steps      Json // LessonSteps schema (§9.2)
+  activities Activity[]
+
+  @@unique([unitId, slug])
+  @@index([unitId, order])
+}
+
+model Activity {
+  id          String       @id @default(cuid())
+  unitId      String
+  unit        Unit         @relation(fields: [unitId], references: [id])
+  lessonId    String?
+  lesson      Lesson?      @relation(fields: [lessonId], references: [id])
+  key         String       @unique // e.g. "u01.six-word-story"
+  type        ActivityType
+  title       String
+  prompt      String
+  config      Json // per-type config (§9.3), includes WritingConstraints
+  rubricKey   String? // default rubric
+  xpReward    Int          @default(30)
+  isProject   Boolean      @default(false)
+  submissions Submission[]
+}
+
+model ClassUnit {
+  classId  String
+  unitId   String
+  class    Class     @relation(fields: [classId], references: [id])
+  unit     Unit      @relation(fields: [unitId], references: [id])
+  unlockAt DateTime?
+  dueAt    DateTime?
+  hidden   Boolean   @default(false)
+
+  @@id([classId, unitId])
+}
+
+model LessonProgress {
+  studentId      String
+  lessonId       String
+  classId        String
+  completedSteps Json // string[] of step ids
+  completedAt    DateTime?
+  updatedAt      DateTime  @updatedAt
+
+  @@id([studentId, lessonId])
+  @@index([classId])
+}
+
+// ───────── Writing ─────────
+model Submission {
+  id             String           @id @default(cuid())
+  activityId     String
+  activity       Activity         @relation(fields: [activityId], references: [id])
+  studentId      String
+  student        User             @relation(fields: [studentId], references: [id])
+  classId        String
+  status         SubmissionStatus @default(DRAFT)
+  title          String?
+  contentJson    Json // TipTap document
+  contentText    String // plain text for analysis and search
+  wordCount      Int              @default(0)
+  draftRevision  Int              @default(0) // optimistic concurrency for autosave
+  version        Int              @default(0) // increments on each submit
+  lastSnapshotAt DateTime?
+  submittedAt    DateTime?
+  gradedAt       DateTime?
+  versions       DraftVersion[]
+  feedback       Feedback[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@unique([activityId, studentId, classId]) // one working copy per activity per student
+  @@index([classId, status])
+  @@index([studentId, updatedAt])
+}
+
+model DraftVersion {
+  id           String         @id @default(cuid())
+  submissionId String
+  submission   Submission     @relation(fields: [submissionId], references: [id])
+  version      Int // submission.version at time of snapshot
+  revision     Int // draftRevision at time of snapshot
+  reason       SnapshotReason
+  contentJson  Json
+  contentText  String
+  wordCount    Int
+  createdAt    DateTime       @default(now())
+
+  @@index([submissionId, createdAt])
+}
+
+model Artifact {
+  id         String       @id @default(cuid())
+  studentId  String
+  classId    String
+  activityId String?
+  type       ArtifactType
+  title      String
+  data       Json // schema per ArtifactType (§10)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  @@index([studentId, type])
+}
+
+// ───────── Feedback & rubrics ─────────
+model Rubric {
+  id        String   @id @default(cuid())
+  key       String   @unique // "default.narrative", "teacher:<id>:<slug>"
+  ownerId   String? // null = system rubric
+  name      String
+  criteria  Json // RubricCriterion[] (§8.5)
+  maxScore  Int
+  exemplars Json? // anchor excerpts for calibration
+  createdAt DateTime @default(now())
+}
+
+model Feedback {
+  id                String         @id @default(cuid())
+  submissionId      String
+  submission        Submission     @relation(fields: [submissionId], references: [id])
+  submissionVersion Int
+  source            FeedbackSource
+  status            FeedbackStatus
+  authorId          String? // teacher or peer; null for AI
+  rubricId          String?
+  scores            Json? // CriterionScore[]
+  totalScore        Float?
+  summary           String?
+  strengths         Json? // FeedbackPoint[]
+  nextSteps         Json? // FeedbackPoint[]
+  inline            Json? // InlineSuggestion[] with character offsets
+  analyzers         Json? // raw analyzer outputs, keyed by analyzer id
+  model             String?
+  promptVersion     String?
+  overrideOfId      String? // teacher feedback that replaces an AI record
+  releasedAt        DateTime?
+  createdAt         DateTime       @default(now())
+
+  @@index([submissionId, submissionVersion])
+  @@index([status])
+}
+
+model AiCache {
+  key       String   @id // sha256(analyzer|promptVersion|model|text)
+  analyzer  String
+  output    Json
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+// ───────── Tests ─────────
+model ConceptTest {
+  id           String        @id @default(cuid())
+  classId      String
+  createdById  String
+  unitId       String?
+  title        String
+  questions    Json // TestQuestion[] (§11.6)
+  status       String        @default("DRAFT") // DRAFT | PUBLISHED | CLOSED
+  openAt       DateTime?
+  closeAt      DateTime?
+  timeLimitMin Int?
+  attempts     TestAttempt[]
+  createdAt    DateTime      @default(now())
+}
+
+model TestAttempt {
+  id          String      @id @default(cuid())
+  testId      String
+  test        ConceptTest @relation(fields: [testId], references: [id])
+  studentId   String
+  answers     Json
+  autoScore   Float?
+  finalScore  Float?
+  maxScore    Float
+  needsReview Boolean     @default(false) // open-response items
+  startedAt   DateTime    @default(now())
+  submittedAt DateTime?
+
+  @@unique([testId, studentId])
+}
+
+// ───────── Peer review ─────────
+model PeerReview {
+  id           String   @id @default(cuid())
+  submissionId String
+  reviewerId   String
+  classId      String
+  responses    Json // structured "glow / grow / question" form
+  status       String   @default("ASSIGNED") // ASSIGNED | SUBMITTED | APPROVED | REJECTED
+  moderatedBy  String?
+  createdAt    DateTime @default(now())
+
+  @@unique([submissionId, reviewerId])
+}
+
+// ───────── Gamification ─────────
+model StudentStats {
+  studentId      String   @id
+  student        User     @relation(fields: [studentId], references: [id])
+  totalXp        Int      @default(0)
+  level          Int      @default(1)
+  currentStreak  Int      @default(0)
+  longestStreak  Int      @default(0)
+  lastActiveDate String? // "YYYY-MM-DD" in class timezone
+  streakFreezes  Int      @default(0)
+  lifetimeWords  Int      @default(0)
+  updatedAt      DateTime @updatedAt
+}
+
+model XpEvent {
+  id         String   @id @default(cuid())
+  studentId  String
+  classId    String
+  amount     Int
+  reason     XpReason
+  sourceType String // "lesson" | "submission" | "test" | …
+  sourceId   String
+  dayKey     String // "YYYY-MM-DD" for daily caps
+  createdAt  DateTime @default(now())
+
+  @@unique([studentId, reason, sourceId]) // idempotency
+  @@index([studentId, dayKey])
+}
+
+model Badge {
+  id          String  @id @default(cuid())
+  key         String  @unique
+  name        String
+  description String
+  icon        String
+  tier        String // bronze | silver | gold
+  criteria    Json // BadgeCriteria (§7.4)
+  xpBonus     Int     @default(0)
+  hidden      Boolean @default(false) // secret badges
+}
+
+model StudentBadge {
+  studentId String
+  badgeId   String
+  awardedAt DateTime @default(now())
+
+  @@id([studentId, badgeId])
+}
+
+model DailyMission {
+  studentId   String
+  dayKey      String
+  missionType String
+  payload     Json
+  completedAt DateTime?
+
+  @@id([studentId, dayKey])
+}
+
+// ───────── Portfolio ─────────
+model Portfolio {
+  id        String            @id @default(cuid())
+  studentId String
+  classId   String
+  title     String
+  cover     Json? // CoverDesign (§12.4)
+  status    String            @default("DRAFT") // DRAFT | SUBMITTED | PUBLISHED
+  items     PortfolioItem[]
+  exports   PortfolioExport[]
+  updatedAt DateTime          @updatedAt
+
+  @@unique([studentId, classId])
+}
+
+model PortfolioItem {
+  id                String        @id @default(cuid())
+  portfolioId       String
+  portfolio         Portfolio     @relation(fields: [portfolioId], references: [id])
+  slot              PortfolioSlot
+  submissionId      String?
+  submissionVersion Int?
+  artifactId        String? // e.g. POEM_COLLECTION
+  introNote         String? // "Why I chose this piece"
+  order             Int           @default(0)
+
+  @@unique([portfolioId, slot])
+}
+
+model PortfolioExport {
+  id          String    @id @default(cuid())
+  portfolioId String
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id])
+  format      String // HTML | PDF
+  status      String // QUEUED | DONE | FAILED
+  fileKey     String?
+  createdAt   DateTime  @default(now())
+}
+
+// ───────── Safety, audit, notifications ─────────
+model SafetyFlag {
+  id           String     @id @default(cuid())
+  submissionId String?
+  studentId    String
+  classId      String
+  type         FlagType
+  severity     Int // 1 low … 3 urgent
+  excerpt      String // short quote for the teacher
+  detectedBy   String // "ai-safety" | "wordlist" | "teacher"
+  status       FlagStatus @default(OPEN)
+  resolvedById String?
+  notes        String?
+  createdAt    DateTime   @default(now())
+
+  @@index([classId, status])
+}
+
+model Notification {
+  id        String    @id @default(cuid())
+  userId    String
+  type      String
+  payload   Json
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId, readAt])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String
+  action    String // "feedback.override", "student.reset", "export.download"…
+  target    String
+  meta      Json?
+  createdAt DateTime @default(now())
+
+  @@index([actorId, createdAt])
+}

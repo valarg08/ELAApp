@@ -1,0 +1,12 @@
+{
+  "name": "@storyforge/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tsconfig/base.json": "./tsconfig/base.json",
+    "./tsconfig/library.json": "./tsconfig/library.json",
+    "./tsconfig/nest.json": "./tsconfig/nest.json",
+    "./tsconfig/nextjs.json": "./tsconfig/nextjs.json"
+  }
+}
