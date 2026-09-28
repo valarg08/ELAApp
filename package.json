@@ -11,7 +11,7 @@
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "lint": "oxlint --type-aware apps packages",
+    "lint": "turbo run build --filter=./packages/* --output-logs=errors-only && oxlint --type-aware apps packages",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
