@@ -9,18 +9,16 @@ const PING_TIMEOUT_MS = 2000;
 @Injectable()
 export class DatabaseService implements OnModuleDestroy {
   private readonly logger = new Logger(DatabaseService.name);
-  /** Null when DATABASE_URL is not set. Prisma connects lazily on first query. */
-  readonly client: PrismaClient | null;
+  /** Prisma connects lazily on the first query. */
+  readonly client: PrismaClient;
+  private lastStatus: DependencyStatus | null = null;
 
   constructor(@Inject(ENV) env: Env) {
-    this.client = env.DATABASE_URL ? createPrismaClient(env.DATABASE_URL) : null;
+    this.client = createPrismaClient(env.DATABASE_URL);
   }
-
-  private lastStatus: DependencyStatus | null = null;
 
   /** Check the database with `SELECT 1`, giving up after 2 seconds. */
   async ping(): Promise<DependencyStatus> {
-    if (!this.client) return 'not_configured';
     let timer: NodeJS.Timeout | undefined;
     const timeout = new Promise<never>((_, reject) => {
       timer = setTimeout(() => reject(new Error('Database ping timed out')), PING_TIMEOUT_MS);
@@ -49,7 +47,7 @@ export class DatabaseService implements OnModuleDestroy {
   }
 
   async onModuleDestroy(): Promise<void> {
-    await this.client?.$disconnect();
+    await this.client.$disconnect();
   }
 }
 

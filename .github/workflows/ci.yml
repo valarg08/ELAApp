@@ -12,10 +12,30 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
+
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: storyforge
+          POSTGRES_PASSWORD: storyforge-ci
+          POSTGRES_DB: storyforge_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U storyforge"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
     env:
-      # Placeholder only: P0 needs no running database (health reports "down" / "not_configured").
-      DATABASE_URL: postgresql://storyforge:storyforge@localhost:5432/storyforge
+      # Tests always use DATABASE_TEST_URL; DATABASE_URL must differ and is only used by `prisma generate`.
+      DATABASE_URL: postgresql://storyforge:storyforge-ci@localhost:5432/storyforge
+      DATABASE_TEST_URL: postgresql://storyforge:storyforge-ci@localhost:5432/storyforge_test
+      JWT_ACCESS_SECRET: ci-only-signing-secret-that-is-long-enough
+      NEXT_TELEMETRY_DISABLED: '1'
+
     steps:
       - uses: actions/checkout@v5
 
@@ -32,3 +52,19 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+
+      - name: Install Playwright browser
+        run: pnpm --filter @storyforge/web exec playwright install --with-deps chromium
+
+      - name: Browser tests
+        run: pnpm test:e2e
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: |
+            apps/web/playwright-report
+            apps/web/test-results
+          retention-days: 7

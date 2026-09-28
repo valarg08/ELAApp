@@ -11,12 +11,15 @@
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
+    "test:e2e": "turbo run build --filter=@storyforge/api... --output-logs=errors-only && pnpm --filter @storyforge/web test:e2e",
     "lint": "turbo run build --filter=./packages/* --output-logs=errors-only && oxlint --type-aware apps packages",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
     "db:generate": "pnpm --filter @storyforge/db generate",
-    "db:validate": "pnpm --filter @storyforge/db validate"
+    "db:validate": "pnpm --filter @storyforge/db validate",
+    "db:migrate": "pnpm --filter @storyforge/db migrate:dev",
+    "db:migrate:deploy": "pnpm --filter @storyforge/db migrate:deploy"
   },
   "devDependencies": {
     "oxlint": "^1.80.0",

@@ -13,8 +13,17 @@
     "typescript/no-floating-promises": "error",
     "typescript/no-explicit-any": "warn",
     "typescript/no-extraneous-class": ["warn", { "allowWithDecorator": true }],
-    "import/no-unassigned-import": ["warn", { "allow": ["**/*.css"] }],
+    "import/no-unassigned-import": ["warn", { "allow": ["**/*.css", "server-only"] }],
+    "eslint/no-underscore-dangle": ["warn", { "allow": ["_count"] }],
     "react/react-in-jsx-scope": "off"
   },
-  "ignorePatterns": ["**/dist/**", "**/.next/**", "**/generated/**", "**/node_modules/**"]
+  "ignorePatterns": [
+    "**/dist/**",
+    "**/.next/**",
+    "**/.next-e2e/**",
+    "**/playwright-report/**",
+    "**/test-results/**",
+    "**/generated/**",
+    "**/node_modules/**"
+  ]
 }

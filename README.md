@@ -6,34 +6,41 @@ An interactive creative writing platform for middle school (grades 6–8). The f
 
 - Node.js 24 LTS (`.nvmrc`)
 - pnpm 12 (`npm install -g pnpm`)
-- PostgreSQL 16+ (from Phase P1) and Redis 7 (from Phase P4), installed natively
+- PostgreSQL 16+ installed natively, with two databases: one for development and one for tests
+- Redis 7 (from Phase P4)
 
 ## Getting started
 
 ```bash
 pnpm install
-cp .env.example .env
+cp .env.example .env        # then fill in DATABASE_URL, DATABASE_TEST_URL and JWT_ACCESS_SECRET
+pnpm db:migrate             # create the tables in the development database
 pnpm dev
 ```
 
-- Web app: http://localhost:3000
-- API health: http://localhost:4000/api/v1/health (also reachable through the web app at http://localhost:3000/api/v1/health)
+- Web app: http://localhost:3000 (create a teacher account, add a class and students, then try "I'm a student")
+- API health: http://localhost:4000/api/v1/health
+- System status page: http://localhost:3000/status
 
 ## Useful commands
 
 | Command | What it does |
 |---|---|
 | `pnpm dev` | Run the web app, API and package watchers |
-| `pnpm check` | Everything CI runs: format check, lint, typecheck, tests, build |
-| `pnpm test` | Unit and API tests (Vitest) |
+| `pnpm check` | Everything CI runs before the browser tests: format check, lint, typecheck, tests, build |
+| `pnpm test` | Unit and API tests (Vitest). API tests use the test database from `DATABASE_TEST_URL` |
+| `pnpm test:e2e` | Browser tests (Playwright). Starts its own API and web app on ports 4100/3100 against the test database |
+| `pnpm db:migrate` | Create and apply a migration after changing `packages/db/prisma/schema.prisma` |
 | `pnpm db:validate` | Validate the Prisma schema |
+
+First time running browser tests: `pnpm --filter @storyforge/web exec playwright install chromium`.
 
 ## Repository layout
 
 ```
-apps/web         Next.js frontend
-apps/api         NestJS REST API
+apps/web         Next.js frontend (App Router, proxy.ts refreshes sessions)
+apps/api         NestJS REST API (auth, classes, health)
 packages/shared  Zod contracts and constants shared by web and API
-packages/db      Prisma schema and client
+packages/db      Prisma schema, migrations and client
 packages/config  Shared TypeScript configs
 ```

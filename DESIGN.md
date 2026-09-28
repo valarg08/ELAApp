@@ -187,10 +187,10 @@ storyforge/
 ### 2.5 Authentication and authorisation
 
 - **Teachers and admins:** email + password (argon2id). Optional Google / Microsoft SSO later (§15).
-- **Students:** no email. The teacher bulk-creates students. Each student gets a generated username (for example `blue-tiger-42`) and either a picture password (choose 3 of 9 images) or a 6-character word code. Login is **class code + username + secret**. The teacher can print login cards with a QR code that pre-fills the class code and username.
-- **Sessions:** access JWT (15 min) + rotating refresh token (7 days, stored hashed in the DB, reuse detection revokes the family). Both are in `httpOnly`, `Secure`, `SameSite=Lax` cookies. CSRF protection uses a double-submit token for state-changing requests.
+- **Students:** no email. The teacher bulk-creates students. Each student gets a generated username (for example `blue-tiger-42`) and either a picture password (tap 4 different pictures out of 12, in order: 11,880 combinations) or a 6-character word code (31 characters without look-alikes: about 887 million combinations). Login is **class code + username + secret**. Secrets are stored only as argon2id hashes and shown in plain text exactly once, when created or reset. The teacher prints login cards (PDF) with a QR code that pre-fills the class code and username; because plain secrets are never stored, the client sends the just-shown secrets back and the API verifies each against its hash before printing. The public roster lookup for a class code returns first names and usernames only, so the student can pick their name.
+- **Sessions:** access JWT (15 min) + rotating refresh token (7 days, stored hashed in the DB, reuse detection revokes the family). Both are in `httpOnly`, `Secure`, `SameSite=Lax` cookies. CSRF protection uses a double-submit token for state-changing requests. Implemented as cookies `sf_access`, `sf_refresh` (both httpOnly, path `/`) and `sf_csrf` (readable, echoed in the `x-csrf-token` header). The web app's `proxy.ts` refreshes an expiring access token before a page renders; the browser API client refreshes once on a 401 and retries. Resetting a student's secret ends all of their sessions.
 - **RBAC:** NestJS guards check `role`. **Policies** check ownership: a teacher can reach only students enrolled in their classes, and a student can reach only their own work plus peer-review assignments. Every repository query MUST be scoped (for example `where: { classId: { in: teacherClassIds } }`).
-- **Lockout:** 10 failed student logins within 15 min lock that username until the teacher resets it.
+- **Lockout:** 10 consecutive failed logins lock the account. Students stay locked until the teacher resets their secret; teachers unlock automatically after 15 minutes. Unknown accounts take the same time to reject (dummy hash check) and get the same error. Per-IP rate limiting of the public auth endpoints is still to do (with Redis, P4/P11).
 
 ### 2.6 Background jobs (BullMQ queues)
 
@@ -854,6 +854,7 @@ All live checks take `{ text, activityId?, options? }` and return the analyzer's
 | GET | `/teacher/classes/:id/students` | Roster with progress summary |
 | POST | `/teacher/classes/:id/students/bulk` | `{ names: string[] }` → students with generated usernames and secrets (secrets shown once) |
 | POST | `/teacher/students/:id/reset-secret` | New secret, unlocks the account |
+| POST | `/teacher/classes/:id/login-cards` | `{ cards: [{ studentId, secret }] }` → PDF login cards (each secret verified against its hash first) |
 | GET | `/teacher/students/:id` | Student profile, timeline, submissions, XP |
 | GET | `/teacher/classes/:id/progress` | Heatmap data: students × lessons |
 | PUT | `/teacher/classes/:id/units/:unitId` | Pacing: `{ unlockAt, dueAt, hidden }` |
@@ -1619,7 +1620,7 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | Phase | Scope | Acceptance criteria |
 |---|---|---|
 | **P0 Scaffold** ✅ | Monorepo, Turborepo, pnpm, lint/format, tsconfig, `.env` config (native services, no Docker), CI pipeline, Next.js + NestJS hello pages, Prisma baseline | `pnpm dev` starts everything; CI green; `/api/v1/health` returns 200 |
-| **P1 Auth & classes** | Teacher register/login, student join flow (join code + username + picture secret), refresh rotation, RBAC guards and policies, classes, bulk students, login cards PDF | E2E: teacher creates class, adds 3 students, a student logs in with a picture password; policy tests prove cross-class access is denied |
+| **P1 Auth & classes** ✅ | Teacher register/login, student join flow (join code + username + picture secret), refresh rotation, RBAC guards and policies, classes, bulk students, login cards PDF | E2E: teacher creates class, adds 3 students, a student logs in with a picture password; policy tests prove cross-class access is denied |
 | **P2 Curriculum & lesson engine** | Content schemas, `/content` sync, units/lessons/activities API, lesson player with the 5 steps, activity renderers for MULTIPLE_CHOICE, SORT, HIGHLIGHT, REFLECTION, pacing | Unit 1 lesson playable end to end; progress persists; invalid content fails CI |
 | **P3 Writing workspace** | TipTap editor, constraints bar, autosave with revisions and 409 conflict dialog, IndexedDB offline queue, snapshots, version history, diff viewer, submit with 422 validation | E2E: type → autosave → go offline → type → reconnect → no data lost; two tabs → conflict dialog; restore an older version |
 | **P4 Analysis & AI feedback** | `packages/writing-analysis` (all deterministic analyzers, in a Web Worker), `packages/ai` (gateway, show-vs-tell, sensory, rubric-score, safety), feedback pipeline, class AI modes, live checks with rate limits and cache, safety flags | Unit tests for every analyzer; fake-gateway tests for the pipeline; with a real key, `pnpm ai:eval` runs on the seed golden set; safety flag appears in the teacher inbox |

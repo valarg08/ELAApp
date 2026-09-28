@@ -158,10 +158,12 @@ model User {
   email             String?       @unique // null for students
   passwordHash      String? // teachers/admins
   studentSecretHash String? // students: picture sequence or word code
+  studentSecretKind String? // students: "PICTURE" | "WORD"
   avatar            Json? // unlocked cosmetic choices
   preferences       Json? // a11y: font, textSize, readAloud, reducedMotion, theme
-  failedLogins      Int           @default(0)
+  failedLogins      Int           @default(0) // consecutive failures, reset on success
   lockedUntil       DateTime?
+  lastLoginAt       DateTime?
   enrollments       Enrollment[]
   taughtClasses     Class[]       @relation("ClassTeacher")
   submissions       Submission[]

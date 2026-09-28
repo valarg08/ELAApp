@@ -1,0 +1,30 @@
+import { z } from 'zod';
+
+/** RFC 9457 problem details: the shape of every API error (DESIGN.md §5.1). */
+export const ProblemDetails = z.object({
+  type: z.string(),
+  title: z.string(),
+  status: z.number(),
+  detail: z.string().optional(),
+  code: z.string(),
+  errors: z.array(z.string()).optional(),
+});
+export type ProblemDetails = z.infer<typeof ProblemDetails>;
+
+/** Stable machine-readable error codes. */
+export const ErrorCode = {
+  VALIDATION_FAILED: 'VALIDATION_FAILED',
+  UNAUTHENTICATED: 'UNAUTHENTICATED',
+  INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
+  ACCOUNT_LOCKED: 'ACCOUNT_LOCKED',
+  EMAIL_TAKEN: 'EMAIL_TAKEN',
+  REFRESH_INVALID: 'REFRESH_INVALID',
+  CSRF_FAILED: 'CSRF_FAILED',
+  FORBIDDEN: 'FORBIDDEN',
+  NOT_FOUND: 'NOT_FOUND',
+  CLASS_NOT_FOUND: 'CLASS_NOT_FOUND',
+  STUDENT_NOT_FOUND: 'STUDENT_NOT_FOUND',
+  SECRET_MISMATCH: 'SECRET_MISMATCH',
+  INTERNAL: 'INTERNAL',
+} as const;
+export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

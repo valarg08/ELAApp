@@ -9,3 +9,6 @@ next-env.d.ts
 # Docs are hand-formatted; keep Prettier from reflowing tables.
 *.md
 *.docx
+.next-e2e
+playwright-report
+test-results
