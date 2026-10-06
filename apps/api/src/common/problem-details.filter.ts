@@ -38,6 +38,7 @@ export class ProblemDetailsFilter implements ExceptionFilter {
         status: exception.getStatus(),
         code: exception.code,
         ...(exception.detail ? { detail: exception.detail } : {}),
+        ...(exception.errors?.length ? { errors: exception.errors } : {}),
       };
     }
 

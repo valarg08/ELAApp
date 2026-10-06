@@ -14,6 +14,8 @@ import { z } from 'zod';
 import { AppModule } from '../src/app.module.js';
 import { DatabaseService } from '../src/database/database.service.js';
 import { configureApp } from '../src/setup.js';
+import { loadContent } from '../src/curriculum/content-loader.js';
+import { syncContent } from '../src/curriculum/content-sync.js';
 
 export interface TestContext {
   app: NestExpressApplication;
@@ -53,6 +55,10 @@ export class Client {
 
   post(path: string, body?: object) {
     return this.withCsrf(this.agent.post(`/api/v1${path}`)).send(body ?? {});
+  }
+
+  put(path: string, body: object) {
+    return this.withCsrf(this.agent.put(`/api/v1${path}`)).send(body);
   }
 
   patch(path: string, body: object) {
@@ -148,3 +154,10 @@ export async function loginStudent(
 /** A picture secret guaranteed to differ from `secret`. */
 export const wrongPictureSecret = (secret: string) =>
   secret === 'cat-dog-sun-moon' ? 'dog-cat-sun-moon' : 'cat-dog-sun-moon';
+
+/** Load /content into the (freshly reset) test database. */
+export async function seedContent(db: PrismaClient): Promise<void> {
+  const { units, errors } = await loadContent();
+  if (errors.length > 0) throw new Error(`Invalid content:\n${errors.join('\n')}`);
+  await syncContent(db, units);
+}

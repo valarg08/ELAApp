@@ -7,5 +7,6 @@ import { TeacherClassesController } from './teacher-classes.controller.js';
 @Module({
   controllers: [TeacherClassesController],
   providers: [ClassAccessService, ClassesService, LoginCardsService],
+  exports: [ClassAccessService],
 })
 export class ClassesModule {}

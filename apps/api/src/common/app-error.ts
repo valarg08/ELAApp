@@ -8,6 +8,7 @@ export class AppError extends HttpException {
     readonly code: ErrorCode,
     readonly title: string,
     readonly detail?: string,
+    readonly errors?: string[],
   ) {
     super({ code, title, detail }, status);
   }

@@ -16,6 +16,12 @@ export default function globalSetup(): void {
     });
 
   run(['exec', 'prisma', 'migrate', 'deploy']);
+  const syncContent = () =>
+    execFileSync('node', ['../../apps/api/dist/cli/content-sync.js'], {
+      cwd: dbPackage,
+      env: { ...process.env, DATABASE_URL: url },
+      stdio: 'pipe',
+    });
   // Empty every app table (keeps the migrations table).
   run(
     ['exec', 'prisma', 'db', 'execute', '--stdin'],
@@ -24,4 +30,6 @@ export default function globalSetup(): void {
          EXECUTE 'TRUNCATE TABLE public.' || quote_ident(r.tablename) || ' RESTART IDENTITY CASCADE';
        END LOOP; END $$;`,
   );
+  // Units, lessons and activities from /content (the API must be built: `pnpm test:e2e` does that).
+  syncContent();
 }

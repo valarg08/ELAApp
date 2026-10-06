@@ -83,6 +83,7 @@ test('acceptance: teacher creates a class, adds 3 students, and a student logs i
 
   // The QR-code link on the login card skips straight to the picture step.
   await page.getByRole('button', { name: 'Log out', exact: true }).click();
+  await expect(page).toHaveURL(/\/$/);
   await page.goto(`/join?code=${joinCode}&user=${username}`);
   await expect(page.getByRole('heading', { name: 'Hi, Maya!' })).toBeVisible();
 });

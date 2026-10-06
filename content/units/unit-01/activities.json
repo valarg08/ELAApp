@@ -1,0 +1,317 @@
+[
+  {
+    "key": "u01.six-word-sort",
+    "type": "SORT",
+    "title": "Story or not a story?",
+    "instructions": "Each line has six words or fewer. Sort them: does it tell a story, or is it just a fact?",
+    "buckets": [
+      { "id": "story", "label": "Tells a story" },
+      { "id": "fact", "label": "Just a fact" }
+    ],
+    "items": [
+      { "id": "bus", "text": "Wrong bus. Right friend. Lucky Tuesday.", "bucketId": "story" },
+      { "id": "pizza", "text": "Pizza is a tasty food.", "bucketId": "fact" },
+      { "id": "shot", "text": "Missed the shot. Won anyway. Teamwork.", "bucketId": "story" },
+      { "id": "shoes", "text": "My shoes are blue.", "bucketId": "fact" },
+      {
+        "id": "dragon",
+        "text": "Dragon egg cracked. Babysitting starts now.",
+        "bucketId": "story"
+      },
+      { "id": "legs", "text": "Dogs have four legs.", "bucketId": "fact" }
+    ]
+  },
+  {
+    "key": "u01.six-word-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Words that carry feeling",
+    "instructions": "Tap the two words that hint at how the girl feels about moving.",
+    "text": "Moving day. Empty room. Her drawing stayed.",
+    "targets": ["empty", "stayed"],
+    "explanation": "\"Empty\" makes the room feel sad and quiet. \"Stayed\" suggests she left something important behind, maybe on purpose."
+  },
+  {
+    "key": "u01.six-word-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Six-word check",
+    "questions": [
+      {
+        "id": "which-story",
+        "prompt": "Which of these is a six-word story?",
+        "options": [
+          { "id": "a", "text": "Lost dog found. Best day ever." },
+          { "id": "b", "text": "The cat." },
+          { "id": "c", "text": "I went to the park and played on the swings all day." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It has exactly six words and something happens: a lost dog is found, and there's a feeling too.",
+        "hint": "Count the words, then ask: does something happen?"
+      },
+      {
+        "id": "wonder-word",
+        "prompt": "In \"Last day of school. Nobody cried.\", which word makes you wonder the most?",
+        "options": [
+          { "id": "last", "text": "Last" },
+          { "id": "school", "text": "school" },
+          { "id": "nobody", "text": "Nobody" }
+        ],
+        "correctOptionId": "nobody",
+        "explanation": "Usually someone cries on the last day. \"Nobody\" surprises us. Was it a bad year? A happy one?"
+      }
+    ]
+  },
+  {
+    "key": "u01.six-word-write",
+    "type": "SIX_WORD_STORY",
+    "title": "Your six-word story",
+    "prompt": "Write your own six-word story about a surprise, a loss, or a big change. Make every word do a job!",
+    "tips": [
+      "Start in the middle of the action.",
+      "Leave the reader with a question.",
+      "Try writing three versions, then pick your favorite."
+    ],
+    "constraints": { "exactWords": 6, "enforcement": "hard" }
+  },
+  {
+    "key": "u01.show-tell-sort",
+    "type": "SORT",
+    "title": "Telling or showing?",
+    "instructions": "Sort each sentence: does it tell the feeling, or show it?",
+    "buckets": [
+      { "id": "telling", "label": "Telling" },
+      { "id": "showing", "label": "Showing" }
+    ],
+    "items": [
+      { "id": "tired-tell", "text": "Ava was tired.", "bucketId": "telling" },
+      {
+        "id": "tired-show",
+        "text": "Ava's eyes kept closing during the movie.",
+        "bucketId": "showing"
+      },
+      { "id": "messy-tell", "text": "The room was messy.", "bucketId": "telling" },
+      {
+        "id": "messy-show",
+        "text": "Socks hung from the lamp, and cereal crunched under our feet.",
+        "bucketId": "showing"
+      },
+      { "id": "proud-tell", "text": "Grandpa was proud.", "bucketId": "telling" },
+      {
+        "id": "proud-show",
+        "text": "Grandpa held my report card up for the whole street to see.",
+        "bucketId": "showing"
+      }
+    ]
+  },
+  {
+    "key": "u01.show-tell-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Nervous clues",
+    "instructions": "Tap the three words that show Priya is nervous.",
+    "text": "Priya hugged her knees on the bus. Her stomach flipped every time the school came closer.",
+    "targets": ["hugged", "stomach", "flipped"],
+    "explanation": "Hugging her knees and a flipping stomach are body clues. We feel her nerves without the word \"nervous\"."
+  },
+  {
+    "key": "u01.show-tell-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Show-don't-tell check",
+    "questions": [
+      {
+        "id": "cold",
+        "prompt": "Which sentence SHOWS that Noah is cold?",
+        "options": [
+          { "id": "a", "text": "Noah was cold." },
+          { "id": "b", "text": "Noah's teeth chattered as he pulled his sleeves over his hands." },
+          { "id": "c", "text": "It was a cold day for Noah." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Chattering teeth and pulling sleeves over his hands are clues. The other two just say \"cold\".",
+        "hint": "Look for actions or body clues, not the word \"cold\"."
+      },
+      {
+        "id": "feeling",
+        "prompt": "What feeling does this show? \"Zoe kept checking the clock and tapping her foot.\"",
+        "options": [
+          { "id": "impatient", "text": "Impatient" },
+          { "id": "sleepy", "text": "Sleepy" },
+          { "id": "proud", "text": "Proud" }
+        ],
+        "correctOptionId": "impatient",
+        "explanation": "Checking the clock and tapping a foot are things we do while waiting for something to finally happen."
+      }
+    ]
+  },
+  {
+    "key": "u01.show-tell-write",
+    "type": "SHOW_TELL_TRANSFORM",
+    "title": "Telling → showing",
+    "prompt": "Turn this telling sentence into showing. Use actions, body language and details so the reader can feel the anger, without naming it.",
+    "starter": "Ava was angry.",
+    "tips": [
+      "What does Ava do with her hands? Her face? Her voice?",
+      "What does she do to the things around her?",
+      "Imagine you're filming it: what would the camera see?"
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 150,
+      "bannedWords": ["angry", "mad", "furious", "upset"],
+      "enforcement": "hard"
+    }
+  },
+  {
+    "key": "u01.senses-sort",
+    "type": "SORT",
+    "title": "Which sense?",
+    "instructions": "Sort each detail by the sense it uses most.",
+    "buckets": [
+      { "id": "sight", "label": "Sight 👀" },
+      { "id": "sound", "label": "Sound 👂" },
+      { "id": "smell", "label": "Smell 👃" }
+    ],
+    "items": [
+      { "id": "candle", "text": "a flickering candle", "bucketId": "sight" },
+      { "id": "leaves", "text": "a crunch of dry leaves", "bucketId": "sound" },
+      { "id": "campfire", "text": "smoky campfire air", "bucketId": "smell" },
+      { "id": "sky", "text": "a sky the color of orange juice", "bucketId": "sight" },
+      { "id": "fridge", "text": "the hum of the fridge", "bucketId": "sound" },
+      { "id": "grass", "text": "fresh-cut grass after mowing", "bucketId": "smell" }
+    ]
+  },
+  {
+    "key": "u01.senses-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Hear and smell it",
+    "instructions": "Tap the three words that help you hear or smell this scene.",
+    "text": "Rain drummed on the tin roof while the sharp smell of wet dirt drifted through the window.",
+    "targets": ["drummed", "smell", "dirt"],
+    "explanation": "\"Drummed\" lets you hear the rain, and the smell of wet dirt puts you right by that window."
+  },
+  {
+    "key": "u01.senses-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Senses check",
+    "questions": [
+      {
+        "id": "pavement",
+        "prompt": "Which sense does this use? \"The pavement burned through my thin sneakers.\"",
+        "options": [
+          { "id": "sight", "text": "Sight" },
+          { "id": "hearing", "text": "Hearing" },
+          { "id": "touch", "text": "Touch" }
+        ],
+        "correctOptionId": "touch",
+        "explanation": "You feel the heat through your shoes. That's touch."
+      },
+      {
+        "id": "popcorn",
+        "prompt": "Which sentence describes popcorn without naming it?",
+        "options": [
+          { "id": "a", "text": "We ate popcorn during the movie." },
+          {
+            "id": "b",
+            "text": "Buttery puffs crackled in the microwave as a salty smell drifted out."
+          },
+          { "id": "c", "text": "The snack was good." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "It never says \"popcorn\", but the crackling, the butter and the salty smell tell you exactly what it is.",
+        "hint": "Which one uses the senses and doesn't say what it is?"
+      }
+    ]
+  },
+  {
+    "key": "u01.describe-write",
+    "type": "DESCRIBE_WITHOUT_NAMING",
+    "title": "Mystery description",
+    "prompt": "Describe a thunderstorm using at least three senses, without naming it. A classmate should be able to guess what you're describing!",
+    "tips": [
+      "What do you hear first? What does the air smell like?",
+      "How does the light change? What do you feel on your skin?",
+      "Use a comparison: \"The sky growled like…\""
+    ],
+    "constraints": {
+      "minWords": 40,
+      "maxWords": 200,
+      "bannedWords": ["storm", "thunder", "lightning", "rain"],
+      "enforcement": "hard"
+    }
+  },
+  {
+    "key": "u01.vivid-sort",
+    "type": "SORT",
+    "title": "Weak or strong?",
+    "instructions": "Sort the verbs: weak (tells us little) or strong (paints a picture)?",
+    "buckets": [
+      { "id": "weak", "label": "Weak verb" },
+      { "id": "strong", "label": "Strong verb" }
+    ],
+    "items": [
+      { "id": "went", "text": "went", "bucketId": "weak" },
+      { "id": "crept", "text": "crept", "bucketId": "strong" },
+      { "id": "said", "text": "said", "bucketId": "weak" },
+      { "id": "whispered", "text": "whispered", "bucketId": "strong" },
+      { "id": "got", "text": "got", "bucketId": "weak" },
+      { "id": "snatched", "text": "snatched", "bucketId": "strong" },
+      { "id": "looked", "text": "looked", "bucketId": "weak" },
+      { "id": "glared", "text": "glared", "bucketId": "strong" }
+    ]
+  },
+  {
+    "key": "u01.vivid-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Tired words",
+    "instructions": "Tap the six weak or tired words a writer could replace.",
+    "text": "The boy went to the store and got a very good snack. He said it was nice.",
+    "targets": ["went", "got", "very", "good", "said", "nice"],
+    "explanation": "Went, got and said are weak verbs; very, good and nice are vague. Try: \"The boy raced to the corner shop and grabbed a cheesy pretzel. 'Best snack ever,' he mumbled.\""
+  },
+  {
+    "key": "u01.vivid-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Strong-word check",
+    "questions": [
+      {
+        "id": "puppy",
+        "prompt": "Which verb paints the clearest picture? \"The puppy ___ under the bed.\"",
+        "options": [
+          { "id": "went", "text": "went" },
+          { "id": "moved", "text": "moved" },
+          { "id": "scurried", "text": "scurried" }
+        ],
+        "correctOptionId": "scurried",
+        "explanation": "\"Scurried\" shows quick, tiny steps. You can almost hear the paws."
+      },
+      {
+        "id": "hungry",
+        "prompt": "Which word could replace \"very hungry\"?",
+        "options": [
+          { "id": "starving", "text": "starving" },
+          { "id": "really-hungry", "text": "really hungry" },
+          { "id": "hungry-ish", "text": "hungry-ish" }
+        ],
+        "correctOptionId": "starving",
+        "explanation": "One strong word (starving) beats \"very\" + a weak word.",
+        "hint": "Look for one word that means \"very hungry\"."
+      }
+    ]
+  },
+  {
+    "key": "u01.vivid-write",
+    "type": "VIVID_REWRITE",
+    "title": "Power up the paragraph",
+    "prompt": "Rewrite this flat paragraph with strong verbs and precise words. Add details to make it exciting!",
+    "starter": "The girl went to the park. It was very nice. She got on the swing and went very high. Then she said it was a good day.",
+    "tips": [
+      "Replace every weak verb (went, got, said) with a strong one.",
+      "Swap \"very nice\" and \"good\" for precise details.",
+      "Give the girl a name and the park a sound or a smell."
+    ],
+    "constraints": {
+      "minWords": 40,
+      "maxWords": 200,
+      "bannedWords": ["very", "really", "went", "got", "said", "nice", "good"],
+      "enforcement": "hard"
+    }
+  }
+]

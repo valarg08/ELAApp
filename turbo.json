@@ -2,7 +2,19 @@
   "$schema": "https://turborepo.com/schema.json",
   "ui": "stream",
   "globalDependencies": [".env"],
-  "globalPassThroughEnv": ["API_PORT", "API_INTERNAL_URL", "WEB_ORIGIN", "DATABASE_URL", "CI"],
+  "globalPassThroughEnv": [
+    "NODE_ENV",
+    "CI",
+    "API_PORT",
+    "API_INTERNAL_URL",
+    "WEB_ORIGIN",
+    "DATABASE_URL",
+    "DATABASE_TEST_URL",
+    "JWT_ACCESS_SECRET",
+    "ACCESS_TOKEN_TTL_MINUTES",
+    "REFRESH_TOKEN_TTL_DAYS",
+    "CONTENT_DIR"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

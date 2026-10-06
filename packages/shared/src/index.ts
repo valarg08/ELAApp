@@ -5,3 +5,6 @@ export * from './contracts/auth.js';
 export * from './contracts/classes.js';
 export * from './contracts/health.js';
 export * from './contracts/problem.js';
+export * from './curriculum/constraints.js';
+export * from './curriculum/content.js';
+export * from './contracts/curriculum.js';

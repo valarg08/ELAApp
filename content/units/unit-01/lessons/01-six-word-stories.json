@@ -1,0 +1,62 @@
+{
+  "slug": "six-word-stories",
+  "order": 1,
+  "title": "Six Words, Big Story",
+  "estMinutes": 30,
+  "focusSkills": ["word-choice", "concision"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which one makes you more curious?",
+      "a": "I went to the store and bought some milk and then I went back home.",
+      "b": "Bought milk. Came home. Door open.",
+      "reveal": "The second one uses only six words, but your brain fills in the rest. Who opened the door? That's the power of a six-word story."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What is a six-word story?",
+          "body": "A whole story in exactly six words. It hints at what happened, and the reader's imagination does the rest."
+        },
+        {
+          "kind": "example",
+          "title": "Every word has a job",
+          "text": "Found a puppy. Kept it secretly.",
+          "note": "\"Found\" starts the action. \"Secretly\" adds a problem: what happens when someone finds out?"
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Spot the change",
+          "prompt": "Tap the two words that show what changed and what stayed the same.",
+          "text": "Old house. New family. Same creaky stairs.",
+          "clues": ["new", "same"]
+        },
+        {
+          "kind": "definition",
+          "title": "Tips for six-word stories",
+          "body": "Start in the middle of the action. Leave a question in the reader's mind. Cut little words like \"the\" and \"a\" when you can."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u01.six-word-sort", "u01.six-word-highlight", "u01.six-word-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u01.six-word-write" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which word in your six-word story are you proudest of? Why?",
+        "What question do you hope your reader asks after reading it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

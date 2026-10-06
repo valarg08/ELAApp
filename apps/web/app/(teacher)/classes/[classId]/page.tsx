@@ -1,7 +1,7 @@
 import { ClassSummary, StudentSummary } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { PageShell } from '@/components/ui';
+import { ButtonLink, PageShell } from '@/components/ui';
 import { serverApi } from '@/lib/server-api';
 import { Roster } from './roster';
 
@@ -22,8 +22,15 @@ export default async function ClassPage({ params }: PageProps<'/classes/[classId
           <Link href="/classes" className="text-brand underline">
             ← All classes
           </Link>
-          <h1 className="mt-3 text-3xl font-bold">{klass.name}</h1>
-          <p className="mt-1 text-muted">Grade {klass.gradeLevel}</p>
+          <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h1 className="text-3xl font-bold">{klass.name}</h1>
+              <p className="mt-1 text-muted">Grade {klass.gradeLevel}</p>
+            </div>
+            <ButtonLink href={`/classes/${klass.id}/pacing`} variant="secondary">
+              📚 Units &amp; pacing
+            </ButtonLink>
+          </div>
         </div>
 
         <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">

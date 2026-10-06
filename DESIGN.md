@@ -1382,6 +1382,16 @@ type WritingConstraints = {
 };
 ```
 
+### 9.4 Implementation notes (as built in P2)
+
+- **Content layout:** `content/units/unit-XX/unit.json` (required), `activities.json`, `lessons/NN-slug.json`. Schemas live in `packages/shared/src/curriculum/content.ts`; `validateUnitBundle` adds cross-reference checks (activity keys exist and use the unit prefix, practice vs. writing activity types, correct answers exist, highlight targets and clue-hunt clues appear in their text, lesson orders 1…n). Step ids are fixed: `hook`, `learn`, `practice`, `challenge`, `reflect`.
+- **Sync:** `pnpm content:check` validates; `pnpm content:sync` upserts into the database (units by number, lessons by unit+slug, activities by key). Nothing is deleted; content removed from `/content` is reported as orphaned. A Vitest test loads the real `/content`, so invalid content fails CI. The admin sync endpoint (§5.3) is not built yet.
+- **Pacing default:** with no pacing row, Unit 1 is open and other published units are locked until the teacher unlocks them; unpublished units show as "coming soon". Pacing rows support `hidden`, a scheduled `unlockAt`, and `dueAt`.
+- **Grading:** practice activities are checked in the browser (answers are part of the lesson payload, which is fine for low-stakes practice); the API requires every practice activity to be reported correct before the step completes. Writing constraints are checked live in the browser and again by the API (422 `CONSTRAINTS_NOT_MET` with kid-friendly messages).
+- **Challenge storage:** the challenge text is saved as a `Submission` (status `SUBMITTED`, version incremented on each resubmit) plus a `DraftVersion` snapshot, so the P3 writing workspace can open it. Lesson progress keeps only the word count.
+- **Sort activities** use tap-to-place buttons (works with keyboard, touch and screen readers). Drag-and-drop (dnd-kit) arrives with the Unit 4 plot diagram.
+- **Unit 1** has 4 complete lessons (six-word stories, show don't tell, describe without naming, vivid language) with 16 activities; Units 2–12 are unpublished outlines.
+
 ---
 
 ## 10. Unit-by-unit interactive tool designs (Deliverable 8)
@@ -1621,7 +1631,7 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 |---|---|---|
 | **P0 Scaffold** ✅ | Monorepo, Turborepo, pnpm, lint/format, tsconfig, `.env` config (native services, no Docker), CI pipeline, Next.js + NestJS hello pages, Prisma baseline | `pnpm dev` starts everything; CI green; `/api/v1/health` returns 200 |
 | **P1 Auth & classes** ✅ | Teacher register/login, student join flow (join code + username + picture secret), refresh rotation, RBAC guards and policies, classes, bulk students, login cards PDF | E2E: teacher creates class, adds 3 students, a student logs in with a picture password; policy tests prove cross-class access is denied |
-| **P2 Curriculum & lesson engine** | Content schemas, `/content` sync, units/lessons/activities API, lesson player with the 5 steps, activity renderers for MULTIPLE_CHOICE, SORT, HIGHLIGHT, REFLECTION, pacing | Unit 1 lesson playable end to end; progress persists; invalid content fails CI |
+| **P2 Curriculum & lesson engine** ✅ | Content schemas, `/content` sync, units/lessons/activities API, lesson player with the 5 steps, activity renderers for MULTIPLE_CHOICE, SORT, HIGHLIGHT, REFLECTION, pacing | Unit 1 lesson playable end to end; progress persists; invalid content fails CI |
 | **P3 Writing workspace** | TipTap editor, constraints bar, autosave with revisions and 409 conflict dialog, IndexedDB offline queue, snapshots, version history, diff viewer, submit with 422 validation | E2E: type → autosave → go offline → type → reconnect → no data lost; two tabs → conflict dialog; restore an older version |
 | **P4 Analysis & AI feedback** | `packages/writing-analysis` (all deterministic analyzers, in a Web Worker), `packages/ai` (gateway, show-vs-tell, sensory, rubric-score, safety), feedback pipeline, class AI modes, live checks with rate limits and cache, safety flags | Unit tests for every analyzer; fake-gateway tests for the pipeline; with a real key, `pnpm ai:eval` runs on the seed golden set; safety flag appears in the teacher inbox |
 | **P5 Teacher dashboard** | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |

@@ -1,0 +1,122 @@
+import { z } from 'zod';
+import { ActivityContent, LessonSteps, StepId } from '../curriculum/content.js';
+
+/** Why a unit can't be opened yet. */
+export const UnitLockReason = z.enum(['COMING_SOON', 'LOCKED']);
+
+export const UnitSummary = z.object({
+  id: z.string(),
+  number: z.number(),
+  slug: z.string(),
+  title: z.string(),
+  summary: z.string(),
+  available: z.boolean(),
+  lockReason: UnitLockReason.nullable(),
+  dueAt: z.iso.datetime().nullable(),
+  lessonCount: z.number(),
+  completedLessons: z.number(),
+});
+export type UnitSummary = z.infer<typeof UnitSummary>;
+
+export const LessonSummary = z.object({
+  id: z.string(),
+  slug: z.string(),
+  order: z.number(),
+  title: z.string(),
+  estMinutes: z.number(),
+  completedSteps: z.number(),
+  totalSteps: z.number(),
+  completed: z.boolean(),
+});
+export type LessonSummary = z.infer<typeof LessonSummary>;
+
+export const UnitDetail = UnitSummary.extend({
+  bigIdeas: z.array(z.string()),
+  lessons: z.array(LessonSummary),
+});
+export type UnitDetail = z.infer<typeof UnitDetail>;
+
+export const LessonProgressView = z.object({
+  completedSteps: z.array(StepId),
+  responses: z.record(z.string(), z.unknown()),
+  completedAt: z.iso.datetime().nullable(),
+});
+export type LessonProgressView = z.infer<typeof LessonProgressView>;
+
+export const LessonDetail = z.object({
+  id: z.string(),
+  slug: z.string(),
+  order: z.number(),
+  title: z.string(),
+  estMinutes: z.number(),
+  unit: z.object({ id: z.string(), number: z.number(), slug: z.string(), title: z.string() }),
+  steps: LessonSteps,
+  /** Activities used by this lesson, by key. */
+  activities: z.record(z.string(), ActivityContent),
+  progress: LessonProgressView,
+  /** The student's last submitted challenge text, if any. */
+  challengeText: z.string().nullable(),
+  nextLessonId: z.string().nullable(),
+});
+export type LessonDetail = z.infer<typeof LessonDetail>;
+
+// ───────── Step completion bodies (one per step) ─────────
+
+export const HookResponse = z.object({ response: z.string().trim().max(1000).optional() });
+export const LearnResponse = z.object({ cardsViewed: z.number().int().min(0).max(20) });
+export const PracticeResponse = z.object({
+  results: z
+    .array(
+      z.object({
+        activityKey: z.string(),
+        correct: z.boolean(),
+        attempts: z.number().int().min(1).max(50),
+      }),
+    )
+    .min(1)
+    .max(5),
+});
+export const ChallengeResponse = z.object({ text: z.string().max(20_000) });
+export const ReflectResponse = z.object({
+  answers: z.array(z.string().trim().min(1, 'Write a short answer').max(1000)).min(1).max(3),
+  confidence: z.number().int().min(1).max(4).optional(),
+});
+
+export const STEP_RESPONSE_SCHEMAS = {
+  hook: HookResponse,
+  learn: LearnResponse,
+  practice: PracticeResponse,
+  challenge: ChallengeResponse,
+  reflect: ReflectResponse,
+} as const;
+
+export const CONFIDENCE_LEVELS = [
+  { value: 1, emoji: '😟', label: 'Not sure yet' },
+  { value: 2, emoji: '😐', label: 'Getting there' },
+  { value: 3, emoji: '🙂', label: 'Pretty confident' },
+  { value: 4, emoji: '🤩', label: 'I could teach this!' },
+] as const;
+
+// ───────── Teacher pacing ─────────
+
+export const ClassUnitPacing = z.object({
+  unitId: z.string(),
+  number: z.number(),
+  title: z.string(),
+  published: z.boolean(),
+  available: z.boolean(),
+  hidden: z.boolean(),
+  unlockAt: z.iso.datetime().nullable(),
+  dueAt: z.iso.datetime().nullable(),
+  lessonCount: z.number(),
+});
+export type ClassUnitPacing = z.infer<typeof ClassUnitPacing>;
+
+export const UpdatePacingRequest = z
+  .object({
+    hidden: z.boolean(),
+    unlockAt: z.iso.datetime().nullable(),
+    dueAt: z.iso.datetime().nullable(),
+  })
+  .partial();
+export type UpdatePacingRequest = z.infer<typeof UpdatePacingRequest>;

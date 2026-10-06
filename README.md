@@ -15,6 +15,7 @@ An interactive creative writing platform for middle school (grades 6–8). The f
 pnpm install
 cp .env.example .env        # then fill in DATABASE_URL, DATABASE_TEST_URL and JWT_ACCESS_SECRET
 pnpm db:migrate             # create the tables in the development database
+pnpm content:sync           # load the lessons from /content into the database
 pnpm dev
 ```
 
@@ -31,6 +32,7 @@ pnpm dev
 | `pnpm test` | Unit and API tests (Vitest). API tests use the test database from `DATABASE_TEST_URL` |
 | `pnpm test:e2e` | Browser tests (Playwright). Starts its own API and web app on ports 4100/3100 against the test database |
 | `pnpm db:migrate` | Create and apply a migration after changing `packages/db/prisma/schema.prisma` |
+| `pnpm content:check` / `pnpm content:sync` | Validate the lesson files in `/content` / load them into the database |
 | `pnpm db:validate` | Validate the Prisma schema |
 
 First time running browser tests: `pnpm --filter @storyforge/web exec playwright install chromium`.

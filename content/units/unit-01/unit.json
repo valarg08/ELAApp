@@ -1,0 +1,19 @@
+{
+  "number": 1,
+  "slug": "foundations",
+  "title": "Foundations",
+  "summary": "Every great story is built from small choices. Learn to make every word count, show feelings instead of naming them, paint pictures with your senses, and pick words that spark.",
+  "bigIdeas": [
+    "Short can be powerful: every word has a job.",
+    "Showing lets readers feel the story for themselves.",
+    "Sensory details help readers step inside a scene.",
+    "Strong, precise words make writing come alive."
+  ],
+  "published": true,
+  "projectSpec": {
+    "title": "My First Story",
+    "description": "Write a short story (500–750 words) that uses a six-word-story-style title, at least three showing moments, sensory details, and strong verbs.",
+    "minWords": 500,
+    "maxWords": 750
+  }
+}

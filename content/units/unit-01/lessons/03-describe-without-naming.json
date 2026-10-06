@@ -1,0 +1,60 @@
+{
+  "slug": "describe-without-naming",
+  "order": 3,
+  "title": "Describe Without Naming",
+  "estMinutes": 40,
+  "focusSkills": ["sensory-detail"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Close your eyes for a moment. What does your kitchen sound and smell like in the morning?",
+      "placeholder": "I hear… I smell…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Your five senses",
+          "body": "Sight, sound, smell, taste and touch. Most writers only use sight. Adding the other senses pulls the reader right into the scene."
+        },
+        {
+          "kind": "example",
+          "title": "Name it vs. describe it",
+          "text": "Instead of \"a dog\", try \"a wet nose, a thumping tail, and muddy paw prints across the kitchen floor.\"",
+          "note": "You never said \"dog\", but the reader sees one, and even hears the tail."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Which senses?",
+          "prompt": "Tap the four words that use sound, smell or touch.",
+          "text": "The bread crackled as Dad tore it open, and warm, buttery steam filled the kitchen.",
+          "clues": ["crackled", "warm", "buttery", "steam"]
+        },
+        {
+          "kind": "definition",
+          "title": "The secret: specific details",
+          "body": "\"A red bike with a squeaky bell\" beats \"a bike\". Specific details let readers picture things for themselves."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u01.senses-sort", "u01.senses-highlight", "u01.senses-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u01.describe-write" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which sense was hardest to write about? Why?",
+        "Read your description to someone. Could they guess what it was?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

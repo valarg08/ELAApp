@@ -279,6 +279,7 @@ model LessonProgress {
   lessonId       String
   classId        String
   completedSteps Json // string[] of step ids
+  responses      Json? // { [stepId]: step response } — practice results, reflections, confidence
   completedAt    DateTime?
   updatedAt      DateTime  @updatedAt
 

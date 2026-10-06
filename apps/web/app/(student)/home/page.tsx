@@ -1,30 +1,113 @@
+import { UnitSummary } from '@storyforge/shared';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { Card, PageShell } from '@/components/ui';
-import { getMe } from '@/lib/server-api';
+import { ProgressBar } from '@/components/progress-bar';
+import { PageShell } from '@/components/ui';
+import { getMe, serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
 
+const dueLabel = (iso: string) =>
+  new Date(iso).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+
 export default async function StudentHome() {
-  const me = await getMe();
+  const [me, units] = await Promise.all([getMe(), serverApi('/units', UnitSummary.array())]);
   if (!me) redirect('/join');
+  const current = units?.find((u) => u.available && u.completedLessons < u.lessonCount);
 
   return (
-    <PageShell>
-      <div className="flex flex-col gap-6">
-        <h1 className="text-4xl font-bold">Welcome, {me.displayName}! 👋</h1>
-        {me.classes.length > 0 && (
-          <p className="text-lg text-muted">
-            You&apos;re in{' '}
-            <strong className="text-foreground">{me.classes.map((c) => c.name).join(', ')}</strong>.
-          </p>
+    <PageShell width="max-w-5xl">
+      <div className="flex flex-col gap-8">
+        <div>
+          <h1 className="text-4xl font-bold">Welcome, {me.displayName}! 👋</h1>
+          {me.classes.length > 0 && (
+            <p className="mt-2 text-lg text-muted">
+              You&apos;re in{' '}
+              <strong className="text-foreground">
+                {me.classes.map((c) => c.name).join(', ')}
+              </strong>
+              .
+            </p>
+          )}
+        </div>
+
+        {current && (
+          <Link
+            href={`/units/${current.slug}`}
+            className="rounded-2xl border-2 border-brand bg-card p-6 shadow-sm transition hover:shadow-md focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          >
+            <p className="text-sm font-semibold tracking-widest text-brand uppercase">
+              ⭐ Keep going
+            </p>
+            <p className="mt-1 text-2xl font-bold">
+              Unit {current.number}: {current.title}
+            </p>
+            <p className="mt-1 text-muted">
+              {current.completedLessons} of {current.lessonCount} lessons done
+            </p>
+          </Link>
         )}
-        <Card>
-          <h2 className="text-xl font-semibold">⭐ Coming soon</h2>
-          <p className="mt-2 text-muted">
-            Your lessons, writing missions and badges will appear here. Get your imagination ready!
-          </p>
-        </Card>
+
+        <section aria-labelledby="journey">
+          <h2 id="journey" className="mb-4 text-2xl font-semibold">
+            Your writing journey
+          </h2>
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {(units ?? []).map((u) => (
+              <li key={u.id}>
+                <UnitCard unit={u} />
+              </li>
+            ))}
+          </ol>
+        </section>
       </div>
     </PageShell>
+  );
+}
+
+function UnitCard({ unit }: { unit: UnitSummary }) {
+  const body = (
+    <>
+      <div className="flex items-start justify-between gap-2">
+        <p className="text-sm font-semibold text-muted">Unit {unit.number}</p>
+        {unit.available ? (
+          unit.lessonCount > 0 && unit.completedLessons === unit.lessonCount ? (
+            <span className="text-sm font-semibold text-ok">✓ Done</span>
+          ) : null
+        ) : (
+          <span className="text-sm text-muted">
+            {unit.lockReason === 'COMING_SOON' ? '⏳ Coming soon' : '🔒 Locked'}
+          </span>
+        )}
+      </div>
+      <h3 className="mt-1 text-lg font-semibold">{unit.title}</h3>
+      {unit.available && (
+        <div className="mt-3 flex flex-col gap-1">
+          <ProgressBar
+            value={unit.completedLessons}
+            max={unit.lessonCount}
+            label={`Unit ${unit.number} progress`}
+          />
+          <p className="text-sm text-muted">
+            {unit.completedLessons}/{unit.lessonCount} lessons
+            {unit.dueAt ? ` · due ${dueLabel(unit.dueAt)}` : ''}
+          </p>
+        </div>
+      )}
+    </>
+  );
+
+  const base = 'block h-full rounded-2xl border border-border bg-card p-5 shadow-sm';
+  return unit.available ? (
+    <Link
+      href={`/units/${unit.slug}`}
+      className={`${base} transition hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand`}
+    >
+      {body}
+    </Link>
+  ) : (
+    <div className={`${base} opacity-60`} aria-disabled="true">
+      {body}
+    </div>
   );
 }

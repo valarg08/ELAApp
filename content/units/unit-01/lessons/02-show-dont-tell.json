@@ -1,0 +1,63 @@
+{
+  "slug": "show-dont-tell",
+  "order": 2,
+  "title": "Show, Don't Tell",
+  "estMinutes": 40,
+  "focusSkills": ["show-vs-tell"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which sentence lets you see the feeling?",
+      "a": "Sam was nervous.",
+      "b": "Sam's pencil tapped a fast drumbeat on the desk.",
+      "reveal": "The first sentence tells you Sam is nervous. The second one shows it, so you feel it yourself. That's showing."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Telling",
+          "body": "Telling names the feeling: happy, sad, angry, scared. It's quick, but the reader doesn't feel much."
+        },
+        {
+          "kind": "definition",
+          "title": "Showing",
+          "body": "Showing gives clues (actions, body language, words, details) so the reader works out the feeling on their own."
+        },
+        {
+          "kind": "compare",
+          "title": "Same feeling, two ways",
+          "telling": "Mia was happy.",
+          "showing": "Mia spun in circles, laughing, her backpack flying out behind her.",
+          "note": "The showing sentence never says \"happy\", but you know."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the clues",
+          "prompt": "Tap the three words that show Leo is angry.",
+          "text": "Leo's face turned red. He stomped up the stairs and slammed his door.",
+          "clues": ["red", "stomped", "slammed"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u01.show-tell-sort", "u01.show-tell-highlight", "u01.show-tell-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u01.show-tell-write" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Copy your favorite showing detail from your writing. What does it tell the reader?",
+        "When might telling be better than showing?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

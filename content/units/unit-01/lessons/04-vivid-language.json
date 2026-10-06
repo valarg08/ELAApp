@@ -1,0 +1,66 @@
+{
+  "slug": "vivid-language",
+  "order": 4,
+  "title": "Strong, Vivid Words",
+  "estMinutes": 40,
+  "focusSkills": ["word-choice", "strong-verbs"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "Two ways to tell it",
+      "paragraphs": [
+        "Version 1: The dog went across the yard. It was very fast. It got the ball.",
+        "Version 2: The dog rocketed across the yard, ears flapping, and snatched the ball mid-bounce.",
+        "Same dog. Same yard. Which one can you picture?"
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Weak verbs vs. strong verbs",
+          "body": "Weak verbs like went, got, said and looked tell us very little. Strong verbs like stumbled, grabbed, whispered and glared paint a picture."
+        },
+        {
+          "kind": "compare",
+          "title": "Cut the \"very\"",
+          "telling": "The giant was very big.",
+          "showing": "The giant was enormous.",
+          "note": "Swap \"very + word\" for one stronger word: very tired → exhausted, very happy → thrilled, very cold → freezing."
+        },
+        {
+          "kind": "example",
+          "title": "Precise nouns",
+          "text": "Not \"a bird\" but \"a crow\". Not \"a car\" but \"a rusty pickup truck\". Not \"food\" but \"cold pizza\".",
+          "note": "The more precise the word, the clearer the picture."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Spot the strong verbs",
+          "prompt": "Tap the three strong verbs.",
+          "text": "Mateo sprinted to the door, yanked it open, and gasped.",
+          "clues": ["sprinted", "yanked", "gasped"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u01.vivid-sort", "u01.vivid-highlight", "u01.vivid-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u01.vivid-write" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which weak word did you replace with the best strong word? Write both.",
+        "Pick one new strong verb you want to use again. Use it in a sentence."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}
