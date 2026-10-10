@@ -30,7 +30,6 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
   const firstOpen = STEP_IDS.findIndex((s) => !completed.includes(s));
   const [view, setView] = useState<number>(firstOpen === -1 ? FINISHED : firstOpen);
   const [busy, setBusy] = useState(false);
-  const [savedText, setSavedText] = useState(lesson.challengeText);
   const [error, setError] = useState<string | null>(null);
 
   const canOpen = (i: number) => i <= (firstOpen === -1 ? FINISHED : firstOpen);
@@ -46,8 +45,6 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
         body,
       );
       setCompleted(progress.completedSteps);
-      if (stepId === 'challenge' && 'text' in body && typeof body.text === 'string')
-        setSavedText(body.text);
       setView(STEP_IDS.indexOf(stepId) + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (stepId === 'reflect') router.refresh();
@@ -140,13 +137,15 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
         )}
         {view === 3 && (
           <ChallengeStep
-            key={savedText ?? ''}
             step={challenge}
             activities={lesson.activities}
-            savedText={savedText}
-            done={done('challenge')}
-            busy={busy}
-            onComplete={(b) => complete('challenge', b)}
+            activityId={lesson.challengeActivityId}
+            onSubmitted={({ lessonProgress }) => {
+              if (!lessonProgress) return;
+              setCompleted(lessonProgress.completedSteps);
+              setView(STEP_IDS.indexOf('reflect'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         )}
         {view === 4 && (

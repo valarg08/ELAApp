@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { clearAllPendingDrafts } from '@/features/writing/draft-store';
 import { apiSend } from '@/lib/api-client';
 import { Button } from './ui';
 
@@ -13,6 +14,8 @@ export function LogoutButton() {
     setBusy(true);
     try {
       await apiSend('/auth/logout');
+      // Shared classroom devices: don't leave writing behind for the next student.
+      await clearAllPendingDrafts();
     } finally {
       router.push('/');
       router.refresh();

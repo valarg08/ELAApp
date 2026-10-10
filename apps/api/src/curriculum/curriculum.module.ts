@@ -8,5 +8,6 @@ import { PacingService } from './pacing.service.js';
   imports: [ClassesModule],
   controllers: [CurriculumController, PacingController],
   providers: [CurriculumService, PacingService],
+  exports: [CurriculumService],
 })
 export class CurriculumModule {}

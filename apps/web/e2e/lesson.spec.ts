@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
-import { expect, test, type Page } from '@playwright/test';
-import { ActivitiesFile, decodePictureSecret, PICTURES } from '@storyforge/shared';
+import { expect, test } from '@playwright/test';
+import { ActivitiesFile } from '@storyforge/shared';
+import { expectAccessible, setUpStudent, studentLogin } from './helpers';
 
 /** Correct answers come straight from the content files, so the test follows content edits. */
 const activities = ActivitiesFile.parse(
@@ -23,38 +24,6 @@ function activity<T extends Activity['type']>(
   const a = activities.find((x) => x.key === key);
   if (!a || !isType(a, type)) throw new Error(`Activity ${key} is not ${type}`);
   return a;
-}
-
-async function setUpStudent(page: Page) {
-  await page.goto('/register');
-  await page.getByLabel('Your name (shown to students)').fill('Ms Okafor');
-  await page.getByLabel('Email').fill(`okafor-${Date.now()}@example.test`);
-  await page.getByLabel('Password').fill('e2e-teacher-password-2');
-  await page.getByRole('button', { name: 'Create account', exact: true }).click();
-  await page.getByLabel('Class name').fill('6C Storytellers');
-  await page.getByRole('button', { name: 'Create class', exact: true }).click();
-  const joinCode = (await page.getByTestId('join-code').textContent())?.trim() ?? '';
-  await page.getByLabel('Student names').fill('Zara');
-  await page.getByRole('button', { name: 'Add 1 student', exact: true }).click();
-  const card = page.getByTestId('credential');
-  const username = (await card.getAttribute('data-username')) ?? '';
-  const secret = (await card.getAttribute('data-secret')) ?? '';
-  await page.getByRole('button', { name: 'Log out', exact: true }).click();
-  await expect(page).toHaveURL(/\/$/);
-  return { joinCode, username, secret };
-}
-
-async function studentLogin(page: Page, s: { joinCode: string; username: string; secret: string }) {
-  await page.goto(`/join?code=${s.joinCode}&user=${s.username}`);
-  for (const id of decodePictureSecret(s.secret) ?? []) {
-    const label = PICTURES.find((p) => p.id === id)?.label ?? id;
-    await page
-      .getByRole('group', { name: 'Pictures' })
-      .getByRole('button', { name: label, exact: true })
-      .click();
-  }
-  await page.getByRole('button', { name: 'Log in', exact: true }).click();
-  await expect(page).toHaveURL(/\/home$/);
 }
 
 test('acceptance: a student plays Unit 1, Lesson 1 end to end and progress persists', async ({
@@ -117,13 +86,15 @@ test('acceptance: a student plays Unit 1, Lesson 1 end to end and progress persi
       .click();
   }
 
-  // 4. Challenge: exactly six words, checked live.
+  // 4. Challenge: the writing workspace, exactly six words, checked live.
   const box = page.getByLabel('Your writing');
   await box.fill('Too short for six.');
   await expect(page.getByText('Use exactly 6 words (you have 4).')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Submit', exact: true })).toBeDisabled();
   await box.fill('Lost my map. Found new friends.');
   await expect(page.getByText('✓ Ready to submit!')).toBeVisible();
+  await expect(page.getByTestId('save-status')).toHaveAttribute('data-status', 'saved');
+  await expectAccessible(page);
   await page.getByRole('button', { name: 'Submit', exact: true }).click();
 
   // 5. Reflect.

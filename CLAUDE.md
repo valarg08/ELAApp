@@ -15,7 +15,8 @@
 - Rules: every endpoint needs an authorisation test; never log student text; never call the real Claude API in tests
   (use the fake AiGateway); validate all JSON columns with Zod before writes; UI must be keyboard accessible and pass axe.
 - Lint is oxlint (`.oxlintrc.json`), formatting is Prettier. Markdown files are excluded from Prettier.
-- Current phase: see DESIGN.md §14.2. P0 (scaffold), P1 (auth & classes) and P2 (curriculum & lesson engine) are done; next is P3.
+- Current phase: see DESIGN.md §14.2. P0 (scaffold), P1 (auth & classes), P2 (curriculum & lesson engine)
+  and P3 (writing workspace, plain-text editor) are done; next is P4.
 - Tests: API tests hit the real `storyforge_test` database (DATABASE_TEST_URL, never the dev DB) and run files serially.
   Auth: global guards (AuthGuard → CsrfGuard → RolesGuard); mark open routes `@Public()`, restrict with `@Roles()`.
   Ownership checks live in ClassAccessService; other teachers' resources answer 404.
@@ -23,3 +24,6 @@
 - Curriculum content is JSON in /content (format: DESIGN.md §9.4). After editing it run `pnpm content:check`, then
   `pnpm content:sync` to load it into the dev database. API tests seed it with `seedContent()` after `resetDatabase()`.
 - turbo only passes env vars listed in `globalPassThroughEnv` (turbo.json) to tasks — add new env vars there or CI breaks.
+- Writing workspace (DESIGN.md §5.4.1): drafts are plain text. Autosave logic is the framework-free `AutosaveController`
+  (apps/web/features/writing/autosave.ts), unit-tested with fake timers. Playwright tests call `expectAccessible(page)`
+  (axe) from apps/web/e2e/helpers.ts.

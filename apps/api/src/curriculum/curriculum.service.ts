@@ -11,9 +11,6 @@ import {
   StepId,
   type UnitDetail,
   type UnitSummary,
-  checkConstraints,
-  describeProblem,
-  isWritingActivity,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { AppError, forbidden, notFound } from '../common/app-error.js';
@@ -50,15 +47,6 @@ const responsesOf = (p: LessonProgress | undefined): Record<string, unknown> => 
   const value: unknown = p?.responses;
   return typeof value === 'object' && value !== null && !Array.isArray(value) ? { ...value } : {};
 };
-
-/** A plain-text answer as a minimal TipTap document (the P3 editor opens it as-is). */
-const textToDoc = (text: string) => ({
-  type: 'doc',
-  content: text.split(/\n/).map((line) => ({
-    type: 'paragraph',
-    content: line ? [{ type: 'text', text: line }] : [],
-  })),
-});
 
 @Injectable()
 export class CurriculumService {
@@ -138,13 +126,7 @@ export class CurriculumService {
         : undefined;
 
     const challengeRow = rows.find((r) => r.key === challenge.activityKey);
-    const submission =
-      user.role === 'STUDENT' && challengeRow
-        ? await this.db.client.submission.findFirst({
-            where: { activityId: challengeRow.id, studentId: user.id },
-            orderBy: { updatedAt: 'desc' },
-          })
-        : null;
+    if (!challengeRow) throw new Error(`Challenge activity ${challenge.activityKey} missing`);
 
     const next = await this.db.client.lesson.findFirst({
       where: { unitId: unit.id, order: { gt: lesson.order } },
@@ -162,7 +144,7 @@ export class CurriculumService {
       steps,
       activities,
       progress: this.progressView(progress),
-      challengeText: submission?.contentText ?? null,
+      challengeActivityId: challengeRow.id,
       nextLessonId: next?.id ?? null,
     };
   }
@@ -240,25 +222,24 @@ export class CurriculumService {
     }
 
     if (stepId.data === 'challenge') {
-      const { text } = STEP_RESPONSE_SCHEMAS.challenge.parse(body);
-      const row = await this.db.client.activity.findUnique({
-        where: { key: challenge.activityKey },
+      // The writing itself is checked and stored by the submissions module (writing workspace).
+      const submission = await this.db.client.submission.findFirst({
+        where: {
+          activity: { key: challenge.activityKey },
+          studentId: user.id,
+          classId,
+          version: { gte: 1 },
+        },
       });
-      const activity = row ? ActivityContent.parse(row.config) : null;
-      if (!row || !activity || !isWritingActivity(activity))
-        throw new Error(`Challenge activity ${challenge.activityKey} missing`);
-      const { wordCount, problems } = checkConstraints(text, activity.constraints);
-      if (activity.constraints.enforcement === 'hard' && problems.length > 0) {
+      if (!submission) {
         throw new AppError(
           HttpStatus.UNPROCESSABLE_ENTITY,
-          ErrorCode.CONSTRAINTS_NOT_MET,
-          'Almost there',
-          'Your writing doesn’t meet the challenge rules yet.',
-          problems.map(describeProblem),
+          ErrorCode.WRITING_NOT_SUBMITTED,
+          'Not yet!',
+          'Submit your writing first.',
         );
       }
-      await this.saveSubmission(row.id, user.id, classId, text, wordCount);
-      stored = { wordCount }; // the text itself lives in the submission
+      stored = { wordCount: submission.wordCount };
     }
 
     const completedSteps = done.includes(stepId.data) ? done : [...done, stepId.data];
@@ -301,8 +282,16 @@ export class CurriculumService {
       return { lesson, unit, classId: '' };
     }
 
+    return { lesson, unit, classId: await this.studentClassForUnit(user, unit) };
+  }
+
+  /**
+   * The student's class in which this unit is open (the given class, or their first such class).
+   * Throws UNIT_LOCKED when no class has it open.
+   */
+  async studentClassForUnit(user: AuthUser, unit: Unit, classId?: string): Promise<string> {
     const enrollments = await this.db.client.enrollment.findMany({
-      where: { studentId: user.id, class: { archivedAt: null } },
+      where: { studentId: user.id, class: { archivedAt: null }, ...(classId ? { classId } : {}) },
       include: { class: { include: { unitAssignments: { where: { unitId: unit.id } } } } },
       orderBy: { joinedAt: 'asc' },
     });
@@ -317,7 +306,7 @@ export class CurriculumService {
         'Your teacher hasn’t unlocked this unit yet.',
       );
     }
-    return { lesson, unit, classId: open.classId };
+    return open.classId;
   }
 
   /** Pacing rows for the student's class (the given one if enrolled, else their first active class). */
@@ -373,52 +362,6 @@ export class CurriculumService {
       title: unit.title,
       summary: unit.summary,
     };
-  }
-
-  private async saveSubmission(
-    activityId: string,
-    studentId: string,
-    classId: string,
-    text: string,
-    wordCount: number,
-  ) {
-    const now = new Date();
-    const contentJson = textToDoc(text);
-    await this.db.client.$transaction(async (tx) => {
-      const submission = await tx.submission.upsert({
-        where: { activityId_studentId_classId: { activityId, studentId, classId } },
-        create: {
-          activityId,
-          studentId,
-          classId,
-          status: 'SUBMITTED',
-          contentJson,
-          contentText: text,
-          wordCount,
-          version: 1,
-          submittedAt: now,
-        },
-        update: {
-          status: 'SUBMITTED',
-          contentJson,
-          contentText: text,
-          wordCount,
-          version: { increment: 1 },
-          submittedAt: now,
-        },
-      });
-      await tx.draftVersion.create({
-        data: {
-          submissionId: submission.id,
-          version: submission.version,
-          revision: submission.draftRevision,
-          reason: 'SUBMIT',
-          contentJson,
-          contentText: text,
-          wordCount,
-        },
-      });
-    });
   }
 }
 

@@ -54,8 +54,8 @@ export const LessonDetail = z.object({
   /** Activities used by this lesson, by key. */
   activities: z.record(z.string(), ActivityContent),
   progress: LessonProgressView,
-  /** The student's last submitted challenge text, if any. */
-  challengeText: z.string().nullable(),
+  /** The writing activity of the challenge step (opened in the writing workspace). */
+  challengeActivityId: z.string(),
   nextLessonId: z.string().nullable(),
 });
 export type LessonDetail = z.infer<typeof LessonDetail>;
@@ -76,7 +76,8 @@ export const PracticeResponse = z.object({
     .min(1)
     .max(5),
 });
-export const ChallengeResponse = z.object({ text: z.string().max(20_000) });
+/** The writing is submitted from the workspace; completing the step only checks that it was. */
+export const ChallengeResponse = z.object({});
 export const ReflectResponse = z.object({
   answers: z.array(z.string().trim().min(1, 'Write a short answer').max(1000)).min(1).max(3),
   confidence: z.number().int().min(1).max(4).optional(),

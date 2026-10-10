@@ -7,6 +7,8 @@ import {
   ClassSummary,
   StudentCredential,
   type StudentSecretKind,
+  SubmissionDetail,
+  SubmitResponse,
 } from '@storyforge/shared';
 import request from 'supertest';
 import type TestAgent from 'supertest/lib/agent.js';
@@ -160,4 +162,24 @@ export async function seedContent(db: PrismaClient): Promise<void> {
   const { units, errors } = await loadContent();
   if (errors.length > 0) throw new Error(`Invalid content:\n${errors.join('\n')}`);
   await syncContent(db, units);
+}
+
+/** Open the student's working copy of a writing activity. */
+export async function openSubmission(client: Client, activityId: string) {
+  const res = await client.post('/submissions', { activityId }).expect(200);
+  return SubmissionDetail.parse(res.body);
+}
+
+/** Save text into a working copy (from its current revision) and submit it. */
+export async function writeAndSubmit(client: Client, submission: SubmissionDetail, text: string) {
+  const saved = await client
+    .patch(`/submissions/${submission.id}/draft`, {
+      text,
+      baseRevision: submission.draftRevision,
+    })
+    .expect(200);
+  const res = await client
+    .post(`/submissions/${submission.id}/submit`, { baseRevision: saved.body.draftRevision })
+    .expect(200);
+  return SubmitResponse.parse(res.body);
 }

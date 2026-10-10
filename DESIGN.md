@@ -81,7 +81,7 @@ A kid-friendly web platform where middle-school students (ages 11–14) learn cr
 | Frontend | **Next.js 16 (App Router, Turbopack) + React 19** | SSR for fast first load on school Chromebooks, file-based routing |
 | UI | **Tailwind CSS + shadcn/ui (Radix)** | Accessible primitives, easy theming |
 | Client state | **TanStack Query** (server state) + **Zustand** (editor/UI state) | |
-| Rich text editor | **TipTap (ProseMirror)** | Extensible marks for inline feedback, JSON document model |
+| Editor | **Plain `<textarea>`** (decided in P3) | Simple and robust on Chromebooks and phones; drafts are plain text. A rich editor (TipTap) can be added later behind the same API |
 | Drag and drop | **dnd-kit** | Accessible (keyboard) drag and drop for the plot diagram and sort activities |
 | Backend | **NestJS 12** (ESM, REST, OpenAPI via `@nestjs/swagger`) | Modules, guards, DI, and structure a coding agent can follow |
 | Validation | **Zod 4** schemas in `packages/shared`, used by both apps; the API validates with Nest 12's built-in `StandardSchemaValidationPipe` | One contract, no extra adapter library |
@@ -102,7 +102,7 @@ A kid-friendly web platform where middle-school students (ages 11–14) learn cr
 ```mermaid
 flowchart LR
   subgraph Client["Browser (student / teacher / admin)"]
-    WEB[Next.js app<br/>TipTap editor<br/>IndexedDB offline queue]
+    WEB[Next.js app<br/>plain-text editor<br/>IndexedDB offline queue]
   end
 
   subgraph Edge
@@ -168,7 +168,7 @@ storyforge/
 
 **Autosave (student typing)**
 1. The editor changes, and the client debounces 1.5 s after the student stops typing (forced save every 10 s while typing continues).
-2. `PATCH /api/v1/submissions/:id/draft` sends `{ contentJson, baseRevision }`.
+2. `PATCH /api/v1/submissions/:id/draft` sends `{ text, baseRevision }`.
 3. The server rejects the save with `409` if `baseRevision` is stale (another tab). Otherwise it writes the draft and increments `draftRevision`.
 4. The server snapshots a `DraftVersion` when 2 minutes have passed since the last snapshot or at least 50 words have changed.
 5. When offline, saves queue in IndexedDB and replay in order on reconnect.
@@ -283,7 +283,7 @@ apps/web/features
 │  └─ activity-renderers/   # one renderer per ActivityType (§9.3), registered in a map
 ├─ workspace/
 │  ├─ WritingWorkspace      # layout: prompt | editor | coach panel
-│  ├─ Editor (TipTap) + extensions: FeedbackMark, BannedWordMark, DialogueMark, LineNumbers
+│  ├─ Editor: plain textarea (inline highlights for coach cards are a P4 design question)
 │  ├─ ConstraintBar         # word count, banned words, POV lock, timer
 │  ├─ CoachPanel            # AI + deterministic feedback cards, "Check my writing"
 │  ├─ RevisionHistory       # version list + DiffViewer
@@ -479,8 +479,8 @@ model Submission {
   classId        String
   status         SubmissionStatus @default(DRAFT)
   title          String?
-  contentJson    Json                        // TipTap document
-  contentText    String                      // plain text for analysis and search
+  contentJson    Json?                       // unused since P3 (plain text); kept for a possible rich editor
+  contentText    String                      // the draft text (source of truth)
   wordCount      Int      @default(0)
   draftRevision  Int      @default(0)        // optimistic concurrency for autosave
   version        Int      @default(0)        // increments on each submit
@@ -503,7 +503,7 @@ model DraftVersion {
   version      Int                           // submission.version at time of snapshot
   revision     Int                           // draftRevision at time of snapshot
   reason       SnapshotReason
-  contentJson  Json
+  contentJson  Json?
   contentText  String
   wordCount    Int
   createdAt    DateTime @default(now())
@@ -793,12 +793,13 @@ model AuditLog {
 |---|---|---|---|
 | POST | `/submissions` | student | Create or return the working copy `{ activityId, classId }` (the brief's `/submissions/create`) |
 | GET | `/submissions/:id` | owner, teacher | Current draft + status |
-| PATCH | `/submissions/:id/draft` | owner | Autosave `{ contentJson, baseRevision, title? }` → `{ draftRevision, savedAt, wordCount }` or `409` |
-| POST | `/submissions/:id/submit` | owner | Validate constraints, freeze the version, enqueue feedback |
+| PATCH | `/submissions/:id/draft` | owner | Autosave `{ text, baseRevision }` → `{ draftRevision, savedAt, wordCount, snapshotCreated }` or `409` |
+| POST | `/submissions/:id/submit` | owner | `{ baseRevision }`: validate constraints, freeze the version, enqueue feedback (P4) → `{ submission, lessonProgress }` |
 | GET | `/submissions/:id/versions` | owner, teacher | Snapshot list |
+| POST | `/submissions/:id/versions` | owner | `{ baseRevision }`: "Save version" (a MANUAL snapshot) |
 | GET | `/submissions/:id/versions/:versionId` | owner, teacher | One snapshot |
-| POST | `/submissions/:id/restore` | owner | `{ versionId }` → new draft revision from a snapshot |
-| GET | `/submissions/:id/diff?from=&to=` | owner, teacher | Word-level diff between two snapshots |
+| POST | `/submissions/:id/restore` | owner | `{ versionId, baseRevision }` → new draft revision from a snapshot |
+| GET | `/submissions/:id/diff?from=&to=` | owner, teacher | Word-level diff between two snapshots (`to` omitted = the current draft) |
 | GET | `/submissions/:id/feedback` | owner, teacher | Released feedback (students) / all feedback (teacher) |
 | GET | `/me/submissions?status=` | student | Drafts and submissions list |
 
@@ -808,7 +809,7 @@ model AuditLog {
 PATCH /api/v1/submissions/ck9x/draft
 Content-Type: application/json
 
-{ "baseRevision": 41, "title": "The Lighthouse", "contentJson": { "type": "doc", "content": [ … ] } }
+{ "baseRevision": 41, "text": "The lighthouse blinked twice, then went dark. …" }
 ```
 ```json
 200 OK
@@ -828,6 +829,19 @@ Content-Type: application/json
   "errors": [ { "rule": "minWords", "expected": 500, "actual": 412 },
               { "rule": "bannedWords", "found": ["very", "said"] } ] }
 ```
+
+### 5.4.1 Implementation notes (as built in P3)
+
+- **Plain text.** Drafts are plain text (`Submission.contentText`); paragraphs are blank lines. `contentJson` is nullable and unused.
+- **Working copy.** `POST /submissions { activityId, classId? }` creates or returns the copy (simultaneous creates resolve to the same row). The class defaults to the student's class where the unit is open, so pacing applies. Lesson challenges open the copy inside the challenge step; `/write/[submissionId]` is the full-screen workspace (prompt beside the editor; Prompt · Write tabs on narrow screens).
+- **Autosave.** Debounce 1.5 s, forced every 10 s, one request in flight (`AutosaveController` in `apps/web/features/writing`). `draftRevision` is a compare-and-set: a stale `baseRevision` answers 409 `SUBMISSION_REVISION_CONFLICT`, except when the server already holds exactly the same text (a retried request whose response was lost), which answers 200.
+- **Snapshots.** `AUTOSAVE` on the first non-empty save, then when 2 minutes have passed or ≥ 50 words changed (multiset word difference; unchanged text never snapshots). `MANUAL` comes from "Save version", `SUBMIT` from every submit, `RESTORE` holds the restored text. A restore first snapshots the current text if the latest snapshot differs, so nothing is lost. The history lists the newest 200.
+- **Offline.** Unsaved text is written to IndexedDB (`storyforge-drafts`) with its base revision and cleared once the server confirms it. Network failures and 5xx responses retry every 5 s and on the `online` event. On load, leftover device text is sent if its base revision still matches; otherwise the conflict dialog opens. Device drafts are cleared on logout (shared classroom devices).
+- **Conflicts.** The dialog shows both versions. "Keep my version" first stores the other version as a snapshot, then saves this one; "Use the other version" drops this tab's changes.
+- **Status.** Editing a `SUBMITTED`/`RETURNED` submission moves it to `REVISING`; resubmitting increments `version`. `GRADED` submissions are read-only (409 `SUBMISSION_LOCKED`). Submit checks the rules on the server copy (422 `CONSTRAINTS_NOT_MET`, also for empty text) and, for a lesson challenge, completes the lesson's challenge step when the earlier steps are done (`lessonProgress` in the response). `POST /lessons/:id/steps/challenge/complete {}` only checks that the writing was submitted (422 `WRITING_NOT_SUBMITTED`).
+- **Diff.** Word level (`diffWords` in `packages/shared`): the common start and end are trimmed, then an LCS runs on word, space and punctuation tokens; spacing changes other than new paragraphs are ignored. Added words are underlined and removed words struck through, with screen-reader labels (colour is not the only signal).
+- **Accessibility.** Playwright runs axe (`expectAccessible`) on the lesson challenge, the workspace, the conflict dialog and the compare view; serious or critical violations fail the test.
+- **Not yet:** title field, POV/tense locks and syllable patterns (need P4 analyzers), cursor pagination of versions, the `Idempotency-Key` header.
 
 ### 5.5 AI feedback (live checks)
 
@@ -981,7 +995,9 @@ Visual language: warm, rounded cards, large tap targets (min 44×44 px), a frien
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
-Behaviour: highlighted spans in the editor match coach cards; clicking a card scrolls to its span. Banned words get a wavy underline as they are typed. On narrow screens the side panels collapse into tabs (Prompt · Write · Coach).
+Behaviour: highlighted spans in the editor match coach cards; clicking a card scrolls to its span. On narrow screens the side panels collapse into tabs (Prompt · Write · Coach).
+
+**As built in P3:** the editor is a plain textarea (no formatting toolbar). Banned and required words are listed as chips in the constraints bar (⚠ when used or missing) instead of being underlined in the text. The Coach panel and tab arrive with P4.
 
 ### 6.4 Teacher dashboard (`/classes/[id]`)
 
@@ -1388,7 +1404,7 @@ type WritingConstraints = {
 - **Sync:** `pnpm content:check` validates; `pnpm content:sync` upserts into the database (units by number, lessons by unit+slug, activities by key). Nothing is deleted; content removed from `/content` is reported as orphaned. A Vitest test loads the real `/content`, so invalid content fails CI. The admin sync endpoint (§5.3) is not built yet.
 - **Pacing default:** with no pacing row, Unit 1 is open and other published units are locked until the teacher unlocks them; unpublished units show as "coming soon". Pacing rows support `hidden`, a scheduled `unlockAt`, and `dueAt`.
 - **Grading:** practice activities are checked in the browser (answers are part of the lesson payload, which is fine for low-stakes practice); the API requires every practice activity to be reported correct before the step completes. Writing constraints are checked live in the browser and again by the API (422 `CONSTRAINTS_NOT_MET` with kid-friendly messages).
-- **Challenge storage:** the challenge text is saved as a `Submission` (status `SUBMITTED`, version incremented on each resubmit) plus a `DraftVersion` snapshot, so the P3 writing workspace can open it. Lesson progress keeps only the word count.
+- **Challenge storage:** the challenge is written in the P3 writing workspace (§5.4.1) and stored as a `Submission`; lesson progress keeps only the word count.
 - **Sort activities** use tap-to-place buttons (works with keyboard, touch and screen readers). Drag-and-drop (dnd-kit) arrives with the Unit 4 plot diagram.
 - **Unit 1** has 4 complete lessons (six-word stories, show don't tell, describe without naming, vivid language) with 16 activities; Units 2–12 are unpublished outlines.
 
@@ -1591,7 +1607,7 @@ Canvas editor (Konva): background (colour, gradient, or illustrated backgrounds 
 - Encryption in transit (TLS 1.2+) and at rest (managed Postgres and S3 encryption).
 - The AI provider receives only the writing text and activity context: no names, no usernames, no IDs. Configure the provider account for the strictest data retention the school requires.
 - Retention: student data deleted 30 days after the class is archived and the teacher confirms deletion, or on request (export first). Backups expire within 35 days.
-- Security headers (CSP without `unsafe-inline` for scripts, HSTS, frame-ancestors none), input validation on every endpoint, output encoding (TipTap JSON rendered by an allow-list renderer, never raw HTML).
+- Security headers (CSP without `unsafe-inline` for scripts, HSTS, frame-ancestors none), input validation on every endpoint, output encoding (student text is rendered as plain text, never as HTML).
 - Audit log for logins, resets, overrides, exports, and flag actions.
 - Dependency scanning (Dependabot / `pnpm audit`), and secret scanning in CI.
 
@@ -1632,7 +1648,7 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | **P0 Scaffold** ✅ | Monorepo, Turborepo, pnpm, lint/format, tsconfig, `.env` config (native services, no Docker), CI pipeline, Next.js + NestJS hello pages, Prisma baseline | `pnpm dev` starts everything; CI green; `/api/v1/health` returns 200 |
 | **P1 Auth & classes** ✅ | Teacher register/login, student join flow (join code + username + picture secret), refresh rotation, RBAC guards and policies, classes, bulk students, login cards PDF | E2E: teacher creates class, adds 3 students, a student logs in with a picture password; policy tests prove cross-class access is denied |
 | **P2 Curriculum & lesson engine** ✅ | Content schemas, `/content` sync, units/lessons/activities API, lesson player with the 5 steps, activity renderers for MULTIPLE_CHOICE, SORT, HIGHLIGHT, REFLECTION, pacing | Unit 1 lesson playable end to end; progress persists; invalid content fails CI |
-| **P3 Writing workspace** | TipTap editor, constraints bar, autosave with revisions and 409 conflict dialog, IndexedDB offline queue, snapshots, version history, diff viewer, submit with 422 validation | E2E: type → autosave → go offline → type → reconnect → no data lost; two tabs → conflict dialog; restore an older version |
+| **P3 Writing workspace** ✅ | Plain-text editor (TipTap dropped, see §5.4.1), constraints bar, autosave with revisions and 409 conflict dialog, IndexedDB offline queue, snapshots, version history, diff viewer, submit with 422 validation | E2E: type → autosave → go offline → type → reconnect → no data lost; two tabs → conflict dialog; restore an older version |
 | **P4 Analysis & AI feedback** | `packages/writing-analysis` (all deterministic analyzers, in a Web Worker), `packages/ai` (gateway, show-vs-tell, sensory, rubric-score, safety), feedback pipeline, class AI modes, live checks with rate limits and cache, safety flags | Unit tests for every analyzer; fake-gateway tests for the pipeline; with a real key, `pnpm ai:eval` runs on the seed golden set; safety flag appears in the teacher inbox |
 | **P5 Teacher dashboard** | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |
 | **P6 Gamification** | XP events, levels, streaks with freezes, badge engine + seed catalogue, missions, unlocks, dashboard widgets, optional leaderboard | Unit tests for XP caps, idempotency, streak edge cases (timezones, weekends, freezes); badge unlock modal appears in E2E |

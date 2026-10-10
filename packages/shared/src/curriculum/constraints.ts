@@ -8,6 +8,8 @@ export const WritingConstraints = z
     exactWords: z.number().int().positive().optional(),
     bannedWords: z.array(z.string().trim().min(1)).default([]),
     requiredWords: z.array(z.string().trim().min(1)).default([]),
+    /** Shows a countdown in the workspace. Informational: running out of time never blocks. */
+    timeLimitMin: z.number().int().min(1).max(120).optional(),
     /** "hard" blocks submitting; "soft" only warns. */
     enforcement: z.enum(['soft', 'hard']).default('hard'),
   })

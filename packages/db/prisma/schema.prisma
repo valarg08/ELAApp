@@ -297,8 +297,8 @@ model Submission {
   classId        String
   status         SubmissionStatus @default(DRAFT)
   title          String?
-  contentJson    Json // TipTap document
-  contentText    String // plain text for analysis and search
+  contentJson    Json? // unused since P3 (plain-text editor); kept for a possible rich-text editor
+  contentText    String // the draft text (source of truth)
   wordCount      Int              @default(0)
   draftRevision  Int              @default(0) // optimistic concurrency for autosave
   version        Int              @default(0) // increments on each submit
@@ -322,7 +322,7 @@ model DraftVersion {
   version      Int // submission.version at time of snapshot
   revision     Int // draftRevision at time of snapshot
   reason       SnapshotReason
-  contentJson  Json
+  contentJson  Json? // unused since P3, see Submission.contentJson
   contentText  String
   wordCount    Int
   createdAt    DateTime       @default(now())

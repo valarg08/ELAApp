@@ -11,10 +11,14 @@ import {
   createClassWithStudents,
   createTestApp,
   loginStudent,
+  openSubmission,
   registerTeacher,
   resetDatabase,
   seedContent,
+  writeAndSubmit,
 } from './helpers.js';
+
+const CHALLENGE_TEXT = 'Wrong bus. Right friend. Lucky Tuesday.';
 
 /** Valid answers for every step of a lesson, built from its content. */
 function answersFor(lesson: LessonDetail) {
@@ -29,7 +33,6 @@ function answersFor(lesson: LessonDetail) {
         attempts: 1,
       })),
     },
-    challenge: { text: 'Wrong bus. Right friend. Lucky Tuesday.' },
     reflect: { answers: reflect.prompts.map(() => 'A thoughtful answer.'), confidence: 3 },
   };
 }
@@ -115,11 +118,30 @@ describe('Curriculum and lesson progress (e2e)', () => {
     expect(unfinished.body.code).toBe('PRACTICE_INCOMPLETE');
     await step('practice', answers.practice).expect(200);
 
+    // The challenge is written in the workspace; the step only completes once it is submitted.
+    const notSubmitted = await step('challenge', {}).expect(422);
+    expect(notSubmitted.body.code).toBe('WRITING_NOT_SUBMITTED');
+    const draft = await openSubmission(student, lesson.challengeActivityId);
+    expect(draft).toMatchObject({ status: 'DRAFT', text: '', lesson: { id: lessonId } });
+
     // The six-word challenge needs exactly six words.
-    const tooShort = await step('challenge', { text: 'Only five words right here.' }).expect(422);
+    const short = await student
+      .patch(`/submissions/${draft.id}/draft`, {
+        text: 'Only five words right here.',
+        baseRevision: 0,
+      })
+      .expect(200);
+    const tooShort = await student
+      .post(`/submissions/${draft.id}/submit`, { baseRevision: short.body.draftRevision })
+      .expect(422);
     expect(tooShort.body.code).toBe('CONSTRAINTS_NOT_MET');
     expect(tooShort.body.errors).toEqual(['Use exactly 6 words (you have 5).']);
-    await step('challenge', answers.challenge).expect(200);
+
+    // Submitting completes the lesson step.
+    const reopened = await openSubmission(student, lesson.challengeActivityId);
+    const submitted = await writeAndSubmit(student, reopened, CHALLENGE_TEXT);
+    expect(submitted.lessonProgress?.completedSteps).toContain('challenge');
+    await step('challenge', {}).expect(200); // idempotent
 
     // Reflection needs every answer and the confidence check.
     await step('reflect', { answers: answers.reflect.answers }).expect(400);
@@ -130,7 +152,7 @@ describe('Curriculum and lesson progress (e2e)', () => {
     expect(finished.completedAt).not.toBeNull();
     expect(finished.responses.reflect).toMatchObject({ confidence: 3 });
 
-    // The challenge text is saved as a submission (with a snapshot), not in the progress record.
+    // The challenge text lives in the submission, not in the progress record.
     expect(finished.responses.challenge).toEqual({ wordCount: 6 });
     const submission = await ctx.db.submission.findFirstOrThrow({
       where: { studentId: maya.id },
@@ -138,12 +160,12 @@ describe('Curriculum and lesson progress (e2e)', () => {
     });
     expect(submission).toMatchObject({
       status: 'SUBMITTED',
-      contentText: answers.challenge.text,
+      contentText: CHALLENGE_TEXT,
       wordCount: 6,
       version: 1,
       classId,
     });
-    expect(submission.versions).toHaveLength(1);
+    expect(submission.versions.filter((v) => v.reason === 'SUBMIT')).toHaveLength(1);
   });
 
   it('keeps progress after logging out and back in', async () => {
@@ -156,19 +178,20 @@ describe('Curriculum and lesson progress (e2e)', () => {
       'challenge',
       'reflect',
     ]);
-    expect(lesson.challengeText).toBe('Wrong bus. Right friend. Lucky Tuesday.');
+    expect((await openSubmission(again, lesson.challengeActivityId)).text).toBe(CHALLENGE_TEXT);
     const units = UnitSummary.array().parse((await again.get('/units')).body);
     expect(units[0]!.completedLessons).toBe(1);
   });
 
   it('lets a student redo a finished challenge (new submission version)', async () => {
-    await student
-      .post(`/lessons/${lessonId}/steps/challenge/complete`, {
-        text: 'Dragon egg cracked. Babysitting starts now.',
-      })
-      .expect(200);
-    const submission = await ctx.db.submission.findFirstOrThrow({ where: { studentId: maya.id } });
-    expect(submission.version).toBe(2);
+    const lesson = LessonDetail.parse((await student.get(`/lessons/${lessonId}`)).body);
+    const draft = await openSubmission(student, lesson.challengeActivityId);
+    const { submission } = await writeAndSubmit(
+      student,
+      draft,
+      'Dragon egg cracked. Babysitting starts now.',
+    );
+    expect(submission).toMatchObject({ version: 2, status: 'SUBMITTED' });
   });
 
   it('rejects unknown lessons and steps', async () => {
