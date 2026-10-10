@@ -16,6 +16,7 @@ import {
   type SaveDraftRequest,
   type SaveDraftResponse,
   type SubmissionDetail,
+  type SubmissionFeedback,
   type SubmitResponse,
   type VersionDetail,
   type VersionSummary,
@@ -31,6 +32,7 @@ import type { AuthUser } from '../auth/auth.types.js';
 import { AppError, notFound } from '../common/app-error.js';
 import { CurriculumService } from '../curriculum/curriculum.service.js';
 import { DatabaseService } from '../database/database.service.js';
+import { FeedbackService } from '../feedback/feedback.service.js';
 import { shouldSnapshot } from './snapshot-policy.js';
 
 type LoadedSubmission = Submission & { activity: Activity & { lesson: Lesson | null } };
@@ -62,6 +64,7 @@ export class SubmissionsService {
   constructor(
     private readonly db: DatabaseService,
     private readonly curriculum: CurriculumService,
+    private readonly feedback: FeedbackService,
   ) {}
 
   /** Create the student's working copy for a writing activity, or return the existing one. */
@@ -101,6 +104,12 @@ export class SubmissionsService {
 
   async get(user: AuthUser, id: string): Promise<SubmissionDetail> {
     return this.detail(await this.readable(user, id));
+  }
+
+  /** AI feedback for the latest submitted version (scores and status for the teacher only). */
+  async getFeedback(user: AuthUser, id: string): Promise<SubmissionFeedback> {
+    const submission = await this.readable(user, id);
+    return this.feedback.view(submission, user.role === 'TEACHER');
   }
 
   /** Autosave. Rejects a stale `baseRevision` with 409 unless the text already matches. */
@@ -196,6 +205,7 @@ export class SubmissionsService {
       return row;
     });
 
+    await this.feedback.queueFor(submitted);
     return {
       submission: this.detail(submitted),
       lessonProgress: await this.completeLessonChallenge(user, submitted),

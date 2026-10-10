@@ -3,7 +3,12 @@ import type { Prisma } from '@storyforge/db';
 import { DatabaseService } from '../database/database.service.js';
 
 /** Sensitive actions recorded for accountability (DESIGN.md §13.3). Never include secrets. */
-export type AuditAction = 'class.archive' | 'students.bulk_add' | 'student.reset_secret';
+export type AuditAction =
+  | 'class.archive'
+  | 'students.bulk_add'
+  | 'student.reset_secret'
+  | 'flag.update'
+  | 'feedback.release';
 
 @Injectable()
 export class AuditService {

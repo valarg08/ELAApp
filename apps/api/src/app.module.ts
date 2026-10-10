@@ -6,6 +6,10 @@ import { CurriculumModule } from './curriculum/curriculum.module.js';
 import { DatabaseModule } from './database/database.module.js';
 import { HealthModule } from './health/health.module.js';
 import { WritingModule } from './writing/writing.module.js';
+import { AiModule } from './ai/ai.module.js';
+import { LiveChecksModule } from './ai/live-checks.module.js';
+import { FeedbackModule } from './feedback/feedback.module.js';
+import { SafetyModule } from './safety/safety.module.js';
 
 @Module({
   imports: [
@@ -16,6 +20,10 @@ import { WritingModule } from './writing/writing.module.js';
     ClassesModule,
     CurriculumModule,
     WritingModule,
+    AiModule,
+    SafetyModule,
+    FeedbackModule,
+    LiveChecksModule,
   ],
 })
 export class AppModule {}

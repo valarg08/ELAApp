@@ -382,6 +382,25 @@ model Feedback {
   @@index([status])
 }
 
+/// One row per Claude call (or cache hit): rate limits (live checks) and cost reporting. No student text.
+model AiUsage {
+  id              String   @id @default(cuid())
+  kind            String // "live" | "live-safety" | "feedback"
+  analyzer        String
+  model           String
+  outcome         String // "ok" | "cached" | "declined" | "error"
+  userId          String?
+  classId         String?
+  inputTokens     Int      @default(0)
+  outputTokens    Int      @default(0)
+  cacheReadTokens Int      @default(0)
+  latencyMs       Int      @default(0)
+  createdAt       DateTime @default(now())
+
+  @@index([userId, kind, createdAt])
+  @@index([classId, kind, createdAt])
+}
+
 model AiCache {
   key       String   @id // sha256(analyzer|promptVersion|model|text)
   analyzer  String

@@ -10,6 +10,7 @@ const envWith = (DATABASE_URL: string): Env => ({
   JWT_ACCESS_SECRET: 'x'.repeat(32),
   ACCESS_TOKEN_TTL_MINUTES: 15,
   REFRESH_TOKEN_TTL_DAYS: 7,
+  AI_MODEL: 'fake',
 });
 
 describe('DatabaseService.ping', () => {

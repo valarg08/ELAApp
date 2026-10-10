@@ -9,4 +9,5 @@ export * from './curriculum/constraints.js';
 export * from './curriculum/content.js';
 export * from './contracts/curriculum.js';
 export * from './contracts/writing.js';
+export * from './contracts/feedback.js';
 export * from './writing/diff.js';

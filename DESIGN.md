@@ -86,14 +86,14 @@ A kid-friendly web platform where middle-school students (ages 11–14) learn cr
 | Backend | **NestJS 12** (ESM, REST, OpenAPI via `@nestjs/swagger`) | Modules, guards, DI, and structure a coding agent can follow |
 | Validation | **Zod 4** schemas in `packages/shared`, used by both apps; the API validates with Nest 12's built-in `StandardSchemaValidationPipe` | One contract, no extra adapter library |
 | Database | **PostgreSQL 16+** + **Prisma 7** (`prisma-client` generator, `@prisma/adapter-pg` driver adapter, `prisma.config.ts`) | Relational data, JSONB for flexible content |
-| Cache / queue / rate limit | **Redis 7** + **BullMQ** | AI jobs, PDF export jobs, gamification events |
+| Cache / queue / rate limit | **PostgreSQL only** (decided in P4b): **pg-boss** job queue, `AiCache` and `AiUsage` tables | One less service to install and run; fine at school/district scale. The queue sits behind `QueueService`, so it can move to Redis + BullMQ if load ever needs it |
 | File storage | **S3-compatible** in production (AWS S3); a local-disk storage driver in development | Exports, cover images, uploads |
 | AI | **Claude API** via `@anthropic-ai/sdk` (server-side only) | Structured outputs for reliable JSON feedback |
 | PDF export | **Playwright (headless Chromium)** in a worker | Pixel-accurate HTML-to-PDF |
 | Auth | Own implementation: argon2id + JWT access token + rotating refresh token in httpOnly cookies | Child accounts without email (§2.5) |
 | Testing | **Vitest** (unit), **Supertest** (API), **Playwright** (E2E), **axe-core** (a11y) | |
 | Observability | **OpenTelemetry**, **pino** logs, **Sentry** | |
-| Local dev | **Native installs, no Docker**: PostgreSQL (from P1) and Redis (from P4) run directly on the developer machine; config in the root `.env` | Chosen by the project owner; keeps the Windows setup light |
+| Local dev | **Native installs, no Docker**: PostgreSQL (from P1) runs directly on the developer machine; config in the root `.env` | Chosen by the project owner; keeps the Windows setup light |
 
 > Alternatives named in the brief (Angular, Spring Boot, MySQL) are fine but are **not** used here. Swapping them means rewriting §3 and §14; everything else in this document stays valid.
 
@@ -111,12 +111,12 @@ flowchart LR
 
   subgraph Backend
     API[NestJS API<br/>REST /api/v1]
-    WORKER[Worker process<br/>BullMQ consumers]
+    WORKER[Worker process<br/>pg-boss consumers]
   end
 
   subgraph Data
     PG[(PostgreSQL)]
-    REDIS[(Redis<br/>queues, cache, rate limits)]
+    REDIS[(PostgreSQL<br/>pg-boss queue, AI cache, usage)]
     S3[(S3 / local disk in dev<br/>exports, images)]
   end
 
@@ -147,7 +147,7 @@ storyforge/
 │  │  └─ lib/               # api client, query hooks, autosave, a11y helpers
 │  ├─ api/                  # NestJS HTTP API
 │  │  └─ src/modules/       # one folder per module (see §3.2)
-│  └─ worker/               # NestJS standalone app running BullMQ processors
+│  └─ (worker)              # apps/api/src/worker.ts: NestJS standalone context running the pg-boss consumers (P4b)
 ├─ packages/
 │  ├─ shared/               # Zod schemas, DTO types, enums, constants (XP table, badge defs)
 │  ├─ db/                   # Prisma schema, migrations, seed scripts
@@ -190,9 +190,9 @@ storyforge/
 - **Students:** no email. The teacher bulk-creates students. Each student gets a generated username (for example `blue-tiger-42`) and either a picture password (tap 4 different pictures out of 12, in order: 11,880 combinations) or a 6-character word code (31 characters without look-alikes: about 887 million combinations). Login is **class code + username + secret**. Secrets are stored only as argon2id hashes and shown in plain text exactly once, when created or reset. The teacher prints login cards (PDF) with a QR code that pre-fills the class code and username; because plain secrets are never stored, the client sends the just-shown secrets back and the API verifies each against its hash before printing. The public roster lookup for a class code returns first names and usernames only, so the student can pick their name.
 - **Sessions:** access JWT (15 min) + rotating refresh token (7 days, stored hashed in the DB, reuse detection revokes the family). Both are in `httpOnly`, `Secure`, `SameSite=Lax` cookies. CSRF protection uses a double-submit token for state-changing requests. Implemented as cookies `sf_access`, `sf_refresh` (both httpOnly, path `/`) and `sf_csrf` (readable, echoed in the `x-csrf-token` header). The web app's `proxy.ts` refreshes an expiring access token before a page renders; the browser API client refreshes once on a 401 and retries. Resetting a student's secret ends all of their sessions.
 - **RBAC:** NestJS guards check `role`. **Policies** check ownership: a teacher can reach only students enrolled in their classes, and a student can reach only their own work plus peer-review assignments. Every repository query MUST be scoped (for example `where: { classId: { in: teacherClassIds } }`).
-- **Lockout:** 10 consecutive failed logins lock the account. Students stay locked until the teacher resets their secret; teachers unlock automatically after 15 minutes. Unknown accounts take the same time to reject (dummy hash check) and get the same error. Per-IP rate limiting of the public auth endpoints is still to do (with Redis, P4/P11).
+- **Lockout:** 10 consecutive failed logins lock the account. Students stay locked until the teacher resets their secret; teachers unlock automatically after 15 minutes. Unknown accounts take the same time to reject (dummy hash check) and get the same error. Per-IP rate limiting of the public auth endpoints is still to do (P11).
 
-### 2.6 Background jobs (BullMQ queues)
+### 2.6 Background jobs (pg-boss queues on PostgreSQL)
 
 | Queue | Job | Retries | Notes |
 |---|---|---|---|
@@ -265,7 +265,7 @@ storyforge/
 | `files` | Signed upload/download URLs | `FilesService` |
 | `audit` | Audit log of sensitive actions | `AuditService` |
 
-Domain events (emitted with `@nestjs/event-emitter`, and forwarded to BullMQ when async work is needed): `lesson.step.completed`, `lesson.completed`, `submission.autosaved`, `submission.submitted`, `submission.revised`, `feedback.released`, `peerReview.submitted`, `test.attempt.graded`, `portfolio.published`, `mission.completed`.
+Domain events (emitted with `@nestjs/event-emitter`, and forwarded to the job queue when async work is needed): `lesson.step.completed`, `lesson.completed`, `submission.autosaved`, `submission.submitted`, `submission.revised`, `feedback.released`, `peerReview.submitted`, `test.attempt.graded`, `portfolio.published`, `mission.completed`.
 
 ### 3.3 Frontend component tree (main shared components)
 
@@ -1270,7 +1270,7 @@ Default rubric `default.narrative` uses the five categories from the brief: **cr
 ### 8.6 Claude integration (`packages/ai`)
 
 - SDK: `@anthropic-ai/sdk`, **server-side only**. The API key lives in the server environment (`ANTHROPIC_API_KEY`) or a secrets manager, never in the browser.
-- Model: configurable by `AI_MODEL`, default **`claude-opus-5`**. Tune `output_config.effort` per analyzer: `low` for live inline checks, `medium` for analyzers, `high` for rubric scoring and test generation. Measure quality on the eval set (§8.9) before changing model or effort.
+- Model: configurable by `AI_MODEL`, default **`claude-opus-5-5`** (Claude Opus 5.5). Tune `output_config.effort` per analyzer: `low` for live inline checks, `medium` for analyzers, `high` for rubric scoring and test generation. Measure quality on the eval set (§8.9) before changing model or effort.
 - Use **structured outputs** with Zod so every response is typed:
 
 ```ts
@@ -1282,7 +1282,7 @@ const client = new Anthropic();
 
 export async function runShowVsTell(text: string, ctx: AnalyzerContext) {
   const response = await client.messages.parse({
-    model: process.env.AI_MODEL ?? "claude-opus-5",
+    model: process.env.AI_MODEL ?? "claude-opus-5-5",
     max_tokens: 4000,
     system: SHOW_VS_TELL_SYSTEM_PROMPT,          // stable → cacheable prefix
     messages: [{ role: "user", content: buildUserContent(text, ctx) }],
@@ -1296,7 +1296,7 @@ export async function runShowVsTell(text: string, ctx: AnalyzerContext) {
 
 - **Refusals:** always check `stop_reason` before reading content. Enable server-side model fallbacks (`fallbacks: "default"` with the `server-side-fallback-2026-07-01` beta) where the SDK surface in use supports it. If the whole chain declines, record `status: "declined"` and route the submission to the teacher. Children's writing about difficult themes is normal, so a decline must never show an error to the student.
 - **Prompt caching:** keep system prompts and rubric text byte-stable and first in the request; put the student text last. Check `usage.cache_read_input_tokens` in logs.
-- **Timeouts and retries:** SDK default retries (2) plus BullMQ job retries (3). Live checks time out at 20 s and show "Quill is thinking too hard, try again".
+- **Timeouts and retries:** SDK default retries (2) plus job-queue retries (3). Live checks time out at 20 s and show "Quill is thinking too hard, try again".
 - **Prompt versioning:** every analyzer exports `PROMPT_VERSION`. Stored on `Feedback.promptVersion` and part of the cache key.
 - **Logging:** log analyzer id, model, token usage, latency, and outcome. **Never log student text** in application logs.
 
@@ -1331,7 +1331,7 @@ The student text is wrapped in `<student_writing>` tags. Anything inside is data
 
 | Scope | Limit |
 |---|---|
-| Live checks per student | 20 per hour, 60 per day (Redis token bucket) |
+| Live checks per student | 20 per hour, 60 per day (counted from `AiUsage` rows) |
 | Live checks per class | 1,000 per day (teacher can raise) |
 | Submission feedback | 1 full feedback per submitted version |
 | Max input | 8,000 words (projects up to 3,000 words are typical) |
@@ -1345,6 +1345,17 @@ Admin dashboard shows token usage and estimated cost per school per day. A budge
 - `pnpm ai:eval` runs all analyzers and reports: rubric agreement within ±1 level (target ≥ 90 %), exact agreement (target ≥ 60 %), quote-anchoring success (target ≥ 98 %), tone check (an LLM judge verifies no harsh wording), and cost per piece.
 - Evals call the real API and cost money: run manually and before any prompt/model change, not on every CI push. Results are stored per `PROMPT_VERSION` and shown in `/admin/ai`.
 
+### 8.10 Implementation notes (as built in P4b)
+
+- **No Redis.** The job queue is **pg-boss 12** (tables in its own `pgboss` schema, created on first start). `QueueService` starts it lazily, so API tests and processes that never enqueue don't connect. Queue `ai-feedback`: retry limit 3 with exponential backoff, one job per feedback row (`singletonKey`). Rate limits count `AiUsage` rows; the result cache is the `AiCache` table (sha256 of analyzer, prompt version, model, activity key and text; 30 days).
+- **Worker:** `apps/api/src/worker.ts` (`pnpm --filter @storyforge/api start:worker`) runs the consumers in a NestJS application context. `AI_WORKER` controls whether the API process also consumes: on by default in development (so `pnpm dev` is enough), off otherwise. There is no separate `apps/worker` app.
+- **Gateway:** `packages/ai` (server only) wraps `@anthropic-ai/sdk` `messages.parse` with `zodOutputFormat`, `output_config.effort`, a cacheable system prompt (cache_control) and the student text last inside `<student_writing>` tags. A refusal (`stop_reason: "refusal"`) is a `declined` outcome routed to the teacher. Without `ANTHROPIC_API_KEY` (or with `AI_PROVIDER=fake`) a **fake gateway** builds results from the rule-based analyzers, so the whole flow works offline and in tests. Server-side model fallbacks are not enabled yet.
+- **Analyzers built:** `safety`, `show-vs-tell`, `sensory-analysis`, `rubric-score` (which also composes the summary, 1–2 strengths and ≤ 3 next steps in the same call). Registry by activity type: six-word stories get only safety + rubric; show/tell transforms add show-vs-tell; describe/vivid tasks add sensory too. Other analyzers arrive with their units (P7/P8).
+- **Pipeline:** submit → `Feedback` row (QUEUED) + job, unless the class mode is OFF. Worker: local word list (contact details, strong profanity) + Claude safety → `SafetyFlag` + teacher `Notification`; any flag of severity ≥ 2 or a declined safety check holds the feedback (PENDING_REVIEW, student sees the holding message). Then deterministic counts → LLM analyzers → rubric score → anchoring (unanchored points dropped) → `READY` (IMMEDIATE) or `PENDING_REVIEW` (TEACHER_APPROVAL). `needsTeacherAttention` when a criterion's confidence < 0.6 or grammar 4 with ≥ 5 dialogue issues. After the last retry the row is `FAILED` and the student sees a friendly message.
+- **Endpoints:** `GET /submissions/:id/feedback` (student: state + released points; class teacher: also status, scores, total, flags count), `POST /teacher/feedback/:id/release`, `POST /ai/check { activityId, analyzer, text }` (students; 20–8,000 words; 20/hour, 60/day, 1,000/class/day; 20 s timeout → 503 "Quill is thinking too hard"), `GET /teacher/classes/:id/flags?status=`, `PATCH /teacher/flags/:id` (audit-logged).
+- **UI:** "Feedback from Quill" under the editor after submitting (polls while pending, "Show me" on quoted points); "Ask Quill (AI)" in the Coach panel; class page AI mode selector and 🚩 Safety flags inbox (acknowledge / resolve with notes). The full review screen is P5.
+- **Eval:** `pnpm ai:eval` runs `packages/ai/evals/golden.json` (6 synthetic pieces so far, target 60+) against the real API and prints rubric agreement, anchoring rate, safety results and tokens. Costs money; run by hand only.
+- **Tests:** none were written for P4b (development only, by agreement). Still owed: unit tests for anchoring, cards and the fake analyzers; API tests (with the fake gateway) for the pipeline, holds, release, live checks, rate limits and every endpoint's authorisation.
 ---
 
 ## 9. Lesson engine and activity system
@@ -1622,7 +1633,7 @@ Canvas editor (Konva): background (colour, gradient, or illustrated backgrounds 
 ### 13.4 Scalability
 - Target at launch: 500 schools, 50,000 students, 10,000 concurrent writers.
 - The API is stateless and scales horizontally behind a load balancer. Workers scale on queue depth.
-- Autosave load: ~10,000 writers × 1 save per 10 s ≈ 1,000 writes/s. Small updates on indexed primary keys are fine for a managed Postgres instance with PgBouncer. If needed, move to write-behind: buffer drafts in Redis and flush every 30 s (behind a feature flag).
+- Autosave load: ~10,000 writers × 1 save per 10 s ≈ 1,000 writes/s. Small updates on indexed primary keys are fine for a managed Postgres instance with PgBouncer. If needed, move to write-behind: buffer drafts in memory or Redis and flush every 30 s (behind a feature flag).
 - Read-heavy dashboards use materialised rollups refreshed by the `nightly` and `gamification` queues.
 - Tenant isolation through `orgId` scoping in services; Postgres RLS added in Phase 11.
 
@@ -1658,7 +1669,7 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | **P2 Curriculum & lesson engine** ✅ | Content schemas, `/content` sync, units/lessons/activities API, lesson player with the 5 steps, activity renderers for MULTIPLE_CHOICE, SORT, HIGHLIGHT, REFLECTION, pacing | Unit 1 lesson playable end to end; progress persists; invalid content fails CI |
 | **P3 Writing workspace** ✅ | Plain-text editor (TipTap dropped, see §5.4.1), constraints bar, autosave with revisions and 409 conflict dialog, IndexedDB offline queue, snapshots, version history, diff viewer, submit with 422 validation | E2E: type → autosave → go offline → type → reconnect → no data lost; two tabs → conflict dialog; restore an older version |
 | **P4a Writing analysis** ✅ | `packages/writing-analysis` (deterministic analyzers, see §8.3.1), Coach panel, POV/tense locks | Coach works in lessons and full screen; locks block submit (unit tests still owed) |
-| **P4b AI feedback** | `packages/ai` (gateway, show-vs-tell, sensory, rubric-score, safety), feedback pipeline, class AI modes, live checks with rate limits and cache, safety flags | Unit tests for every analyzer; fake-gateway tests for the pipeline; with a real key, `pnpm ai:eval` runs on the seed golden set; safety flag appears in the teacher inbox |
+| **P4b AI feedback** ✅ | `packages/ai` (gateway, show-vs-tell, sensory, rubric-score, safety), feedback pipeline, class AI modes, live checks with rate limits and cache, safety flags | Unit tests for every analyzer; fake-gateway tests for the pipeline; with a real key, `pnpm ai:eval` runs on the seed golden set; safety flag appears in the teacher inbox |
 | **P5 Teacher dashboard** | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |
 | **P6 Gamification** | XP events, levels, streaks with freezes, badge engine + seed catalogue, missions, unlocks, dashboard widgets, optional leaderboard | Unit tests for XP caps, idempotency, streak edge cases (timezones, weekends, freezes); badge unlock modal appears in E2E |
 | **P7 Unit tools 1–6** | All tools in §10 for Units 1–6 + remaining LLM analyzers they need | Each tool has a component test and one E2E happy path; keyboard-only walkthrough passes |
@@ -1674,7 +1685,7 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 ```markdown
 # StoryForge — notes for Claude Code
 - Design spec: DESIGN.md (source of truth). Update it when a design decision changes.
-- Stack: pnpm + Turborepo, Next.js (apps/web), NestJS (apps/api, apps/worker), Prisma/Postgres (packages/db),
+- Stack: pnpm + Turborepo, Next.js (apps/web), NestJS (apps/api incl. the worker entry), Prisma/Postgres (packages/db),
   Zod contracts (packages/shared), analyzers (packages/writing-analysis), Claude integration (packages/ai).
 - Commands: `pnpm dev`, `pnpm test`, `pnpm lint`, `pnpm typecheck`, `pnpm db:migrate`, `pnpm db:seed`,
   `pnpm content:sync`, `pnpm ai:eval` (costs money; run only when asked).
@@ -1697,7 +1708,7 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | 1 | Hosting | Containers on AWS (ECS Fargate + RDS + ElastiCache + S3) | Vercel (web) + Render/Fly (API), Azure for Microsoft schools |
 | 2 | SSO | Not in v1 | Google Workspace for Education / Microsoft Entra ID in P11+ |
 | 3 | Default AI feedback mode | `TEACHER_APPROVAL` | `IMMEDIATE` for trusted classes |
-| 4 | AI model and effort | `claude-opus-5` with per-analyzer effort | A cheaper model for live checks after eval comparison |
+| 4 | AI model and effort | `claude-opus-5-5` with per-analyzer effort | A cheaper model for live checks after eval comparison |
 | 5 | Grammar strand | Covered inside Unit 11 and in unit analyzers | Import the "Grammar Through Story" daily quizzes (Months 1–2) as concept tests and missions |
 | 6 | Content licensing | Original mentor texts written for the platform | Licensed excerpts (needs rights clearance) |
 | 7 | Localisation | English (UI strings externalised with `next-intl` from day one) | Additional languages later |

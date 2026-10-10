@@ -11,6 +11,7 @@ import {
 } from '@storyforge/writing-analysis';
 import { useState } from 'react';
 import { Button } from '@/components/ui';
+import { AskQuill } from './ask-quill';
 
 const SENSE_ICONS: Record<Sense, string> = {
   sight: '👁',
@@ -22,14 +23,16 @@ const SENSE_ICONS: Record<Sense, string> = {
 
 /**
  * Coach panel (DESIGN.md §6.3): instant, rule-based feedback from packages/writing-analysis.
- * AI checks join it in P4b. Runs on demand ("Check my writing") so it never distracts mid-sentence.
+ * AI checks (Ask Quill) sit below. Runs on demand ("Check my writing") so it never distracts mid-sentence.
  */
 export function CoachPanel({
   text,
   activity,
+  activityId,
   onShow,
 }: {
   text: string;
+  activityId: string;
   activity: WritingActivity;
   /** Select the words a card points at in the editor. */
   onShow: (span: Span) => void;
@@ -103,6 +106,8 @@ export function CoachPanel({
           </>
         )}
       </div>
+
+      <AskQuill activityId={activityId} activity={activity} text={text} onShow={onShow} />
     </section>
   );
 }

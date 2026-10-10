@@ -8,6 +8,12 @@ const EnvSchema = z.object({
   JWT_ACCESS_SECRET: z.string().min(32, 'JWT_ACCESS_SECRET must be at least 32 characters'),
   ACCESS_TOKEN_TTL_MINUTES: z.coerce.number().int().positive().default(15),
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().positive().default(7),
+  /** Claude API key. Without it (or with AI_PROVIDER=fake) the offline fake gateway is used. */
+  ANTHROPIC_API_KEY: z.string().min(1).optional(),
+  AI_PROVIDER: z.enum(['anthropic', 'fake']).optional(),
+  AI_MODEL: z.string().min(1).default('claude-opus-5-5'),
+  /** Run the feedback worker inside this process. Defaults to on in development only. */
+  AI_WORKER: z.enum(['true', 'false']).optional(),
 });
 
 export type Env = z.infer<typeof EnvSchema>;

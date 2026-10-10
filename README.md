@@ -7,7 +7,7 @@ An interactive creative writing platform for middle school (grades 6–8). The f
 - Node.js 24 LTS (`.nvmrc`)
 - pnpm 12 (`npm install -g pnpm`)
 - PostgreSQL 16+ installed natively, with two databases: one for development and one for tests
-- Redis 7 (from Phase P4)
+- Optional: an Anthropic API key for real AI feedback (`ANTHROPIC_API_KEY` in `.env`); without it the app uses an offline fake AI
 
 ## Getting started
 
@@ -33,6 +33,7 @@ pnpm dev
 | `pnpm test:e2e` | Browser tests (Playwright). Starts its own API and web app on ports 4100/3100 against the test database |
 | `pnpm db:migrate` | Create and apply a migration after changing `packages/db/prisma/schema.prisma` |
 | `pnpm content:check` / `pnpm content:sync` | Validate the lesson files in `/content` / load them into the database |
+| `pnpm ai:eval` | Run the AI golden set against the real Claude API (needs `ANTHROPIC_API_KEY`; costs money) |
 | `pnpm db:validate` | Validate the Prisma schema |
 
 First time running browser tests: `pnpm --filter @storyforge/web exec playwright install chromium`.

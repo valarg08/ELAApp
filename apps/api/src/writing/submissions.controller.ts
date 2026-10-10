@@ -7,6 +7,7 @@ import {
   SaveDraftRequest,
   type SaveDraftResponse,
   type SubmissionDetail,
+  type SubmissionFeedback,
   type SubmitResponse,
   type VersionDetail,
   type VersionSummary,
@@ -34,6 +35,12 @@ export class SubmissionsController {
   @Get(':id')
   get(@CurrentUser() user: AuthUser, @Param('id') id: string): Promise<SubmissionDetail> {
     return this.submissions.get(user, id);
+  }
+
+  /** AI feedback: what the student may see, plus scores and status for the class teacher. */
+  @Get(':id/feedback')
+  feedback(@CurrentUser() user: AuthUser, @Param('id') id: string): Promise<SubmissionFeedback> {
+    return this.submissions.getFeedback(user, id);
   }
 
   @Roles('STUDENT')

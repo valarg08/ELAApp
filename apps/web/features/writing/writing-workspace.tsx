@@ -13,6 +13,7 @@ import { createPortal } from 'react-dom';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson, apiSend } from '@/lib/api-client';
 import { CoachPanel } from './coach-panel';
+import { FeedbackPanel } from './feedback-panel';
 import { ConflictDialog } from './conflict-dialog';
 import { ConstraintsBar } from './constraints-bar';
 import { HistoryPanel, formatWhen } from './history-panel';
@@ -74,7 +75,12 @@ export function WritingWorkspace({
   }
 
   const coach = (
-    <CoachPanel text={state.text} activity={submission.activity.content} onShow={showInText} />
+    <CoachPanel
+      text={state.text}
+      activity={submission.activity.content}
+      activityId={submission.activity.id}
+      onShow={showInText}
+    />
   );
   /** Run an action against the server copy once everything is saved. */
   async function withSaved(kind: Exclude<Busy, null>, action: (revision: number) => Promise<void>) {
@@ -191,6 +197,15 @@ export function WritingWorkspace({
           </span>
         )}
       </div>
+
+      {submittedVersion > 0 && (
+        <FeedbackPanel
+          submissionId={submission.id}
+          version={submittedVersion}
+          text={state.text}
+          onShow={showInText}
+        />
+      )}
 
       {coachTarget === undefined ? (
         <div className="rounded-xl border border-border bg-background p-4">{coach}</div>
