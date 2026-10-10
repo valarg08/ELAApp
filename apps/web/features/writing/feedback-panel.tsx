@@ -139,7 +139,7 @@ export function Points({
             text.slice(p.start, p.end) === p.quote;
           return (
             <li
-              key={`${p.title}-${p.start ?? i}`}
+              key={`${i}-${p.title}-${p.start ?? ''}`}
               className="rounded-xl border border-border bg-card p-3"
             >
               <p className="font-semibold">

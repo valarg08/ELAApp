@@ -8,6 +8,7 @@ import {
   tense,
 } from './analyzers/narration.js';
 import { type Sense, senses } from './analyzers/senses.js';
+import { type PacingSegment, pacing } from './analyzers/pacing.js';
 import {
   MOOD_AXES,
   MOOD_WORDS,
@@ -18,7 +19,7 @@ import {
 } from './analyzers/mood.js';
 import { sentenceVariety } from './analyzers/stats.js';
 import { filterWords, telling } from './analyzers/word-choice.js';
-import { type Span, countWords } from './text.js';
+import { type Span, countWords, sentenceAt, sentences } from './text.js';
 
 /** Checks an activity can switch on for the Coach panel (content: `analyzers` on writing activities). */
 export const ANALYZER_IDS = [
@@ -30,6 +31,7 @@ export const ANALYZER_IDS = [
   'pov',
   'tense',
   'mood',
+  'pacing',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -58,6 +60,8 @@ export interface CoachReport {
   nextSteps: CoachCard[];
   /** Sense counts, when the senses check ran (for the senses meter). */
   senses?: Record<Sense, number>;
+  /** Story parts with their pace, when the pacing check ran (for the pacing band). */
+  pacing?: Pick<PacingSegment, 'start' | 'end' | 'text' | 'pace' | 'at'>[];
 }
 
 export interface CoachOptions {
@@ -222,6 +226,56 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
         message: `Words like ${leaning.flatMap((p) => words(p).slice(0, 2)).join(', ')} build the mood without naming it.`,
         span: m.hits.find((h) => h.pole === first)?.span,
       });
+    }
+  }
+
+  if (enabled.has('pacing')) {
+    const p = pacing(text);
+    if (p.peak) {
+      report.pacing = p.segments.map(({ start, end, text: t, pace, at }) => ({
+        start,
+        end,
+        text: t,
+        pace,
+        at,
+      }));
+      const peakSpan = sentenceAt(sentences(text), p.peak.start) ?? p.peak;
+      if (p.flat) {
+        const pace = p.segments[0]?.pace;
+        nextSteps.push({
+          id: 'pacing',
+          analyzer: 'pacing',
+          title: 'Change the speed',
+          message:
+            pace === 'fast'
+              ? 'Every part of your story moves fast. Give the reader one slower moment to breathe before the big moment.'
+              : 'Your story moves at one speed. For the most exciting part, try short sentences and strong action verbs.',
+        });
+      } else if (p.peak.at < 35) {
+        nextSteps.push({
+          id: 'pacing',
+          analyzer: 'pacing',
+          title: 'Build up to the big moment',
+          message: `Your most intense part comes early, at about ${p.peak.at}% of the story. You could let things get harder first, so the climax comes later.`,
+          span: peakSpan,
+        });
+      } else if (p.peak.at > 90) {
+        nextSteps.push({
+          id: 'pacing',
+          analyzer: 'pacing',
+          title: 'Bring the climax sooner',
+          message: `Your climax starts at about ${p.peak.at}% of the story. Try building it sooner, so there's room to show what happens after.`,
+          span: peakSpan,
+        });
+      } else {
+        strengths.push({
+          id: 'pacing',
+          analyzer: 'pacing',
+          title: 'Good build-up',
+          message: `Your story speeds up to its most intense part at about ${p.peak.at}% of the way through. That's a strong shape.`,
+          span: peakSpan,
+        });
+      }
     }
   }
 

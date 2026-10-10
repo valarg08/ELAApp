@@ -1,0 +1,446 @@
+[
+  {
+    "key": "u04.mountain-sequence",
+    "type": "SEQUENCE",
+    "title": "Build the story mountain",
+    "instructions": "Put these five events from \"The Lost Kite\" in story mountain order, from the beginning to the resolution.",
+    "items": [
+      { "id": "intro", "text": "Noor flies her new red kite on the windy hill behind her house." },
+      { "id": "problem", "text": "The string snaps, and the kite sails towards the old forest." },
+      {
+        "id": "climax",
+        "text": "Noor climbs the tallest tree, wobbling on a thin branch, and grabs the kite."
+      },
+      {
+        "id": "after",
+        "text": "She climbs down slowly, scratched and shaking, the kite safe under her arm."
+      },
+      {
+        "id": "end",
+        "text": "Noor ties the string with a double knot, and from then on she checks it every time."
+      }
+    ],
+    "labels": ["Beginning", "Rising action", "Climax", "Falling action", "Resolution"],
+    "explanation": "The beginning shows Noor and her kite, the rising action is the problem, the climax is the risky climb, the falling action is climbing down, and the resolution shows what she learned."
+  },
+  {
+    "key": "u04.climax-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Spot the climax",
+    "instructions": "This is the climax of a story. Tap the three action words where the character faces the problem.",
+    "text": "The fire roared closer. Jamal kicked the stuck window, smashed the glass, and lifted his little sister through to safety.",
+    "targets": ["kicked", "smashed", "lifted"],
+    "explanation": "Kicking, smashing and lifting are Jamal's own actions at the most intense moment. In a strong climax, the main character makes things happen."
+  },
+  {
+    "key": "u04.mountain-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Story mountain check",
+    "questions": [
+      {
+        "id": "rising",
+        "prompt": "What happens during the rising action?",
+        "options": [
+          { "id": "a", "text": "We meet the characters for the first time." },
+          { "id": "b", "text": "A problem starts and gets harder and harder." },
+          { "id": "c", "text": "Everything is solved and the story ends." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Rising action is the climb up the mountain: the problem grows and the tension builds towards the climax.",
+        "hint": "Think about climbing up the mountain."
+      },
+      {
+        "id": "exposition",
+        "prompt": "What does the beginning (exposition) usually tell us?",
+        "options": [
+          { "id": "a", "text": "Who the story is about, where it happens, and what they want" },
+          { "id": "b", "text": "How the problem is solved" },
+          { "id": "c", "text": "The most exciting moment" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The beginning introduces the character, their world and what they want, so readers care about what comes next."
+      },
+      {
+        "id": "climax-where",
+        "prompt": "Where is the climax on the story mountain?",
+        "options": [
+          { "id": "a", "text": "At the bottom, before anything happens" },
+          { "id": "b", "text": "At the very top: the moment of greatest tension" },
+          { "id": "c", "text": "After the story has ended" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The climax is the peak: the biggest, most exciting moment, when the character faces the problem."
+      }
+    ]
+  },
+  {
+    "key": "u04.story-mountain",
+    "type": "STORY_MOUNTAIN",
+    "title": "Mini story mountain",
+    "prompt": "Plan a short story on the story mountain, one line for each part. Then write the story, making sure all five parts are there: a beginning, a problem that gets harder, a climax, what happens after, and an ending that shows what changed.",
+    "tips": [
+      "Keep it small: one character, one problem, one place.",
+      "Make the climax the most exciting moment, and let your character act.",
+      "Your ending can be one or two sentences."
+    ],
+    "constraints": {
+      "minWords": 120,
+      "maxWords": 250,
+      "enforcement": "hard"
+    },
+    "analyzers": ["pacing", "telling", "sentenceVariety"],
+    "plotPlanner": { "label": "Plan your story mountain" }
+  },
+  {
+    "key": "u04.conflict-sort",
+    "type": "SORT",
+    "title": "What kind of conflict?",
+    "instructions": "Sort each story problem by its kind of conflict.",
+    "buckets": [
+      { "id": "person", "label": "Person vs person" },
+      { "id": "self", "label": "Person vs self" },
+      { "id": "nature", "label": "Person vs nature" },
+      { "id": "society", "label": "Person vs society" }
+    ],
+    "items": [
+      {
+        "id": "rival",
+        "text": "Two cousins both want to win Grandpa's chess trophy.",
+        "bucketId": "person"
+      },
+      {
+        "id": "fear",
+        "text": "Lily is terrified of speaking but has to read her poem to the whole school.",
+        "bucketId": "self"
+      },
+      {
+        "id": "storm",
+        "text": "A family's boat is caught in a sudden storm far from land.",
+        "bucketId": "nature"
+      },
+      {
+        "id": "rule",
+        "text": "A girl fights the town rule that bans skateboards in the park.",
+        "bucketId": "society"
+      },
+      {
+        "id": "bully",
+        "text": "An older boy keeps knocking Ben's books out of his hands.",
+        "bucketId": "person"
+      },
+      {
+        "id": "lie",
+        "text": "Omar can't decide whether to tell the truth about the broken window.",
+        "bucketId": "self"
+      },
+      {
+        "id": "bear",
+        "text": "A hiker hears a bear crashing through the trees towards her tent.",
+        "bucketId": "nature"
+      },
+      {
+        "id": "uniform",
+        "text": "A class protests the new rule that bans bright colours at school.",
+        "bucketId": "society"
+      }
+    ]
+  },
+  {
+    "key": "u04.conflict-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Want vs obstacle",
+    "instructions": "Tap the word that shows what Priya wants, and the two words that show what stands in her way.",
+    "text": "Priya longed to win the robot contest, but her robot sparked, smoked and refused to move.",
+    "targets": ["longed", "smoked", "refused"],
+    "explanation": "\"Longed\" shows her want. The smoking robot that refuses to move is the obstacle. Want + obstacle = conflict (here, person vs technology)."
+  },
+  {
+    "key": "u04.conflict-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Conflict check",
+    "questions": [
+      {
+        "id": "what-is",
+        "prompt": "What is conflict in a story?",
+        "options": [
+          { "id": "a", "text": "Only a fight between two people" },
+          { "id": "b", "text": "Something the character wants, and something standing in the way" },
+          { "id": "c", "text": "The description of the setting" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Conflict can be a fight, but it can also be a fear, a storm or an unfair rule: anything that blocks what the character wants."
+      },
+      {
+        "id": "which-type",
+        "prompt": "\"The robot locked the door and said, 'You can't leave until you finish your homework.'\" What kind of conflict is this?",
+        "options": [
+          { "id": "a", "text": "Person vs technology" },
+          { "id": "b", "text": "Person vs nature" },
+          { "id": "c", "text": "Person vs self" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A machine is standing in the character's way, so this is person vs technology.",
+        "hint": "Who or what is blocking the character?"
+      },
+      {
+        "id": "inner",
+        "prompt": "Which is an example of person vs self?",
+        "options": [
+          { "id": "a", "text": "A wolf follows a girl through the forest." },
+          {
+            "id": "b",
+            "text": "A boy wants to try out for the play but is scared everyone will laugh."
+          },
+          { "id": "c", "text": "Two teams compete in the final." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The struggle is inside the boy: his fear of being laughed at."
+      }
+    ]
+  },
+  {
+    "key": "u04.conflict-scene",
+    "type": "CONFLICT_SCENE",
+    "title": "Choose your conflict",
+    "prompt": "Choose a conflict card. Then write the opening scene of a story built on that conflict. By the end of your scene, the reader should know what your character wants, what stands in the way, and why it matters.",
+    "tips": [
+      "Use a story starter if you're stuck, then make it your own.",
+      "Show the want early, then bring in the obstacle.",
+      "End your scene with the problem getting worse, so readers want more."
+    ],
+    "constraints": {
+      "minWords": 100,
+      "maxWords": 250,
+      "enforcement": "hard"
+    },
+    "analyzers": ["telling", "senses", "sentenceVariety", "dialogue"],
+    "conflictPicker": { "label": "Choose your conflict" }
+  },
+  {
+    "key": "u04.pace-sort",
+    "type": "SORT",
+    "title": "Fast or slow?",
+    "instructions": "Sort each passage: does it feel fast or slow?",
+    "buckets": [
+      { "id": "fast", "label": "Fast ⚡" },
+      { "id": "slow", "label": "Slow 🐢" }
+    ],
+    "items": [
+      { "id": "f1", "text": "Crash! Glass everywhere. Run!", "bucketId": "fast" },
+      {
+        "id": "s1",
+        "text": "The afternoon sun crept slowly across the kitchen floor, warming the sleeping cat curled beside the oven.",
+        "bucketId": "slow"
+      },
+      { "id": "f2", "text": "The dog lunged. Tom dodged. The gate slammed.", "bucketId": "fast" },
+      {
+        "id": "s2",
+        "text": "Grandma unfolded the old letter carefully, smoothing each crease with her thumb before she began to read.",
+        "bucketId": "slow"
+      },
+      {
+        "id": "f3",
+        "text": "She grabbed the bag, vaulted the fence and sprinted.",
+        "bucketId": "fast"
+      },
+      {
+        "id": "s3",
+        "text": "Waves rolled in and out, in and out, as the long summer evening faded into purple.",
+        "bucketId": "slow"
+      }
+    ]
+  },
+  {
+    "key": "u04.pace-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Speed words",
+    "instructions": "Tap the three words in the second half that make the story speed up.",
+    "text": "The museum was hushed and still, and the guard dozed in his chair beside the golden statue. Then the alarm shrieked. Lights flashed. Someone ran.",
+    "targets": ["shrieked", "flashed", "ran"],
+    "explanation": "The first sentence is long and calm. Then short sentences with strong verbs (shrieked, flashed, ran) make the pace jump."
+  },
+  {
+    "key": "u04.pace-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Pacing check",
+    "questions": [
+      {
+        "id": "speed-up",
+        "prompt": "Which change would speed up a chase scene?",
+        "options": [
+          { "id": "a", "text": "Add long descriptions of the trees" },
+          { "id": "b", "text": "Use short sentences and strong action verbs" },
+          { "id": "c", "text": "Explain the character's whole history" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Short sentences are quick to read, and action verbs keep things moving, so the reader's heart races.",
+        "hint": "How do you make reading feel quick?"
+      },
+      {
+        "id": "slow-down",
+        "prompt": "When is it a good idea to slow down?",
+        "options": [
+          { "id": "a", "text": "Right before a big moment, to build suspense" },
+          { "id": "b", "text": "In the middle of a fight" },
+          { "id": "c", "text": "Never: stories should always be fast" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Slowing down just before something big makes readers hold their breath and wait."
+      },
+      {
+        "id": "which-faster",
+        "prompt": "Which version is faster?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Because the ice was thin and it had been warm for days, it began to crack slowly under his feet."
+          },
+          { "id": "b", "text": "Crack. The ice split. He fell." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Three short sentences, each with one action, make the moment feel sudden and fast."
+      }
+    ]
+  },
+  {
+    "key": "u04.pacing-scene",
+    "type": "PACING_SCENE",
+    "title": "Slow, slow, fast!",
+    "prompt": "Write a scene that starts slow and calm, then speeds up into a fast action moment (a chase, an escape, a fall or a race). Use long sentences and details at the start, and short sentences and strong verbs when things get fast. Use paragraphs, and watch the pacing band in the Coach.",
+    "tips": [
+      "Start with a quiet moment: what does your character notice?",
+      "Signal the change: a sound, a shout, something unexpected.",
+      "In the fast part, cut extra words. One action per sentence."
+    ],
+    "constraints": {
+      "minWords": 150,
+      "maxWords": 300,
+      "enforcement": "hard"
+    },
+    "analyzers": ["pacing", "sentenceVariety", "telling", "filterWords"]
+  },
+  {
+    "key": "u04.ending-sequence",
+    "type": "SEQUENCE",
+    "title": "From climax to ending",
+    "instructions": "Put the second half of \"The Science Fair\" in order: from the rising action, over the climax, down to the resolution.",
+    "items": [
+      {
+        "id": "worse",
+        "text": "Ten minutes before judging, Kai's volcano cracks down the middle."
+      },
+      {
+        "id": "plan",
+        "text": "Kai grabs tape and a cardboard box and starts rebuilding it as a \"broken volcano\" exhibit."
+      },
+      {
+        "id": "climax",
+        "text": "The judge arrives just as Kai pours the mixture, and the lava bursts out of the crack perfectly."
+      },
+      { "id": "after", "text": "Kai sits down, sticky and breathless, while the crowd claps." },
+      {
+        "id": "end",
+        "text": "He doesn't win first prize, but he gets the award for the best problem-solver, and he grins all the way home."
+      }
+    ],
+    "labels": ["Rising action", "Rising action", "Climax", "Falling action", "Resolution"],
+    "explanation": "The problem gets worse and Kai acts, then the climax is the big moment with the judge, the falling action calms things down, and the resolution shows what he gained."
+  },
+  {
+    "key": "u04.resolution-sort",
+    "type": "SORT",
+    "title": "Strong or weak ending?",
+    "instructions": "Sort each ending: does it settle the problem and show a change, or not?",
+    "buckets": [
+      { "id": "strong", "label": "Strong ending ✓" },
+      { "id": "weak", "label": "Weak ending ✗" }
+    ],
+    "items": [
+      { "id": "dream", "text": "Then Jo woke up. It was all a dream.", "bucketId": "weak" },
+      {
+        "id": "change",
+        "text": "Jo still hated heights, but now she knew she could climb when it mattered.",
+        "bucketId": "strong"
+      },
+      {
+        "id": "luck",
+        "text": "Luckily, a helicopter appeared out of nowhere and fixed everything.",
+        "bucketId": "weak"
+      },
+      {
+        "id": "choice",
+        "text": "Leo gave back the medal he hadn't earned, and for the first time all week, he slept well.",
+        "bucketId": "strong"
+      },
+      { "id": "stop", "text": "And then the story just stopped.", "bucketId": "weak" },
+      {
+        "id": "friends",
+        "text": "The two rivals shared the trophy, and the next morning they walked to practice together.",
+        "bucketId": "strong"
+      }
+    ]
+  },
+  {
+    "key": "u04.climax-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Climax and resolution check",
+    "questions": [
+      {
+        "id": "strong-climax",
+        "prompt": "Which climax is strongest?",
+        "options": [
+          { "id": "a", "text": "A teacher arrives and solves the problem for Mia." },
+          {
+            "id": "b",
+            "text": "Mia uses the rope trick she practised to pull her friend out of the river."
+          },
+          { "id": "c", "text": "The problem just goes away by itself." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "In a strong climax, the main character acts. Mia uses her own skill to solve the problem.",
+        "hint": "Who makes things happen?"
+      },
+      {
+        "id": "where-climax",
+        "prompt": "In a 1,000-word story, where does the climax usually come?",
+        "options": [
+          { "id": "a", "text": "In the first 100 words" },
+          { "id": "b", "text": "Around words 650 to 850" },
+          { "id": "c", "text": "In the very last sentence" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The climax usually comes about two-thirds to three-quarters of the way through, leaving room for the falling action and resolution."
+      },
+      {
+        "id": "resolution",
+        "prompt": "What should a resolution do?",
+        "options": [
+          { "id": "a", "text": "Introduce a brand-new problem" },
+          { "id": "b", "text": "Show how things settle and what has changed" },
+          { "id": "c", "text": "Repeat the beginning word for word" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A resolution ties up the problem and shows how the character or their world has changed."
+      }
+    ]
+  },
+  {
+    "key": "u04.plot-story",
+    "type": "PLOT_STORY",
+    "title": "My story mountain story",
+    "prompt": "Choose a conflict and plan your story mountain. Then write a complete short story: a beginning that shows what your character wants, rising action where things get harder, a climax where your character acts, and an ending that shows what changed. Slow down and speed up on purpose.",
+    "tips": [
+      "Put your climax about two-thirds of the way through.",
+      "Let your character solve the problem: no lucky rescues or \"it was a dream\".",
+      "Check the pacing band: do you speed up for the climax?"
+    ],
+    "constraints": {
+      "minWords": 250,
+      "maxWords": 500,
+      "enforcement": "hard"
+    },
+    "analyzers": ["pacing", "telling", "sentenceVariety", "dialogue", "senses"],
+    "conflictPicker": { "label": "Choose your story's conflict" },
+    "plotPlanner": { "label": "Plan your story mountain" }
+  }
+]

@@ -5,7 +5,9 @@ import {
   RestoreRequest,
   RevisionRequest,
   SaveDraftRequest,
+  SetConflictRequest,
   SetMoodRequest,
+  SetPlotRequest,
   SetTraitsRequest,
   type SaveDraftResponse,
   type SubmissionDetail,
@@ -75,6 +77,28 @@ export class SubmissionsController {
     @Body({ schema: SetMoodRequest }) body: SetMoodRequest,
   ): Promise<SubmissionDetail> {
     return this.submissions.setMood(user, id, body.mood);
+  }
+
+  /** The conflict card chosen for the activity's conflict picker (Unit 4). */
+  @Roles('STUDENT')
+  @Put(':id/conflict')
+  setConflict(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetConflictRequest }) body: SetConflictRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setConflict(user, id, body.conflict);
+  }
+
+  /** The story mountain plan for the activity's plot planner (Unit 4). */
+  @Roles('STUDENT')
+  @Put(':id/plot')
+  setPlot(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetPlotRequest }) body: SetPlotRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setPlot(user, id, body.plot);
   }
 
   @Roles('STUDENT')

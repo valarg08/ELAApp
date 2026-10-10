@@ -4,6 +4,8 @@ import { DEFAULT_ANALYZERS, type AnalyzerId, type Span } from '@storyforge/writi
 import {
   CHARACTER_ACTIVITY_TYPES,
   type LiveAnalyzerId,
+  PLOT_ACTIVITY_TYPES,
+  type PlotPlan,
   SETTING_ACTIVITY_TYPES,
   LiveCheckResponse,
   type WritingActivity,
@@ -28,6 +30,8 @@ export function AskQuill({
   activity,
   traits,
   mood,
+  conflict,
+  plot,
   text,
   onShow,
 }: {
@@ -35,12 +39,17 @@ export function AskQuill({
   activity: WritingActivity;
   traits: string[];
   mood: string[];
+  conflict: string | null;
+  plot: PlotPlan;
   text: string;
   onShow: (span: Span) => void;
 }) {
   const checks = [
     ...(CHARACTER_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'character-read' as const, label: 'Can my reader tell?' }]
+      : []),
+    ...(PLOT_ACTIVITY_TYPES.includes(activity.type)
+      ? [{ id: 'plot-check' as const, label: 'Does my plot work?' }]
       : []),
     ...(SETTING_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'setting-mood' as const, label: 'What mood will my reader feel?' }]
@@ -66,6 +75,8 @@ export function AskQuill({
         text,
         traits,
         mood,
+        conflict,
+        plot,
       });
       setResult({ text, response });
     } catch (e) {

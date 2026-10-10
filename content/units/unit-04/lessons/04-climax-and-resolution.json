@@ -1,0 +1,61 @@
+{
+  "slug": "climax-and-resolution",
+  "order": 4,
+  "title": "Climax & Resolution",
+  "estMinutes": 50,
+  "focusSkills": ["plot-structure", "endings"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which ending feels better?",
+      "a": "And then Mia woke up, and it was all a dream.",
+      "b": "Mia hung the cracked medal on her wall. She hadn't won, but she had finished the race, and next year she knew she could.",
+      "reveal": "The first ending throws the story away. The second one settles the problem and shows how Mia has changed. That's a resolution."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The climax",
+          "body": "The climax is the top of the mountain: the moment of greatest tension, where the character faces the problem head-on. It usually comes about two-thirds to three-quarters of the way through the story."
+        },
+        {
+          "kind": "definition",
+          "title": "The character acts",
+          "body": "In a strong climax, the character makes something happen: a choice, a brave move, a clever idea. Avoid endings where luck or someone else solves everything."
+        },
+        {
+          "kind": "definition",
+          "title": "The resolution",
+          "body": "After the climax, slow down. Show what happens next and how things have changed: what did the character learn, win, lose or decide? Leave the reader satisfied, not confused."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the change",
+          "prompt": "Tap the two words that show how Ravi has changed at the end.",
+          "text": "Ravi used to hide at the back of the class. Now he raised his hand first, and he smiled when everyone turned to listen.",
+          "clues": ["raised", "smiled"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u04.ending-sequence", "u04.resolution-sort", "u04.climax-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u04.plot-story" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How does your character make the climax happen?",
+        "What has changed for your character by the end?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import { anchorQuote } from './anchor.js';
 import type { CharacterReadResult } from './analyzers/character-read.js';
 import type { SensoryResult } from './analyzers/sensory.js';
 import type { SettingMoodResult } from './analyzers/setting-mood.js';
+import { PLOT_STAGE_LABELS, type PlotCheckResult } from './analyzers/plot-check.js';
 import type { ShowVsTellResult } from './analyzers/show-vs-tell.js';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
@@ -187,6 +188,61 @@ export function settingMoodPoints(text: string, r: SettingMoodResult) {
       title: 'When is it?',
       message:
         'You could try one clue about the time: the light, the season, or what people are doing.',
+    });
+  }
+  return { strengths: strengths.slice(0, 3), nextSteps: nextSteps.slice(0, 3) };
+}
+
+/** "Does my plot work?": a clear conflict and climax as strengths; a fuzzy conflict, missing stages and an open ending as next steps. */
+export function plotCheckPoints(text: string, r: PlotCheckResult, conflictLabel: string | null) {
+  const strengths: FeedbackPoint[] = [];
+  const nextSteps: FeedbackPoint[] = [];
+  if (r.conflict.clear && r.conflict.matchesChosen !== false) {
+    const point = {
+      title: conflictLabel
+        ? `Clear conflict: ${conflictLabel.toLowerCase()} ✓`
+        : 'Clear conflict ✓',
+      message: 'A reader can tell what the problem is, so they want to know what happens.',
+    };
+    strengths.push(anchored(text, point, r.conflict.quote) ?? point);
+  } else {
+    nextSteps.push({
+      title:
+        r.conflict.clear && conflictLabel
+          ? `Is this ${conflictLabel.toLowerCase()}?`
+          : 'Make the problem clear',
+      message:
+        r.conflict.idea ??
+        'You could try one sentence that shows what your character wants and what stands in the way.',
+    });
+  }
+  if (r.climax.clear) {
+    const point = {
+      title: 'A real climax ✓',
+      message: 'This is the big moment where your character faces the problem.',
+    };
+    strengths.push(anchored(text, point, r.climax.quote) ?? point);
+  }
+  const missing = r.stages
+    .filter((s) => !s.present && s.stage !== 'resolution')
+    .map((s) => PLOT_STAGE_LABELS[s.stage]);
+  if (missing.length > 0) {
+    nextSteps.push({
+      title: `Add the ${missing[0]}`,
+      message: `Your story mountain is missing: ${missing.join(', ')}. You could try a sentence or two for ${missing.length === 1 ? 'it' : 'each'}.`,
+    });
+  }
+  if (!r.ending.resolved) {
+    nextSteps.push({
+      title: 'Finish the story',
+      message: r.ending.idea ?? 'You could try a last moment that shows how the problem ends.',
+    });
+  }
+  if (r.planFollowed === false) {
+    nextSteps.push({
+      title: 'Check your plan',
+      message:
+        'Your story drifts away from your story mountain plan. Change the story or the plan, so they match.',
     });
   }
   return { strengths: strengths.slice(0, 3), nextSteps: nextSteps.slice(0, 3) };

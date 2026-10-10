@@ -123,6 +123,35 @@ function describeActivity(
           }),
       };
     }
+    case 'SEQUENCE': {
+      const { items, labels } = activity;
+      return {
+        text: [
+          activity.instructions,
+          'Correct order:',
+          ...items.map((item, i) => `${i + 1}. ${labels?.[i] ? `${labels[i]}: ` : ''}${item.text}`),
+          `Why: ${activity.explanation}`,
+        ].join('\n'),
+        fallback: shuffle(
+          items.slice(0, -1).map((item, i) => ({ item, next: items[i + 1] })),
+          variant,
+        )
+          .slice(0, 3)
+          .flatMap(({ item, next }, i) => {
+            if (!next) return [];
+            const others = items.filter((x) => x.id !== item.id && x.id !== next.id).slice(0, 2);
+            const options = shuffle([next, ...others], variant + i);
+            return [
+              {
+                prompt: `What comes right after this? “${item.text}”`,
+                options: options.map((o) => o.text),
+                correctIndex: options.findIndex((o) => o.id === next.id),
+                explanation: activity.explanation,
+              },
+            ];
+          }),
+      };
+    }
     case 'REFLECTION':
       return { text: '', fallback: [] };
   }

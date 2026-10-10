@@ -83,11 +83,15 @@ function CardView({ card, onSolved }: { card: LessonCard; onSolved: () => void }
           <h2 className="text-2xl font-bold">{card.title}</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl border border-border p-4">
-              <p className="text-sm font-semibold tracking-wide text-muted uppercase">Telling</p>
+              <p className="text-sm font-semibold tracking-wide text-muted uppercase">
+                {card.labels?.[0] ?? 'Telling'}
+              </p>
               <p className="mt-1 text-lg">{card.telling}</p>
             </div>
             <div className="rounded-xl border-2 border-brand p-4">
-              <p className="text-sm font-semibold tracking-wide text-brand uppercase">Showing</p>
+              <p className="text-sm font-semibold tracking-wide text-brand uppercase">
+                {card.labels?.[1] ?? 'Showing'}
+              </p>
               <p className="mt-1 text-lg">{card.showing}</p>
             </div>
           </div>

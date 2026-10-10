@@ -7,6 +7,7 @@ import {
   type VersionSummary,
   checkConstraints,
   constraintsWithTraits,
+  planComplete,
 } from '@storyforge/shared';
 import type { Span } from '@storyforge/writing-analysis';
 import { useRef, useState } from 'react';
@@ -19,7 +20,9 @@ import { ConflictDialog } from './conflict-dialog';
 import { ConstraintsBar } from './constraints-bar';
 import { HistoryPanel, formatWhen } from './history-panel';
 import { SaveStatusText } from './save-status';
+import { ConflictPicker } from './conflict-picker';
 import { MoodPicker } from './mood-picker';
+import { PlotPlanner } from './plot-planner';
 import { TraitPicker } from './trait-picker';
 import { useAutosave } from './use-autosave';
 
@@ -56,6 +59,12 @@ export function WritingWorkspace({
   const moodPicker = activity.moodPicker;
   const [mood, setMood] = useState(submission.mood);
   const needsMood = moodPicker !== undefined && mood.length < moodPicker.axes.length;
+  const conflictPicker = activity.conflictPicker;
+  const [conflict, setConflict] = useState(submission.conflict);
+  const plotPlanner = activity.plotPlanner;
+  const [plot, setPlot] = useState(submission.plot);
+  const needsConflict = conflictPicker !== undefined && conflict === null;
+  const needsPlot = plotPlanner !== undefined && !planComplete(plot);
   const [historyKey, setHistoryKey] = useState(0);
   const refreshHistory = () => setHistoryKey((k) => k + 1);
   const { state, controller } = useAutosave(submission, refreshHistory);
@@ -71,6 +80,8 @@ export function WritingWorkspace({
     wordCount === 0 ||
     needsTraits ||
     needsMood ||
+    needsConflict ||
+    needsPlot ||
     state.status === 'conflict' ||
     (constraints.enforcement === 'hard' && problems.length > 0);
   const short = constraints.exactWords !== undefined && constraints.exactWords <= 10;
@@ -93,6 +104,8 @@ export function WritingWorkspace({
       activityId={submission.activity.id}
       traits={traits}
       mood={mood}
+      conflict={conflict}
+      plot={plot}
       onShow={showInText}
     />
   );
@@ -194,6 +207,33 @@ export function WritingWorkspace({
         />
       )}
 
+      {conflictPicker && (
+        <ConflictPicker
+          submissionId={submission.id}
+          picker={conflictPicker}
+          conflict={conflict}
+          onChange={setConflict}
+          onStarter={
+            state.text.trim() === ''
+              ? (line) => {
+                  setStarted(true);
+                  controller.setText(`${line} `);
+                  editorRef.current?.focus();
+                }
+              : undefined
+          }
+        />
+      )}
+
+      {plotPlanner && (
+        <PlotPlanner
+          submissionId={submission.id}
+          planner={plotPlanner}
+          plot={plot}
+          onChange={setPlot}
+        />
+      )}
+
       <ConstraintsBar text={state.text} constraints={constraints} started={started} />
 
       <div className="flex flex-col gap-1">
@@ -228,6 +268,12 @@ export function WritingWorkspace({
             Pick {picker.count === 1 ? 'your character’s trait' : `${picker.count} traits`} above to
             submit.
           </span>
+        )}
+        {needsConflict && (
+          <span className="text-sm text-muted">Choose a conflict card above to submit.</span>
+        )}
+        {needsPlot && (
+          <span className="text-sm text-muted">Fill in all five parts of your plan to submit.</span>
         )}
         {needsMood && (
           <span className="text-sm text-muted">

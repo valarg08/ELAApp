@@ -7,6 +7,7 @@ export * from './contracts/health.js';
 export * from './contracts/problem.js';
 export * from './curriculum/constraints.js';
 export * from './curriculum/content.js';
+export * from './curriculum/plot.js';
 export * from './contracts/curriculum.js';
 export * from './contracts/writing.js';
 export * from './contracts/feedback.js';

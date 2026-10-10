@@ -1,0 +1,66 @@
+{
+  "slug": "pacing-fast-and-slow",
+  "order": 3,
+  "title": "Pacing: Fast & Slow",
+  "estMinutes": 45,
+  "focusSkills": ["pacing", "sentence-variety"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "Feel the speed",
+      "paragraphs": [
+        "The afternoon stretched out lazily, and Sam lay in the long grass by the river, watching the clouds drift past like slow white boats.",
+        "Then: a splash. A scream. Sam ran. Jumped. The water was ice.",
+        "Did you feel the story speed up? The writer didn't say \"suddenly everything got exciting\". They changed the sentences."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Pacing",
+          "body": "Pacing is how fast a story feels. Slow parts let readers settle in, notice details and feel calm or worried. Fast parts make hearts race. Good stories change speed on purpose."
+        },
+        {
+          "kind": "compare",
+          "title": "Slow it down, speed it up",
+          "labels": ["Slow", "Fast"],
+          "telling": "The old house sat at the end of the lane, its windows dusty, its garden full of tangled roses that nobody had cut for years.",
+          "showing": "The door slammed. Footsteps. Closer. Run!",
+          "note": "Long sentences and details slow things down. Short sentences, action verbs and fewer details speed them up."
+        },
+        {
+          "kind": "definition",
+          "title": "Where to go fast",
+          "body": "Speed up for chases, fights, escapes and the climax. Slow down for the beginning, for important feelings, and for the moment just before something big happens, so readers hold their breath."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the speed",
+          "prompt": "Tap the three short action words that make this moment fast.",
+          "text": "The rope snapped. Aria grabbed the ledge. Slipped. Held on.",
+          "clues": ["snapped", "grabbed", "slipped"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u04.pace-sort", "u04.pace-highlight", "u04.pace-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u04.pacing-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where in your scene did you speed up? How did you do it?",
+        "Look at the pacing band in the Coach. Does it match what you planned?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

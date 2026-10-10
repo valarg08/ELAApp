@@ -6,6 +6,7 @@ import {
 } from '@storyforge/writing-analysis';
 import { z } from 'zod';
 import { WritingConstraints } from './constraints.js';
+import { CONFLICT_TYPE_IDS, type ConflictTypeId, PlotPlan } from './plot.js';
 
 /**
  * Curriculum content format (DESIGN.md §9). Units, lessons and activities live as JSON files in
@@ -72,6 +73,22 @@ export const HighlightActivity = z.object({
   explanation: text(500),
 });
 
+/**
+ * Put the cards in order (the story mountain, DESIGN.md §10 plot diagram): drag them, or use the
+ * move buttons. `items` are listed in the correct order; `labels` names each position.
+ */
+export const SequenceActivity = z.object({
+  ...activityBase,
+  type: z.literal('SEQUENCE'),
+  instructions: text(500),
+  items: z
+    .array(z.object({ id, text: text(300) }))
+    .min(3)
+    .max(8),
+  labels: z.array(text(60)).max(8).optional(),
+  explanation: text(500),
+});
+
 export const ReflectionActivity = z.object({
   ...activityBase,
   type: z.literal('REFLECTION'),
@@ -92,7 +109,26 @@ export const WRITING_ACTIVITY_TYPES = [
   'MOOD_SCENE',
   'WORLD_DETAILS',
   'SETTING_SCENE',
+  'STORY_MOUNTAIN',
+  'CONFLICT_SCENE',
+  'PACING_SCENE',
+  'PLOT_STORY',
 ] as const;
+
+/** The conflict selector (Unit 4): the student picks one conflict card before writing. */
+export const ConflictPicker = z.object({
+  label: text(120),
+  options: z
+    .array(z.enum(CONFLICT_TYPE_IDS))
+    .min(2)
+    .max(6)
+    .default([...CONFLICT_TYPE_IDS]),
+});
+export type ConflictPicker = z.infer<typeof ConflictPicker>;
+
+/** The story mountain planner (Unit 4): one line per stage, all five before submitting. */
+export const PlotPlanner = z.object({ label: text(120) });
+export type PlotPlanner = z.infer<typeof PlotPlanner>;
 
 /**
  * Before writing, the student sets the mood of their setting on one or more scales (calm ↔ tense,
@@ -141,12 +177,15 @@ export const WritingActivity = z.object({
   analyzers: z.array(z.enum(ANALYZER_IDS)).min(1).optional(),
   traitPicker: TraitPicker.optional(),
   moodPicker: MoodPicker.optional(),
+  conflictPicker: ConflictPicker.optional(),
+  plotPlanner: PlotPlanner.optional(),
 });
 
 export const ActivityContent = z.discriminatedUnion('type', [
   MultipleChoiceActivity,
   SortActivity,
   HighlightActivity,
+  SequenceActivity,
   ReflectionActivity,
   WritingActivity,
 ]);
@@ -158,6 +197,7 @@ export const PRACTICE_ACTIVITY_TYPES = [
   'MULTIPLE_CHOICE',
   'SORT',
   'HIGHLIGHT',
+  'SEQUENCE',
   'REFLECTION',
 ] as const;
 
@@ -178,6 +218,29 @@ export const SETTING_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
   'WORLD_DETAILS',
   'SETTING_SCENE',
 ];
+
+/** Plot activities (Unit 4): Quill checks the conflict, the story mountain stages and the ending. */
+export const PLOT_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
+  'STORY_MOUNTAIN',
+  'CONFLICT_SCENE',
+  'PACING_SCENE',
+  'PLOT_STORY',
+];
+
+/** The chosen conflict if it is one of the activity's cards, else null. */
+export function validConflict(
+  activity: WritingActivity,
+  conflict: string | null,
+): ConflictTypeId | null {
+  const options = activity.conflictPicker?.options ?? [];
+  return options.find((o) => o === conflict) ?? null;
+}
+
+/** The plan, cleaned (empty when the activity has no planner). */
+export function validPlot(activity: WritingActivity, plot: unknown): PlotPlan {
+  const parsed = PlotPlan.safeParse(activity.plotPlanner ? (plot ?? {}) : {});
+  return parsed.success ? parsed.data : PlotPlan.parse({});
+}
 
 /** Chosen moods that fit the activity's mood picker: at most one pole per scale, in scale order. */
 export function validMoods(activity: WritingActivity, moods: readonly string[]): MoodPole[] {
@@ -278,6 +341,8 @@ export const LessonCard = z.discriminatedUnion('kind', [
     telling: text(500),
     showing: text(500),
     note: text(500).optional(),
+    /** Column headings (default: Telling / Showing). */
+    labels: z.tuple([text(30), text(30)]).optional(),
   }),
   z.object({
     kind: z.literal('clue-hunt'),
@@ -394,6 +459,12 @@ export function validateUnitBundle({ unit, lessons, activities }: UnitBundle): s
       if (new Set(traits).size !== traits.length) errors.push(`${a.key}: duplicate trait options`);
       if (a.traitPicker.count > traits.length)
         errors.push(`${a.key}: traitPicker.count is more than the number of options`);
+    }
+    if (a.type === 'SEQUENCE') {
+      const ids = a.items.map((i) => i.id);
+      if (new Set(ids).size !== ids.length) errors.push(`${a.key}: duplicate item ids`);
+      if (a.labels && a.labels.length !== a.items.length)
+        errors.push(`${a.key}: labels must match the number of items`);
     }
     if (a.type === 'HIGHLIGHT') {
       const tokens = new Set(tokenize(a.text));

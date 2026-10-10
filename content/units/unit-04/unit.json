@@ -3,6 +3,17 @@
   "slug": "plot-and-conflict",
   "title": "Plot & Conflict",
   "summary": "Shape a story mountain, choose a conflict, and control pacing so readers can't stop reading.",
-  "bigIdeas": ["Conflict drives every story.", "Pacing controls tension."],
-  "published": false
+  "bigIdeas": [
+    "Every story climbs a mountain: beginning, rising action, climax, falling action, resolution.",
+    "Conflict drives every story.",
+    "Pacing controls tension.",
+    "A good ending shows what changed."
+  ],
+  "published": true,
+  "projectSpec": {
+    "title": "My Story Mountain Story",
+    "description": "Write a complete story (1,000–1,500 words). Plan it on a story mountain first, choose one main conflict, build the rising action, slow down and speed up on purpose, and finish with a resolution that shows how your character has changed.",
+    "minWords": 1000,
+    "maxWords": 1500
+  }
 }

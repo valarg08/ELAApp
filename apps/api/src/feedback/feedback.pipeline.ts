@@ -9,6 +9,7 @@ import {
   analyzersForActivity,
   characterReadPoints,
   settingMoodPoints,
+  plotCheckPoints,
   rubricPoints,
   rubricScoreAnalyzer,
   sensoryPoints,
@@ -34,6 +35,7 @@ import {
 import { AiRunnerService } from '../ai/ai-runner.service.js';
 import { DatabaseService } from '../database/database.service.js';
 import { SafetyService } from '../safety/safety.service.js';
+import { plotInput, plotScope } from '../ai/plot-input.js';
 
 const toJson = (value: unknown): Prisma.InputJsonValue => JSON.parse(JSON.stringify(value));
 const points = (list: FeedbackPoint[]) => FeedbackPointSchema.array().parse(list);
@@ -48,6 +50,7 @@ const SKILL_NAMES: Record<string, string> = {
   pov: 'point of view',
   tense: 'consistent tense',
   mood: 'setting mood',
+  pacing: 'pacing',
 };
 
 /**
@@ -141,7 +144,7 @@ export class FeedbackPipeline {
     let declined = false;
     const versions: string[] = [];
     const runMeta = { ...meta, cacheScope: activity.key, text };
-    const { traits, mood: moods } = submissionChoices(submission.choices);
+    const { traits, mood: moods, conflict, plot } = submissionChoices(submission.choices);
     const checkWantFear = WANT_FEAR_TYPES.includes(content.type);
     const collect = (p: { strengths: FeedbackPoint[]; nextSteps: FeedbackPoint[] }) => {
       extraStrengths.push(...p.strengths);
@@ -171,6 +174,26 @@ export class FeedbackPipeline {
         analyzerOutputs[id] = r;
         notes.push(`sensory: missing ${r.missing.join(', ') || 'none'}`);
         collect(sensoryPoints(text, r));
+      } else if (id === 'plot-check') {
+        const extra = plotInput(content, conflict, plot);
+        const outcome = await this.ai.run(
+          LIVE_ANALYZERS[id],
+          { ...ctx, ...extra },
+          { ...runMeta, cacheScope: `${activity.key}|${plotScope(extra)}` },
+        );
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        const missing = r.stages.filter((s) => !s.present).map((s) => s.stage);
+        notes.push(
+          `plot: conflict ${r.conflict.clear ? 'clear' : 'unclear'}${extra.conflict ? ` (chosen ${extra.conflict.label}, ${r.conflict.matchesChosen ? 'matches' : 'does not match'})` : ''}; missing stages ${missing.join(', ') || 'none'}; climax ${r.climax.clear ? 'clear' : 'unclear'}; ending ${r.ending.resolved ? 'resolved' : 'open'}`,
+        );
+        const p = plotCheckPoints(text, r, extra.conflict?.label ?? null);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
       } else if (id === 'setting-mood') {
         const outcome = await this.ai.run(
           LIVE_ANALYZERS[id],

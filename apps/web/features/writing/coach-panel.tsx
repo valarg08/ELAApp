@@ -1,6 +1,6 @@
 'use client';
 
-import type { WritingActivity } from '@storyforge/shared';
+import type { PlotPlan, WritingActivity } from '@storyforge/shared';
 import {
   type CoachCard,
   type CoachReport,
@@ -32,6 +32,8 @@ export function CoachPanel({
   activityId,
   traits,
   mood,
+  conflict,
+  plot,
   onShow,
 }: {
   text: string;
@@ -41,6 +43,9 @@ export function CoachPanel({
   traits: string[];
   /** Moods chosen for the mood picker (the mood check compares against them). */
   mood: string[];
+  /** Conflict card and plan (for "Does my plot work?"). */
+  conflict: string | null;
+  plot: PlotPlan;
   /** Select the words a card points at in the editor. */
   onShow: (span: Span) => void;
 }) {
@@ -111,6 +116,9 @@ export function CoachPanel({
               </p>
             )}
             {checked.report.senses && <SensesMeter counts={checked.report.senses} />}
+            {checked.report.pacing && (
+              <PacingBand segments={checked.report.pacing} canShow={canShow} onShow={onShow} />
+            )}
           </>
         )}
       </div>
@@ -120,6 +128,8 @@ export function CoachPanel({
         activity={activity}
         traits={traits}
         mood={mood}
+        conflict={conflict}
+        plot={plot}
         text={text}
         onShow={onShow}
       />
@@ -188,6 +198,49 @@ function SensesMeter({ counts }: { counts: Record<Sense, number> }) {
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+const PACE_STYLES = {
+  slow: { label: 'slow', icon: '🐢', className: 'bg-ok/15 border-ok' },
+  medium: { label: 'medium', icon: '🚶', className: 'bg-warn/15 border-warn' },
+  fast: { label: 'fast', icon: '⚡', className: 'bg-bad/15 border-bad' },
+} as const;
+
+/** Pacing band (DESIGN.md §10): each part of the story with its speed, in story order. */
+function PacingBand({
+  segments,
+  canShow,
+  onShow,
+}: {
+  segments: NonNullable<CoachReport['pacing']>;
+  canShow: (span: Span | undefined) => span is Span;
+  onShow: (span: Span) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      <h3 className="font-semibold">Story speed, part by part</h3>
+      <ol className="flex flex-wrap gap-1" aria-label="Pacing of each part">
+        {segments.map((s, i) => {
+          const style = PACE_STYLES[s.pace];
+          const span = { start: s.start, end: s.end, text: s.text };
+          return (
+            <li key={s.start} className="min-w-16 flex-1">
+              <button
+                type="button"
+                disabled={!canShow(span)}
+                onClick={() => onShow(span)}
+                className={`w-full rounded-lg border px-2 py-1 text-left text-sm focus-visible:outline-3 focus-visible:outline-brand ${style.className}`}
+                aria-label={`Part ${i + 1}: ${style.label}. Show it in my writing`}
+              >
+                <span aria-hidden="true">{style.icon} </span>
+                {style.label}
+              </button>
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 }

@@ -91,6 +91,7 @@ export const LiveAnalyzerId = z.enum([
   'sensory-analysis',
   'character-read',
   'setting-mood',
+  'plot-check',
 ]);
 export type LiveAnalyzerId = z.infer<typeof LiveAnalyzerId>;
 
@@ -102,6 +103,9 @@ export const LiveCheckRequest = z.object({
   traits: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(3).default([]),
   /** For "What mood will my reader feel?": the moods the student chose. */
   mood: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(3).default([]),
+  /** For "Does my plot work?": the chosen conflict and the plan. */
+  conflict: z.string().max(40).nullable().default(null),
+  plot: z.record(z.string(), z.string().max(200)).optional(),
 });
 export type LiveCheckRequest = z.infer<typeof LiveCheckRequest>;
 

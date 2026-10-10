@@ -29,8 +29,12 @@ import {
   diffStats,
   diffWords,
   isWritingActivity,
+  type PlotPlan,
+  planComplete,
   submissionChoices,
+  validConflict,
   validMoods,
+  validPlot,
   validTraits,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
@@ -204,6 +208,50 @@ export class SubmissionsService {
     return this.detail(updated);
   }
 
+  /** Save the conflict card chosen for the activity's conflict picker (Unit 4). */
+  async setConflict(user: AuthUser, id: string, card: string): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    const chosen = validConflict(activity, card);
+    if (!chosen) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'Not a conflict card',
+        'Choose one of the conflict cards for this activity.',
+      );
+    }
+    return this.saveChoices(current, { conflict: chosen });
+  }
+
+  /** Save the story mountain plan for the activity's plot planner (Unit 4). */
+  async setPlot(user: AuthUser, id: string, plot: PlotPlan): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    if (!activity.plotPlanner) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'No plan here',
+        'This activity doesn’t have a story mountain planner.',
+      );
+    }
+    return this.saveChoices(current, { plot: validPlot(activity, plot) });
+  }
+
+  private async saveChoices(
+    current: LoadedSubmission,
+    change: Partial<SubmissionChoices>,
+  ): Promise<SubmissionDetail> {
+    const choices = SubmissionChoices.parse({ ...choicesOf(current), ...change });
+    const updated = await this.db.client.submission.update({
+      where: { id: current.id },
+      data: { choices },
+      include: { activity: { include: { lesson: true } } },
+    });
+    return this.detail(updated);
+  }
+
   /** "Save version": a snapshot the student asked for. */
   async saveVersion(user: AuthUser, id: string, baseRevision: number): Promise<VersionSummary> {
     const current = await this.editable(user, id);
@@ -247,6 +295,22 @@ export class SubmissionsService {
         'Almost there',
         message,
         [message],
+      );
+    }
+    const missing: string[] = [];
+    if (activity.conflictPicker && !validConflict(activity, choicesOf(current).conflict)) {
+      missing.push('Choose a conflict card first.');
+    }
+    if (activity.plotPlanner && !planComplete(validPlot(activity, choicesOf(current).plot))) {
+      missing.push('Fill in all five parts of your story mountain plan first.');
+    }
+    if (missing.length > 0) {
+      throw new AppError(
+        HttpStatus.UNPROCESSABLE_ENTITY,
+        ErrorCode.CONSTRAINTS_NOT_MET,
+        'Almost there',
+        missing.join(' '),
+        missing,
       );
     }
     const constraints = constraintsWithTraits(activity, traits);
@@ -472,6 +536,8 @@ export class SubmissionsService {
         : null,
       traits: choicesOf(s).traits,
       mood: choicesOf(s).mood,
+      conflict: choicesOf(s).conflict,
+      plot: choicesOf(s).plot,
     };
   }
 }

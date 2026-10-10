@@ -1424,7 +1424,7 @@ type WritingConstraints = {
 - **Pacing default:** with no pacing row, Unit 1 is open and other published units are locked until the teacher unlocks them; unpublished units show as "coming soon". Pacing rows support `hidden`, a scheduled `unlockAt`, and `dueAt`.
 - **Grading:** practice activities are checked in the browser (answers are part of the lesson payload, which is fine for low-stakes practice); the API requires every practice activity to be reported correct before the step completes. Writing constraints are checked live in the browser and again by the API (422 `CONSTRAINTS_NOT_MET` with kid-friendly messages).
 - **Challenge storage:** the challenge is written in the P3 writing workspace (§5.4.1) and stored as a `Submission`; lesson progress keeps only the word count.
-- **Sort activities** use tap-to-place buttons (works with keyboard, touch and screen readers). Drag-and-drop (dnd-kit) arrives with the Unit 4 plot diagram.
+- **Sort activities** use tap-to-place buttons (works with keyboard, touch and screen readers). Drag-and-drop (dnd-kit) arrived with the Unit 4 story mountain (`SEQUENCE`, §9.8).
 - **Unit 1** has 4 complete lessons (six-word stories, show don't tell, describe without naming, vivid language) with 16 activities; Units 2–12 were unpublished outlines (Unit 2 was authored in SL2, §9.6).
 
 ---
@@ -1439,7 +1439,7 @@ The project owner chose to focus on students learning on their own with Quill's 
 - **Explain it another way** (`POST /ai/explain { lessonId, cardIndex, attempt }`): Quill re-teaches a Learn card from a new angle each attempt (everyday comparison, steps, weak vs strong, simpler words, common mistake) with an example and a quick self-check. Input is lesson content only, so results are cached and shared by all students.
 - **Extra practice** (`POST /ai/practice { lessonId, activityKey }`): 3 new multiple-choice questions on a practice activity's skill, validated (2–4 distinct options, one correct) and played with the normal renderer. Offered automatically after an activity needed more than one try, and from the practice summary. Three cached question sets per activity rotate. Offline, the fake builds questions from the activity's own items.
 - **Limits:** tutor help 30/hour and 100/day per student, 3,000/day per class (`AiUsage` kind `tutor`), separate from writing checks.
-- **Not yet:** hints on practice questions (not chosen), a "My learning" page, Units 4–12 content (SL4+). Tests for SL1 are still owed.
+- **Not yet:** hints on practice questions (not chosen), a "My learning" page, Units 5–12 content (SL5+). Tests for SL1 are still owed.
 
 ### 9.6 Unit 2 lessons (as built in SL2)
 
@@ -1454,6 +1454,16 @@ The project owner chose to focus on students learning on their own with Quill's 
 - **Mood check (Coach):** `mood` analyzer in packages/writing-analysis (lexicon of setting words per pole; a scale leans one way with ≥2 words and a 2× lead). With chosen moods it compares: "You chose tense, but your words feel calm so far (gentle, quiet, soft). You could try words like crack, snap…"; without, it names the mood the words build.
 - **"What mood will my reader feel?"** (`setting-mood` analyzer in packages/ai): per chosen mood, whether a reader feels it (with a quote) or one idea to build it, the overall mood, whether time and place are clear, and up to 2 strong details. Runs in the feedback pipeline for setting activities (its points first, up to 3 strengths) and from Ask Quill. Offline, the fake uses the mood lexicon and time/place patterns.
 - **Instead of the §10 tools:** the World builder artifact (map sketch, sensory sliders) and the pinned world card are P7. Tests owed: `mood` analyzer and coach card, mood picker API, `setting-mood` fake and points.
+
+### 9.8 Unit 4 lessons (as built in SL4)
+
+- **Lessons** (`content/units/unit-04`, 16 activities, unit published): 1 The Story Mountain → `STORY_MOUNTAIN` (plan 5 stages, 120–250 words); 2 Conflict Drives Stories → `CONFLICT_SCENE` (choose a conflict card, an opening scene, 100–250 words); 3 Pacing: Fast & Slow → `PACING_SCENE` (slow then fast, 150–300 words); 4 Climax & Resolution → `PLOT_STORY` (conflict card + plan, a complete story, 250–500 words). Unit project spec: a 1,000–1,500-word story (stored only).
+- **`SEQUENCE` practice activity** (the story mountain): cards listed in the right order with optional position `labels`; shown shuffled. Students drag with **dnd-kit** (pointer, or keyboard: Space, arrows, Space, with announcements that read the card and its place) or use ↑ ↓ buttons. "Check" marks the cards in the right place until the next move. Five labels draw the mountain. Extra practice builds "What comes right after…?" questions from it offline.
+- **Conflict selector:** `conflictPicker { label, options? }` with the six cards of `CONFLICT_TYPES` (packages/shared `curriculum/plot.ts`): definition, mentor example and three starters; "Start with this" opens an empty draft with a starter. Saved with `PUT /submissions/:id/conflict` (`Submission.choices.conflict`).
+- **Story mountain planner:** `plotPlanner { label }`: one line per stage (`PlotPlan`), autosaved with `PUT /submissions/:id/plot`. Submit answers 422 until a conflict is chosen and all five lines are planned (when the activity has them).
+- **Pacing analyzer (Coach):** `pacing` in packages/writing-analysis splits the story into paragraphs (or sentence groups) and rates each slow / medium / fast from sentence length, action words, dialogue and exclamations; the most intense part is the climax, reported as a % of the story. The Coach shows a **pacing band** (one button per part, "Show me" selects it) and says "Your climax starts at about 92 %…" (too late) or "…comes early" (< 35 %), praises 35–90 %, and flags one-speed stories. The comparison with a plot diagram waits for the P7 `PLOT` artifact.
+- **"Does my plot work?"** (`plot-check` analyzer in packages/ai): conflict clear and matching the chosen card, which of the five stages are present, a clear climax, a resolved ending, and whether the story follows the plan. In the feedback pipeline for plot activities (its points first) and in Ask Quill. Offline, the fake uses `pacing`, conflict markers and keywords per conflict type.
+- **Also:** compare cards take optional column `labels` (e.g. Slow / Fast). Tests owed: `SEQUENCE` content checks and renderer, `pacing` + coach card, conflict/plot endpoints, `plot-check` fake and points.
 
 ---
 
@@ -1701,7 +1711,8 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | **SL1 Self-learning & AI tutor** ✅ | Self-paced classes (lessons and units unlock in order), instant AI feedback with a revise loop, "Explain it another way" on Learn cards, extra practice from Quill (see §9.5) | Self-paced locks work; tutor features work with the fake and real gateway (tests still owed) |
 | **SL2 Unit 2 lessons** ✅ | Unit 2 Character Development: 4 lessons, trait picker, "Can your reader tell?" (`character-read`) in feedback and Ask Quill (see §9.6) | Unit 2 playable end to end; `pnpm content:check` passes (tests still owed) |
 | **SL3 Unit 3 lessons** ✅ | Unit 3 Setting & World-Building: 4 lessons, mood picker + word bank, Coach mood check, "What mood will my reader feel?" (`setting-mood`) (see §9.7) | Unit 3 playable end to end; `pnpm content:check` passes (tests still owed) |
-| **SL4+ Units 4–12 lessons** | Author lessons for Units 4–12 in `/content` (5-step format), one unit at a time, with the activities and AI checks each unit needs | Each unit playable end to end; `pnpm content:check` passes |
+| **SL4 Unit 4 lessons** ✅ | Unit 4 Plot & Conflict: 4 lessons, `SEQUENCE` story mountain (dnd-kit), conflict selector, story mountain planner, pacing band, "Does my plot work?" (`plot-check`) (see §9.8) | Unit 4 playable end to end; `pnpm content:check` passes (tests still owed) |
+| **SL5+ Units 5–12 lessons** | Author lessons for Units 5–12 in `/content` (5-step format), one unit at a time, with the activities and AI checks each unit needs | Each unit playable end to end; `pnpm content:check` passes |
 | **P5 Teacher dashboard** (deferred) | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |
 | **P6 Gamification** | XP events, levels, streaks with freezes, badge engine + seed catalogue, missions, unlocks, dashboard widgets, optional leaderboard | Unit tests for XP caps, idempotency, streak edge cases (timezones, weekends, freezes); badge unlock modal appears in E2E |
 | **P7 Unit tools 1–6** | All tools in §10 for Units 1–6 + remaining LLM analyzers they need | Each tool has a component test and one E2E happy path; keyboard-only walkthrough passes |

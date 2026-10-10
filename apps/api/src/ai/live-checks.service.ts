@@ -3,6 +3,7 @@ import {
   type AnalyzerOutcome,
   type CharacterReadResult,
   type SettingMoodResult,
+  type PlotCheckResult,
   type FeedbackPoint,
   HOLDING_MESSAGE,
   LIVE_ANALYZERS,
@@ -14,6 +15,7 @@ import {
   analyzersForActivity,
   characterReadPoints,
   settingMoodPoints,
+  plotCheckPoints,
   sensoryPoints,
   showVsTellPoints,
 } from '@storyforge/ai';
@@ -34,6 +36,7 @@ import { CurriculumService } from '../curriculum/curriculum.service.js';
 import { DatabaseService } from '../database/database.service.js';
 import { SafetyService } from '../safety/safety.service.js';
 import { AiRunnerService } from './ai-runner.service.js';
+import { plotInput, plotScope } from './plot-input.js';
 
 /** Live checks give up after 20 s (DESIGN.md §8.6) and ask the student to try again. */
 const LIVE_TIMEOUT_MS = 20_000;
@@ -78,7 +81,9 @@ export class LiveChecksService {
       throw notFound(ErrorCode.ACTIVITY_NOT_FOUND, 'Writing activity not found.');
     }
     if (
-      (req.analyzer === 'character-read' || req.analyzer === 'setting-mood') &&
+      (req.analyzer === 'character-read' ||
+        req.analyzer === 'setting-mood' ||
+        req.analyzer === 'plot-check') &&
       !analyzersForActivity(content.type).includes(req.analyzer)
     ) {
       throw new AppError(
@@ -166,6 +171,17 @@ export class LiveChecksService {
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = sensoryPoints(req.text, outcome.result);
+      } else if (req.analyzer === 'plot-check') {
+        const extra = plotInput(content, req.conflict, req.plot);
+        const outcome: AnalyzerOutcome<PlotCheckResult> = await withTimeout(
+          this.ai.run(
+            LIVE_ANALYZERS['plot-check'],
+            { ...ctx, ...extra },
+            { ...meta, cacheScope: `${activity.key}|${plotScope(extra)}` },
+          ),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = plotCheckPoints(req.text, outcome.result, extra.conflict?.label ?? null);
       } else if (req.analyzer === 'setting-mood') {
         const moods = validMoods(content, req.mood);
         const outcome: AnalyzerOutcome<SettingMoodResult> = await withTimeout(

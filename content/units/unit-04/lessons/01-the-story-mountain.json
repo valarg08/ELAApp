@@ -1,0 +1,60 @@
+{
+  "slug": "the-story-mountain",
+  "order": 1,
+  "title": "The Story Mountain",
+  "estMinutes": 45,
+  "focusSkills": ["plot-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of a film or book you love. What was the most exciting moment, the one where you couldn't look away?",
+      "placeholder": "The most exciting moment was when…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Plot",
+          "body": "Plot is what happens in a story, in order. Most stories follow the same shape, like climbing a mountain: up the slope as things get harder, over the top at the most exciting moment, and down the other side to the ending."
+        },
+        {
+          "kind": "definition",
+          "title": "The five parts",
+          "body": "1 Beginning (exposition): meet the character and their world. 2 Rising action: a problem starts and gets harder. 3 Climax: the biggest moment, where the character faces the problem. 4 Falling action: what happens right after. 5 Resolution: how it ends and what has changed."
+        },
+        {
+          "kind": "example",
+          "title": "A tiny story mountain",
+          "text": "Zoe finds a lost puppy (beginning). It runs into the busy market, and she chases it past stalls and through crowds (rising action). It darts towards the road and she dives to grab it just in time (climax). She carries it home, shaking (falling action). The owner calls, and Zoe gets to walk the puppy every Saturday (resolution).",
+          "note": "Five sentences, five parts. Every story you love has this shape somewhere inside it."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the climax",
+          "prompt": "Tap the two words that show the climax: the biggest, most exciting moment.",
+          "text": "The ball flew towards the goal. Kofi leapt, stretched, and caught it with his fingertips as the whistle blew.",
+          "clues": ["leapt", "caught"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u04.mountain-sequence", "u04.climax-highlight", "u04.mountain-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u04.story-mountain" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which part of the story mountain was easiest to write? Which was hardest?",
+        "What is the climax of your story, in one sentence?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

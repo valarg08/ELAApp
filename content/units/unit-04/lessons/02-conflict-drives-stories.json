@@ -1,0 +1,62 @@
+{
+  "slug": "conflict-drives-stories",
+  "order": 2,
+  "title": "Conflict Drives Stories",
+  "estMinutes": 45,
+  "focusSkills": ["conflict"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which story would you keep reading?",
+      "a": "Ella went to the shop, bought some milk, and went home. It was a nice day.",
+      "b": "Ella had five minutes to get the milk home before her mum found out she'd used the last of it on a science experiment.",
+      "reveal": "The second one has a conflict: something stands in Ella's way, and there's a clock ticking. Without conflict, nothing happens. With it, you need to know how it ends."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Conflict",
+          "body": "Conflict is the problem or struggle at the heart of a story: something the character wants, and something in the way. No conflict, no story."
+        },
+        {
+          "kind": "definition",
+          "title": "Six kinds of conflict",
+          "body": "Person vs person (a rival or bully), person vs self (a fear or hard choice), person vs nature (a storm, a wild animal), person vs society (an unfair rule), person vs technology (a machine gone wrong) and person vs supernatural (ghosts, magic, the impossible)."
+        },
+        {
+          "kind": "example",
+          "title": "Same character, different conflicts",
+          "text": "Leo wants to win the swimming race. A rival cheats (person vs person). Leo panics in deep water (person vs self). A storm closes the outdoor pool (person vs nature).",
+          "note": "Changing the conflict changes the whole story, even with the same character and the same want."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the conflict",
+          "prompt": "Tap the two words that show what stands in Maya's way.",
+          "text": "Maya wanted to reach the summit before dark, but the blizzard grew stronger and the trail vanished under fresh snow.",
+          "clues": ["blizzard", "vanished"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u04.conflict-sort", "u04.conflict-highlight", "u04.conflict-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u04.conflict-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which conflict did you choose, and why?",
+        "What does your character want, and what is standing in the way?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

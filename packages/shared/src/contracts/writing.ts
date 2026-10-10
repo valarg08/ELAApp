@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { WritingActivity } from '../curriculum/content.js';
+import { PlotPlan } from '../curriculum/plot.js';
 import { LessonProgressView } from './curriculum.js';
 
 /** Writing workspace contracts (DESIGN.md §5.4). Drafts are plain text. */
@@ -45,6 +46,10 @@ export const SubmissionDetail = z.object({
   traits: z.array(z.string()).default([]),
   /** Moods chosen for the activity's mood picker (empty when it has none). */
   mood: z.array(z.string()).default([]),
+  /** Conflict card chosen for the activity's conflict picker. */
+  conflict: z.string().nullable().default(null),
+  /** Story mountain plan for the activity's plot planner. */
+  plot: PlotPlan.default(PlotPlan.parse({})),
 });
 export type SubmissionDetail = z.infer<typeof SubmissionDetail>;
 
@@ -52,13 +57,15 @@ export type SubmissionDetail = z.infer<typeof SubmissionDetail>;
 export const SubmissionChoices = z.object({
   traits: z.array(z.string().max(30)).max(3).default([]),
   mood: z.array(z.string().max(30)).max(3).default([]),
+  conflict: z.string().max(40).nullable().default(null),
+  plot: PlotPlan.default(PlotPlan.parse({})),
 });
 export type SubmissionChoices = z.infer<typeof SubmissionChoices>;
 
 /** Read `Submission.choices`, tolerating rows written before the column existed. */
 export function submissionChoices(json: unknown): SubmissionChoices {
   const parsed = SubmissionChoices.safeParse(json ?? {});
-  return parsed.success ? parsed.data : { traits: [], mood: [] };
+  return parsed.success ? parsed.data : SubmissionChoices.parse({});
 }
 
 export const SetTraitsRequest = z.object({
@@ -70,6 +77,12 @@ export const SetMoodRequest = z.object({
   mood: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(3),
 });
 export type SetMoodRequest = z.infer<typeof SetMoodRequest>;
+
+export const SetConflictRequest = z.object({ conflict: z.string().trim().min(1).max(40) });
+export type SetConflictRequest = z.infer<typeof SetConflictRequest>;
+
+export const SetPlotRequest = z.object({ plot: PlotPlan });
+export type SetPlotRequest = z.infer<typeof SetPlotRequest>;
 
 export const SaveDraftRequest = z.object({ text: DraftText, baseRevision: Revision });
 export type SaveDraftRequest = z.infer<typeof SaveDraftRequest>;
