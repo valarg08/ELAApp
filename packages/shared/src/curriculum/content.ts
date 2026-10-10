@@ -79,7 +79,31 @@ export const WRITING_ACTIVITY_TYPES = [
   'SHOW_TELL_TRANSFORM',
   'DESCRIBE_WITHOUT_NAMING',
   'VIVID_REWRITE',
+  'CHARACTER_SKETCH',
+  'TRAITS_IN_ACTION',
+  'CHARACTER_VOICE',
+  'FLAW_SCENE',
 ] as const;
+
+/**
+ * Before writing, the student picks traits (or a flaw) for their character. Picked traits become
+ * banned words (show, don't name them), and Quill checks whether a reader can tell (Unit 2).
+ */
+export const TraitPicker = z.object({
+  label: text(120),
+  count: z.number().int().min(1).max(3),
+  options: z
+    .array(
+      z.object({
+        trait: z.string().trim().toLowerCase().min(1).max(30),
+        /** Other forms that also name the trait (bravely, bravery), banned with it. */
+        forms: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(4).default([]),
+      }),
+    )
+    .min(2)
+    .max(30),
+});
+export type TraitPicker = z.infer<typeof TraitPicker>;
 
 export const WritingActivity = z.object({
   ...activityBase,
@@ -91,6 +115,7 @@ export const WritingActivity = z.object({
   constraints: WritingConstraints,
   /** Checks shown in the Coach panel (default: telling, filter words, senses, sentence variety). */
   analyzers: z.array(z.enum(ANALYZER_IDS)).min(1).optional(),
+  traitPicker: TraitPicker.optional(),
 });
 
 export const ActivityContent = z.discriminatedUnion('type', [
@@ -113,6 +138,45 @@ export const PRACTICE_ACTIVITY_TYPES = [
 
 export const isWritingActivity = (a: ActivityContent): a is WritingActivity =>
   (WRITING_ACTIVITY_TYPES as readonly string[]).includes(a.type);
+
+/** Character activities (Unit 2): Quill can check whether a reader can tell who the character is. */
+export const CHARACTER_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
+  'CHARACTER_SKETCH',
+  'TRAITS_IN_ACTION',
+  'FLAW_SCENE',
+];
+
+/** Words the student may not use once traits are picked: each trait and its other forms. */
+export function traitBannedWords(activity: WritingActivity, traits: readonly string[]): string[] {
+  const picked = new Set(traits);
+  return (activity.traitPicker?.options ?? [])
+    .filter((o) => picked.has(o.trait))
+    .flatMap((o) => [o.trait, ...o.forms]);
+}
+
+/** The activity's rules plus the picked traits as banned words. */
+export function constraintsWithTraits(
+  activity: WritingActivity,
+  traits: readonly string[],
+): WritingConstraints {
+  const extra = traitBannedWords(activity, traits);
+  if (extra.length === 0) return activity.constraints;
+  return {
+    ...activity.constraints,
+    bannedWords: [...new Set([...activity.constraints.bannedWords, ...extra])],
+  };
+}
+
+/** Picked traits that are real options, in option order, at most `count`. */
+export function validTraits(activity: WritingActivity, traits: readonly string[]): string[] {
+  const picker = activity.traitPicker;
+  if (!picker) return [];
+  const wanted = new Set(traits.map((t) => t.trim().toLowerCase()));
+  return picker.options
+    .map((o) => o.trait)
+    .filter((t) => wanted.has(t))
+    .slice(0, picker.count);
+}
 
 export const ActivitiesFile = z.array(ActivityContent);
 
@@ -280,6 +344,12 @@ export function validateUnitBundle({ unit, lessons, activities }: UnitBundle): s
         if (!a.items.some((i) => i.bucketId === b))
           errors.push(`${a.key}: bucket "${b}" has no items`);
       }
+    }
+    if (isWritingActivity(a) && a.traitPicker) {
+      const traits = a.traitPicker.options.map((o) => o.trait);
+      if (new Set(traits).size !== traits.length) errors.push(`${a.key}: duplicate trait options`);
+      if (a.traitPicker.count > traits.length)
+        errors.push(`${a.key}: traitPicker.count is more than the number of options`);
     }
     if (a.type === 'HIGHLIGHT') {
       const tokens = new Set(tokenize(a.text));

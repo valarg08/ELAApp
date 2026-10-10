@@ -15,6 +15,7 @@ import {
   type RestoreRequest,
   type SaveDraftRequest,
   type SaveDraftResponse,
+  SubmissionChoices,
   type SubmissionDetail,
   type SubmissionFeedback,
   type SubmitResponse,
@@ -22,11 +23,14 @@ import {
   type VersionSummary,
   type WritingActivity,
   checkConstraints,
+  constraintsWithTraits,
   countWords,
   describeProblem,
   diffStats,
   diffWords,
   isWritingActivity,
+  submissionChoices,
+  validTraits,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { AppError, notFound } from '../common/app-error.js';
@@ -154,6 +158,30 @@ export class SubmissionsService {
     });
   }
 
+  /** Save the traits picked for the activity's trait picker (unknown traits are dropped). */
+  async setTraits(user: AuthUser, id: string, traits: string[]): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    if (!activity.traitPicker) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'No traits here',
+        'This activity doesn’t ask you to pick traits.',
+      );
+    }
+    const choices: SubmissionChoices = {
+      ...choicesOf(current),
+      traits: validTraits(activity, traits),
+    };
+    const updated = await this.db.client.submission.update({
+      where: { id },
+      data: { choices: SubmissionChoices.parse(choices) },
+      include: { activity: { include: { lesson: true } } },
+    });
+    return this.detail(updated);
+  }
+
   /** "Save version": a snapshot the student asked for. */
   async saveVersion(user: AuthUser, id: string, baseRevision: number): Promise<VersionSummary> {
     const current = await this.editable(user, id);
@@ -170,7 +198,23 @@ export class SubmissionsService {
     const current = await this.editable(user, id);
     if (current.draftRevision !== baseRevision) throw conflict();
     const activity = writingActivity(current.activity);
-    const { wordCount, problems } = checkConstraints(current.contentText, activity.constraints);
+    const { traits } = choicesOf(current);
+    const picker = activity.traitPicker;
+    if (picker && validTraits(activity, traits).length < picker.count) {
+      const message =
+        picker.count === 1
+          ? 'Pick your character’s trait first.'
+          : `Pick ${picker.count} traits first.`;
+      throw new AppError(
+        HttpStatus.UNPROCESSABLE_ENTITY,
+        ErrorCode.CONSTRAINTS_NOT_MET,
+        'Almost there',
+        message,
+        [message],
+      );
+    }
+    const constraints = constraintsWithTraits(activity, traits);
+    const { wordCount, problems } = checkConstraints(current.contentText, constraints);
     if (wordCount === 0) {
       throw new AppError(
         HttpStatus.UNPROCESSABLE_ENTITY,
@@ -180,7 +224,7 @@ export class SubmissionsService {
         ['Write something first.'],
       );
     }
-    if (activity.constraints.enforcement === 'hard' && problems.length > 0) {
+    if (constraints.enforcement === 'hard' && problems.length > 0) {
       throw new AppError(
         HttpStatus.UNPROCESSABLE_ENTITY,
         ErrorCode.CONSTRAINTS_NOT_MET,
@@ -390,9 +434,12 @@ export class SubmissionsService {
             order: s.activity.lesson.order,
           }
         : null,
+      traits: choicesOf(s).traits,
     };
   }
 }
+
+const choicesOf = (s: Pick<Submission, 'choices'>) => submissionChoices(s.choices);
 
 function writingActivity(activity: Activity): WritingActivity {
   const content = ActivityContent.parse(activity.config);

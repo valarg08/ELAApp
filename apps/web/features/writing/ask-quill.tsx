@@ -1,7 +1,12 @@
 'use client';
 
 import { DEFAULT_ANALYZERS, type AnalyzerId, type Span } from '@storyforge/writing-analysis';
-import { type LiveAnalyzerId, LiveCheckResponse, type WritingActivity } from '@storyforge/shared';
+import {
+  CHARACTER_ACTIVITY_TYPES,
+  type LiveAnalyzerId,
+  LiveCheckResponse,
+  type WritingActivity,
+} from '@storyforge/shared';
 import { useState } from 'react';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
@@ -20,18 +25,25 @@ const AI_CHECKS: Partial<Record<AnalyzerId, { id: LiveAnalyzerId; label: string 
 export function AskQuill({
   activityId,
   activity,
+  traits,
   text,
   onShow,
 }: {
   activityId: string;
   activity: WritingActivity;
+  traits: string[];
   text: string;
   onShow: (span: Span) => void;
 }) {
-  const checks = (activity.analyzers ?? DEFAULT_ANALYZERS).flatMap((a) => {
-    const check = AI_CHECKS[a];
-    return check ? [check] : [];
-  });
+  const checks = [
+    ...(CHARACTER_ACTIVITY_TYPES.includes(activity.type)
+      ? [{ id: 'character-read' as const, label: 'Can my reader tell?' }]
+      : []),
+    ...(activity.analyzers ?? DEFAULT_ANALYZERS).flatMap((a) => {
+      const check = AI_CHECKS[a];
+      return check ? [check] : [];
+    }),
+  ];
   const [busy, setBusy] = useState<LiveAnalyzerId | null>(null);
   const [result, setResult] = useState<{ text: string; response: LiveCheckResponse } | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -46,6 +58,7 @@ export function AskQuill({
         activityId,
         analyzer,
         text,
+        traits,
       });
       setResult({ text, response });
     } catch (e) {

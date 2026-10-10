@@ -1,0 +1,62 @@
+{
+  "slug": "wants-and-fears",
+  "order": 1,
+  "title": "Wants & Fears",
+  "estMinutes": 40,
+  "focusSkills": ["character-motivation"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which character makes you want to keep reading?",
+      "a": "Jay is a twelve-year-old boy with brown hair. He likes football.",
+      "b": "Jay would give anything to make the school team, but every time a ball flies at him, he flinches.",
+      "reveal": "The second Jay wants something (the team) and fears something (the ball). A want and a fear pulling against each other start a story all by themselves."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The want",
+          "body": "Every interesting character wants something: to win, to be noticed, to find a lost dog, to get home. The want gives the story a direction. Readers keep reading to find out whether the character gets it."
+        },
+        {
+          "kind": "definition",
+          "title": "The fear",
+          "body": "A fear is what the character is afraid of losing or facing: being laughed at, the dark, letting someone down. When the fear stands in the way of the want, you have a story."
+        },
+        {
+          "kind": "example",
+          "title": "Want + fear = story",
+          "text": "Priya wants to sing at the talent show. Priya is terrified of people staring at her.",
+          "note": "You already have questions: Will she sing? What will happen on the stage? That pull is what makes readers care."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the want and the fear",
+          "prompt": "Tap the word that shows what Omar wants and the word that shows what he fears.",
+          "text": "Omar saved every coin for the new skateboard, but he dreaded telling his mom how much it cost.",
+          "clues": ["saved", "dreaded"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u02.want-fear-sort", "u02.want-fear-highlight", "u02.want-fear-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u02.character-sketch" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What does your character want most? Why does it matter to them?",
+        "How could their fear get in the way of their want?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

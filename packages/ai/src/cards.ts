@@ -1,4 +1,5 @@
 import { anchorQuote } from './anchor.js';
+import type { CharacterReadResult } from './analyzers/character-read.js';
 import type { SensoryResult } from './analyzers/sensory.js';
 import type { ShowVsTellResult } from './analyzers/show-vs-tell.js';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
@@ -87,4 +88,62 @@ export function rubricPoints(text: string, r: RubricScoreResult) {
       )
       .filter(isPoint),
   };
+}
+
+/** "Can your reader tell?": shown traits as strengths, traits not yet shown (and an unclear want or fear) as next steps. */
+export function characterReadPoints(text: string, r: CharacterReadResult, checkWantFear: boolean) {
+  const strengths: FeedbackPoint[] = [];
+  const nextSteps: FeedbackPoint[] = [];
+  for (const t of r.targets) {
+    if (t.inferred) {
+      const point = anchored(
+        text,
+        {
+          title: `Your reader can tell: ${t.trait} ✓`,
+          message: 'You showed it without naming it.',
+        },
+        t.quote,
+      );
+      strengths.push(
+        point ?? {
+          title: `Your reader can tell: ${t.trait} ✓`,
+          message: 'You showed it without naming it.',
+        },
+      );
+    } else {
+      nextSteps.push({
+        title: `Not yet clear: ${t.trait}`,
+        message:
+          t.idea ??
+          `You could try an action or a line of dialogue that shows your character is ${t.trait}.`,
+      });
+    }
+  }
+  if (checkWantFear) {
+    if (!r.want.clear) {
+      nextSteps.push({
+        title: 'What do they want?',
+        message:
+          'You could try one sentence that shows what your character wants more than anything.',
+      });
+    }
+    if (!r.fear.clear) {
+      nextSteps.push({
+        title: 'What do they fear?',
+        message:
+          'You could try a moment where your character worries about something, or avoids it.',
+      });
+    }
+  }
+  if (r.targets.length === 0) {
+    for (const o of r.otherTraits.slice(0, 2)) {
+      const point = anchored(
+        text,
+        { title: `A reader sees: ${o.trait}`, message: 'This detail shows who your character is.' },
+        o.quote,
+      );
+      if (point) strengths.push(point);
+    }
+  }
+  return { strengths: strengths.slice(0, 3), nextSteps: nextSteps.slice(0, 3) };
 }

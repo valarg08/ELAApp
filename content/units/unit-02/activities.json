@@ -1,0 +1,472 @@
+[
+  {
+    "key": "u02.want-fear-sort",
+    "type": "SORT",
+    "title": "Want or fear?",
+    "instructions": "Sort each line: does it show what the character wants, or what the character fears?",
+    "buckets": [
+      { "id": "want", "label": "Wants 🎯" },
+      { "id": "fear", "label": "Fears 😨" }
+    ],
+    "items": [
+      {
+        "id": "team",
+        "text": "Lena practised her free throws every night until it was too dark to see the hoop.",
+        "bucketId": "want"
+      },
+      {
+        "id": "dark",
+        "text": "Theo slept with the hall light on and checked under the bed twice.",
+        "bucketId": "fear"
+      },
+      {
+        "id": "puppy",
+        "text": "Every birthday, Rosa wished for the same thing: a puppy of her own.",
+        "bucketId": "want"
+      },
+      {
+        "id": "laugh",
+        "text": "Dev never raised his hand, in case everyone laughed at his answer.",
+        "bucketId": "fear"
+      },
+      {
+        "id": "grandma",
+        "text": "Mei saved her pocket money for a train ticket to visit her grandma.",
+        "bucketId": "want"
+      },
+      {
+        "id": "water",
+        "text": "At the pool, Kofi stayed in the shallow end and gripped the wall.",
+        "bucketId": "fear"
+      }
+    ]
+  },
+  {
+    "key": "u02.want-fear-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Want meets fear",
+    "instructions": "Tap the word that shows what Isla wants and the word that shows what she fears.",
+    "text": "Isla longed to be picked for the school play, but her knees shook whenever she imagined the audience.",
+    "targets": ["longed", "shook"],
+    "explanation": "\"Longed\" shows how much Isla wants the part. Her knees shaking shows her fear of the audience, without the word \"scared\"."
+  },
+  {
+    "key": "u02.want-fear-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Wants and fears check",
+    "questions": [
+      {
+        "id": "best-want",
+        "prompt": "Which want gives the most story?",
+        "options": [
+          { "id": "a", "text": "Max wants a sandwich, and there is one in the fridge." },
+          { "id": "b", "text": "Max wants to find his runaway dog before the storm hits." },
+          { "id": "c", "text": "Max wants to sit down." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Finding the dog is hard, important to Max, and has a deadline (the storm). Big, hard wants make stories.",
+        "hint": "Look for the want that is hard to get and matters a lot."
+      },
+      {
+        "id": "fear-in-way",
+        "prompt": "Ella wants to win the swimming race. Which fear would get in her way the most?",
+        "options": [
+          { "id": "a", "text": "She is afraid of spiders." },
+          { "id": "b", "text": "She is afraid of deep water." },
+          { "id": "c", "text": "She is afraid of thunder." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A fear of deep water stands right in the way of a swimming race. When the fear blocks the want, you have conflict."
+      },
+      {
+        "id": "why-want",
+        "prompt": "Why does a character need a want?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It gives the story a direction, and readers want to know if they get it."
+          },
+          { "id": "b", "text": "It makes the story longer." },
+          { "id": "c", "text": "So the writer can describe what they look like." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The want is the engine of the story. Readers keep turning pages to find out whether the character gets what they want."
+      }
+    ]
+  },
+  {
+    "key": "u02.character-sketch",
+    "type": "CHARACTER_SKETCH",
+    "title": "Character sketch",
+    "prompt": "Invent a character. Give them a name, three details about how they look, something they want more than anything, and something they fear. Show the want and the fear in what they do, not just in a list.",
+    "tips": [
+      "Pick looks that tell us something: chewed pencils, a jacket two sizes too big.",
+      "What would your character do to get what they want?",
+      "What do they do when the fear shows up? Freeze? Run? Joke?"
+    ],
+    "constraints": {
+      "minWords": 80,
+      "maxWords": 200,
+      "enforcement": "hard"
+    },
+    "analyzers": ["telling", "senses", "filterWords", "sentenceVariety"]
+  },
+  {
+    "key": "u02.trait-sort",
+    "type": "SORT",
+    "title": "Telling or showing the trait?",
+    "instructions": "Sort each sentence: does it name the trait (telling) or let you work it out (showing)?",
+    "buckets": [
+      { "id": "tell", "label": "Tells the trait" },
+      { "id": "show", "label": "Shows the trait" }
+    ],
+    "items": [
+      { "id": "kind-tell", "text": "Aiden was a kind boy.", "bucketId": "tell" },
+      {
+        "id": "kind-show",
+        "text": "Aiden gave his umbrella to the girl at the bus stop and walked home in the rain.",
+        "bucketId": "show"
+      },
+      { "id": "lazy-tell", "text": "Gus was really lazy.", "bucketId": "tell" },
+      {
+        "id": "lazy-show",
+        "text": "Gus reached for the remote with his foot so he wouldn't have to sit up.",
+        "bucketId": "show"
+      },
+      { "id": "honest-tell", "text": "Nia was always honest.", "bucketId": "tell" },
+      {
+        "id": "honest-show",
+        "text": "Nia handed back the extra five dollars the cashier gave her by mistake.",
+        "bucketId": "show"
+      }
+    ]
+  },
+  {
+    "key": "u02.trait-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Action clues",
+    "instructions": "Tap the three action words that show Rafi is impatient.",
+    "text": "Rafi tapped his foot, checked the clock again, and groaned when the bus driver stopped to chat.",
+    "targets": ["tapped", "checked", "groaned"],
+    "explanation": "Tapping, checking the clock and groaning are all things an impatient person does. Together they show the trait without naming it."
+  },
+  {
+    "key": "u02.trait-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Which action shows it?",
+    "questions": [
+      {
+        "id": "nervous",
+        "prompt": "Which sentence best shows that Jo is nervous?",
+        "options": [
+          { "id": "a", "text": "Jo was nervous about the test." },
+          {
+            "id": "b",
+            "text": "Jo sharpened the same pencil three times and kept wiping her hands on her jeans."
+          },
+          { "id": "c", "text": "Jo sat down at her desk." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Sharpening the pencil again and again and wiping sweaty hands are actions that show nerves. The first sentence only names the feeling.",
+        "hint": "Which one lets you see Jo doing something?"
+      },
+      {
+        "id": "brave",
+        "prompt": "Which choice shows a character is brave?",
+        "options": [
+          { "id": "a", "text": "She stays hidden while her friend is in trouble." },
+          { "id": "b", "text": "She says she is not scared of anything." },
+          {
+            "id": "c",
+            "text": "Her hands shake, but she still walks into the dark barn to find the lost kitten."
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Brave doesn't mean not scared. Doing something even though you're scared shows bravery best."
+      },
+      {
+        "id": "what-trait",
+        "prompt": "\"Tom fixed his little brother's broken kite before fixing his own.\" What trait does this show?",
+        "options": [
+          { "id": "a", "text": "Caring" },
+          { "id": "b", "text": "Lazy" },
+          { "id": "c", "text": "Forgetful" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Putting his brother first is a choice that shows Tom cares about others."
+      }
+    ]
+  },
+  {
+    "key": "u02.traits-in-action",
+    "type": "TRAITS_IN_ACTION",
+    "title": "Traits in action",
+    "prompt": "Pick two traits for a character. Then write a short scene where we see the character do, say and choose things that show both traits, without ever naming them. Quill will read it and tell you which traits a reader can spot.",
+    "tips": [
+      "Give your character a choice to make. What they choose shows who they are.",
+      "Use body language: what do their hands, face and feet do?",
+      "Ask yourself: if a friend read this, which two words would they use to describe my character?"
+    ],
+    "constraints": {
+      "minWords": 60,
+      "maxWords": 200,
+      "enforcement": "hard"
+    },
+    "analyzers": ["telling", "filterWords", "sentenceVariety", "dialogue"],
+    "traitPicker": {
+      "label": "Pick two traits for your character",
+      "count": 2,
+      "options": [
+        { "trait": "brave", "forms": ["bravely", "bravery"] },
+        { "trait": "kind", "forms": ["kindly", "kindness"] },
+        { "trait": "shy", "forms": ["shyly", "shyness"] },
+        { "trait": "curious", "forms": ["curiously", "curiosity"] },
+        { "trait": "stubborn", "forms": ["stubbornly", "stubbornness"] },
+        { "trait": "funny", "forms": ["joker"] },
+        { "trait": "honest", "forms": ["honestly", "honesty"] },
+        { "trait": "secretive", "forms": ["secretively"] },
+        { "trait": "loyal", "forms": ["loyally", "loyalty"] },
+        { "trait": "impatient", "forms": ["impatiently", "impatience"] },
+        { "trait": "careful", "forms": ["carefully"] },
+        { "trait": "proud", "forms": ["proudly", "pride"] }
+      ]
+    }
+  },
+  {
+    "key": "u02.voice-sort",
+    "type": "SORT",
+    "title": "Who would say it?",
+    "instructions": "Sort each line of dialogue by the character most likely to say it.",
+    "buckets": [
+      { "id": "nervous", "label": "A nervous worrier" },
+      { "id": "bossy", "label": "A bossy leader" },
+      { "id": "joker", "label": "A class clown" }
+    ],
+    "items": [
+      {
+        "id": "n1",
+        "text": "\"Are you sure this is allowed? What if we get caught?\"",
+        "bucketId": "nervous"
+      },
+      {
+        "id": "b1",
+        "text": "\"Everyone, line up. Now. I'm in charge of the map.\"",
+        "bucketId": "bossy"
+      },
+      {
+        "id": "j1",
+        "text": "\"Relax, if we get lost, we'll just live here. I call the comfy rock.\"",
+        "bucketId": "joker"
+      },
+      {
+        "id": "n2",
+        "text": "\"Um, sorry, I think maybe the bridge looks a bit wobbly?\"",
+        "bucketId": "nervous"
+      },
+      {
+        "id": "b2",
+        "text": "\"No more talking. Follow my plan and we'll be fine.\"",
+        "bucketId": "bossy"
+      },
+      {
+        "id": "j2",
+        "text": "\"Good news: I found the snacks. Bad news: I already ate them.\"",
+        "bucketId": "joker"
+      }
+    ]
+  },
+  {
+    "key": "u02.voice-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Spot the speech habit",
+    "instructions": "Tap the two words Mr. Patel repeats. They are his speech habits.",
+    "text": "\"Splendid, splendid,\" said Mr. Patel. \"Indeed, a splendid effort. Indeed, a very splendid effort.\"",
+    "targets": ["splendid", "indeed"],
+    "explanation": "Mr. Patel repeats \"splendid\" and \"indeed\". Those favourite words make him sound formal and old-fashioned, and easy to recognise."
+  },
+  {
+    "key": "u02.voice-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Voice check",
+    "questions": [
+      {
+        "id": "who",
+        "prompt": "\"Yo, that's sick! Do it again!\" Who most likely said this?",
+        "options": [
+          { "id": "a", "text": "A strict head teacher" },
+          { "id": "b", "text": "An excited kid watching a skateboard trick" },
+          { "id": "c", "text": "A news reader on TV" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Casual slang (\"Yo\", \"sick\") and the excited exclamation marks sound like a kid having fun.",
+        "hint": "Listen to the words. Who talks like that?"
+      },
+      {
+        "id": "new-paragraph",
+        "prompt": "When should you start a new paragraph in dialogue?",
+        "options": [
+          { "id": "a", "text": "Every time a different person speaks" },
+          { "id": "b", "text": "After every three lines" },
+          { "id": "c", "text": "Only at the end of the scene" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A new paragraph for each new speaker helps readers keep track of who is talking."
+      },
+      {
+        "id": "habit",
+        "prompt": "Which is a speech habit?",
+        "options": [
+          { "id": "a", "text": "A character with red hair" },
+          { "id": "b", "text": "A character who answers every question with another question" },
+          { "id": "c", "text": "A character who lives in a city" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Answering questions with questions is a pattern in how the character talks. Hair and home are not about speech."
+      }
+    ]
+  },
+  {
+    "key": "u02.character-voice",
+    "type": "CHARACTER_VOICE",
+    "title": "Two voices",
+    "prompt": "Write a short scene where two very different characters talk about the same problem (a lost key, a strange noise, a missed bus). Give each one their own way of talking, and at least one speech habit. Readers should be able to tell who is speaking even without names.",
+    "tips": [
+      "Decide first: who is nervous, bossy, funny, polite or grumpy?",
+      "Give one character a favourite word or phrase and use it two or three times.",
+      "Start a new paragraph every time the speaker changes."
+    ],
+    "constraints": {
+      "minWords": 80,
+      "maxWords": 250,
+      "enforcement": "hard"
+    },
+    "analyzers": ["dialogue", "telling", "sentenceVariety"]
+  },
+  {
+    "key": "u02.conflict-sort",
+    "type": "SORT",
+    "title": "Inner or outer conflict?",
+    "instructions": "Sort each problem: is it a struggle inside the character, or a problem outside them?",
+    "buckets": [
+      { "id": "inner", "label": "Inner conflict 💭" },
+      { "id": "outer", "label": "Outer conflict 🌩️" }
+    ],
+    "items": [
+      {
+        "id": "guilt",
+        "text": "Sara feels guilty about breaking her friend's phone and hiding it.",
+        "bucketId": "inner"
+      },
+      {
+        "id": "flood",
+        "text": "The river floods and cuts the village off from the town.",
+        "bucketId": "outer"
+      },
+      {
+        "id": "choose",
+        "text": "Leo can't decide between going to the match and his best friend's party.",
+        "bucketId": "inner"
+      },
+      { "id": "bully", "text": "An older kid keeps taking Ty's lunch money.", "bucketId": "outer" },
+      {
+        "id": "doubt",
+        "text": "Amara doubts she is good enough to be on the team.",
+        "bucketId": "inner"
+      },
+      {
+        "id": "door",
+        "text": "The cabin door is locked, and the key is gone.",
+        "bucketId": "outer"
+      }
+    ]
+  },
+  {
+    "key": "u02.flaw-highlight",
+    "type": "HIGHLIGHT",
+    "title": "The flaw causes trouble",
+    "instructions": "Tap the two words that show Jonah is forgetful.",
+    "text": "Jonah raced to the station, then stopped. His ticket? Still on the kitchen table. He had forgotten it again, just like he'd misplaced his keys yesterday.",
+    "targets": ["forgotten", "misplaced"],
+    "explanation": "Forgetting the ticket and misplacing the keys show a pattern: Jonah is forgetful, and it just made him miss his train."
+  },
+  {
+    "key": "u02.flaw-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Flaws check",
+    "questions": [
+      {
+        "id": "why-flaws",
+        "prompt": "Why do writers give characters flaws?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Flaws make characters feel real and cause problems that make a story."
+          },
+          { "id": "b", "text": "So readers will dislike the character." },
+          { "id": "c", "text": "Flaws make the story shorter." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Real people have flaws, and a flaw that causes trouble gives the character something to struggle with."
+      },
+      {
+        "id": "which-flaw",
+        "prompt": "Bea wants to make new friends at her new school. Which flaw would cause the most trouble?",
+        "options": [
+          { "id": "a", "text": "She is a messy eater." },
+          { "id": "b", "text": "She is a show-off who interrupts everyone." },
+          { "id": "c", "text": "She is bad at drawing." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Showing off and interrupting push people away, which blocks exactly what Bea wants: new friends.",
+        "hint": "Which flaw gets in the way of making friends?"
+      },
+      {
+        "id": "show-flaw",
+        "prompt": "Which sentence shows a flaw instead of telling it?",
+        "options": [
+          { "id": "a", "text": "Carlos was greedy." },
+          {
+            "id": "b",
+            "text": "Carlos grabbed the biggest slice, then reached for a second before anyone else had one."
+          },
+          { "id": "c", "text": "Carlos had a big flaw." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Grabbing the biggest slice and reaching for more lets you work out that Carlos is greedy."
+      }
+    ]
+  },
+  {
+    "key": "u02.flaw-scene",
+    "type": "FLAW_SCENE",
+    "title": "When the flaw gets in the way",
+    "prompt": "Pick a flaw for your character. Write a scene where your character is trying to get something they want, and their flaw causes trouble. Show the flaw through what they do and say, without naming it. Make the want clear too.",
+    "tips": [
+      "Start with the want: what is your character trying to do right now?",
+      "Let the flaw make things worse at the worst possible moment.",
+      "End with a choice or a feeling: do they learn something, or make it worse?"
+    ],
+    "constraints": {
+      "minWords": 120,
+      "maxWords": 300,
+      "enforcement": "hard"
+    },
+    "analyzers": ["telling", "filterWords", "senses", "sentenceVariety", "dialogue"],
+    "traitPicker": {
+      "label": "Pick your character's flaw",
+      "count": 1,
+      "options": [
+        { "trait": "impatient", "forms": ["impatiently", "impatience"] },
+        { "trait": "jealous", "forms": ["jealously", "jealousy"] },
+        { "trait": "forgetful", "forms": ["forgetfulness"] },
+        { "trait": "stubborn", "forms": ["stubbornly", "stubbornness"] },
+        { "trait": "show-off", "forms": ["showing off", "showed off"] },
+        { "trait": "greedy", "forms": ["greedily", "greed"] },
+        { "trait": "hot-tempered", "forms": ["bad-tempered"] },
+        { "trait": "lazy", "forms": ["lazily", "laziness"] },
+        { "trait": "selfish", "forms": ["selfishly", "selfishness"] },
+        { "trait": "cowardly", "forms": ["coward", "cowardice"] }
+      ]
+    }
+  }
+]

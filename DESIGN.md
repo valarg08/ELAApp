@@ -1425,7 +1425,7 @@ type WritingConstraints = {
 - **Grading:** practice activities are checked in the browser (answers are part of the lesson payload, which is fine for low-stakes practice); the API requires every practice activity to be reported correct before the step completes. Writing constraints are checked live in the browser and again by the API (422 `CONSTRAINTS_NOT_MET` with kid-friendly messages).
 - **Challenge storage:** the challenge is written in the P3 writing workspace (§5.4.1) and stored as a `Submission`; lesson progress keeps only the word count.
 - **Sort activities** use tap-to-place buttons (works with keyboard, touch and screen readers). Drag-and-drop (dnd-kit) arrives with the Unit 4 plot diagram.
-- **Unit 1** has 4 complete lessons (six-word stories, show don't tell, describe without naming, vivid language) with 16 activities; Units 2–12 are unpublished outlines.
+- **Unit 1** has 4 complete lessons (six-word stories, show don't tell, describe without naming, vivid language) with 16 activities; Units 2–12 were unpublished outlines (Unit 2 was authored in SL2, §9.6).
 
 ---
 
@@ -1439,7 +1439,14 @@ The project owner chose to focus on students learning on their own with Quill's 
 - **Explain it another way** (`POST /ai/explain { lessonId, cardIndex, attempt }`): Quill re-teaches a Learn card from a new angle each attempt (everyday comparison, steps, weak vs strong, simpler words, common mistake) with an example and a quick self-check. Input is lesson content only, so results are cached and shared by all students.
 - **Extra practice** (`POST /ai/practice { lessonId, activityKey }`): 3 new multiple-choice questions on a practice activity's skill, validated (2–4 distinct options, one correct) and played with the normal renderer. Offered automatically after an activity needed more than one try, and from the practice summary. Three cached question sets per activity rotate. Offline, the fake builds questions from the activity's own items.
 - **Limits:** tutor help 30/hour and 100/day per student, 3,000/day per class (`AiUsage` kind `tutor`), separate from writing checks.
-- **Not yet:** hints on practice questions (not chosen), a "My learning" page, Units 2–12 content (SL2+). Tests for SL1 are still owed.
+- **Not yet:** hints on practice questions (not chosen), a "My learning" page, Units 3–12 content (SL3+). Tests for SL1 are still owed.
+
+### 9.6 Unit 2 lessons (as built in SL2)
+
+- **Lessons** (`content/units/unit-02`, 16 activities, unit published): 1 Wants & Fears → `CHARACTER_SKETCH` (80–200 words); 2 Actions Speak → `TRAITS_IN_ACTION` (pick 2 traits, 60–200 words); 3 How They Talk → `CHARACTER_VOICE` (two voices with speech habits, 80–250 words); 4 Flaws & Conflict → `FLAW_SCENE` (pick 1 flaw, 120–300 words). Each has a SORT, a HIGHLIGHT and a MULTIPLE_CHOICE practice, so "Explain it another way" and extra practice work unchanged. Unit project spec: "Meet My Character" (300–500 words; stored only, shown with the portfolio in P9).
+- **Trait picker:** a writing activity may declare `traitPicker { label, count 1–3, options[{ trait, forms[] }] }`. The student picks before writing (`PUT /submissions/:id/traits`, unknown traits dropped), stored in `Submission.choices` (Zod `SubmissionChoices`). Picked traits and their forms become banned words (`constraintsWithTraits`, checked live and by the API), and submit answers 422 until enough traits are picked.
+- **"Can your reader tell?"** (`character-read` analyzer in packages/ai): reads the piece like a reader and reports, per chosen trait, whether it comes through (with a quote) or one idea to show it, plus other traits noticed and whether the want and fear are clear (checked for sketches and flaw scenes). It runs in the feedback pipeline for character activities, where its points come before the rubric's, and from Ask Quill ("Can my reader tell?", live-check limits apply). Offline, the fake uses small clue-word lists per trait and want/fear word patterns.
+- **Instead of the §10 tools:** the Character builder artifact and the side-by-side card are P7; SL2 covers the same skills with authored lessons and the picker. Tests owed: trait picker API, `constraintsWithTraits`, `character-read` fake and points, content of the new types.
 ---
 
 ## 10. Unit-by-unit interactive tool designs (Deliverable 8)
@@ -1684,7 +1691,8 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | **P4a Writing analysis** ✅ | `packages/writing-analysis` (deterministic analyzers, see §8.3.1), Coach panel, POV/tense locks | Coach works in lessons and full screen; locks block submit (unit tests still owed) |
 | **P4b AI feedback** ✅ | `packages/ai` (gateway, show-vs-tell, sensory, rubric-score, safety), feedback pipeline, class AI modes, live checks with rate limits and cache, safety flags | Unit tests for every analyzer; fake-gateway tests for the pipeline; with a real key, `pnpm ai:eval` runs on the seed golden set; safety flag appears in the teacher inbox |
 | **SL1 Self-learning & AI tutor** ✅ | Self-paced classes (lessons and units unlock in order), instant AI feedback with a revise loop, "Explain it another way" on Learn cards, extra practice from Quill (see §9.5) | Self-paced locks work; tutor features work with the fake and real gateway (tests still owed) |
-| **SL2+ Units 2–12 lessons** | Author lessons for Units 2–12 in `/content` (5-step format), with the activities each unit needs | Each unit playable end to end; `pnpm content:check` passes |
+| **SL2 Unit 2 lessons** ✅ | Unit 2 Character Development: 4 lessons, trait picker, "Can your reader tell?" (`character-read`) in feedback and Ask Quill (see §9.6) | Unit 2 playable end to end; `pnpm content:check` passes (tests still owed) |
+| **SL3+ Units 3–12 lessons** | Author lessons for Units 3–12 in `/content` (5-step format), one unit at a time, with the activities and AI checks each unit needs | Each unit playable end to end; `pnpm content:check` passes |
 | **P5 Teacher dashboard** (deferred) | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |
 | **P6 Gamification** | XP events, levels, streaks with freezes, badge engine + seed catalogue, missions, unlocks, dashboard widgets, optional leaderboard | Unit tests for XP caps, idempotency, streak edge cases (timezones, weekends, freezes); badge unlock modal appears in E2E |
 | **P7 Unit tools 1–6** | All tools in §10 for Units 1–6 + remaining LLM analyzers they need | Each tool has a component test and one E2E happy path; keyboard-only walkthrough passes |

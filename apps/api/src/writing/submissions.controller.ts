@@ -1,10 +1,11 @@
-import { Body, Controller, Get, HttpCode, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import {
   type DiffResponse,
   OpenSubmissionRequest,
   RestoreRequest,
   RevisionRequest,
   SaveDraftRequest,
+  SetTraitsRequest,
   type SaveDraftResponse,
   type SubmissionDetail,
   type SubmissionFeedback,
@@ -51,6 +52,17 @@ export class SubmissionsController {
     @Body({ schema: SaveDraftRequest }) body: SaveDraftRequest,
   ): Promise<SaveDraftResponse> {
     return this.submissions.saveDraft(user, id, body);
+  }
+
+  /** The traits picked for the activity's trait picker (Unit 2). */
+  @Roles('STUDENT')
+  @Put(':id/traits')
+  setTraits(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetTraitsRequest }) body: SetTraitsRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setTraits(user, id, body.traits);
   }
 
   @Roles('STUDENT')

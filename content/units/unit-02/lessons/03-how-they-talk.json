@@ -1,0 +1,65 @@
+{
+  "slug": "how-they-talk",
+  "order": 3,
+  "title": "How They Talk",
+  "estMinutes": 40,
+  "focusSkills": ["character-voice", "dialogue"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of a friend or family member. What is one thing they always say, or one way they always talk?",
+      "placeholder": "My grandpa always says…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Voice",
+          "body": "Every person talks a little differently. Some use long words, some use short ones. Some joke, some complain, some ask lots of questions. In a story, the way a character talks shows who they are."
+        },
+        {
+          "kind": "example",
+          "title": "Same problem, two voices",
+          "text": "\"Um, I think maybe we're lost? Sorry. I mean, it's okay if we are.\" / \"Lost? Us? Nah. We're exploring. Follow me!\"",
+          "note": "You can tell these are two different people without any names. One is nervous and polite. The other is bold and sure of themselves."
+        },
+        {
+          "kind": "definition",
+          "title": "Speech habits",
+          "body": "A speech habit is something a character says or does when they talk: a favourite word (\"Seriously?\"), always asking questions, never finishing sentences, or speaking very formally. One habit, used a few times, makes a character easy to recognise."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Spot the habit",
+          "prompt": "Tap the word Zara keeps repeating. It's her speech habit.",
+          "text": "\"Best day ever, literally,\" Zara said. \"The pool was literally freezing, and Mom literally screamed.\"",
+          "clues": ["literally"]
+        },
+        {
+          "kind": "definition",
+          "title": "Punctuating speech",
+          "body": "Put the spoken words inside quotation marks, and start a new paragraph each time a different person speaks. That way readers always know who is talking."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u02.voice-sort", "u02.voice-highlight", "u02.voice-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u02.character-voice" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What speech habit did you give one of your characters? What does it show about them?",
+        "Read your dialogue out loud. Do your two characters sound different?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

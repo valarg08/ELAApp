@@ -41,8 +41,27 @@ export const SubmissionDetail = z.object({
   activity: z.object({ id: z.string(), key: z.string(), content: WritingActivity }),
   /** The lesson whose challenge this is, if any. */
   lesson: z.object({ id: z.string(), title: z.string(), order: z.number() }).nullable(),
+  /** Traits the student picked for the activity's trait picker (empty when it has none). */
+  traits: z.array(z.string()).default([]),
 });
 export type SubmissionDetail = z.infer<typeof SubmissionDetail>;
+
+/** What the student chose before writing, stored in `Submission.choices`. */
+export const SubmissionChoices = z.object({
+  traits: z.array(z.string().max(30)).max(3).default([]),
+});
+export type SubmissionChoices = z.infer<typeof SubmissionChoices>;
+
+/** Read `Submission.choices`, tolerating rows written before the column existed. */
+export function submissionChoices(json: unknown): SubmissionChoices {
+  const parsed = SubmissionChoices.safeParse(json ?? {});
+  return parsed.success ? parsed.data : { traits: [] };
+}
+
+export const SetTraitsRequest = z.object({
+  traits: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(3),
+});
+export type SetTraitsRequest = z.infer<typeof SetTraitsRequest>;
 
 export const SaveDraftRequest = z.object({ text: DraftText, baseRevision: Revision });
 export type SaveDraftRequest = z.infer<typeof SaveDraftRequest>;

@@ -1,0 +1,65 @@
+{
+  "slug": "actions-speak",
+  "order": 2,
+  "title": "Actions Speak",
+  "estMinutes": 45,
+  "focusSkills": ["show-vs-tell", "characterization"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "The last cookie",
+      "paragraphs": [
+        "There was one cookie left on the plate. Ben grabbed it, stuffed it in his mouth and said, \"What? I was hungry.\"",
+        "His little sister Ana looked at the empty plate. Then she broke her own cookie in half and gave a piece to the dog.",
+        "Nobody told you that Ben is selfish or that Ana is kind. But you know, don't you? Their actions told you."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Traits",
+          "body": "A trait is part of a character's personality: brave, shy, stubborn, kind, curious. Telling names the trait. Showing lets the reader work it out from what the character does, says and chooses."
+        },
+        {
+          "kind": "compare",
+          "title": "Tell it or show it",
+          "telling": "Maya was very brave.",
+          "showing": "When the dog growled at her little brother, Maya stepped in front of him and held out her hand, palm up.",
+          "note": "The second version never says \"brave\", but you saw it happen."
+        },
+        {
+          "kind": "definition",
+          "title": "Choices show the most",
+          "body": "The strongest way to show a trait is a choice, especially a hard one. Does your character share the last slice, or keep it? Tell the truth, or hide the broken vase? Readers learn who a character is from what they choose."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the clues",
+          "prompt": "Tap the three action words that show Leo is curious.",
+          "text": "Leo peeked under the tarp, poked the strange box with a stick, and pressed his ear against the lid.",
+          "clues": ["peeked", "poked", "pressed"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u02.trait-sort", "u02.trait-highlight", "u02.trait-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u02.traits-in-action" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Copy the action you are proudest of. Which trait does it show?",
+        "Could Quill's reader tell the traits you picked? What would you change?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

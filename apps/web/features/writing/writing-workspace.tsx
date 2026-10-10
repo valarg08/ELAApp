@@ -6,6 +6,7 @@ import {
   SubmitResponse,
   type VersionSummary,
   checkConstraints,
+  constraintsWithTraits,
 } from '@storyforge/shared';
 import type { Span } from '@storyforge/writing-analysis';
 import { useRef, useState } from 'react';
@@ -18,6 +19,7 @@ import { ConflictDialog } from './conflict-dialog';
 import { ConstraintsBar } from './constraints-bar';
 import { HistoryPanel, formatWhen } from './history-panel';
 import { SaveStatusText } from './save-status';
+import { TraitPicker } from './trait-picker';
 import { useAutosave } from './use-autosave';
 
 type Busy = 'submit' | 'version' | 'restore' | null;
@@ -45,7 +47,11 @@ export function WritingWorkspace({
 }) {
   const editorRef = useRef<HTMLTextAreaElement>(null);
   const path = `/submissions/${encodeURIComponent(submission.id)}`;
-  const { constraints } = submission.activity.content;
+  const activity = submission.activity.content;
+  const picker = activity.traitPicker;
+  const [traits, setTraits] = useState(submission.traits);
+  const constraints = constraintsWithTraits(activity, traits);
+  const needsTraits = picker !== undefined && traits.length < picker.count;
   const [historyKey, setHistoryKey] = useState(0);
   const refreshHistory = () => setHistoryKey((k) => k + 1);
   const { state, controller } = useAutosave(submission, refreshHistory);
@@ -59,6 +65,7 @@ export function WritingWorkspace({
   const { wordCount, problems } = checkConstraints(state.text, constraints);
   const blocked =
     wordCount === 0 ||
+    needsTraits ||
     state.status === 'conflict' ||
     (constraints.enforcement === 'hard' && problems.length > 0);
   const short = constraints.exactWords !== undefined && constraints.exactWords <= 10;
@@ -77,8 +84,9 @@ export function WritingWorkspace({
   const coach = (
     <CoachPanel
       text={state.text}
-      activity={submission.activity.content}
+      activity={activity}
       activityId={submission.activity.id}
+      traits={traits}
       onShow={showInText}
     />
   );
@@ -162,6 +170,15 @@ export function WritingWorkspace({
         </div>
       </div>
 
+      {picker && (
+        <TraitPicker
+          submissionId={submission.id}
+          picker={picker}
+          traits={traits}
+          onChange={setTraits}
+        />
+      )}
+
       <ConstraintsBar text={state.text} constraints={constraints} started={started} />
 
       <div className="flex flex-col gap-1">
@@ -191,6 +208,12 @@ export function WritingWorkspace({
         <Button disabled={busy !== null || blocked} onClick={submit}>
           {busy === 'submit' ? 'Submitting…' : submittedVersion > 0 ? 'Submit again' : 'Submit'}
         </Button>
+        {needsTraits && (
+          <span className="text-sm text-muted">
+            Pick {picker.count === 1 ? 'your character’s trait' : `${picker.count} traits`} above to
+            submit.
+          </span>
+        )}
         {submittedVersion > 0 && (
           <span className="text-sm text-muted">
             Submitted {submittedVersion} {submittedVersion === 1 ? 'time' : 'times'}

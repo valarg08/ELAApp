@@ -1,13 +1,17 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import {
   type AnalyzerOutcome,
+  type CharacterReadResult,
   type FeedbackPoint,
   HOLDING_MESSAGE,
   LIVE_ANALYZERS,
   PERSONAL_INFO_REMINDER,
   type SensoryResult,
   type ShowVsTellResult,
+  WANT_FEAR_TYPES,
   type WritingContext,
+  analyzersForActivity,
+  characterReadPoints,
   sensoryPoints,
   showVsTellPoints,
 } from '@storyforge/ai';
@@ -18,6 +22,7 @@ import {
   type LiveCheckRequest,
   type LiveCheckResponse,
   isWritingActivity,
+  validTraits,
 } from '@storyforge/shared';
 import { countWords } from '@storyforge/writing-analysis';
 import type { AuthUser } from '../auth/auth.types.js';
@@ -68,6 +73,17 @@ export class LiveChecksService {
     const content = activity ? ActivityContent.parse(activity.config) : null;
     if (!activity || !content || !isWritingActivity(content) || !activity.unit.published) {
       throw notFound(ErrorCode.ACTIVITY_NOT_FOUND, 'Writing activity not found.');
+    }
+    if (
+      req.analyzer === 'character-read' &&
+      !analyzersForActivity(content.type).includes('character-read')
+    ) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'Not for this activity',
+        'Quill can only check characters in character activities.',
+      );
     }
     const classId = await this.curriculum.studentClassForUnit(user, activity.unit);
 
@@ -141,12 +157,24 @@ export class LiveChecksService {
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = showVsTellPoints(req.text, outcome.result);
-      } else {
+      } else if (req.analyzer === 'sensory-analysis') {
         const outcome: AnalyzerOutcome<SensoryResult> = await withTimeout(
           this.ai.run(LIVE_ANALYZERS['sensory-analysis'], ctx, meta),
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = sensoryPoints(req.text, outcome.result);
+      } else {
+        const traits = validTraits(content, req.traits);
+        const checkWantFear = WANT_FEAR_TYPES.includes(content.type);
+        const outcome: AnalyzerOutcome<CharacterReadResult> = await withTimeout(
+          this.ai.run(
+            LIVE_ANALYZERS['character-read'],
+            { ...ctx, targetTraits: traits, checkWantFear },
+            { ...meta, cacheScope: `${activity.key}|${traits.join(',')}` },
+          ),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = characterReadPoints(req.text, outcome.result, checkWantFear);
       }
 
       const reminder: FeedbackPoint[] = screen.personalInfo

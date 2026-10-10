@@ -63,6 +63,10 @@ enum ActivityType {
   SHOW_TELL_TRANSFORM
   DESCRIBE_WITHOUT_NAMING
   VIVID_REWRITE
+  CHARACTER_SKETCH
+  TRAITS_IN_ACTION
+  CHARACTER_VOICE
+  FLAW_SCENE
   MULTIPLE_CHOICE
   SORT
   HIGHLIGHT
@@ -299,6 +303,7 @@ model Submission {
   title          String?
   contentJson    Json? // unused since P3 (plain-text editor); kept for a possible rich-text editor
   contentText    String // the draft text (source of truth)
+  choices        Json? // SubmissionChoices: what the student picked before writing (e.g. traits)
   wordCount      Int              @default(0)
   draftRevision  Int              @default(0) // optimistic concurrency for autosave
   version        Int              @default(0) // increments on each submit

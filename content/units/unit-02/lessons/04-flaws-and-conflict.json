@@ -1,0 +1,62 @@
+{
+  "slug": "flaws-and-conflict",
+  "order": 4,
+  "title": "Flaws & Conflict",
+  "estMinutes": 45,
+  "focusSkills": ["character-flaws", "conflict"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which hero would you rather read about?",
+      "a": "Sam is good at everything. Sam is never wrong. Sam always wins.",
+      "b": "Sam is the fastest runner in school, but Sam never listens to anyone, not even the coach shouting \"Wait!\"",
+      "reveal": "Perfect characters are boring because nothing can go wrong for them. Sam's flaw (never listening) is going to cause trouble, and that's exactly what makes you want to read on."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Flaws make characters real",
+          "body": "A flaw is a weakness: impatient, jealous, forgetful, stubborn, a show-off. Real people have flaws, so characters with flaws feel real. Readers often like characters more when they struggle."
+        },
+        {
+          "kind": "definition",
+          "title": "Inner and outer conflict",
+          "body": "Outer conflict is a problem outside the character: a storm, a bully, a locked door. Inner conflict is a struggle inside: fear, guilt, wanting two things at once. The best stories have both."
+        },
+        {
+          "kind": "example",
+          "title": "The flaw gets in the way",
+          "text": "Kai wants to win the science fair. But Kai is impatient, so he paints the volcano before the glue dries, and the whole thing slides off the table.",
+          "note": "The want (win), the flaw (impatient) and the trouble (the volcano collapses) work together. That's a plot."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the flaw in action",
+          "prompt": "Tap the two words that show Nora is jealous.",
+          "text": "When Mira won the art prize, Nora clapped slowly, glared at the trophy, and muttered, \"Lucky.\"",
+          "clues": ["glared", "muttered"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u02.conflict-sort", "u02.flaw-highlight", "u02.flaw-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u02.flaw-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How did your character's flaw cause trouble in your scene?",
+        "What could your character learn from this mistake?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

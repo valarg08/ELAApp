@@ -6,7 +6,14 @@
   "bigIdeas": [
     "Every character wants something.",
     "Actions reveal personality.",
+    "The way a character talks is part of who they are.",
     "Flaws make characters real."
   ],
-  "published": false
+  "published": true,
+  "projectSpec": {
+    "title": "Meet My Character",
+    "description": "Write a character scene (300–500 words). Show what your character wants and fears, show two traits through actions and dialogue without naming them, and let a flaw get in the way.",
+    "minWords": 300,
+    "maxWords": 500
+  }
 }

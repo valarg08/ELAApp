@@ -4,8 +4,10 @@ import {
   DEFAULT_RUBRIC,
   type FeedbackPoint,
   LIVE_ANALYZERS,
+  WANT_FEAR_TYPES,
   type WritingContext,
   analyzersForActivity,
+  characterReadPoints,
   rubricPoints,
   rubricScoreAnalyzer,
   sensoryPoints,
@@ -18,6 +20,7 @@ import {
   classSettings,
   FeedbackPoint as FeedbackPointSchema,
   isWritingActivity,
+  submissionChoices,
 } from '@storyforge/shared';
 import {
   dialogue,
@@ -130,42 +133,61 @@ export class FeedbackPipeline {
     const notes: string[] = [];
     const extraStrengths: FeedbackPoint[] = [];
     const extraNextSteps: FeedbackPoint[] = [];
+    // "Can your reader tell?" is the point of a character activity, so its points come first.
+    const characterStrengths: FeedbackPoint[] = [];
+    const characterNextSteps: FeedbackPoint[] = [];
     let declined = false;
     const versions: string[] = [];
+    const runMeta = { ...meta, cacheScope: activity.key, text };
+    const traits = submissionChoices(submission.choices).traits;
+    const checkWantFear = WANT_FEAR_TYPES.includes(content.type);
+    const collect = (p: { strengths: FeedbackPoint[]; nextSteps: FeedbackPoint[] }) => {
+      extraStrengths.push(...p.strengths);
+      extraNextSteps.push(...p.nextSteps);
+    };
     for (const id of analyzersForActivity(content.type)) {
-      const def = LIVE_ANALYZERS[id];
-      versions.push(def.version);
-      const outcome =
-        id === 'show-vs-tell'
-          ? await this.ai.run(LIVE_ANALYZERS['show-vs-tell'], ctx, {
-              ...meta,
-              cacheScope: activity.key,
-              text,
-            })
-          : await this.ai.run(LIVE_ANALYZERS['sensory-analysis'], ctx, {
-              ...meta,
-              cacheScope: activity.key,
-              text,
-            });
-      if (outcome.status === 'declined') {
-        declined = true;
-        continue;
-      }
-      analyzerOutputs[id] = outcome.result;
-      if ('tellingSentences' in outcome.result) {
+      versions.push(LIVE_ANALYZERS[id].version);
+      if (id === 'show-vs-tell') {
+        const outcome = await this.ai.run(LIVE_ANALYZERS[id], ctx, runMeta);
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
         const r = outcome.result;
+        analyzerOutputs[id] = r;
         notes.push(
           `show-vs-tell: ${r.tellingSentences.length} telling places, show ratio ${r.showRatio.toFixed(2)}`,
         );
-        const p = showVsTellPoints(text, r);
-        extraStrengths.push(...p.strengths);
-        extraNextSteps.push(...p.nextSteps);
-      } else {
+        collect(showVsTellPoints(text, r));
+      } else if (id === 'sensory-analysis') {
+        const outcome = await this.ai.run(LIVE_ANALYZERS[id], ctx, runMeta);
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
         const r = outcome.result;
+        analyzerOutputs[id] = r;
         notes.push(`sensory: missing ${r.missing.join(', ') || 'none'}`);
-        const p = sensoryPoints(text, r);
-        extraStrengths.push(...p.strengths);
-        extraNextSteps.push(...p.nextSteps);
+        collect(sensoryPoints(text, r));
+      } else {
+        const outcome = await this.ai.run(
+          LIVE_ANALYZERS[id],
+          { ...ctx, targetTraits: traits, checkWantFear },
+          { ...runMeta, cacheScope: `${activity.key}|${traits.join(',')}` },
+        );
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        const shown = r.targets.filter((t) => t.inferred).map((t) => t.trait);
+        notes.push(
+          `character: chosen traits ${traits.join(', ') || 'none'}; a reader can tell ${shown.join(', ') || 'none'}; want ${r.want.clear ? 'clear' : 'unclear'}, fear ${r.fear.clear ? 'clear' : 'unclear'}`,
+        );
+        const p = characterReadPoints(text, r, checkWantFear);
+        characterStrengths.push(...p.strengths);
+        characterNextSteps.push(...p.nextSteps);
       }
     }
 
@@ -225,8 +247,16 @@ export class FeedbackPipeline {
       (levels.grammar === 4 && dialogueIssues >= 5);
 
     const composed = rubricPoints(text, r);
-    const strengths = dedupe([...composed.strengths, ...extraStrengths]).slice(0, 2);
-    const nextSteps = dedupe([...composed.nextSteps, ...extraNextSteps]).slice(0, 3);
+    const strengths = dedupe([
+      ...characterStrengths.slice(0, 2),
+      ...composed.strengths,
+      ...extraStrengths,
+    ]).slice(0, characterStrengths.length > 1 ? 3 : 2);
+    const nextSteps = dedupe([
+      ...characterNextSteps.slice(0, 2),
+      ...composed.nextSteps,
+      ...extraNextSteps,
+    ]).slice(0, 3);
 
     await this.db.client.feedback.update({
       where: { id: feedbackId },

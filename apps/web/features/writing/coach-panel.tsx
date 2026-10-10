@@ -29,11 +29,14 @@ export function CoachPanel({
   text,
   activity,
   activityId,
+  traits,
   onShow,
 }: {
   text: string;
   activityId: string;
   activity: WritingActivity;
+  /** Traits picked for the trait picker (for "Can my reader tell?"). */
+  traits: string[];
   /** Select the words a card points at in the editor. */
   onShow: (span: Span) => void;
 }) {
@@ -107,7 +110,13 @@ export function CoachPanel({
         )}
       </div>
 
-      <AskQuill activityId={activityId} activity={activity} text={text} onShow={onShow} />
+      <AskQuill
+        activityId={activityId}
+        activity={activity}
+        traits={traits}
+        text={text}
+        onShow={onShow}
+      />
     </section>
   );
 }
