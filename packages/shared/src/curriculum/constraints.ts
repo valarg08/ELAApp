@@ -1,4 +1,15 @@
+import {
+  type Pov,
+  type Tense,
+  breaksTenseLock,
+  countWords,
+  pointOfView,
+  povShifts,
+  tense,
+} from '@storyforge/writing-analysis';
 import { z } from 'zod';
+
+export { countWords };
 
 /** Rules for a writing activity (DESIGN.md §9.3). Checked live in the browser and again by the API. */
 export const WritingConstraints = z
@@ -8,6 +19,10 @@ export const WritingConstraints = z
     exactWords: z.number().int().positive().optional(),
     bannedWords: z.array(z.string().trim().min(1)).default([]),
     requiredWords: z.array(z.string().trim().min(1)).default([]),
+    /** Narration must use this point of view (quoted speech is ignored). */
+    povLock: z.enum(['first', 'second', 'third']).optional(),
+    /** Narration must use this tense (quoted speech is ignored). */
+    tenseLock: z.enum(['past', 'present']).optional(),
     /** Shows a countdown in the workspace. Informational: running out of time never blocks. */
     timeLimitMin: z.number().int().min(1).max(120).optional(),
     /** "hard" blocks submitting; "soft" only warns. */
@@ -23,14 +38,9 @@ export type ConstraintProblem =
   | { rule: 'maxWords'; expected: number; actual: number }
   | { rule: 'exactWords'; expected: number; actual: number }
   | { rule: 'bannedWords'; found: string[] }
-  | { rule: 'requiredWords'; missing: string[] };
-
-/** Words are runs of letters, digits and apostrophes/hyphens inside words ("don't", "well-known"). */
-const WORD = /[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu;
-
-export function countWords(text: string): number {
-  return text.match(WORD)?.length ?? 0;
-}
+  | { rule: 'requiredWords'; missing: string[] }
+  | { rule: 'povLock'; expected: Pov; found: Pov }
+  | { rule: 'tenseLock'; expected: Tense };
 
 const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -65,8 +75,24 @@ export function checkConstraints(
   if (found.length > 0) problems.push({ rule: 'bannedWords', found });
   const missing = c.requiredWords.filter((w) => !wordPattern(w).test(text));
   if (missing.length > 0) problems.push({ rule: 'requiredWords', missing });
+  if (c.povLock) {
+    const pov = pointOfView(text);
+    if (pov.guess !== 'unknown' && povShifts(pov, c.povLock).length > 0) {
+      problems.push({ rule: 'povLock', expected: c.povLock, found: pov.guess });
+    }
+  }
+  if (c.tenseLock && breaksTenseLock(tense(text), c.tenseLock)) {
+    problems.push({ rule: 'tenseLock', expected: c.tenseLock });
+  }
   return { wordCount, problems };
 }
+
+const POV_RULES: Record<Pov, string> = {
+  first: 'Tell this story in the first person (I, me, my).',
+  second: 'Tell this story in the second person (you, your).',
+  third:
+    'Tell this story in the third person (he, she, they). Keep “I” for speech in quotation marks.',
+};
 
 /** Kid-friendly explanation of a problem. */
 export function describeProblem(p: ConstraintProblem): string {
@@ -81,6 +107,12 @@ export function describeProblem(p: ConstraintProblem): string {
       return `Try writing without: ${p.found.join(', ')}.`;
     case 'requiredWords':
       return `Remember to use: ${p.missing.join(', ')}.`;
+    case 'povLock':
+      return POV_RULES[p.expected];
+    case 'tenseLock':
+      return p.expected === 'past'
+        ? 'Keep the story in the past tense (walked, was). Some sentences are in the present.'
+        : 'Keep the story in the present tense (walks, is). Some sentences are in the past.';
   }
   const unreachable: never = p;
   return String(unreachable);

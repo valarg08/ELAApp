@@ -7,9 +7,12 @@ import {
   type VersionSummary,
   checkConstraints,
 } from '@storyforge/shared';
-import { useState } from 'react';
+import type { Span } from '@storyforge/writing-analysis';
+import { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson, apiSend } from '@/lib/api-client';
+import { CoachPanel } from './coach-panel';
 import { ConflictDialog } from './conflict-dialog';
 import { ConstraintsBar } from './constraints-bar';
 import { HistoryPanel, formatWhen } from './history-panel';
@@ -20,16 +23,26 @@ type Busy = 'submit' | 'version' | 'restore' | null;
 
 /**
  * The writing workspace (DESIGN.md §6.3) with a plain-text editor: live rules, autosave with an
- * offline safety net, conflict handling, version history and submit.
+ * offline safety net, conflict handling, version history, the Coach panel and submit.
  * Remount it (key) for a different submission.
  */
 export function WritingWorkspace({
   submission,
   onSubmitted,
+  coachTarget,
+  onShowInText,
 }: {
   submission: SubmissionDetail;
   onSubmitted?: (result: SubmitResponse) => void;
+  /**
+   * Where the Coach panel goes: `undefined` renders it below the editor; an element renders it
+   * there (a side column); `null` means that element isn't mounted yet.
+   */
+  coachTarget?: HTMLElement | null;
+  /** Called before "Show me" selects text, e.g. to switch to the Write tab on phones. */
+  onShowInText?: () => void;
 }) {
+  const editorRef = useRef<HTMLTextAreaElement>(null);
   const path = `/submissions/${encodeURIComponent(submission.id)}`;
   const { constraints } = submission.activity.content;
   const [historyKey, setHistoryKey] = useState(0);
@@ -49,6 +62,20 @@ export function WritingWorkspace({
     (constraints.enforcement === 'hard' && problems.length > 0);
   const short = constraints.exactWords !== undefined && constraints.exactWords <= 10;
 
+  function showInText({ start, end }: Span) {
+    onShowInText?.();
+    requestAnimationFrame(() => {
+      const editor = editorRef.current;
+      if (!editor) return;
+      editor.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      editor.focus({ preventScroll: true });
+      editor.setSelectionRange(start, end);
+    });
+  }
+
+  const coach = (
+    <CoachPanel text={state.text} activity={submission.activity.content} onShow={showInText} />
+  );
   /** Run an action against the server copy once everything is saved. */
   async function withSaved(kind: Exclude<Busy, null>, action: (revision: number) => Promise<void>) {
     setErrors([]);
@@ -136,6 +163,7 @@ export function WritingWorkspace({
           Your writing
         </label>
         <textarea
+          ref={editorRef}
           id="draft-text"
           value={state.text}
           onChange={(e) => {
@@ -163,6 +191,12 @@ export function WritingWorkspace({
           </span>
         )}
       </div>
+
+      {coachTarget === undefined ? (
+        <div className="rounded-xl border border-border bg-background p-4">{coach}</div>
+      ) : (
+        coachTarget && createPortal(coach, coachTarget)
+      )}
 
       {showHistory && (
         <HistoryPanel

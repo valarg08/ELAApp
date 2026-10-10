@@ -65,6 +65,24 @@ export function ConstraintsBar({
           problemText="not yet"
         />
       )}
+      {(constraints.povLock || constraints.tenseLock) && (
+        <p className="flex flex-wrap items-center gap-2 text-sm">
+          {constraints.povLock && (
+            <LockChip
+              label="Point of view"
+              value={POV_SHORT[constraints.povLock]}
+              broken={text.trim() !== '' && problems.some((p) => p.rule === 'povLock')}
+            />
+          )}
+          {constraints.tenseLock && (
+            <LockChip
+              label="Tense"
+              value={constraints.tenseLock}
+              broken={text.trim() !== '' && problems.some((p) => p.rule === 'tenseLock')}
+            />
+          )}
+        </p>
+      )}
 
       <div id="rules-status" aria-live="polite">
         {text.trim().length > 0 && problems.length > 0 && (
@@ -112,6 +130,22 @@ function WordRule({
         );
       })}
     </p>
+  );
+}
+
+const POV_SHORT = { first: '1st person', second: '2nd person', third: '3rd person' } as const;
+
+function LockChip({ label, value, broken }: { label: string; value: string; broken: boolean }) {
+  return (
+    <span
+      className={`rounded-full border px-2.5 py-0.5 ${
+        broken ? 'border-warn font-semibold text-warn' : 'border-border text-muted'
+      }`}
+    >
+      <span aria-hidden="true">🔒 </span>
+      {label}: {value} <span aria-hidden="true">{broken ? '⚠' : '✓'}</span>
+      <span className="sr-only">{broken ? ' (not kept yet)' : ' (kept)'}</span>
+    </span>
   );
 }
 

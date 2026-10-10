@@ -1,3 +1,4 @@
+import { ANALYZER_IDS } from '@storyforge/writing-analysis';
 import { z } from 'zod';
 import { WritingConstraints } from './constraints.js';
 
@@ -88,6 +89,8 @@ export const WritingActivity = z.object({
   starter: text(1500).optional(),
   tips: z.array(text(300)).max(5).default([]),
   constraints: WritingConstraints,
+  /** Checks shown in the Coach panel (default: telling, filter words, senses, sentence variety). */
+  analyzers: z.array(z.enum(ANALYZER_IDS)).min(1).optional(),
 });
 
 export const ActivityContent = z.discriminatedUnion('type', [

@@ -19,6 +19,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@storyforge/writing-analysis": "workspace:*",
     "zod": "^4.6.5"
   },
   "devDependencies": {

@@ -10,16 +10,18 @@ import { WritingWorkspace } from './writing-workspace';
 const TABS = [
   { id: 'prompt', label: 'Prompt' },
   { id: 'write', label: 'Write' },
+  { id: 'coach', label: 'Coach' },
 ] as const;
 type Tab = (typeof TABS)[number]['id'];
 
 /**
- * Full-screen workspace (DESIGN.md §6.3): prompt beside the editor on wide screens, tabs
- * (Prompt · Write) on narrow ones. The Coach panel arrives with AI feedback in P4.
+ * Full-screen workspace (DESIGN.md §6.3). Wide screens: prompt and coach on the left, the editor
+ * on the right. Narrow screens: tabs (Prompt · Write · Coach).
  */
 export function WritePage({ submission }: { submission: SubmissionDetail }) {
   const [tab, setTab] = useState<Tab>('write');
   const [result, setResult] = useState<SubmitResponse | null>(null);
+  const [coachTarget, setCoachTarget] = useState<HTMLElement | null>(null);
   const back = submission.lesson
     ? {
         href: `/lessons/${submission.lesson.id}`,
@@ -29,10 +31,18 @@ export function WritePage({ submission }: { submission: SubmissionDetail }) {
 
   function onTabKey(e: KeyboardEvent<HTMLButtonElement>) {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-    const next = TABS[(TABS.findIndex((t) => t.id === tab) + 1) % TABS.length]!;
+    const step = e.key === 'ArrowRight' ? 1 : TABS.length - 1;
+    const next = TABS[(TABS.findIndex((t) => t.id === tab) + step) % TABS.length]!;
     setTab(next.id);
     document.getElementById(`tab-${next.id}`)?.focus();
   }
+
+  const panel = (id: Tab) => ({
+    id: `panel-${id}`,
+    role: 'tabpanel',
+    'aria-labelledby': `tab-${id}`,
+    className: `${tab === id ? '' : 'hidden'} lg:block`,
+  });
 
   return (
     <div className="flex flex-col gap-6">
@@ -61,25 +71,27 @@ export function WritePage({ submission }: { submission: SubmissionDetail }) {
         ))}
       </div>
 
-      <div className="grid items-start gap-6 lg:grid-cols-[minmax(16rem,1fr)_2fr]">
-        <div
-          id="panel-prompt"
-          role="tabpanel"
-          aria-labelledby="tab-prompt"
-          className={`${tab === 'prompt' ? '' : 'hidden'} lg:block`}
-        >
-          <Card className="lg:sticky lg:top-6">
-            <ActivityPrompt activity={submission.activity.content} headingLevel={1} />
-          </Card>
+      <div className="grid items-start gap-6 lg:grid-cols-[minmax(18rem,1fr)_2fr]">
+        <div className="flex flex-col gap-6">
+          <div {...panel('prompt')}>
+            <Card>
+              <ActivityPrompt activity={submission.activity.content} headingLevel={1} />
+            </Card>
+          </div>
+          <div {...panel('coach')}>
+            <Card>
+              <div ref={setCoachTarget} />
+            </Card>
+          </div>
         </div>
-        <div
-          id="panel-write"
-          role="tabpanel"
-          aria-labelledby="tab-write"
-          className={`${tab === 'write' ? '' : 'hidden'} lg:block`}
-        >
+        <div {...panel('write')}>
           <Card className="flex flex-col gap-4">
-            <WritingWorkspace submission={submission} onSubmitted={setResult} />
+            <WritingWorkspace
+              submission={submission}
+              onSubmitted={setResult}
+              coachTarget={coachTarget}
+              onShowInText={() => setTab('write')}
+            />
             {result?.lessonProgress && submission.lesson && (
               <ButtonLink href={`/lessons/${submission.lesson.id}`} className="self-start">
                 Back to the lesson →

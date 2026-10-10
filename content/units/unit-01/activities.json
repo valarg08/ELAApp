@@ -5,20 +5,46 @@
     "title": "Story or not a story?",
     "instructions": "Each line has six words or fewer. Sort them: does it tell a story, or is it just a fact?",
     "buckets": [
-      { "id": "story", "label": "Tells a story" },
-      { "id": "fact", "label": "Just a fact" }
+      {
+        "id": "story",
+        "label": "Tells a story"
+      },
+      {
+        "id": "fact",
+        "label": "Just a fact"
+      }
     ],
     "items": [
-      { "id": "bus", "text": "Wrong bus. Right friend. Lucky Tuesday.", "bucketId": "story" },
-      { "id": "pizza", "text": "Pizza is a tasty food.", "bucketId": "fact" },
-      { "id": "shot", "text": "Missed the shot. Won anyway. Teamwork.", "bucketId": "story" },
-      { "id": "shoes", "text": "My shoes are blue.", "bucketId": "fact" },
+      {
+        "id": "bus",
+        "text": "Wrong bus. Right friend. Lucky Tuesday.",
+        "bucketId": "story"
+      },
+      {
+        "id": "pizza",
+        "text": "Pizza is a tasty food.",
+        "bucketId": "fact"
+      },
+      {
+        "id": "shot",
+        "text": "Missed the shot. Won anyway. Teamwork.",
+        "bucketId": "story"
+      },
+      {
+        "id": "shoes",
+        "text": "My shoes are blue.",
+        "bucketId": "fact"
+      },
       {
         "id": "dragon",
         "text": "Dragon egg cracked. Babysitting starts now.",
         "bucketId": "story"
       },
-      { "id": "legs", "text": "Dogs have four legs.", "bucketId": "fact" }
+      {
+        "id": "legs",
+        "text": "Dogs have four legs.",
+        "bucketId": "fact"
+      }
     ]
   },
   {
@@ -39,9 +65,18 @@
         "id": "which-story",
         "prompt": "Which of these is a six-word story?",
         "options": [
-          { "id": "a", "text": "Lost dog found. Best day ever." },
-          { "id": "b", "text": "The cat." },
-          { "id": "c", "text": "I went to the park and played on the swings all day." }
+          {
+            "id": "a",
+            "text": "Lost dog found. Best day ever."
+          },
+          {
+            "id": "b",
+            "text": "The cat."
+          },
+          {
+            "id": "c",
+            "text": "I went to the park and played on the swings all day."
+          }
         ],
         "correctOptionId": "a",
         "explanation": "It has exactly six words and something happens: a lost dog is found, and there's a feeling too.",
@@ -51,9 +86,18 @@
         "id": "wonder-word",
         "prompt": "In \"Last day of school. Nobody cried.\", which word makes you wonder the most?",
         "options": [
-          { "id": "last", "text": "Last" },
-          { "id": "school", "text": "school" },
-          { "id": "nobody", "text": "Nobody" }
+          {
+            "id": "last",
+            "text": "Last"
+          },
+          {
+            "id": "school",
+            "text": "school"
+          },
+          {
+            "id": "nobody",
+            "text": "Nobody"
+          }
         ],
         "correctOptionId": "nobody",
         "explanation": "Usually someone cries on the last day. \"Nobody\" surprises us. Was it a bad year? A happy one?"
@@ -70,7 +114,11 @@
       "Leave the reader with a question.",
       "Try writing three versions, then pick your favorite."
     ],
-    "constraints": { "exactWords": 6, "enforcement": "hard" }
+    "constraints": {
+      "exactWords": 6,
+      "enforcement": "hard"
+    },
+    "analyzers": ["telling", "filterWords"]
   },
   {
     "key": "u01.show-tell-sort",
@@ -78,23 +126,41 @@
     "title": "Telling or showing?",
     "instructions": "Sort each sentence: does it tell the feeling, or show it?",
     "buckets": [
-      { "id": "telling", "label": "Telling" },
-      { "id": "showing", "label": "Showing" }
+      {
+        "id": "telling",
+        "label": "Telling"
+      },
+      {
+        "id": "showing",
+        "label": "Showing"
+      }
     ],
     "items": [
-      { "id": "tired-tell", "text": "Ava was tired.", "bucketId": "telling" },
+      {
+        "id": "tired-tell",
+        "text": "Ava was tired.",
+        "bucketId": "telling"
+      },
       {
         "id": "tired-show",
         "text": "Ava's eyes kept closing during the movie.",
         "bucketId": "showing"
       },
-      { "id": "messy-tell", "text": "The room was messy.", "bucketId": "telling" },
+      {
+        "id": "messy-tell",
+        "text": "The room was messy.",
+        "bucketId": "telling"
+      },
       {
         "id": "messy-show",
         "text": "Socks hung from the lamp, and cereal crunched under our feet.",
         "bucketId": "showing"
       },
-      { "id": "proud-tell", "text": "Grandpa was proud.", "bucketId": "telling" },
+      {
+        "id": "proud-tell",
+        "text": "Grandpa was proud.",
+        "bucketId": "telling"
+      },
       {
         "id": "proud-show",
         "text": "Grandpa held my report card up for the whole street to see.",
@@ -120,9 +186,18 @@
         "id": "cold",
         "prompt": "Which sentence SHOWS that Noah is cold?",
         "options": [
-          { "id": "a", "text": "Noah was cold." },
-          { "id": "b", "text": "Noah's teeth chattered as he pulled his sleeves over his hands." },
-          { "id": "c", "text": "It was a cold day for Noah." }
+          {
+            "id": "a",
+            "text": "Noah was cold."
+          },
+          {
+            "id": "b",
+            "text": "Noah's teeth chattered as he pulled his sleeves over his hands."
+          },
+          {
+            "id": "c",
+            "text": "It was a cold day for Noah."
+          }
         ],
         "correctOptionId": "b",
         "explanation": "Chattering teeth and pulling sleeves over his hands are clues. The other two just say \"cold\".",
@@ -132,9 +207,18 @@
         "id": "feeling",
         "prompt": "What feeling does this show? \"Zoe kept checking the clock and tapping her foot.\"",
         "options": [
-          { "id": "impatient", "text": "Impatient" },
-          { "id": "sleepy", "text": "Sleepy" },
-          { "id": "proud", "text": "Proud" }
+          {
+            "id": "impatient",
+            "text": "Impatient"
+          },
+          {
+            "id": "sleepy",
+            "text": "Sleepy"
+          },
+          {
+            "id": "proud",
+            "text": "Proud"
+          }
         ],
         "correctOptionId": "impatient",
         "explanation": "Checking the clock and tapping a foot are things we do while waiting for something to finally happen."
@@ -157,7 +241,8 @@
       "maxWords": 150,
       "bannedWords": ["angry", "mad", "furious", "upset"],
       "enforcement": "hard"
-    }
+    },
+    "analyzers": ["telling", "filterWords", "senses", "sentenceVariety"]
   },
   {
     "key": "u01.senses-sort",
@@ -165,17 +250,50 @@
     "title": "Which sense?",
     "instructions": "Sort each detail by the sense it uses most.",
     "buckets": [
-      { "id": "sight", "label": "Sight 👀" },
-      { "id": "sound", "label": "Sound 👂" },
-      { "id": "smell", "label": "Smell 👃" }
+      {
+        "id": "sight",
+        "label": "Sight 👀"
+      },
+      {
+        "id": "sound",
+        "label": "Sound 👂"
+      },
+      {
+        "id": "smell",
+        "label": "Smell 👃"
+      }
     ],
     "items": [
-      { "id": "candle", "text": "a flickering candle", "bucketId": "sight" },
-      { "id": "leaves", "text": "a crunch of dry leaves", "bucketId": "sound" },
-      { "id": "campfire", "text": "smoky campfire air", "bucketId": "smell" },
-      { "id": "sky", "text": "a sky the color of orange juice", "bucketId": "sight" },
-      { "id": "fridge", "text": "the hum of the fridge", "bucketId": "sound" },
-      { "id": "grass", "text": "fresh-cut grass after mowing", "bucketId": "smell" }
+      {
+        "id": "candle",
+        "text": "a flickering candle",
+        "bucketId": "sight"
+      },
+      {
+        "id": "leaves",
+        "text": "a crunch of dry leaves",
+        "bucketId": "sound"
+      },
+      {
+        "id": "campfire",
+        "text": "smoky campfire air",
+        "bucketId": "smell"
+      },
+      {
+        "id": "sky",
+        "text": "a sky the color of orange juice",
+        "bucketId": "sight"
+      },
+      {
+        "id": "fridge",
+        "text": "the hum of the fridge",
+        "bucketId": "sound"
+      },
+      {
+        "id": "grass",
+        "text": "fresh-cut grass after mowing",
+        "bucketId": "smell"
+      }
     ]
   },
   {
@@ -196,9 +314,18 @@
         "id": "pavement",
         "prompt": "Which sense does this use? \"The pavement burned through my thin sneakers.\"",
         "options": [
-          { "id": "sight", "text": "Sight" },
-          { "id": "hearing", "text": "Hearing" },
-          { "id": "touch", "text": "Touch" }
+          {
+            "id": "sight",
+            "text": "Sight"
+          },
+          {
+            "id": "hearing",
+            "text": "Hearing"
+          },
+          {
+            "id": "touch",
+            "text": "Touch"
+          }
         ],
         "correctOptionId": "touch",
         "explanation": "You feel the heat through your shoes. That's touch."
@@ -207,12 +334,18 @@
         "id": "popcorn",
         "prompt": "Which sentence describes popcorn without naming it?",
         "options": [
-          { "id": "a", "text": "We ate popcorn during the movie." },
+          {
+            "id": "a",
+            "text": "We ate popcorn during the movie."
+          },
           {
             "id": "b",
             "text": "Buttery puffs crackled in the microwave as a salty smell drifted out."
           },
-          { "id": "c", "text": "The snack was good." }
+          {
+            "id": "c",
+            "text": "The snack was good."
+          }
         ],
         "correctOptionId": "b",
         "explanation": "It never says \"popcorn\", but the crackling, the butter and the salty smell tell you exactly what it is.",
@@ -235,7 +368,8 @@
       "maxWords": 200,
       "bannedWords": ["storm", "thunder", "lightning", "rain"],
       "enforcement": "hard"
-    }
+    },
+    "analyzers": ["senses", "telling", "filterWords", "sentenceVariety"]
   },
   {
     "key": "u01.vivid-sort",
@@ -243,18 +377,56 @@
     "title": "Weak or strong?",
     "instructions": "Sort the verbs: weak (tells us little) or strong (paints a picture)?",
     "buckets": [
-      { "id": "weak", "label": "Weak verb" },
-      { "id": "strong", "label": "Strong verb" }
+      {
+        "id": "weak",
+        "label": "Weak verb"
+      },
+      {
+        "id": "strong",
+        "label": "Strong verb"
+      }
     ],
     "items": [
-      { "id": "went", "text": "went", "bucketId": "weak" },
-      { "id": "crept", "text": "crept", "bucketId": "strong" },
-      { "id": "said", "text": "said", "bucketId": "weak" },
-      { "id": "whispered", "text": "whispered", "bucketId": "strong" },
-      { "id": "got", "text": "got", "bucketId": "weak" },
-      { "id": "snatched", "text": "snatched", "bucketId": "strong" },
-      { "id": "looked", "text": "looked", "bucketId": "weak" },
-      { "id": "glared", "text": "glared", "bucketId": "strong" }
+      {
+        "id": "went",
+        "text": "went",
+        "bucketId": "weak"
+      },
+      {
+        "id": "crept",
+        "text": "crept",
+        "bucketId": "strong"
+      },
+      {
+        "id": "said",
+        "text": "said",
+        "bucketId": "weak"
+      },
+      {
+        "id": "whispered",
+        "text": "whispered",
+        "bucketId": "strong"
+      },
+      {
+        "id": "got",
+        "text": "got",
+        "bucketId": "weak"
+      },
+      {
+        "id": "snatched",
+        "text": "snatched",
+        "bucketId": "strong"
+      },
+      {
+        "id": "looked",
+        "text": "looked",
+        "bucketId": "weak"
+      },
+      {
+        "id": "glared",
+        "text": "glared",
+        "bucketId": "strong"
+      }
     ]
   },
   {
@@ -275,9 +447,18 @@
         "id": "puppy",
         "prompt": "Which verb paints the clearest picture? \"The puppy ___ under the bed.\"",
         "options": [
-          { "id": "went", "text": "went" },
-          { "id": "moved", "text": "moved" },
-          { "id": "scurried", "text": "scurried" }
+          {
+            "id": "went",
+            "text": "went"
+          },
+          {
+            "id": "moved",
+            "text": "moved"
+          },
+          {
+            "id": "scurried",
+            "text": "scurried"
+          }
         ],
         "correctOptionId": "scurried",
         "explanation": "\"Scurried\" shows quick, tiny steps. You can almost hear the paws."
@@ -286,9 +467,18 @@
         "id": "hungry",
         "prompt": "Which word could replace \"very hungry\"?",
         "options": [
-          { "id": "starving", "text": "starving" },
-          { "id": "really-hungry", "text": "really hungry" },
-          { "id": "hungry-ish", "text": "hungry-ish" }
+          {
+            "id": "starving",
+            "text": "starving"
+          },
+          {
+            "id": "really-hungry",
+            "text": "really hungry"
+          },
+          {
+            "id": "hungry-ish",
+            "text": "hungry-ish"
+          }
         ],
         "correctOptionId": "starving",
         "explanation": "One strong word (starving) beats \"very\" + a weak word.",
@@ -312,6 +502,7 @@
       "maxWords": 200,
       "bannedWords": ["very", "really", "went", "got", "said", "nice", "good"],
       "enforcement": "hard"
-    }
+    },
+    "analyzers": ["filterWords", "sentenceVariety", "telling", "senses"]
   }
 ]
