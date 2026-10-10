@@ -101,6 +101,11 @@ export function FeedbackPanel({
               onShow={onShow}
               numbered
             />
+            {feedback.nextSteps.length > 0 && (
+              <p className="text-sm text-muted">
+                Want to make it even better? Try one next step, then press “Submit again”.
+              </p>
+            )}
           </>
         )}
       </div>

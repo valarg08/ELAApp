@@ -4,12 +4,19 @@ import type { LessonCard, LessonSteps } from '@storyforge/shared';
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui';
 import { splitWords } from '@/lib/tokens';
+import { ExplainAnother } from '../tutor/explain-another';
 import type { StepProps } from './step-props';
 
 type Learn = LessonSteps[1];
 
 /** Mini-lesson cards, one at a time. Clue-hunt cards need every clue found (or "Show me"). */
-export function LearnStep({ step, done, busy, onComplete }: StepProps<Learn>) {
+export function LearnStep({
+  step,
+  done,
+  busy,
+  onComplete,
+  lessonId,
+}: StepProps<Learn> & { lessonId: string }) {
   const [index, setIndex] = useState(0);
   const [cardDone, setCardDone] = useState<boolean[]>(
     step.cards.map((c) => done || c.kind !== 'clue-hunt'),
@@ -28,6 +35,7 @@ export function LearnStep({ step, done, busy, onComplete }: StepProps<Learn>) {
         card={card}
         onSolved={() => setCardDone(cardDone.map((d, i) => (i === index ? true : d)))}
       />
+      <ExplainAnother key={`explain-${index}`} lessonId={lessonId} cardIndex={index} />
       <div className="flex gap-3">
         <Button variant="secondary" disabled={index === 0} onClick={() => setIndex(index - 1)}>
           ← Back

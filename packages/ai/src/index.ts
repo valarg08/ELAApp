@@ -13,3 +13,5 @@ export * from './analyzers/safety.js';
 export * from './analyzers/show-vs-tell.js';
 export * from './analyzers/sensory.js';
 export * from './analyzers/rubric-score.js';
+export * from './analyzers/explain-card.js';
+export * from './analyzers/extra-practice.js';

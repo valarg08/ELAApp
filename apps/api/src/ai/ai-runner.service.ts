@@ -9,7 +9,7 @@ export const AI_GATEWAY = Symbol('AI_GATEWAY');
 const CACHE_DAYS = 30;
 
 export interface RunMeta {
-  kind: 'live' | 'live-safety' | 'feedback';
+  kind: 'live' | 'live-safety' | 'feedback' | 'tutor';
   userId?: string;
   classId?: string;
   /** Extra cache-key input (e.g. the activity key), besides the analyzer, version, model and text. */

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import type { ClassUnitPacing, UpdatePacingRequest } from '@storyforge/shared';
-import { ErrorCode } from '@storyforge/shared';
+import { ErrorCode, classSettings } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { ClassAccessService } from '../classes/class-access.service.js';
 import { notFound } from '../common/app-error.js';
@@ -16,7 +16,8 @@ export class PacingService {
   ) {}
 
   async list(teacher: AuthUser, classId: string): Promise<ClassUnitPacing[]> {
-    await this.access.ownedClass(teacher, classId);
+    const klass = await this.access.ownedClass(teacher, classId);
+    const { selfPaced } = classSettings(klass.settings);
     const units = await this.db.client.unit.findMany({
       orderBy: { number: 'asc' },
       include: { classUnits: { where: { classId } }, _count: { select: { lessons: true } } },
@@ -28,8 +29,9 @@ export class PacingService {
         number: unit.number,
         title: unit.title,
         published: unit.published,
-        available: unitAvailability(unit, row).available,
-        hidden: row ? row.hidden : unit.number !== 1,
+        // Self-paced: "available" means students can reach it once earlier units are done.
+        available: unitAvailability(unit, row, { selfPaced, previousDone: true }).available,
+        hidden: row ? row.hidden : !selfPaced && unit.number !== 1,
         unlockAt: row?.unlockAt?.toISOString() ?? null,
         dueAt: row?.dueAt?.toISOString() ?? null,
         lessonCount: unit._count.lessons,
@@ -43,7 +45,8 @@ export class PacingService {
     unitId: string,
     input: UpdatePacingRequest,
   ): Promise<ClassUnitPacing> {
-    await this.access.ownedClass(teacher, classId);
+    const klass = await this.access.ownedClass(teacher, classId);
+    const { selfPaced } = classSettings(klass.settings);
     const unit = await this.db.client.unit.findUnique({ where: { id: unitId } });
     if (!unit) throw notFound(ErrorCode.UNIT_NOT_FOUND, 'Unit not found.');
 
@@ -56,8 +59,9 @@ export class PacingService {
     };
     await this.db.client.classUnit.upsert({
       where: { classId_unitId: { classId, unitId } },
-      // A new row starts from the default (Unit 1 open, others locked) plus the requested change.
-      create: { classId, unitId, hidden: unit.number !== 1, ...data },
+      // A new row starts from the class default plus the requested change (self-paced: nothing is
+      // hidden, so setting a due date never locks a unit).
+      create: { classId, unitId, hidden: !selfPaced && unit.number !== 1, ...data },
       update: data,
     });
     const all = await this.list(teacher, classId);

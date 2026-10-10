@@ -11,6 +11,7 @@ import {
   StepId,
   type UnitDetail,
   type UnitSummary,
+  classSettings,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { AppError, forbidden, notFound } from '../common/app-error.js';
@@ -18,24 +19,67 @@ import { DatabaseService } from '../database/database.service.js';
 
 type Availability = Pick<UnitSummary, 'available' | 'lockReason' | 'dueAt'>;
 
+type UnitWithLessons = Unit & { lessons: { id: string }[] };
+
+export interface PacingContext {
+  /** Self-paced class: finishing a unit unlocks the next one. */
+  selfPaced: boolean;
+  /** Every earlier published unit is finished (only matters when self-paced). */
+  previousDone: boolean;
+}
+
 /**
- * Whether a class can open a unit (DESIGN.md §11.3 pacing).
- * Unpublished units are "coming soon". Without a pacing row, Unit 1 is open and the rest are locked.
+ * Whether a class can open a unit (DESIGN.md §11.3 pacing). Unpublished units are "coming soon".
+ * Teacher-paced: without a pacing row, Unit 1 is open and the rest are locked.
+ * Self-paced: Unit 1 is open and each later unit opens when the earlier ones are finished; a teacher
+ * can still hide a unit or schedule it for later, but not skip the order.
  */
 export function unitAvailability(
   unit: Unit,
   pacing: ClassUnit | undefined,
+  ctx: PacingContext = { selfPaced: false, previousDone: false },
   now = new Date(),
 ): Availability {
   const dueAt = pacing?.dueAt?.toISOString() ?? null;
   if (!unit.published) return { available: false, lockReason: 'COMING_SOON', dueAt };
-  if (pacing) {
-    const open = !pacing.hidden && (!pacing.unlockAt || pacing.unlockAt <= now);
-    return { available: open, lockReason: open ? null : 'LOCKED', dueAt };
+  const blocked = !!pacing && (pacing.hidden || (!!pacing.unlockAt && pacing.unlockAt > now));
+  if (ctx.selfPaced) {
+    if (blocked) return { available: false, lockReason: 'LOCKED', dueAt };
+    return unit.number === 1 || ctx.previousDone
+      ? { available: true, lockReason: null, dueAt }
+      : { available: false, lockReason: 'FINISH_PREVIOUS', dueAt };
   }
+  if (pacing) return { available: !blocked, lockReason: blocked ? 'LOCKED' : null, dueAt };
   return unit.number === 1
     ? { available: true, lockReason: null, dueAt }
     : { available: false, lockReason: 'LOCKED', dueAt };
+}
+
+/** Availability of every unit for one class and student, walking the units in order. */
+export function classAvailability(
+  units: readonly UnitWithLessons[],
+  pacing: ReadonlyMap<string, ClassUnit>,
+  selfPaced: boolean,
+  completedLessons: ReadonlySet<string>,
+): Map<string, Availability> {
+  const result = new Map<string, Availability>();
+  let previousDone = true;
+  for (const unit of units.toSorted((a, b) => a.number - b.number)) {
+    result.set(unit.id, unitAvailability(unit, pacing.get(unit.id), { selfPaced, previousDone }));
+    if (unit.published) {
+      previousDone =
+        previousDone &&
+        unit.lessons.length > 0 &&
+        unit.lessons.every((l) => completedLessons.has(l.id));
+    }
+  }
+  return result;
+}
+
+interface StudentClass {
+  id: string;
+  selfPaced: boolean;
+  pacing: Map<string, ClassUnit>;
 }
 
 const stepsDone = (p: LessonProgress | undefined): StepId[] =>
@@ -58,14 +102,12 @@ export class CurriculumService {
       orderBy: { number: 'asc' },
       include: { lessons: { select: { id: true } } },
     });
-    const pacing = await this.pacingFor(user, classId);
     const completed = await this.completedLessonIds(user);
+    const availability = await this.availabilityFor(user, units, completed, classId);
 
     return units.map((unit) => ({
       ...this.summaryBase(unit),
-      ...(user.role === 'STUDENT'
-        ? unitAvailability(unit, pacing.get(unit.id))
-        : this.teacherPreview(unit)),
+      ...(availability?.get(unit.id) ?? this.teacherPreview(unit)),
       lessonCount: unit.lessons.length,
       completedLessons: unit.lessons.filter((l) => completed.has(l.id)).length,
     }));
@@ -77,11 +119,21 @@ export class CurriculumService {
       include: { lessons: { orderBy: { order: 'asc' } } },
     });
     if (!unit) throw notFound(ErrorCode.UNIT_NOT_FOUND, 'Unit not found.');
-    const pacing = await this.pacingFor(user, classId);
+    const allUnits = await this.db.client.unit.findMany({
+      include: { lessons: { select: { id: true } } },
+    });
+    const completed = await this.completedLessonIds(user);
+    const student = user.role === 'STUDENT' ? await this.studentClass(user, classId) : null;
     const availability =
       user.role === 'STUDENT'
-        ? unitAvailability(unit, pacing.get(unit.id))
+        ? (classAvailability(
+            allUnits,
+            student?.pacing ?? new Map(),
+            student?.selfPaced ?? false,
+            completed,
+          ).get(unit.id) ?? { available: false, lockReason: 'LOCKED' as const, dueAt: null })
         : this.teacherPreview(unit);
+    const lessonLocks = !!student?.selfPaced;
 
     const progress = await this.progressMap(
       user,
@@ -94,7 +146,7 @@ export class CurriculumService {
       lessonCount: unit.lessons.length,
       completedLessons: unit.lessons.filter((l) => progress.get(l.id)?.completedAt).length,
       lessons: availability.available
-        ? unit.lessons.map((l) => ({
+        ? unit.lessons.map((l, i) => ({
             id: l.id,
             slug: l.slug,
             order: l.order,
@@ -103,6 +155,7 @@ export class CurriculumService {
             completedSteps: stepsDone(progress.get(l.id)).length,
             totalSteps: STEP_IDS.length,
             completed: !!progress.get(l.id)?.completedAt,
+            locked: lessonLocks && i > 0 && !completed.has(unit.lessons[i - 1]!.id),
           }))
         : [],
     };
@@ -266,8 +319,11 @@ export class CurriculumService {
 
   // ───────── helpers ─────────
 
-  /** Load a lesson the user may open. For students: the unit must be available in one of their classes. */
-  private async openLesson(
+  /**
+   * Load a lesson the user may open. For students: the unit must be available in one of their
+   * classes and, in a self-paced class, the previous lesson must be finished.
+   */
+  async openLesson(
     user: AuthUser,
     lessonId: string,
   ): Promise<{ lesson: Lesson; unit: Unit; classId: string }> {
@@ -282,7 +338,29 @@ export class CurriculumService {
       return { lesson, unit, classId: '' };
     }
 
-    return { lesson, unit, classId: await this.studentClassForUnit(user, unit) };
+    const klass = await this.resolveStudentClass(user, unit);
+    if (klass.selfPaced) {
+      const previous = await this.db.client.lesson.findFirst({
+        where: { unitId: unit.id, order: { lt: lesson.order } },
+        orderBy: { order: 'desc' },
+        select: { id: true },
+      });
+      const done =
+        !previous ||
+        !!(await this.db.client.lessonProgress.findFirst({
+          where: { studentId: user.id, lessonId: previous.id, completedAt: { not: null } },
+          select: { lessonId: true },
+        }));
+      if (!done) {
+        throw new AppError(
+          HttpStatus.FORBIDDEN,
+          ErrorCode.LESSON_LOCKED,
+          'Not yet!',
+          'Finish the lesson before this one first.',
+        );
+      }
+    }
+    return { lesson, unit, classId: klass.id };
   }
 
   /**
@@ -290,36 +368,72 @@ export class CurriculumService {
    * Throws UNIT_LOCKED when no class has it open.
    */
   async studentClassForUnit(user: AuthUser, unit: Unit, classId?: string): Promise<string> {
-    const enrollments = await this.db.client.enrollment.findMany({
-      where: { studentId: user.id, class: { archivedAt: null }, ...(classId ? { classId } : {}) },
-      include: { class: { include: { unitAssignments: { where: { unitId: unit.id } } } } },
-      orderBy: { joinedAt: 'asc' },
-    });
-    const open = enrollments.find(
-      (e) => unitAvailability(unit, e.class.unitAssignments[0]).available,
-    );
-    if (!open) {
-      throw new AppError(
-        HttpStatus.FORBIDDEN,
-        ErrorCode.UNIT_LOCKED,
-        'Locked',
-        'Your teacher hasn’t unlocked this unit yet.',
-      );
-    }
-    return open.classId;
+    return (await this.resolveStudentClass(user, unit, classId)).id;
   }
 
-  /** Pacing rows for the student's class (the given one if enrolled, else their first active class). */
-  private async pacingFor(user: AuthUser, classId?: string): Promise<Map<string, ClassUnit>> {
-    if (user.role !== 'STUDENT') return new Map();
+  private async resolveStudentClass(
+    user: AuthUser,
+    unit: Unit,
+    classId?: string,
+  ): Promise<{ id: string; selfPaced: boolean }> {
+    const enrollments = await this.db.client.enrollment.findMany({
+      where: { studentId: user.id, class: { archivedAt: null }, ...(classId ? { classId } : {}) },
+      include: { class: { include: { unitAssignments: true } } },
+      orderBy: { joinedAt: 'asc' },
+    });
+    const units = await this.db.client.unit.findMany({
+      include: { lessons: { select: { id: true } } },
+    });
+    const completed = await this.completedLessonIds(user);
+    let finishPrevious = false;
+    for (const e of enrollments) {
+      const selfPaced = classSettings(e.class.settings).selfPaced;
+      const pacing = new Map(e.class.unitAssignments.map((p) => [p.unitId, p]));
+      const availability = classAvailability(units, pacing, selfPaced, completed).get(unit.id);
+      if (availability?.available) return { id: e.classId, selfPaced };
+      if (availability?.lockReason === 'FINISH_PREVIOUS') finishPrevious = true;
+    }
+    throw new AppError(
+      HttpStatus.FORBIDDEN,
+      ErrorCode.UNIT_LOCKED,
+      'Locked',
+      finishPrevious
+        ? 'Finish the unit before this one to unlock it.'
+        : 'Your teacher hasn’t unlocked this unit yet.',
+    );
+  }
+
+  /** The student's class (the given one if enrolled, else their first active class). */
+  private async studentClass(user: AuthUser, classId?: string): Promise<StudentClass | null> {
     const enrollment = await this.db.client.enrollment.findFirst({
       where: { studentId: user.id, class: { archivedAt: null }, ...(classId ? { classId } : {}) },
       orderBy: { joinedAt: 'asc' },
       include: { class: { include: { unitAssignments: true } } },
     });
-    return new Map((enrollment?.class.unitAssignments ?? []).map((p) => [p.unitId, p]));
+    if (!enrollment) return null;
+    return {
+      id: enrollment.classId,
+      selfPaced: classSettings(enrollment.class.settings).selfPaced,
+      pacing: new Map(enrollment.class.unitAssignments.map((p) => [p.unitId, p])),
+    };
   }
 
+  /** Students: availability of every unit in their class. Teachers: null (they preview everything). */
+  private async availabilityFor(
+    user: AuthUser,
+    units: UnitWithLessons[],
+    completed: Set<string>,
+    classId?: string,
+  ): Promise<Map<string, Availability> | null> {
+    if (user.role !== 'STUDENT') return null;
+    const student = await this.studentClass(user, classId);
+    return classAvailability(
+      units,
+      student?.pacing ?? new Map(),
+      student?.selfPaced ?? false,
+      completed,
+    );
+  }
   private teacherPreview(unit: Unit): Availability {
     return unit.published
       ? { available: true, lockReason: null, dueAt: null }

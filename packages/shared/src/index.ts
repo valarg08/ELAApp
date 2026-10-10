@@ -10,4 +10,5 @@ export * from './curriculum/content.js';
 export * from './contracts/curriculum.js';
 export * from './contracts/writing.js';
 export * from './contracts/feedback.js';
+export * from './contracts/tutor.js';
 export * from './writing/diff.js';

@@ -358,11 +358,13 @@ export class SubmissionsService {
     try {
       return await this.curriculum.completeStep(user, lessonId, 'challenge', {});
     } catch (e) {
-      // Submitted before finishing the earlier steps (or the unit was locked since): the writing is
+      // Submitted before finishing the earlier steps or lessons (or the unit was locked since): the writing is
       // saved, and the step completes when the student gets there.
       if (
         e instanceof AppError &&
-        (e.code === ErrorCode.STEP_LOCKED || e.code === ErrorCode.UNIT_LOCKED)
+        (e.code === ErrorCode.STEP_LOCKED ||
+          e.code === ErrorCode.UNIT_LOCKED ||
+          e.code === ErrorCode.LESSON_LOCKED)
       ) {
         return null;
       }

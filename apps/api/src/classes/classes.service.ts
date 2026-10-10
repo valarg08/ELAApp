@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { Class, User } from '@storyforge/db';
+import type { Class, Prisma, User } from '@storyforge/db';
 import {
   type BulkAddStudentsRequest,
   type ClassSummary,
@@ -8,6 +8,7 @@ import {
   StudentSecretKind,
   type StudentSummary,
   type UpdateClassRequest,
+  classSettings,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { PasswordService } from '../auth/password.service.js';
@@ -18,11 +19,14 @@ import { ClassAccessService } from './class-access.service.js';
 import { generateJoinCode, generateStudentSecret, generateUsername } from './credentials.js';
 
 const DEFAULT_SETTINGS = {
+  selfPaced: true,
   leaderboardEnabled: false,
   schoolDaysOnlyStreaks: true,
   peerReviewEnabled: false,
   hardConstraints: false,
 };
+
+const toJson = (value: unknown): Prisma.InputJsonValue => JSON.parse(JSON.stringify(value));
 
 const secretKindOf = (user: User) =>
   StudentSecretKind.catch('PICTURE').parse(user.studentSecretKind);
@@ -70,8 +74,16 @@ export class ClassesService {
     classId: string,
     input: UpdateClassRequest,
   ): Promise<ClassSummary> {
-    await this.access.ownedClass(teacher, classId);
-    const klass = await this.db.client.class.update({ where: { id: classId }, data: input });
+    const current = await this.access.ownedClass(teacher, classId);
+    const { selfPaced, ...fields } = input;
+    const settings =
+      selfPaced === undefined
+        ? undefined
+        : toJson({ ...classSettings(current.settings), selfPaced });
+    const klass = await this.db.client.class.update({
+      where: { id: classId },
+      data: { ...fields, ...(settings ? { settings } : {}) },
+    });
     return toSummary(klass, await this.countStudents(classId));
   }
 
@@ -220,6 +232,7 @@ function toSummary(klass: Class, studentCount: number): ClassSummary {
     joinCode: klass.joinCode,
     timezone: klass.timezone,
     aiFeedbackMode: klass.aiFeedbackMode,
+    selfPaced: classSettings(klass.settings).selfPaced,
     studentCount,
     createdAt: klass.createdAt.toISOString(),
   };

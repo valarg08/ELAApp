@@ -9,6 +9,7 @@ import { MultipleChoice } from '../activities/multiple-choice';
 import { ReflectionActivity } from '../activities/reflection-activity';
 import { Sort } from '../activities/sort';
 import type { ActivityResult } from '../activities/types';
+import { ExtraPractice } from '../tutor/extra-practice';
 import type { StepProps } from './step-props';
 
 type Practice = LessonSteps[2];
@@ -20,17 +21,56 @@ export function PracticeStep({
   busy,
   onComplete,
   activities,
-}: StepProps<Practice> & { activities: Record<string, ActivityContent> }) {
+  lessonId,
+}: StepProps<Practice> & { activities: Record<string, ActivityContent>; lessonId: string }) {
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState<Record<string, ActivityResult>>({});
   const [replaying, setReplaying] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  /** After a tricky activity: offer extra practice before moving on. */
+  const [offer, setOffer] = useState<{ key: string; advance: () => void } | null>(null);
+  const [extra, setExtra] = useState<string | null>(null);
   const save = (body: object) =>
     onComplete(body).catch((e: unknown) =>
       setError(e instanceof ApiError ? e.userMessage : 'Could not save. Try again.'),
     );
   const key = step.activityKeys[index];
   const activity = key ? activities[key] : undefined;
+
+  const practiceKeys = step.activityKeys.filter((k) => {
+    const a = activities[k];
+    return a && a.type !== 'REFLECTION';
+  });
+
+  if (extra) {
+    return (
+      <ExtraPractice
+        lessonId={lessonId}
+        activityKey={extra}
+        onFinish={() => {
+          setExtra(null);
+          offer?.advance();
+        }}
+      />
+    );
+  }
+
+  if (offer) {
+    return (
+      <div className="flex flex-col gap-4 rounded-2xl border border-brand/40 bg-background p-5">
+        <p className="text-lg">
+          <span aria-hidden="true">🦉 </span>That one was tricky! Quill can give you a few more
+          questions like it.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Button variant="secondary" onClick={() => setExtra(offer.key)}>
+            Practise more with Quill
+          </Button>
+          <Button onClick={offer.advance}>Keep going</Button>
+        </div>
+      </div>
+    );
+  }
 
   if (done && !replaying) {
     return (
@@ -44,6 +84,20 @@ export function PracticeStep({
             Next
           </Button>
         </div>
+        {practiceKeys.length > 0 && (
+          <div className="flex flex-col gap-2 border-t border-border pt-4">
+            <p className="font-semibold">
+              <span aria-hidden="true">🦉 </span>Extra practice with Quill
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {practiceKeys.map((k) => (
+                <Button key={k} variant="secondary" onClick={() => setExtra(k)}>
+                  {activities[k]?.title}
+                </Button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -63,8 +117,18 @@ export function PracticeStep({
         onDone={(result) => {
           const next = { ...results, [key]: result };
           setResults(next);
-          if (index < step.activityKeys.length - 1) setIndex(index + 1);
-          else void save(summary(step.activityKeys, next));
+          const advance = () => {
+            setOffer(null);
+            if (index < step.activityKeys.length - 1) setIndex(index + 1);
+            else void save(summary(step.activityKeys, next));
+          };
+          // More attempts than questions means some answers were wrong.
+          const baseline = activity.type === 'MULTIPLE_CHOICE' ? activity.questions.length : 1;
+          if (activity.type !== 'REFLECTION' && result.attempts > baseline) {
+            setOffer({ key, advance });
+          } else {
+            advance();
+          }
         }}
       />
       <ErrorMessage message={error} />

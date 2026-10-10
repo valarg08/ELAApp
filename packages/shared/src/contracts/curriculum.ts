@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { ActivityContent, LessonSteps, StepId } from '../curriculum/content.js';
 
-/** Why a unit can't be opened yet. */
-export const UnitLockReason = z.enum(['COMING_SOON', 'LOCKED']);
+/** Why a unit can't be opened yet. FINISH_PREVIOUS: self-paced, the earlier unit isn't finished. */
+export const UnitLockReason = z.enum(['COMING_SOON', 'LOCKED', 'FINISH_PREVIOUS']);
 
 export const UnitSummary = z.object({
   id: z.string(),
@@ -27,6 +27,8 @@ export const LessonSummary = z.object({
   completedSteps: z.number(),
   totalSteps: z.number(),
   completed: z.boolean(),
+  /** Self-paced: the previous lesson isn't finished yet. */
+  locked: z.boolean(),
 });
 export type LessonSummary = z.infer<typeof LessonSummary>;
 

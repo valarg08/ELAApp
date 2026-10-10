@@ -15,6 +15,7 @@ import {
 import {
   ActivityContent,
   type CriterionScore,
+  classSettings,
   FeedbackPoint as FeedbackPointSchema,
   isWritingActivity,
 } from '@storyforge/shared';
@@ -71,6 +72,9 @@ export class FeedbackPipeline {
     const klass = await this.db.client.class.findUniqueOrThrow({
       where: { id: submission.classId },
     });
+    // Self-paced classes get feedback straight away (OFF classes never get here).
+    const immediate =
+      klass.aiFeedbackMode === 'IMMEDIATE' || classSettings(klass.settings).selfPaced;
 
     // The text as submitted (the draft may have moved on since).
     const snapshot = await this.db.client.draftVersion.findFirst({
@@ -227,7 +231,7 @@ export class FeedbackPipeline {
     await this.db.client.feedback.update({
       where: { id: feedbackId },
       data: {
-        status: klass.aiFeedbackMode === 'IMMEDIATE' ? 'READY' : 'PENDING_REVIEW',
+        status: immediate ? 'READY' : 'PENDING_REVIEW',
         model,
         promptVersion: versions.join(','),
         rubricId: rubricRow.id,
@@ -241,10 +245,12 @@ export class FeedbackPipeline {
           needsTeacherAttention,
           personalInfo: screen.personalInfo,
         }),
-        ...(klass.aiFeedbackMode === 'IMMEDIATE' ? { releasedAt: new Date() } : {}),
+        ...(immediate ? { releasedAt: new Date() } : {}),
       },
     });
-    this.logger.log(`Feedback ${feedbackId} ready (${klass.aiFeedbackMode})`);
+    this.logger.log(
+      `Feedback ${feedbackId} ready (${immediate ? 'shown now' : 'waiting for teacher'})`,
+    );
   }
 }
 

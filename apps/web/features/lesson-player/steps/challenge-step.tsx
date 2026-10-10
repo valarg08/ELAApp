@@ -9,24 +9,32 @@ import {
 } from '@storyforge/shared';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ErrorMessage } from '@/components/ui';
+import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
 import { ActivityPrompt } from '@/features/writing/activity-prompt';
 import { WritingWorkspace } from '@/features/writing/writing-workspace';
 
 type Challenge = LessonSteps[3];
 
-/** The writing challenge: the prompt plus the writing workspace for the student's working copy. */
+/**
+ * The writing challenge: the prompt plus the writing workspace. After submitting, the student stays
+ * here to read Quill's feedback and can revise and resubmit before moving on.
+ */
 export function ChallengeStep({
   step,
   activities,
   activityId,
   onSubmitted,
+  done,
+  onContinue,
 }: {
   step: Challenge;
   activities: Record<string, ActivityContent>;
   activityId: string;
   onSubmitted: (result: SubmitResponse) => void;
+  /** The challenge step is complete (submitted at least once). */
+  done: boolean;
+  onContinue: () => void;
 }) {
   const activity = activities[step.activityKey];
   const [submission, setSubmission] = useState<SubmissionDetail | null>(null);
@@ -62,9 +70,12 @@ export function ChallengeStep({
       {submission ? (
         <>
           <WritingWorkspace submission={submission} onSubmitted={onSubmitted} />
-          <Link href={`/write/${submission.id}`} className="self-start text-brand underline">
-            Open in full screen ↗
-          </Link>
+          <div className="flex flex-wrap items-center gap-4">
+            {done && <Button onClick={onContinue}>Continue to Reflect →</Button>}
+            <Link href={`/write/${submission.id}`} className="text-brand underline">
+              Open in full screen ↗
+            </Link>
+          </div>
         </>
       ) : (
         !error && <p className="text-muted">Opening your writing…</p>

@@ -120,6 +120,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
         )}
         {view === 1 && (
           <LearnStep
+            lessonId={lesson.id}
             step={learn}
             done={done('learn')}
             busy={busy}
@@ -128,6 +129,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
         )}
         {view === 2 && (
           <PracticeStep
+            lessonId={lesson.id}
             step={practice}
             activities={lesson.activities}
             done={done('practice')}
@@ -140,9 +142,12 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
             step={challenge}
             activities={lesson.activities}
             activityId={lesson.challengeActivityId}
+            done={done('challenge')}
             onSubmitted={({ lessonProgress }) => {
-              if (!lessonProgress) return;
-              setCompleted(lessonProgress.completedSteps);
+              // Stay on the challenge: Quill's feedback appears below, and the student may revise.
+              if (lessonProgress) setCompleted(lessonProgress.completedSteps);
+            }}
+            onContinue={() => {
               setView(STEP_IDS.indexOf('reflect'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}

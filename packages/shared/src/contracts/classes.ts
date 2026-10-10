@@ -3,6 +3,18 @@ import { StudentSecretKind } from '../auth/student-secrets.js';
 
 export const AiFeedbackMode = z.enum(['IMMEDIATE', 'TEACHER_APPROVAL', 'OFF']);
 
+/**
+ * Class settings (the `Class.settings` JSON column). Unknown keys are kept.
+ * selfPaced: students unlock the next lesson and unit by finishing the previous one, and AI
+ * feedback on their writing is shown straight away (unless AI feedback is off).
+ */
+export const ClassSettings = z.looseObject({
+  selfPaced: z.boolean().catch(true).default(true),
+});
+export type ClassSettings = z.infer<typeof ClassSettings>;
+export const classSettings = (value: unknown): ClassSettings =>
+  ClassSettings.catch({ selfPaced: true }).parse(value ?? {});
+
 export const CreateClassRequest = z.object({
   name: z.string().trim().min(1).max(80),
   gradeLevel: z.number().int().min(6).max(8),
@@ -16,6 +28,7 @@ export const UpdateClassRequest = z
     gradeLevel: z.number().int().min(6).max(8),
     timezone: z.string().trim().min(1).max(60),
     aiFeedbackMode: AiFeedbackMode,
+    selfPaced: z.boolean(),
   })
   .partial();
 export type UpdateClassRequest = z.infer<typeof UpdateClassRequest>;
@@ -27,6 +40,7 @@ export const ClassSummary = z.object({
   joinCode: z.string(),
   timezone: z.string(),
   aiFeedbackMode: AiFeedbackMode,
+  selfPaced: z.boolean(),
   studentCount: z.number(),
   createdAt: z.iso.datetime(),
 });

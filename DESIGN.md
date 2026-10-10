@@ -1429,6 +1429,19 @@ type WritingConstraints = {
 
 ---
 
+### 9.5 Self-learning mode (as built in SL1)
+
+The project owner chose to focus on students learning on their own with Quill's help; the teacher dashboard (P5) is deferred.
+
+- **Who:** students in a teacher's class (accounts and safety unchanged). `Class.settings.selfPaced` (default **on** for new and existing classes; toggle on the class page).
+- **Self-paced unlocking:** Unit 1 is open; each later published unit opens when every earlier published unit's lessons are complete (`lockReason: FINISH_PREVIOUS`). Inside a unit, lesson *n* opens when lesson *n−1* is complete (`LessonSummary.locked`; the API answers 403 `LESSON_LOCKED`). A teacher can still hide a unit or schedule its unlock, but not skip the order; in self-paced classes new pacing rows are not hidden, so setting a due date never locks a unit. Teacher-paced classes keep the P2 rules.
+- **Instant feedback + revise loop:** in self-paced classes AI feedback is shown as soon as it's ready (unless AI feedback is OFF); safety holds still apply. After submitting, the lesson stays on the challenge: Quill's feedback appears under the editor with "Show me", a nudge to try one next step and "Submit again", and a "Continue to Reflect →" button.
+- **Explain it another way** (`POST /ai/explain { lessonId, cardIndex, attempt }`): Quill re-teaches a Learn card from a new angle each attempt (everyday comparison, steps, weak vs strong, simpler words, common mistake) with an example and a quick self-check. Input is lesson content only, so results are cached and shared by all students.
+- **Extra practice** (`POST /ai/practice { lessonId, activityKey }`): 3 new multiple-choice questions on a practice activity's skill, validated (2–4 distinct options, one correct) and played with the normal renderer. Offered automatically after an activity needed more than one try, and from the practice summary. Three cached question sets per activity rotate. Offline, the fake builds questions from the activity's own items.
+- **Limits:** tutor help 30/hour and 100/day per student, 3,000/day per class (`AiUsage` kind `tutor`), separate from writing checks.
+- **Not yet:** hints on practice questions (not chosen), a "My learning" page, Units 2–12 content (SL2+). Tests for SL1 are still owed.
+---
+
 ## 10. Unit-by-unit interactive tool designs (Deliverable 8)
 
 Every tool follows the same pattern: a React feature folder under `apps/web/features/tools/<tool>`, optional `Artifact` persistence with autosave, deterministic checks in the browser, and optional LLM analyzers through `/ai/*`. Every tool MUST be usable by keyboard only and by screen readers.
@@ -1670,7 +1683,9 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | **P3 Writing workspace** ✅ | Plain-text editor (TipTap dropped, see §5.4.1), constraints bar, autosave with revisions and 409 conflict dialog, IndexedDB offline queue, snapshots, version history, diff viewer, submit with 422 validation | E2E: type → autosave → go offline → type → reconnect → no data lost; two tabs → conflict dialog; restore an older version |
 | **P4a Writing analysis** ✅ | `packages/writing-analysis` (deterministic analyzers, see §8.3.1), Coach panel, POV/tense locks | Coach works in lessons and full screen; locks block submit (unit tests still owed) |
 | **P4b AI feedback** ✅ | `packages/ai` (gateway, show-vs-tell, sensory, rubric-score, safety), feedback pipeline, class AI modes, live checks with rate limits and cache, safety flags | Unit tests for every analyzer; fake-gateway tests for the pipeline; with a real key, `pnpm ai:eval` runs on the seed golden set; safety flag appears in the teacher inbox |
-| **P5 Teacher dashboard** | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |
+| **SL1 Self-learning & AI tutor** ✅ | Self-paced classes (lessons and units unlock in order), instant AI feedback with a revise loop, "Explain it another way" on Learn cards, extra practice from Quill (see §9.5) | Self-paced locks work; tutor features work with the fake and real gateway (tests still owed) |
+| **SL2+ Units 2–12 lessons** | Author lessons for Units 2–12 in `/content` (5-step format), with the activities each unit needs | Each unit playable end to end; `pnpm content:check` passes |
+| **P5 Teacher dashboard** (deferred) | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |
 | **P6 Gamification** | XP events, levels, streaks with freezes, badge engine + seed catalogue, missions, unlocks, dashboard widgets, optional leaderboard | Unit tests for XP caps, idempotency, streak edge cases (timezones, weekends, freezes); badge unlock modal appears in E2E |
 | **P7 Unit tools 1–6** | All tools in §10 for Units 1–6 + remaining LLM analyzers they need | Each tool has a component test and one E2E happy path; keyboard-only walkthrough passes |
 | **P8 Unit tools 7–12** | Tools for Units 7–11 (poetry, dialogue, timeline, genre, revision, peer review) | Same as P7; peer review moderation E2E |

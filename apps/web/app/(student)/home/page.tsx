@@ -76,7 +76,11 @@ function UnitCard({ unit }: { unit: UnitSummary }) {
           ) : null
         ) : (
           <span className="text-sm text-muted">
-            {unit.lockReason === 'COMING_SOON' ? '⏳ Coming soon' : '🔒 Locked'}
+            {unit.lockReason === 'COMING_SOON'
+              ? '⏳ Coming soon'
+              : unit.lockReason === 'FINISH_PREVIOUS'
+                ? `🔒 Finish Unit ${unit.number - 1} first`
+                : '🔒 Locked'}
           </span>
         )}
       </div>

@@ -5,6 +5,7 @@ import { ButtonLink, PageShell } from '@/components/ui';
 import { serverApi } from '@/lib/server-api';
 import { AiModeSelect } from './ai-mode-select';
 import { Roster } from './roster';
+import { SelfPacedToggle } from './self-paced-toggle';
 
 export const dynamic = 'force-dynamic';
 
@@ -55,6 +56,7 @@ export default async function ClassPage({ params }: PageProps<'/classes/[classId
           </p>
         </div>
 
+        <SelfPacedToggle classId={klass.id} initial={klass.selfPaced} />
         <AiModeSelect classId={klass.id} initial={klass.aiFeedbackMode} />
 
         <Roster classId={klass.id} students={students} />
