@@ -8,4 +8,5 @@ export * from './analyzers/word-choice.js';
 export * from './analyzers/narration.js';
 export * from './analyzers/senses.js';
 export * from './analyzers/dialogue.js';
+export * from './analyzers/mood.js';
 export * from './coach.js';

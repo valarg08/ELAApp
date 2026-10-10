@@ -1,0 +1,65 @@
+{
+  "slug": "setting-creates-mood",
+  "order": 2,
+  "title": "Setting Creates Mood",
+  "estMinutes": 45,
+  "focusSkills": ["mood", "setting"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "One park, two moods",
+      "paragraphs": [
+        "Sunlight spilled across the grass. Ducks paddled lazily, a dog chased a frisbee, and somewhere an ice-cream van jingled.",
+        "Fog hung over the grass. The swings creaked, though no one was on them, and the pond lay black and still.",
+        "Same park. Same pond. But the first one feels bright and safe, and the second feels gloomy and tense. The writer chose the details that build each mood."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Mood",
+          "body": "Mood is the feeling a place gives the reader: calm or tense, bright or gloomy, safe or dangerous. You build mood with your choice of details: the light, the weather, the sounds, and the objects you notice."
+        },
+        {
+          "kind": "compare",
+          "title": "Name it or build it",
+          "telling": "The house was scary.",
+          "showing": "The front door hung from one hinge, and something inside dripped, slow and steady, in the dark.",
+          "note": "The second version never says \"scary\". The broken door, the drip and the dark do the work."
+        },
+        {
+          "kind": "definition",
+          "title": "Your mood toolkit",
+          "body": "Light: golden sun or dim shadows? Weather: a soft breeze or a storm? Sounds: birdsong or a sudden crack? Sentences: long and flowing for calm, short and sharp for tense."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the mood words",
+          "prompt": "Tap the three words that make this attic feel gloomy.",
+          "text": "Dust covered the boxes, cobwebs drooped from the beams, and one dim bulb flickered.",
+          "clues": ["dust", "cobwebs", "dim"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u03.mood-sort", "u03.mood-highlight", "u03.mood-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u03.mood-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which detail builds your mood the most? Why?",
+        "Did Quill's reader feel the mood you chose? What would you change?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

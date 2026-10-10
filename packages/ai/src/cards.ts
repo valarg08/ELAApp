@@ -1,6 +1,7 @@
 import { anchorQuote } from './anchor.js';
 import type { CharacterReadResult } from './analyzers/character-read.js';
 import type { SensoryResult } from './analyzers/sensory.js';
+import type { SettingMoodResult } from './analyzers/setting-mood.js';
 import type { ShowVsTellResult } from './analyzers/show-vs-tell.js';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
@@ -144,6 +145,49 @@ export function characterReadPoints(text: string, r: CharacterReadResult, checkW
       );
       if (point) strengths.push(point);
     }
+  }
+  return { strengths: strengths.slice(0, 3), nextSteps: nextSteps.slice(0, 3) };
+}
+
+/** "What mood will my reader feel?": moods that come through as strengths, the rest (and unclear time or place) as next steps. */
+export function settingMoodPoints(text: string, r: SettingMoodResult) {
+  const strengths: FeedbackPoint[] = [];
+  const nextSteps: FeedbackPoint[] = [];
+  for (const t of r.targets) {
+    if (t.felt) {
+      const point = {
+        title: `Your reader feels: ${t.mood} ✓`,
+        message: 'Your details build the mood without naming it.',
+      };
+      strengths.push(anchored(text, point, t.quote) ?? point);
+    } else {
+      nextSteps.push({
+        title: `Not yet ${t.mood}`,
+        message: t.idea ?? `You could try a detail that makes the place feel ${t.mood}.`,
+      });
+    }
+  }
+  if (r.targets.length === 0 && r.overallMood) {
+    const detail = r.strongDetails[0];
+    const point = {
+      title: `Your setting feels ${r.overallMood}`,
+      message: detail?.why ?? 'That is the mood a reader would feel.',
+    };
+    strengths.push(anchored(text, point, detail?.quote) ?? point);
+  }
+  if (!r.place.clear) {
+    nextSteps.push({
+      title: 'Where are we?',
+      message:
+        'You could try naming one specific thing in the place so the reader can picture where this happens.',
+    });
+  }
+  if (!r.time.clear) {
+    nextSteps.push({
+      title: 'When is it?',
+      message:
+        'You could try one clue about the time: the light, the season, or what people are doing.',
+    });
   }
   return { strengths: strengths.slice(0, 3), nextSteps: nextSteps.slice(0, 3) };
 }

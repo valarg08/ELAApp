@@ -86,7 +86,12 @@ export const LIVE_CHECK_LIMITS = {
   maxWords: 8000,
 } as const;
 
-export const LiveAnalyzerId = z.enum(['show-vs-tell', 'sensory-analysis', 'character-read']);
+export const LiveAnalyzerId = z.enum([
+  'show-vs-tell',
+  'sensory-analysis',
+  'character-read',
+  'setting-mood',
+]);
 export type LiveAnalyzerId = z.infer<typeof LiveAnalyzerId>;
 
 export const LiveCheckRequest = z.object({
@@ -95,6 +100,8 @@ export const LiveCheckRequest = z.object({
   text: z.string().max(60_000),
   /** For "Can your reader tell?": the traits the student picked. */
   traits: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(3).default([]),
+  /** For "What mood will my reader feel?": the moods the student chose. */
+  mood: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(3).default([]),
 });
 export type LiveCheckRequest = z.infer<typeof LiveCheckRequest>;
 

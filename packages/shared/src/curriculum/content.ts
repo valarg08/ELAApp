@@ -1,4 +1,9 @@
-import { ANALYZER_IDS } from '@storyforge/writing-analysis';
+import {
+  ANALYZER_IDS,
+  MOOD_AXES,
+  MOOD_AXIS_IDS,
+  type MoodPole,
+} from '@storyforge/writing-analysis';
 import { z } from 'zod';
 import { WritingConstraints } from './constraints.js';
 
@@ -83,7 +88,26 @@ export const WRITING_ACTIVITY_TYPES = [
   'TRAITS_IN_ACTION',
   'CHARACTER_VOICE',
   'FLAW_SCENE',
+  'SETTING_SNAPSHOT',
+  'MOOD_SCENE',
+  'WORLD_DETAILS',
+  'SETTING_SCENE',
 ] as const;
+
+/**
+ * Before writing, the student sets the mood of their setting on one or more scales (calm ↔ tense,
+ * bright ↔ gloomy, safe ↔ dangerous). The workspace shows a word bank for the chosen moods, the
+ * Coach compares the mood of their words, and Quill says what mood a reader feels (Unit 3).
+ */
+export const MoodPicker = z.object({
+  label: text(120),
+  axes: z
+    .array(z.enum(MOOD_AXIS_IDS))
+    .min(1)
+    .max(3)
+    .default([...MOOD_AXIS_IDS]),
+});
+export type MoodPicker = z.infer<typeof MoodPicker>;
 
 /**
  * Before writing, the student picks traits (or a flaw) for their character. Picked traits become
@@ -116,6 +140,7 @@ export const WritingActivity = z.object({
   /** Checks shown in the Coach panel (default: telling, filter words, senses, sentence variety). */
   analyzers: z.array(z.enum(ANALYZER_IDS)).min(1).optional(),
   traitPicker: TraitPicker.optional(),
+  moodPicker: MoodPicker.optional(),
 });
 
 export const ActivityContent = z.discriminatedUnion('type', [
@@ -145,6 +170,25 @@ export const CHARACTER_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
   'TRAITS_IN_ACTION',
   'FLAW_SCENE',
 ];
+
+/** Setting activities (Unit 3): Quill says what mood a reader feels and whether time and place are clear. */
+export const SETTING_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
+  'SETTING_SNAPSHOT',
+  'MOOD_SCENE',
+  'WORLD_DETAILS',
+  'SETTING_SCENE',
+];
+
+/** Chosen moods that fit the activity's mood picker: at most one pole per scale, in scale order. */
+export function validMoods(activity: WritingActivity, moods: readonly string[]): MoodPole[] {
+  const picker = activity.moodPicker;
+  if (!picker) return [];
+  const wanted = new Set(moods.map((m) => m.trim().toLowerCase()));
+  return MOOD_AXES.filter((a) => picker.axes.includes(a.id)).flatMap((a) => {
+    const pole = a.poles.find((p) => wanted.has(p));
+    return pole ? [pole] : [];
+  });
+}
 
 /** Words the student may not use once traits are picked: each trait and its other forms. */
 export function traitBannedWords(activity: WritingActivity, traits: readonly string[]): string[] {

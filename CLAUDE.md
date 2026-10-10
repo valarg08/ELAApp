@@ -16,7 +16,7 @@
 - Rules: every endpoint needs an authorisation test; never log student text; never call the real Claude API in tests
   (use the fake AiGateway); validate all JSON columns with Zod before writes; UI must be keyboard accessible and pass axe.
 - Lint is oxlint (`.oxlintrc.json`), formatting is Prettier. Markdown files are excluded from Prettier.
-- Current phase: see DESIGN.md §14.2. P0–P4, SL1 (self-paced learning + AI tutor, DESIGN.md §9.5) and SL2 (Unit 2 lessons, trait picker, §9.6) are done; next is SL3+ (Units 3–12 lessons, one unit at a time). P5 (teacher dashboard) is deferred.
+- Current phase: see DESIGN.md §14.2. P0–P4, SL1 (self-paced learning + AI tutor, DESIGN.md §9.5), SL2 (Unit 2 lessons, trait picker, §9.6) and SL3 (Unit 3 lessons, mood picker, §9.7) are done; next is SL4+ (Units 4–12 lessons, one unit at a time). P5 (teacher dashboard) is deferred.
 - Tests: API tests hit the real `storyforge_test` database (DATABASE_TEST_URL, never the dev DB) and run files serially.
   Auth: global guards (AuthGuard → CsrfGuard → RolesGuard); mark open routes `@Public()`, restrict with `@Roles()`.
   Ownership checks live in ClassAccessService; other teachers' resources answer 404.

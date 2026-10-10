@@ -71,7 +71,7 @@ describe('Curriculum and lesson progress (e2e)', () => {
       lessonCount: 4,
       completedLessons: 0,
     });
-    expect(units[2]).toMatchObject({ number: 3, available: false, lockReason: 'COMING_SOON' });
+    expect(units[3]).toMatchObject({ number: 4, available: false, lockReason: 'COMING_SOON' });
   });
 
   it('opens a unit by slug and lists its lessons in order', async () => {
@@ -216,7 +216,7 @@ describe('Curriculum and lesson progress (e2e)', () => {
         hidden: false,
         lessonCount: 4,
       });
-      expect(pacing[2]).toMatchObject({ number: 3, published: false, available: false });
+      expect(pacing[3]).toMatchObject({ number: 4, published: false, available: false });
     });
 
     it('locks and unlocks a unit, and sets a due date the student can see', async () => {

@@ -7,6 +7,7 @@ import {
   SENSES,
   type Sense,
   type Span,
+  MOOD_POLES,
   buildCoachReport,
 } from '@storyforge/writing-analysis';
 import { useState } from 'react';
@@ -30,6 +31,7 @@ export function CoachPanel({
   activity,
   activityId,
   traits,
+  mood,
   onShow,
 }: {
   text: string;
@@ -37,6 +39,8 @@ export function CoachPanel({
   activity: WritingActivity;
   /** Traits picked for the trait picker (for "Can my reader tell?"). */
   traits: string[];
+  /** Moods chosen for the mood picker (the mood check compares against them). */
+  mood: string[];
   /** Select the words a card points at in the editor. */
   onShow: (span: Span) => void;
 }) {
@@ -50,6 +54,7 @@ export function CoachPanel({
         analyzers: activity.analyzers,
         povLock: activity.constraints.povLock,
         tenseLock: activity.constraints.tenseLock,
+        moods: MOOD_POLES.filter((p) => mood.includes(p)),
       }),
     });
   }
@@ -114,6 +119,7 @@ export function CoachPanel({
         activityId={activityId}
         activity={activity}
         traits={traits}
+        mood={mood}
         text={text}
         onShow={onShow}
       />

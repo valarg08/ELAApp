@@ -8,6 +8,7 @@ import {
   type WritingContext,
   analyzersForActivity,
   characterReadPoints,
+  settingMoodPoints,
   rubricPoints,
   rubricScoreAnalyzer,
   sensoryPoints,
@@ -46,6 +47,7 @@ const SKILL_NAMES: Record<string, string> = {
   dialogue: 'dialogue',
   pov: 'point of view',
   tense: 'consistent tense',
+  mood: 'setting mood',
 };
 
 /**
@@ -133,13 +135,13 @@ export class FeedbackPipeline {
     const notes: string[] = [];
     const extraStrengths: FeedbackPoint[] = [];
     const extraNextSteps: FeedbackPoint[] = [];
-    // "Can your reader tell?" is the point of a character activity, so its points come first.
-    const characterStrengths: FeedbackPoint[] = [];
-    const characterNextSteps: FeedbackPoint[] = [];
+    // The unit's own check ("Can your reader tell?", "What mood…") is the point of the activity, so its points come first.
+    const focusStrengths: FeedbackPoint[] = [];
+    const focusNextSteps: FeedbackPoint[] = [];
     let declined = false;
     const versions: string[] = [];
     const runMeta = { ...meta, cacheScope: activity.key, text };
-    const traits = submissionChoices(submission.choices).traits;
+    const { traits, mood: moods } = submissionChoices(submission.choices);
     const checkWantFear = WANT_FEAR_TYPES.includes(content.type);
     const collect = (p: { strengths: FeedbackPoint[]; nextSteps: FeedbackPoint[] }) => {
       extraStrengths.push(...p.strengths);
@@ -169,6 +171,25 @@ export class FeedbackPipeline {
         analyzerOutputs[id] = r;
         notes.push(`sensory: missing ${r.missing.join(', ') || 'none'}`);
         collect(sensoryPoints(text, r));
+      } else if (id === 'setting-mood') {
+        const outcome = await this.ai.run(
+          LIVE_ANALYZERS[id],
+          { ...ctx, targetMoods: moods },
+          { ...runMeta, cacheScope: `${activity.key}|${moods.join(',')}` },
+        );
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        const felt = r.targets.filter((t) => t.felt).map((t) => t.mood);
+        notes.push(
+          `setting: chosen moods ${moods.join(', ') || 'none'}; a reader feels ${r.overallMood} (${felt.join(', ') || 'none of the chosen'}); time ${r.time.clear ? 'clear' : 'unclear'}, place ${r.place.clear ? 'clear' : 'unclear'}`,
+        );
+        const p = settingMoodPoints(text, r);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
       } else {
         const outcome = await this.ai.run(
           LIVE_ANALYZERS[id],
@@ -186,8 +207,8 @@ export class FeedbackPipeline {
           `character: chosen traits ${traits.join(', ') || 'none'}; a reader can tell ${shown.join(', ') || 'none'}; want ${r.want.clear ? 'clear' : 'unclear'}, fear ${r.fear.clear ? 'clear' : 'unclear'}`,
         );
         const p = characterReadPoints(text, r, checkWantFear);
-        characterStrengths.push(...p.strengths);
-        characterNextSteps.push(...p.nextSteps);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
       }
     }
 
@@ -248,12 +269,12 @@ export class FeedbackPipeline {
 
     const composed = rubricPoints(text, r);
     const strengths = dedupe([
-      ...characterStrengths.slice(0, 2),
+      ...focusStrengths.slice(0, 3),
       ...composed.strengths,
       ...extraStrengths,
-    ]).slice(0, characterStrengths.length > 1 ? 3 : 2);
+    ]).slice(0, focusStrengths.length > 1 ? 3 : 2);
     const nextSteps = dedupe([
-      ...characterNextSteps.slice(0, 2),
+      ...focusNextSteps.slice(0, 2),
       ...composed.nextSteps,
       ...extraNextSteps,
     ]).slice(0, 3);

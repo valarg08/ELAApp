@@ -2,6 +2,7 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 import {
   type AnalyzerOutcome,
   type CharacterReadResult,
+  type SettingMoodResult,
   type FeedbackPoint,
   HOLDING_MESSAGE,
   LIVE_ANALYZERS,
@@ -12,6 +13,7 @@ import {
   type WritingContext,
   analyzersForActivity,
   characterReadPoints,
+  settingMoodPoints,
   sensoryPoints,
   showVsTellPoints,
 } from '@storyforge/ai';
@@ -22,6 +24,7 @@ import {
   type LiveCheckRequest,
   type LiveCheckResponse,
   isWritingActivity,
+  validMoods,
   validTraits,
 } from '@storyforge/shared';
 import { countWords } from '@storyforge/writing-analysis';
@@ -75,14 +78,14 @@ export class LiveChecksService {
       throw notFound(ErrorCode.ACTIVITY_NOT_FOUND, 'Writing activity not found.');
     }
     if (
-      req.analyzer === 'character-read' &&
-      !analyzersForActivity(content.type).includes('character-read')
+      (req.analyzer === 'character-read' || req.analyzer === 'setting-mood') &&
+      !analyzersForActivity(content.type).includes(req.analyzer)
     ) {
       throw new AppError(
         HttpStatus.BAD_REQUEST,
         ErrorCode.VALIDATION_FAILED,
         'Not for this activity',
-        'Quill can only check characters in character activities.',
+        'Quill can’t run that check on this activity.',
       );
     }
     const classId = await this.curriculum.studentClassForUnit(user, activity.unit);
@@ -163,6 +166,17 @@ export class LiveChecksService {
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = sensoryPoints(req.text, outcome.result);
+      } else if (req.analyzer === 'setting-mood') {
+        const moods = validMoods(content, req.mood);
+        const outcome: AnalyzerOutcome<SettingMoodResult> = await withTimeout(
+          this.ai.run(
+            LIVE_ANALYZERS['setting-mood'],
+            { ...ctx, targetMoods: moods },
+            { ...meta, cacheScope: `${activity.key}|${moods.join(',')}` },
+          ),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = settingMoodPoints(req.text, outcome.result);
       } else {
         const traits = validTraits(content, req.traits);
         const checkWantFear = WANT_FEAR_TYPES.includes(content.type);

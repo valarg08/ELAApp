@@ -30,6 +30,7 @@ import {
   diffWords,
   isWritingActivity,
   submissionChoices,
+  validMoods,
   validTraits,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
@@ -182,6 +183,27 @@ export class SubmissionsService {
     return this.detail(updated);
   }
 
+  /** Save the moods chosen for the activity's mood picker (one per scale; unknown moods are dropped). */
+  async setMood(user: AuthUser, id: string, mood: string[]): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    if (!activity.moodPicker) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'No mood here',
+        'This activity doesn’t ask you to choose a mood.',
+      );
+    }
+    const choices: SubmissionChoices = { ...choicesOf(current), mood: validMoods(activity, mood) };
+    const updated = await this.db.client.submission.update({
+      where: { id },
+      data: { choices: SubmissionChoices.parse(choices) },
+      include: { activity: { include: { lesson: true } } },
+    });
+    return this.detail(updated);
+  }
+
   /** "Save version": a snapshot the student asked for. */
   async saveVersion(user: AuthUser, id: string, baseRevision: number): Promise<VersionSummary> {
     const current = await this.editable(user, id);
@@ -205,6 +227,20 @@ export class SubmissionsService {
         picker.count === 1
           ? 'Pick your character’s trait first.'
           : `Pick ${picker.count} traits first.`;
+      throw new AppError(
+        HttpStatus.UNPROCESSABLE_ENTITY,
+        ErrorCode.CONSTRAINTS_NOT_MET,
+        'Almost there',
+        message,
+        [message],
+      );
+    }
+    const moodPicker = activity.moodPicker;
+    if (
+      moodPicker &&
+      validMoods(activity, choicesOf(current).mood).length < moodPicker.axes.length
+    ) {
+      const message = 'Choose the mood of your setting first.';
       throw new AppError(
         HttpStatus.UNPROCESSABLE_ENTITY,
         ErrorCode.CONSTRAINTS_NOT_MET,
@@ -435,6 +471,7 @@ export class SubmissionsService {
           }
         : null,
       traits: choicesOf(s).traits,
+      mood: choicesOf(s).mood,
     };
   }
 }

@@ -1,0 +1,401 @@
+[
+  {
+    "key": "u03.when-where-sort",
+    "type": "SORT",
+    "title": "When or where?",
+    "instructions": "Sort each detail: does it tell you WHEN the story happens, or WHERE?",
+    "buckets": [
+      { "id": "when", "label": "When 🕰️" },
+      { "id": "where", "label": "Where 📍" }
+    ],
+    "items": [
+      { "id": "frost", "text": "Frost still clung to the car windows.", "bucketId": "when" },
+      { "id": "locker", "text": "Between the lockers and the trophy case", "bucketId": "where" },
+      { "id": "bell", "text": "Just before the last bell of the day", "bucketId": "when" },
+      { "id": "attic", "text": "Up in Grandma's dusty attic", "bucketId": "where" },
+      {
+        "id": "1900",
+        "text": "Back when horses pulled the carts through town",
+        "bucketId": "when"
+      },
+      { "id": "harbour", "text": "On the slippery steps of the harbour", "bucketId": "where" }
+    ]
+  },
+  {
+    "key": "u03.specific-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Specific details",
+    "instructions": "Tap the three details that make this classroom one specific place, not any classroom.",
+    "text": "Mr. Okafor's classroom had a wobbly globe, a snake tank humming in the corner, and a clock that ran ten minutes fast.",
+    "targets": ["globe", "snake", "clock"],
+    "explanation": "A wobbly globe, a humming snake tank and a fast clock belong to THIS classroom. Specific details let readers picture one real place."
+  },
+  {
+    "key": "u03.time-place-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Time and place check",
+    "questions": [
+      {
+        "id": "best-setting",
+        "prompt": "Which sentence gives the clearest setting?",
+        "options": [
+          { "id": "a", "text": "It was somewhere, at some point." },
+          {
+            "id": "b",
+            "text": "On the last night of summer, the fairground lights blinked on one by one."
+          },
+          { "id": "c", "text": "They went to a place." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "\"The last night of summer\" tells you when, and \"the fairground\" tells you where, with a detail you can see.",
+        "hint": "Look for a sentence that answers both when and where."
+      },
+      {
+        "id": "show-time",
+        "prompt": "Which detail shows it is early morning without saying \"morning\"?",
+        "options": [
+          { "id": "a", "text": "The milk van rattled past as the first birds began to sing." },
+          { "id": "b", "text": "It was a nice day." },
+          { "id": "c", "text": "The moon was high and the streets were silent." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The milk van and the first birdsong are clues to early morning. The moon high in the sky points to night."
+      },
+      {
+        "id": "why-specific",
+        "prompt": "Why are specific details better than general ones?",
+        "options": [
+          { "id": "a", "text": "They make the story longer." },
+          { "id": "b", "text": "They help the reader picture one real place." },
+          { "id": "c", "text": "They use harder words." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "\"A red door with peeling paint\" lets the reader see one door. \"A door\" could be any door."
+      }
+    ]
+  },
+  {
+    "key": "u03.setting-snapshot",
+    "type": "SETTING_SNAPSHOT",
+    "title": "Setting snapshot",
+    "prompt": "Describe a real place you know at one specific time (your kitchen on a school morning, the bus stop in the rain, the park at sunset). Make the reader know when and where without just naming them, using details only this place has.",
+    "tips": [
+      "Show the time with clues: the light, the weather, what people are doing.",
+      "Pick one detail nobody else would notice.",
+      "Use at least two senses: what do you hear and smell?"
+    ],
+    "constraints": {
+      "minWords": 80,
+      "maxWords": 200,
+      "enforcement": "hard"
+    },
+    "analyzers": ["senses", "mood", "filterWords", "sentenceVariety"]
+  },
+  {
+    "key": "u03.mood-sort",
+    "type": "SORT",
+    "title": "Calm or tense?",
+    "instructions": "Sort each setting detail by the mood it builds.",
+    "buckets": [
+      { "id": "calm", "label": "Calm 🌊" },
+      { "id": "tense", "label": "Tense ⚡" }
+    ],
+    "items": [
+      { "id": "waves", "text": "Waves lapped gently against the boat.", "bucketId": "calm" },
+      { "id": "twig", "text": "A twig snapped somewhere behind them.", "bucketId": "tense" },
+      { "id": "cat", "text": "The cat dozed in a square of warm sunlight.", "bucketId": "calm" },
+      { "id": "door", "text": "The door handle turned, slowly, by itself.", "bucketId": "tense" },
+      { "id": "meadow", "text": "Grass swayed across the quiet meadow.", "bucketId": "calm" },
+      { "id": "alarm", "text": "An alarm shrieked, then stopped dead.", "bucketId": "tense" }
+    ]
+  },
+  {
+    "key": "u03.mood-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Building a bright mood",
+    "instructions": "Tap the three words that make this market feel bright and cheerful.",
+    "text": "Golden lanterns swung above the stalls, oranges glowed in their crates, and the fountain sparkled in the sun.",
+    "targets": ["golden", "glowed", "sparkled"],
+    "explanation": "Golden lanterns, glowing oranges and a sparkling fountain all fill the market with light. The writer never had to say \"cheerful\"."
+  },
+  {
+    "key": "u03.mood-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Mood check",
+    "questions": [
+      {
+        "id": "dangerous",
+        "prompt": "Which detail makes a forest feel dangerous?",
+        "options": [
+          { "id": "a", "text": "Birds sang in the sunny branches." },
+          {
+            "id": "b",
+            "text": "Something large crashed through the bushes, and the birds went silent."
+          },
+          { "id": "c", "text": "A family had a picnic by the stream." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A crash and a sudden silence warn the reader that something is wrong. That's how you build danger without naming it.",
+        "hint": "Which detail would make you stop and listen?"
+      },
+      {
+        "id": "tense-sentence",
+        "prompt": "Which sentences build a tense mood best?",
+        "options": [
+          { "id": "a", "text": "The stairs creaked. Then silence. Then another creak, closer." },
+          {
+            "id": "b",
+            "text": "The stairs, which were made of old wood, creaked a little bit as people went up and down them during the day."
+          },
+          { "id": "c", "text": "The stairs were nice." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Short, sharp sentences and a sound that comes closer make the reader hold their breath."
+      },
+      {
+        "id": "what-mood",
+        "prompt": "\"A fire crackled in the hearth, and Grandpa tucked a blanket around my knees.\" What mood does this build?",
+        "options": [
+          { "id": "a", "text": "Safe and cosy" },
+          { "id": "b", "text": "Dangerous" },
+          { "id": "c", "text": "Gloomy" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A warm fire, a blanket and a grandparent are all safe, familiar details."
+      }
+    ]
+  },
+  {
+    "key": "u03.mood-scene",
+    "type": "MOOD_SCENE",
+    "title": "Mood maker",
+    "prompt": "Choose a mood on each scale. Then describe one place (a school hallway, a playground, a kitchen or a beach) so the reader feels that mood. Build it with light, weather, sounds and objects, not by naming the mood. Quill will tell you what mood a reader feels.",
+    "tips": [
+      "Use the word bank for ideas, then add your own.",
+      "Tense? Try short sentences and sudden sounds. Calm? Try long, flowing ones.",
+      "Pick details that all point the same way."
+    ],
+    "constraints": {
+      "minWords": 80,
+      "maxWords": 200,
+      "enforcement": "hard"
+    },
+    "analyzers": ["mood", "senses", "telling", "sentenceVariety"],
+    "moodPicker": {
+      "label": "Set the mood of your place",
+      "axes": ["energy", "light", "safety"]
+    }
+  },
+  {
+    "key": "u03.world-sort",
+    "type": "SORT",
+    "title": "Explaining or showing the world?",
+    "instructions": "Sort each sentence: does it explain the world's rule, or show it through everyday life?",
+    "buckets": [
+      { "id": "explain", "label": "Explains the rule" },
+      { "id": "show", "label": "Shows the rule" }
+    ],
+    "items": [
+      { "id": "e1", "text": "In this world, everyone can read minds.", "bucketId": "explain" },
+      {
+        "id": "s1",
+        "text": "At dinner, Mum answered Leo's question before he asked it, so he thought about pudding instead.",
+        "bucketId": "show"
+      },
+      {
+        "id": "e2",
+        "text": "The city was built underwater a long time ago.",
+        "bucketId": "explain"
+      },
+      {
+        "id": "s2",
+        "text": "Kids raced to school on seahorses, and the bell was a whale's low hum.",
+        "bucketId": "show"
+      },
+      { "id": "e3", "text": "On this planet, the sun never sets.", "bucketId": "explain" },
+      {
+        "id": "s3",
+        "text": "Bedtime meant pulling on a thick eye-mask and closing the metal shutters against the afternoon glare.",
+        "bucketId": "show"
+      }
+    ]
+  },
+  {
+    "key": "u03.world-highlight",
+    "type": "HIGHLIGHT",
+    "title": "World clues",
+    "instructions": "Tap the three words that show how this world is different from ours.",
+    "text": "Every morning, Juno watered the cloud in her garden, paid for bread with a song, and waved to the moon as it rolled past.",
+    "targets": ["cloud", "song", "rolled"],
+    "explanation": "A cloud you water, bread paid for with a song, and a moon that rolls past are everyday details in a world with different rules."
+  },
+  {
+    "key": "u03.world-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "World-building check",
+    "questions": [
+      {
+        "id": "believable",
+        "prompt": "What makes an invented world feel believable?",
+        "options": [
+          { "id": "a", "text": "A long explanation of all its rules at the start" },
+          { "id": "b", "text": "Small, everyday details that show how people live there" },
+          { "id": "c", "text": "Lots of made-up words on every line" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "When characters do ordinary things in an unusual world, readers believe it, and they work out the rules themselves.",
+        "hint": "Think about what makes a real place feel real."
+      },
+      {
+        "id": "show-rule",
+        "prompt": "In a world where it's always winter, which detail shows it best?",
+        "options": [
+          { "id": "a", "text": "It was always winter there." },
+          {
+            "id": "b",
+            "text": "Nobody in the village had ever seen a flower, except in Grandma's old book."
+          },
+          { "id": "c", "text": "The village was nice." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Never seeing a flower is a small, surprising detail that shows the endless winter without explaining it."
+      },
+      {
+        "id": "everyday",
+        "prompt": "Which question helps you invent everyday details?",
+        "options": [
+          { "id": "a", "text": "What do kids here eat for breakfast?" },
+          { "id": "b", "text": "How long is my story?" },
+          { "id": "c", "text": "What colour is my pen?" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Thinking about ordinary life (food, school, chores) gives you details that make the world feel lived in."
+      }
+    ]
+  },
+  {
+    "key": "u03.world-details",
+    "type": "WORLD_DETAILS",
+    "title": "A day in my world",
+    "prompt": "Invent a world where one thing works differently from ours. Describe a normal morning there, showing the rule through at least three everyday details (breakfast, getting to school, chores). Don't explain the rule: let the reader work it out.",
+    "tips": [
+      "Decide your one big rule first, then ask: how would it change breakfast? School? Bedtime?",
+      "Make one detail funny or annoying. Normal problems make strange worlds feel real.",
+      "Make it clear when and where we are."
+    ],
+    "constraints": {
+      "minWords": 100,
+      "maxWords": 250,
+      "bannedWords": ["magic"],
+      "enforcement": "hard"
+    },
+    "analyzers": ["telling", "senses", "sentenceVariety", "filterWords"]
+  },
+  {
+    "key": "u03.helps-blocks-sort",
+    "type": "SORT",
+    "title": "Helps or blocks?",
+    "instructions": "Each character wants to get somewhere fast. Sort each setting detail: does it help them or block them?",
+    "buckets": [
+      { "id": "helps", "label": "Helps 👍" },
+      { "id": "blocks", "label": "Blocks 🚧" }
+    ],
+    "items": [
+      { "id": "ice", "text": "The road is a sheet of black ice.", "bucketId": "blocks" },
+      {
+        "id": "shortcut",
+        "text": "A hidden shortcut cuts through the hedge.",
+        "bucketId": "helps"
+      },
+      { "id": "crowd", "text": "The market is packed shoulder to shoulder.", "bucketId": "blocks" },
+      {
+        "id": "wind",
+        "text": "A strong wind pushes their boat towards the shore.",
+        "bucketId": "helps"
+      },
+      {
+        "id": "bridge",
+        "text": "The old bridge has collapsed into the river.",
+        "bucketId": "blocks"
+      },
+      { "id": "moon", "text": "A full moon lights up the path.", "bucketId": "helps" }
+    ]
+  },
+  {
+    "key": "u03.action-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Setting in motion",
+    "instructions": "Tap the three action words that show Sam moving through the setting.",
+    "text": "Sam ducked under the dripping branches, splashed across the stream, and scrambled up the muddy bank.",
+    "targets": ["ducked", "splashed", "scrambled"],
+    "explanation": "Ducking, splashing and scrambling let you discover the woods, the stream and the bank as Sam moves through them. Setting and action at the same time!"
+  },
+  {
+    "key": "u03.action-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Setting in action check",
+    "questions": [
+      {
+        "id": "problem",
+        "prompt": "Which setting causes the biggest problem for a character trying to deliver a cake?",
+        "options": [
+          { "id": "a", "text": "A sunny, empty street" },
+          { "id": "b", "text": "A steep hill covered in fresh snow, with a dog that loves cake" },
+          { "id": "c", "text": "A tidy kitchen" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A slippery hill and a hungry dog both get in the way. A setting that causes trouble creates a story.",
+        "hint": "Which setting makes the job hardest?"
+      },
+      {
+        "id": "through-character",
+        "prompt": "Which sentence shows the setting through the character's actions?",
+        "options": [
+          { "id": "a", "text": "The cave was dark and wet." },
+          {
+            "id": "b",
+            "text": "Ana felt along the slimy wall, her torch flickering, water dripping down her neck."
+          },
+          { "id": "c", "text": "There was a cave." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "We learn about the cave (slimy, dark, dripping) from what Ana touches and feels as she moves."
+      },
+      {
+        "id": "why",
+        "prompt": "Why let the setting cause a problem?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It turns description into action, so the reader wants to know what happens."
+          },
+          { "id": "b", "text": "So you don't need characters." },
+          { "id": "c", "text": "It makes the setting less important." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "When the setting gets in the way, the reader worries about the character, and the description becomes part of the story."
+      }
+    ]
+  },
+  {
+    "key": "u03.setting-scene",
+    "type": "SETTING_SCENE",
+    "title": "The setting fights back",
+    "prompt": "Choose the mood of your scene. Then write a scene where a character is trying to get somewhere or do something, and the setting causes a problem (weather, a locked door, a crowd, a steep cliff). Show the place through what the character sees, hears and touches as they move.",
+    "tips": [
+      "Start with what your character wants to do right now.",
+      "Let the setting make it harder at least twice.",
+      "Use at least three senses, and keep details pointing to your chosen mood."
+    ],
+    "constraints": {
+      "minWords": 150,
+      "maxWords": 300,
+      "enforcement": "hard"
+    },
+    "analyzers": ["mood", "senses", "telling", "sentenceVariety", "filterWords"],
+    "moodPicker": {
+      "label": "Set the mood of your scene",
+      "axes": ["energy", "safety"]
+    }
+  }
+]

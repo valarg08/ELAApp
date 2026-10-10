@@ -1,0 +1,61 @@
+{
+  "slug": "small-details-big-worlds",
+  "order": 3,
+  "title": "Small Details, Big Worlds",
+  "estMinutes": 45,
+  "focusSkills": ["world-building"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Imagine a world where one thing works differently from ours. What is it? (Maybe it rains upward, or cats run the post office.)",
+      "placeholder": "In my world…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "World-building",
+          "body": "World-building means inventing a place and how it works: its rules, its people and its everyday life. Fantasy and science fiction writers do it, but so does anyone who invents a town, a school or a planet."
+        },
+        {
+          "kind": "compare",
+          "title": "Explain it or show it",
+          "telling": "In this world, there was no gravity at night.",
+          "showing": "Every evening, Ezra tied his shoes to the bedpost, buckled his seatbelt blanket, and watched his socks drift towards the ceiling.",
+          "note": "The second version shows the rule through ordinary life. The reader works out the rule, and believes it."
+        },
+        {
+          "kind": "definition",
+          "title": "Everyday details sell the world",
+          "body": "What do people eat for breakfast? How do kids get to school? What is a normal annoying chore? Small, ordinary details make a strange world feel real."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the world clues",
+          "prompt": "Tap the three words that show this is not our world.",
+          "text": "Mira fed the dragon its morning coal, then flew her broom past the floating market to school.",
+          "clues": ["dragon", "broom", "floating"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u03.world-sort", "u03.world-highlight", "u03.world-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u03.world-details" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What is the one rule that makes your world different?",
+        "Which everyday detail makes your world feel most real?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

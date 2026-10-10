@@ -5,6 +5,7 @@ import {
   RestoreRequest,
   RevisionRequest,
   SaveDraftRequest,
+  SetMoodRequest,
   SetTraitsRequest,
   type SaveDraftResponse,
   type SubmissionDetail,
@@ -63,6 +64,17 @@ export class SubmissionsController {
     @Body({ schema: SetTraitsRequest }) body: SetTraitsRequest,
   ): Promise<SubmissionDetail> {
     return this.submissions.setTraits(user, id, body.traits);
+  }
+
+  /** The moods chosen for the activity's mood picker (Unit 3). */
+  @Roles('STUDENT')
+  @Put(':id/mood')
+  setMood(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetMoodRequest }) body: SetMoodRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setMood(user, id, body.mood);
   }
 
   @Roles('STUDENT')

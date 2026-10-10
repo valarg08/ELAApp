@@ -1,0 +1,62 @@
+{
+  "slug": "setting-in-action",
+  "order": 4,
+  "title": "Setting in Action",
+  "estMinutes": 45,
+  "focusSkills": ["setting", "conflict"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "In which sentence does the setting matter?",
+      "a": "Tom walked home from the shop.",
+      "b": "Tom had ten minutes to get home before the river rose over the only bridge.",
+      "reveal": "In the second sentence, the setting causes a problem: the rising river. When the setting gets in the way, it becomes part of the story, not just the background."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Setting as a problem",
+          "body": "A setting can block your character: a storm, a locked gate, a steep cliff, a crowded market where they lose their little sister. Making the setting cause trouble turns description into action."
+        },
+        {
+          "kind": "definition",
+          "title": "Show the setting through the character",
+          "body": "Instead of describing the place first and the action later, let the character move through it. What do they notice, touch, climb or avoid? The reader learns the place and the story at the same time."
+        },
+        {
+          "kind": "example",
+          "title": "Setting + action",
+          "text": "Rain hammered the tin roof. Jada grabbed the ladder, but the rungs were slick and cold, and the wind tugged at her hood as she climbed towards the trapped kitten.",
+          "note": "The rain, the slippery ladder and the wind are the setting, and every one of them makes Jada's job harder."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "How does the setting fight back?",
+          "prompt": "Tap the three words that show the setting making things harder.",
+          "text": "The path narrowed, loose stones skidded under Ali's boots, and fog swallowed the trail ahead.",
+          "clues": ["narrowed", "skidded", "swallowed"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u03.helps-blocks-sort", "u03.action-highlight", "u03.action-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u03.setting-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How did your setting cause a problem for your character?",
+        "Which sense did you use most? Which one could you add?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "slug": "time-and-place",
+  "order": 1,
+  "title": "Time & Place",
+  "estMinutes": 40,
+  "focusSkills": ["setting"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which opening puts you somewhere?",
+      "a": "Lily walked into the room.",
+      "b": "At six in the morning, the school kitchen was empty except for Lily and a radio crackling out the weather.",
+      "reveal": "The second opening answers two questions at once: when (six in the morning) and where (the school kitchen). That's setting, and it puts the reader right there."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Setting = when + where",
+          "body": "The setting is when and where a story happens. When can be a time of day, a season, or even a year long ago or far in the future. Where can be as big as a city or as small as a cupboard."
+        },
+        {
+          "kind": "compare",
+          "title": "General vs. specific",
+          "telling": "They were at the beach in summer.",
+          "showing": "The sand burned their feet, and an ice-cream van played its tinny song by the car park.",
+          "note": "The second version never says \"summer\" or \"beach\", but specific details make you see and feel it."
+        },
+        {
+          "kind": "definition",
+          "title": "Pick details only this place has",
+          "body": "Every kitchen has a table. Only YOUR kitchen has the table with a burn mark shaped like a boot. One specific detail does more than five general ones."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find when and where",
+          "prompt": "Tap the two words that tell you when, and the word that tells you where.",
+          "text": "Late on Sunday night, the empty station smelled of cold coffee and rain.",
+          "clues": ["late", "night", "station"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u03.when-where-sort", "u03.specific-highlight", "u03.time-place-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u03.setting-snapshot" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which detail in your snapshot could only belong to that place?",
+        "How did you show the time without just naming it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

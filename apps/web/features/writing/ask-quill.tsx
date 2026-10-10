@@ -4,6 +4,7 @@ import { DEFAULT_ANALYZERS, type AnalyzerId, type Span } from '@storyforge/writi
 import {
   CHARACTER_ACTIVITY_TYPES,
   type LiveAnalyzerId,
+  SETTING_ACTIVITY_TYPES,
   LiveCheckResponse,
   type WritingActivity,
 } from '@storyforge/shared';
@@ -26,18 +27,23 @@ export function AskQuill({
   activityId,
   activity,
   traits,
+  mood,
   text,
   onShow,
 }: {
   activityId: string;
   activity: WritingActivity;
   traits: string[];
+  mood: string[];
   text: string;
   onShow: (span: Span) => void;
 }) {
   const checks = [
     ...(CHARACTER_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'character-read' as const, label: 'Can my reader tell?' }]
+      : []),
+    ...(SETTING_ACTIVITY_TYPES.includes(activity.type)
+      ? [{ id: 'setting-mood' as const, label: 'What mood will my reader feel?' }]
       : []),
     ...(activity.analyzers ?? DEFAULT_ANALYZERS).flatMap((a) => {
       const check = AI_CHECKS[a];
@@ -59,6 +65,7 @@ export function AskQuill({
         analyzer,
         text,
         traits,
+        mood,
       });
       setResult({ text, response });
     } catch (e) {

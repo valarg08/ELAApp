@@ -3,6 +3,17 @@
   "slug": "setting-and-world-building",
   "title": "Setting & World-Building",
   "summary": "Build places that feel real: time, place, mood and the sensory details that pull readers inside.",
-  "bigIdeas": ["Setting creates mood.", "Small details make big worlds believable."],
-  "published": false
+  "bigIdeas": [
+    "Every setting answers two questions: when and where.",
+    "Setting creates mood.",
+    "Small details make big worlds believable.",
+    "A setting can help or block your character."
+  ],
+  "published": true,
+  "projectSpec": {
+    "title": "A Place in My Story",
+    "description": "Write a setting scene (300–500 words) where a character moves through a place you invented or know well. Make the time and place clear, build one mood with sensory details, include at least one detail that shows how this world works, and let the setting cause a problem.",
+    "minWords": 300,
+    "maxWords": 500
+  }
 }

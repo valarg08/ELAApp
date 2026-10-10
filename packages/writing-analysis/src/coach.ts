@@ -8,6 +8,14 @@ import {
   tense,
 } from './analyzers/narration.js';
 import { type Sense, senses } from './analyzers/senses.js';
+import {
+  MOOD_AXES,
+  MOOD_WORDS,
+  type MoodPole,
+  axisOf,
+  mood,
+  oppositeOf,
+} from './analyzers/mood.js';
 import { sentenceVariety } from './analyzers/stats.js';
 import { filterWords, telling } from './analyzers/word-choice.js';
 import { type Span, countWords } from './text.js';
@@ -21,6 +29,7 @@ export const ANALYZER_IDS = [
   'dialogue',
   'pov',
   'tense',
+  'mood',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -55,6 +64,8 @@ export interface CoachOptions {
   analyzers?: readonly AnalyzerId[];
   povLock?: Pov;
   tenseLock?: Tense;
+  /** Moods the student chose for their setting (Unit 3); the mood check compares against them. */
+  moods?: readonly MoodPole[];
 }
 
 const MAX_STRENGTHS = 2;
@@ -85,6 +96,9 @@ const quote = (s: Span) => {
   const t = s.text.trim().replace(/\s+/g, ' ');
   return t.length > 90 ? `${t.slice(0, 87)}…` : t;
 };
+/** "a", "a and b", "a, b and c". */
+const listing = (items: readonly string[]) =>
+  items.length <= 1 ? (items[0] ?? '') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`;
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
 
 /**
@@ -155,6 +169,58 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
         title: 'Past or present?',
         message:
           'Your story jumps between past (walked, was) and present (walks, is). Pick one and stick with it.',
+      });
+    }
+  }
+
+  if (enabled.has('mood') && wordCount >= 15) {
+    const m = mood(text);
+    const words = (pole: MoodPole) => [
+      ...new Set(m.hits.filter((h) => h.pole === pole).map((h) => h.word)),
+    ];
+    const ideas = (pole: MoodPole) =>
+      MOOD_WORDS[pole]
+        .filter((w) => w !== pole && !words(pole).includes(w))
+        .slice(0, 4)
+        .join(', ');
+    const chosen = options.moods ?? [];
+    let step: CoachCard | undefined;
+    const matched: MoodPole[] = [];
+    for (const pole of chosen) {
+      const leaning = m.leaning[axisOf(pole)];
+      if (leaning === pole) {
+        matched.push(pole);
+        continue;
+      }
+      if (step) continue;
+      const opposite = oppositeOf(pole);
+      const against = m.hits.find((h) => h.pole === opposite);
+      step =
+        leaning === opposite && against
+          ? {
+              id: 'mood',
+              analyzer: 'mood',
+              title: `Make it feel ${pole}`,
+              message: `You chose ${pole}, but your words feel ${opposite} so far (${words(opposite).slice(0, 3).join(', ')}). You could try words like ${ideas(pole)}.`,
+              span: against.span,
+            }
+          : {
+              id: 'mood',
+              analyzer: 'mood',
+              title: `Build the ${pole} mood`,
+              message: `Add a few details that feel ${pole}. Words like ${ideas(pole)} can help.`,
+            };
+    }
+    if (step) nextSteps.push(step);
+    const leaning = chosen.length > 0 ? matched : MOOD_AXES.flatMap((a) => m.leaning[a.id] ?? []);
+    const first = leaning[0];
+    if (first) {
+      strengths.push({
+        id: 'mood',
+        analyzer: 'mood',
+        title: `Your setting feels ${listing(leaning)}`,
+        message: `Words like ${leaning.flatMap((p) => words(p).slice(0, 2)).join(', ')} build the mood without naming it.`,
+        span: m.hits.find((h) => h.pole === first)?.span,
       });
     }
   }

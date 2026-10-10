@@ -19,6 +19,7 @@ import { ConflictDialog } from './conflict-dialog';
 import { ConstraintsBar } from './constraints-bar';
 import { HistoryPanel, formatWhen } from './history-panel';
 import { SaveStatusText } from './save-status';
+import { MoodPicker } from './mood-picker';
 import { TraitPicker } from './trait-picker';
 import { useAutosave } from './use-autosave';
 
@@ -52,6 +53,9 @@ export function WritingWorkspace({
   const [traits, setTraits] = useState(submission.traits);
   const constraints = constraintsWithTraits(activity, traits);
   const needsTraits = picker !== undefined && traits.length < picker.count;
+  const moodPicker = activity.moodPicker;
+  const [mood, setMood] = useState(submission.mood);
+  const needsMood = moodPicker !== undefined && mood.length < moodPicker.axes.length;
   const [historyKey, setHistoryKey] = useState(0);
   const refreshHistory = () => setHistoryKey((k) => k + 1);
   const { state, controller } = useAutosave(submission, refreshHistory);
@@ -66,6 +70,7 @@ export function WritingWorkspace({
   const blocked =
     wordCount === 0 ||
     needsTraits ||
+    needsMood ||
     state.status === 'conflict' ||
     (constraints.enforcement === 'hard' && problems.length > 0);
   const short = constraints.exactWords !== undefined && constraints.exactWords <= 10;
@@ -87,6 +92,7 @@ export function WritingWorkspace({
       activity={activity}
       activityId={submission.activity.id}
       traits={traits}
+      mood={mood}
       onShow={showInText}
     />
   );
@@ -179,6 +185,15 @@ export function WritingWorkspace({
         />
       )}
 
+      {moodPicker && (
+        <MoodPicker
+          submissionId={submission.id}
+          picker={moodPicker}
+          mood={mood}
+          onChange={setMood}
+        />
+      )}
+
       <ConstraintsBar text={state.text} constraints={constraints} started={started} />
 
       <div className="flex flex-col gap-1">
@@ -212,6 +227,11 @@ export function WritingWorkspace({
           <span className="text-sm text-muted">
             Pick {picker.count === 1 ? 'your character’s trait' : `${picker.count} traits`} above to
             submit.
+          </span>
+        )}
+        {needsMood && (
+          <span className="text-sm text-muted">
+            Choose the mood of your setting above to submit.
           </span>
         )}
         {submittedVersion > 0 && (
