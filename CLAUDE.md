@@ -7,7 +7,7 @@
   Claude integration (packages/ai, server only; fake gateway without ANTHROPIC_API_KEY). Later: packages/ui.
 - Commands: `pnpm dev`, `pnpm check` (format, lint, typecheck, test, build — same as CI), `pnpm test`, `pnpm lint`,
   `pnpm typecheck`, `pnpm test:e2e` (Playwright, own servers on ports 3100/4100 + test DB), `pnpm db:migrate`,
-  `pnpm db:generate`, `pnpm db:validate`, `pnpm content:check`, `pnpm content:sync`. Later: `pnpm db:seed`,
+  `pnpm db:generate`, `pnpm db:validate`, `pnpm content:check`, `pnpm content:sync`, `pnpm db:seed` (default dev teacher, see README). Later:
   `pnpm ai:eval` (costs money; run only when asked).
 - Local services run natively (no Docker): PostgreSQL only (it also holds the pg-boss job queue; no Redis). Config lives in the root `.env`
   (copy `.env.example`).

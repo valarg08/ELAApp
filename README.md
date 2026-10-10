@@ -16,12 +16,23 @@ pnpm install
 cp .env.example .env        # then fill in DATABASE_URL, DATABASE_TEST_URL and JWT_ACCESS_SECRET
 pnpm db:migrate             # create the tables in the development database
 pnpm content:sync           # load the lessons from /content into the database
+pnpm db:seed                # create the default teacher login (below)
 pnpm dev
 ```
 
-- Web app: http://localhost:3000 (create a teacher account, add a class and students, then try "I'm a student")
+- Web app: http://localhost:3000 (log in as the default teacher, add a class and students, then try "I'm a student")
 - API health: http://localhost:4000/api/v1/health
 - System status page: http://localhost:3000/status
+
+### Default teacher login (development only)
+
+`pnpm db:seed` creates this account in the development database. Running it again resets the password and unlocks the account.
+
+| Email | Password |
+|---|---|
+| `teacher@storyforge.test` | `storyforge-teacher` |
+
+The seed refuses to run when `NODE_ENV=production`. Never create this account on a real server.
 
 ## Useful commands
 
@@ -32,6 +43,7 @@ pnpm dev
 | `pnpm test` | Unit and API tests (Vitest). API tests use the test database from `DATABASE_TEST_URL` |
 | `pnpm test:e2e` | Browser tests (Playwright). Starts its own API and web app on ports 4100/3100 against the test database |
 | `pnpm db:migrate` | Create and apply a migration after changing `packages/db/prisma/schema.prisma` |
+| `pnpm db:seed` | Create or reset the default teacher login in the development database |
 | `pnpm content:check` / `pnpm content:sync` | Validate the lesson files in `/content` / load them into the database |
 | `pnpm ai:eval` | Run the AI golden set against the real Claude API (needs `ANTHROPIC_API_KEY`; costs money) |
 | `pnpm db:validate` | Validate the Prisma schema |
