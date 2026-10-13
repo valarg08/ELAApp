@@ -1,0 +1,65 @@
+{
+  "slug": "five-senses",
+  "order": 1,
+  "title": "Five Senses, Five Stations",
+  "estMinutes": 50,
+  "focusSkills": ["sensory-detail"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which one makes you feel like you're there?",
+      "a": "The fair was busy. There were lots of rides and people.",
+      "b": "The fair smelled of hot sugar and diesel. Music thumped from the dodgems, and my shoes stuck to the spilled lemonade.",
+      "reveal": "The first one only tells you what's there. The second uses smell, sound and touch, so you can almost stand in it. That's sensory detail."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Sensory detail",
+          "body": "Sensory details are words that show what you can see, hear, smell, taste and touch. Most writers lean on sight. When you add the other four, readers stop reading about a place and start feeling they're in it."
+        },
+        {
+          "kind": "example",
+          "title": "One moment, five senses",
+          "text": "The bonfire crackled (sound). Orange sparks spiralled into the dark (sight). Smoke stung my eyes and clung to my jumper (smell, touch), and the toasted marshmallow burned my tongue (taste).",
+          "note": "You don't need all five in every sentence. Spread them through your scene."
+        },
+        {
+          "kind": "compare",
+          "title": "Name it, or sense it?",
+          "telling": "The kitchen smelled nice.",
+          "showing": "The kitchen smelled of warm cinnamon and burnt toast.",
+          "labels": ["Name it", "Sense it"],
+          "note": "“Nice” could mean anything. Specific smells let the reader smell it too."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the senses",
+          "prompt": "Tap the two words that use senses other than sight.",
+          "text": "The old library was dim and dusty, and the floorboards creaked while the musty pages crumbled under my fingers.",
+          "clues": ["creaked", "musty"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u06.sense-lab", "u06.sense-sort", "u06.sense-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u06.sensory-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which sense was easiest to write about? Which was hardest?",
+        "Which word from your word bank did you use, and why that one?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

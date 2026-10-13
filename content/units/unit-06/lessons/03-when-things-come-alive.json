@@ -1,0 +1,63 @@
+{
+  "slug": "when-things-come-alive",
+  "order": 3,
+  "title": "When Things Come Alive",
+  "estMinutes": 45,
+  "focusSkills": ["figurative-language", "personification"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "If your school building could talk, what would it complain about?",
+      "placeholder": "My school would complain that…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Personification",
+          "body": "Personification gives an object, animal, place or idea a human action, feeling or voice: “The stairs groaned.” “The sun smiled.” It makes the world of your story feel alive."
+        },
+        {
+          "kind": "example",
+          "title": "An object with a personality",
+          "text": "The old car coughed, wheezed, and finally gave up at the bottom of the hill.",
+          "note": "Coughing and wheezing make the car sound tired and ill, like an old person. You can feel how worn out it is."
+        },
+        {
+          "kind": "compare",
+          "title": "Choose the action, choose the mood",
+          "telling": "The wind was strong.",
+          "showing": "The wind shoved us down the street and slammed the gate behind us.",
+          "labels": ["Plain", "Personified"],
+          "note": "Shoving and slamming make the wind a bully. “The wind tickled our ears” would make it playful."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Human actions",
+          "prompt": "Tap the two human actions in this sentence.",
+          "text": "The kettle grumbled on the stove while the toaster waited patiently for its turn.",
+          "clues": ["grumbled", "waited"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u06.alive-highlight", "u06.device-sort", "u06.personify-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u06.alive-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which object did you bring to life, and what personality did you give it?",
+        "How did your choice of human actions set the mood?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

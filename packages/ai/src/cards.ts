@@ -6,6 +6,7 @@ import { PLOT_STAGE_LABELS, type PlotCheckResult } from './analyzers/plot-check.
 import type { ShowVsTellResult } from './analyzers/show-vs-tell.js';
 import type { PovConsistencyResult } from './analyzers/pov-consistency.js';
 import type { ToneStyleResult } from './analyzers/tone-style.js';
+import type { FigurativeLanguageResult } from './analyzers/figurative-language.js';
 import { isToneStep, toneStepLabel } from '@storyforge/writing-analysis';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
@@ -341,6 +342,55 @@ export function tonePoints(text: string, r: ToneStyleResult) {
       message: r.strongLine?.why ?? 'That personality is what readers call voice.',
     };
     strengths.push(anchored(text, point, r.strongLine?.quote ?? r.voice.quote) ?? point);
+  }
+  return {
+    strengths: strengths.filter(isPoint).slice(0, 3),
+    nextSteps: nextSteps.filter(isPoint).slice(0, 3),
+  };
+}
+
+const capitalise = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
+
+/** "Did my comparisons work?": goal devices found and fresh comparisons as strengths; missing devices and clichés as next steps. */
+export function figurativePoints(text: string, r: FigurativeLanguageResult) {
+  const strengths: (FeedbackPoint | null)[] = [];
+  const nextSteps: (FeedbackPoint | null)[] = [];
+  for (const g of r.goals) {
+    if (g.found) {
+      const effect = r.devices.find((d) => d.type === g.device && d.fresh)?.effect;
+      const point = {
+        title: `${capitalise(g.device)} ✓`,
+        message: effect ?? 'You used one. Nice!',
+      };
+      strengths.push(anchored(text, point, g.quote) ?? point);
+    } else {
+      nextSteps.push({
+        title: `No ${g.device} yet`,
+        message: g.idea ?? `You could try adding a ${g.device}.`,
+      });
+    }
+  }
+  if (r.goals.length === 0 && r.strongest) {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'Your strongest comparison', message: r.strongest.why },
+        r.strongest.quote,
+      ),
+    );
+  }
+  for (const d of r.devices.filter((x) => !x.fresh).slice(0, 1)) {
+    nextSteps.push(
+      anchored(
+        text,
+        {
+          title: 'Make it fresh',
+          message:
+            'Readers have heard this comparison many times. You could try comparing it to something only your character would think of.',
+        },
+        d.quote,
+      ),
+    );
   }
   return {
     strengths: strengths.filter(isPoint).slice(0, 3),

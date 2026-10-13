@@ -1,0 +1,64 @@
+{
+  "slug": "similes-and-metaphors",
+  "order": 2,
+  "title": "Similes & Metaphors",
+  "estMinutes": 45,
+  "focusSkills": ["figurative-language"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which moon can you picture?",
+      "a": "The moon was bright.",
+      "b": "The moon was a silver coin dropped in a dark pond.",
+      "reveal": "The second one compares the moon to something you already know, so a picture pops into your head. Comparisons help readers see the new through the familiar."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Simile",
+          "body": "A simile compares two different things using “like” or “as”: “The bus rattled like a box of spoons.” “She was as quiet as a held breath.” The comparison shows the reader a quality: the noise, the stillness."
+        },
+        {
+          "kind": "definition",
+          "title": "Metaphor",
+          "body": "A metaphor says one thing IS another, with no “like” or “as”: “The classroom was a zoo.” It isn't literally true, which is what makes it bold. Metaphors feel stronger than similes because they don't hedge."
+        },
+        {
+          "kind": "compare",
+          "title": "Same idea, two ways",
+          "telling": "Her voice was like a warm blanket.",
+          "showing": "Her voice was a warm blanket.",
+          "labels": ["Simile", "Metaphor"],
+          "note": "Both work. The metaphor is more direct; the simile is gentler."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Spot the comparisons",
+          "prompt": "Tap the two things the classroom and the teacher are compared to.",
+          "text": "The classroom was as noisy as a zoo, and Mr Diaz was a lion tamer with a whiteboard pen.",
+          "clues": ["zoo", "tamer"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u06.simile-sort", "u06.comparison-highlight", "u06.fresh-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u06.comparison-lab" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which comparison are you proudest of? What does it make the reader see?",
+        "Did you choose a simile or a metaphor for your strongest idea, and why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

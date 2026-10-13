@@ -94,6 +94,7 @@ export const LiveAnalyzerId = z.enum([
   'plot-check',
   'pov-consistency',
   'tone-style',
+  'figurative-language',
 ]);
 export type LiveAnalyzerId = z.infer<typeof LiveAnalyzerId>;
 

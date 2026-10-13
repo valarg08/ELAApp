@@ -78,6 +78,9 @@ enum ActivityType {
   FIRST_PERSON_SCENE
   NARRATOR_SCENE
   VOICE_SCENE
+  SENSORY_SCENE
+  PERSONIFICATION_SCENE
+  SENSORY_CHALLENGE
   SEQUENCE
   MULTIPLE_CHOICE
   SORT
@@ -183,6 +186,7 @@ model User {
   enrollments       Enrollment[]
   taughtClasses     Class[]       @relation("ClassTeacher")
   submissions       Submission[]
+  sensoryWords      SensoryWord[]
   stats             StudentStats?
   createdAt         DateTime      @default(now())
   deletedAt         DateTime? // soft delete, hard purge after retention window
@@ -301,6 +305,19 @@ model LessonProgress {
 
   @@id([studentId, lessonId])
   @@index([classId])
+}
+
+// Personal sensory word bank (Unit 6): words collected in the sensory lab, shown in every workspace.
+model SensoryWord {
+  id        String   @id @default(cuid())
+  studentId String
+  student   User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  sense     String // sight | sound | smell | taste | touch
+  word      String // lowercase, 1-3 words
+  createdAt DateTime @default(now())
+
+  @@unique([studentId, sense, word])
+  @@index([studentId])
 }
 
 // ───────── Writing ─────────

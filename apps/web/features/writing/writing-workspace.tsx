@@ -6,6 +6,8 @@ import {
   SubmitResponse,
   type VersionSummary,
   checkConstraints,
+  FIGURATIVE_ACTIVITY_TYPES,
+  SENSORY_ACTIVITY_TYPES,
   constraintsWithTraits,
   planComplete,
   toneComplete,
@@ -24,7 +26,11 @@ import { HistoryPanel, formatWhen } from './history-panel';
 import { SaveStatusText } from './save-status';
 import { ConflictPicker } from './conflict-picker';
 import { MoodPicker } from './mood-picker';
+import { FigurativeHelper } from './figurative-helper';
 import { PerspectiveGuide } from './perspective-guide';
+import { SenseTracker } from './sense-tracker';
+import { WordBankPanel } from './word-bank-panel';
+import { useWordBank } from './use-word-bank';
 import { PlotPlanner } from './plot-planner';
 import { TonePicker } from './tone-picker';
 import { TraitPicker } from './trait-picker';
@@ -81,6 +87,7 @@ export function WritingWorkspace({
   const [notice, setNotice] = useState<string | null>(null);
   const [submittedVersion, setSubmittedVersion] = useState(submission.version);
   const [started, setStarted] = useState(false);
+  const [wordBank, setWordBank] = useWordBank();
 
   const { wordCount, problems } = checkConstraints(state.text, constraints);
   const blocked =
@@ -102,6 +109,25 @@ export function WritingWorkspace({
       editor.scrollIntoView({ block: 'center', behavior: 'smooth' });
       editor.focus({ preventScroll: true });
       editor.setSelectionRange(start, end);
+    });
+  }
+
+  /** Put words at the cursor (word bank, figurative frames), with a space before if needed. */
+  function insertAtCursor(snippet: string) {
+    const editor = editorRef.current;
+    const text = state.text;
+    const start = editor?.selectionStart ?? text.length;
+    const end = editor?.selectionEnd ?? text.length;
+    const before = text.slice(0, start);
+    const after = text.slice(end);
+    const pad = before !== '' && !/\s$/.test(before) ? ' ' : '';
+    const padAfter = after !== '' && !/^[\s.,!?;:)"”’]/.test(after) ? ' ' : '';
+    const caret = start + pad.length + snippet.length + padAfter.length;
+    setStarted(true);
+    controller.setText(before + pad + snippet + padAfter + after);
+    requestAnimationFrame(() => {
+      editor?.focus();
+      editor?.setSelectionRange(caret, caret);
     });
   }
 
@@ -264,7 +290,22 @@ export function WritingWorkspace({
         />
       )}
 
+      {activity.figurativeHelper && (
+        <FigurativeHelper helper={activity.figurativeHelper} onUseFrame={insertAtCursor} />
+      )}
+
+      <WordBankPanel
+        open={
+          SENSORY_ACTIVITY_TYPES.includes(activity.type) ||
+          FIGURATIVE_ACTIVITY_TYPES.includes(activity.type)
+        }
+        words={wordBank}
+        onWordsChange={setWordBank}
+        onInsert={insertAtCursor}
+      />
+
       <ConstraintsBar text={state.text} constraints={constraints} started={started} />
+      {activity.senseTracker && <SenseTracker text={state.text} own={wordBank ?? []} />}
 
       <div className="flex flex-col gap-1">
         <label htmlFor="draft-text" className="font-medium">

@@ -8,6 +8,7 @@ import { Highlight } from '../activities/highlight';
 import { MultipleChoice } from '../activities/multiple-choice';
 import { ReflectionActivity } from '../activities/reflection-activity';
 import { Sequence } from '../activities/sequence';
+import { SensoryLab } from '../activities/sensory-lab';
 import { Sort } from '../activities/sort';
 import type { ActivityResult } from '../activities/types';
 import { ExtraPractice } from '../tutor/extra-practice';
@@ -163,6 +164,8 @@ function ActivityView({
       return <Highlight activity={activity} onDone={onDone} />;
     case 'SEQUENCE':
       return <Sequence activity={activity} onDone={onDone} />;
+    case 'SENSORY_LAB':
+      return <SensoryLab activity={activity} onDone={onDone} />;
     case 'REFLECTION':
       return <ReflectionActivity activity={activity} onDone={onDone} />;
     default:

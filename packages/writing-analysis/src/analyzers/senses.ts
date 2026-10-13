@@ -15,7 +15,7 @@ const LEXICON: Record<Sense, readonly string[]> = {
     'misty', 'golden', 'silver', 'crimson', 'scarlet', 'red', 'blue', 'green', 'yellow',
     'orange', 'purple', 'pink', 'grey', 'gray', 'black', 'white', 'brown', 'colour', 'color',
     'stare', 'glare', 'gaze', 'glance', 'peer', 'squint', 'watch', 'spot', 'twinkle', 'blaze',
-    'dazzle', 'murky', 'gloomy', 'striped', 'spotted', 'tall', 'tiny', 'huge',
+    'dazzle', 'murky', 'gloomy', 'striped', 'spotted', 'tall', 'tiny', 'huge', 'swirl', 'lantern',
   ],
   sound: [
     'bang', 'boom', 'crash', 'thud', 'thump', 'clang', 'clatter', 'rattle', 'creak', 'squeak',
@@ -24,19 +24,19 @@ const LEXICON: Record<Sense, readonly string[]> = {
     'click', 'tick', 'tap', 'knock', 'pop', 'crack', 'snap', 'crunch', 'rustle', 'splash',
     'drip', 'gurgle', 'whistle', 'sizzle', 'crackle', 'rumble', 'thunder', 'echo', 'silent',
     'silence', 'quiet', 'loud', 'noisy', 'noise', 'sound', 'voice', 'sob', 'giggle', 'laugh',
-    'groan', 'sigh', 'wail', 'beep', 'honk', 'slam',
+    'groan', 'sigh', 'wail', 'beep', 'honk', 'slam', 'drum', 'patter', 'whimper', 'fizz', 'clap',
   ],
   smell: [
     'smell', 'scent', 'odor', 'odour', 'aroma', 'stink', 'stench', 'reek', 'whiff', 'sniff',
     'fragrance', 'fragrant', 'perfume', 'musty', 'smoky', 'smoke', 'rotten', 'stale', 'fresh',
     'flowery', 'piney', 'earthy', 'damp', 'mouldy', 'moldy', 'sour', 'burnt', 'nose', 'nostril',
-    'inhale', 'garlic', 'coffee', 'bread', 'onion', 'pine', 'rain', 'sweat',
+    'inhale', 'garlic', 'coffee', 'bread', 'onion', 'pine', 'rain', 'sweat', 'yeast', 'cinnamon',
   ],
   taste: [
     'taste', 'flavour', 'flavor', 'sweet', 'salty', 'salt', 'bitter', 'sugary', 'spicy',
     'tangy', 'zesty', 'bland', 'juicy', 'delicious', 'tasty', 'yummy', 'chew', 'sip', 'gulp',
     'swallow', 'lick', 'bite', 'nibble', 'crunchy', 'creamy', 'buttery', 'minty', 'lemony',
-    'metallic', 'tongue', 'lips', 'mouthful',
+    'metallic', 'tongue', 'lips', 'mouthful', 'refreshing', 'savoury', 'savory',
   ],
   touch: [
     'rough', 'smooth', 'soft', 'hard', 'silky', 'velvety', 'fuzzy', 'furry', 'prickly', 'sharp',
@@ -44,6 +44,7 @@ const LEXICON: Record<Sense, readonly string[]> = {
     'freezing', 'warm', 'hot', 'burning', 'chilly', 'cool', 'damp', 'heavy', 'light', 'tingle',
     'itch', 'sting', 'ache', 'throb', 'shiver', 'tremble', 'shudder', 'squeeze', 'grip', 'clutch',
     'stroke', 'brush', 'scratch', 'tickle', 'poke', 'press', 'numb', 'goosebumps', 'breeze',
+    'squish', 'squelch', 'ridge', 'clammy', 'fluffy',
   ],
 };
 
@@ -72,11 +73,19 @@ export interface SensesResult {
   missing: Sense[];
 }
 
-export function senses(text: string): SensesResult {
+/**
+ * Sense words in the text. `extra` adds the student's own words (their word bank): single words
+ * count for the sense they were collected under.
+ */
+export function senses(
+  text: string,
+  extra: readonly { sense: Sense; word: string }[] = [],
+): SensesResult {
   const counts: Record<Sense, number> = { sight: 0, sound: 0, smell: 0, taste: 0, touch: 0 };
   const hits: SensesResult['hits'] = [];
+  const own = new Map(extra.filter((e) => !e.word.includes(' ')).map((e) => [e.word, e.sense]));
   for (const w of words(text)) {
-    const sense = lookup(w.lower);
+    const sense = lookup(w.lower) ?? own.get(w.lower);
     if (!sense) continue;
     counts[sense] += 1;
     hits.push({ sense, word: w.lower, span: w });

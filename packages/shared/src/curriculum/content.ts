@@ -1,5 +1,7 @@
 import {
   ANALYZER_IDS,
+  DEVICES,
+  SENSES,
   MOOD_AXES,
   MOOD_AXIS_IDS,
   type MoodPole,
@@ -93,6 +95,33 @@ export const SequenceActivity = z.object({
   explanation: text(500),
 });
 
+/**
+ * The sensory lab (DESIGN.md §10, Unit 6): five stations, one per sense, each with a scene to
+ * imagine (a picture and words, read aloud on request) and a word jar. Collected words go to the
+ * student's personal sensory word bank. Done when every jar has `wordsPerStation` words.
+ */
+export const SensoryLabActivity = z.object({
+  ...activityBase,
+  type: z.literal('SENSORY_LAB'),
+  instructions: text(500),
+  stations: z
+    .array(
+      z.object({
+        sense: z.enum(SENSES),
+        title: text(80),
+        /** A big emoji picture for the scene. */
+        picture: z.string().trim().min(1).max(16),
+        scene: text(600),
+        prompt: text(200),
+        /** Idea words a student can tap into the jar when stuck. */
+        ideas: z.array(z.string().trim().toLowerCase().min(1).max(30)).min(3).max(10),
+      }),
+    )
+    .min(1)
+    .max(5),
+  wordsPerStation: z.number().int().min(1).max(5).default(2),
+});
+
 export const ReflectionActivity = z.object({
   ...activityBase,
   type: z.literal('REFLECTION'),
@@ -121,7 +150,24 @@ export const WRITING_ACTIVITY_TYPES = [
   'NARRATOR_SCENE',
   'VOICE_SCENE',
   'POV_REWRITE',
+  'SENSORY_SCENE',
+  'FIGURATIVE_LAB',
+  'PERSONIFICATION_SCENE',
+  'SENSORY_CHALLENGE',
 ] as const;
+
+/**
+ * The simile / metaphor / personification helper (Unit 6): pick a subject and a device, get frames
+ * and idea seeds, then write the line yourself. The devices are also what the figurative check
+ * looks for.
+ */
+export const FigurativeHelper = z.object({
+  label: text(120),
+  devices: z.array(z.enum(DEVICES)).min(1).max(3),
+  /** Quick subject ideas (the student can type their own). */
+  subjects: z.array(z.string().trim().min(1).max(40)).max(8).default([]),
+});
+export type FigurativeHelper = z.infer<typeof FigurativeHelper>;
 
 /**
  * The tone sliders (Unit 5): before writing, the student sets the tone they're aiming for on
@@ -214,6 +260,9 @@ export const WritingActivity = z.object({
   conflictPicker: ConflictPicker.optional(),
   plotPlanner: PlotPlanner.optional(),
   tonePicker: TonePicker.optional(),
+  figurativeHelper: FigurativeHelper.optional(),
+  /** Shows the five senses beside the word count, updating as the student types (Unit 6). */
+  senseTracker: z.boolean().optional(),
 });
 
 export const ActivityContent = z.discriminatedUnion('type', [
@@ -221,6 +270,7 @@ export const ActivityContent = z.discriminatedUnion('type', [
   SortActivity,
   HighlightActivity,
   SequenceActivity,
+  SensoryLabActivity,
   ReflectionActivity,
   WritingActivity,
 ]);
@@ -233,6 +283,7 @@ export const PRACTICE_ACTIVITY_TYPES = [
   'SORT',
   'HIGHLIGHT',
   'SEQUENCE',
+  'SENSORY_LAB',
   'REFLECTION',
 ] as const;
 
@@ -267,6 +318,19 @@ export const POV_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
   'FIRST_PERSON_SCENE',
   'NARRATOR_SCENE',
   'POV_REWRITE',
+];
+
+/** Sensory activities (Unit 6): Quill's sense check is the point of the activity. */
+export const SENSORY_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
+  'SENSORY_SCENE',
+  'SENSORY_CHALLENGE',
+];
+
+/** Figurative activities (Unit 6): Quill checks the similes, metaphors and personification. */
+export const FIGURATIVE_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
+  'FIGURATIVE_LAB',
+  'PERSONIFICATION_SCENE',
+  'SENSORY_CHALLENGE',
 ];
 
 /** Voice activities (Unit 5): Quill says what tone a reader hears. */
@@ -553,6 +617,17 @@ export function validateUnitBundle({ unit, lessons, activities }: UnitBundle): s
       if (new Set(labels).size !== labels.length)
         errors.push(`${a.key}: duplicate perspective labels`);
       if (a.constraints.povLock) errors.push(`${a.key}: use perspectives or povLock, not both`);
+    }
+    if (a.type === 'SENSORY_LAB') {
+      const senses = a.stations.map((s) => s.sense);
+      if (new Set(senses).size !== senses.length)
+        errors.push(`${a.key}: two stations for the same sense`);
+      for (const s of a.stations) {
+        if (new Set(s.ideas).size !== s.ideas.length)
+          errors.push(`${a.key}/${s.sense}: duplicate idea words`);
+        if (s.ideas.length < a.wordsPerStation)
+          errors.push(`${a.key}/${s.sense}: fewer ideas than wordsPerStation`);
+      }
     }
     if (a.type === 'SEQUENCE') {
       const ids = a.items.map((i) => i.id);

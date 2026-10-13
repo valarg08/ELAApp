@@ -3,6 +3,7 @@
 import { DEFAULT_ANALYZERS, type AnalyzerId, type Span } from '@storyforge/writing-analysis';
 import {
   CHARACTER_ACTIVITY_TYPES,
+  FIGURATIVE_ACTIVITY_TYPES,
   type LiveAnalyzerId,
   PLOT_ACTIVITY_TYPES,
   POV_ACTIVITY_TYPES,
@@ -58,6 +59,9 @@ export function AskQuill({
       : []),
     ...(POV_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'pov-consistency' as const, label: 'Is my point of view steady?' }]
+      : []),
+    ...(FIGURATIVE_ACTIVITY_TYPES.includes(activity.type)
+      ? [{ id: 'figurative-language' as const, label: 'Did my comparisons work?' }]
       : []),
     ...(TONE_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'tone-style' as const, label: 'What tone will my reader hear?' }]

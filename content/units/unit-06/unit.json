@@ -5,7 +5,15 @@
   "summary": "Go deeper with all five senses and figurative language: similes, metaphors and personification.",
   "bigIdeas": [
     "The senses make writing vivid.",
-    "Comparisons help readers see the new through the familiar."
+    "Comparisons help readers see the new through the familiar.",
+    "Strong verbs and fresh details beat tired words.",
+    "Limits push writers to be creative."
   ],
-  "published": false
+  "published": true,
+  "projectSpec": {
+    "title": "A Sensory Moment",
+    "description": "Write a short piece (400–700 words) that captures one moment so vividly the reader feels they are there. Use all five senses, at least one simile, one metaphor and one personification, and avoid the tired words very, scary, nice, good and loud.",
+    "minWords": 400,
+    "maxWords": 700
+  }
 }

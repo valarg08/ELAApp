@@ -1,0 +1,66 @@
+{
+  "slug": "the-300-word-challenge",
+  "order": 4,
+  "title": "The 300-Word Sensory Challenge",
+  "estMinutes": 50,
+  "focusSkills": ["sensory-detail", "figurative-language", "word-choice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "Five banned words",
+      "paragraphs": [
+        "Very. Scary. Nice. Good. Loud.",
+        "There's nothing wrong with these words. But they're tired: they've been used so often that readers slide right past them without seeing, hearing or feeling anything.",
+        "Today they're banned. Without them, you'll have to reach for senses, comparisons and strong verbs instead, and your writing will be better for it."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Why ban words?",
+          "body": "A word like “scary” tells the reader how to feel. A banned-word challenge forces you to show it instead: the twig snapping behind you, the cold sweat on your neck. Limits like this push writers to be creative."
+        },
+        {
+          "kind": "compare",
+          "title": "Tired or vivid?",
+          "telling": "The very loud music was scary.",
+          "showing": "The bass thumped through the floor until my teeth buzzed, and every flash of light showed a different face.",
+          "labels": ["Tired", "Vivid"],
+          "note": "No banned words, and you can hear, feel and see it."
+        },
+        {
+          "kind": "definition",
+          "title": "Mix your tools",
+          "body": "In this challenge, use everything from the unit: details for at least four senses, a simile, a metaphor and some personification. Use your word bank and the comparison helper. With only 300 words, every word has to earn its place."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Without the banned words",
+          "prompt": "Tap the two words that make this scene frightening without saying “scary”.",
+          "text": "The hallway was pitch-black, and something behind the door scratched.",
+          "clues": ["pitch-black", "scratched"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u06.weak-strong-sort", "u06.swap-highlight", "u06.swap-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u06.sensory-challenge" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which banned word was hardest to live without? What did you use instead?",
+        "Which sentence in your scene is the most vivid, and which tools did you use in it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

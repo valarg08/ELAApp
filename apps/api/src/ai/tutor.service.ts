@@ -38,6 +38,14 @@ const unavailable = () =>
     'Quill is busy right now. Try again in a moment.',
   );
 
+const SENSE_ORGANS = {
+  sight: 'your eyes',
+  sound: 'your ears',
+  smell: 'your nose',
+  taste: 'your tongue',
+  touch: 'your skin or hands',
+} as const;
+
 const clip = (s: string, max: number) => (s.length > max ? `${s.slice(0, max - 1)}…` : s);
 
 function cardText(card: LessonCard): string {
@@ -154,6 +162,38 @@ function describeActivity(
                 explanation: activity.explanation,
               },
             ];
+          }),
+      };
+    }
+    case 'SENSORY_LAB': {
+      const senses = activity.stations.map((s) => s.sense);
+      const pairs = activity.stations.flatMap((s) =>
+        s.ideas.map((word) => ({ word, sense: s.sense })),
+      );
+      return {
+        text: [
+          activity.instructions,
+          ...activity.stations.map(
+            (s) => `${s.sense}: ${s.scene} Example words: ${s.ideas.join(', ')}`,
+          ),
+        ].join('\n'),
+        fallback: shuffle(pairs, variant)
+          .slice(0, 3)
+          .map(({ word, sense }, i) => {
+            // Questions take 2–4 options: the right sense and up to three others.
+            const others = shuffle(
+              senses.filter((s) => s !== sense),
+              variant + i,
+            ).slice(0, 3);
+            // Rotate where the answer sits so it isn't always in the same place.
+            const at = (variant + i * 3) % (others.length + 1);
+            const options = [...others.slice(0, at), sense, ...others.slice(at)];
+            return {
+              prompt: `Which sense does “${word}” describe?`,
+              options,
+              correctIndex: options.indexOf(sense),
+              explanation: `“${word}” is something you would notice with ${SENSE_ORGANS[sense]}.`,
+            };
           }),
       };
     }

@@ -22,15 +22,8 @@ import {
 import { useState } from 'react';
 import { Button } from '@/components/ui';
 import { AskQuill } from './ask-quill';
+import { SENSE_ICONS } from './sense-icons';
 import { TONE_ICONS } from './tone-picker';
-
-const SENSE_ICONS: Record<Sense, string> = {
-  sight: '👁',
-  sound: '👂',
-  smell: '👃',
-  taste: '👅',
-  touch: '✋',
-};
 
 /**
  * Coach panel (DESIGN.md §6.3): instant, rule-based feedback from packages/writing-analysis.
@@ -76,6 +69,7 @@ export function CoachPanel({
         narrator: activity.constraints.narrator,
         perspectives: activity.constraints.perspectives,
         tone: activity.tonePicker ? validTone(activity, tone) : undefined,
+        devices: activity.figurativeHelper?.devices,
       }),
     });
   }
@@ -140,6 +134,13 @@ export function CoachPanel({
               />
             )}
             {checked.report.tone && <ToneBand scales={checked.report.tone} />}
+            {checked.report.figurative && (
+              <FigurativeMeter
+                devices={checked.report.figurative}
+                canShow={canShow}
+                onShow={onShow}
+              />
+            )}
             {checked.report.pacing && (
               <PacingBand segments={checked.report.pacing} canShow={canShow} onShow={onShow} />
             )}
@@ -364,6 +365,50 @@ function ToneBand({ scales }: { scales: NonNullable<CoachReport['tone']> }) {
             </li>
           );
         })}
+      </ul>
+    </div>
+  );
+}
+
+const DEVICE_LABELS = {
+  simile: '🔗 Simile',
+  metaphor: '🎭 Metaphor',
+  personification: '🗣️ Personification',
+} as const;
+
+/** Which figurative devices Quill spotted, with "Show me" for the first of each. */
+function FigurativeMeter({
+  devices,
+  canShow,
+  onShow,
+}: {
+  devices: NonNullable<CoachReport['figurative']>;
+  canShow: (span: Span | undefined) => span is Span;
+  onShow: (span: Span) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      <h3 className="font-semibold">Comparisons Quill spotted</h3>
+      <ul className="flex flex-wrap gap-2">
+        {devices.map((d) => (
+          <li
+            key={d.device}
+            className={`flex items-center gap-2 rounded-full border px-3 py-1 text-sm ${
+              d.count > 0 ? 'border-ok text-ok' : 'border-border text-muted'
+            }`}
+          >
+            {DEVICE_LABELS[d.device]} {d.count > 0 ? `✓ ${d.count}` : '–'}
+            {d.count > 0 && canShow(d.span) && (
+              <button
+                type="button"
+                onClick={() => d.span && onShow(d.span)}
+                className="font-semibold text-brand underline focus-visible:outline-3 focus-visible:outline-brand"
+              >
+                Show me<span className="sr-only"> the {d.device}</span>
+              </button>
+            )}
+          </li>
+        ))}
       </ul>
     </div>
   );

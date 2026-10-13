@@ -23,6 +23,7 @@ import {
   toneStepLabel,
 } from './analyzers/tone.js';
 import { type Sense, senses } from './analyzers/senses.js';
+import { type Device, figurative } from './analyzers/figurative.js';
 import { type PacingSegment, pacing } from './analyzers/pacing.js';
 import {
   MOOD_AXES,
@@ -48,6 +49,7 @@ export const ANALYZER_IDS = [
   'mood',
   'pacing',
   'tone',
+  'figurative',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -80,6 +82,8 @@ export interface CoachReport {
   pacing?: Pick<PacingSegment, 'start' | 'end' | 'text' | 'pace' | 'at'>[];
   /** Per tone scale, what the student aimed for and where their words sit (for the tone sliders). */
   tone?: { axis: ToneAxis; aimed: ToneStep | null; heard: ToneStep | null }[];
+  /** Per figurative device (the activity's goals, or all three), how many and the first one. */
+  figurative?: { device: Device; count: number; span?: Span }[];
   /** Per part of a multi-perspective rewrite, whether it keeps its point of view. */
   perspectives?: PerspectiveCheck[];
 }
@@ -106,6 +110,8 @@ export interface CoachOptions {
   narrator?: Narrator;
   /** Parts of a multi-perspective rewrite, each with its own point of view (Unit 5). */
   perspectives?: readonly Perspective[];
+  /** Figurative devices the activity asks for (Unit 6); the figurative check looks for each. */
+  devices?: readonly Device[];
   /** The tone the student aimed for, per scale (Unit 5). */
   tone?: Partial<Record<ToneAxis, ToneStep>>;
 }
@@ -128,6 +134,19 @@ const SENSE_PROMPTS: Record<Sense, string> = {
   taste: 'Is there a taste in the air or in someone’s mouth?',
   touch: 'What could someone feel on their skin or in their hands?',
 };
+const DEVICE_TIPS: Record<Device, string> = {
+  simile:
+    'Compare something to something else using “like” or “as”: “The hallway was as quiet as a held breath.”',
+  metaphor: 'Say something IS something else, without “like”: “The playground was a battlefield.”',
+  personification:
+    'Give an object or place a human action: “The old stairs groaned under every step.”',
+};
+const DEVICE_PRAISE: Record<Device, string> = {
+  simile: 'compares two things with “like” or “as”, so the reader sees it in a new way.',
+  metaphor: 'says one thing IS another. That makes a strong picture.',
+  personification: 'gives something non-human a human action. It brings the scene to life.',
+};
+
 /** A part of a rewrite needs this many words before its point of view is checked. */
 export const MIN_PART_WORDS = 15;
 
@@ -162,6 +181,7 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
   if (options.povLock) enabled.add('pov');
   if (options.tenseLock) enabled.add('tense');
   if (options.narrator || options.perspectives?.length) enabled.add('pov');
+  if (options.devices?.length) enabled.add('figurative');
   const wordCount = countWords(text);
   const strengths: CoachCard[] = [];
   const nextSteps: CoachCard[] = [];
@@ -366,6 +386,51 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
         analyzer: 'tone',
         title: `Your voice sounds ${listing(matched)}`,
         message: 'Your word choices set the tone without you having to name it.',
+      });
+    }
+  }
+
+  if (enabled.has('figurative')) {
+    const fig = figurative(text);
+    const goals: readonly Device[] = options.devices?.length
+      ? options.devices
+      : ['simile', 'metaphor', 'personification'];
+    report.figurative = goals.map((device) => ({
+      device,
+      count: fig.counts[device],
+      span: fig.hits.find((h) => h.device === device)?.span,
+    }));
+    const cliche = fig.cliches[0];
+    if (cliche) {
+      nextSteps.push({
+        id: 'cliche',
+        analyzer: 'figurative',
+        title: 'Make it fresh',
+        message: `“${cliche.phrase}” is a comparison readers have heard many times. What would only YOUR character compare it to? Something from their life makes it surprising.`,
+        span: cliche.span,
+      });
+    }
+    const missing = options.devices?.find((d) => fig.counts[d] === 0);
+    if (missing && wordCount >= 15) {
+      nextSteps.push({
+        id: 'figurative',
+        analyzer: 'figurative',
+        title: `Try a ${missing}`,
+        message: DEVICE_TIPS[missing],
+      });
+    }
+    const found = fig.hits.filter(
+      (h) =>
+        !fig.cliches.some((c) => c.span.start >= h.sentence.start && c.span.start < h.sentence.end),
+    );
+    const best = found.find((h) => goals.includes(h.device)) ?? found[0];
+    if (best) {
+      strengths.push({
+        id: 'figurative',
+        analyzer: 'figurative',
+        title: `Looks like a ${best.device}`,
+        message: `“${quote(best.span)}” ${DEVICE_PRAISE[best.device]}`,
+        span: best.span,
       });
     }
   }

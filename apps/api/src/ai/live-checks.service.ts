@@ -6,6 +6,7 @@ import {
   type PlotCheckResult,
   type PovConsistencyResult,
   type ToneStyleResult,
+  type FigurativeLanguageResult,
   type FeedbackPoint,
   HOLDING_MESSAGE,
   LIVE_ANALYZERS,
@@ -20,6 +21,7 @@ import {
   plotCheckPoints,
   povPoints,
   tonePoints,
+  figurativePoints,
   sensoryPoints,
   showVsTellPoints,
 } from '@storyforge/ai';
@@ -193,6 +195,13 @@ export class LiveChecksService {
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = povPoints(req.text, outcome.result, extra.narrator);
+      } else if (req.analyzer === 'figurative-language') {
+        const goals = content.figurativeHelper?.devices ?? [];
+        const outcome: AnalyzerOutcome<FigurativeLanguageResult> = await withTimeout(
+          this.ai.run(LIVE_ANALYZERS['figurative-language'], { ...ctx, goals }, meta),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = figurativePoints(req.text, outcome.result);
       } else if (req.analyzer === 'tone-style') {
         const extra = toneInput(content, req.tone);
         const outcome: AnalyzerOutcome<ToneStyleResult> = await withTimeout(

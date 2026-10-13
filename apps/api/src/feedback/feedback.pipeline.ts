@@ -12,6 +12,7 @@ import {
   plotCheckPoints,
   povPoints,
   tonePoints,
+  figurativePoints,
   rubricPoints,
   rubricScoreAnalyzer,
   sensoryPoints,
@@ -24,6 +25,7 @@ import {
   classSettings,
   FeedbackPoint as FeedbackPointSchema,
   isWritingActivity,
+  SENSORY_ACTIVITY_TYPES,
   submissionChoices,
 } from '@storyforge/shared';
 import {
@@ -55,6 +57,7 @@ const SKILL_NAMES: Record<string, string> = {
   mood: 'setting mood',
   pacing: 'pacing',
   tone: 'tone and voice',
+  figurative: 'figurative language',
 };
 
 /**
@@ -177,7 +180,14 @@ export class FeedbackPipeline {
         const r = outcome.result;
         analyzerOutputs[id] = r;
         notes.push(`sensory: missing ${r.missing.join(', ') || 'none'}`);
-        collect(sensoryPoints(text, r));
+        // In the sensory units the senses are the point of the activity.
+        const p = sensoryPoints(text, r);
+        if (SENSORY_ACTIVITY_TYPES.includes(content.type)) {
+          focusStrengths.push(...p.strengths);
+          focusNextSteps.push(...p.nextSteps);
+        } else {
+          collect(p);
+        }
       } else if (id === 'plot-check') {
         const extra = plotInput(content, conflict, plot);
         const outcome = await this.ai.run(
@@ -212,6 +222,30 @@ export class FeedbackPipeline {
           `point of view: ${r.detectedPov}, ${r.shifts.length} shifts${r.narrator ? `; narrator ${r.narrator.detected} (target ${extra.narrator})` : ''}${r.parts.length > 0 ? `; parts that slip: ${broken.join(', ') || 'none'}` : ''}`,
         );
         const p = povPoints(text, r, extra.narrator);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
+      } else if (id === 'figurative-language') {
+        const goals = content.figurativeHelper?.devices ?? [];
+        const outcome = await this.ai.run(LIVE_ANALYZERS[id], { ...ctx, goals }, runMeta);
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        notes.push(
+          `figurative: ${r.devices.map((d) => d.type).join(', ') || 'none found'}${
+            goals.length > 0
+              ? `; goals missing: ${
+                  r.goals
+                    .filter((g) => !g.found)
+                    .map((g) => g.device)
+                    .join(', ') || 'none'
+                }`
+              : ''
+          }`,
+        );
+        const p = figurativePoints(text, r);
         focusStrengths.push(...p.strengths);
         focusNextSteps.push(...p.nextSteps);
       } else if (id === 'tone-style') {

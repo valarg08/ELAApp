@@ -1,0 +1,466 @@
+[
+  {
+    "key": "u06.sense-lab",
+    "type": "SENSORY_LAB",
+    "title": "The sensory lab",
+    "instructions": "Visit all five stations. Imagine you are really there, then collect at least two words for that sense in its jar. Your words go into your own word bank, ready for your writing.",
+    "wordsPerStation": 2,
+    "stations": [
+      {
+        "sense": "sight",
+        "title": "The night market",
+        "picture": "🏮🌙",
+        "scene": "Strings of paper lanterns glow above the stalls. Steam curls up from a noodle pot. A man juggles three flaming torches, and the crowd's faces flicker orange in the light.",
+        "prompt": "What can you SEE? Collect words for colours, light, shapes and movement.",
+        "ideas": [
+          "glowing",
+          "flickering",
+          "golden",
+          "swirling",
+          "crimson",
+          "glittering",
+          "shadowy",
+          "dazzling"
+        ]
+      },
+      {
+        "sense": "sound",
+        "title": "The thunderstorm",
+        "picture": "⛈️🌧️",
+        "scene": "Rain drums on the tin roof. Thunder rumbles far away, then cracks right overhead. A gutter gurgles, a dog whimpers under the table, and the windows rattle in their frames.",
+        "prompt": "What can you HEAR? Collect words for noises, big and small.",
+        "ideas": [
+          "drumming",
+          "rumbling",
+          "crackling",
+          "gurgling",
+          "rattling",
+          "pattering",
+          "booming",
+          "whimpering"
+        ]
+      },
+      {
+        "sense": "smell",
+        "title": "Grandma's kitchen",
+        "picture": "🍞🧅",
+        "scene": "Bread is baking in the oven. Onions sizzle in a pan, and someone has just peeled an orange. Under it all is the faint smell of soap and old wooden cupboards.",
+        "prompt": "What can you SMELL? Collect words for scents, nice and not so nice.",
+        "ideas": ["buttery", "yeasty", "smoky", "zesty", "sharp", "sweet", "earthy", "musty"]
+      },
+      {
+        "sense": "taste",
+        "title": "The picnic",
+        "picture": "🍉🍋",
+        "scene": "A slice of ice-cold watermelon drips down your chin. The lemonade is so sour it makes your eyes water, and the crisps are much too salty.",
+        "prompt": "What can you TASTE? Collect words for flavours.",
+        "ideas": ["juicy", "sour", "tangy", "salty", "sugary", "bitter", "refreshing", "fizzy"]
+      },
+      {
+        "sense": "touch",
+        "title": "The beach at dawn",
+        "picture": "🏖️🐚",
+        "scene": "Wet sand squishes between your toes. A cold wave rushes over your ankles. You pick up a shell: smooth as glass inside, rough and ridged outside.",
+        "prompt": "What can you FEEL? Collect words for textures and temperatures.",
+        "ideas": ["squishy", "gritty", "icy", "smooth", "rough", "ridged", "prickly", "damp"]
+      }
+    ]
+  },
+  {
+    "key": "u06.sense-sort",
+    "type": "SORT",
+    "title": "Beyond sight",
+    "instructions": "Writers often forget the other four senses. Sort each detail by the sense it uses.",
+    "buckets": [
+      { "id": "sound", "label": "Sound" },
+      { "id": "smell", "label": "Smell" },
+      { "id": "taste", "label": "Taste" },
+      { "id": "touch", "label": "Touch" }
+    ],
+    "items": [
+      { "id": "crunch", "text": "Gravel crunched under the tyres.", "bucketId": "sound" },
+      { "id": "hum", "text": "The fridge hummed in the dark kitchen.", "bucketId": "sound" },
+      { "id": "smoke", "text": "The air was thick with bonfire smoke.", "bucketId": "smell" },
+      {
+        "id": "rain",
+        "text": "The pavement gave off that earthy smell after rain.",
+        "bucketId": "smell"
+      },
+      { "id": "metal", "text": "Her mouth tasted of metal and fear.", "bucketId": "taste" },
+      { "id": "salt", "text": "Salty spray stung his lips.", "bucketId": "taste" },
+      {
+        "id": "blanket",
+        "text": "The scratchy wool blanket itched her neck.",
+        "bucketId": "touch"
+      },
+      {
+        "id": "rail",
+        "text": "The metal railing was freezing against his palm.",
+        "bucketId": "touch"
+      }
+    ]
+  },
+  {
+    "key": "u06.sense-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Sense detectives",
+    "questions": [
+      {
+        "id": "smell",
+        "prompt": "Which sentence uses the sense of smell?",
+        "options": [
+          { "id": "a", "text": "The hallway was long and dark." },
+          { "id": "b", "text": "The hallway reeked of wet dog and old trainers." },
+          { "id": "c", "text": "The hallway floor creaked under my feet." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Reeked of wet dog and old trainers” is a smell. The others use sight and sound."
+      },
+      {
+        "id": "why",
+        "prompt": "Why add senses other than sight?",
+        "options": [
+          { "id": "a", "text": "It makes the writing longer." },
+          {
+            "id": "b",
+            "text": "It puts the reader inside the scene, as if they were really there."
+          },
+          { "id": "c", "text": "Sight details are not allowed." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Sounds, smells, tastes and textures make a place feel real. Readers feel they are standing in it."
+      },
+      {
+        "id": "cold",
+        "prompt": "Which detail best helps a reader FEEL how cold it is?",
+        "options": [
+          { "id": "a", "text": "It was a very cold day." },
+          { "id": "b", "text": "The thermometer said minus five." },
+          { "id": "c", "text": "My fingers went numb inside my gloves." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Numb fingers is a touch detail the reader can feel in their own body, so they experience the cold instead of being told about it."
+      }
+    ]
+  },
+  {
+    "key": "u06.sensory-scene",
+    "type": "SENSORY_SCENE",
+    "title": "A place at its busiest",
+    "prompt": "Choose a place at its busiest moment: a school canteen at lunch, a station at rush hour, a beach on the hottest day, a kitchen before a party. Describe it using all five senses, so the reader feels they are standing right in the middle of it.",
+    "tips": [
+      "Watch the sense tracker: aim for all five.",
+      "Tap words from your word bank to add them where your cursor is.",
+      "One strong detail for each sense beats a long list."
+    ],
+    "constraints": { "minWords": 100, "maxWords": 200, "enforcement": "hard" },
+    "analyzers": ["senses", "telling", "filterWords"],
+    "senseTracker": true
+  },
+  {
+    "key": "u06.simile-sort",
+    "type": "SORT",
+    "title": "Simile, metaphor or neither?",
+    "instructions": "Sort each sentence. A simile compares with “like” or “as”. A metaphor says one thing IS another. Some sentences aren't comparisons at all.",
+    "buckets": [
+      { "id": "simile", "label": "Simile" },
+      { "id": "metaphor", "label": "Metaphor" },
+      { "id": "literal", "label": "Not a comparison" }
+    ],
+    "items": [
+      { "id": "spoons", "text": "The bus rattled like a box of spoons.", "bucketId": "simile" },
+      { "id": "cat", "text": "My sister was as grumpy as a wet cat.", "bucketId": "simile" },
+      {
+        "id": "stars",
+        "text": "The stars were scattered like spilled sugar.",
+        "bucketId": "simile"
+      },
+      { "id": "zoo", "text": "The classroom was a zoo.", "bucketId": "metaphor" },
+      { "id": "snail", "text": "My brother is a snail in the mornings.", "bucketId": "metaphor" },
+      {
+        "id": "blanket",
+        "text": "Snow was a white blanket over the town.",
+        "bucketId": "metaphor"
+      },
+      { "id": "teacher", "text": "Ms Okafor is a science teacher.", "bucketId": "literal" },
+      { "id": "pizza", "text": "I like pizza with extra cheese.", "bucketId": "literal" }
+    ]
+  },
+  {
+    "key": "u06.comparison-highlight",
+    "type": "HIGHLIGHT",
+    "title": "What's it compared to?",
+    "instructions": "Tap the three things the scene is compared to.",
+    "text": "The hallway was a river of backpacks. Kids pushed past like salmon swimming upstream, and the bell screamed as loud as a fire alarm.",
+    "targets": ["river", "salmon", "alarm"],
+    "explanation": "The hallway is compared to a river (metaphor), the kids to salmon and the bell to a fire alarm (similes). Each comparison helps you picture the crush and the noise."
+  },
+  {
+    "key": "u06.fresh-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Fresh or tired?",
+    "questions": [
+      {
+        "id": "freshest",
+        "prompt": "Which simile is the freshest (the most surprising)?",
+        "options": [
+          { "id": "a", "text": "The water was as cold as ice." },
+          { "id": "b", "text": "The water was as cold as the metal slide in January." },
+          { "id": "c", "text": "The water was as cold as snow." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“As cold as ice” is a cliché: readers have heard it so often they don't picture anything. The metal slide in January is surprising and easy to feel."
+      },
+      {
+        "id": "metaphor",
+        "prompt": "Which sentence is a metaphor?",
+        "options": [
+          { "id": "a", "text": "The test was a mountain I had to climb." },
+          { "id": "b", "text": "The test was like a mountain." },
+          { "id": "c", "text": "The test was on Monday." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A metaphor says one thing IS another, with no “like” or “as”. The second one is a simile, and the third isn't a comparison."
+      },
+      {
+        "id": "works",
+        "prompt": "What makes a comparison work well?",
+        "options": [
+          { "id": "a", "text": "Using the longest words you know." },
+          {
+            "id": "b",
+            "text": "Comparing to something the reader can easily picture, that shares a feeling or quality."
+          },
+          { "id": "c", "text": "Putting three comparisons in every sentence." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The best comparisons link to something familiar that shares the quality you want: speed, noise, mood. One strong comparison beats three weak ones."
+      }
+    ]
+  },
+  {
+    "key": "u06.comparison-lab",
+    "type": "FIGURATIVE_LAB",
+    "title": "Comparison lab",
+    "prompt": "Describe something powerful: a thunderstorm, a crowded hallway, a rollercoaster, the ocean, or your angriest cat. Use at least one simile and one metaphor that help the reader see it in a new way. Use the helper for frames and ideas, but make the words your own.",
+    "tips": [
+      "A simile uses “like” or “as”; a metaphor says it IS something else.",
+      "Fresh beats famous: skip “as fast as lightning”.",
+      "Keep the senses: what does your subject sound, smell or feel like?"
+    ],
+    "constraints": { "minWords": 80, "maxWords": 200, "enforcement": "hard" },
+    "analyzers": ["figurative", "senses", "telling"],
+    "figurativeHelper": {
+      "label": "Comparison helper",
+      "devices": ["simile", "metaphor"],
+      "subjects": [
+        "a thunderstorm",
+        "a crowded hallway",
+        "a rollercoaster",
+        "the ocean",
+        "my angry cat"
+      ]
+    }
+  },
+  {
+    "key": "u06.alive-highlight",
+    "type": "HIGHLIGHT",
+    "title": "The house wakes up",
+    "instructions": "Tap the three words that give the house human actions.",
+    "text": "At midnight the house woke up. The stairs groaned, the clock muttered the time, and the curtains danced in the draught from the window.",
+    "targets": ["groaned", "muttered", "danced"],
+    "explanation": "Stairs can't really groan, clocks can't mutter and curtains can't dance. Giving them human actions is personification, and it makes the house feel alive and a little spooky."
+  },
+  {
+    "key": "u06.device-sort",
+    "type": "SORT",
+    "title": "Which device?",
+    "instructions": "Sort each sentence by the figurative device it uses.",
+    "buckets": [
+      { "id": "simile", "label": "Simile" },
+      { "id": "metaphor", "label": "Metaphor" },
+      { "id": "personification", "label": "Personification" }
+    ],
+    "items": [
+      {
+        "id": "waves",
+        "text": "The waves crept up the beach like curious cats.",
+        "bucketId": "simile"
+      },
+      { "id": "fog", "text": "The fog was as thick as porridge.", "bucketId": "simile" },
+      { "id": "maze", "text": "The new school was a maze.", "bucketId": "metaphor" },
+      { "id": "fire", "text": "His temper was a volcano.", "bucketId": "metaphor" },
+      { "id": "sun", "text": "The sun smiled down on the field.", "bucketId": "personification" },
+      { "id": "phone", "text": "My phone begged to be charged.", "bucketId": "personification" }
+    ]
+  },
+  {
+    "key": "u06.personify-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Bring it to life",
+    "questions": [
+      {
+        "id": "which",
+        "prompt": "Which sentence uses personification?",
+        "options": [
+          { "id": "a", "text": "The car was old and rusty." },
+          { "id": "b", "text": "The old car coughed, wheezed and finally gave up." },
+          { "id": "c", "text": "The car was as slow as a tortoise." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Coughing, wheezing and giving up are things people do. The last sentence is a simile."
+      },
+      {
+        "id": "mood",
+        "prompt": "“The wind shoved us down the street and slammed the gate.” What does the personification make the wind feel like?",
+        "options": [
+          { "id": "a", "text": "Gentle and calm" },
+          { "id": "b", "text": "Rough and angry, almost like a bully" },
+          { "id": "c", "text": "Sleepy" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Shoving and slamming are rough, angry actions, so the wind seems like a bully. Choosing the human action chooses the mood."
+      },
+      {
+        "id": "choose",
+        "prompt": "You want a kitchen to feel cosy and welcoming. Which personification fits best?",
+        "options": [
+          { "id": "a", "text": "The oven hugged the room with warmth." },
+          { "id": "b", "text": "The oven glared at us." },
+          { "id": "c", "text": "The oven screamed." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Hugging is a warm, friendly action, so the kitchen feels cosy. Glaring and screaming would make it feel hostile."
+      }
+    ]
+  },
+  {
+    "key": "u06.alive-scene",
+    "type": "PERSONIFICATION_SCENE",
+    "title": "When the lights go out",
+    "prompt": "When everyone goes home, an ordinary place comes alive: a classroom, a kitchen, a playground, a garage, your bedroom. Describe what happens using personification. Choose human actions that show the mood: playful, spooky, sleepy or grumpy.",
+    "tips": [
+      "Give at least three objects a human action, feeling or voice.",
+      "Pick actions that match the mood you want.",
+      "Use the senses: what can you hear and feel in the dark?"
+    ],
+    "constraints": { "minWords": 100, "maxWords": 220, "enforcement": "hard" },
+    "analyzers": ["figurative", "senses", "telling"],
+    "figurativeHelper": {
+      "label": "Bring it to life",
+      "devices": ["personification"],
+      "subjects": ["the classroom", "the kitchen", "the playground", "the old car", "my bedroom"]
+    }
+  },
+  {
+    "key": "u06.weak-strong-sort",
+    "type": "SORT",
+    "title": "Tired or vivid?",
+    "instructions": "Sort each sentence: does it use tired words, or vivid details the reader can sense?",
+    "buckets": [
+      { "id": "tired", "label": "Tired" },
+      { "id": "vivid", "label": "Vivid" }
+    ],
+    "items": [
+      { "id": "music", "text": "The music was very loud.", "bucketId": "tired" },
+      { "id": "film", "text": "The film was really scary.", "bucketId": "tired" },
+      { "id": "cake", "text": "The cake was nice and good.", "bucketId": "tired" },
+      { "id": "day", "text": "It was a very nice day.", "bucketId": "tired" },
+      {
+        "id": "bass",
+        "text": "The bass thumped through the floor until my teeth buzzed.",
+        "bucketId": "vivid"
+      },
+      {
+        "id": "door",
+        "text": "Behind the door, something scratched, slowly, again and again.",
+        "bucketId": "vivid"
+      },
+      {
+        "id": "icing",
+        "text": "The lemon icing was sharp and sticky on my fingers.",
+        "bucketId": "vivid"
+      },
+      { "id": "sun", "text": "Warm sun soaked into the back of my neck.", "bucketId": "vivid" }
+    ]
+  },
+  {
+    "key": "u06.swap-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Doing the work",
+    "instructions": "This paragraph never uses “very”, “scary” or “loud”. Tap the three verbs that do the work instead.",
+    "text": "The thunder cracked overhead, and the wind howled through the broken fence. Mia pressed herself against the wall while her heart hammered.",
+    "targets": ["cracked", "howled", "hammered"],
+    "explanation": "Cracked and howled show how loud the storm is, and hammered shows how scared Mia is. Strong verbs do the job of tired words, and do it better."
+  },
+  {
+    "key": "u06.swap-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Swap the tired word",
+    "questions": [
+      {
+        "id": "loud",
+        "prompt": "Which is the best replacement for “The crowd was very loud”?",
+        "options": [
+          { "id": "a", "text": "The crowd was really, really loud." },
+          { "id": "b", "text": "The crowd's roar shook the stands." },
+          { "id": "c", "text": "The crowd was extremely loud." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Roar shook the stands” lets you hear and feel the noise. Adding “really” or “extremely” just makes the tired word louder."
+      },
+      {
+        "id": "nice",
+        "prompt": "Which detail shows the soup is delicious without using “nice” or “good”?",
+        "options": [
+          { "id": "a", "text": "The soup was nice." },
+          {
+            "id": "b",
+            "text": "Steam carried the smell of garlic and basil, and I scraped the bowl clean."
+          },
+          { "id": "c", "text": "The soup was good and tasty." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The smell and the scraped bowl show the soup is delicious. The reader works it out, which is more satisfying."
+      },
+      {
+        "id": "scary",
+        "prompt": "Which sentence makes a forest feel frightening without saying “scary”?",
+        "options": [
+          { "id": "a", "text": "The forest was scary." },
+          { "id": "b", "text": "The forest was frightening and spooky." },
+          {
+            "id": "c",
+            "text": "Branches clawed at my sleeves, and somewhere behind me a twig snapped."
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Clawing branches (personification) and a twig snapping behind you make the reader feel the fear. Swapping “scary” for another feeling word is still telling."
+      }
+    ]
+  },
+  {
+    "key": "u06.sensory-challenge",
+    "type": "SENSORY_CHALLENGE",
+    "title": "The 300-Word Sensory Challenge",
+    "prompt": "Write a scene set in one place at one moment: the last minute before a race, a city at midnight, the first snow, a market at dawn. Use at least four senses, a simile, a metaphor and personification, and do it without the banned words. You have 300 words at most, so make every one count.",
+    "tips": [
+      "Plan your four senses first, then your three comparisons.",
+      "Tap words from your word bank, and use the helper for frames.",
+      "Hit the limit? Cut the weakest sentence, not the best detail."
+    ],
+    "constraints": {
+      "minWords": 200,
+      "maxWords": 300,
+      "bannedWords": ["very", "scary", "nice", "good", "loud"],
+      "enforcement": "hard"
+    },
+    "analyzers": ["senses", "figurative", "filterWords", "telling"],
+    "senseTracker": true,
+    "figurativeHelper": {
+      "label": "Comparison helper",
+      "devices": ["simile", "metaphor", "personification"],
+      "subjects": ["the crowd", "the snow", "the city", "the race track", "the market"]
+    }
+  }
+]
