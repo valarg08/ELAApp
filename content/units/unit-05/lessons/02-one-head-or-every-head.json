@@ -1,0 +1,71 @@
+{
+  "slug": "one-head-or-every-head",
+  "order": 2,
+  "title": "Third Person: One Head or Every Head?",
+  "estMinutes": 45,
+  "focusSkills": ["point-of-view", "narrator"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "If you could read one person's mind for a day, whose would you choose, and what would you want to find out?",
+      "placeholder": "I would read the mind of…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Third person limited",
+          "body": "The narrator uses he, she and they, but follows ONE character closely, like a camera just over their shoulder. We hear that character's thoughts and feelings, and nobody else's. Other characters are shown from the outside: what they say, do and look like."
+        },
+        {
+          "kind": "definition",
+          "title": "Third person omniscient",
+          "body": "Omniscient means all-knowing. The narrator floats above the story and can dip into ANY character's mind, even in the same scene. It's great for showing how differently people see the same moment."
+        },
+        {
+          "kind": "pov-simulator",
+          "title": "Limited or all-knowing?",
+          "prompt": "Switch between the two versions. Whose thoughts can the narrator hear in each?",
+          "versions": [
+            {
+              "pov": "third-limited",
+              "text": "Sam carried the cake to the table. It wobbled. He held his breath and prayed it would last until Grandma blew out the candles. Across the room, Grandma was smiling at something.",
+              "knows": "Only Sam's thoughts. We can see Grandma smile, but not why."
+            },
+            {
+              "pov": "omniscient",
+              "text": "Sam carried the cake to the table, praying it would last. Across the room, Grandma smiled. She had seen the wobble, and she was already planning to say it was the best cake she had ever tasted.",
+              "knows": "Sam's worry and Grandma's secret plan. The narrator can step inside any head."
+            }
+          ]
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Two heads",
+          "prompt": "Tap the two words that show we're inside two different characters' heads.",
+          "text": "Lena hoped the storm would pass, but her father feared it was only beginning.",
+          "clues": ["hoped", "feared"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u05.narrator-sort", "u05.thoughts-highlight", "u05.could-know-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u05.narrator-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Whose head did you stay in, and why that character?",
+        "How did you show the other character's feelings from the outside?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -8,6 +8,8 @@ import {
   checkConstraints,
   constraintsWithTraits,
   planComplete,
+  toneComplete,
+  validTone,
 } from '@storyforge/shared';
 import type { Span } from '@storyforge/writing-analysis';
 import { useRef, useState } from 'react';
@@ -22,7 +24,9 @@ import { HistoryPanel, formatWhen } from './history-panel';
 import { SaveStatusText } from './save-status';
 import { ConflictPicker } from './conflict-picker';
 import { MoodPicker } from './mood-picker';
+import { PerspectiveGuide } from './perspective-guide';
 import { PlotPlanner } from './plot-planner';
+import { TonePicker } from './tone-picker';
 import { TraitPicker } from './trait-picker';
 import { useAutosave } from './use-autosave';
 
@@ -65,6 +69,9 @@ export function WritingWorkspace({
   const [plot, setPlot] = useState(submission.plot);
   const needsConflict = conflictPicker !== undefined && conflict === null;
   const needsPlot = plotPlanner !== undefined && !planComplete(plot);
+  const tonePicker = activity.tonePicker;
+  const [tone, setTone] = useState(submission.tone);
+  const needsTone = tonePicker !== undefined && !toneComplete(activity, validTone(activity, tone));
   const [historyKey, setHistoryKey] = useState(0);
   const refreshHistory = () => setHistoryKey((k) => k + 1);
   const { state, controller } = useAutosave(submission, refreshHistory);
@@ -82,6 +89,7 @@ export function WritingWorkspace({
     needsMood ||
     needsConflict ||
     needsPlot ||
+    needsTone ||
     state.status === 'conflict' ||
     (constraints.enforcement === 'hard' && problems.length > 0);
   const short = constraints.exactWords !== undefined && constraints.exactWords <= 10;
@@ -106,6 +114,7 @@ export function WritingWorkspace({
       mood={mood}
       conflict={conflict}
       plot={plot}
+      tone={tone}
       onShow={showInText}
     />
   );
@@ -234,6 +243,27 @@ export function WritingWorkspace({
         />
       )}
 
+      {tonePicker && (
+        <TonePicker
+          submissionId={submission.id}
+          picker={tonePicker}
+          tone={tone}
+          onChange={setTone}
+        />
+      )}
+
+      {constraints.perspectives && (
+        <PerspectiveGuide
+          text={state.text}
+          perspectives={constraints.perspectives}
+          onAddHeadings={(next) => {
+            setStarted(true);
+            controller.setText(next);
+            showInText({ start: next.length, end: next.length, text: '' });
+          }}
+        />
+      )}
+
       <ConstraintsBar text={state.text} constraints={constraints} started={started} />
 
       <div className="flex flex-col gap-1">
@@ -274,6 +304,11 @@ export function WritingWorkspace({
         )}
         {needsPlot && (
           <span className="text-sm text-muted">Fill in all five parts of your plan to submit.</span>
+        )}
+        {needsTone && (
+          <span className="text-sm text-muted">
+            Set the tone you’re aiming for above to submit.
+          </span>
         )}
         {needsMood && (
           <span className="text-sm text-muted">

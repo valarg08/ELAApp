@@ -92,6 +92,8 @@ export const LiveAnalyzerId = z.enum([
   'character-read',
   'setting-mood',
   'plot-check',
+  'pov-consistency',
+  'tone-style',
 ]);
 export type LiveAnalyzerId = z.infer<typeof LiveAnalyzerId>;
 
@@ -106,6 +108,8 @@ export const LiveCheckRequest = z.object({
   /** For "Does my plot work?": the chosen conflict and the plan. */
   conflict: z.string().max(40).nullable().default(null),
   plot: z.record(z.string(), z.string().max(200)).optional(),
+  /** For "What tone will my reader hear?": the tone aimed for, per scale. */
+  tone: z.record(z.string(), z.number()).optional(),
 });
 export type LiveCheckRequest = z.infer<typeof LiveCheckRequest>;
 

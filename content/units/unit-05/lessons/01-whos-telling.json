@@ -1,0 +1,78 @@
+{
+  "slug": "whos-telling",
+  "order": 1,
+  "title": "Who's Telling the Story?",
+  "estMinutes": 45,
+  "focusSkills": ["point-of-view"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which one puts you right inside the moment?",
+      "a": "Kai crept up the stairs. He could hear the clock ticking in the hall.",
+      "b": "I crept up the stairs. Every tick of the clock sounded like a warning only I could hear.",
+      "reveal": "The second one is told by Kai himself. When the narrator is a character, we live the story through their eyes and hear their thoughts. That choice is called point of view."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Point of view",
+          "body": "Point of view is who tells the story and how much they know. In first person, a character tells their own story (I, me, my). In third person, a narrator outside the story tells it (he, she, they, names). Second person (you) is rare: it makes the reader the character."
+        },
+        {
+          "kind": "pov-simulator",
+          "title": "One scene, three cameras",
+          "prompt": "Read the same moment told three ways. Watch where the camera is, and whose thoughts we can hear.",
+          "versions": [
+            {
+              "pov": "first",
+              "text": "I opened my locker, and a folded note slid out. My stomach flipped. Who even knew my combination? Behind me, Leo was grinning.",
+              "knows": "Only what Maya sees, hears, thinks and feels. She can't know why Leo is grinning."
+            },
+            {
+              "pov": "third-limited",
+              "text": "Maya opened her locker, and a folded note slid out. Her stomach flipped. Who even knew her combination? Behind her, Leo was grinning.",
+              "knows": "Everything Maya sees and thinks, told with she and her. Leo's thoughts stay a mystery."
+            },
+            {
+              "pov": "omniscient",
+              "text": "Maya opened her locker, and a folded note slid out. Her stomach flipped. Behind her, Leo grinned; he had spent all night writing it, and he hoped she would never guess it was him.",
+              "knows": "What every character thinks and feels: Maya's worry and Leo's secret."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The first-person narrator",
+          "body": "A first-person narrator can only share what they see, hear, think and feel. They can't read other people's minds, so they guess from clues, just like we do in real life. That makes first person feel close, personal and sometimes mysterious."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the narrator",
+          "prompt": "Tap the two words that show this story is told in first person.",
+          "text": "The dog looked at the cake, then at me. I knew exactly what he was planning.",
+          "clues": ["me", "I"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u05.pov-sort", "u05.pronoun-highlight", "u05.know-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u05.first-person-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What could your narrator NOT know in your scene?",
+        "How did telling it in first person change the way it feels?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

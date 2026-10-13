@@ -4,6 +4,8 @@ import {
   type CharacterReadResult,
   type SettingMoodResult,
   type PlotCheckResult,
+  type PovConsistencyResult,
+  type ToneStyleResult,
   type FeedbackPoint,
   HOLDING_MESSAGE,
   LIVE_ANALYZERS,
@@ -16,6 +18,8 @@ import {
   characterReadPoints,
   settingMoodPoints,
   plotCheckPoints,
+  povPoints,
+  tonePoints,
   sensoryPoints,
   showVsTellPoints,
 } from '@storyforge/ai';
@@ -37,6 +41,7 @@ import { DatabaseService } from '../database/database.service.js';
 import { SafetyService } from '../safety/safety.service.js';
 import { AiRunnerService } from './ai-runner.service.js';
 import { plotInput, plotScope } from './plot-input.js';
+import { povInput, toneInput, toneScope } from './voice-input.js';
 
 /** Live checks give up after 20 s (DESIGN.md §8.6) and ask the student to try again. */
 const LIVE_TIMEOUT_MS = 20_000;
@@ -81,9 +86,8 @@ export class LiveChecksService {
       throw notFound(ErrorCode.ACTIVITY_NOT_FOUND, 'Writing activity not found.');
     }
     if (
-      (req.analyzer === 'character-read' ||
-        req.analyzer === 'setting-mood' ||
-        req.analyzer === 'plot-check') &&
+      req.analyzer !== 'show-vs-tell' &&
+      req.analyzer !== 'sensory-analysis' &&
       !analyzersForActivity(content.type).includes(req.analyzer)
     ) {
       throw new AppError(
@@ -182,6 +186,24 @@ export class LiveChecksService {
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = plotCheckPoints(req.text, outcome.result, extra.conflict?.label ?? null);
+      } else if (req.analyzer === 'pov-consistency') {
+        const extra = povInput(content);
+        const outcome: AnalyzerOutcome<PovConsistencyResult> = await withTimeout(
+          this.ai.run(LIVE_ANALYZERS['pov-consistency'], { ...ctx, ...extra }, meta),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = povPoints(req.text, outcome.result, extra.narrator);
+      } else if (req.analyzer === 'tone-style') {
+        const extra = toneInput(content, req.tone);
+        const outcome: AnalyzerOutcome<ToneStyleResult> = await withTimeout(
+          this.ai.run(
+            LIVE_ANALYZERS['tone-style'],
+            { ...ctx, ...extra },
+            { ...meta, cacheScope: `${activity.key}|${toneScope(extra)}` },
+          ),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = tonePoints(req.text, outcome.result);
       } else if (req.analyzer === 'setting-mood') {
         const moods = validMoods(content, req.mood);
         const outcome: AnalyzerOutcome<SettingMoodResult> = await withTimeout(

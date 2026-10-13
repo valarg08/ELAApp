@@ -30,11 +30,14 @@ import {
   diffWords,
   isWritingActivity,
   type PlotPlan,
+  type SetToneRequest,
   planComplete,
+  toneComplete,
   submissionChoices,
   validConflict,
   validMoods,
   validPlot,
+  validTone,
   validTraits,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
@@ -239,6 +242,25 @@ export class SubmissionsService {
     return this.saveChoices(current, { plot: validPlot(activity, plot) });
   }
 
+  /** Save the tone aimed for on the activity's tone sliders (Unit 5; other scales are dropped). */
+  async setTone(
+    user: AuthUser,
+    id: string,
+    tone: SetToneRequest['tone'],
+  ): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    if (!activity.tonePicker) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'No tone here',
+        'This activity doesn’t ask you to choose a tone.',
+      );
+    }
+    return this.saveChoices(current, { tone: validTone(activity, tone) });
+  }
+
   private async saveChoices(
     current: LoadedSubmission,
     change: Partial<SubmissionChoices>,
@@ -303,6 +325,12 @@ export class SubmissionsService {
     }
     if (activity.plotPlanner && !planComplete(validPlot(activity, choicesOf(current).plot))) {
       missing.push('Fill in all five parts of your story mountain plan first.');
+    }
+    if (
+      activity.tonePicker &&
+      !toneComplete(activity, validTone(activity, choicesOf(current).tone))
+    ) {
+      missing.push('Set the tone you are aiming for on every slider first.');
     }
     if (missing.length > 0) {
       throw new AppError(
@@ -538,6 +566,7 @@ export class SubmissionsService {
       mood: choicesOf(s).mood,
       conflict: choicesOf(s).conflict,
       plot: choicesOf(s).plot,
+      tone: choicesOf(s).tone,
     };
   }
 }

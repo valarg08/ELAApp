@@ -3,6 +3,17 @@
   "slug": "point-of-view-and-voice",
   "title": "Point of View & Voice",
   "summary": "Explore first person, third person limited and omniscient, and find a voice that sounds like a real narrator.",
-  "bigIdeas": ["Who tells the story changes the story.", "Voice is personality on the page."],
-  "published": false
+  "bigIdeas": [
+    "Who tells the story changes the story.",
+    "A narrator can only know what their point of view allows.",
+    "Voice is personality on the page.",
+    "Tone comes from the words you choose."
+  ],
+  "published": true,
+  "projectSpec": {
+    "title": "My Narrator's Story",
+    "description": "Write a short story (600–900 words) with a narrator who has a strong voice. Choose first person, third person limited or omniscient on purpose and keep it steady, set a tone and let your word choices create it, and include one scene retold from a different character's point of view.",
+    "minWords": 600,
+    "maxWords": 900
+  }
 }

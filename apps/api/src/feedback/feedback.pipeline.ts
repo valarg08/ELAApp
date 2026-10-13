@@ -10,6 +10,8 @@ import {
   characterReadPoints,
   settingMoodPoints,
   plotCheckPoints,
+  povPoints,
+  tonePoints,
   rubricPoints,
   rubricScoreAnalyzer,
   sensoryPoints,
@@ -36,6 +38,7 @@ import { AiRunnerService } from '../ai/ai-runner.service.js';
 import { DatabaseService } from '../database/database.service.js';
 import { SafetyService } from '../safety/safety.service.js';
 import { plotInput, plotScope } from '../ai/plot-input.js';
+import { povInput, toneInput, toneScope } from '../ai/voice-input.js';
 
 const toJson = (value: unknown): Prisma.InputJsonValue => JSON.parse(JSON.stringify(value));
 const points = (list: FeedbackPoint[]) => FeedbackPointSchema.array().parse(list);
@@ -51,6 +54,7 @@ const SKILL_NAMES: Record<string, string> = {
   tense: 'consistent tense',
   mood: 'setting mood',
   pacing: 'pacing',
+  tone: 'tone and voice',
 };
 
 /**
@@ -144,7 +148,7 @@ export class FeedbackPipeline {
     let declined = false;
     const versions: string[] = [];
     const runMeta = { ...meta, cacheScope: activity.key, text };
-    const { traits, mood: moods, conflict, plot } = submissionChoices(submission.choices);
+    const { traits, mood: moods, conflict, plot, tone } = submissionChoices(submission.choices);
     const checkWantFear = WANT_FEAR_TYPES.includes(content.type);
     const collect = (p: { strengths: FeedbackPoint[]; nextSteps: FeedbackPoint[] }) => {
       extraStrengths.push(...p.strengths);
@@ -192,6 +196,41 @@ export class FeedbackPipeline {
           `plot: conflict ${r.conflict.clear ? 'clear' : 'unclear'}${extra.conflict ? ` (chosen ${extra.conflict.label}, ${r.conflict.matchesChosen ? 'matches' : 'does not match'})` : ''}; missing stages ${missing.join(', ') || 'none'}; climax ${r.climax.clear ? 'clear' : 'unclear'}; ending ${r.ending.resolved ? 'resolved' : 'open'}`,
         );
         const p = plotCheckPoints(text, r, extra.conflict?.label ?? null);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
+      } else if (id === 'pov-consistency') {
+        const extra = povInput(content);
+        const outcome = await this.ai.run(LIVE_ANALYZERS[id], { ...ctx, ...extra }, runMeta);
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        const broken = r.parts.filter((p) => !p.keeps).map((p) => p.label);
+        notes.push(
+          `point of view: ${r.detectedPov}, ${r.shifts.length} shifts${r.narrator ? `; narrator ${r.narrator.detected} (target ${extra.narrator})` : ''}${r.parts.length > 0 ? `; parts that slip: ${broken.join(', ') || 'none'}` : ''}`,
+        );
+        const p = povPoints(text, r, extra.narrator);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
+      } else if (id === 'tone-style') {
+        const extra = toneInput(content, tone);
+        const outcome = await this.ai.run(
+          LIVE_ANALYZERS[id],
+          { ...ctx, ...extra },
+          { ...runMeta, cacheScope: `${activity.key}|${toneScope(extra)}` },
+        );
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        notes.push(
+          `tone: ${r.tones.map((t) => `${t.axis} aimed ${t.aimed ?? '-'} heard ${t.heard}`).join('; ')}; voice ${r.voice.words.join(', ') || 'unclear'}`,
+        );
+        const p = tonePoints(text, r);
         focusStrengths.push(...p.strengths);
         focusNextSteps.push(...p.nextSteps);
       } else if (id === 'setting-mood') {

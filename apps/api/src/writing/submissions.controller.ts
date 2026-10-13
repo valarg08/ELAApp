@@ -8,6 +8,7 @@ import {
   SetConflictRequest,
   SetMoodRequest,
   SetPlotRequest,
+  SetToneRequest,
   SetTraitsRequest,
   type SaveDraftResponse,
   type SubmissionDetail,
@@ -99,6 +100,17 @@ export class SubmissionsController {
     @Body({ schema: SetPlotRequest }) body: SetPlotRequest,
   ): Promise<SubmissionDetail> {
     return this.submissions.setPlot(user, id, body.plot);
+  }
+
+  /** The tone aimed for on the activity's tone sliders (Unit 5). */
+  @Roles('STUDENT')
+  @Put(':id/tone')
+  setTone(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetToneRequest }) body: SetToneRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setTone(user, id, body.tone);
   }
 
   @Roles('STUDENT')

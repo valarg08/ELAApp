@@ -5,11 +5,15 @@ import { useRef, useState } from 'react';
 import { Button } from '@/components/ui';
 import { splitWords } from '@/lib/tokens';
 import { ExplainAnother } from '../tutor/explain-another';
+import { PovSimulator } from './pov-simulator';
 import type { StepProps } from './step-props';
 
 type Learn = LessonSteps[1];
 
-/** Mini-lesson cards, one at a time. Clue-hunt cards need every clue found (or "Show me"). */
+/**
+ * Mini-lesson cards, one at a time. Clue-hunt cards need every clue found (or "Show me"); the POV
+ * simulator needs every version read.
+ */
 export function LearnStep({
   step,
   done,
@@ -19,7 +23,7 @@ export function LearnStep({
 }: StepProps<Learn> & { lessonId: string }) {
   const [index, setIndex] = useState(0);
   const [cardDone, setCardDone] = useState<boolean[]>(
-    step.cards.map((c) => done || c.kind !== 'clue-hunt'),
+    step.cards.map((c) => done || (c.kind !== 'clue-hunt' && c.kind !== 'pov-simulator')),
   );
   const card = step.cards[index];
   if (!card) return null;
@@ -100,6 +104,8 @@ function CardView({ card, onSolved }: { card: LessonCard; onSolved: () => void }
       );
     case 'clue-hunt':
       return <ClueHunt card={card} onSolved={onSolved} frame={frame} />;
+    case 'pov-simulator':
+      return <PovSimulator card={card} onSolved={onSolved} frame={frame} />;
   }
   const unreachable: never = card;
   return unreachable;

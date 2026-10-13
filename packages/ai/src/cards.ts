@@ -4,6 +4,9 @@ import type { SensoryResult } from './analyzers/sensory.js';
 import type { SettingMoodResult } from './analyzers/setting-mood.js';
 import { PLOT_STAGE_LABELS, type PlotCheckResult } from './analyzers/plot-check.js';
 import type { ShowVsTellResult } from './analyzers/show-vs-tell.js';
+import type { PovConsistencyResult } from './analyzers/pov-consistency.js';
+import type { ToneStyleResult } from './analyzers/tone-style.js';
+import { isToneStep, toneStepLabel } from '@storyforge/writing-analysis';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
 /** A feedback point shown to the student, anchored to their text when it quotes it. */
@@ -246,4 +249,101 @@ export function plotCheckPoints(text: string, r: PlotCheckResult, conflictLabel:
     });
   }
   return { strengths: strengths.slice(0, 3), nextSteps: nextSteps.slice(0, 3) };
+}
+
+/** "Is my point of view steady?": a steady point of view and parts that keep theirs as strengths; slips as next steps. */
+export function povPoints(
+  text: string,
+  r: PovConsistencyResult,
+  narrator: 'limited' | 'omniscient' | null,
+) {
+  const strengths: (FeedbackPoint | null)[] = [];
+  const nextSteps: (FeedbackPoint | null)[] = [];
+  for (const p of r.parts) {
+    if (p.keeps) {
+      strengths.push(
+        anchored(text, { title: `${p.label} ✓`, message: p.note }, p.quote) ?? {
+          title: `${p.label} ✓`,
+          message: p.note,
+        },
+      );
+    } else {
+      const point = { title: `Check “${p.label}”`, message: p.note };
+      nextSteps.push(anchored(text, point, p.quote) ?? point);
+    }
+  }
+  for (const s of r.shifts.slice(0, 2)) {
+    nextSteps.push(
+      anchored(text, { title: `Slips into the ${s.to} person`, message: s.suggestion }, s.quote),
+    );
+  }
+  if (r.narrator) {
+    const point = {
+      title:
+        r.narrator.detected === 'omniscient'
+          ? 'An all-knowing narrator'
+          : r.narrator.detected === 'limited'
+            ? 'Inside one head'
+            : 'Whose thoughts do we hear?',
+      message: r.narrator.note,
+    };
+    const placed = anchored(text, point, r.narrator.quote) ?? point;
+    (r.narrator.detected === narrator ? strengths : nextSteps).push(placed);
+  }
+  if (
+    r.parts.length === 0 &&
+    r.shifts.length === 0 &&
+    r.detectedPov !== 'unclear' &&
+    r.detectedPov !== 'mixed'
+  ) {
+    strengths.push({
+      title: `Steady ${r.detectedPov}-person narrator`,
+      message:
+        'You never slip out of your point of view, so the reader always knows whose story it is.',
+    });
+  }
+  if (r.strongMoment) {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'Through their eyes', message: r.strongMoment.why },
+        r.strongMoment.quote,
+      ),
+    );
+  }
+  return {
+    strengths: strengths.filter(isPoint).slice(0, 3),
+    nextSteps: nextSteps.filter(isPoint).slice(0, 3),
+  };
+}
+
+/** "What tone will my reader hear?": tones that match as strengths, ones that miss as next steps. */
+export function tonePoints(text: string, r: ToneStyleResult) {
+  const strengths: (FeedbackPoint | null)[] = [];
+  const nextSteps: (FeedbackPoint | null)[] = [];
+  for (const t of r.tones) {
+    const heard = toneStepLabel(t.axis, isToneStep(t.heard) ? t.heard : 0);
+    if (t.aimed === null) continue;
+    const aimed = toneStepLabel(t.axis, isToneStep(t.aimed) ? t.aimed : 0);
+    if (t.idea) {
+      nextSteps.push({ title: `Aimed ${aimed}, sounds ${heard}`, message: t.idea });
+    } else {
+      const point = {
+        title: `Sounds ${heard} ✓`,
+        message: `You aimed for ${aimed}, and that's what a reader hears.`,
+      };
+      strengths.push(anchored(text, point, t.quote) ?? point);
+    }
+  }
+  if (r.voice.words.length > 0) {
+    const point = {
+      title: `Your narrator sounds ${r.voice.words.join(', ')}`,
+      message: r.strongLine?.why ?? 'That personality is what readers call voice.',
+    };
+    strengths.push(anchored(text, point, r.strongLine?.quote ?? r.voice.quote) ?? point);
+  }
+  return {
+    strengths: strengths.filter(isPoint).slice(0, 3),
+    nextSteps: nextSteps.filter(isPoint).slice(0, 3),
+  };
 }

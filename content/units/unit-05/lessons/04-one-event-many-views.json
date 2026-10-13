@@ -1,0 +1,80 @@
+{
+  "slug": "one-event-many-views",
+  "order": 4,
+  "title": "One Event, Many Views",
+  "estMinutes": 50,
+  "focusSkills": ["point-of-view", "perspective"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "Three stories, one window",
+      "paragraphs": [
+        "At lunchtime, a football smashed through the school kitchen window.",
+        "Ayo, who kicked it, says it was an accident and the wind did it. Ms Rivera, the cook, says she nearly lost a whole tray of jelly. Jun, the goalkeeper, says it was the best save he never made.",
+        "Same event, three stories. Who tells it changes everything."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Perspective",
+          "body": "Every character notices different things, cares about different things and feels differently about what happens. When you retell an event from a new point of view, the events stay the same, but what the narrator notices, thinks and feels changes."
+        },
+        {
+          "kind": "pov-simulator",
+          "title": "The picnic, three ways",
+          "prompt": "One stolen sandwich, three narrators. What does each one notice?",
+          "versions": [
+            {
+              "pov": "first",
+              "text": "The sandwich was right there, glowing like treasure. I waited until Dad looked away. Then I struck. Best. Day. Ever.",
+              "knows": "Only what Biscuit the dog notices and wants: the sandwich. He has no idea Dad is upset."
+            },
+            {
+              "pov": "third-limited",
+              "text": "Dad turned for one second to find the ketchup. When he turned back, his sandwich was gone, and Biscuit was licking his lips. Dad sighed. Why had he ever thought a picnic was a good idea?",
+              "knows": "Only Dad's thoughts. He can guess what Biscuit did, but not what Biscuit was thinking."
+            },
+            {
+              "pov": "omniscient",
+              "text": "Dad turned to find the ketchup, and Biscuit saw his chance. While the dog gulped down the sandwich, delighted, Dad wondered why he had ever planned a picnic, and little Mia, who had seen everything, decided to keep the secret.",
+              "knows": "Everything: what Biscuit wants, what Dad wonders, and what Mia decides."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Keep it steady",
+          "body": "Once you choose a point of view, stick with it. A first-person narrator can't suddenly know another character's thoughts, and a third-person story shouldn't slip into I. If you want a new view, start a new part or chapter."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Same picnic, different views",
+          "prompt": "Tap the two words that show how differently Biscuit and Dad see the same picnic.",
+          "text": "Biscuit thought the picnic was the greatest day of his life. Dad thought it was a disaster.",
+          "clues": ["greatest", "disaster"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u05.notice-sort", "u05.shift-highlight", "u05.rewrite-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u05.pov-rewrite" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which version was the most fun to write, and why?",
+        "What did one narrator notice that the others didn't?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

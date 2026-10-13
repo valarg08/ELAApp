@@ -1,6 +1,11 @@
 'use client';
 
-import type { PlotPlan, WritingActivity } from '@storyforge/shared';
+import {
+  type PlotPlan,
+  type ToneChoice,
+  type WritingActivity,
+  validTone,
+} from '@storyforge/shared';
 import {
   type CoachCard,
   type CoachReport,
@@ -8,11 +13,16 @@ import {
   type Sense,
   type Span,
   MOOD_POLES,
+  TONE_STEPS,
   buildCoachReport,
+  perspectiveName,
+  toneAxis,
+  toneStepLabel,
 } from '@storyforge/writing-analysis';
 import { useState } from 'react';
 import { Button } from '@/components/ui';
 import { AskQuill } from './ask-quill';
+import { TONE_ICONS } from './tone-picker';
 
 const SENSE_ICONS: Record<Sense, string> = {
   sight: '👁',
@@ -34,6 +44,7 @@ export function CoachPanel({
   mood,
   conflict,
   plot,
+  tone,
   onShow,
 }: {
   text: string;
@@ -46,6 +57,8 @@ export function CoachPanel({
   /** Conflict card and plan (for "Does my plot work?"). */
   conflict: string | null;
   plot: PlotPlan;
+  /** Tone aimed for on the tone sliders (the tone check compares against it). */
+  tone: ToneChoice;
   /** Select the words a card points at in the editor. */
   onShow: (span: Span) => void;
 }) {
@@ -60,6 +73,9 @@ export function CoachPanel({
         povLock: activity.constraints.povLock,
         tenseLock: activity.constraints.tenseLock,
         moods: MOOD_POLES.filter((p) => mood.includes(p)),
+        narrator: activity.constraints.narrator,
+        perspectives: activity.constraints.perspectives,
+        tone: activity.tonePicker ? validTone(activity, tone) : undefined,
       }),
     });
   }
@@ -116,6 +132,14 @@ export function CoachPanel({
               </p>
             )}
             {checked.report.senses && <SensesMeter counts={checked.report.senses} />}
+            {checked.report.perspectives && (
+              <PerspectiveStrip
+                parts={checked.report.perspectives}
+                canShow={canShow}
+                onShow={onShow}
+              />
+            )}
+            {checked.report.tone && <ToneBand scales={checked.report.tone} />}
             {checked.report.pacing && (
               <PacingBand segments={checked.report.pacing} canShow={canShow} onShow={onShow} />
             )}
@@ -130,6 +154,7 @@ export function CoachPanel({
         mood={mood}
         conflict={conflict}
         plot={plot}
+        tone={tone}
         text={text}
         onShow={onShow}
       />
@@ -241,6 +266,105 @@ function PacingBand({
           );
         })}
       </ol>
+    </div>
+  );
+}
+
+const PART_STATUS = {
+  ok: { icon: '✓', label: 'keeps its point of view', className: 'border-ok' },
+  missing: { icon: '＋', label: 'heading missing', className: 'border-border' },
+  short: { icon: '…', label: 'too short to check', className: 'border-border' },
+  shift: { icon: '⚠', label: 'slips out of its point of view', className: 'border-warn' },
+  narrator: { icon: '?', label: 'check whose thoughts we hear', className: 'border-warn' },
+} as const;
+
+/** Each part of a multi-perspective rewrite with its point of view, checked. */
+function PerspectiveStrip({
+  parts,
+  canShow,
+  onShow,
+}: {
+  parts: NonNullable<CoachReport['perspectives']>;
+  canShow: (span: Span | undefined) => span is Span;
+  onShow: (span: Span) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      <h3 className="font-semibold">Points of view, part by part</h3>
+      <ol className="flex flex-col gap-1">
+        {parts.map((p) => {
+          const s = PART_STATUS[p.status];
+          return (
+            <li
+              key={p.label}
+              className={`flex flex-wrap items-center gap-x-2 rounded-lg border px-3 py-1.5 text-sm ${s.className}`}
+            >
+              <span aria-hidden="true">{s.icon}</span>
+              <span className="font-semibold">{p.label}</span>
+              {!p.label.toLowerCase().includes(perspectiveName(p)) && (
+                <span className="text-muted">({perspectiveName(p)})</span>
+              )}
+              <span>· {s.label}</span>
+              {p.status !== 'ok' && canShow(p.span) && (
+                <button
+                  type="button"
+                  onClick={() => p.span && onShow(p.span)}
+                  className="font-semibold text-brand underline focus-visible:outline-3 focus-visible:outline-brand"
+                >
+                  Show me
+                </button>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
+/** The tone sliders again: where the student aimed (🎯) and where their words sit (🦉). */
+function ToneBand({ scales }: { scales: NonNullable<CoachReport['tone']> }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <h3 className="font-semibold">Your tone: aimed 🎯 and heard 🦉</h3>
+      <ul className="flex flex-col gap-3">
+        {scales.map(({ axis, aimed, heard }) => {
+          const [left, right] = toneAxis(axis).poles;
+          return (
+            <li key={axis} className="flex flex-col gap-1">
+              <div aria-hidden="true" className="flex flex-col gap-1">
+                <div className="flex justify-between text-sm">
+                  <span>
+                    {TONE_ICONS[left]} {left}
+                  </span>
+                  <span>
+                    {right} {TONE_ICONS[right]}
+                  </span>
+                </div>
+                <div className="relative flex items-center justify-between px-1">
+                  <span className="absolute inset-x-2 top-1/2 h-1 -translate-y-1/2 rounded bg-border" />
+                  {TONE_STEPS.map((step) => (
+                    <span
+                      key={step}
+                      className={`relative flex size-8 items-center justify-center rounded-full border ${
+                        step === heard ? 'border-brand bg-brand/15' : 'border-border bg-card'
+                      }`}
+                    >
+                      {step === aimed ? '🎯' : step === heard ? '🦉' : ''}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <p className="text-center text-sm">
+                {aimed !== null && <>Aimed: {toneStepLabel(axis, aimed)} · </>}
+                {heard === null
+                  ? 'Quill can’t hear this one yet: add a few more words with that feel.'
+                  : `Sounds: ${toneStepLabel(axis, heard)}${aimed !== null && Math.abs(aimed - heard) <= 1 && aimed * heard >= 0 ? ' ✓' : ''}`}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

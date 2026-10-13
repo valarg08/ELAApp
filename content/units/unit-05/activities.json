@@ -1,0 +1,457 @@
+[
+  {
+    "key": "u05.pov-sort",
+    "type": "SORT",
+    "title": "Who's telling?",
+    "instructions": "Sort each sentence by its point of view. Remember: words inside quotation marks are a character speaking, not the narrator.",
+    "buckets": [
+      { "id": "first", "label": "First person (I, we)" },
+      { "id": "second", "label": "Second person (you)" },
+      { "id": "third", "label": "Third person (he, she, they)" }
+    ],
+    "items": [
+      {
+        "id": "stage",
+        "text": "I could feel my heart thumping as I stepped onto the stage.",
+        "bucketId": "first"
+      },
+      { "id": "home", "text": "We ran all the way home, laughing.", "bucketId": "first" },
+      { "id": "shoes", "text": "My little brother hid my shoes again.", "bucketId": "first" },
+      {
+        "id": "door",
+        "text": "You open the door, and a cold wind hits your face.",
+        "bucketId": "second"
+      },
+      {
+        "id": "attic",
+        "text": "You climb the ladder. Your torch flickers. Something moves in the corner.",
+        "bucketId": "second"
+      },
+      {
+        "id": "rope",
+        "text": "She grabbed the rope and pulled with all her strength.",
+        "bucketId": "third"
+      },
+      {
+        "id": "cage",
+        "text": "Ravi stared at the empty cage. Where had the hamster gone?",
+        "bucketId": "third"
+      },
+      {
+        "id": "zara",
+        "text": "\"I'm not scared,\" Zara said, but her hands were shaking.",
+        "bucketId": "third"
+      }
+    ]
+  },
+  {
+    "key": "u05.pronoun-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Spot the narrator",
+    "instructions": "This scene is told in first person. Tap the three words that show the narrator is telling their own story.",
+    "text": "When the lights went out, I grabbed my torch. Somewhere downstairs, a door creaked. Mum was asleep, so it was up to me to find out what it was.",
+    "targets": ["I", "my", "me"],
+    "explanation": "I, my and me show that the narrator is a character inside the story, telling us what happened to them. Mum is told about from the outside."
+  },
+  {
+    "key": "u05.know-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Could this narrator know this?",
+    "questions": [
+      {
+        "id": "note",
+        "prompt": "Maya tells the story in first person. Which sentence could she NOT write?",
+        "options": [
+          { "id": "a", "text": "My hands were shaking as I unfolded the note." },
+          { "id": "b", "text": "Leo secretly hoped I would never guess the note was from him." },
+          { "id": "c", "text": "I heard footsteps behind me in the corridor." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Maya can only tell us what she sees, hears, thinks and feels. She can't know Leo's secret hopes unless he tells her."
+      },
+      {
+        "id": "bed",
+        "prompt": "A first-person narrator is hiding under the bed. Which detail can they share?",
+        "options": [
+          { "id": "a", "text": "The cat downstairs is dreaming about fish." },
+          { "id": "b", "text": "The dust under the bed is tickling my nose." },
+          { "id": "c", "text": "The burglar is planning to check the kitchen next." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The dust tickling the narrator's nose is something they can feel. The cat's dreams and the burglar's plans are inside other heads."
+      },
+      {
+        "id": "why",
+        "prompt": "Why might a writer choose first person?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To put the reader inside one character's head, hearing their thoughts."
+          },
+          { "id": "b", "text": "To show what every character is thinking at once." },
+          { "id": "c", "text": "Because it is the only correct way to write a story." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "First person feels close and personal: we live the story through the narrator's eyes, but we only know what they know."
+      }
+    ]
+  },
+  {
+    "key": "u05.first-person-scene",
+    "type": "FIRST_PERSON_SCENE",
+    "title": "Through my eyes",
+    "prompt": "Write a scene where your narrator discovers something surprising: a note, a hidden door, a secret, a strange noise. Tell it in first person. Show what only your narrator can see, hear, think and feel, and let the reader wonder about what the other characters are thinking.",
+    "tips": [
+      "Use I, me and my in the narration. Characters can still say “you” or “he” when they speak.",
+      "Share one thought that only your narrator could have.",
+      "Show other characters through what your narrator notices: a grin, a whisper, a slammed door."
+    ],
+    "constraints": {
+      "minWords": 100,
+      "maxWords": 250,
+      "povLock": "first",
+      "enforcement": "hard"
+    },
+    "analyzers": ["pov", "telling", "senses", "sentenceVariety"]
+  },
+  {
+    "key": "u05.narrator-sort",
+    "type": "SORT",
+    "title": "One head or every head?",
+    "instructions": "Sort each passage: does the narrator stay inside one character's head (limited), or know what several characters think (omniscient)?",
+    "buckets": [
+      { "id": "limited", "label": "Third person limited (one head)" },
+      { "id": "omniscient", "label": "Omniscient (every head)" }
+    ],
+    "items": [
+      {
+        "id": "clock",
+        "text": "Jake watched the clock. Five more minutes, he told himself. He could survive five more minutes.",
+        "bucketId": "limited"
+      },
+      {
+        "id": "curtain",
+        "text": "Amira hid behind the curtain. She could hear footsteps, but she had no idea whose they were.",
+        "bucketId": "limited"
+      },
+      {
+        "id": "letter",
+        "text": "Tom stared at the letter. Why would Dad keep a secret like this? He read it again, slower this time.",
+        "bucketId": "limited"
+      },
+      {
+        "id": "homework",
+        "text": "Jake watched the clock, desperate for the bell, while Mr Lee wondered why nobody had done the homework.",
+        "bucketId": "omniscient"
+      },
+      {
+        "id": "brother",
+        "text": "Amira hid behind the curtain, terrified, and her brother, who knew exactly where she was, tried not to laugh.",
+        "bucketId": "omniscient"
+      },
+      {
+        "id": "town",
+        "text": "The whole town slept, except Lena, who lay awake worrying, and the baker, who was already dreaming of bread.",
+        "bucketId": "omniscient"
+      }
+    ]
+  },
+  {
+    "key": "u05.thoughts-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Inside whose head?",
+    "instructions": "This narrator is omniscient. Tap the three words that take us inside a character's head.",
+    "text": "Rosa smiled at the judges, but inside she worried that her cake would collapse. The head judge frowned and wondered who had baked it. Rosa's mum hoped nobody had noticed the crack.",
+    "targets": ["worried", "wondered", "hoped"],
+    "explanation": "Worried, wondered and hoped show the thoughts of three different people: Rosa, the judge and Rosa's mum. Only an all-knowing narrator can visit every head."
+  },
+  {
+    "key": "u05.could-know-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "What can this narrator know?",
+    "questions": [
+      {
+        "id": "sam",
+        "prompt": "The story follows Sam in third person limited. Which sentence breaks the point of view?",
+        "options": [
+          { "id": "a", "text": "Sam felt his cheeks go hot." },
+          { "id": "b", "text": "Sam's teacher was secretly proud of him." },
+          { "id": "c", "text": "Sam heard the class start to giggle." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A limited narrator stays in Sam's head. Sam can't know what his teacher secretly feels, unless he sees a clue, like a smile."
+      },
+      {
+        "id": "omni",
+        "prompt": "In the omniscient point of view, the narrator can…",
+        "options": [
+          { "id": "a", "text": "only describe what one character sees." },
+          { "id": "b", "text": "know what any character thinks or feels." },
+          { "id": "c", "text": "only use I and me." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Omniscient means all-knowing. The narrator floats above the story and can dip into any character's mind."
+      },
+      {
+        "id": "outside",
+        "prompt": "How can a limited narrator show what ANOTHER character feels?",
+        "options": [
+          { "id": "a", "text": "Say exactly what that character is thinking." },
+          {
+            "id": "b",
+            "text": "Show it through what the main character can see and hear, like a frown or a shaky voice."
+          },
+          { "id": "c", "text": "Switch to first person for a sentence." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The main character can't read minds, but they can notice clues. A frown, a slammed door or a shaky voice lets the reader work out the feeling."
+      }
+    ]
+  },
+  {
+    "key": "u05.narrator-scene",
+    "type": "NARRATOR_SCENE",
+    "title": "Stay in one head",
+    "prompt": "Write a scene where two characters want different things: one wants to leave and one wants to stay, or one wants to tell a secret and one wants to keep it. Tell it in third person limited: choose ONE character and stay inside their head. Show the other character only through what your character can see and hear.",
+    "tips": [
+      "Use he, she, they or names in the narration, not I.",
+      "Share only your main character's thoughts, with words like thought, wondered or hoped.",
+      "Show the other character's feelings from the outside: a frown, a shaky voice, a slammed door."
+    ],
+    "constraints": {
+      "minWords": 100,
+      "maxWords": 250,
+      "povLock": "third",
+      "narrator": "limited",
+      "enforcement": "hard"
+    },
+    "analyzers": ["pov", "telling", "dialogue", "sentenceVariety"]
+  },
+  {
+    "key": "u05.tone-sort",
+    "type": "SORT",
+    "title": "Hear the tone",
+    "instructions": "Sort each line by the tone you hear in it.",
+    "buckets": [
+      { "id": "funny", "label": "Funny" },
+      { "id": "serious", "label": "Serious" },
+      { "id": "hopeful", "label": "Hopeful" },
+      { "id": "dark", "label": "Dark" }
+    ],
+    "items": [
+      {
+        "id": "goat",
+        "text": "Our goat ate the class photo, then looked offended when we told him off.",
+        "bucketId": "funny"
+      },
+      {
+        "id": "eggs",
+        "text": "My uncle tried to juggle eggs. The kitchen ceiling still remembers.",
+        "bucketId": "funny"
+      },
+      {
+        "id": "flag",
+        "text": "Grandad folded the flag slowly and did not say a word.",
+        "bucketId": "serious"
+      },
+      {
+        "id": "envelope",
+        "text": "She read the letter twice, then put it carefully back in its envelope.",
+        "bucketId": "serious"
+      },
+      {
+        "id": "seeds",
+        "text": "The seeds were tiny, but by spring the whole garden would be green.",
+        "bucketId": "hopeful"
+      },
+      {
+        "id": "fresh",
+        "text": "Tomorrow, she told herself, would be a fresh start.",
+        "bucketId": "hopeful"
+      },
+      {
+        "id": "house",
+        "text": "The house had been empty for years, and the cold had crept into every room.",
+        "bucketId": "dark"
+      },
+      {
+        "id": "forest",
+        "text": "Nobody came back from the forest. Nobody ever did.",
+        "bucketId": "dark"
+      }
+    ]
+  },
+  {
+    "key": "u05.voice-highlight",
+    "type": "HIGHLIGHT",
+    "title": "A chatty voice",
+    "instructions": "This narrator has a very casual voice. Tap the three words that make it sound like they're chatting with a friend.",
+    "text": "Okay, so the trip was basically a disaster. The bus broke down, it rained all day, and honestly? We loved every second.",
+    "targets": ["okay", "basically", "honestly"],
+    "explanation": "Okay, basically and honestly are words people use when they talk. They make the narrator sound relaxed and friendly, like they're telling you the story face to face."
+  },
+  {
+    "key": "u05.tone-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Tone and voice",
+    "questions": [
+      {
+        "id": "formal",
+        "prompt": "Which sentence sounds the most formal?",
+        "options": [
+          { "id": "a", "text": "Hey, can I borrow your pen?" },
+          { "id": "b", "text": "Would you mind lending me your pen, please?" },
+          { "id": "c", "text": "Gimme a pen, yeah?" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Formal writing uses polite, complete phrases and no slang. “Gimme” and “Hey” are casual."
+      },
+      {
+        "id": "darker",
+        "prompt": "Which change makes “The house stood at the end of the street” sound darker?",
+        "options": [
+          { "id": "a", "text": "The cheerful house stood at the end of the street." },
+          { "id": "b", "text": "The abandoned house crouched at the end of the street." },
+          { "id": "c", "text": "The house stood at the end of the sunny street." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Abandoned” and “crouched” make the house feel empty and threatening. Tone comes from the words you choose."
+      },
+      {
+        "id": "voice",
+        "prompt": "What is a writer's voice?",
+        "options": [
+          { "id": "a", "text": "How loudly the characters speak." },
+          {
+            "id": "b",
+            "text": "The personality that comes through the writing: its word choices, rhythm and attitude."
+          },
+          { "id": "c", "text": "The number of characters who talk." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Voice is personality on the page. Two writers can tell the same story and sound completely different."
+      }
+    ]
+  },
+  {
+    "key": "u05.voice-scene",
+    "type": "VOICE_SCENE",
+    "title": "Find your voice",
+    "prompt": "Write about a day when everything went wrong: a school trip, a family party, a first day somewhere new. Set the tone sliders first, then choose every word to match. The same day could be a comedy or a tragedy: your voice decides.",
+    "tips": [
+      "Funny: surprise the reader with an odd detail or a big exaggeration.",
+      "Casual: talk to the reader like a friend, with contractions (don’t, I’m). Formal: full words and polite phrases.",
+      "Hopeful or dark: let your last line tip the balance."
+    ],
+    "constraints": {
+      "minWords": 100,
+      "maxWords": 250,
+      "enforcement": "hard"
+    },
+    "analyzers": ["tone", "telling", "sentenceVariety"],
+    "tonePicker": { "label": "Set your tone" }
+  },
+  {
+    "key": "u05.notice-sort",
+    "type": "SORT",
+    "title": "Who would notice?",
+    "instructions": "The same football match, seen by three people. Sort each detail by who would most likely notice it.",
+    "buckets": [
+      { "id": "goalie", "label": "The goalkeeper" },
+      { "id": "coach", "label": "The coach" },
+      { "id": "parent", "label": "A parent in the crowd" }
+    ],
+    "items": [
+      { "id": "gloves", "text": "How slippery the ball felt in wet gloves", "bucketId": "goalie" },
+      {
+        "id": "eyes",
+        "text": "The striker's eyes flicking left just before the kick",
+        "bucketId": "goalie"
+      },
+      { "id": "plan", "text": "Which players forgot the plan from training", "bucketId": "coach" },
+      {
+        "id": "minutes",
+        "text": "How many minutes were left to make a change",
+        "bucketId": "coach"
+      },
+      {
+        "id": "coat",
+        "text": "Whether their child remembered to bring a coat",
+        "bucketId": "parent"
+      },
+      { "id": "cheer", "text": "The other parents cheering louder than them", "bucketId": "parent" }
+    ]
+  },
+  {
+    "key": "u05.shift-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Catch the slip",
+    "instructions": "This paragraph should be in third person, but the narrator slips. Tap the three words where it slips into first person.",
+    "text": "Ayo kicked the ball as hard as he could. It flew over the fence, and my heart sank as it smashed through the kitchen window. He froze, waiting for the shout. I knew we were in trouble.",
+    "targets": ["my", "I", "we"],
+    "explanation": "The story is about Ayo (he), so the narrator shouldn't suddenly become “I”. “My heart sank” could be “his heart sank”, and “I knew we were in trouble” could be “he knew they were in trouble”."
+  },
+  {
+    "key": "u05.rewrite-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Retelling from a new view",
+    "questions": [
+      {
+        "id": "same",
+        "prompt": "When you retell an event from a new point of view, what should stay the same?",
+        "options": [
+          { "id": "a", "text": "What actually happens." },
+          { "id": "b", "text": "Every sentence, word for word." },
+          { "id": "c", "text": "Whose thoughts we hear." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The events stay the same. What changes is what the narrator notices, cares about, thinks and feels."
+      },
+      {
+        "id": "cook",
+        "prompt": "Ms Rivera, the cook, tells the story of the smashed window. Which detail fits her point of view best?",
+        "options": [
+          { "id": "a", "text": "The jelly she spent all morning on, sliding across the floor." },
+          { "id": "b", "text": "How great the kick felt." },
+          { "id": "c", "text": "What the goalkeeper was secretly thinking." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Ms Rivera would notice her ruined jelly. Only Ayo knows how the kick felt, and she can't read the goalkeeper's mind."
+      },
+      {
+        "id": "slip",
+        "prompt": "Ayo tells the story in first person. Which sentence is a point-of-view slip?",
+        "options": [
+          { "id": "a", "text": "I stared at the broken glass." },
+          { "id": "b", "text": "Ms Rivera thought I was the worst kid in the school." },
+          { "id": "c", "text": "My hands were sweaty." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Ayo can't know what Ms Rivera thinks unless she says it or shows it. He could write: “Ms Rivera glared at me like I was the worst kid in the school.”"
+      }
+    ]
+  },
+  {
+    "key": "u05.pov-rewrite",
+    "type": "POV_REWRITE",
+    "title": "One event, three ways",
+    "prompt": "Read the event above. Retell it three times, once under each heading: as Ayo in first person, as Ms Rivera in third person limited, and with an all-knowing narrator who can see into everyone's head. Keep what happens the same, but change what each narrator notices, thinks and feels.",
+    "starter": "At lunchtime, a football smashed through the school kitchen window. Ayo, who had kicked it, froze on the field. Inside, Ms Rivera, the cook, dropped a whole tray of jelly. Jun, the goalkeeper, started laughing, then stopped when he saw Ms Rivera's face at the broken window.",
+    "tips": [
+      "Press “Add the headings” to set up the three parts, then write under each one.",
+      "Each part needs at least 15 words. Keep the headings exactly as they are.",
+      "In the all-knowing part, show what at least two characters think or feel."
+    ],
+    "constraints": {
+      "minWords": 150,
+      "maxWords": 450,
+      "perspectives": [
+        { "label": "Ayo (first person)", "pov": "first" },
+        { "label": "Ms Rivera (third person limited)", "pov": "third", "narrator": "limited" },
+        { "label": "All-knowing narrator", "pov": "third", "narrator": "omniscient" }
+      ],
+      "enforcement": "hard"
+    },
+    "analyzers": ["pov", "telling"]
+  }
+]

@@ -65,7 +65,7 @@ export function ConstraintsBar({
           problemText="not yet"
         />
       )}
-      {(constraints.povLock || constraints.tenseLock) && (
+      {(constraints.povLock || constraints.tenseLock || constraints.narrator) && (
         <p className="flex flex-wrap items-center gap-2 text-sm">
           {constraints.povLock && (
             <LockChip
@@ -73,6 +73,12 @@ export function ConstraintsBar({
               value={POV_SHORT[constraints.povLock]}
               broken={text.trim() !== '' && problems.some((p) => p.rule === 'povLock')}
             />
+          )}
+          {constraints.narrator && (
+            <span className="rounded-full border border-border px-2.5 py-0.5 text-muted">
+              <span aria-hidden="true">🎥 </span>
+              Narrator: {NARRATOR_SHORT[constraints.narrator]}
+            </span>
           )}
           {constraints.tenseLock && (
             <LockChip
@@ -87,8 +93,8 @@ export function ConstraintsBar({
       <div id="rules-status" aria-live="polite">
         {text.trim().length > 0 && problems.length > 0 && (
           <ul className="list-disc space-y-1 pl-5 text-warn">
-            {problems.map((p) => (
-              <li key={p.rule}>{describeProblem(p)}</li>
+            {problems.map((p, i) => (
+              <li key={`${p.rule}-${i}`}>{describeProblem(p)}</li>
             ))}
           </ul>
         )}
@@ -134,6 +140,10 @@ function WordRule({
 }
 
 const POV_SHORT = { first: '1st person', second: '2nd person', third: '3rd person' } as const;
+const NARRATOR_SHORT = {
+  limited: 'limited (one character’s thoughts)',
+  omniscient: 'omniscient (everyone’s thoughts)',
+} as const;
 
 function LockChip({ label, value, broken }: { label: string; value: string; broken: boolean }) {
   return (

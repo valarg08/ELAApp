@@ -5,8 +5,11 @@ import {
   CHARACTER_ACTIVITY_TYPES,
   type LiveAnalyzerId,
   PLOT_ACTIVITY_TYPES,
+  POV_ACTIVITY_TYPES,
   type PlotPlan,
   SETTING_ACTIVITY_TYPES,
+  TONE_ACTIVITY_TYPES,
+  type ToneChoice,
   LiveCheckResponse,
   type WritingActivity,
 } from '@storyforge/shared';
@@ -32,6 +35,7 @@ export function AskQuill({
   mood,
   conflict,
   plot,
+  tone,
   text,
   onShow,
 }: {
@@ -41,6 +45,7 @@ export function AskQuill({
   mood: string[];
   conflict: string | null;
   plot: PlotPlan;
+  tone: ToneChoice;
   text: string;
   onShow: (span: Span) => void;
 }) {
@@ -50,6 +55,12 @@ export function AskQuill({
       : []),
     ...(PLOT_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'plot-check' as const, label: 'Does my plot work?' }]
+      : []),
+    ...(POV_ACTIVITY_TYPES.includes(activity.type)
+      ? [{ id: 'pov-consistency' as const, label: 'Is my point of view steady?' }]
+      : []),
+    ...(TONE_ACTIVITY_TYPES.includes(activity.type)
+      ? [{ id: 'tone-style' as const, label: 'What tone will my reader hear?' }]
       : []),
     ...(SETTING_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'setting-mood' as const, label: 'What mood will my reader feel?' }]
@@ -77,6 +88,7 @@ export function AskQuill({
         mood,
         conflict,
         plot,
+        tone,
       });
       setResult({ text, response });
     } catch (e) {

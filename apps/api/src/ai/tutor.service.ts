@@ -14,6 +14,7 @@ import {
   type LessonCard,
   LessonSteps,
   MultipleChoiceActivity,
+  POV_VERSION_LABELS,
   type PracticeActivity,
   TUTOR_LIMITS,
   isWritingActivity,
@@ -51,6 +52,10 @@ function cardText(card: LessonCard): string {
         .join('\n');
     case 'clue-hunt':
       return `${card.prompt}\n${card.text}\nClues: ${card.clues.join(', ')}`;
+    case 'pov-simulator':
+      return card.versions
+        .map((v) => `${POV_VERSION_LABELS[v.pov]}: ${v.text}\n(The narrator knows: ${v.knows})`)
+        .join('\n');
   }
   const unreachable: never = card;
   return String(unreachable);

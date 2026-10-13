@@ -1,0 +1,64 @@
+{
+  "slug": "finding-your-voice",
+  "order": 3,
+  "title": "Finding Your Voice",
+  "estMinutes": 45,
+  "focusSkills": ["voice", "tone"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Same event, two narrators. How do they sound different?",
+      "a": "Our dog ate my homework. Again. Honestly, I think he's training for the homework-eating Olympics.",
+      "b": "The dog had eaten the homework. It lay in pieces on the kitchen floor, and nobody said a word.",
+      "reveal": "Exactly the same thing happens, but the first narrator is chatty and funny, and the second is quiet and serious. That difference is voice, and the feeling it creates is tone."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Voice",
+          "body": "Voice is personality on the page: the narrator's word choices, sentence rhythm and attitude. A strong voice sounds like a real person. You could recognise it even without a name on it."
+        },
+        {
+          "kind": "definition",
+          "title": "Tone",
+          "body": "Tone is the feeling the writing gives off. Think of three sliders: funny ↔ serious, formal ↔ casual, hopeful ↔ dark. Every word you choose nudges a slider, so choose them on purpose."
+        },
+        {
+          "kind": "compare",
+          "title": "Formal or casual?",
+          "telling": "I regret to inform you that the dog has consumed my homework.",
+          "showing": "So, um, the dog kind of ate my homework. Sorry!",
+          "labels": ["Formal", "Casual"],
+          "note": "Formal writing uses full words and polite phrases. Casual writing uses contractions, chatty words and talks to the reader like a friend."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Tip the balance",
+          "prompt": "Tap the two words that make this sentence sound dark.",
+          "text": "The abandoned playground was silent, and the swings creaked in the cold wind.",
+          "clues": ["abandoned", "cold"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u05.tone-sort", "u05.voice-highlight", "u05.tone-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u05.voice-scene" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which tone did you aim for, and which words helped most?",
+        "Did Quill hear the tone you aimed for? What would you change?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

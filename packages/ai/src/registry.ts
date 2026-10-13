@@ -3,6 +3,8 @@ import { sensoryAnalyzer } from './analyzers/sensory.js';
 import { settingMoodAnalyzer } from './analyzers/setting-mood.js';
 import { plotCheckAnalyzer } from './analyzers/plot-check.js';
 import { showVsTellAnalyzer } from './analyzers/show-vs-tell.js';
+import { povConsistencyAnalyzer } from './analyzers/pov-consistency.js';
+import { toneStyleAnalyzer } from './analyzers/tone-style.js';
 
 /** Analyzers students can run from the Coach panel ("Ask Quill"). */
 export const LIVE_ANALYZERS = {
@@ -11,6 +13,8 @@ export const LIVE_ANALYZERS = {
   'character-read': characterReadAnalyzer,
   'setting-mood': settingMoodAnalyzer,
   'plot-check': plotCheckAnalyzer,
+  'pov-consistency': povConsistencyAnalyzer,
+  'tone-style': toneStyleAnalyzer,
 } as const;
 export type LiveAnalyzerId = keyof typeof LIVE_ANALYZERS;
 
@@ -42,6 +46,10 @@ const BY_ACTIVITY_TYPE: Record<string, LiveAnalyzerId[]> = {
   CONFLICT_SCENE: ['plot-check', 'show-vs-tell'],
   PACING_SCENE: ['plot-check', 'show-vs-tell'],
   PLOT_STORY: ['plot-check', 'show-vs-tell'],
+  FIRST_PERSON_SCENE: ['pov-consistency', 'show-vs-tell'],
+  NARRATOR_SCENE: ['pov-consistency', 'show-vs-tell'],
+  VOICE_SCENE: ['tone-style', 'show-vs-tell'],
+  POV_REWRITE: ['pov-consistency'],
 };
 
 /** Activity types where "Can your reader tell?" also checks the character's want and fear. */

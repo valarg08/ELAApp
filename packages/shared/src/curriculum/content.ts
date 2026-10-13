@@ -3,6 +3,10 @@ import {
   MOOD_AXES,
   MOOD_AXIS_IDS,
   type MoodPole,
+  TONE_AXIS_IDS,
+  type ToneAxis,
+  type ToneStep,
+  isToneStep,
 } from '@storyforge/writing-analysis';
 import { z } from 'zod';
 import { WritingConstraints } from './constraints.js';
@@ -113,7 +117,37 @@ export const WRITING_ACTIVITY_TYPES = [
   'CONFLICT_SCENE',
   'PACING_SCENE',
   'PLOT_STORY',
+  'FIRST_PERSON_SCENE',
+  'NARRATOR_SCENE',
+  'VOICE_SCENE',
+  'POV_REWRITE',
 ] as const;
+
+/**
+ * The tone sliders (Unit 5): before writing, the student sets the tone they're aiming for on
+ * each scale (funny ↔ serious, formal ↔ casual, hopeful ↔ dark), five steps each. The Coach
+ * shows where their words sit on the same scales.
+ */
+export const TonePicker = z.object({
+  label: text(120),
+  axes: z
+    .array(z.enum(TONE_AXIS_IDS))
+    .min(1)
+    .max(3)
+    .default([...TONE_AXIS_IDS]),
+});
+export type TonePicker = z.infer<typeof TonePicker>;
+
+const toneStep = z.number().int().min(-2).max(2);
+/** The tone aimed for, per scale: -2 strongly the first pole … 2 strongly the second. */
+export const ToneChoice = z.object({
+  humor: toneStep.optional(),
+  formality: toneStep.optional(),
+  outlook: toneStep.optional(),
+});
+export type ToneChoice = z.infer<typeof ToneChoice>;
+/** A tone choice checked against the scales (whole steps only). */
+export type ToneSteps = Partial<Record<ToneAxis, ToneStep>>;
 
 /** The conflict selector (Unit 4): the student picks one conflict card before writing. */
 export const ConflictPicker = z.object({
@@ -179,6 +213,7 @@ export const WritingActivity = z.object({
   moodPicker: MoodPicker.optional(),
   conflictPicker: ConflictPicker.optional(),
   plotPlanner: PlotPlanner.optional(),
+  tonePicker: TonePicker.optional(),
 });
 
 export const ActivityContent = z.discriminatedUnion('type', [
@@ -226,6 +261,33 @@ export const PLOT_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
   'PACING_SCENE',
   'PLOT_STORY',
 ];
+
+/** Point-of-view activities (Unit 5): Quill checks whose eyes the story is told through. */
+export const POV_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
+  'FIRST_PERSON_SCENE',
+  'NARRATOR_SCENE',
+  'POV_REWRITE',
+];
+
+/** Voice activities (Unit 5): Quill says what tone a reader hears. */
+export const TONE_ACTIVITY_TYPES: readonly WritingActivity['type'][] = ['VOICE_SCENE'];
+
+/** The tone chosen for the activity's tone picker: only its scales, only whole steps. */
+export function validTone(activity: WritingActivity, tone: unknown): ToneSteps {
+  const axes = activity.tonePicker?.axes ?? [];
+  const given =
+    tone !== null && typeof tone === 'object' ? new Map(Object.entries(tone)) : new Map();
+  const out: ToneSteps = {};
+  for (const axis of axes) {
+    const step: unknown = given.get(axis);
+    if (isToneStep(step)) out[axis] = step;
+  }
+  return out;
+}
+
+/** True when every scale of the activity's tone picker is set. */
+export const toneComplete = (activity: WritingActivity, tone: ToneChoice) =>
+  (activity.tonePicker?.axes ?? []).every((a) => tone[a] !== undefined);
 
 /** The chosen conflict if it is one of the activity's cards, else null. */
 export function validConflict(
@@ -344,6 +406,25 @@ export const LessonCard = z.discriminatedUnion('kind', [
     /** Column headings (default: Telling / Showing). */
     labels: z.tuple([text(30), text(30)]).optional(),
   }),
+  /**
+   * The POV simulator (Unit 5): one scene told 2–3 ways, switched with tabs. A camera picture shows
+   * where each narrator stands, and `knows` says what that narrator can know.
+   */
+  z.object({
+    kind: z.literal('pov-simulator'),
+    title: text(120),
+    prompt: text(300).optional(),
+    versions: z
+      .array(
+        z.object({
+          pov: z.enum(['first', 'third-limited', 'omniscient']),
+          text: text(800),
+          knows: text(300),
+        }),
+      )
+      .min(2)
+      .max(3),
+  }),
   z.object({
     kind: z.literal('clue-hunt'),
     title: text(120),
@@ -353,6 +434,13 @@ export const LessonCard = z.discriminatedUnion('kind', [
   }),
 ]);
 export type LessonCard = z.infer<typeof LessonCard>;
+
+/** Tab names for the POV simulator. */
+export const POV_VERSION_LABELS = {
+  first: 'First person',
+  'third-limited': 'Third person limited',
+  omniscient: 'Omniscient',
+} as const;
 
 export const LearnStep = z.object({
   id: z.literal('learn'),
@@ -460,6 +548,12 @@ export function validateUnitBundle({ unit, lessons, activities }: UnitBundle): s
       if (a.traitPicker.count > traits.length)
         errors.push(`${a.key}: traitPicker.count is more than the number of options`);
     }
+    if (isWritingActivity(a) && a.constraints.perspectives) {
+      const labels = a.constraints.perspectives.map((p) => p.label.toLowerCase());
+      if (new Set(labels).size !== labels.length)
+        errors.push(`${a.key}: duplicate perspective labels`);
+      if (a.constraints.povLock) errors.push(`${a.key}: use perspectives or povLock, not both`);
+    }
     if (a.type === 'SEQUENCE') {
       const ids = a.items.map((i) => i.id);
       if (new Set(ids).size !== ids.length) errors.push(`${a.key}: duplicate item ids`);
@@ -486,6 +580,11 @@ export function validateUnitBundle({ unit, lessons, activities }: UnitBundle): s
 
     const [, learn, practice, challenge] = lesson.steps;
     for (const card of learn.cards) {
+      if (card.kind === 'pov-simulator') {
+        const povs = card.versions.map((v) => v.pov);
+        if (new Set(povs).size !== povs.length)
+          errors.push(`${where}: the POV simulator shows the same point of view twice`);
+      }
       if (card.kind === 'clue-hunt') {
         const tokens = new Set(tokenize(card.text));
         for (const clue of card.clues) {

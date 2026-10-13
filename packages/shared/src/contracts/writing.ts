@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { WritingActivity } from '../curriculum/content.js';
+import { ToneChoice, WritingActivity } from '../curriculum/content.js';
 import { PlotPlan } from '../curriculum/plot.js';
 import { LessonProgressView } from './curriculum.js';
 
@@ -50,6 +50,8 @@ export const SubmissionDetail = z.object({
   conflict: z.string().nullable().default(null),
   /** Story mountain plan for the activity's plot planner. */
   plot: PlotPlan.default(PlotPlan.parse({})),
+  /** Tone aimed for on the activity's tone sliders. */
+  tone: ToneChoice.default({}),
 });
 export type SubmissionDetail = z.infer<typeof SubmissionDetail>;
 
@@ -59,6 +61,7 @@ export const SubmissionChoices = z.object({
   mood: z.array(z.string().max(30)).max(3).default([]),
   conflict: z.string().max(40).nullable().default(null),
   plot: PlotPlan.default(PlotPlan.parse({})),
+  tone: ToneChoice.default({}),
 });
 export type SubmissionChoices = z.infer<typeof SubmissionChoices>;
 
@@ -72,6 +75,9 @@ export const SetTraitsRequest = z.object({
   traits: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(3),
 });
 export type SetTraitsRequest = z.infer<typeof SetTraitsRequest>;
+
+export const SetToneRequest = z.object({ tone: ToneChoice });
+export type SetToneRequest = z.infer<typeof SetToneRequest>;
 
 export const SetMoodRequest = z.object({
   mood: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(3),
