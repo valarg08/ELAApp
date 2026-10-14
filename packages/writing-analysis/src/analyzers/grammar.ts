@@ -16,6 +16,15 @@ import {
   modifierHits,
   veryPhrases,
 } from './modifiers.js';
+import {
+  CONNECTOR_FEATURES,
+  CONNECTOR_FEATURE_EXAMPLES,
+  CONNECTOR_FEATURE_LABELS,
+  type ConnectorFeature,
+  connectorHits,
+  isInterjectionOnly,
+  findConnectorIssues,
+} from './connectors.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -35,6 +44,7 @@ export const GRAMMAR_FEATURES = [
   'possessive-pronoun',
   ...VERB_FEATURES,
   ...MODIFIER_FEATURES,
+  ...CONNECTOR_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -50,6 +60,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   'possessive-pronoun': 'a possessive pronoun',
   ...VERB_FEATURE_LABELS,
   ...MODIFIER_FEATURE_LABELS,
+  ...CONNECTOR_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -65,18 +76,20 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   'possessive-pronoun': 'my, your, their, or mine, yours, theirs',
   ...VERB_FEATURE_EXAMPLES,
   ...MODIFIER_FEATURE_EXAMPLES,
+  ...CONNECTOR_FEATURE_EXAMPLES,
 };
 
 /** The Coach skill a grammar feature belongs to. */
 export function grammarSkillOf(
   feature: GrammarFeature,
-): 'nouns' | 'pronouns' | 'verbs' | 'modifiers' {
+): 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' {
   if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
   if ((MODIFIER_FEATURES as readonly string[]).includes(feature)) return 'modifiers';
+  if ((CONNECTOR_FEATURES as readonly string[]).includes(feature)) return 'connectors';
   return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
 }
 
-export type { ModifierFeature, VerbFeature };
+export type { ConnectorFeature, ModifierFeature, VerbFeature };
 export { veryPhrases };
 
 const set = (s: string) => new Set(s.split(' '));
@@ -269,6 +282,7 @@ export function grammarFeatures(text: string): FeatureHit[] {
     });
     for (const hit of verbHits(text, tokens)) hits.push(hit);
     for (const hit of modifierHits(text, tokens)) hits.push(hit);
+    for (const hit of connectorHits(text, tokens)) hits.push(hit);
   }
   return hits;
 }
@@ -285,7 +299,18 @@ export function checkSentenceSet(
   text: string,
   tasks: readonly { needs: readonly GrammarFeature[] }[],
 ): SentenceSetCheck[] {
-  const list = sentences(text);
+  // "Wow! That was close." is one answer: a lone interjection joins the sentence after it.
+  const list: Span[] = [];
+  for (const s of sentences(text)) {
+    const last = list.at(-1);
+    if (last && isInterjectionOnly(last.text)) {
+      list[list.length - 1] = {
+        start: last.start,
+        end: s.end,
+        text: text.slice(last.start, s.end),
+      };
+    } else list.push(s);
+  }
   return tasks.map((task, i) => {
     const sentence = list[i] ?? null;
     if (!sentence) return { sentence, missing: [...task.needs], done: false };
@@ -318,7 +343,13 @@ export interface GrammarIssue {
     | 'real-really'
     | 'good-well'
     | 'adjective-for-adverb'
-    | 'weak-very';
+    | 'weak-very'
+    | 'time-preposition'
+    | 'extra-preposition'
+    | 'correlative-pair'
+    | 'fanboys-comma'
+    | 'fragment'
+    | 'intro-comma';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -525,6 +556,9 @@ export const verbIssues = (text: string): GrammarIssue[] => findVerbIssues(text,
 /** Adjective and adverb mistakes: "more taller", "gooder", "biggest than", "did good", "ran quick". */
 export const modifierIssues = (text: string): GrammarIssue[] => findModifierIssues(text);
 
+/** Preposition and conjunction mistakes: "at Monday", "neither… or", a missing comma before FANBOYS, "Because I was late." */
+export const connectorIssues = (text: string): GrammarIssue[] => findConnectorIssues(text);
+
 /** Every grammar mistake the checks know about, in the order they appear. */
 export const grammarIssues = (text: string): GrammarIssue[] =>
   [
@@ -532,4 +566,5 @@ export const grammarIssues = (text: string): GrammarIssue[] =>
     ...pronounIssues(text),
     ...verbIssues(text),
     ...modifierIssues(text),
+    ...connectorIssues(text),
   ].toSorted((a, b) => a.span.start - b.span.start);

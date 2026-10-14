@@ -1,0 +1,56 @@
+{
+  "slug": "essay-prepositions-place-and-time",
+  "order": 1,
+  "title": "Prepositions of Place & Time",
+  "estMinutes": 35,
+  "focusSkills": ["prepositions"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Only one word changes. How does the picture in your head change?",
+      "a": "The spider is on the box.",
+      "b": "The spider is in the box.",
+      "reveal": "“On” and “in” are prepositions: tiny words that show how one thing relates to another. Swap one and the whole scene (and how you feel about opening that box) changes."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What prepositions do",
+          "body": "A preposition shows the relationship between a noun and another word: where something is (under the bed), when something happens (after lunch), or how (with a spoon). A preposition always has a noun or pronoun after it: its object."
+        },
+        {
+          "kind": "example",
+          "title": "Prepositions of place",
+          "text": "in · on · under · over · above · below · behind · beside · next to · between · among · across · through · inside · outside · near · around · toward",
+          "note": "Between is for two (between Sam and Leo); among is for three or more (among the crowd)."
+        },
+        {
+          "kind": "example",
+          "title": "At, on, in for time",
+          "text": "ON days and dates: on Monday, on May 4th\nIN months, seasons, years, parts of the day: in July, in winter, in 2013, in the morning\nAT clock times and night: at 3:15, at noon, at night",
+          "note": "Other time prepositions: before, after, during, since, until, for. Use “for” with an amount of time (for two hours) and “since” with a starting point (since Tuesday)."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e04.place-time-sort", "e04.time-blank", "e04.place-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e04.place-time-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which time preposition (at, on, in) is hardest for you to remember? Make up a trick to remember it.",
+        "Which preposition of place in your sentences gives the clearest picture?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

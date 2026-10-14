@@ -1,0 +1,61 @@
+{
+  "slug": "essay-prepositional-phrases",
+  "order": 2,
+  "title": "Prepositional Phrases",
+  "estMinutes": 35,
+  "focusSkills": ["prepositions", "sentence-variety"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which sentence would help you find the lost dog?",
+      "a": "The dog was sleeping.",
+      "b": "After the storm, the dog was sleeping under the porch of the yellow house.",
+      "reveal": "Three prepositional phrases (after the storm, under the porch, of the yellow house) answer when, where and which. They turn a vague sentence into a useful one."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Preposition + object = phrase",
+          "body": "A prepositional phrase starts with a preposition and ends with its noun or pronoun, plus any words that describe it: in the box, behind the old shed, with my best friend, for them. The phrase works as one unit."
+        },
+        {
+          "kind": "definition",
+          "title": "What phrases do",
+          "body": "Some phrases describe a noun, like an adjective: “the girl with the red umbrella” (which girl?). Others describe a verb, like an adverb: “she waited at the station” (where?), “we left after dinner” (when?)."
+        },
+        {
+          "kind": "example",
+          "title": "Start with a phrase",
+          "text": "We played soccer after school. → After school, we played soccer.\nA red bench stands behind the gym. → Behind the gym, a red bench stands.",
+          "note": "Moving a phrase to the front varies your sentence openings. Put a comma after it."
+        },
+        {
+          "kind": "example",
+          "title": "Phrases and agreement",
+          "text": "The box of crayons IS on the shelf.\nThe players on the team ARE tired.",
+          "note": "The subject is never inside a prepositional phrase. Cover the phrase to find it."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e04.phrase-highlight", "e04.phrase-mc", "e04.phrase-hunt"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e04.phrase-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which of your phrases would help your friend most? Why?",
+        "How does starting a sentence with a phrase change how your writing sounds?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

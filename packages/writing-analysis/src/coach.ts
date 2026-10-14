@@ -48,6 +48,7 @@ import {
   type GrammarFeature,
   type GrammarIssue,
   grammarFeatures,
+  connectorIssues,
   grammarSkillOf,
   modifierIssues,
   nounIssues,
@@ -78,6 +79,7 @@ export const ANALYZER_IDS = [
   'pronouns',
   'verbs',
   'modifiers',
+  'connectors',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -670,6 +672,28 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
   }
 
+  if (enabled.has('connectors')) {
+    const issues = connectorIssues(text);
+    if (issues[0]) nextSteps.push(issueCard('connectors', 'Check this joining word', issues));
+    else if (wordCount >= 15) {
+      const join = grammarFeatures(text).find(
+        (h) =>
+          h.feature === 'subordinating-conjunction' ||
+          h.feature === 'coordinating-conjunction' ||
+          h.feature === 'correlative-conjunction',
+      );
+      if (join) {
+        strengths.push({
+          id: 'connectors',
+          analyzer: 'connectors',
+          title: 'Smooth joins',
+          message: `“${join.span.text}” links your ideas, and your commas and pairs are in the right places.`,
+          span: join.span,
+        });
+      }
+    }
+  }
+
   if (enabled.has('modifiers')) {
     const issues = modifierIssues(text);
     if (issues[0]) nextSteps.push(issueCard('modifiers', 'Check this describing word', issues));
@@ -874,7 +898,7 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
 
 /** The first grammar issue as a card, with its fix and how many more there are. */
 function issueCard(
-  analyzer: 'nouns' | 'pronouns' | 'verbs' | 'modifiers',
+  analyzer: 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

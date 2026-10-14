@@ -1,0 +1,1006 @@
+[
+  {
+    "key": "e04.place-time-sort",
+    "type": "SORT",
+    "title": "Where or when?",
+    "instructions": "Does the prepositional phrase in capitals tell where something is or when something happens?",
+    "buckets": [
+      { "id": "place", "label": "Where (place)" },
+      { "id": "time", "label": "When (time)" }
+    ],
+    "items": [
+      { "id": "under-bridge", "text": "The troll lived UNDER THE BRIDGE.", "bucketId": "place" },
+      { "id": "at-noon", "text": "The bell rings AT NOON.", "bucketId": "time" },
+      { "id": "behind-curtain", "text": "Leo hid BEHIND THE CURTAIN.", "bucketId": "place" },
+      {
+        "id": "during-storm",
+        "text": "The lights flickered DURING THE STORM.",
+        "bucketId": "time"
+      },
+      { "id": "across-street", "text": "The bakery is ACROSS THE STREET.", "bucketId": "place" },
+      { "id": "on-friday", "text": "We have practice ON FRIDAY.", "bucketId": "time" },
+      { "id": "between-trees", "text": "A hammock hung BETWEEN TWO TREES.", "bucketId": "place" },
+      { "id": "since-morning", "text": "It has rained SINCE THIS MORNING.", "bucketId": "time" },
+      { "id": "in-drawer", "text": "The scissors are IN THE DRAWER.", "bucketId": "place" },
+      { "id": "in-july", "text": "My cousins visit IN JULY.", "bucketId": "time" }
+    ]
+  },
+  {
+    "key": "e04.time-blank",
+    "type": "FILL_BLANK",
+    "title": "At, on or in?",
+    "instructions": "On for days and dates. In for months, seasons, years and parts of the day. At for clock times, noon and night.",
+    "choices": ["at", "on", "in"],
+    "items": [
+      {
+        "id": "saturday",
+        "sentence": "The game is ___ Saturday.",
+        "answers": ["on"],
+        "hint": "Saturday is a day.",
+        "explanation": "Days take “on”: on Saturday."
+      },
+      {
+        "id": "seven",
+        "sentence": "Practice starts ___ seven o’clock.",
+        "answers": ["at"],
+        "hint": "It’s a clock time.",
+        "explanation": "Clock times take “at”: at seven o’clock."
+      },
+      {
+        "id": "december",
+        "sentence": "It snows a lot ___ December.",
+        "answers": ["in"],
+        "hint": "December is a month.",
+        "explanation": "Months take “in”: in December."
+      },
+      {
+        "id": "night",
+        "sentence": "Owls hunt ___ night.",
+        "answers": ["at"],
+        "explanation": "We say “at night” (but “in the morning”, “in the evening”)."
+      },
+      {
+        "id": "morning",
+        "sentence": "I walk the dog ___ the morning.",
+        "answers": ["in"],
+        "hint": "A part of the day.",
+        "explanation": "Parts of the day take “in the”: in the morning, in the afternoon."
+      },
+      {
+        "id": "birthday",
+        "sentence": "My party is ___ May 4th.",
+        "answers": ["on"],
+        "hint": "A date is one day.",
+        "explanation": "Dates take “on”: on May 4th. (A month on its own takes “in”: in May.)"
+      },
+      {
+        "id": "year",
+        "sentence": "The bridge was built ___ 1998.",
+        "answers": ["in"],
+        "explanation": "Years take “in”: in 1998."
+      },
+      {
+        "id": "noon",
+        "sentence": "Lunch is served ___ noon.",
+        "answers": ["at"],
+        "explanation": "Noon is a time of day on the clock: at noon."
+      }
+    ]
+  },
+  {
+    "key": "e04.place-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Pick the preposition",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "The ball rolled ___ the couch, and now we can’t reach it.",
+        "options": [
+          { "id": "a", "text": "under" },
+          { "id": "b", "text": "on" },
+          { "id": "c", "text": "during" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "If we can’t reach it, it went under the couch. “During” is about time, not place."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which word in “The cat leapt onto the shelf” is the preposition?",
+        "options": [
+          { "id": "a", "text": "leapt" },
+          { "id": "b", "text": "onto" },
+          { "id": "c", "text": "shelf" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Onto” shows how the cat’s position relates to the shelf."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence uses a preposition of time?",
+        "options": [
+          { "id": "a", "text": "The keys are beside the lamp." },
+          { "id": "b", "text": "We swam until sunset." },
+          { "id": "c", "text": "A plane flew over the school." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Until sunset” tells when. Beside and over tell where.",
+        "hint": "Which one answers “when?”"
+      },
+      {
+        "id": "q4",
+        "prompt": "Mia sat ___ Leo and Ava, so she could talk to both of them.",
+        "options": [
+          { "id": "a", "text": "among" },
+          { "id": "b", "text": "between" },
+          { "id": "c", "text": "through" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Use “between” for two people or things, and “among” for a group of three or more."
+      }
+    ]
+  },
+  {
+    "key": "e04.place-time-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Where and when",
+    "prompt": "Write four sentences about a place you go every week (a park, a gym, a grandparent’s house, a library). Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Place: under, behind, beside, between, across, inside, next to.",
+      "Time: at noon, on Saturday, in July, in the morning, during lunch, after school, until dark.",
+      "A preposition always has a noun after it: behind THE GYM, after SCHOOL."
+    ],
+    "constraints": { "minWords": 25, "maxWords": 150, "minSentences": 4 },
+    "analyzers": ["connectors"],
+    "grammarFocus": ["preposition-place", "preposition-time"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        { "ask": "Say when you go there, with at, on or in.", "needs": ["preposition-time"] },
+        {
+          "ask": "Describe where something is, with a preposition of place.",
+          "needs": ["preposition-place"]
+        },
+        {
+          "ask": "Use two prepositions of place in one sentence.",
+          "needs": ["preposition-place", "prepositional-phrase"]
+        },
+        {
+          "ask": "Say how long you stay, with during, until or after.",
+          "needs": ["preposition-time"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e04.phrase-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Spot the prepositions",
+    "instructions": "Tap the six prepositions. Each one starts a prepositional phrase.",
+    "text": "Before sunrise, the fox crept through the tall grass. It paused beside a fallen log and listened. Then it trotted across the field toward the farm with a feather in its mouth.",
+    "targets": ["Before", "through", "beside", "across", "toward", "with"],
+    "explanation": "Before sunrise · through the tall grass · beside a fallen log · across the field · toward the farm · with a feather. (“In its mouth” is a phrase too: well spotted if you tapped “in”!)"
+  },
+  {
+    "key": "e04.phrase-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Phrases at work",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What is the whole prepositional phrase in “The girl with the red umbrella waved”?",
+        "options": [
+          { "id": "a", "text": "with" },
+          { "id": "b", "text": "with the red umbrella" },
+          { "id": "c", "text": "the girl with" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A phrase is the preposition plus its noun and the words that describe it: with the red umbrella."
+      },
+      {
+        "id": "q2",
+        "prompt": "In “The girl with the red umbrella waved”, what does the phrase describe?",
+        "options": [
+          { "id": "a", "text": "which girl" },
+          { "id": "b", "text": "when she waved" },
+          { "id": "c", "text": "where she waved" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It tells which girl, so it works like an adjective."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence starts with a prepositional phrase?",
+        "options": [
+          { "id": "a", "text": "After the game, we celebrated." },
+          { "id": "b", "text": "We celebrated loudly." },
+          { "id": "c", "text": "Celebrating was fun." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“After the game” is a prepositional phrase. Starting with one is a great way to vary your sentences; put a comma after it."
+      },
+      {
+        "id": "q4",
+        "prompt": "Find the subject: “The box of old photos ___ on the top shelf.”",
+        "options": [
+          { "id": "a", "text": "photos, so: are" },
+          { "id": "b", "text": "box, so: is" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The verb never agrees with the noun inside a prepositional phrase. Cover “of old photos”: the box is.",
+        "hint": "Cover the prepositional phrase."
+      },
+      {
+        "id": "q5",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "The cat jumped off of the table." },
+          { "id": "b", "text": "The cat jumped off the table." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Off” works on its own; “off of” adds an extra word."
+      }
+    ]
+  },
+  {
+    "key": "e04.phrase-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Preposition fix-up",
+    "instructions": "Five prepositions in this invitation are wrong. Tap each one, then type the right preposition.",
+    "text": "You are invited to Maya’s party! It starts at Saturday, June 12th, and we will eat on noon. Come early: we have been planning it since three weeks. In the afternoon we will play games among the two oak trees, and on night we will watch a movie.",
+    "errors": [
+      {
+        "word": "at",
+        "occurrence": 1,
+        "fixes": ["on"],
+        "explanation": "Days and dates take “on”: on Saturday, June 12th."
+      },
+      {
+        "word": "on",
+        "occurrence": 1,
+        "fixes": ["at"],
+        "explanation": "Clock times and noon take “at”: at noon."
+      },
+      {
+        "word": "since",
+        "fixes": ["for"],
+        "explanation": "An amount of time takes “for”: for three weeks. “Since” needs a starting point (since May)."
+      },
+      {
+        "word": "among",
+        "fixes": ["between"],
+        "explanation": "Two trees → between. Among is for three or more."
+      },
+      { "word": "on", "occurrence": 2, "fixes": ["at"], "explanation": "We say “at night”." }
+    ]
+  },
+  {
+    "key": "e04.phrase-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Treasure directions",
+    "prompt": "You hid a treasure somewhere at school or at home. Write directions (6–10 sentences) so a friend can find it, and say when they should look. Use at least six prepositional phrases, and start two sentences with one.",
+    "tips": [
+      "Place: past the vending machine, under the third step, behind the blue door, next to the plant.",
+      "Time: after lunch, before the bell, at 3:15, on Friday.",
+      "Starting with a phrase? Add a comma: “Behind the gym, look for a red bench.”"
+    ],
+    "constraints": { "minWords": 60, "maxWords": 200, "minSentences": 6 },
+    "analyzers": ["connectors"],
+    "grammarFocus": ["prepositional-phrase", "preposition-place", "preposition-time"]
+  },
+  {
+    "key": "e04.fanboys-sort",
+    "type": "SORT",
+    "title": "What does the joining word do?",
+    "instructions": "Each FANBOYS word shows a relationship between two ideas. Sort the sentences by what the word in capitals does.",
+    "buckets": [
+      { "id": "add", "label": "Adds (and, nor)" },
+      { "id": "contrast", "label": "Contrasts (but, yet)" },
+      { "id": "choice", "label": "Gives a choice (or)" },
+      { "id": "cause", "label": "Cause or result (so, for)" }
+    ],
+    "items": [
+      { "id": "and", "text": "Sam baked the bread, AND Ava made the soup.", "bucketId": "add" },
+      { "id": "but", "text": "The test was long, BUT it wasn’t hard.", "bucketId": "contrast" },
+      { "id": "or", "text": "We can walk, OR we can take the bus.", "bucketId": "choice" },
+      { "id": "so", "text": "It started to rain, SO we went inside.", "bucketId": "cause" },
+      {
+        "id": "yet",
+        "text": "He practised every day, YET he still felt nervous.",
+        "bucketId": "contrast"
+      },
+      { "id": "for", "text": "She smiled, FOR she knew the answer.", "bucketId": "cause" },
+      { "id": "nor", "text": "I don’t like spinach, NOR do I like kale.", "bucketId": "add" },
+      { "id": "so-2", "text": "The battery died, SO the screen went black.", "bucketId": "cause" }
+    ]
+  },
+  {
+    "key": "e04.fanboys-blank",
+    "type": "FILL_BLANK",
+    "title": "Join them up",
+    "instructions": "Pick the FANBOYS word that shows how the two ideas connect.",
+    "choices": ["for", "and", "nor", "but", "or", "yet", "so"],
+    "items": [
+      {
+        "id": "late",
+        "sentence": "The bus was late, ___ we missed the start of the film.",
+        "answers": ["so"],
+        "hint": "The second idea is a result of the first.",
+        "explanation": "Missing the film is the result of the late bus: so."
+      },
+      {
+        "id": "tired",
+        "sentence": "I was exhausted, ___ I finished my homework.",
+        "answers": ["but", "yet"],
+        "hint": "The second idea is surprising after the first.",
+        "explanation": "Finishing is a contrast with being exhausted: but (or yet)."
+      },
+      {
+        "id": "choice",
+        "sentence": "You can write about a person, ___ you can write about a place.",
+        "answers": ["or"],
+        "explanation": "Two choices: or."
+      },
+      {
+        "id": "add",
+        "sentence": "Leo plays the drums, ___ his sister plays the guitar.",
+        "answers": ["and"],
+        "explanation": "One idea added to another: and."
+      },
+      {
+        "id": "nor",
+        "sentence": "Maya didn’t call, ___ did she text.",
+        "answers": ["nor"],
+        "hint": "Two negative ideas.",
+        "explanation": "“Nor” adds a second negative idea. Notice the word order after it: nor did she."
+      },
+      {
+        "id": "for",
+        "sentence": "The crowd cheered, ___ their team had finally scored.",
+        "answers": ["for"],
+        "hint": "The second idea is the reason.",
+        "explanation": "“For” means “because” here. It’s formal and a little old-fashioned."
+      }
+    ]
+  },
+  {
+    "key": "e04.fanboys-transform",
+    "type": "TRANSFORM",
+    "title": "Two into one",
+    "instructions": "Join each pair of sentences into one with a comma and the FANBOYS word given. Keep both ideas.",
+    "items": [
+      {
+        "id": "but",
+        "task": "Join with “but”.",
+        "source": "The hike was long. The view was worth it.",
+        "answers": ["The hike was long, but the view was worth it."],
+        "hints": ["Replace the first full stop with a comma.", "…long, but the view…"],
+        "explanation": "Two complete ideas + FANBOYS → put a comma before the joining word."
+      },
+      {
+        "id": "so",
+        "task": "Join with “so”.",
+        "source": "I forgot my lunch. My friend shared hers.",
+        "answers": ["I forgot my lunch, so my friend shared hers."],
+        "hints": ["A comma goes before “so”.", "…lunch, so my friend…"],
+        "explanation": "“So” shows the result. The comma goes before it."
+      },
+      {
+        "id": "or",
+        "task": "Join with “or”.",
+        "source": "We could play soccer. We could go swimming.",
+        "answers": ["We could play soccer, or we could go swimming."],
+        "hints": ["Keep “we could” in both halves.", "…soccer, or we could…"],
+        "explanation": "Two choices joined by “or”, with a comma before it."
+      },
+      {
+        "id": "and",
+        "task": "Join with “and”.",
+        "source": "The thunder crashed. The lights went out.",
+        "answers": ["The thunder crashed, and the lights went out."],
+        "hints": ["Lower-case “the” after the comma."],
+        "explanation": "When the second half begins with “the”, it becomes lower case after the comma."
+      },
+      {
+        "id": "yet",
+        "task": "Join with “yet”.",
+        "source": "Ravi studied all week. He still felt unsure.",
+        "answers": ["Ravi studied all week, yet he still felt unsure."],
+        "hints": ["“Yet” works like “but”.", "…week, yet he still…"],
+        "explanation": "“Yet” shows a surprising contrast."
+      }
+    ]
+  },
+  {
+    "key": "e04.fanboys-sentences",
+    "type": "SENTENCE_SET",
+    "title": "FANBOYS at work",
+    "prompt": "Write four compound sentences about a choice you made this year (a club, a sport, a friendship, a purchase). Each sentence joins two complete ideas with a comma and a FANBOYS word. Each sentence has its own task, listed above the writing box.",
+    "tips": [
+      "FANBOYS: for, and, nor, but, or, yet, so.",
+      "Both halves need their own subject and verb: “I wanted the bike, but it cost too much.”",
+      "Put a comma before the FANBOYS word when it joins two complete sentences."
+    ],
+    "constraints": { "minWords": 30, "maxWords": 160, "minSentences": 4 },
+    "analyzers": ["connectors"],
+    "grammarFocus": ["coordinating-conjunction"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        { "ask": "Show two options with “or”.", "needs": ["coordinating-conjunction"] },
+        { "ask": "Show a problem with “but” or “yet”.", "needs": ["coordinating-conjunction"] },
+        {
+          "ask": "Show what happened as a result, with “so”.",
+          "needs": ["coordinating-conjunction"]
+        },
+        {
+          "ask": "Add one more idea with “and”, with a prepositional phrase in it.",
+          "needs": ["coordinating-conjunction", "prepositional-phrase"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e04.subordinate-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Find the linking words",
+    "instructions": "Tap the five subordinating conjunctions: the words that start a part of the sentence that can’t stand alone.",
+    "text": "Although the forecast said sun, the sky turned black. We ran for the car because the first drops were falling. Unless the rain stops soon, the match will be cancelled. When we got home, the power was out. We played cards while we waited.",
+    "targets": ["Although", "because", "Unless", "When", "while"],
+    "explanation": "Although, because, unless, when and while each start a dependent part: it adds a reason, a condition or a time, but it can’t be a sentence on its own."
+  },
+  {
+    "key": "e04.subordinate-transform",
+    "type": "TRANSFORM",
+    "title": "Link the ideas",
+    "instructions": "Join each pair with the word given. If the sentence starts with the linking word, put a comma where the first part ends.",
+    "items": [
+      {
+        "id": "because",
+        "task": "Join with “because” in the middle.",
+        "source": "We stayed inside. It was pouring.",
+        "answers": ["We stayed inside because it was pouring."],
+        "hints": ["No comma is needed when “because” is in the middle.", "…inside because it was…"],
+        "explanation": "When the main idea comes first, you usually don’t need a comma."
+      },
+      {
+        "id": "although",
+        "task": "Start with “Although”.",
+        "source": "The test was hard. Everyone passed.",
+        "answers": ["Although the test was hard, everyone passed."],
+        "hints": [
+          "Although + the first idea, then a comma, then the main idea.",
+          "Although the test was hard, …"
+        ],
+        "explanation": "When the sentence starts with the linking part, a comma separates it from the main idea."
+      },
+      {
+        "id": "when",
+        "task": "Start with “When”.",
+        "source": "The bell rang. The students rushed out.",
+        "answers": ["When the bell rang, the students rushed out."],
+        "hints": ["When + the first event, then a comma."],
+        "explanation": "“When the bell rang” can’t stand alone; the comma links it to the main idea."
+      },
+      {
+        "id": "unless",
+        "task": "Join with “unless” in the middle.",
+        "source": "You will miss the bus. You leave now.",
+        "answers": ["You will miss the bus unless you leave now."],
+        "hints": ["“Unless” means “if… not”.", "…bus unless you leave now."],
+        "explanation": "“Unless” sets a condition: if you don’t leave now, you’ll miss it."
+      },
+      {
+        "id": "fragment",
+        "task": "Fix this half-sentence by adding the main idea “I missed the bus” after it.",
+        "source": "Because I woke up late.",
+        "answers": ["Because I woke up late, I missed the bus."],
+        "hints": ["Replace the full stop with a comma.", "Because I woke up late, I missed…"],
+        "explanation": "“Because I woke up late” is a fragment on its own. With a main idea, it’s a complete sentence."
+      }
+    ]
+  },
+  {
+    "key": "e04.fragment-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Whole or half?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which is a complete sentence?",
+        "options": [
+          { "id": "a", "text": "Because the dog barked all night." },
+          { "id": "b", "text": "The dog barked all night." },
+          { "id": "c", "text": "Since the dog barked all night." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The other two start with a subordinating conjunction and never give the main idea, so they’re fragments."
+      },
+      {
+        "id": "q2",
+        "prompt": "Where does the comma go? “If you finish early you can read quietly.”",
+        "options": [
+          { "id": "a", "text": "after “If”" },
+          { "id": "b", "text": "after “early”" },
+          { "id": "c", "text": "after “read”" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The “if” part ends after “early”: If you finish early, you can read quietly."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which linking word fits? “___ it was freezing, Sam wore shorts.”",
+        "options": [
+          { "id": "a", "text": "Because" },
+          { "id": "b", "text": "Although" },
+          { "id": "c", "text": "Since" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Wearing shorts is surprising when it’s freezing, so we need a contrast: although."
+      },
+      {
+        "id": "q4",
+        "prompt": "In which sentence is “after” a subordinating conjunction (followed by a subject and a verb)?",
+        "options": [
+          { "id": "a", "text": "We went swimming after lunch." },
+          { "id": "b", "text": "We went swimming after we ate lunch." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“After we ate lunch” has a subject (we) and a verb (ate), so “after” joins a clause. “After lunch” is just a prepositional phrase."
+      }
+    ]
+  },
+  {
+    "key": "e04.subordinate-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Make your case",
+    "prompt": "Should students have homework on weekends? Write a paragraph (6–10 sentences) that argues your side. Use at least four different subordinating conjunctions (because, although, if, unless, when, since…), start at least two sentences with one, and include one FANBOYS sentence.",
+    "tips": [
+      "Reasons: because, since. Contrast: although, even though. Conditions: if, unless. Time: when, after, before.",
+      "Starting with the linking part? Comma before the main idea: “Although rest matters, practice helps too.”",
+      "Every “because” part needs a main idea in the same sentence."
+    ],
+    "constraints": { "minWords": 70, "maxWords": 220, "minSentences": 6 },
+    "analyzers": ["connectors"],
+    "grammarFocus": ["subordinating-conjunction", "coordinating-conjunction"]
+  },
+  {
+    "key": "e04.correlative-blank",
+    "type": "FILL_BLANK",
+    "title": "Perfect pairs",
+    "instructions": "Correlative conjunctions come in pairs. Pick the word that completes each pair.",
+    "items": [
+      {
+        "id": "either",
+        "sentence": "We can either take the train ___ ride our bikes.",
+        "answers": ["or"],
+        "choices": ["or", "nor", "and"],
+        "explanation": "either… or"
+      },
+      {
+        "id": "neither",
+        "sentence": "Neither the teacher ___ the students heard the alarm.",
+        "answers": ["nor"],
+        "choices": ["or", "nor", "and"],
+        "explanation": "neither… nor"
+      },
+      {
+        "id": "both",
+        "sentence": "Both my cat ___ my dog sleep on my bed.",
+        "answers": ["and"],
+        "choices": ["or", "nor", "and"],
+        "explanation": "both… and"
+      },
+      {
+        "id": "not-only",
+        "sentence": "She not only won the race ___ also broke the school record.",
+        "answers": ["but"],
+        "choices": ["but", "and", "or"],
+        "explanation": "not only… but also"
+      },
+      {
+        "id": "whether",
+        "sentence": "I’ll come ___ it rains or shines.",
+        "answers": ["whether"],
+        "choices": ["whether", "either", "neither"],
+        "explanation": "whether… or"
+      }
+    ]
+  },
+  {
+    "key": "e04.interjection-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Wow! Interjections",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which word is an interjection in “Ouch! That pan is hot.”?",
+        "options": [
+          { "id": "a", "text": "Ouch" },
+          { "id": "b", "text": "pan" },
+          { "id": "c", "text": "hot" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Ouch” is a burst of feeling that stands apart from the rest of the sentence."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is punctuated correctly for a mild feeling?",
+        "options": [
+          { "id": "a", "text": "Oh, I forgot my book." },
+          { "id": "b", "text": "Oh I forgot my book." },
+          { "id": "c", "text": "Oh. I forgot my book." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A mild interjection takes a comma. A strong one takes an exclamation mark: “Oh no! I forgot my book!”"
+      },
+      {
+        "id": "q3",
+        "prompt": "Where do interjections belong?",
+        "options": [
+          { "id": "a", "text": "In formal essays, to sound confident" },
+          { "id": "b", "text": "In dialogue, stories and informal writing" },
+          { "id": "c", "text": "Everywhere, as often as possible" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Interjections show feeling in speech and stories. Leave them out of formal essays."
+      }
+    ]
+  },
+  {
+    "key": "e04.ten-sentences",
+    "type": "SENTENCE_SET",
+    "title": "The ten-sentence challenge",
+    "prompt": "Write ten sentences about a trip, real or imagined, that didn’t go to plan. Each sentence has its own task, listed above the writing box. Write them in order, one task per sentence.",
+    "tips": [
+      "Pairs: either… or, neither… nor, both… and, not only… but also, whether… or.",
+      "Interjections go first, with ! or a comma: “Yikes! The tent collapsed.”",
+      "FANBOYS joining two complete sentences need a comma before them."
+    ],
+    "constraints": { "minWords": 60, "maxWords": 300, "minSentences": 10 },
+    "analyzers": ["connectors"],
+    "grammarFocus": ["correlative-conjunction", "interjection"],
+    "sentenceSet": {
+      "label": "Your ten sentences",
+      "sentences": [
+        {
+          "ask": "Say where you went and when, with two prepositional phrases.",
+          "needs": ["preposition-place", "preposition-time"]
+        },
+        { "ask": "Start with an interjection and an exclamation mark.", "needs": ["interjection"] },
+        { "ask": "Use both… and.", "needs": ["correlative-conjunction"] },
+        { "ask": "Use either… or.", "needs": ["correlative-conjunction"] },
+        { "ask": "Use neither… nor.", "needs": ["correlative-conjunction"] },
+        { "ask": "Join two ideas with a comma and “but”.", "needs": ["coordinating-conjunction"] },
+        {
+          "ask": "Start with “Because” or “Although”, with a comma before the main idea.",
+          "needs": ["subordinating-conjunction"]
+        },
+        { "ask": "Use not only… but also.", "needs": ["correlative-conjunction"] },
+        {
+          "ask": "Start with a milder interjection and a comma (Oh, Well, Hmm).",
+          "needs": ["interjection"]
+        },
+        {
+          "ask": "End the story with “when”, “until” or “after” joining two ideas.",
+          "needs": ["subordinating-conjunction"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e04.unit-check",
+    "type": "QUIZ",
+    "title": "Prepositions & Conjunctions check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "p1",
+        "prompt": "Which word is a preposition in “The kite got stuck above the roof”?",
+        "options": [
+          { "id": "a", "text": "kite" },
+          { "id": "b", "text": "stuck" },
+          { "id": "c", "text": "above" },
+          { "id": "d", "text": "roof" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Above” shows where the kite is in relation to the roof.",
+        "skill": "prepositions of place & time"
+      },
+      {
+        "id": "p2",
+        "prompt": "Choose the right word: “Our school play is ___ Friday.”",
+        "options": [
+          { "id": "a", "text": "at" },
+          { "id": "b", "text": "on" },
+          { "id": "c", "text": "in" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Days take “on”.",
+        "skill": "prepositions of place & time"
+      },
+      {
+        "id": "p3",
+        "prompt": "Choose the right word: “I was born ___ 2013.”",
+        "options": [
+          { "id": "a", "text": "at" },
+          { "id": "b", "text": "on" },
+          { "id": "c", "text": "in" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Years take “in”.",
+        "skill": "prepositions of place & time"
+      },
+      {
+        "id": "p4",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "I have played piano for five years." },
+          { "id": "b", "text": "I have played piano since five years." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "An amount of time takes “for”. “Since” needs a starting point (since 2020).",
+        "skill": "prepositions of place & time"
+      },
+      {
+        "id": "p5",
+        "prompt": "The candy was shared ___ all twelve students.",
+        "options": [
+          { "id": "a", "text": "between" },
+          { "id": "b", "text": "among" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Three or more → among. Two → between.",
+        "skill": "prepositions of place & time"
+      },
+      {
+        "id": "r1",
+        "prompt": "What is the prepositional phrase in “We walked through the dark tunnel”?",
+        "options": [
+          { "id": "a", "text": "We walked" },
+          { "id": "b", "text": "through" },
+          { "id": "c", "text": "through the dark tunnel" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "The phrase is the preposition and its noun with its describing words.",
+        "skill": "prepositional phrases"
+      },
+      {
+        "id": "r2",
+        "prompt": "Choose the verb: “The pile of books ___ about to fall.”",
+        "options": [
+          { "id": "a", "text": "is" },
+          { "id": "b", "text": "are" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Cover “of books”: the pile is.",
+        "skill": "prepositional phrases"
+      },
+      {
+        "id": "r3",
+        "prompt": "Which sentence is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "After the long game, we slept for hours." },
+          { "id": "b", "text": "After, the long game we slept for hours." },
+          { "id": "c", "text": "After the long game we, slept for hours." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The comma goes after the opening phrase “After the long game”.",
+        "skill": "prepositional phrases"
+      },
+      {
+        "id": "f1",
+        "prompt": "Which word means “because” in the FANBOYS?",
+        "options": [
+          { "id": "a", "text": "for" },
+          { "id": "b", "text": "nor" },
+          { "id": "c", "text": "yet" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“She smiled, for she knew the answer.” For = because.",
+        "skill": "FANBOYS"
+      },
+      {
+        "id": "f2",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "The movie ended, the lights came on." },
+          { "id": "b", "text": "The movie ended, and the lights came on." },
+          { "id": "c", "text": "The movie ended and, the lights came on." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Two complete sentences need a comma AND a FANBOYS word. A comma alone is a comma splice.",
+        "skill": "FANBOYS"
+      },
+      {
+        "id": "f3",
+        "prompt": "Which FANBOYS word fits? “The shop was closed, ___ we went home.”",
+        "options": [
+          { "id": "a", "text": "but" },
+          { "id": "b", "text": "or" },
+          { "id": "c", "text": "so" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Going home is the result: so.",
+        "skill": "FANBOYS"
+      },
+      {
+        "id": "f4",
+        "prompt": "Which FANBOYS word shows a contrast?",
+        "options": [
+          { "id": "a", "text": "and" },
+          { "id": "b", "text": "yet" },
+          { "id": "c", "text": "or" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Yet and but show contrast.",
+        "skill": "FANBOYS"
+      },
+      {
+        "id": "f5",
+        "prompt": "Does “I ate breakfast and brushed my teeth” need a comma before “and”?",
+        "options": [
+          { "id": "a", "text": "Yes: “and” always needs a comma." },
+          {
+            "id": "b",
+            "text": "No: “brushed my teeth” has no subject of its own, so it isn’t a second sentence."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Only put a comma before FANBOYS when both halves are complete sentences with their own subject.",
+        "skill": "FANBOYS"
+      },
+      {
+        "id": "s1",
+        "prompt": "Which is a fragment?",
+        "options": [
+          { "id": "a", "text": "Although I studied all night." },
+          { "id": "b", "text": "I studied all night." },
+          { "id": "c", "text": "Although I studied all night, I felt nervous." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Although I studied all night” leaves the reader waiting for the main idea.",
+        "skill": "subordinating conjunctions"
+      },
+      {
+        "id": "s2",
+        "prompt": "Which linking word shows a condition?",
+        "options": [
+          { "id": "a", "text": "because" },
+          { "id": "b", "text": "unless" },
+          { "id": "c", "text": "while" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Unless” (and “if”) set a condition.",
+        "skill": "subordinating conjunctions"
+      },
+      {
+        "id": "s3",
+        "prompt": "Which sentence is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "When the bell rang we ran outside." },
+          { "id": "b", "text": "When the bell rang, we ran outside." },
+          { "id": "c", "text": "When, the bell rang we ran outside." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The comma goes where the “when” part ends and the main idea begins.",
+        "skill": "subordinating conjunctions"
+      },
+      {
+        "id": "s4",
+        "prompt": "Which word best completes: “___ the bridge was icy, the bus drove slowly.”",
+        "options": [
+          { "id": "a", "text": "Because" },
+          { "id": "b", "text": "Although" },
+          { "id": "c", "text": "Unless" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The ice is the reason the bus drove slowly: because.",
+        "skill": "subordinating conjunctions"
+      },
+      {
+        "id": "s5",
+        "prompt": "In “We left before the movie ended”, what kind of word is “before”?",
+        "options": [
+          { "id": "a", "text": "a preposition" },
+          { "id": "b", "text": "a subordinating conjunction" },
+          { "id": "c", "text": "an interjection" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "It’s followed by a subject (the movie) and a verb (ended), so it joins a clause.",
+        "skill": "subordinating conjunctions"
+      },
+      {
+        "id": "c1",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "Neither Sam or Leo came." },
+          { "id": "b", "text": "Neither Sam nor Leo came." },
+          { "id": "c", "text": "Neither Sam and Leo came." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "neither… nor",
+        "skill": "correlative conjunctions & interjections"
+      },
+      {
+        "id": "c2",
+        "prompt": "Which pair completes: “She is ___ smart ___ kind.”",
+        "options": [
+          { "id": "a", "text": "both… and" },
+          { "id": "b", "text": "either… nor" },
+          { "id": "c", "text": "neither… or" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "both… and. (Either goes with or; neither goes with nor.)",
+        "skill": "correlative conjunctions & interjections"
+      },
+      {
+        "id": "c3",
+        "prompt": "Which completes the pair: “He not only cooked dinner ___ washed the dishes.”",
+        "options": [
+          { "id": "a", "text": "and also" },
+          { "id": "b", "text": "but also" },
+          { "id": "c", "text": "or also" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "not only… but also",
+        "skill": "correlative conjunctions & interjections"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which sentence uses an interjection correctly?",
+        "options": [
+          { "id": "a", "text": "Hooray! We won the final." },
+          { "id": "b", "text": "We hooray won the final." },
+          { "id": "c", "text": "We won hooray the final." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Interjections usually come first and are set apart with ! or a comma.",
+        "skill": "correlative conjunctions & interjections"
+      },
+      {
+        "id": "c5",
+        "prompt": "Which kind of writing should avoid interjections?",
+        "options": [
+          { "id": "a", "text": "A comic strip" },
+          { "id": "b", "text": "A formal argumentative essay" },
+          { "id": "c", "text": "Dialogue in a story" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Interjections are for speech and informal writing, not formal essays.",
+        "skill": "correlative conjunctions & interjections"
+      },
+      {
+        "id": "c6",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "You can either stay or go." },
+          { "id": "b", "text": "You can either stay nor go." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "either… or",
+        "skill": "correlative conjunctions & interjections"
+      }
+    ]
+  },
+  {
+    "key": "e04.check-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Unit check: the big decision",
+    "prompt": "Write a paragraph (at least 6 sentences) about a big decision: choosing a school, a pet, a team, or how to spend a free Saturday. Show off this unit: prepositional phrases of place and time, a FANBOYS sentence with a comma, at least two subordinating conjunctions (one starting a sentence), and a correlative pair.",
+    "tips": [
+      "Checklist: place and time phrases · comma + FANBOYS · because/although/when… (one at the start, with a comma) · either… or / neither… nor / both… and / not only… but also.",
+      "Every “because” or “although” part needs a main idea in the same sentence.",
+      "At, on, in: on Saturday, in March, at noon."
+    ],
+    "constraints": { "minWords": 70, "maxWords": 220, "minSentences": 6 },
+    "analyzers": ["connectors"],
+    "grammarFocus": [
+      "prepositional-phrase",
+      "coordinating-conjunction",
+      "subordinating-conjunction",
+      "correlative-conjunction"
+    ]
+  }
+]

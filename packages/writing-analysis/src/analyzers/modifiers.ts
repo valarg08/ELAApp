@@ -109,7 +109,7 @@ gigantic massive miniature enormous glowing ancient spotless filthy furious exha
 gentle crisp fragile hollow jagged smoky misty dim faint fierce graceful clumsy eager lonely lovely friendly
 silent awful perfect correct proper polite rude calm wild clear serious real certain sure possible impossible
 favorite favourite whole own special different same main entire tired upset alive afraid alone asleep awake
-complete formal informal`);
+complete formal informal little`);
 /** Endings that usually make an adjective. */
 const ADJECTIVE_ENDING = /^[a-z]{3,}(?:ful|ous|less|able|ible|ive)$/;
 const NOT_ADJECTIVE =
@@ -259,7 +259,9 @@ const STRONGER: Record<string, [string, string]> = {
   quietly: ['silently', 'softly'],
 };
 /** "the very first", "very well", "very much": not a weak "very". */
-const VERY_OK = set('first last same end beginning top bottom best least most much well own few');
+const VERY_OK = set(
+  'first last same end beginning top bottom best least most much well own few little',
+);
 
 const EMOTIONS = new Set<string>(EMOTION_WORDS);
 const isLyAdverb = (w: string) => /^[a-z]{4,}ly$/.test(w) && !NOT_LY.has(w);

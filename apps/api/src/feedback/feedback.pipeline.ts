@@ -73,6 +73,7 @@ const SKILL_NAMES: Record<string, string> = {
   pronouns: 'pronouns',
   verbs: 'verbs',
   modifiers: 'adjectives and adverbs',
+  connectors: 'prepositions and conjunctions',
 };
 
 /**
@@ -153,7 +154,7 @@ export class FeedbackPipeline {
       `filter words: ${filterWords(text).total}`,
       `senses used: ${senses(text).used.join(', ') || 'none'}`,
       `dialogue punctuation issues: ${dialogue(text).issues.length}`,
-      `grammar mistakes found (nouns, pronouns, verbs, adjectives and adverbs): ${grammarIssues(text).length}`,
+      `grammar mistakes found (nouns, pronouns, verbs, adjectives, adverbs, prepositions and conjunctions): ${grammarIssues(text).length}`,
       `weak “very” phrases: ${veryPhrases(text).length}`,
     ];
 

@@ -1,0 +1,57 @@
+{
+  "slug": "essay-correlatives-and-interjections",
+  "order": 5,
+  "title": "Correlative Conjunctions & Interjections",
+  "estMinutes": 45,
+  "focusSkills": ["conjunctions", "interjections"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "The pair that broke up",
+      "paragraphs": [
+        "Coach read the team list aloud: “Neither Jaden or Priya will start today.”",
+        "Priya’s hand shot up. “Coach, ‘neither’ goes with ‘nor’. They’re a pair, like socks.”",
+        "“Wow,” said Coach, laughing. “Neither Jaden nor Priya will start today… because Priya is captain.”"
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Correlative conjunctions",
+          "body": "Some conjunctions work in pairs: both… and, either… or, neither… nor, not only… but also, whether… or. Keep the partners together: neither goes with nor, either goes with or."
+        },
+        {
+          "kind": "example",
+          "title": "Pairs in action",
+          "text": "Both the coach and the players celebrated.\nYou can either text me or call me.\nNeither the map nor the app helped.\nShe not only won the race but also broke the record.\nWhether you win or lose, play fair.",
+          "note": "Try to put the same kind of words after each partner: “either text me or call me” (two verbs)."
+        },
+        {
+          "kind": "definition",
+          "title": "Interjections",
+          "body": "An interjection is a word that bursts out with feeling: Wow! Ouch! Oops, Hey, Yikes! Phew. A strong one takes an exclamation mark; a mild one takes a comma: “Oh, I forgot.” Interjections belong in dialogue and stories, not in formal essays."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e04.correlative-blank", "e04.interjection-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e04.ten-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which correlative pair was hardest to fit into a sentence? Why?",
+        "Why do you think interjections don’t belong in a formal essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

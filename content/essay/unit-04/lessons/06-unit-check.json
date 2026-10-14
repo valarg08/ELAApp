@@ -1,0 +1,52 @@
+{
+  "slug": "essay-prepositions-and-conjunctions-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Prepositions & Conjunctions",
+  "estMinutes": 45,
+  "focusSkills": ["prepositions", "conjunctions"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which part of this unit feels easiest, and which do you want to look at again?",
+      "placeholder": "Easiest… Look again at…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Prepositions: quick review",
+          "body": "Prepositions show place (under, behind, between, among) and time (at noon, on Monday, in July, during, since, for). A prepositional phrase is the preposition + its noun: behind the old shed. The subject is never inside the phrase. Comma after a phrase that starts a sentence."
+        },
+        {
+          "kind": "definition",
+          "title": "Conjunctions: quick review",
+          "body": "FANBOYS (for, and, nor, but, or, yet, so) join equal ideas; comma before them when they join two complete sentences. Subordinating conjunctions (because, although, when, if, unless…) start a part that can’t stand alone; comma after it when it comes first. Pairs: both… and, either… or, neither… nor, not only… but also."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll write a short paragraph that shows off everything you’ve learned. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e04.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e04.check-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What did you learn about prepositions or conjunctions that you didn’t know before this unit?",
+        "Which joining word will you use to connect ideas in your next essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

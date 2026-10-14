@@ -1,0 +1,63 @@
+{
+  "slug": "essay-fanboys",
+  "order": 3,
+  "title": "FANBOYS",
+  "estMinutes": 35,
+  "focusSkills": ["conjunctions", "sentence-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which version sounds smoother? What did the writer add?",
+      "a": "I wanted to go. It was raining. I stayed home. I read a book.",
+      "b": "I wanted to go, but it was raining, so I stayed home and read a book.",
+      "reveal": "“But”, “so” and “and” are coordinating conjunctions. They join ideas and show how they connect: a contrast (but), a result (so), an addition (and)."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Meet the FANBOYS",
+          "body": "The seven coordinating conjunctions spell FANBOYS: For (because), And (adds), Nor (adds a negative), But (contrast), Or (choice), Yet (surprising contrast), So (result). They join words, phrases or whole sentences of equal weight."
+        },
+        {
+          "kind": "definition",
+          "title": "The comma rule",
+          "body": "When FANBOYS joins two complete sentences (each with its own subject and verb), put a comma before it: “The hike was long, but the view was worth it.” When it joins two verbs that share one subject, no comma: “I ate breakfast and brushed my teeth.”"
+        },
+        {
+          "kind": "compare",
+          "title": "Comma splice vs compound sentence",
+          "telling": "The bus was late, we missed the film.",
+          "showing": "The bus was late, so we missed the film.",
+          "labels": ["Comma splice ✗", "Compound sentence ✓"],
+          "note": "A comma alone can’t join two sentences. It needs a FANBOYS word to help."
+        },
+        {
+          "kind": "example",
+          "title": "Don’t overdo “and”",
+          "text": "We went to the beach and we swam and then we ate and then we went home. ✗\nWe went to the beach and swam. After lunch, we headed home. ✓",
+          "note": "A chain of “and then”s is tiring to read. Mix FANBOYS with full stops and other joining words."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e04.fanboys-sort", "e04.fanboys-blank", "e04.fanboys-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e04.fanboys-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain in your own words when you need a comma before “and” or “but”.",
+        "Which FANBOYS word do you use least? Write a sentence with it."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

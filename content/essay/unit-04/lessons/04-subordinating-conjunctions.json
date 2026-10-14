@@ -1,0 +1,61 @@
+{
+  "slug": "essay-subordinating-conjunctions",
+  "order": 4,
+  "title": "Subordinating Conjunctions",
+  "estMinutes": 40,
+  "focusSkills": ["conjunctions", "sentence-structure", "fragments"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Someone walks up to you and says, “Because the bus broke down.” Then they walk away. What’s missing? How do you feel?",
+      "placeholder": "What’s missing is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Linking words that lean",
+          "body": "A subordinating conjunction starts a part of a sentence that can’t stand alone: because, although, though, since, when, while, if, unless, until, before, after, as, once, even though, so that. That part (a dependent clause) leans on a main idea."
+        },
+        {
+          "kind": "example",
+          "title": "What they show",
+          "text": "Reason: because, since → We stayed in because it rained.\nContrast: although, even though → Although it rained, we played.\nCondition: if, unless → Unless you hurry, you’ll miss it.\nTime: when, while, after, before, until → We waited until the bell rang.",
+          "note": "In essays, these words show how your ideas connect. That makes your reasoning easy to follow."
+        },
+        {
+          "kind": "definition",
+          "title": "The comma rule",
+          "body": "If the sentence starts with the linking part, put a comma where it ends: “When the bell rang, we ran outside.” If the main idea comes first, you usually don’t need a comma: “We ran outside when the bell rang.”"
+        },
+        {
+          "kind": "compare",
+          "title": "Don’t leave it hanging",
+          "telling": "I missed the bus. Because I woke up late.",
+          "showing": "I missed the bus because I woke up late.",
+          "labels": ["Fragment ✗", "Complete ✓"],
+          "note": "A “because” part on its own is a fragment. Join it to its main idea."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e04.subordinate-highlight", "e04.subordinate-transform", "e04.fragment-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e04.subordinate-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which linking word made your argument strongest? Why?",
+        "How can you tell when a sentence starting with “Because” is only half a sentence?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}
