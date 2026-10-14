@@ -3,6 +3,12 @@ import {
   type ClassUnitPacing,
   type LessonDetail,
   type LessonProgressView,
+  type QuizAttemptView,
+  type QuizResult,
+  type QuizStatus,
+  SubmitQuizRequest,
+  Track,
+  type TrackProgress,
   type UnitDetail,
   type UnitSummary,
   UpdatePacingRequest,
@@ -11,14 +17,72 @@ import type { AuthUser } from '../auth/auth.types.js';
 import { CurrentUser, Roles } from '../auth/decorators.js';
 import { CurriculumService } from './curriculum.service.js';
 import { PacingService } from './pacing.service.js';
+import { ProgressService } from './progress.service.js';
+import { QuizService } from './quiz.service.js';
+
+/** `?track=ESSAY` picks Essay Writing; anything else is Story Writing. */
+const trackOf = (value?: string): Track => Track.catch('STORY').parse(value?.toUpperCase());
 
 @Controller()
 export class CurriculumController {
-  constructor(private readonly curriculum: CurriculumService) {}
+  constructor(
+    private readonly curriculum: CurriculumService,
+    private readonly quizzes: QuizService,
+    private readonly progress: ProgressService,
+  ) {}
 
   @Get('units')
-  units(@CurrentUser() user: AuthUser, @Query('classId') classId?: string): Promise<UnitSummary[]> {
-    return this.curriculum.listUnits(user, classId);
+  units(
+    @CurrentUser() user: AuthUser,
+    @Query('classId') classId?: string,
+    @Query('track') track?: string,
+  ): Promise<UnitSummary[]> {
+    return this.curriculum.listUnits(user, classId, trackOf(track));
+  }
+
+  /** The progress tracker for one track (students only). */
+  @Roles('STUDENT')
+  @Get('progress')
+  trackProgress(
+    @CurrentUser() user: AuthUser,
+    @Query('track') track?: string,
+  ): Promise<TrackProgress> {
+    return this.progress.trackProgress(user, trackOf(track));
+  }
+
+  @Roles('STUDENT')
+  @Get('lessons/:lessonId/quizzes/:key')
+  quizStatus(
+    @CurrentUser() user: AuthUser,
+    @Param('lessonId') lessonId: string,
+    @Param('key') key: string,
+  ): Promise<QuizStatus> {
+    return this.quizzes.status(user, lessonId, key);
+  }
+
+  /** Start a try (or get back the unfinished one). */
+  @Roles('STUDENT')
+  @Post('lessons/:lessonId/quizzes/:key/attempts')
+  @HttpCode(200)
+  startQuiz(
+    @CurrentUser() user: AuthUser,
+    @Param('lessonId') lessonId: string,
+    @Param('key') key: string,
+  ): Promise<QuizAttemptView> {
+    return this.quizzes.start(user, lessonId, key);
+  }
+
+  @Roles('STUDENT')
+  @Post('lessons/:lessonId/quizzes/:key/attempts/:attemptId/submit')
+  @HttpCode(200)
+  submitQuiz(
+    @CurrentUser() user: AuthUser,
+    @Param('lessonId') lessonId: string,
+    @Param('key') key: string,
+    @Param('attemptId') attemptId: string,
+    @Body({ schema: SubmitQuizRequest }) body: SubmitQuizRequest,
+  ): Promise<QuizResult> {
+    return this.quizzes.submit(user, lessonId, key, attemptId, body);
   }
 
   /** Accepts the unit id or its slug (e.g. "foundations"). */

@@ -11,7 +11,10 @@ describe('repository content', () => {
   it('is valid', async () => {
     const { units, errors } = await loadContent();
     expect(errors).toEqual([]);
-    expect(units.map((u) => u.unit.number)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    const numbers = (track: string) =>
+      units.filter((u) => u.track === track).map((u) => u.unit.number);
+    expect(numbers('STORY')).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    expect(numbers('ESSAY')).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
     const unit1 = units[0]!;
     expect(unit1.unit.published).toBe(true);
     expect(unit1.lessons.length).toBeGreaterThanOrEqual(3);

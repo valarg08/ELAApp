@@ -9,9 +9,11 @@ import {
   STEP_IDS,
   STEP_RESPONSE_SCHEMAS,
   StepId,
+  type Track,
   type UnitDetail,
   type UnitSummary,
   classSettings,
+  publicActivity,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { AppError, forbidden, notFound } from '../common/app-error.js';
@@ -55,7 +57,14 @@ export function unitAvailability(
     : { available: false, lockReason: 'LOCKED', dueAt };
 }
 
-/** Availability of every unit for one class and student, walking the units in order. */
+/** Essay Writing is always self-paced, whatever the class setting (DESIGN.md §9.12). */
+export const isSelfPaced = (track: Track, classSelfPaced: boolean) =>
+  track === 'ESSAY' || classSelfPaced;
+
+/**
+ * Availability of every unit for one class and student, walking each track's units in order.
+ * The tracks are separate: finishing Story Writing units never opens Essay Writing ones.
+ */
 export function classAvailability(
   units: readonly UnitWithLessons[],
   pacing: ReadonlyMap<string, ClassUnit>,
@@ -63,14 +72,21 @@ export function classAvailability(
   completedLessons: ReadonlySet<string>,
 ): Map<string, Availability> {
   const result = new Map<string, Availability>();
-  let previousDone = true;
+  const previousDone = new Map<Track, boolean>();
   for (const unit of units.toSorted((a, b) => a.number - b.number)) {
-    result.set(unit.id, unitAvailability(unit, pacing.get(unit.id), { selfPaced, previousDone }));
+    const done = previousDone.get(unit.track) ?? true;
+    result.set(
+      unit.id,
+      unitAvailability(unit, pacing.get(unit.id), {
+        selfPaced: isSelfPaced(unit.track, selfPaced),
+        previousDone: done,
+      }),
+    );
     if (unit.published) {
-      previousDone =
-        previousDone &&
-        unit.lessons.length > 0 &&
-        unit.lessons.every((l) => completedLessons.has(l.id));
+      previousDone.set(
+        unit.track,
+        done && unit.lessons.length > 0 && unit.lessons.every((l) => completedLessons.has(l.id)),
+      );
     }
   }
   return result;
@@ -96,9 +112,17 @@ const responsesOf = (p: LessonProgress | undefined): Record<string, unknown> => 
 export class CurriculumService {
   constructor(private readonly db: DatabaseService) {}
 
-  /** All units with availability for the student's class (teachers see a preview: everything published is open). */
-  async listUnits(user: AuthUser, classId?: string): Promise<UnitSummary[]> {
+  /**
+   * One track's units with availability for the student's class (teachers see a preview:
+   * everything published is open).
+   */
+  async listUnits(
+    user: AuthUser,
+    classId?: string,
+    track: Track = 'STORY',
+  ): Promise<UnitSummary[]> {
     const units = await this.db.client.unit.findMany({
+      where: { track },
       orderBy: { number: 'asc' },
       include: { lessons: { select: { id: true } } },
     });
@@ -133,7 +157,7 @@ export class CurriculumService {
             completed,
           ).get(unit.id) ?? { available: false, lockReason: 'LOCKED' as const, dueAt: null })
         : this.teacherPreview(unit);
-    const lessonLocks = !!student?.selfPaced;
+    const lessonLocks = isSelfPaced(unit.track, !!student?.selfPaced);
 
     const progress = await this.progressMap(
       user,
@@ -168,7 +192,7 @@ export class CurriculumService {
     const keys = [...practice.activityKeys, challenge.activityKey];
     const rows = await this.db.client.activity.findMany({ where: { key: { in: keys } } });
     const activities = Object.fromEntries(
-      rows.map((r) => [r.key, ActivityContent.parse(r.config)]),
+      rows.map((r) => [r.key, publicActivity(ActivityContent.parse(r.config))]),
     );
 
     const progress =
@@ -193,7 +217,13 @@ export class CurriculumService {
       order: lesson.order,
       title: lesson.title,
       estMinutes: lesson.estMinutes,
-      unit: { id: unit.id, number: unit.number, slug: unit.slug, title: unit.title },
+      unit: {
+        id: unit.id,
+        track: unit.track,
+        number: unit.number,
+        slug: unit.slug,
+        title: unit.title,
+      },
       steps,
       activities,
       progress: this.progressView(progress),
@@ -246,8 +276,20 @@ export class CurriculumService {
 
     if (stepId.data === 'practice') {
       const results = STEP_RESPONSE_SCHEMAS.practice.parse(body).results;
+      // Quizzes are marked on the server, so a passed attempt must be on record.
+      const quizKeys = await this.quizKeys(practice.activityKeys);
+      const passed = new Set(
+        (
+          await this.db.client.quizAttempt.findMany({
+            where: { studentId: user.id, lessonId, passed: true, activityKey: { in: quizKeys } },
+            select: { activityKey: true },
+          })
+        ).map((a) => a.activityKey),
+      );
       const allDone = practice.activityKeys.every((k) =>
-        results.some((r) => r.activityKey === k && r.correct),
+        quizKeys.includes(k)
+          ? passed.has(k)
+          : results.some((r) => r.activityKey === k && r.correct),
       );
       if (!allDone) {
         throw new AppError(
@@ -319,6 +361,15 @@ export class CurriculumService {
 
   // ───────── helpers ─────────
 
+  /** The keys among these that are marked quizzes. */
+  private async quizKeys(keys: readonly string[]): Promise<string[]> {
+    const rows = await this.db.client.activity.findMany({
+      where: { key: { in: [...keys] }, type: 'QUIZ' },
+      select: { key: true },
+    });
+    return rows.map((r) => r.key);
+  }
+
   /**
    * Load a lesson the user may open. For students: the unit must be available in one of their
    * classes and, in a self-paced class, the previous lesson must be finished.
@@ -339,7 +390,7 @@ export class CurriculumService {
     }
 
     const klass = await this.resolveStudentClass(user, unit);
-    if (klass.selfPaced) {
+    if (isSelfPaced(unit.track, klass.selfPaced)) {
       const previous = await this.db.client.lesson.findFirst({
         where: { unitId: unit.id, order: { lt: lesson.order } },
         orderBy: { order: 'desc' },
@@ -471,6 +522,7 @@ export class CurriculumService {
   private summaryBase(unit: Unit) {
     return {
       id: unit.id,
+      track: unit.track,
       number: unit.number,
       slug: unit.slug,
       title: unit.title,

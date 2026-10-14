@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  type ActivityContent,
+  type LessonActivity,
   type LessonSteps,
   SubmissionDetail,
   type SubmitResponse,
@@ -29,7 +29,7 @@ export function ChallengeStep({
   onContinue,
 }: {
   step: Challenge;
-  activities: Record<string, ActivityContent>;
+  activities: Record<string, LessonActivity>;
   activityId: string;
   onSubmitted: (result: SubmitResponse) => void;
   /** The challenge step is complete (submitted at least once). */

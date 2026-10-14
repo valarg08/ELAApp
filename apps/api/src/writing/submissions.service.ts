@@ -87,9 +87,12 @@ export class SubmissionsService {
       where: { id: activityId },
       include: { unit: true },
     });
-    if (!activity || !isWritingActivity(ActivityContent.parse(activity.config))) {
+    const content = activity ? ActivityContent.parse(activity.config) : null;
+    if (!activity || !content || !isWritingActivity(content)) {
       throw notFound(ErrorCode.ACTIVITY_NOT_FOUND, 'Writing activity not found.');
     }
+    // Proofreading and revising start from the given text (Essay Writing, DESIGN.md §9.12).
+    const startText = content.starterInEditor && content.starter ? content.starter : '';
     if (!activity.unit.published) {
       throw notFound(ErrorCode.ACTIVITY_NOT_FOUND, 'Writing activity not found.');
     }
@@ -99,7 +102,12 @@ export class SubmissionsService {
     try {
       const submission = await this.db.client.submission.upsert({
         where: { activityId_studentId_classId: key },
-        create: { ...key, status: 'DRAFT', contentText: '' },
+        create: {
+          ...key,
+          status: 'DRAFT',
+          contentText: startText,
+          wordCount: countWords(startText),
+        },
         update: {},
         include,
       });

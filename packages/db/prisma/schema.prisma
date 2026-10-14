@@ -97,12 +97,20 @@ enum ActivityType {
   FREE_VERSE
   SPOKEN_WORD
   DIALOGUE_SCENE
+  QUIZ
+  TRANSFORM
   MEMORY_TIMELINE
   GENRE_STORY
   REVISION_CHECKLIST
   PEER_REVIEW
   PROJECT
   REFLECTION
+}
+
+// Two separate learning tracks (DESIGN.md §9.12): creative writing and essay writing.
+enum Track {
+  STORY
+  ESSAY
 }
 
 enum ArtifactType {
@@ -188,6 +196,7 @@ model User {
   taughtClasses     Class[]       @relation("ClassTeacher")
   submissions       Submission[]
   sensoryWords      SensoryWord[]
+  quizAttempts      QuizAttempt[]
   stats             StudentStats?
   createdAt         DateTime      @default(now())
   deletedAt         DateTime? // soft delete, hard purge after retention window
@@ -238,7 +247,8 @@ model Enrollment {
 // ───────── Curriculum ─────────
 model Unit {
   id          String      @id @default(cuid())
-  number      Int         @unique // 1..12
+  track       Track       @default(STORY)
+  number      Int // 1..12 (story) or 1..15 (essay), unique per track
   slug        String      @unique
   title       String
   summary     String
@@ -249,6 +259,8 @@ model Unit {
   classUnits  ClassUnit[]
   published   Boolean     @default(false)
   contentHash String // detect drift from /content
+
+  @@unique([track, number])
 }
 
 model Lesson {
@@ -306,6 +318,25 @@ model LessonProgress {
 
   @@id([studentId, lessonId])
   @@index([classId])
+}
+
+// One try at a marked quiz (Essay track unit checks). Questions are picked by the server and
+// marked there; the answers never reach the browser before submitting.
+model QuizAttempt {
+  id          String    @id @default(cuid())
+  studentId   String
+  student     User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  lessonId    String
+  activityKey String
+  questionIds Json // string[] in the order shown
+  answers     Json? // { [questionId]: optionId } once submitted
+  score       Int? // correct answers
+  total       Int
+  passed      Boolean   @default(false)
+  startedAt   DateTime  @default(now())
+  submittedAt DateTime?
+
+  @@index([studentId, lessonId, activityKey])
 }
 
 // Personal sensory word bank (Unit 6): words collected in the sensory lab, shown in every workspace.

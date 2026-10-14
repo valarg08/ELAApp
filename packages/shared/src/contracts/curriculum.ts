@@ -1,11 +1,12 @@
 import { z } from 'zod';
-import { ActivityContent, LessonSteps, StepId } from '../curriculum/content.js';
+import { LessonActivity, LessonSteps, StepId, Track } from '../curriculum/content.js';
 
 /** Why a unit can't be opened yet. FINISH_PREVIOUS: self-paced, the earlier unit isn't finished. */
 export const UnitLockReason = z.enum(['COMING_SOON', 'LOCKED', 'FINISH_PREVIOUS']);
 
 export const UnitSummary = z.object({
   id: z.string(),
+  track: Track,
   number: z.number(),
   slug: z.string(),
   title: z.string(),
@@ -51,10 +52,16 @@ export const LessonDetail = z.object({
   order: z.number(),
   title: z.string(),
   estMinutes: z.number(),
-  unit: z.object({ id: z.string(), number: z.number(), slug: z.string(), title: z.string() }),
+  unit: z.object({
+    id: z.string(),
+    track: Track,
+    number: z.number(),
+    slug: z.string(),
+    title: z.string(),
+  }),
   steps: LessonSteps,
-  /** Activities used by this lesson, by key. */
-  activities: z.record(z.string(), ActivityContent),
+  /** Activities used by this lesson, by key (quizzes without their questions). */
+  activities: z.record(z.string(), LessonActivity),
   progress: LessonProgressView,
   /** The writing activity of the challenge step (opened in the writing workspace). */
   challengeActivityId: z.string(),
@@ -104,6 +111,7 @@ export const CONFIDENCE_LEVELS = [
 
 export const ClassUnitPacing = z.object({
   unitId: z.string(),
+  track: Track,
   number: z.number(),
   title: z.string(),
   published: z.boolean(),

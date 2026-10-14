@@ -6,6 +6,7 @@ import {
   STEP_IDS,
   STEP_LABELS,
   type StepId,
+  unitLabel,
 } from '@storyforge/shared';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -69,7 +70,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
     <div className="flex flex-col gap-6">
       <div>
         <Link href={`/units/${lesson.unit.slug}`} className="text-brand underline">
-          ← Unit {lesson.unit.number}: {lesson.unit.title}
+          ← {unitLabel(lesson.unit.track, lesson.unit.number)}: {lesson.unit.title}
         </Link>
         <h1 className="mt-3 text-3xl font-bold">
           Lesson {lesson.order}: {lesson.title}

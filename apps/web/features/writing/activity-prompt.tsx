@@ -19,7 +19,16 @@ export function ActivityPrompt({
         <p className="mt-2 text-lg">{activity.prompt}</p>
       </div>
 
-      {activity.starter && (
+      {activity.starter && activity.starterInEditor && (
+        <details className="rounded-xl border border-border bg-background p-4">
+          <summary className="cursor-pointer font-semibold">
+            The text is in your writing box: edit it there. See the original
+          </summary>
+          <p className="mt-2 text-lg whitespace-pre-line italic">{activity.starter}</p>
+        </details>
+      )}
+
+      {activity.starter && !activity.starterInEditor && (
         <div className="rounded-xl border border-border bg-background p-4">
           <p className="text-sm font-semibold text-muted">Start from this:</p>
           <p className="mt-1 text-lg italic">{activity.starter}</p>

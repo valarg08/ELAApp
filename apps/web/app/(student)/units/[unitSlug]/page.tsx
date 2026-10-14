@@ -1,4 +1,4 @@
-import { UnitDetail } from '@storyforge/shared';
+import { TRACK_HOME, UnitDetail, unitLabel } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ProgressBar } from '@/components/progress-bar';
@@ -16,11 +16,11 @@ export default async function UnitPage({ params }: PageProps<'/units/[unitSlug]'
     <PageShell width="max-w-4xl">
       <div className="flex flex-col gap-8">
         <div>
-          <Link href="/home" className="text-brand underline">
-            ← My journey
+          <Link href={TRACK_HOME[unit.track]} className="text-brand underline">
+            {unit.track === 'ESSAY' ? '← Essay Writing' : '← My journey'}
           </Link>
           <p className="mt-4 text-sm font-semibold tracking-widest text-muted uppercase">
-            Unit {unit.number}
+            {unitLabel(unit.track, unit.number)}
           </p>
           <h1 className="text-4xl font-bold">{unit.title}</h1>
           <p className="mt-2 text-lg text-muted">{unit.summary}</p>
@@ -32,7 +32,7 @@ export default async function UnitPage({ params }: PageProps<'/units/[unitSlug]'
               {unit.lockReason === 'COMING_SOON'
                 ? '⏳ This unit is coming soon.'
                 : unit.lockReason === 'FINISH_PREVIOUS'
-                  ? `🔒 Finish Unit ${unit.number - 1} to unlock this unit.`
+                  ? `🔒 Finish ${unitLabel(unit.track, unit.number - 1)} to unlock this unit.`
                   : '🔒 Your teacher hasn’t unlocked this unit yet.'}
             </p>
           </Card>

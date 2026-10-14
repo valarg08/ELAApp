@@ -1,15 +1,17 @@
 'use client';
 
-import type { ActivityContent, LessonSteps } from '@storyforge/shared';
+import type { LessonActivity, LessonSteps } from '@storyforge/shared';
 import { useState } from 'react';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError } from '@/lib/api-client';
 import { Highlight } from '../activities/highlight';
 import { MultipleChoice } from '../activities/multiple-choice';
+import { Quiz } from '../activities/quiz';
 import { ReflectionActivity } from '../activities/reflection-activity';
 import { Sequence } from '../activities/sequence';
 import { SensoryLab } from '../activities/sensory-lab';
 import { Sort } from '../activities/sort';
+import { Transform } from '../activities/transform';
 import type { ActivityResult } from '../activities/types';
 import { ExtraPractice } from '../tutor/extra-practice';
 import type { StepProps } from './step-props';
@@ -24,7 +26,7 @@ export function PracticeStep({
   onComplete,
   activities,
   lessonId,
-}: StepProps<Practice> & { activities: Record<string, ActivityContent>; lessonId: string }) {
+}: StepProps<Practice> & { activities: Record<string, LessonActivity>; lessonId: string }) {
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState<Record<string, ActivityResult>>({});
   const [replaying, setReplaying] = useState(false);
@@ -41,7 +43,8 @@ export function PracticeStep({
 
   const practiceKeys = step.activityKeys.filter((k) => {
     const a = activities[k];
-    return a && a.type !== 'REFLECTION';
+    // Marked quizzes have no extra practice (their questions are a test).
+    return a && a.type !== 'REFLECTION' && a.type !== 'QUIZ';
   });
 
   if (extra) {
@@ -115,6 +118,7 @@ export function PracticeStep({
       </p>
       <ActivityView
         key={key}
+        lessonId={lessonId}
         activity={activity}
         onDone={(result) => {
           const next = { ...results, [key]: result };
@@ -125,8 +129,17 @@ export function PracticeStep({
             else void save(summary(step.activityKeys, next));
           };
           // More attempts than questions means some answers were wrong.
-          const baseline = activity.type === 'MULTIPLE_CHOICE' ? activity.questions.length : 1;
-          if (activity.type !== 'REFLECTION' && result.attempts > baseline) {
+          const baseline =
+            activity.type === 'MULTIPLE_CHOICE'
+              ? activity.questions.length
+              : activity.type === 'TRANSFORM'
+                ? activity.items.length
+                : 1;
+          if (
+            activity.type !== 'REFLECTION' &&
+            activity.type !== 'QUIZ' &&
+            result.attempts > baseline
+          ) {
             setOffer({ key, advance });
           } else {
             advance();
@@ -149,10 +162,12 @@ function summary(keys: string[], results: Record<string, ActivityResult>) {
 }
 
 function ActivityView({
+  lessonId,
   activity,
   onDone,
 }: {
-  activity: ActivityContent;
+  lessonId: string;
+  activity: LessonActivity;
   onDone: (r: ActivityResult) => void;
 }) {
   switch (activity.type) {
@@ -166,6 +181,10 @@ function ActivityView({
       return <Sequence activity={activity} onDone={onDone} />;
     case 'SENSORY_LAB':
       return <SensoryLab activity={activity} onDone={onDone} />;
+    case 'QUIZ':
+      return <Quiz lessonId={lessonId} activity={activity} onDone={onDone} />;
+    case 'TRANSFORM':
+      return <Transform activity={activity} onDone={onDone} />;
     case 'REFLECTION':
       return <ReflectionActivity activity={activity} onDone={onDone} />;
     default:

@@ -17,14 +17,14 @@ export interface SyncReport {
 }
 
 /**
- * Upsert validated content into the database: units by number, lessons by (unit, slug),
+ * Upsert validated content into the database: units by (track, number), lessons by (unit, slug),
  * activities by key. Nothing is deleted, because student progress and submissions may point at it;
  * items missing from /content are reported as orphans instead.
  */
 export async function syncContent(db: PrismaClient, units: LoadedUnit[]): Promise<SyncReport> {
   const report: SyncReport = { units: 0, lessons: 0, activities: 0, orphans: [] };
 
-  for (const { unit, lessons, activities, contentHash } of units) {
+  for (const { track, unit, lessons, activities, contentHash } of units) {
     await db.$transaction(async (tx) => {
       const unitData = {
         slug: unit.slug,
@@ -36,8 +36,8 @@ export async function syncContent(db: PrismaClient, units: LoadedUnit[]): Promis
         projectSpec: unit.projectSpec ?? undefined,
       };
       const dbUnit = await tx.unit.upsert({
-        where: { number: unit.number },
-        create: { number: unit.number, ...unitData },
+        where: { track_number: { track, number: unit.number } },
+        create: { track, number: unit.number, ...unitData },
         update: unitData,
       });
       report.units += 1;
@@ -97,7 +97,9 @@ export async function syncContent(db: PrismaClient, units: LoadedUnit[]): Promis
         select: { key: true },
       });
       report.orphans.push(
-        ...staleLessons.map((l) => `unit ${unit.number} lesson "${l.slug}"`),
+        ...staleLessons.map(
+          (l) => `${track === 'ESSAY' ? 'essay ' : ''}unit ${unit.number} lesson "${l.slug}"`,
+        ),
         ...staleActivities.map((a) => `activity "${a.key}"`),
       );
     });

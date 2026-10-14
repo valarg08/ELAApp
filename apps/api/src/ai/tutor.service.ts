@@ -197,6 +197,35 @@ function describeActivity(
           }),
       };
     }
+    case 'TRANSFORM': {
+      const { items } = activity;
+      return {
+        text: [
+          activity.instructions,
+          ...items.map(
+            (i) => `${i.task}: “${i.source}” → “${i.answers[0]}”. Why: ${i.explanation}`,
+          ),
+        ].join('\n'),
+        fallback: shuffle(items, variant)
+          .slice(0, 3)
+          .map((item, i) => {
+            // The right rewrite, the unchanged sentence, and another item's rewrite.
+            const other = items.find((x) => x.id !== item.id)?.answers[0];
+            const choices = [
+              ...new Set([item.answers[0]!, item.source, ...(other ? [other] : [])]),
+            ];
+            const options = shuffle(choices, variant + i);
+            return {
+              prompt: `${item.task}: “${item.source}”`,
+              options,
+              correctIndex: options.indexOf(item.answers[0]!),
+              explanation: item.explanation,
+            };
+          }),
+      };
+    }
+    // Unit-check quizzes are marked tests: no extra practice from their question bank.
+    case 'QUIZ':
     case 'REFLECTION':
       return { text: '', fallback: [] };
   }
@@ -254,7 +283,12 @@ export class TutorService {
     }
     const row = await this.db.client.activity.findUnique({ where: { key: req.activityKey } });
     const activity = row ? ActivityContent.parse(row.config) : null;
-    if (!activity || isWritingActivity(activity) || activity.type === 'REFLECTION') {
+    if (
+      !activity ||
+      isWritingActivity(activity) ||
+      activity.type === 'REFLECTION' ||
+      activity.type === 'QUIZ'
+    ) {
       throw notFound(ErrorCode.ACTIVITY_NOT_FOUND, 'There’s no extra practice for this activity.');
     }
     const remaining = await this.checkLimit(user.id, classId);

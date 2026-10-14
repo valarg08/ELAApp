@@ -17,7 +17,8 @@ import { CONFLICT_TYPE_IDS, type ConflictTypeId, PlotPlan } from './plot.js';
 
 /**
  * Curriculum content format (DESIGN.md §9). Units, lessons and activities live as JSON files in
- * /content/units/unit-XX and are validated against these schemas before they reach the database.
+ * /content/units/unit-XX (Story Writing) and /content/essay/unit-XX (Essay Writing, §9.12) and are
+ * validated against these schemas before they reach the database.
  */
 
 const text = (max = 2000) => z.string().trim().min(1).max(max);
@@ -25,9 +26,22 @@ const id = z.string().regex(/^[a-z0-9][a-z0-9-]*$/, 'Use lowercase letters, numb
 
 // ───────── Activities ─────────
 
+/** The two learning tracks (DESIGN.md §9.12). */
+export const TRACKS = ['STORY', 'ESSAY'] as const;
+export const Track = z.enum(TRACKS);
+export type Track = z.infer<typeof Track>;
+
+/** Activity keys start with the unit: "u01." in Story Writing, "e01." in Essay Writing. */
 export const ActivityKey = z
   .string()
-  .regex(/^u\d{2}\.[a-z0-9][a-z0-9-]*$/, 'Activity keys look like "u01.sort-show-tell"');
+  .regex(
+    /^[ue]\d{2}\.[a-z0-9][a-z0-9-]*$/,
+    'Activity keys look like "u01.sort-show-tell" (or "e01.…" in Essay Writing)',
+  );
+
+/** The prefix every activity key of a unit starts with. */
+export const activityKeyPrefix = (track: Track, unitNumber: number) =>
+  `${track === 'ESSAY' ? 'e' : 'u'}${String(unitNumber).padStart(2, '0')}.`;
 
 const activityBase = {
   key: ActivityKey,
@@ -122,6 +136,76 @@ export const SensoryLabActivity = z.object({
     .max(5),
   wordsPerStation: z.number().int().min(1).max(5).default(2),
 });
+
+const quizQuestion = z.object({
+  id,
+  prompt: text(500),
+  options: z
+    .array(z.object({ id, text: text(300) }))
+    .min(2)
+    .max(5),
+  correctOptionId: id,
+  explanation: text(500),
+  /** The skill the question checks, shown in the review ("Review: pronouns"). */
+  skill: text(60).optional(),
+});
+
+/**
+ * A marked quiz (Essay Writing unit checks, DESIGN.md §9.12). The server picks
+ * `questionsPerAttempt` questions from the bank, marks the answers and stores the attempt; the
+ * answers never reach the browser before submitting. The activity is done at `passPercent` or more.
+ */
+export const QuizActivity = z.object({
+  ...activityBase,
+  type: z.literal('QUIZ'),
+  instructions: text(500),
+  passPercent: z.number().int().min(50).max(100).default(80),
+  questionsPerAttempt: z.number().int().min(3).max(25).optional(),
+  questions: z.array(quizQuestion).min(3).max(60),
+});
+export type QuizActivity = z.infer<typeof QuizActivity>;
+
+/**
+ * The transformer (DESIGN.md §9.12): rewrite a sentence by a rule — change its tense, make it
+ * passive or active, turn direct speech into reported speech, make it formal. Answers are matched
+ * against the accepted rewrites (see `transformMatches`); a wrong try shows the next hint.
+ */
+export const TransformActivity = z.object({
+  ...activityBase,
+  type: z.literal('TRANSFORM'),
+  instructions: text(500),
+  items: z
+    .array(
+      z.object({
+        id,
+        /** What to do with this sentence ("Change it to the past tense"). */
+        task: text(200),
+        source: text(400),
+        answers: z.array(text(400)).min(1).max(8),
+        hints: z.array(text(300)).max(4).default([]),
+        explanation: text(500),
+      }),
+    )
+    .min(1)
+    .max(8),
+});
+export type TransformActivity = z.infer<typeof TransformActivity>;
+
+/** A rewrite in a form that ignores case, spacing, curly quotes and a missing final full stop. */
+export function normalizeRewrite(value: string): string {
+  return value
+    .replace(/[‘’]/g, "'")
+    .replace(/[“”]/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\s+([,.!?;:])/g, '$1')
+    .replace(/\.$/, '')
+    .toLowerCase();
+}
+
+/** True when the student's rewrite matches one of the accepted answers. */
+export const transformMatches = (answer: string, accepted: readonly string[]) =>
+  accepted.some((a) => normalizeRewrite(a) === normalizeRewrite(answer));
 
 export const ReflectionActivity = z.object({
   ...activityBase,
@@ -256,6 +340,8 @@ export const WritingActivity = z.object({
   prompt: text(1000),
   /** Text for the student to transform or rewrite, shown above the box. */
   starter: text(1500).optional(),
+  /** Put the starter in the editor instead (proofreading and revising, Essay Writing). */
+  starterInEditor: z.boolean().optional(),
   tips: z.array(text(300)).max(5).default([]),
   constraints: WritingConstraints,
   /** Checks shown in the Coach panel (default: telling, filter words, senses, sentence variety). */
@@ -280,6 +366,8 @@ export const ActivityContent = z.discriminatedUnion('type', [
   HighlightActivity,
   SequenceActivity,
   SensoryLabActivity,
+  QuizActivity,
+  TransformActivity,
   ReflectionActivity,
   WritingActivity,
 ]);
@@ -287,16 +375,60 @@ export type ActivityContent = z.infer<typeof ActivityContent>;
 export type WritingActivity = z.infer<typeof WritingActivity>;
 export type PracticeActivity = Exclude<ActivityContent, WritingActivity>;
 
+/**
+ * A quiz as a lesson sends it: no questions or answers. The server hands out the questions for
+ * each attempt and marks them (DESIGN.md §9.12).
+ */
+export const QuizActivityPublic = QuizActivity.pick({
+  key: true,
+  title: true,
+  xpReward: true,
+  type: true,
+  instructions: true,
+  passPercent: true,
+}).extend({ questionCount: z.number().int().min(1) });
+export type QuizActivityPublic = z.infer<typeof QuizActivityPublic>;
+
+/** An activity as the lesson payload carries it (quizzes without their answers). */
+export const LessonActivity = z.discriminatedUnion('type', [
+  MultipleChoiceActivity,
+  SortActivity,
+  HighlightActivity,
+  SequenceActivity,
+  SensoryLabActivity,
+  QuizActivityPublic,
+  TransformActivity,
+  ReflectionActivity,
+  WritingActivity,
+]);
+export type LessonActivity = z.infer<typeof LessonActivity>;
+
+/** The lesson payload form of an activity: a quiz loses its questions. */
+export function publicActivity(a: ActivityContent): LessonActivity {
+  if (a.type !== 'QUIZ') return a;
+  return {
+    key: a.key,
+    title: a.title,
+    xpReward: a.xpReward,
+    type: a.type,
+    instructions: a.instructions,
+    passPercent: a.passPercent,
+    questionCount: a.questionsPerAttempt ?? a.questions.length,
+  };
+}
+
 export const PRACTICE_ACTIVITY_TYPES = [
   'MULTIPLE_CHOICE',
   'SORT',
   'HIGHLIGHT',
   'SEQUENCE',
   'SENSORY_LAB',
+  'QUIZ',
+  'TRANSFORM',
   'REFLECTION',
 ] as const;
 
-export const isWritingActivity = (a: ActivityContent): a is WritingActivity =>
+export const isWritingActivity = (a: ActivityContent | LessonActivity): a is WritingActivity =>
   (WRITING_ACTIVITY_TYPES as readonly string[]).includes(a.type);
 
 /** Character activities (Unit 2): Quill can check whether a reader can tell who the character is. */
@@ -578,8 +710,11 @@ export type LessonContent = z.infer<typeof LessonContent>;
 
 // ───────── Units ─────────
 
+/** Story Writing has 12 units, Essay Writing 15. */
+export const MAX_UNITS: Record<Track, number> = { STORY: 12, ESSAY: 15 };
+
 export const UnitContent = z.object({
-  number: z.number().int().min(1).max(12),
+  number: z.number().int().min(1).max(15),
   slug: id,
   title: text(120),
   summary: text(500),
@@ -597,6 +732,8 @@ export const UnitContent = z.object({
 export type UnitContent = z.infer<typeof UnitContent>;
 
 export interface UnitBundle {
+  /** From the folder: content/units → STORY, content/essay → ESSAY. */
+  track?: Track;
   unit: UnitContent;
   lessons: LessonContent[];
   activities: ActivityContent[];
@@ -609,9 +746,16 @@ export function tokenize(passage: string): string[] {
   return passage.match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu)?.map((w) => w.toLowerCase()) ?? [];
 }
 
-export function validateUnitBundle({ unit, lessons, activities }: UnitBundle): string[] {
+export function validateUnitBundle({
+  track = 'STORY',
+  unit,
+  lessons,
+  activities,
+}: UnitBundle): string[] {
   const errors: string[] = [];
-  const prefix = `u${String(unit.number).padStart(2, '0')}.`;
+  const prefix = activityKeyPrefix(track, unit.number);
+  if (unit.number > MAX_UNITS[track])
+    errors.push(`Unit number ${unit.number} is more than ${MAX_UNITS[track]}`);
   const byKey = new Map<string, ActivityContent>();
 
   for (const a of activities) {
@@ -625,6 +769,26 @@ export function validateUnitBundle({ unit, lessons, activities }: UnitBundle): s
         if (new Set(ids).size !== ids.length) errors.push(`${a.key}/${q.id}: duplicate option ids`);
         if (!ids.includes(q.correctOptionId))
           errors.push(`${a.key}/${q.id}: correctOptionId "${q.correctOptionId}" is not an option`);
+      }
+    }
+    if (a.type === 'QUIZ') {
+      const qids = a.questions.map((q) => q.id);
+      if (new Set(qids).size !== qids.length) errors.push(`${a.key}: duplicate question ids`);
+      for (const q of a.questions) {
+        const ids = q.options.map((o) => o.id);
+        if (new Set(ids).size !== ids.length) errors.push(`${a.key}/${q.id}: duplicate option ids`);
+        if (!ids.includes(q.correctOptionId))
+          errors.push(`${a.key}/${q.id}: correctOptionId "${q.correctOptionId}" is not an option`);
+      }
+      if (a.questionsPerAttempt && a.questionsPerAttempt > a.questions.length)
+        errors.push(`${a.key}: questionsPerAttempt is more than the number of questions`);
+    }
+    if (a.type === 'TRANSFORM') {
+      const ids = a.items.map((i) => i.id);
+      if (new Set(ids).size !== ids.length) errors.push(`${a.key}: duplicate item ids`);
+      for (const item of a.items) {
+        if (transformMatches(item.source, item.answers))
+          errors.push(`${a.key}/${item.id}: the sentence already matches an answer`);
       }
     }
     if (a.type === 'SORT') {
@@ -650,6 +814,8 @@ export function validateUnitBundle({ unit, lessons, activities }: UnitBundle): s
         errors.push(`${a.key}: duplicate perspective labels`);
       if (a.constraints.povLock) errors.push(`${a.key}: use perspectives or povLock, not both`);
     }
+    if (isWritingActivity(a) && a.starterInEditor && !a.starter)
+      errors.push(`${a.key}: starterInEditor needs a starter`);
     if (isWritingActivity(a)) {
       const c = a.constraints;
       if (c.minStanzas && c.maxStanzas && c.minStanzas > c.maxStanzas)
