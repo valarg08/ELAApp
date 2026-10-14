@@ -1,0 +1,68 @@
+{
+  "slug": "essay-action-linking-helping-verbs",
+  "order": 1,
+  "title": "Action, Linking & Helping Verbs",
+  "estMinutes": 35,
+  "focusSkills": ["verbs", "word-choice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which sentence lets you see what happened? Which word makes the difference?",
+      "a": "The dog went across the kitchen and got the sandwich.",
+      "b": "The dog skidded across the kitchen and snatched the sandwich.",
+      "reveal": "“Skidded” and “snatched” are strong action verbs: they show exactly how the dog moved. “Went” and “got” could mean almost anything. Verbs are the engine of a sentence."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Action verbs",
+          "body": "An action verb tells what someone or something does: run, laugh, think, build, whisper. Actions can be physical (jump) or in your head (wonder, remember). Every sentence needs a verb."
+        },
+        {
+          "kind": "definition",
+          "title": "Linking verbs",
+          "body": "A linking verb doesn’t show an action. It links the subject to a word that describes or renames it: “The soup is hot.” “Maya became captain.” The forms of “be” (am, is, are, was, were) are the most common. Seem, become, appear, and the sense verbs (look, feel, sound, smell, taste) can link too: “The bread smells delicious.”"
+        },
+        {
+          "kind": "definition",
+          "title": "Helping verbs",
+          "body": "A helping verb comes before the main verb to show time or possibility: will, would, can, could, should, may, might, must, and forms of be, have and do. “She has finished.” “We were laughing.” “I can swim.” Helping verb + main verb = a verb phrase."
+        },
+        {
+          "kind": "example",
+          "title": "The swap test",
+          "text": "The bread smells delicious. → The bread IS delicious. ✓ (linking)\nThe dog smells the bread. → The dog IS the bread. ✗ (action)",
+          "note": "Not sure if a sense verb is linking? Swap in “is” or “was”. If the sentence still makes sense, it’s linking."
+        },
+        {
+          "kind": "compare",
+          "title": "Weak vs strong verbs",
+          "telling": "She went to the door. He said it quietly. They ate fast.",
+          "showing": "She raced to the door. He murmured it. They gobbled their food.",
+          "labels": ["Weak", "Strong"],
+          "note": "In essays and stories, one precise verb beats a weak verb plus extra words."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e02.verb-kinds-sort", "e02.action-highlight", "e02.helping-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e02.verb-kinds-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which action verb in your sentences paints the clearest picture? Why?",
+        "Explain the swap test for linking verbs in your own words."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -93,7 +93,7 @@ export function Sort({
               aria-label={b.label}
               className="min-h-24 rounded-xl border-2 border-dashed border-border p-3"
             >
-              <h3 className="mb-2 font-semibold">{b.label}</h3>
+              <h2 className="mb-2 font-semibold">{b.label}</h2>
               <ul className="flex flex-col gap-2">
                 {items.map((i) => (
                   <li

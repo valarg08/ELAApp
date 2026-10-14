@@ -1,0 +1,1154 @@
+[
+  {
+    "key": "e02.verb-kinds-sort",
+    "type": "SORT",
+    "title": "Action, linking or helping?",
+    "instructions": "Each card shows a verb in a sentence. Is the verb in capitals an action verb (something you do), a linking verb (it links the subject to a description) or a helping verb (it helps the main verb)?",
+    "buckets": [
+      { "id": "action", "label": "Action verb" },
+      { "id": "linking", "label": "Linking verb" },
+      { "id": "helping", "label": "Helping verb" }
+    ],
+    "items": [
+      { "id": "sprinted", "text": "The puppy SPRINTED across the yard.", "bucketId": "action" },
+      { "id": "is-tired", "text": "My brother IS tired.", "bucketId": "linking" },
+      { "id": "will-help", "text": "We WILL help you.", "bucketId": "helping" },
+      { "id": "seemed", "text": "The room SEEMED empty.", "bucketId": "linking" },
+      { "id": "whispered", "text": "Ava WHISPERED the answer.", "bucketId": "action" },
+      { "id": "has-finished", "text": "Leo HAS finished his project.", "bucketId": "helping" },
+      { "id": "became", "text": "The caterpillar BECAME a butterfly.", "bucketId": "linking" },
+      { "id": "can-swim", "text": "She CAN swim faster than me.", "bucketId": "helping" },
+      { "id": "built", "text": "They BUILT a fort out of boxes.", "bucketId": "action" },
+      { "id": "tastes", "text": "This soup TASTES salty.", "bucketId": "linking" }
+    ]
+  },
+  {
+    "key": "e02.action-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Find the strong verbs",
+    "instructions": "Tap the five action verbs. Skip the linking verb.",
+    "text": "The storm was loud. Thunder rattled the windows, and rain hammered the roof. My cat dove under the bed. I grabbed a flashlight and crept down the stairs.",
+    "targets": ["rattled", "hammered", "dove", "grabbed", "crept"],
+    "explanation": "Rattled, hammered, dove, grabbed and crept are actions you can picture. “Was” is a linking verb: it links “storm” to “loud”."
+  },
+  {
+    "key": "e02.helping-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Helpers and main verbs",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "In “The team has practised every day,” which word is the helping verb?",
+        "options": [
+          { "id": "a", "text": "team" },
+          { "id": "b", "text": "has" },
+          { "id": "c", "text": "practised" },
+          { "id": "d", "text": "every" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Has” helps the main verb “practised”. Together they make the verb phrase “has practised”.",
+        "hint": "Which word comes before the main action and helps it?"
+      },
+      {
+        "id": "q2",
+        "prompt": "Which sentence uses “is” as a linking verb, not a helping verb?",
+        "options": [
+          { "id": "a", "text": "Maya is reading a mystery." },
+          { "id": "b", "text": "Maya is curious." },
+          { "id": "c", "text": "Maya is going to the library." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "In “Maya is curious,” “is” links Maya to a description. In the others it helps an -ing verb (is reading, is going)."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which word is the main verb in “You should have called me”?",
+        "options": [
+          { "id": "a", "text": "should" },
+          { "id": "b", "text": "have" },
+          { "id": "c", "text": "called" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Called” is the action. “Should” and “have” are two helping verbs in front of it."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which verb is the strongest choice? “The runner ___ across the finish line.”",
+        "options": [
+          { "id": "a", "text": "went" },
+          { "id": "b", "text": "got" },
+          { "id": "c", "text": "staggered" },
+          { "id": "d", "text": "was" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Staggered” shows exactly how the runner moved: tired and unsteady. Strong action verbs do the work of extra words."
+      }
+    ]
+  },
+  {
+    "key": "e02.verb-kinds-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Verbs at work",
+    "prompt": "Write four sentences about a game, a race or a match, real or imagined. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Action verbs show what someone does: kicked, dodges, will sprint.",
+      "Linking verbs connect to a description: is, was, seems, became, looks, feels.",
+      "Helping verbs come before the main verb: will, can, has, was, did."
+    ],
+    "constraints": { "minWords": 25, "maxWords": 150, "minSentences": 4 },
+    "analyzers": ["verbs"],
+    "grammarFocus": ["action-verb", "linking-verb", "helping-verb"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Show a player moving, with a strong action verb (not “went” or “got”).",
+          "needs": ["action-verb"]
+        },
+        {
+          "ask": "Describe the crowd or the weather with a linking verb (was, seemed, looked).",
+          "needs": ["linking-verb"]
+        },
+        {
+          "ask": "Use a helping verb + main verb (will score, can run, had won).",
+          "needs": ["helping-verb", "action-verb"]
+        },
+        { "ask": "End with how someone felt, using a linking verb.", "needs": ["linking-verb"] }
+      ]
+    }
+  },
+  {
+    "key": "e02.tense-sort",
+    "type": "SORT",
+    "title": "When does it happen?",
+    "instructions": "Sort each sentence by its tense: past (already happened), present (happens now or always) or future (will happen).",
+    "buckets": [
+      { "id": "past", "label": "Past" },
+      { "id": "present", "label": "Present" },
+      { "id": "future", "label": "Future" }
+    ],
+    "items": [
+      { "id": "baked", "text": "Grandma baked bread on Sunday.", "bucketId": "past" },
+      { "id": "rises", "text": "The sun rises in the east.", "bucketId": "present" },
+      { "id": "will-visit", "text": "We will visit the museum next week.", "bucketId": "future" },
+      { "id": "ran", "text": "Omar ran to the bus stop.", "bucketId": "past" },
+      { "id": "plays", "text": "My sister plays the trumpet.", "bucketId": "present" },
+      { "id": "shall", "text": "I shall return.", "bucketId": "future" },
+      { "id": "were", "text": "The tickets were expensive.", "bucketId": "past" },
+      { "id": "am", "text": "I am hungry.", "bucketId": "present" },
+      { "id": "going-to", "text": "It is going to rain tonight.", "bucketId": "future" }
+    ]
+  },
+  {
+    "key": "e02.tense-blank",
+    "type": "FILL_BLANK",
+    "title": "Pick the tense",
+    "instructions": "Look for the time clue (yesterday, every day, tomorrow), then pick the verb that fits.",
+    "items": [
+      {
+        "id": "yesterday",
+        "sentence": "Yesterday, our class ___ a tree in the schoolyard.",
+        "answers": ["planted"],
+        "choices": ["plants", "planted", "will plant"],
+        "hint": "“Yesterday” has already happened.",
+        "explanation": "“Yesterday” is a past time clue, so the verb is past: planted."
+      },
+      {
+        "id": "every-morning",
+        "sentence": "Every morning, my dad ___ the dog around the block.",
+        "answers": ["walks"],
+        "choices": ["walks", "walked", "will walk"],
+        "hint": "“Every morning” means it happens again and again.",
+        "explanation": "Things that happen regularly use the simple present: walks."
+      },
+      {
+        "id": "next-summer",
+        "sentence": "Next summer, we ___ to Mexico City.",
+        "answers": ["will travel"],
+        "choices": ["travel", "travelled", "will travel"],
+        "explanation": "“Next summer” hasn’t happened yet, so use the future: will travel."
+      },
+      {
+        "id": "last-night",
+        "sentence": "Last night the wind ___ so hard that the lights flickered.",
+        "answers": ["blew"],
+        "choices": ["blows", "blew", "will blow"],
+        "explanation": "“Last night” and “flickered” are past, so the wind blew."
+      },
+      {
+        "id": "always",
+        "sentence": "Water always ___ at 100 degrees Celsius.",
+        "answers": ["boils"],
+        "choices": ["boils", "boiled", "will boil"],
+        "hint": "This is a fact that is always true.",
+        "explanation": "Facts that are always true use the simple present: boils."
+      },
+      {
+        "id": "tomorrow",
+        "sentence": "Tomorrow I ___ my science report.",
+        "answers": ["will finish"],
+        "choices": ["finish", "finished", "will finish"],
+        "explanation": "“Tomorrow” points to the future: will finish."
+      }
+    ]
+  },
+  {
+    "key": "e02.tense-transform",
+    "type": "TRANSFORM",
+    "title": "Time machine",
+    "instructions": "Move each sentence to a new time by changing the verb. Keep the rest of the sentence the same.",
+    "items": [
+      {
+        "id": "jump-past",
+        "task": "Make it past tense.",
+        "source": "The frog jumps into the pond.",
+        "answers": ["The frog jumped into the pond."],
+        "hints": ["Regular verbs add -ed for the past.", "jumps → jumped"],
+        "explanation": "“Jump” is regular: jump → jumped."
+      },
+      {
+        "id": "eat-future",
+        "task": "Make it future tense.",
+        "source": "We eat dinner at six.",
+        "answers": ["We will eat dinner at six."],
+        "hints": ["Add a helping verb before “eat”.", "will + eat"],
+        "explanation": "The simple future is will + the base verb: will eat."
+      },
+      {
+        "id": "write-past",
+        "task": "Make it past tense.",
+        "source": "Lena writes a letter to her aunt.",
+        "answers": ["Lena wrote a letter to her aunt."],
+        "hints": ["“Write” is irregular: it doesn’t add -ed.", "write → wrote"],
+        "explanation": "“Write” is irregular: write → wrote."
+      },
+      {
+        "id": "was-present",
+        "task": "Make it present tense.",
+        "source": "The movie was funny.",
+        "answers": ["The movie is funny."],
+        "hints": ["“Was” is the past of which verb?", "was → is"],
+        "explanation": "“Was” is the past of “is”. One movie → is."
+      },
+      {
+        "id": "carry-past",
+        "task": "Make it past tense.",
+        "source": "Dev carries the boxes upstairs.",
+        "answers": ["Dev carried the boxes upstairs."],
+        "hints": ["Consonant + y: change the y to i before -ed."],
+        "explanation": "carry → carried: a consonant + y changes to -ied."
+      }
+    ]
+  },
+  {
+    "key": "e02.time-travel-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Yesterday, today, tomorrow",
+    "prompt": "Write six sentences about your week: two about yesterday, two about today and two about tomorrow. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Past: walked, ran, was, saw.",
+      "Present: walk, walks, is, am, are.",
+      "Future: will walk, will be, am going to walk."
+    ],
+    "constraints": { "minWords": 30, "maxWords": 180, "minSentences": 6 },
+    "analyzers": ["verbs"],
+    "grammarFocus": ["past-tense", "present-tense", "future-tense"],
+    "sentenceSet": {
+      "label": "Your six sentences",
+      "sentences": [
+        { "ask": "Yesterday: something you did (past tense).", "needs": ["past-tense"] },
+        { "ask": "Yesterday: how something was (past tense).", "needs": ["past-tense"] },
+        { "ask": "Today: something you do every day (present tense).", "needs": ["present-tense"] },
+        { "ask": "Today: how you feel right now (present tense).", "needs": ["present-tense"] },
+        { "ask": "Tomorrow: a plan (future tense with “will”).", "needs": ["future-tense"] },
+        { "ask": "Tomorrow: a prediction (future tense).", "needs": ["future-tense"] }
+      ]
+    }
+  },
+  {
+    "key": "e02.progressive-perfect-sort",
+    "type": "SORT",
+    "title": "Progressive or perfect?",
+    "instructions": "Progressive = a form of be + an -ing verb (an action in progress). Perfect = has, have or had + a past participle (an action completed before a time). Sort each verb phrase.",
+    "buckets": [
+      { "id": "progressive", "label": "Progressive" },
+      { "id": "perfect", "label": "Perfect" }
+    ],
+    "items": [
+      { "id": "is-singing", "text": "is singing", "bucketId": "progressive" },
+      { "id": "have-eaten", "text": "have eaten", "bucketId": "perfect" },
+      { "id": "were-waiting", "text": "were waiting", "bucketId": "progressive" },
+      { "id": "had-left", "text": "had left", "bucketId": "perfect" },
+      { "id": "will-be-playing", "text": "will be playing", "bucketId": "progressive" },
+      { "id": "has-written", "text": "has written", "bucketId": "perfect" },
+      { "id": "am-reading", "text": "am reading", "bucketId": "progressive" },
+      { "id": "will-have-finished", "text": "will have finished", "bucketId": "perfect" }
+    ]
+  },
+  {
+    "key": "e02.perfect-blank",
+    "type": "FILL_BLANK",
+    "title": "Build the verb",
+    "instructions": "Choose the verb phrase that fits the time in each sentence.",
+    "items": [
+      {
+        "id": "right-now",
+        "sentence": "Shh! The baby ___ right now.",
+        "answers": ["is sleeping"],
+        "choices": ["is sleeping", "has slept", "slept"],
+        "hint": "“Right now” means the action is in progress.",
+        "explanation": "An action happening right now uses the present progressive: is sleeping."
+      },
+      {
+        "id": "when-called",
+        "sentence": "We ___ dinner when the phone rang.",
+        "answers": ["were eating"],
+        "choices": ["were eating", "have eaten", "eat"],
+        "hint": "The eating was in progress when something else happened.",
+        "explanation": "An action in progress in the past, interrupted by another, uses the past progressive: were eating."
+      },
+      {
+        "id": "already",
+        "sentence": "I ___ this book three times already.",
+        "answers": ["have read"],
+        "choices": ["have read", "am reading", "had reading"],
+        "explanation": "The present perfect (have + participle) links the past to now: I have read it three times so far."
+      },
+      {
+        "id": "before-arrived",
+        "sentence": "By the time we arrived, the movie ___.",
+        "answers": ["had started"],
+        "choices": ["has started", "had started", "was start"],
+        "hint": "Which action happened first, before another past action?",
+        "explanation": "The past perfect (had + participle) shows the earlier of two past actions: the movie had started before we arrived."
+      },
+      {
+        "id": "since",
+        "sentence": "Ms Patel ___ at our school since 2019.",
+        "answers": ["has taught"],
+        "choices": ["has taught", "teaches", "is teached"],
+        "explanation": "“Since 2019” means from then until now: the present perfect, has taught."
+      }
+    ]
+  },
+  {
+    "key": "e02.progressive-transform",
+    "type": "TRANSFORM",
+    "title": "In progress, all done",
+    "instructions": "Rewrite each sentence with the verb form the task asks for.",
+    "items": [
+      {
+        "id": "walk-progressive",
+        "task": "Make it present progressive (am/is/are + -ing).",
+        "source": "The dogs walk along the beach.",
+        "answers": ["The dogs are walking along the beach."],
+        "hints": ["More than one dog → are.", "are + walking"],
+        "explanation": "Present progressive: are + walking (the dogs are doing it now)."
+      },
+      {
+        "id": "read-past-progressive",
+        "task": "Make it past progressive (was/were + -ing).",
+        "source": "I read when the lights went out.",
+        "answers": ["I was reading when the lights went out."],
+        "hints": ["With “I”, use “was”.", "was + reading"],
+        "explanation": "Past progressive: was reading, an action in progress when something else happened."
+      },
+      {
+        "id": "finish-perfect",
+        "task": "Make it present perfect (has/have + past participle).",
+        "source": "Kai finished his homework.",
+        "answers": ["Kai has finished his homework."],
+        "hints": ["One person → has.", "has + finished"],
+        "explanation": "Present perfect: has finished. It’s done, and that matters now."
+      },
+      {
+        "id": "go-past-perfect",
+        "task": "Make the first action past perfect (had + past participle).",
+        "source": "The bus left before we got to the stop.",
+        "answers": ["The bus had left before we got to the stop."],
+        "hints": ["Which happened first: the bus leaving or us arriving?", "had + left"],
+        "explanation": "Past perfect for the earlier action: the bus had left before we got there."
+      }
+    ]
+  },
+  {
+    "key": "e02.timeline-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Timeline sentences",
+    "prompt": "Write four sentences about a busy day, real or imagined. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Progressive: am/is/are/was/were + -ing: is cooking, were laughing.",
+      "Perfect: has/have/had + past participle: has finished, had eaten, have seen.",
+      "Irregular participles to try: gone, eaten, written, taken, seen."
+    ],
+    "constraints": { "minWords": 25, "maxWords": 150, "minSentences": 4 },
+    "analyzers": ["verbs"],
+    "grammarFocus": ["progressive", "perfect"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Something happening right now (present progressive: am/is/are + -ing).",
+          "needs": ["progressive", "present-tense"]
+        },
+        {
+          "ask": "Something that was in progress earlier (past progressive: was/were + -ing).",
+          "needs": ["progressive", "past-tense"]
+        },
+        {
+          "ask": "Something you have done today (present perfect: has/have + participle).",
+          "needs": ["perfect", "present-tense"]
+        },
+        {
+          "ask": "Something that had happened before something else (past perfect: had + participle).",
+          "needs": ["perfect", "past-tense"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e02.irregular-blank",
+    "type": "FILL_BLANK",
+    "title": "Irregular past",
+    "instructions": "Type the past tense of the verb in brackets. Careful: none of these add -ed!",
+    "items": [
+      {
+        "id": "go",
+        "sentence": "Last weekend we ___ to the county fair. (go)",
+        "answers": ["went"],
+        "hint": "It doesn’t look like “go” at all.",
+        "explanation": "go → went (and the participle is “gone”)."
+      },
+      {
+        "id": "catch",
+        "sentence": "Mia ___ the ball with one hand. (catch)",
+        "answers": ["caught"],
+        "hint": "It rhymes with “taught”.",
+        "explanation": "catch → caught. “Catched” isn’t a word."
+      },
+      {
+        "id": "bring",
+        "sentence": "Everyone ___ a snack to share. (bring)",
+        "answers": ["brought"],
+        "hint": "Not “brang”: it rhymes with “thought”.",
+        "explanation": "bring → brought."
+      },
+      {
+        "id": "swim",
+        "sentence": "The kids ___ in the lake until sunset. (swim)",
+        "answers": ["swam"],
+        "explanation": "swim → swam → (have) swum, like sing → sang → sung."
+      },
+      {
+        "id": "freeze",
+        "sentence": "The puddles ___ overnight. (freeze)",
+        "answers": ["froze"],
+        "explanation": "freeze → froze → (have) frozen."
+      },
+      {
+        "id": "teach",
+        "sentence": "My uncle ___ me how to fish. (teach)",
+        "answers": ["taught"],
+        "explanation": "teach → taught. “Teached” isn’t a word."
+      },
+      {
+        "id": "write",
+        "sentence": "Ana ___ a poem for the school magazine. (write)",
+        "answers": ["wrote"],
+        "explanation": "write → wrote → (have) written."
+      },
+      {
+        "id": "think",
+        "sentence": "I ___ the test would be harder. (think)",
+        "answers": ["thought"],
+        "explanation": "think → thought."
+      }
+    ]
+  },
+  {
+    "key": "e02.irregular-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Verb detective",
+    "instructions": "Six verbs in this story are wrong. Tap each one, then type the right form.",
+    "text": "On Saturday my cousins and I goed to the park. Jaden throwed a frisbee into a tree, and it stuck there. I climbed up and catched it. Then we seen a dog with a frisbee of its own. The dog had ran off with someone else’s! Its owner brang it back, laughing.",
+    "errors": [
+      { "word": "goed", "fixes": ["went"], "explanation": "“Go” is irregular: go → went." },
+      { "word": "throwed", "fixes": ["threw"], "explanation": "throw → threw → (have) thrown." },
+      { "word": "catched", "fixes": ["caught"], "explanation": "catch → caught." },
+      {
+        "word": "seen",
+        "fixes": ["saw"],
+        "explanation": "“Seen” needs a helper (we have seen). For the simple past, use “saw”."
+      },
+      {
+        "word": "ran",
+        "fixes": ["run"],
+        "explanation": "After “had”, use the past participle: had run."
+      },
+      { "word": "brang", "fixes": ["brought"], "explanation": "bring → brought → (have) brought." }
+    ]
+  },
+  {
+    "key": "e02.participle-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Past or participle?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "I have went to that café before." },
+          { "id": "b", "text": "I have gone to that café before." },
+          { "id": "c", "text": "I have goed to that café before." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "After have/has/had, use the past participle: gone. “Went” is the simple past (I went).",
+        "hint": "Which form goes after “have”?"
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "She done her chores." },
+          { "id": "b", "text": "She has did her chores." },
+          { "id": "c", "text": "She did her chores." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Simple past: did. With a helper it’s “has done”. “Done” never stands alone."
+      },
+      {
+        "id": "q3",
+        "prompt": "Complete the sentence: “By noon, the snow had ___.”",
+        "options": [
+          { "id": "a", "text": "melted" },
+          { "id": "b", "text": "melt" },
+          { "id": "c", "text": "melting" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "had + past participle: had melted. For regular verbs, the participle is the -ed form."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "We should of left earlier." },
+          { "id": "b", "text": "We should have left earlier." },
+          { "id": "c", "text": "We should have leaved earlier." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "It sounds like “should of”, but it’s “should have” (should’ve). leave → left → (have) left."
+      },
+      {
+        "id": "q5",
+        "prompt": "Which verb set is right? begin → ___ → (have) ___",
+        "options": [
+          { "id": "a", "text": "began → begun" },
+          { "id": "b", "text": "begun → began" },
+          { "id": "c", "text": "beginned → begun" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "begin → began → begun, like swim → swam → swum and ring → rang → rung."
+      }
+    ]
+  },
+  {
+    "key": "e02.irregular-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "The day everything went wrong",
+    "prompt": "Write a paragraph (6–10 sentences) about a day when everything went wrong, real or imagined. Use at least five irregular past verbs (went, broke, fell, forgot, lost…) and one perfect verb (had forgotten, have never seen).",
+    "tips": [
+      "Irregular pasts to try: woke, ran, fell, broke, forgot, lost, threw, caught, froze, spilled… (careful: spilled is regular!).",
+      "After had/has/have, use the participle: had forgotten, had broken, had gone.",
+      "Read it aloud. Does every verb sound right? “Goed” and “brang” are not words."
+    ],
+    "constraints": { "minWords": 60, "maxWords": 200, "minSentences": 6 },
+    "analyzers": ["verbs"],
+    "grammarFocus": ["irregular-past", "perfect"]
+  },
+  {
+    "key": "e02.tense-shift-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Stay in the past",
+    "instructions": "This story happened in the past, but five verbs slip into the present. Tap each one and change it to the past tense.",
+    "text": "Last winter, our power went out during a snowstorm. My mom lit candles, and my little brother grabs every blanket in the house. We played cards on the floor. Then the wind howls so loudly that the windows shook. Dad makes hot chocolate on the gas stove. By midnight we were all asleep in a pile, and the lights come back on at dawn. Nobody notices until breakfast.",
+    "errors": [
+      {
+        "word": "grabs",
+        "fixes": ["grabbed"],
+        "explanation": "The story is in the past: grabs → grabbed."
+      },
+      {
+        "word": "howls",
+        "fixes": ["howled"],
+        "explanation": "Keep it in the past: howls → howled (the windows shook)."
+      },
+      { "word": "makes", "fixes": ["made"], "explanation": "make → made (irregular)." },
+      { "word": "come", "fixes": ["came"], "explanation": "come → came (irregular)." },
+      { "word": "notices", "fixes": ["noticed"], "explanation": "notices → noticed." }
+    ]
+  },
+  {
+    "key": "e02.consistent-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Steady tense",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence keeps the same tense?",
+        "options": [
+          { "id": "a", "text": "Jamal opened the door and sees a surprise party." },
+          { "id": "b", "text": "Jamal opened the door and saw a surprise party." },
+          { "id": "c", "text": "Jamal opens the door and saw a surprise party." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Both actions happened at the same time in the past: opened … saw.",
+        "hint": "Do both verbs point to the same time?"
+      },
+      {
+        "id": "q2",
+        "prompt": "An essay about a book usually talks about what happens in it in the present tense. Which sentence follows that rule?",
+        "options": [
+          { "id": "a", "text": "In the novel, Brian survives alone in the wilderness." },
+          { "id": "b", "text": "In the novel, Brian survived alone and learns to make fire." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "When writing about literature, describe the events in the present: Brian survives, learns, builds. And don’t mix tenses in one sentence."
+      },
+      {
+        "id": "q3",
+        "prompt": "When is it right to change tense in a paragraph?",
+        "options": [
+          { "id": "a", "text": "Whenever a new sentence starts." },
+          { "id": "b", "text": "When the time you are writing about really changes." },
+          { "id": "c", "text": "Never, in any situation." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Change tense only when the time changes: “Last year I was shy. Now I love speaking in class.”"
+      },
+      {
+        "id": "q4",
+        "prompt": "Which word should change? “The crowd cheered as the runner crosses the finish line.”",
+        "options": [
+          { "id": "a", "text": "cheered → cheers" },
+          { "id": "b", "text": "crosses → crossed" },
+          { "id": "c", "text": "Either one, as long as both match" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "The two actions happen together, so they need the same tense: “cheered … crossed” or “cheers … crosses”. Pick one and keep it."
+      }
+    ]
+  },
+  {
+    "key": "e02.consistent-transform",
+    "type": "TRANSFORM",
+    "title": "Fix the time slip",
+    "instructions": "Each sentence mixes past and present. Rewrite it so all the verbs are in the past tense.",
+    "items": [
+      {
+        "id": "rain",
+        "task": "Put both verbs in the past.",
+        "source": "It started to rain, so we run inside.",
+        "answers": ["It started to rain, so we ran inside."],
+        "hints": ["Which verb is still in the present?", "run → ran"],
+        "explanation": "started … ran: both in the past."
+      },
+      {
+        "id": "dog",
+        "task": "Put both verbs in the past.",
+        "source": "The dog barked and chases the mail carrier.",
+        "answers": ["The dog barked and chased the mail carrier."],
+        "hints": ["chases → chased"],
+        "explanation": "barked … chased: same time, same tense."
+      },
+      {
+        "id": "test",
+        "task": "Put both verbs in the past.",
+        "source": "When I see my score, I jumped for joy.",
+        "answers": ["When I saw my score, I jumped for joy."],
+        "hints": ["see is irregular in the past.", "see → saw"],
+        "explanation": "saw … jumped: both past."
+      },
+      {
+        "id": "baker",
+        "task": "Put all three verbs in the past.",
+        "source": "The baker mixes the dough, shaped the loaves and baked them.",
+        "answers": [
+          "The baker mixed the dough, shaped the loaves and baked them.",
+          "The baker mixed the dough, shaped the loaves, and baked them."
+        ],
+        "hints": ["Only the first verb needs to change."],
+        "explanation": "mixed, shaped, baked: a list of actions stays in one tense."
+      }
+    ]
+  },
+  {
+    "key": "e02.consistent-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "A memory, all in the past",
+    "prompt": "Write a paragraph (6–10 sentences) about a memory: a first day, a trip, a big game or a funny moment. Tell it all in the past tense, and only change tense if you jump to the present at the very end (“Now I…”).",
+    "tips": [
+      "Pick the past tense and keep it: walked, saw, was, felt.",
+      "Check every verb. Watch for slips like “and then he says…”.",
+      "If you end with what you think now, start that sentence with “Now” or “Today” so the reader knows the time has changed."
+    ],
+    "constraints": { "minWords": 60, "maxWords": 200, "minSentences": 6 },
+    "analyzers": ["verbs"],
+    "grammarFocus": ["past-tense"]
+  },
+  {
+    "key": "e02.agreement-blank",
+    "type": "FILL_BLANK",
+    "title": "Make them agree",
+    "instructions": "One subject → a singular verb (runs, is, has). More than one → a plural verb (run, are, have). Find the real subject first!",
+    "items": [
+      {
+        "id": "dogs-bark",
+        "sentence": "The dogs next door ___ all night.",
+        "answers": ["bark"],
+        "choices": ["bark", "barks"],
+        "explanation": "“Dogs” is plural, so the verb is plural: bark."
+      },
+      {
+        "id": "box-of",
+        "sentence": "The box of crayons ___ on the shelf.",
+        "answers": ["is"],
+        "choices": ["is", "are"],
+        "hint": "What is on the shelf: the box or the crayons?",
+        "explanation": "The subject is “box” (one), not “crayons”. Ignore the phrase “of crayons”: the box is."
+      },
+      {
+        "id": "everyone",
+        "sentence": "Everyone in my class ___ a library card.",
+        "answers": ["has"],
+        "choices": ["has", "have"],
+        "hint": "“Everyone” means every single one.",
+        "explanation": "Everyone, everybody, someone and nobody are singular: everyone has."
+      },
+      {
+        "id": "and",
+        "sentence": "Priya and her brother ___ to the same school.",
+        "answers": ["go"],
+        "choices": ["go", "goes"],
+        "explanation": "Two subjects joined by “and” make a plural subject: Priya and her brother go."
+      },
+      {
+        "id": "there",
+        "sentence": "There ___ three birds on the fence.",
+        "answers": ["are"],
+        "choices": ["is", "are"],
+        "hint": "After “there”, look at what comes after the verb.",
+        "explanation": "With “there is/are”, the subject comes after the verb: three birds → are."
+      },
+      {
+        "id": "one-of",
+        "sentence": "One of my friends ___ a pet snake.",
+        "answers": ["owns"],
+        "choices": ["own", "owns"],
+        "hint": "How many friends own the snake?",
+        "explanation": "The subject is “one”, so the verb is singular: one of my friends owns."
+      },
+      {
+        "id": "she-doesnt",
+        "sentence": "She ___ like scary movies.",
+        "answers": ["doesn’t"],
+        "choices": ["don’t", "doesn’t"],
+        "explanation": "he/she/it → does/doesn’t. I/you/we/they → do/don’t."
+      }
+    ]
+  },
+  {
+    "key": "e02.agreement-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Agreement check",
+    "instructions": "Five verbs don’t agree with their subjects. Tap each one and fix it.",
+    "text": "My friends and I is in the robotics club. Every Tuesday we meets in Room 12. Our coach, Mr Diaz, always bring snacks. The robots in the cupboard was built by last year’s team. Everybody have a job, and nobody wants to miss a meeting.",
+    "errors": [
+      {
+        "word": "is",
+        "fixes": ["are"],
+        "explanation": "“My friends and I” is plural (two subjects joined by “and”): are."
+      },
+      { "word": "meets", "fixes": ["meet"], "explanation": "“We” takes the plural verb: we meet." },
+      {
+        "word": "bring",
+        "fixes": ["brings"],
+        "explanation": "The subject is “coach” (one person): brings."
+      },
+      {
+        "word": "was",
+        "fixes": ["were"],
+        "explanation": "The subject is “robots” (plural), not “cupboard”: were."
+      },
+      { "word": "have", "fixes": ["has"], "explanation": "“Everybody” is singular: everybody has." }
+    ]
+  },
+  {
+    "key": "e02.agreement-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Tricky subjects",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "The players on the team is ready." },
+          { "id": "b", "text": "The players on the team are ready." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The subject is “players” (plural). “On the team” is just extra information: the players are.",
+        "hint": "Cover “on the team”. What’s left?"
+      },
+      {
+        "id": "q2",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "Neither the cat nor the dogs wants to go outside." },
+          { "id": "b", "text": "Neither the cat nor the dogs want to go outside." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "With either/or and neither/nor, the verb agrees with the closer subject: the dogs want."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "Each of the students has a locker." },
+          { "id": "b", "text": "Each of the students have a locker." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Each” is singular, even with “of the students” after it: each has."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "They was at the park all afternoon." },
+          { "id": "b", "text": "They were at the park all afternoon." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "I/he/she/it → was. We/you/they → were."
+      }
+    ]
+  },
+  {
+    "key": "e02.agreement-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Our school, right now",
+    "prompt": "Write a paragraph (6–10 sentences) in the present tense describing a place at your school at a busy moment: the cafeteria at lunch, the gym, the hallway between classes. Use singular and plural subjects, and at least one tricky one (everyone, each, one of the…, a group of…).",
+    "tips": [
+      "One subject → -s verb: the bell rings, a teacher waves.",
+      "More than one → no -s: the students rush, my friends laugh.",
+      "Cover the extra words between the subject and the verb: “The line (of hungry kids) stretches…”."
+    ],
+    "constraints": { "minWords": 60, "maxWords": 200, "minSentences": 6 },
+    "analyzers": ["verbs"],
+    "grammarFocus": ["present-tense"]
+  },
+  {
+    "key": "e02.unit-check",
+    "type": "QUIZ",
+    "title": "Verbs & Tenses check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "v1",
+        "prompt": "In “The lemonade tastes sour,” what kind of verb is “tastes”?",
+        "options": [
+          { "id": "a", "text": "action" },
+          { "id": "b", "text": "linking" },
+          { "id": "c", "text": "helping" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Tastes” links lemonade to a description (sour). The lemonade isn’t doing any tasting!",
+        "skill": "action, linking & helping verbs"
+      },
+      {
+        "id": "v2",
+        "prompt": "Which word is a helping verb in “They might win the trophy”?",
+        "options": [
+          { "id": "a", "text": "They" },
+          { "id": "b", "text": "might" },
+          { "id": "c", "text": "win" },
+          { "id": "d", "text": "trophy" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Might” helps the main verb “win”.",
+        "skill": "action, linking & helping verbs"
+      },
+      {
+        "id": "v3",
+        "prompt": "Which sentence has an action verb?",
+        "options": [
+          { "id": "a", "text": "The hallway was quiet." },
+          { "id": "b", "text": "Ms Lee seems happy today." },
+          { "id": "c", "text": "The goalkeeper leaped for the ball." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Leaped” is something the goalkeeper does. “Was” and “seems” are linking verbs.",
+        "skill": "action, linking & helping verbs"
+      },
+      {
+        "id": "v4",
+        "prompt": "Which verb is the strongest replacement for “went” in “The cat went under the couch”?",
+        "options": [
+          { "id": "a", "text": "moved" },
+          { "id": "b", "text": "darted" },
+          { "id": "c", "text": "got" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Darted” shows how the cat moved: fast and sudden.",
+        "skill": "action, linking & helping verbs"
+      },
+      {
+        "id": "t1",
+        "prompt": "Which sentence is in the future tense?",
+        "options": [
+          { "id": "a", "text": "We hiked up the hill." },
+          { "id": "b", "text": "We hike up the hill." },
+          { "id": "c", "text": "We will hike up the hill." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "will + base verb = simple future.",
+        "skill": "simple tenses"
+      },
+      {
+        "id": "t2",
+        "prompt": "Choose the right verb: “Every summer, my family ___ to the coast.”",
+        "options": [
+          { "id": "a", "text": "drive" },
+          { "id": "b", "text": "drives" },
+          { "id": "c", "text": "will drove" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Something that happens regularly uses the simple present. “Family” is one group → drives.",
+        "skill": "simple tenses"
+      },
+      {
+        "id": "t3",
+        "prompt": "What is the past tense of “study”?",
+        "options": [
+          { "id": "a", "text": "studyed" },
+          { "id": "b", "text": "studied" },
+          { "id": "c", "text": "studed" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Consonant + y: change y to i and add -ed: studied.",
+        "skill": "simple tenses"
+      },
+      {
+        "id": "t4",
+        "prompt": "Which sentence is in the simple past?",
+        "options": [
+          { "id": "a", "text": "The bell rings at 3:15." },
+          { "id": "b", "text": "The bell rang at 3:15." },
+          { "id": "c", "text": "The bell is ringing." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "ring → rang: simple past.",
+        "skill": "simple tenses"
+      },
+      {
+        "id": "p1",
+        "prompt": "Which sentence uses the past progressive?",
+        "options": [
+          { "id": "a", "text": "Leo was painting the fence." },
+          { "id": "b", "text": "Leo has painted the fence." },
+          { "id": "c", "text": "Leo paints the fence." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "was/were + -ing = past progressive: an action in progress in the past.",
+        "skill": "progressive & perfect"
+      },
+      {
+        "id": "p2",
+        "prompt": "Which sentence uses the present perfect?",
+        "options": [
+          { "id": "a", "text": "I had seen that movie." },
+          { "id": "b", "text": "I have seen that movie." },
+          { "id": "c", "text": "I am seeing that movie." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "has/have + past participle = present perfect.",
+        "skill": "progressive & perfect"
+      },
+      {
+        "id": "p3",
+        "prompt": "Complete: “When we got to the station, the train ___.”",
+        "options": [
+          { "id": "a", "text": "has already left" },
+          { "id": "b", "text": "had already left" },
+          { "id": "c", "text": "is already leaving" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The train left before we got there: the earlier past action takes the past perfect (had left).",
+        "skill": "progressive & perfect"
+      },
+      {
+        "id": "p4",
+        "prompt": "Which one is a progressive verb phrase?",
+        "options": [
+          { "id": "a", "text": "will be playing" },
+          { "id": "b", "text": "will have played" },
+          { "id": "c", "text": "has played" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "be + -ing = progressive (here, future progressive). The others are perfect.",
+        "skill": "progressive & perfect"
+      },
+      {
+        "id": "i1",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "She throwed the ball." },
+          { "id": "b", "text": "She threw the ball." },
+          { "id": "c", "text": "She thrown the ball." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "throw → threw → (have) thrown.",
+        "skill": "irregular verbs"
+      },
+      {
+        "id": "i2",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "We have drank all the juice." },
+          { "id": "b", "text": "We have drunk all the juice." },
+          { "id": "c", "text": "We have drinked all the juice." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "drink → drank → (have) drunk. After “have”, use the participle.",
+        "skill": "irregular verbs"
+      },
+      {
+        "id": "i3",
+        "prompt": "What is the past tense of “bring”?",
+        "options": [
+          { "id": "a", "text": "brang" },
+          { "id": "b", "text": "brung" },
+          { "id": "c", "text": "brought" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "bring → brought → (have) brought.",
+        "skill": "irregular verbs"
+      },
+      {
+        "id": "i4",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "I seen a shooting star last night." },
+          { "id": "b", "text": "I saw a shooting star last night." },
+          { "id": "c", "text": "I have saw a shooting star." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Simple past: saw. With a helper: have seen. “I seen” and “have saw” are both wrong.",
+        "skill": "irregular verbs"
+      },
+      {
+        "id": "c1",
+        "prompt": "Which sentence keeps a consistent tense?",
+        "options": [
+          { "id": "a", "text": "Sara grabbed her coat and runs outside." },
+          { "id": "b", "text": "Sara grabs her coat and ran outside." },
+          { "id": "c", "text": "Sara grabbed her coat and ran outside." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "grabbed … ran: both in the past.",
+        "skill": "consistent tense"
+      },
+      {
+        "id": "c2",
+        "prompt": "Which verb breaks the tense? “We packed the car, drove for hours and finally reach the lake.”",
+        "options": [
+          { "id": "a", "text": "packed" },
+          { "id": "b", "text": "drove" },
+          { "id": "c", "text": "reach" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "The others are past, so it should be “reached”.",
+        "skill": "consistent tense"
+      },
+      {
+        "id": "c3",
+        "prompt": "Which change of tense is correct?",
+        "options": [
+          { "id": "a", "text": "Last year I was afraid of the water. Now I swim every week." },
+          { "id": "b", "text": "Last year I was afraid of the water and I swim every week." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Change tense only when the time changes, and signal it with a word like “Now”.",
+        "skill": "consistent tense"
+      },
+      {
+        "id": "c4",
+        "prompt": "In an essay about a novel, which sentence is in the usual tense?",
+        "options": [
+          { "id": "a", "text": "In Wonder, Auggie starts fifth grade." },
+          { "id": "b", "text": "In Wonder, Auggie started fifth grade and makes a friend." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Essays about literature describe the story in the present tense, and keep it steady.",
+        "skill": "consistent tense"
+      },
+      {
+        "id": "a1",
+        "prompt": "Choose the right verb: “The cookies in the jar ___ chocolate chip.”",
+        "options": [
+          { "id": "a", "text": "is" },
+          { "id": "b", "text": "are" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The subject is “cookies” (plural). “In the jar” doesn’t change it: are.",
+        "skill": "subject–verb agreement"
+      },
+      {
+        "id": "a2",
+        "prompt": "Choose the right verb: “Nobody ___ the answer.”",
+        "options": [
+          { "id": "a", "text": "know" },
+          { "id": "b", "text": "knows" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Nobody, everyone, someone and each are singular: nobody knows.",
+        "skill": "subject–verb agreement"
+      },
+      {
+        "id": "a3",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "He don’t want to leave." },
+          { "id": "b", "text": "He doesn’t want to leave." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "he/she/it → doesn’t.",
+        "skill": "subject–verb agreement"
+      },
+      {
+        "id": "a4",
+        "prompt": "Choose the right verb: “Tom and Ella ___ the best singers in the choir.”",
+        "options": [
+          { "id": "a", "text": "is" },
+          { "id": "b", "text": "are" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Two subjects joined by “and” are plural: Tom and Ella are.",
+        "skill": "subject–verb agreement"
+      }
+    ]
+  },
+  {
+    "key": "e02.check-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Unit check: the big moment",
+    "prompt": "Write a paragraph (at least 6 sentences) about a big moment: a performance, a match, a test or a surprise. Tell it in the past tense and show off this unit: strong action verbs, a linking verb, irregular pasts, a progressive verb (was waiting) and a perfect verb (had practised), with every verb agreeing with its subject.",
+    "tips": [
+      "Checklist: 2+ strong action verbs · a linking verb (was, felt, seemed) · 2+ irregular pasts · was/were + -ing · had + participle.",
+      "Keep it in the past. If you end with how you feel now, start with “Now”.",
+      "Read each verb with its subject: “my friends were”, “everyone was”."
+    ],
+    "constraints": { "minWords": 70, "maxWords": 220, "minSentences": 6 },
+    "analyzers": ["verbs"],
+    "grammarFocus": ["irregular-past", "progressive", "perfect", "linking-verb"]
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "slug": "essay-simple-past-present-future",
+  "order": 2,
+  "title": "Simple Past, Present & Future",
+  "estMinutes": 35,
+  "focusSkills": ["verbs", "tense"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Finish these three sentences: “Yesterday I…”, “Every day I…”, “Tomorrow I will…”. What happened to the verb each time?",
+      "placeholder": "Yesterday I… Every day I… Tomorrow I will…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Verbs tell time",
+          "body": "Tense is the time of a verb. The simple past is for actions that are finished: “I walked.” The simple present is for things that happen now, regularly, or are always true: “I walk to school.” “Water boils at 100°C.” The simple future is for things that will happen: “I will walk.”"
+        },
+        {
+          "kind": "example",
+          "title": "One verb, three times",
+          "text": "Past: I played · she played · they played\nPresent: I play · she plays · they play\nFuture: I will play · she will play · they will play",
+          "note": "In the present, he/she/it adds -s: she plays, it rains. The future always uses will + the base verb."
+        },
+        {
+          "kind": "definition",
+          "title": "Spelling the past",
+          "body": "Most verbs add -ed: walk → walked. Ending in e: add -d (bake → baked). Consonant + y: change y to -ied (carry → carried). Short verbs ending consonant-vowel-consonant double the last letter (stop → stopped, plan → planned). Irregular verbs change in other ways (go → went): that’s lesson 4."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the time clues",
+          "prompt": "Tap the four words or phrases that tell you when something happens.",
+          "text": "Yesterday we missed the bus. Usually my mom drives us, but tomorrow she will be at work. Next week I will ride my bike.",
+          "clues": ["Yesterday", "Usually", "tomorrow", "Next"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e02.tense-sort", "e02.tense-blank", "e02.tense-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e02.time-travel-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which past-tense spelling rule do you need to remember most (-d, -ied, doubling)?",
+        "Why might an essay about a science fact use the present tense?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

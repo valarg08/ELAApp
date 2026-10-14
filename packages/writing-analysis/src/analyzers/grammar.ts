@@ -1,4 +1,12 @@
 import { type Span, type WordToken, sentences, words } from '../text.js';
+import {
+  VERB_FEATURES,
+  VERB_FEATURE_EXAMPLES,
+  VERB_FEATURE_LABELS,
+  type VerbFeature,
+  findVerbIssues,
+  verbHits,
+} from './verbs.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -16,6 +24,7 @@ export const GRAMMAR_FEATURES = [
   'subject-pronoun',
   'object-pronoun',
   'possessive-pronoun',
+  ...VERB_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -29,6 +38,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   'subject-pronoun': 'a subject pronoun',
   'object-pronoun': 'an object pronoun',
   'possessive-pronoun': 'a possessive pronoun',
+  ...VERB_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -42,7 +52,16 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   'subject-pronoun': 'I, he, she, we or they doing the action',
   'object-pronoun': 'me, him, her, us or them receiving the action',
   'possessive-pronoun': 'my, your, their, or mine, yours, theirs',
+  ...VERB_FEATURE_EXAMPLES,
 };
+
+/** The Coach skill a grammar feature belongs to. */
+export function grammarSkillOf(feature: GrammarFeature): 'nouns' | 'pronouns' | 'verbs' {
+  if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
+  return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
+}
+
+export type { VerbFeature };
 
 const set = (s: string) => new Set(s.split(' '));
 
@@ -232,6 +251,7 @@ export function grammarFeatures(text: string): FeatureHit[] {
       else if (t.lower === 'her' && !herIsObject(tokens, i, text)) add('possessive-pronoun');
       else if (t.lower === 'his') add('possessive-pronoun');
     });
+    for (const hit of verbHits(text, tokens)) hits.push(hit);
   }
   return hits;
 }
@@ -268,7 +288,13 @@ export interface GrammarIssue {
     | 'object-as-subject'
     | 'subject-as-object'
     | 'unclear-pronoun'
-    | 'pronoun-number';
+    | 'pronoun-number'
+    | 'wrong-past'
+    | 'missing-helper'
+    | 'helper-past'
+    | 'should-of'
+    | 'agreement'
+    | 'tense-shift';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -468,3 +494,6 @@ export function pronounIssues(text: string): GrammarIssue[] {
 /** The first hit of a feature, for "Show me". */
 export const firstFeature = (hits: readonly FeatureHit[], feature: GrammarFeature) =>
   hits.find((h) => h.feature === feature)?.span;
+
+/** Verb mistakes: made-up pasts ("goed"), "I seen", "should of", "they was", tense slips. */
+export const verbIssues = (text: string): GrammarIssue[] => findVerbIssues(text, isPluralNoun);

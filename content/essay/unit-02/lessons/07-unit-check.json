@@ -1,0 +1,57 @@
+{
+  "slug": "essay-verbs-and-tenses-check",
+  "order": 7,
+  "title": "⭐ Unit Check: Verbs & Tenses",
+  "estMinutes": 45,
+  "focusSkills": ["verbs", "tense", "agreement"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which part of this unit feels easiest, and which do you want to look at again?",
+      "placeholder": "Easiest… Look again at…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Verbs: quick review",
+          "body": "Action verbs show doing (sprinted, wonders). Linking verbs connect to a description (is, was, seems, became, tastes). Helping verbs come before the main verb (will, can, has, was, did). Choose strong, precise action verbs."
+        },
+        {
+          "kind": "definition",
+          "title": "Tenses: quick review",
+          "body": "Simple: walked · walk(s) · will walk. Progressive (be + -ing): was walking · is walking · will be walking. Perfect (have + participle): had walked · has walked · will have walked. Irregular verbs: went/gone, saw/seen, brought, caught, wrote/written. Never “I seen”, “have went” or “should of”. Keep one tense unless the time changes."
+        },
+        {
+          "kind": "definition",
+          "title": "Agreement: quick review",
+          "body": "One subject → singular verb (she runs, it is, he has, he doesn’t). More than one → plural verb (they run, we are, they have, they don’t). Cover the words between subject and verb. Everyone/each/nobody are singular; two subjects with “and” are plural."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll write a short paragraph that shows off everything you’ve learned. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e02.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e02.check-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What did you learn about verbs or tenses that you didn’t know before this unit?",
+        "Which verb skill will you check for when you write your next essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

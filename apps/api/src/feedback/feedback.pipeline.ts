@@ -37,6 +37,7 @@ import {
   filterWords,
   nounIssues,
   pronounIssues,
+  verbIssues,
   senses,
   sentenceVariety,
   telling,
@@ -71,6 +72,7 @@ const SKILL_NAMES: Record<string, string> = {
   sound: 'sound devices',
   nouns: 'nouns',
   pronouns: 'pronouns',
+  verbs: 'verbs',
 };
 
 /**
@@ -151,7 +153,7 @@ export class FeedbackPipeline {
       `filter words: ${filterWords(text).total}`,
       `senses used: ${senses(text).used.join(', ') || 'none'}`,
       `dialogue punctuation issues: ${dialogue(text).issues.length}`,
-      `noun and pronoun mistakes found: ${nounIssues(text).length + pronounIssues(text).length}`,
+      `noun, pronoun and verb mistakes found: ${nounIssues(text).length + pronounIssues(text).length + verbIssues(text).length}`,
     ];
 
     // 3. LLM analyzers for this activity type.

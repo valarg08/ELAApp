@@ -1,0 +1,67 @@
+{
+  "slug": "essay-progressive-and-perfect",
+  "order": 3,
+  "title": "Progressive & Perfect Tenses",
+  "estMinutes": 40,
+  "focusSkills": ["verbs", "tense"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "What’s the difference in time between these two sentences?",
+      "a": "When Mom got home, we cleaned the kitchen.",
+      "b": "When Mom got home, we had cleaned the kitchen.",
+      "reveal": "In the first, we started cleaning when Mom arrived. In the second, the kitchen was already clean when she walked in: “had cleaned” shows it happened first. Perfect and progressive tenses let you show exactly how actions line up in time."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Progressive: in progress",
+          "body": "A progressive verb shows an action that is (or was, or will be) going on: a form of be + an -ing verb. Present: “I am reading.” Past: “We were waiting when the bus came.” Future: “She will be playing at noon.”"
+        },
+        {
+          "kind": "definition",
+          "title": "Perfect: completed before a time",
+          "body": "A perfect verb shows an action finished before a certain time: has/have/had + the past participle. Present perfect links the past to now: “I have visited Texas twice.” Past perfect shows the earlier of two past actions: “The show had started when we arrived.” Future perfect: “By June, I will have finished.”"
+        },
+        {
+          "kind": "example",
+          "title": "The verb tense grid",
+          "text": "Simple: I walk · I walked · I will walk\nProgressive: I am walking · I was walking · I will be walking\nPerfect: I have walked · I had walked · I will have walked",
+          "note": "Three times (present, past, future) × three kinds (simple, progressive, perfect). The helping verb shows the time; the main verb’s ending shows the kind."
+        },
+        {
+          "kind": "compare",
+          "title": "Which happened first?",
+          "telling": "I finished my homework when Dad called me for dinner.",
+          "showing": "I had finished my homework when Dad called me for dinner.",
+          "labels": ["Unclear order", "Clear order"],
+          "note": "Use “had” + participle for the action that happened first. It’s a big help when you explain events in an essay."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": [
+        "e02.progressive-perfect-sort",
+        "e02.perfect-blank",
+        "e02.progressive-transform"
+      ]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e02.timeline-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain the difference between “I was eating” and “I had eaten” to a friend.",
+        "Where could the past perfect help you explain events in an essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

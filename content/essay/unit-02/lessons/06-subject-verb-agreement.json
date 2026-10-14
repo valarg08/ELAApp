@@ -1,0 +1,61 @@
+{
+  "slug": "essay-subject-verb-agreement",
+  "order": 6,
+  "title": "Subject–Verb Agreement",
+  "estMinutes": 40,
+  "focusSkills": ["verbs", "agreement"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Both sentences are about the same box. Which verb is right, and what tricked the writer of the other one?",
+      "a": "The box of old photos are in the attic.",
+      "b": "The box of old photos is in the attic.",
+      "reveal": "The subject is “box” (one box), so the verb is “is”. The word “photos” sits right before the verb and tricks your ear into “are”. Finding the real subject is the secret to agreement."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Singular subject, singular verb",
+          "body": "A verb must agree with its subject in number. One subject → a singular verb: “The dog barks.” “She is ready.” “He has a plan.” More than one → a plural verb: “The dogs bark.” “They are ready.” “We have a plan.” In the present tense, the singular verb usually has the -s, the opposite of nouns!"
+        },
+        {
+          "kind": "example",
+          "title": "be, have, do",
+          "text": "I am · you are · he/she/it is · we/they are\nI was · you were · he/she/it was · we/they were\nI have · he/she/it has · we/they have\nI don’t · he/she/it doesn’t · we/they don’t",
+          "note": "“They was”, “he don’t” and “we is” are very common slips. Learn this little table by heart."
+        },
+        {
+          "kind": "definition",
+          "title": "Tricky subjects",
+          "body": "Words between the subject and verb don’t count: “The list of rules is long.” Two subjects with “and” are plural: “Sam and Ana are here.” Each, every, everyone, everybody, someone and nobody are singular: “Everyone has a seat.” “One of my friends lives nearby.” With “there is/are”, look after the verb: “There are two reasons.” With or/nor, match the closer subject: “Neither the cat nor the dogs are hungry.”"
+        },
+        {
+          "kind": "example",
+          "title": "The cover-up test",
+          "text": "The players on the team (is / are) tired. → Cover “on the team”: The players are tired. ✓\nEveryone in the stands (cheer / cheers). → Cover “in the stands”: Everyone cheers. ✓",
+          "note": "Cover up the words between the subject and the verb, then read the subject and verb together."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e02.agreement-blank", "e02.agreement-hunt", "e02.agreement-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e02.agreement-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which tricky subject from this lesson surprised you most?",
+        "Write one sentence where words come between the subject and verb, and explain how you chose the verb."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

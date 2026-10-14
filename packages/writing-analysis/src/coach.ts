@@ -48,8 +48,10 @@ import {
   type GrammarFeature,
   type GrammarIssue,
   grammarFeatures,
+  grammarSkillOf,
   nounIssues,
   pronounIssues,
+  verbIssues,
 } from './analyzers/grammar.js';
 import { filterWords, telling } from './analyzers/word-choice.js';
 import { type Span, countWords, sentenceAt, sentences } from './text.js';
@@ -72,6 +74,7 @@ export const ANALYZER_IDS = [
   'sound',
   'nouns',
   'pronouns',
+  'verbs',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -644,7 +647,7 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     if (missing) {
       nextSteps.push({
         id: 'grammar-focus',
-        analyzer: options.grammarFocus.some((f) => f.endsWith('pronoun')) ? 'pronouns' : 'nouns',
+        analyzer: grammarSkillOf(missing),
         title: `Use ${GRAMMAR_FEATURE_LABELS[missing]}`,
         message: `This activity practises ${GRAMMAR_FEATURE_LABELS[missing]}: ${GRAMMAR_FEATURE_EXAMPLES[missing]}.`,
       });
@@ -654,12 +657,31 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
       const span = hits.find((h) => h.feature === first)?.span;
       strengths.push({
         id: 'grammar-focus',
-        analyzer: first.endsWith('pronoun') ? 'pronouns' : 'nouns',
+        analyzer: grammarSkillOf(first),
         title: `You used ${listing(used.map((f) => GRAMMAR_FEATURE_LABELS[f]))}`,
         message: span
           ? `Like “${span.text}”. That's the skill this lesson practises.`
           : 'That is the skill this lesson practises.',
         span,
+      });
+    }
+  }
+
+  if (enabled.has('verbs')) {
+    const issues = verbIssues(text);
+    if (issues[0]) nextSteps.push(issueCard('verbs', 'Check this verb', issues));
+    else if (wordCount >= 15) {
+      const strong = grammarFeatures(text).find(
+        (h) => h.feature === 'irregular-past' || h.feature === 'perfect',
+      );
+      strengths.push({
+        id: 'verbs',
+        analyzer: 'verbs',
+        title: 'Verbs that agree',
+        message: strong
+          ? `Your verbs match their subjects and stay in tense, and “${strong.span.text}” is the right form.`
+          : 'Your verbs match their subjects and stay in the same tense.',
+        span: strong?.span,
       });
     }
   }
@@ -826,7 +848,7 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
 
 /** The first grammar issue as a card, with its fix and how many more there are. */
 function issueCard(
-  analyzer: 'nouns' | 'pronouns',
+  analyzer: 'nouns' | 'pronouns' | 'verbs',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

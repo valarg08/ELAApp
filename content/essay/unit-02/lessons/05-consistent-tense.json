@@ -1,0 +1,62 @@
+{
+  "slug": "essay-consistent-tense",
+  "order": 5,
+  "title": "Keeping Your Tense Consistent",
+  "estMinutes": 40,
+  "focusSkills": ["tense", "verbs"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Read both versions. Which one feels bumpy, and why?",
+      "a": "The lights went out. Everyone screams. Then Mr Ortiz found a flashlight and tells us to stay calm.",
+      "b": "The lights went out. Everyone screamed. Then Mr Ortiz found a flashlight and told us to stay calm.",
+      "reveal": "The first version jumps between past (went, found) and present (screams, tells), so the reader keeps losing track of when things happen. The second stays in the past. Readers trust writing that stays in one tense."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Pick a tense and keep it",
+          "body": "Choose the main tense of your writing and stick to it. Stories and memories are usually told in the past. Essays about books, facts and your opinions usually use the present: “In the novel, Brian learns to survive.” “I believe homework should be shorter.”"
+        },
+        {
+          "kind": "definition",
+          "title": "When you may switch",
+          "body": "Change tense only when the time you’re writing about really changes, and give the reader a signal: “Last year I was afraid of the water. Now I swim every week.” Words like now, today, last year, later and in the future warn the reader that the time is moving."
+        },
+        {
+          "kind": "example",
+          "title": "Watch for slips",
+          "text": "We walked into the gym, and then the coach says… → and then the coach said…\nI opened the box and there is a puppy inside! → there was a puppy inside!",
+          "note": "Slips often hide after “and then”, in exciting moments, and in “there is/there was”. When you reread, check every verb, not just the first one."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the slips",
+          "prompt": "This memory is in the past. Tap the two verbs that slip into the present.",
+          "text": "On my first day of middle school, I got lost twice. A girl named Lucia sees me wandering and showed me the way. Now we are best friends, and she still laughs about it. We walked to class together.",
+          "clues": ["sees", "laughs"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e02.tense-shift-hunt", "e02.consistent-mc", "e02.consistent-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e02.consistent-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Did you change tense anywhere in your paragraph? If so, what signal did you give the reader?",
+        "Where do tense slips usually hide in your writing?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

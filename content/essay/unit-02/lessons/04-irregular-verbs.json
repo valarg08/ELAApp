@@ -1,0 +1,67 @@
+{
+  "slug": "essay-irregular-verbs",
+  "order": 4,
+  "title": "Irregular Verbs",
+  "estMinutes": 40,
+  "focusSkills": ["verbs", "spelling"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "The goed-est day ever",
+      "paragraphs": [
+        "Little Theo told his grandma about his day: “I goed to the zoo and I seed a lion! It eated a whole chicken. Then I runned to the monkeys.”",
+        "Theo is three, and he’s actually being very clever: he knows the past tense adds -ed, so he adds it to everything.",
+        "The trouble is that many of the most common English verbs are irregular. They don’t add -ed. They change: go → went, see → saw, eat → ate, run → ran."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Three forms to know",
+          "body": "Every verb has a base (go), a past (went) and a past participle (gone). Use the past on its own: “I went.” Use the participle after has/have/had: “I have gone.” For regular verbs, the past and participle are the same (walked, have walked). Irregular verbs can have three different forms."
+        },
+        {
+          "kind": "example",
+          "title": "Irregular families",
+          "text": "Vowel change (i → a → u): sing sang sung · swim swam swum · drink drank drunk · begin began begun\n-ought/-aught: bring brought · think thought · buy bought · catch caught · teach taught\n-en participle: eat ate eaten · write wrote written · take took taken · break broke broken\nAll the same: cut cut cut · put put put · hurt hurt hurt",
+          "note": "Learning them in families is easier than one by one."
+        },
+        {
+          "kind": "compare",
+          "title": "Past or participle?",
+          "telling": "I seen it. She done her best. We have went there. He had ran away.",
+          "showing": "I saw it. She did her best. We have gone there. He had run away.",
+          "labels": ["Wrong", "Right"],
+          "note": "Seen, done, gone, been and taken never stand alone: they need has/have/had. And “should of” is always “should have”."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Spot the made-up verbs",
+          "prompt": "Tap the three verbs that aren’t real words.",
+          "text": "We brang our lunches, but the seagulls stealed half of them. Then Dad buyed us pizza instead.",
+          "clues": ["brang", "stealed", "buyed"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e02.irregular-blank", "e02.irregular-hunt", "e02.participle-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e02.irregular-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which irregular verb family will you remember best? Give one example.",
+        "Which irregular verb do you most often get wrong, and how will you remember it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

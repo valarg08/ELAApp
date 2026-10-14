@@ -6,6 +6,7 @@ import {
   nounIssues,
   pronounIssues,
   sentences,
+  verbIssues,
 } from '@storyforge/writing-analysis';
 import { z } from 'zod/v4';
 import { QUILL_RULES, writingBlock } from '../prompts.js';
@@ -68,7 +69,7 @@ export const grammarCheckAnalyzer: AnalyzerDef<GrammarCheckInput, GrammarCheckRe
     ].join('\n'),
   fake(input) {
     const { text } = input;
-    const issues = [...nounIssues(text), ...pronounIssues(text)].toSorted(
+    const issues = [...nounIssues(text), ...pronounIssues(text), ...verbIssues(text)].toSorted(
       (a, b) => a.span.start - b.span.start,
     );
     const hits = grammarFeatures(text);
