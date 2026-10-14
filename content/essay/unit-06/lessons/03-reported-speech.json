@@ -1,0 +1,62 @@
+{
+  "slug": "essay-reported-speech",
+  "order": 3,
+  "title": "Reported Speech: Pronouns & Backshift",
+  "estMinutes": 40,
+  "focusSkills": ["speech", "pronouns", "verb-tense"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Yesterday your friend Jay said to you, “I am going to win the race.” Today you tell your mom about it. Write what you’d say, without using Jay’s exact words.",
+      "placeholder": "Jay said that…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Reported speech",
+          "body": "Reported (indirect) speech tells what someone said without their exact words, so there are no quotation marks. It often uses “that”, which you can leave out: Jay said (that) he was going to win."
+        },
+        {
+          "kind": "example",
+          "title": "Pronouns change",
+          "text": "Jay: “I love my new bike.”\nReported: Jay said that he loved his new bike.\nYou to Jay: “You can borrow my helmet.”\nReported: I told Jay that he could borrow my helmet.",
+          "note": "Pronouns change to fit who is reporting: I → he or she, my → his or her, we → they, you → I, he, she or they."
+        },
+        {
+          "kind": "example",
+          "title": "Backshift: one step back",
+          "text": "am / is → was · are → were\nwill → would · can → could\nhas / have → had · eats → ate\nate → had eaten · may → might",
+          "note": "After a past reporting verb (said, told), the verb usually moves one step back in time, because the words were spoken in the past."
+        },
+        {
+          "kind": "compare",
+          "title": "When it’s still true",
+          "telling": "Ms. Lee said that the Earth went around the Sun.",
+          "showing": "Ms. Lee said that the Earth goes around the Sun.",
+          "labels": ["Backshift: correct", "Present: also correct"],
+          "note": "If something is still true now (a fact, or a plan that hasn’t happened yet), you can keep the present. When you’re not sure, shift it back."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e06.direct-or-reported", "e06.backshift-blank", "e06.to-reported-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e06.reported-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which change is easiest to forget: the pronoun or the verb? Show it with one of your sentences.",
+        "When might a writer choose reported speech instead of a direct quote?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

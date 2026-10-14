@@ -1,0 +1,64 @@
+{
+  "slug": "essay-direct-speech-punctuation",
+  "order": 1,
+  "title": "Direct Speech Punctuation",
+  "estMinutes": 35,
+  "focusSkills": ["speech", "punctuation", "capital-letters"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Same words, different punctuation. Which one shows exactly what Grandma said?",
+      "a": "Grandma said let’s eat Kai.",
+      "b": "Grandma said, “Let’s eat, Kai.”",
+      "reveal": "B! The quotation marks show Grandma’s exact words, and the comma before “Kai” shows she is talking to Kai. Without them, it sounds like Grandma wants to eat Kai. Punctuation in speech isn’t decoration: it carries the meaning."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Direct speech",
+          "body": "Direct speech gives someone’s exact words inside quotation marks (“ ”). The speech tag tells who spoke: Ana said, Leo asked, the coach shouted."
+        },
+        {
+          "kind": "example",
+          "title": "Tag first",
+          "text": "Ana said, “The bus is late.”\n1. Tag, then a comma.\n2. Open the quotation marks.\n3. The spoken words start with a capital letter.\n4. The full stop goes inside the closing marks.",
+          "note": "Comma before, capital at the start, end mark inside."
+        },
+        {
+          "kind": "example",
+          "title": "Tag last",
+          "text": "“The bus is late,” Ana said.\n“Is the bus late?” Ana asked.\n“The bus is late!” Ana shouted.",
+          "note": "A statement ends with a comma inside the marks (not a full stop), because the sentence keeps going. A question mark or exclamation mark stays as it is, and the tag still starts with a small letter."
+        },
+        {
+          "kind": "compare",
+          "title": "Inside, not outside",
+          "telling": "“I’m ready”, said Sam.",
+          "showing": "“I’m ready,” said Sam.",
+          "labels": ["Comma outside ✗", "Comma inside ✓"],
+          "note": "In American English the comma and the full stop always go inside the closing quotation marks."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e06.punct-mc", "e06.punct-sort", "e06.punct-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e06.dialogue-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which rule do you need to remember most: the comma, the capital, or the end mark inside? Make up a trick for it.",
+        "Why does a statement end with a comma, not a full stop, when the tag comes after it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

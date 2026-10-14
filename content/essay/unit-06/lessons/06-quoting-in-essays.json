@@ -1,0 +1,61 @@
+{
+  "slug": "essay-indirect-to-direct-quoting",
+  "order": 6,
+  "title": "Indirect → Direct, Quoting in Essays",
+  "estMinutes": 45,
+  "focusSkills": ["speech", "evidence", "quoting"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Two students use the same article as evidence. Which sentence is stronger?",
+      "a": "“Teens who sleep less than eight hours are more likely to get sick.” This shows sleep matters.",
+      "b": "According to Dr. Patel, “teens who sleep less than eight hours are more likely to get sick.” This shows that sleep protects our health.",
+      "reveal": "B. A quote that just drops into a paragraph leaves the reader asking “Who said that?” B introduces the quote with a lead-in (According to Dr. Patel), then explains what it shows."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "example",
+          "title": "Reported → direct",
+          "text": "Reported: Mia said that she was nervous about the test.\nDirect: Mia said, “I’m nervous about the test.”",
+          "note": "Going back to the exact words: add quotation marks, change the pronouns back (she → I) and undo the backshift (was → am)."
+        },
+        {
+          "kind": "definition",
+          "title": "Quote or paraphrase?",
+          "body": "Quote (exact words in quotation marks) when the wording is powerful, surprising or from an expert. Paraphrase (report the idea in your own words, no quotation marks) for facts and long ideas. Either way, say where it came from."
+        },
+        {
+          "kind": "example",
+          "title": "Lead-ins for quotes",
+          "text": "According to the article, “…”\nThe author writes, “…”\nDr. Patel explains, “…”\nThe narrator describes the city as “a maze of light.”\nThe study proves one point clearly: “…”",
+          "note": "In essays, writers use the present tense for what a text says: the author writes, states, argues, explains, describes."
+        },
+        {
+          "kind": "definition",
+          "title": "Quote sandwich",
+          "body": "Top: introduce the quote (who said it). Middle: the quote, punctuated correctly. Bottom: explain what it shows in your own words. Never leave a quote on its own."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e06.to-direct-transform", "e06.quote-or-paraphrase", "e06.quoting-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e06.evidence-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Why did you choose to quote one idea and paraphrase the other?",
+        "What lead-in will you use most in your own essays? Write it down."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

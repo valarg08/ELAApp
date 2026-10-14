@@ -1,0 +1,1947 @@
+[
+  {
+    "key": "e06.punct-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Spot the right punctuation",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is punctuated correctly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Leo said, “The game starts at six.”"
+          },
+          {
+            "id": "b",
+            "text": "Leo said “the game starts at six.”"
+          },
+          {
+            "id": "c",
+            "text": "Leo said, “The game starts at six”."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A comma after the tag, a capital to start the quote, and the full stop inside the closing marks."
+      },
+      {
+        "id": "q2",
+        "prompt": "The tag comes after the words. Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“I’m cold.” Nia said."
+          },
+          {
+            "id": "b",
+            "text": "“I’m cold,” Nia said."
+          },
+          {
+            "id": "c",
+            "text": "“I’m cold”, Nia said."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The sentence carries on into the tag, so the quote ends with a comma, not a full stop, and the comma goes inside the marks."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which question is punctuated correctly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“Can I come?,” asked Ben."
+          },
+          {
+            "id": "b",
+            "text": "“Can I come?” asked Ben."
+          },
+          {
+            "id": "c",
+            "text": "“Can I come,” asked Ben?"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A question mark inside the marks does the comma’s job, so don’t add a comma too."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which one is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“Look out!” She yelled."
+          },
+          {
+            "id": "b",
+            "text": "“Look out!” she yelled."
+          },
+          {
+            "id": "c",
+            "text": "“Look out,” She yelled!"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The tag is still part of the same sentence, so “she” starts with a small letter, even after an exclamation mark."
+      },
+      {
+        "id": "q5",
+        "prompt": "Mom said, “Dinner is ready” — where does the full stop go?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Inside the closing quotation marks"
+          },
+          {
+            "id": "b",
+            "text": "Outside the closing quotation marks"
+          },
+          {
+            "id": "c",
+            "text": "There’s no full stop."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Mom said, “Dinner is ready.” The end mark belongs to the spoken words, so it goes inside."
+      }
+    ]
+  },
+  {
+    "key": "e06.punct-sort",
+    "type": "SORT",
+    "title": "Right or needs a fix?",
+    "instructions": "Check the commas, capitals and end marks. Is each line of speech punctuated right, or does it need a fix?",
+    "buckets": [
+      {
+        "id": "right",
+        "label": "Punctuated right"
+      },
+      {
+        "id": "fix",
+        "label": "Needs a fix"
+      }
+    ],
+    "items": [
+      {
+        "id": "keys",
+        "text": "Sam said, “I found your keys.”",
+        "bucketId": "right"
+      },
+      {
+        "id": "hurry",
+        "text": "“Hurry up!” shouted Coach.",
+        "bucketId": "right"
+      },
+      {
+        "id": "rain",
+        "text": "“Is it raining?” Mia asked.",
+        "bucketId": "right"
+      },
+      {
+        "id": "song",
+        "text": "“I love this song,” said Ava.",
+        "bucketId": "right"
+      },
+      {
+        "id": "baby",
+        "text": "Ella whispered, “Don’t wake the baby.”",
+        "bucketId": "right"
+      },
+      {
+        "id": "keys-x",
+        "text": "Sam said “I found your keys.”",
+        "bucketId": "fix"
+      },
+      {
+        "id": "song-x",
+        "text": "“I love this song.” said Ava.",
+        "bucketId": "fix"
+      },
+      {
+        "id": "rain-x",
+        "text": "“Is it raining”? Mia asked.",
+        "bucketId": "fix"
+      },
+      {
+        "id": "baby-x",
+        "text": "Ella whispered, “don’t wake the baby.”",
+        "bucketId": "fix"
+      },
+      {
+        "id": "hurry-x",
+        "text": "“Hurry up!” Shouted Coach.",
+        "bucketId": "fix"
+      }
+    ]
+  },
+  {
+    "key": "e06.punct-transform",
+    "type": "TRANSFORM",
+    "title": "Fix the speech",
+    "instructions": "Each sentence has one punctuation mistake. Rewrite it correctly. Straight quotes (\") are fine.",
+    "items": [
+      {
+        "id": "bed",
+        "task": "Fix it: something is missing after the tag.",
+        "source": "Dad said “It’s time for bed.”",
+        "answers": ["Dad said, “It’s time for bed.”"],
+        "hints": ["What goes between “said” and the quotation marks?", "Dad said, “…"],
+        "explanation": "Tag first? Put a comma after the tag: Dad said, “It’s time for bed.”"
+      },
+      {
+        "id": "rosa",
+        "task": "Fix it: the tag comes after the words.",
+        "source": "“I’m not tired” said Rosa.",
+        "answers": ["“I’m not tired,” said Rosa."],
+        "hints": ["The quote needs a mark before it closes.", "A comma inside: “I’m not tired,”"],
+        "explanation": "A statement before the tag ends with a comma inside the marks."
+      },
+      {
+        "id": "phone",
+        "task": "Fix it: look at the question mark.",
+        "source": "“Where’s my phone”? asked Theo.",
+        "answers": ["“Where’s my phone?” asked Theo."],
+        "hints": [
+          "The question mark belongs to Theo’s words.",
+          "Move it inside: “Where’s my phone?”"
+        ],
+        "explanation": "The question is what Theo said, so its question mark goes inside the closing marks."
+      },
+      {
+        "id": "books",
+        "task": "Fix it: look at the full stop.",
+        "source": "Mr. Kim said, “Please open your books”.",
+        "answers": ["Mr. Kim said, “Please open your books.”"],
+        "hints": ["Does the full stop belong to Mr. Kim’s words?", "Move it inside: …books.”"],
+        "explanation": "The full stop ends the spoken sentence, so it goes inside the closing quotation marks."
+      },
+      {
+        "id": "crowd",
+        "task": "Fix it: one mark too many.",
+        "source": "“That was amazing!,” shouted the crowd.",
+        "answers": ["“That was amazing!” shouted the crowd."],
+        "hints": [
+          "An exclamation mark already ends the quote.",
+          "Drop the comma: “That was amazing!”"
+        ],
+        "explanation": "An exclamation mark or question mark does the comma’s job, so don’t add a comma as well."
+      },
+      {
+        "id": "jada",
+        "task": "Fix it: look at the comma.",
+        "source": "“We won”, Jada said.",
+        "answers": ["“We won,” Jada said."],
+        "hints": ["Commas go inside or outside the closing marks?", "Inside: “We won,”"],
+        "explanation": "In American English, commas and full stops always go inside the closing quotation marks."
+      }
+    ]
+  },
+  {
+    "key": "e06.dialogue-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Four lines of speech",
+    "prompt": "Write four lines of speech from a moment at lunch, on the bus or at practice. Each line has its own task, listed above the writing box. Write them in order, and start a new line each time a different person speaks.",
+    "tips": [
+      "Tag first: Kai said, “Pass the ketchup.”",
+      "Tag last: “Pass the ketchup,” Kai said. A question or exclamation keeps its mark: “Is that mine?” asked Ava.",
+      "Check every line: comma, capital, and the end mark inside the quotation marks. New speaker? New line."
+    ],
+    "constraints": {
+      "minWords": 20,
+      "maxWords": 120,
+      "minSentences": 4
+    },
+    "analyzers": ["speech"],
+    "grammarFocus": ["tag-before", "tag-after"],
+    "sentenceSet": {
+      "label": "Your four lines",
+      "sentences": [
+        {
+          "ask": "Someone says something, with the tag first (Name said, “…”).",
+          "needs": ["tag-before"]
+        },
+        {
+          "ask": "Someone answers, with the tag after the words (“…,” Name said.).",
+          "needs": ["tag-after"]
+        },
+        {
+          "ask": "Someone asks a question, with the tag after it.",
+          "needs": ["tag-after"]
+        },
+        {
+          "ask": "Someone shouts or exclaims, with the tag first or last.",
+          "needs": ["direct-speech"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e06.tag-sort",
+    "type": "SORT",
+    "title": "Where’s the tag?",
+    "instructions": "Does the speech tag come before the words, after them, or in the middle (a split quote)?",
+    "buckets": [
+      {
+        "id": "before",
+        "label": "Tag before"
+      },
+      {
+        "id": "after",
+        "label": "Tag after"
+      },
+      {
+        "id": "middle",
+        "label": "Tag in the middle"
+      }
+    ],
+    "items": [
+      {
+        "id": "grandpa",
+        "text": "Grandpa said, “Let me tell you a story.”",
+        "bucketId": "before"
+      },
+      {
+        "id": "priya",
+        "text": "Priya asked, “Who wants pizza?”",
+        "bucketId": "before"
+      },
+      {
+        "id": "coach",
+        "text": "The coach yelled, “Keep running!”",
+        "bucketId": "before"
+      },
+      {
+        "id": "max",
+        "text": "“I can’t find my shoe,” Max said.",
+        "bucketId": "after"
+      },
+      {
+        "id": "lily",
+        "text": "“Is that a snake?” whispered Lily.",
+        "bucketId": "after"
+      },
+      {
+        "id": "team",
+        "text": "“We did it!” the team shouted.",
+        "bucketId": "after"
+      },
+      {
+        "id": "mom",
+        "text": "“If it rains,” said Mom, “we’ll stay home.”",
+        "bucketId": "middle"
+      },
+      {
+        "id": "omar",
+        "text": "“I tried,” Omar sighed. “It just didn’t work.”",
+        "bucketId": "middle"
+      },
+      {
+        "id": "ruiz",
+        "text": "“First,” said Ms. Ruiz, “find a partner.”",
+        "bucketId": "middle"
+      }
+    ]
+  },
+  {
+    "key": "e06.tag-blank",
+    "type": "FILL_BLANK",
+    "title": "The tag that fits",
+    "instructions": "Pick the speech tag that best shows how the words were spoken.",
+    "items": [
+      {
+        "id": "baby",
+        "sentence": "“Shh, the baby is sleeping,” Dad ___.",
+        "choices": ["whispered", "shouted", "laughed"],
+        "answers": ["whispered"],
+        "explanation": "You don’t shout next to a sleeping baby: Dad whispered."
+      },
+      {
+        "id": "bike",
+        "sentence": "“Get off my bike!” Jamal ___.",
+        "choices": ["yelled", "murmured", "sighed"],
+        "answers": ["yelled"],
+        "explanation": "The exclamation mark and the command sound loud and angry: Jamal yelled."
+      },
+      {
+        "id": "remote",
+        "sentence": "“Where did you put the remote?” Mom ___.",
+        "choices": ["asked", "answered", "agreed"],
+        "answers": ["asked"],
+        "explanation": "It’s a question, so “asked” fits."
+      },
+      {
+        "id": "joke",
+        "sentence": "“That’s the funniest joke ever,” Ava ___, holding her stomach.",
+        "choices": ["laughed", "sobbed", "demanded"],
+        "answers": ["laughed"],
+        "explanation": "A funny joke and holding her stomach: Ava laughed."
+      },
+      {
+        "id": "home",
+        "sentence": "“I guess I’ll just stay home,” Leo ___.",
+        "choices": ["sighed", "cheered", "screamed"],
+        "answers": ["sighed"],
+        "explanation": "“I guess” sounds disappointed: Leo sighed."
+      },
+      {
+        "id": "help",
+        "sentence": "“Yes, I’ll help you,” Rosa ___.",
+        "choices": ["replied", "asked", "demanded"],
+        "answers": ["replied"],
+        "explanation": "Rosa is answering someone: she replied."
+      }
+    ]
+  },
+  {
+    "key": "e06.speaker-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Tags, splits and new lines",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "When do you start a new paragraph in a conversation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Every time a different person speaks"
+          },
+          {
+            "id": "b",
+            "text": "Every three lines"
+          },
+          {
+            "id": "c",
+            "text": "Only when you change the speech tag"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "New speaker, new line. It lets readers follow who is talking."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which split quote is punctuated correctly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“If we leave now,” said Kim, “We’ll be early.”"
+          },
+          {
+            "id": "b",
+            "text": "“If we leave now,” said Kim, “we’ll be early.”"
+          },
+          {
+            "id": "c",
+            "text": "“If we leave now” said Kim “we’ll be early.”"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "It’s one sentence split by the tag, so there’s a comma on each side of the tag and the second part starts with a small letter."
+      },
+      {
+        "id": "q3",
+        "prompt": "In “I’m tired,” said Leo_ “Let’s go home.” what goes after Leo?",
+        "options": [
+          {
+            "id": "a",
+            "text": "a comma"
+          },
+          {
+            "id": "b",
+            "text": "a full stop"
+          },
+          {
+            "id": "c",
+            "text": "nothing"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Let’s go home” is a new sentence (it starts with a capital), so the tag ends with a full stop."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which line uses an action instead of a speech tag?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“Fine,” Nora said."
+          },
+          {
+            "id": "b",
+            "text": "Nora slammed the door. “Fine.”"
+          },
+          {
+            "id": "c",
+            "text": "“Fine!” Nora shouted."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The action (slammed the door) shows who is speaking and how she feels, with no tag at all."
+      },
+      {
+        "id": "q5",
+        "prompt": "Why can a writer leave out some tags in a long conversation between two people?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Each new line shows that the other person is speaking."
+          },
+          {
+            "id": "b",
+            "text": "Speech tags are a mistake."
+          },
+          {
+            "id": "c",
+            "text": "Readers don’t care who is speaking."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "With a new line for every speaker, readers can keep track, so a tag every few lines is enough."
+      }
+    ]
+  },
+  {
+    "key": "e06.conversation",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "The great argument",
+    "prompt": "Write a short scene (8–14 lines) in which two people disagree about something small: the last slice of pizza, the TV remote, whose turn it is to walk the dog. Start a new line every time the speaker changes. Use at least one tag before the words, one tag after, and one split quote.",
+    "tips": [
+      "New speaker, new line: press Enter each time someone new speaks.",
+      "Split quote: “If you give me the remote,” said Kai, “I’ll do your dishes.”",
+      "Mix in an action instead of a tag: Ava crossed her arms. “No way.”"
+    ],
+    "constraints": {
+      "minWords": 80,
+      "maxWords": 260,
+      "minSentences": 8
+    },
+    "analyzers": ["speech"],
+    "grammarFocus": ["tag-before", "tag-after", "split-quote"]
+  },
+  {
+    "key": "e06.direct-or-reported",
+    "type": "SORT",
+    "title": "Exact words or reported?",
+    "instructions": "Does the sentence give the speaker’s exact words (direct speech), or report what they said (reported speech)?",
+    "buckets": [
+      {
+        "id": "direct",
+        "label": "Direct: exact words"
+      },
+      {
+        "id": "reported",
+        "label": "Reported: no exact words"
+      }
+    ],
+    "items": [
+      {
+        "id": "ali-d",
+        "text": "Ali said, “I lost my wallet.”",
+        "bucketId": "direct"
+      },
+      {
+        "id": "kim-d",
+        "text": "“We’re moving to Ohio,” Kim told us.",
+        "bucketId": "direct"
+      },
+      {
+        "id": "moss-d",
+        "text": "“Can you help?” asked Ms. Moss.",
+        "bucketId": "direct"
+      },
+      {
+        "id": "sign-d",
+        "text": "The sign said, “No swimming.”",
+        "bucketId": "direct"
+      },
+      {
+        "id": "dad-d",
+        "text": "“I’ll be late,” Dad texted.",
+        "bucketId": "direct"
+      },
+      {
+        "id": "ali-r",
+        "text": "Ali said that he had lost his wallet.",
+        "bucketId": "reported"
+      },
+      {
+        "id": "kim-r",
+        "text": "Kim told us that they were moving to Ohio.",
+        "bucketId": "reported"
+      },
+      {
+        "id": "moss-r",
+        "text": "Ms. Moss asked if we could help.",
+        "bucketId": "reported"
+      },
+      {
+        "id": "dad-r",
+        "text": "Dad said he would be late.",
+        "bucketId": "reported"
+      },
+      {
+        "id": "guard-r",
+        "text": "The lifeguard told us not to swim.",
+        "bucketId": "reported"
+      }
+    ]
+  },
+  {
+    "key": "e06.backshift-blank",
+    "type": "FILL_BLANK",
+    "title": "One step back",
+    "instructions": "Report the words. Pick the verb or pronoun that fits reported speech.",
+    "items": [
+      {
+        "id": "hungry",
+        "sentence": "“I am hungry.” → Sara said that she ___ hungry.",
+        "choices": ["was", "is", "were"],
+        "answers": ["was"],
+        "explanation": "am → was: the verb moves one step back."
+      },
+      {
+        "id": "win",
+        "sentence": "“We will win.” → The team said that they ___ win.",
+        "choices": ["would", "will", "can"],
+        "answers": ["would"],
+        "explanation": "will → would."
+      },
+      {
+        "id": "fix",
+        "sentence": "“I can fix it.” → Dad said that he ___ fix it.",
+        "choices": ["could", "can", "would"],
+        "answers": ["could"],
+        "explanation": "can → could."
+      },
+      {
+        "id": "finished",
+        "sentence": "“They have finished.” → The coach said that they ___ finished.",
+        "choices": ["had", "have", "has"],
+        "answers": ["had"],
+        "explanation": "have → had."
+      },
+      {
+        "id": "drawing",
+        "sentence": "“I like your drawing.” → Maya told me that she ___ my drawing.",
+        "choices": ["liked", "likes", "like"],
+        "answers": ["liked"],
+        "explanation": "like → liked, and “your drawing” becomes “my drawing” because she was talking to me."
+      },
+      {
+        "id": "vase",
+        "sentence": "“My brother broke the vase.” → Eli said that ___ brother had broken the vase.",
+        "choices": ["his", "my", "your"],
+        "answers": ["his"],
+        "explanation": "Eli’s brother: “my” becomes “his”. (And broke → had broken.)"
+      }
+    ]
+  },
+  {
+    "key": "e06.to-reported-transform",
+    "type": "TRANSFORM",
+    "title": "Report it",
+    "instructions": "Turn each line of direct speech into reported speech. No quotation marks: change the pronouns and shift the verb back. “That” is optional.",
+    "items": [
+      {
+        "id": "jay",
+        "task": "Report it.",
+        "source": "Jay said, “I am hungry.”",
+        "answers": ["Jay said that he was hungry.", "Jay said he was hungry."],
+        "hints": ["I → he.", "am → was: Jay said that he was…"],
+        "explanation": "Pronoun: I → he. Verb: am → was. No quotation marks."
+      },
+      {
+        "id": "lena",
+        "task": "Report it. (Lena was talking to you.)",
+        "source": "Lena said, “I will call you later.”",
+        "answers": [
+          "Lena said that she would call me later.",
+          "Lena said she would call me later."
+        ],
+        "hints": ["I → she, you → me.", "will → would."],
+        "explanation": "She (Lena) would call me (you, the reporter) later."
+      },
+      {
+        "id": "ortiz",
+        "task": "Report it. (You are in Mr. Ortiz’s class.)",
+        "source": "Mr. Ortiz said, “We can go outside.”",
+        "answers": [
+          "Mr. Ortiz said that we could go outside.",
+          "Mr. Ortiz said we could go outside."
+        ],
+        "hints": ["You’re in the class, so “we” stays.", "can → could."],
+        "explanation": "“We” still includes you, so it stays; can → could."
+      },
+      {
+        "id": "tia",
+        "task": "Report it.",
+        "source": "Tia said, “My cat has eaten my homework.”",
+        "answers": [
+          "Tia said that her cat had eaten her homework.",
+          "Tia said her cat had eaten her homework."
+        ],
+        "hints": ["my → her (twice).", "has eaten → had eaten."],
+        "explanation": "Both “my”s become “her”, and has → had."
+      },
+      {
+        "id": "twins",
+        "task": "Report it.",
+        "source": "The twins said, “We are tired.”",
+        "answers": ["The twins said that they were tired.", "The twins said they were tired."],
+        "hints": ["we → they.", "are → were."],
+        "explanation": "We → they, are → were."
+      },
+      {
+        "id": "ben",
+        "task": "Report it. (Ben was talking to you.)",
+        "source": "Ben told me, “You are my best friend.”",
+        "answers": [
+          "Ben told me that I was his best friend.",
+          "Ben told me I was his best friend."
+        ],
+        "hints": ["you → I, my → his.", "are → was (it’s about one person now)."],
+        "explanation": "You (me) → I, my (Ben’s) → his, and are → was to agree with “I”."
+      }
+    ]
+  },
+  {
+    "key": "e06.reported-sentences",
+    "type": "SENTENCE_SET",
+    "title": "What they said",
+    "prompt": "Think of four things people said to you this week (at home, at school, online). Report each one without quotation marks. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Change the pronouns: “I’m late” → She said that she was late.",
+      "Shift the verb back: is → was, will → would, can → could.",
+      "No quotation marks in reported speech."
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 140,
+      "minSentences": 4
+    },
+    "analyzers": ["speech", "pronouns"],
+    "grammarFocus": ["reported-speech"],
+    "sentenceSet": {
+      "label": "Your four reports",
+      "sentences": [
+        {
+          "ask": "Report what someone said, using “said that”.",
+          "needs": ["reported-speech"]
+        },
+        {
+          "ask": "Report something with “told” + the person (told me that…).",
+          "needs": ["reported-speech"]
+        },
+        {
+          "ask": "Report a promise or a plan: “will” becomes “would”.",
+          "needs": ["reported-speech"]
+        },
+        {
+          "ask": "Report something someone said about themselves: change “I” to he, she or they.",
+          "needs": ["reported-speech"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e06.question-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Report the question",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "“Where is the gym?” asked Lucas. Which report is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Lucas asked where was the gym."
+          },
+          {
+            "id": "b",
+            "text": "Lucas asked where the gym was."
+          },
+          {
+            "id": "c",
+            "text": "Lucas asked where is the gym?"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Statement order (the gym was), backshift (is → was) and a full stop."
+      },
+      {
+        "id": "q2",
+        "prompt": "“Are you coming?” Mom asked me. Which report is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Mom asked me if I was coming."
+          },
+          {
+            "id": "b",
+            "text": "Mom asked me was I coming."
+          },
+          {
+            "id": "c",
+            "text": "Mom asked me if I was coming?"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A yes/no question takes “if” or “whether”, statement order, and a full stop."
+      },
+      {
+        "id": "q3",
+        "prompt": "“Do you like jazz?” he asked her. Which report is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "He asked her whether she liked jazz."
+          },
+          {
+            "id": "b",
+            "text": "He asked her whether did she like jazz."
+          },
+          {
+            "id": "c",
+            "text": "He asked her do you like jazz."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Do” disappears; the main verb carries the tense: she liked."
+      },
+      {
+        "id": "q4",
+        "prompt": "“Don’t be late,” Dad told me. Which report is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Dad told me don’t be late."
+          },
+          {
+            "id": "b",
+            "text": "Dad told me not to be late."
+          },
+          {
+            "id": "c",
+            "text": "Dad told me to not being late."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A “don’t” command becomes “not to” + the verb."
+      },
+      {
+        "id": "q5",
+        "prompt": "“Please close the window,” Ms. Lin said to Ravi. Which report is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ms. Lin asked Ravi to close the window."
+          },
+          {
+            "id": "b",
+            "text": "Ms. Lin asked Ravi close the window."
+          },
+          {
+            "id": "c",
+            "text": "Ms. Lin asked Ravi if close the window."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A polite request: asked + the person + to + the verb."
+      }
+    ]
+  },
+  {
+    "key": "e06.if-to-blank",
+    "type": "FILL_BLANK",
+    "title": "If, to or a question word?",
+    "instructions": "Pick the word that starts the reported question or command.",
+    "items": [
+      {
+        "id": "store",
+        "sentence": "“Is the store open?” → I asked ___ the store was open.",
+        "choices": ["if", "to", "where"],
+        "answers": ["if", "whether"],
+        "explanation": "A yes/no question is reported with “if” or “whether”."
+      },
+      {
+        "id": "nurse",
+        "sentence": "“Wash your hands.” → The nurse told us ___ wash our hands.",
+        "choices": ["to", "if", "that"],
+        "answers": ["to"],
+        "explanation": "A command: told + the person + to + the verb."
+      },
+      {
+        "id": "hall",
+        "sentence": "“Don’t run in the hall.” → Mr. Dee told us ___ run in the hall.",
+        "choices": ["not to", "to", "don’t"],
+        "answers": ["not to"],
+        "explanation": "“Don’t” becomes “not to”."
+      },
+      {
+        "id": "live",
+        "sentence": "“Where do you live?” → She asked me ___ I lived.",
+        "choices": ["where", "if", "to"],
+        "answers": ["where"],
+        "explanation": "Keep the question word, then statement order: where I lived."
+      },
+      {
+        "id": "reading",
+        "sentence": "“What are you reading?” → Grandpa asked ___ I was reading.",
+        "choices": ["what", "if", "that"],
+        "answers": ["what"],
+        "explanation": "Keep “what”, then statement order: what I was reading."
+      },
+      {
+        "id": "help",
+        "sentence": "“Can you help me?” → Ana asked ___ I could help her.",
+        "choices": ["if", "to", "what"],
+        "answers": ["if", "whether"],
+        "explanation": "A yes/no question: if (or whether) I could help her."
+      }
+    ]
+  },
+  {
+    "key": "e06.questions-transform",
+    "type": "TRANSFORM",
+    "title": "Questions and commands",
+    "instructions": "Report each question or command. No quotation marks, statement order for questions, a full stop at the end, and to + the verb for commands.",
+    "items": [
+      {
+        "id": "library",
+        "task": "Report the question.",
+        "source": "“Where is the library?” asked Tom.",
+        "answers": ["Tom asked where the library was."],
+        "hints": ["Start with: Tom asked where…", "Statement order: the library was."],
+        "explanation": "Tom asked where the library was. Statement order, is → was, full stop."
+      },
+      {
+        "id": "okay",
+        "task": "Report the question. (Mia was talking to you.)",
+        "source": "“Are you okay?” Mia asked me.",
+        "answers": [
+          "Mia asked me if I was okay.",
+          "Mia asked me whether I was okay.",
+          "Mia asked if I was okay.",
+          "Mia asked whether I was okay."
+        ],
+        "hints": ["A yes/no question needs if or whether.", "Mia asked me if I was…"],
+        "explanation": "if + statement order: I was okay."
+      },
+      {
+        "id": "movie",
+        "task": "Report the question.",
+        "source": "“What time does the movie start?” Jo asked.",
+        "answers": ["Jo asked what time the movie started."],
+        "hints": ["“Does” disappears.", "…what time the movie started."],
+        "explanation": "Without “does”, the main verb carries the tense: started."
+      },
+      {
+        "id": "dog",
+        "task": "Report the question.",
+        "source": "“Can we have a dog?” the kids asked their parents.",
+        "answers": [
+          "The kids asked their parents if they could have a dog.",
+          "The kids asked their parents whether they could have a dog."
+        ],
+        "hints": ["we → they, can → could.", "The kids asked their parents if they…"],
+        "explanation": "if + they could have: pronoun, backshift and statement order."
+      },
+      {
+        "id": "phones",
+        "task": "Report the command.",
+        "source": "“Turn off your phones,” the teacher told us.",
+        "answers": ["The teacher told us to turn off our phones."],
+        "hints": ["told us to + the verb.", "your → our."],
+        "explanation": "The teacher told us to turn off our phones."
+      },
+      {
+        "id": "ducks",
+        "task": "Report the command.",
+        "source": "“Don’t feed the ducks,” the ranger told the children.",
+        "answers": ["The ranger told the children not to feed the ducks."],
+        "hints": ["“Don’t” becomes…", "not to feed."],
+        "explanation": "The ranger told the children not to feed the ducks."
+      }
+    ]
+  },
+  {
+    "key": "e06.interview-report",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Interview report",
+    "prompt": "Imagine you interviewed a new student, a coach or the school cook for the school website. Write a report of the interview (6–10 sentences) in reported speech, with no quotation marks. Report at least two questions you asked, their answers, and at least one piece of advice or an instruction they gave.",
+    "tips": [
+      "Questions: I asked her where she had grown up. I asked if she liked our school.",
+      "Commands and advice: She told me to try the tacos. He reminded us not to forget our water bottles.",
+      "Answers: She said that she had moved from Denver."
+    ],
+    "constraints": {
+      "minWords": 60,
+      "maxWords": 220,
+      "minSentences": 6
+    },
+    "analyzers": ["speech", "pronouns"],
+    "grammarFocus": ["reported-question", "reported-command", "reported-speech"]
+  },
+  {
+    "key": "e06.time-blank",
+    "type": "FILL_BLANK",
+    "title": "Shift the time and place",
+    "instructions": "The words were said days ago, somewhere else. Pick the word or words that fit the report.",
+    "items": [
+      {
+        "id": "tomorrow",
+        "sentence": "“I’ll finish it tomorrow.” → Kim said that she would finish it ___.",
+        "choices": ["the next day", "tomorrow", "yesterday"],
+        "answers": ["the next day", "the following day"],
+        "explanation": "tomorrow → the next day (the day after she spoke)."
+      },
+      {
+        "id": "yesterday",
+        "sentence": "“I saw a fox yesterday.” → Ravi said that he had seen a fox ___.",
+        "choices": ["the day before", "yesterday", "the next day"],
+        "answers": ["the day before", "the previous day"],
+        "explanation": "yesterday → the day before."
+      },
+      {
+        "id": "now",
+        "sentence": "“We are leaving now.” → They said that they were leaving ___.",
+        "choices": ["then", "now", "here"],
+        "answers": ["then"],
+        "explanation": "now → then."
+      },
+      {
+        "id": "here",
+        "sentence": "“Leave your coats here.” → The guide told us to leave our coats ___.",
+        "choices": ["there", "here", "then"],
+        "answers": ["there"],
+        "explanation": "here → there (we aren’t in that place any more)."
+      },
+      {
+        "id": "week",
+        "sentence": "“The test is next week.” → Ms. Cho said that the test was ___.",
+        "choices": ["the following week", "next week", "last week"],
+        "answers": ["the following week", "the week after"],
+        "explanation": "next week → the following week."
+      },
+      {
+        "id": "song",
+        "sentence": "“I love this song.” → Dee said that she loved ___ song.",
+        "choices": ["that", "this", "these"],
+        "answers": ["that"],
+        "explanation": "this → that."
+      }
+    ]
+  },
+  {
+    "key": "e06.time-hunt",
+    "type": "ERROR_HUNT",
+    "title": "The garden report",
+    "instructions": "This report was written a month after the principal spoke. Five words didn’t shift the way reported speech needs. Tap each one and fix it.",
+    "text": "Last month, our principal visited our class. She said that the school is getting a new garden. She told us that the builders will start tomorrow and that every class can plant something. My friend Leo asked if he could help, and she said that he could start today.",
+    "errors": [
+      {
+        "word": "is",
+        "fixes": ["was"],
+        "explanation": "Backshift: is → was (“the school was getting a new garden”)."
+      },
+      {
+        "word": "will",
+        "fixes": ["would"],
+        "explanation": "will → would."
+      },
+      {
+        "word": "tomorrow",
+        "fixes": ["the next day", "the following day"],
+        "explanation": "A month later, “tomorrow” is wrong: the next day."
+      },
+      {
+        "word": "can",
+        "fixes": ["could"],
+        "explanation": "can → could."
+      },
+      {
+        "word": "today",
+        "fixes": ["that day"],
+        "explanation": "today → that day (the day she visited)."
+      }
+    ]
+  },
+  {
+    "key": "e06.time-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "When and where?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "On Monday, Pia said, “I’ll bring cookies tomorrow.” On Friday, you report it. Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Pia said that she would bring cookies tomorrow."
+          },
+          {
+            "id": "b",
+            "text": "Pia said that she would bring cookies the next day."
+          },
+          {
+            "id": "c",
+            "text": "Pia said that she will bring cookies tomorrow."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "On Friday, “tomorrow” would mean Saturday. Pia meant Tuesday: the next day."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which word replaces “here” when you report the words somewhere else?",
+        "options": [
+          {
+            "id": "a",
+            "text": "there"
+          },
+          {
+            "id": "b",
+            "text": "then"
+          },
+          {
+            "id": "c",
+            "text": "that"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "here → there. (now → then, this → that.)"
+      },
+      {
+        "id": "q3",
+        "prompt": "Last month Ravi said, “I visited my aunt two days ago.” Ravi said that he had visited his aunt…",
+        "options": [
+          {
+            "id": "a",
+            "text": "two days before."
+          },
+          {
+            "id": "b",
+            "text": "two days ago."
+          },
+          {
+            "id": "c",
+            "text": "yesterday."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "ago → before: two days before he spoke."
+      },
+      {
+        "id": "q4",
+        "prompt": "At breakfast Mom says, “I’ll pick you up today.” At lunch, you tell a friend. Which is fine?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Mom said she would pick me up today."
+          },
+          {
+            "id": "b",
+            "text": "Mom said she will pick me up yesterday."
+          },
+          {
+            "id": "c",
+            "text": "Mom said I would pick her up today."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It’s still the same day, so “today” can stay."
+      }
+    ]
+  },
+  {
+    "key": "e06.message-report",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Pass on the message",
+    "prompt": "Last Saturday your aunt left this voicemail for your family: “Hi, it’s Aunt Rosa! I’m coming to visit tomorrow. I will bring my famous lemon cake. Can you meet me at the train station at noon? I’ll wait for you by the ticket office. Don’t be late, because my phone battery is almost dead!” Today is Wednesday, and your mom asks what the message said. Write what you tell her (5–8 sentences) in reported speech, with no quotation marks. Shift the pronouns, the verbs, and the time and place words.",
+    "tips": [
+      "Statement: Aunt Rosa said that she was coming to visit the next day.",
+      "Her question: She asked if we could meet her…",
+      "Her instruction: She told us not to be late."
+    ],
+    "constraints": {
+      "minWords": 50,
+      "maxWords": 200,
+      "minSentences": 5
+    },
+    "analyzers": ["speech", "pronouns"],
+    "grammarFocus": ["reported-speech", "reported-question", "reported-command"]
+  },
+  {
+    "key": "e06.to-direct-transform",
+    "type": "TRANSFORM",
+    "title": "Back to the exact words",
+    "instructions": "Turn the reported speech back into direct speech. Add quotation marks, change the pronouns back and undo the backshift. Watch the task for where the tag goes.",
+    "items": [
+      {
+        "id": "mia",
+        "task": "Write Mia’s exact words, with the tag first.",
+        "source": "Mia said that she was nervous.",
+        "answers": ["Mia said, “I’m nervous.”", "Mia said, “I am nervous.”"],
+        "hints": ["she → I, was → am.", "Mia said, “I…"],
+        "explanation": "Mia said, “I am nervous.” (or “I’m nervous.”)"
+      },
+      {
+        "id": "leo",
+        "task": "Write Leo’s exact words, with the tag after. (He was talking to us.)",
+        "source": "Leo said that he would help us.",
+        "answers": [
+          "“I’ll help you,” Leo said.",
+          "“I will help you,” Leo said.",
+          "“I’ll help you,” said Leo.",
+          "“I will help you,” said Leo."
+        ],
+        "hints": ["he → I, would → will, us → you.", "End the quote with a comma: “…,” Leo said."],
+        "explanation": "“I will help you,” Leo said."
+      },
+      {
+        "id": "ana",
+        "task": "Write Ana’s question, with the tag after. (She asked me.)",
+        "source": "Ana asked if I was hungry.",
+        "answers": ["“Are you hungry?” Ana asked.", "“Are you hungry?” asked Ana."],
+        "hints": ["It’s a question again: question order.", "“Are you hungry?”"],
+        "explanation": "“Are you hungry?” Ana asked. The question mark comes back."
+      },
+      {
+        "id": "coach",
+        "task": "Write Coach’s command, with the tag first.",
+        "source": "Coach told us to run two laps.",
+        "answers": [
+          "Coach said, “Run two laps.”",
+          "Coach told us, “Run two laps.”",
+          "Coach said, “Run two laps!”",
+          "Coach told us, “Run two laps!”",
+          "Coach shouted, “Run two laps!”"
+        ],
+        "hints": ["A command starts with the verb.", "Coach said, “Run…"],
+        "explanation": "Coach said, “Run two laps.” A command starts with the verb."
+      },
+      {
+        "id": "grandpa",
+        "task": "Write Grandpa’s exact words, with the tag after.",
+        "source": "Grandpa said that he had grown up on a farm.",
+        "answers": ["“I grew up on a farm,” Grandpa said.", "“I grew up on a farm,” said Grandpa."],
+        "hints": ["he → I, had grown → grew.", "“I grew up on a farm,” …"],
+        "explanation": "“I grew up on a farm,” Grandpa said. Had grown → grew."
+      }
+    ]
+  },
+  {
+    "key": "e06.quote-or-paraphrase",
+    "type": "SORT",
+    "title": "Quote or paraphrase?",
+    "instructions": "Does the essay sentence quote the source’s exact words, or paraphrase (report the idea in its own words)?",
+    "buckets": [
+      {
+        "id": "quote",
+        "label": "Direct quote"
+      },
+      {
+        "id": "paraphrase",
+        "label": "Paraphrase"
+      }
+    ],
+    "items": [
+      {
+        "id": "forest-q",
+        "text": "The author writes, “Every forest has a memory.”",
+        "bucketId": "quote"
+      },
+      {
+        "id": "sleep-q",
+        "text": "According to Dr. Lee, “Sleep is the brain’s cleaning crew.”",
+        "bucketId": "quote"
+      },
+      {
+        "id": "city-q",
+        "text": "The narrator calls the city “a maze of light.”",
+        "bucketId": "quote"
+      },
+      {
+        "id": "food-q",
+        "text": "The article states, “Over 40% of food is wasted.”",
+        "bucketId": "quote"
+      },
+      {
+        "id": "forest-p",
+        "text": "The author explains that forests remember past fires.",
+        "bucketId": "paraphrase"
+      },
+      {
+        "id": "sleep-p",
+        "text": "Dr. Lee says that sleep helps clean the brain.",
+        "bucketId": "paraphrase"
+      },
+      {
+        "id": "food-p",
+        "text": "The article reports that almost half of all food is thrown away.",
+        "bucketId": "paraphrase"
+      },
+      {
+        "id": "city-p",
+        "text": "The narrator suggests that the city is confusing at night.",
+        "bucketId": "paraphrase"
+      }
+    ]
+  },
+  {
+    "key": "e06.quoting-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Quoting in essays",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence introduces a quote best?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“Dogs can sense when people are afraid.” That is interesting."
+          },
+          {
+            "id": "b",
+            "text": "According to Dr. Ames, “Dogs can sense when people are afraid.”"
+          },
+          {
+            "id": "c",
+            "text": "Dogs. “Can sense when people are afraid.”"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“According to Dr. Ames” tells the reader who said it before the quote begins."
+      },
+      {
+        "id": "q2",
+        "prompt": "In an essay, which lead-in usually fits best for what a book or article says?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The author writes, “…”"
+          },
+          {
+            "id": "b",
+            "text": "The author is writing, “…”"
+          },
+          {
+            "id": "c",
+            "text": "The author will write, “…”"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Essays usually talk about texts in the present tense: the author writes, states, explains."
+      },
+      {
+        "id": "q3",
+        "prompt": "When is a paraphrase better than a quote?",
+        "options": [
+          {
+            "id": "a",
+            "text": "When the idea matters but the exact words are long or plain"
+          },
+          {
+            "id": "b",
+            "text": "When the words are powerful or surprising"
+          },
+          {
+            "id": "c",
+            "text": "Never: always quote."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Quote the striking words; paraphrase the useful ideas. Name the source either way."
+      },
+      {
+        "id": "q4",
+        "prompt": "In a strong paragraph, what should come right after a quote?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Your explanation of what the quote shows"
+          },
+          {
+            "id": "b",
+            "text": "Another quote straight away"
+          },
+          {
+            "id": "c",
+            "text": "Nothing: the quote speaks for itself."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The quote sandwich: lead-in, quote, then your explanation."
+      },
+      {
+        "id": "q5",
+        "prompt": "Which is punctuated correctly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The author writes “The sea was angry”."
+          },
+          {
+            "id": "b",
+            "text": "The author writes, “The sea was angry.”"
+          },
+          {
+            "id": "c",
+            "text": "The author writes, “the sea was angry.”"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The same rules as dialogue: a comma after the lead-in, a capital, and the full stop inside."
+      }
+    ]
+  },
+  {
+    "key": "e06.evidence-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Should school start later?",
+    "prompt": "Read this short article. “Should school start later? Dr. Ana Ruiz, a sleep scientist, says that most teenagers’ body clocks shift during puberty. ‘Asking a thirteen-year-old to be alert at 7:30 a.m. is like asking an adult to be alert at 5:30,’ she explains. One district that moved its start time to 8:30 saw attendance rise by 8%.” Now write one paragraph (5–8 sentences) that answers the question: Should our school start later? Quote Dr. Ruiz once, with a lead-in. Report one other idea from the article in your own words. Explain what each piece of evidence shows.",
+    "tips": [
+      "Lead-in for the quote: According to Dr. Ruiz, “…” or Dr. Ruiz explains, “…”",
+      "Paraphrase: The article reports that attendance went up in one district after school started later.",
+      "After each piece of evidence, explain it: This shows that…"
+    ],
+    "constraints": {
+      "minWords": 70,
+      "maxWords": 220,
+      "minSentences": 5
+    },
+    "analyzers": ["speech"],
+    "grammarFocus": ["quoted-evidence", "reported-speech"]
+  },
+  {
+    "key": "e06.unit-check",
+    "type": "QUIZ",
+    "title": "Direct & Indirect Speech check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "c1",
+        "prompt": "Which sentence is punctuated correctly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Jess said, “I’m ready.”"
+          },
+          {
+            "id": "b",
+            "text": "Jess said “I’m ready.”"
+          },
+          {
+            "id": "c",
+            "text": "Jess said, “I’m ready”."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Comma after the tag, capital to start, full stop inside the closing marks.",
+        "skill": "direct speech punctuation"
+      },
+      {
+        "id": "c2",
+        "prompt": "“That’s my seat___ said Owen. What fills the gap?",
+        "options": [
+          {
+            "id": "a",
+            "text": ",”"
+          },
+          {
+            "id": "b",
+            "text": ".”"
+          },
+          {
+            "id": "c",
+            "text": "”,"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The sentence goes on into the tag, so a comma, and it goes inside the closing mark.",
+        "skill": "direct speech punctuation"
+      },
+      {
+        "id": "c3",
+        "prompt": "Which question is punctuated correctly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“Are we there yet”? asked Kim."
+          },
+          {
+            "id": "b",
+            "text": "“Are we there yet?” asked Kim."
+          },
+          {
+            "id": "c",
+            "text": "“Are we there yet?,” asked Kim."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The question mark goes inside, and it replaces the comma.",
+        "skill": "direct speech punctuation"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Dad said, “dinner is ready.”"
+          },
+          {
+            "id": "b",
+            "text": "Dad said, “Dinner is ready.”"
+          },
+          {
+            "id": "c",
+            "text": "Dad said, Dinner is ready."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Exact words need quotation marks, and a quoted sentence starts with a capital.",
+        "skill": "direct speech punctuation"
+      },
+      {
+        "id": "c5",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“Watch out!” Yelled Ben."
+          },
+          {
+            "id": "b",
+            "text": "“Watch out!” yelled Ben."
+          },
+          {
+            "id": "c",
+            "text": "“Watch out”! yelled Ben."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The exclamation mark goes inside, and the tag starts with a small letter.",
+        "skill": "direct speech punctuation"
+      },
+      {
+        "id": "c6",
+        "prompt": "Which split quote is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“When you’re ready,” said Mom, “we’ll leave.”"
+          },
+          {
+            "id": "b",
+            "text": "“When you’re ready,” said Mom, “We’ll leave.”"
+          },
+          {
+            "id": "c",
+            "text": "“When you’re ready” said Mom “we’ll leave.”"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One sentence split by the tag: commas on both sides, and the second part starts with a small letter.",
+        "skill": "tags & new speakers"
+      },
+      {
+        "id": "c7",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“I’m done,” said Ivy, “let’s go.”"
+          },
+          {
+            "id": "b",
+            "text": "“I’m done,” said Ivy. “Let’s go.”"
+          },
+          {
+            "id": "c",
+            "text": "“I’m done.” said Ivy. “let’s go.”"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“I’m done” and “Let’s go” are two sentences, so the tag ends with a full stop and “Let’s” gets a capital.",
+        "skill": "tags & new speakers"
+      },
+      {
+        "id": "c8",
+        "prompt": "When should you start a new paragraph in dialogue?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Every time a new person speaks"
+          },
+          {
+            "id": "b",
+            "text": "After every speech tag"
+          },
+          {
+            "id": "c",
+            "text": "Only at the end of the conversation"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "New speaker, new line.",
+        "skill": "tags & new speakers"
+      },
+      {
+        "id": "c9",
+        "prompt": "Which tag best shows that someone spoke quietly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "whispered"
+          },
+          {
+            "id": "b",
+            "text": "shouted"
+          },
+          {
+            "id": "c",
+            "text": "demanded"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Whispered” tells the reader how the words were spoken.",
+        "skill": "tags & new speakers"
+      },
+      {
+        "id": "c10",
+        "prompt": "Ella said, “I am sick.” Which is the reported version?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ella said that she was sick."
+          },
+          {
+            "id": "b",
+            "text": "Ella said that I am sick."
+          },
+          {
+            "id": "c",
+            "text": "Ella said that “I am sick.”"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "I → she, am → was, and no quotation marks.",
+        "skill": "reported speech"
+      },
+      {
+        "id": "c11",
+        "prompt": "Max said to you, “I will call you.” Which is the reported version?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Max said that he would call me."
+          },
+          {
+            "id": "b",
+            "text": "Max said that I will call you."
+          },
+          {
+            "id": "c",
+            "text": "Max said that he will call you."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "I → he, you → me, will → would.",
+        "skill": "reported speech"
+      },
+      {
+        "id": "c12",
+        "prompt": "Which sentence is reported speech?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Sam said, “We won.”"
+          },
+          {
+            "id": "b",
+            "text": "Sam said that they had won."
+          },
+          {
+            "id": "c",
+            "text": "“We won!” Sam cheered."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Reported speech has no quotation marks and changes the pronouns and verb.",
+        "skill": "reported speech"
+      },
+      {
+        "id": "c13",
+        "prompt": "“We have finished,” the girls said. → The girls said that they ___ finished.",
+        "options": [
+          {
+            "id": "a",
+            "text": "had"
+          },
+          {
+            "id": "b",
+            "text": "have"
+          },
+          {
+            "id": "c",
+            "text": "has"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "have → had: one step back.",
+        "skill": "reported speech"
+      },
+      {
+        "id": "c14",
+        "prompt": "“Where do you live?” Ana asked me. Which report is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ana asked me where I lived."
+          },
+          {
+            "id": "b",
+            "text": "Ana asked me where did I live."
+          },
+          {
+            "id": "c",
+            "text": "Ana asked me where I lived?"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Statement order, no “did”, and a full stop.",
+        "skill": "questions & commands"
+      },
+      {
+        "id": "c15",
+        "prompt": "“Is it raining?” asked Leo. Which report is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Leo asked if it was raining."
+          },
+          {
+            "id": "b",
+            "text": "Leo asked was it raining."
+          },
+          {
+            "id": "c",
+            "text": "Leo asked if was it raining."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "if + statement order: it was raining.",
+        "skill": "questions & commands"
+      },
+      {
+        "id": "c16",
+        "prompt": "“Stand up,” the coach said to us. Which report is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The coach told us stand up."
+          },
+          {
+            "id": "b",
+            "text": "The coach told us to stand up."
+          },
+          {
+            "id": "c",
+            "text": "The coach told us standing up."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A command: told + the person + to + the verb.",
+        "skill": "questions & commands"
+      },
+      {
+        "id": "c17",
+        "prompt": "“Don’t open the box,” Mom told me. Which report is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Mom told me not to open the box."
+          },
+          {
+            "id": "b",
+            "text": "Mom told me don’t open the box."
+          },
+          {
+            "id": "c",
+            "text": "Mom told me to don’t open the box."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Don’t” becomes “not to”.",
+        "skill": "questions & commands"
+      },
+      {
+        "id": "c18",
+        "prompt": "On Monday Nia said, “I’ll finish it tomorrow.” On Friday: Nia said that she would finish it ___.",
+        "options": [
+          {
+            "id": "a",
+            "text": "the next day"
+          },
+          {
+            "id": "b",
+            "text": "tomorrow"
+          },
+          {
+            "id": "c",
+            "text": "yesterday"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "tomorrow → the next day (Tuesday, not Saturday).",
+        "skill": "time & place words"
+      },
+      {
+        "id": "c19",
+        "prompt": "At the park, Ben said, “I left my coat here.” Back at school: Ben said that he had left his coat ___.",
+        "options": [
+          {
+            "id": "a",
+            "text": "there"
+          },
+          {
+            "id": "b",
+            "text": "here"
+          },
+          {
+            "id": "c",
+            "text": "then"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "here → there: you’re not at the park any more.",
+        "skill": "time & place words"
+      },
+      {
+        "id": "c20",
+        "prompt": "Last week Tam said, “I saw the movie yesterday.” Tam said that he had seen the movie ___.",
+        "options": [
+          {
+            "id": "a",
+            "text": "the day before"
+          },
+          {
+            "id": "b",
+            "text": "yesterday"
+          },
+          {
+            "id": "c",
+            "text": "the next day"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "yesterday → the day before.",
+        "skill": "time & place words"
+      },
+      {
+        "id": "c21",
+        "prompt": "Which word replaces “now” in reported speech?",
+        "options": [
+          {
+            "id": "a",
+            "text": "then"
+          },
+          {
+            "id": "b",
+            "text": "today"
+          },
+          {
+            "id": "c",
+            "text": "there"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "now → then.",
+        "skill": "time & place words"
+      },
+      {
+        "id": "c22",
+        "prompt": "Which sentence introduces a quote best?",
+        "options": [
+          {
+            "id": "a",
+            "text": "According to the author, “Oceans make half of our oxygen.”"
+          },
+          {
+            "id": "b",
+            "text": "“Oceans make half of our oxygen.”"
+          },
+          {
+            "id": "c",
+            "text": "Oceans. “Make half of our oxygen.”"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A lead-in (According to the author) tells readers where the words come from.",
+        "skill": "quoting in essays"
+      },
+      {
+        "id": "c23",
+        "prompt": "Which lead-in usually fits an essay about a text?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The author writes, “…”"
+          },
+          {
+            "id": "b",
+            "text": "The author will write, “…”"
+          },
+          {
+            "id": "c",
+            "text": "The author is writing, “…”"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Essays discuss texts in the present tense: writes, states, explains.",
+        "skill": "quoting in essays"
+      },
+      {
+        "id": "c24",
+        "prompt": "When should you paraphrase instead of quoting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "When the idea matters but the exact words don’t"
+          },
+          {
+            "id": "b",
+            "text": "When the words are striking or powerful"
+          },
+          {
+            "id": "c",
+            "text": "Never"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Quote striking words; paraphrase useful ideas, and name the source either way.",
+        "skill": "quoting in essays"
+      }
+    ]
+  },
+  {
+    "key": "e06.check-story",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "School news story",
+    "prompt": "Write a short news story (8–12 sentences) for the school website about an event: a bake sale, a science fair, a game or a field trip. Include at least two direct quotes from people who were there (one with the tag first, one with the tag after) and at least two sentences of reported speech, one of them a reported question or instruction. Start a new paragraph each time you quote a new person.",
+    "tips": [
+      "Direct: Principal Cho said, “This was our best fair ever.” / “I’m coming back,” said Jae.",
+      "Reported: She said that the money would go to the library. Students asked if there would be another fair in the spring.",
+      "Check: commas and end marks inside the quotation marks; reported questions end with a full stop."
+    ],
+    "constraints": {
+      "minWords": 90,
+      "maxWords": 280,
+      "minSentences": 8
+    },
+    "analyzers": ["speech", "pronouns"],
+    "grammarFocus": ["tag-before", "tag-after", "reported-speech"]
+  }
+]

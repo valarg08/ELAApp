@@ -1,0 +1,62 @@
+{
+  "slug": "essay-tags-and-new-speakers",
+  "order": 2,
+  "title": "Tags & New Speaker, New Line",
+  "estMinutes": 40,
+  "focusSkills": ["speech", "punctuation", "paragraphs"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "Who said what?",
+      "paragraphs": [
+        "“Did you take my headphones?” “No, I didn’t.” “Then why are they in your bag?” “I don’t know!” “Mom!”",
+        "Read it again. How many people are talking? Who shouted “Mom!”?",
+        "Without tags and new lines, a conversation turns into a puzzle. Writers use two tools to fix that: speech tags, and a new line every time the speaker changes."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Three places for the tag",
+          "body": "Before: Leo said, “I’m starving.” After: “I’m starving,” Leo said. In the middle (a split quote): “I’m starving,” said Leo, “so let’s eat.” Moving the tag keeps a conversation from sounding the same every time."
+        },
+        {
+          "kind": "example",
+          "title": "Split quotes",
+          "text": "One sentence, split: “If we hurry,” said Mia, “we can catch the bus.”\nTwo sentences: “We missed the bus,” said Mia. “Let’s walk.”",
+          "note": "If the quote is one sentence, put a comma after the tag and carry on with a small letter. If a new sentence starts, put a full stop after the tag and start with a capital."
+        },
+        {
+          "kind": "definition",
+          "title": "New speaker, new line",
+          "body": "Start a new paragraph (a new line, indented) every time a different person speaks. Then readers can follow a conversation even when you leave some tags out."
+        },
+        {
+          "kind": "definition",
+          "title": "Tags that tell more",
+          "body": "“Said” is fine most of the time: readers hardly notice it. Now and then, a stronger tag (whispered, snapped, muttered, called) or an action (Leo grabbed his bag.) shows how the words were spoken."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e06.tag-sort", "e06.tag-blank", "e06.speaker-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e06.conversation" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which line in your conversation has the best tag or action? Why does it work?",
+        "How did starting a new line for each speaker change how easy your scene is to read?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

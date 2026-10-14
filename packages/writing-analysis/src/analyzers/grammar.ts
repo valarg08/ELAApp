@@ -34,6 +34,16 @@ import {
   passiveNotes,
   voiceHits,
 } from './voice.js';
+import {
+  SPEECH_FEATURES,
+  SPEECH_FEATURE_EXAMPLES,
+  SPEECH_FEATURE_LABELS,
+  type SpeechFeature,
+  continuesSpeech,
+  findSpeechIssues,
+  reportedClauses,
+  speechHits,
+} from './speech.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -55,6 +65,7 @@ export const GRAMMAR_FEATURES = [
   ...MODIFIER_FEATURES,
   ...CONNECTOR_FEATURES,
   ...VOICE_FEATURES,
+  ...SPEECH_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -72,6 +83,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   ...MODIFIER_FEATURE_LABELS,
   ...CONNECTOR_FEATURE_LABELS,
   ...VOICE_FEATURE_LABELS,
+  ...SPEECH_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -89,22 +101,27 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   ...MODIFIER_FEATURE_EXAMPLES,
   ...CONNECTOR_FEATURE_EXAMPLES,
   ...VOICE_FEATURE_EXAMPLES,
+  ...SPEECH_FEATURE_EXAMPLES,
 };
 
 /** The Coach skill a grammar feature belongs to. */
 export function grammarSkillOf(
   feature: GrammarFeature,
-): 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice' {
+): 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice' | 'speech' {
   if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
   if ((MODIFIER_FEATURES as readonly string[]).includes(feature)) return 'modifiers';
   if ((CONNECTOR_FEATURES as readonly string[]).includes(feature)) return 'connectors';
   if ((VOICE_FEATURES as readonly string[]).includes(feature)) return 'voice';
+  if ((SPEECH_FEATURES as readonly string[]).includes(feature)) return 'speech';
   return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
 }
 
-export type { ConnectorFeature, ModifierFeature, VerbFeature, VoiceFeature };
+export type { ConnectorFeature, ModifierFeature, SpeechFeature, VerbFeature, VoiceFeature };
 export type { PassiveNote } from './voice.js';
 export { passiveNotes, veryPhrases };
+export { reportedClauses };
+export { quotes } from './speech.js';
+export type { QuoteInfo, ReportedClause } from './speech.js';
 
 const set = (s: string) => new Set(s.split(' '));
 
@@ -299,6 +316,8 @@ export function grammarFeatures(text: string): FeatureHit[] {
     for (const hit of connectorHits(text, tokens)) hits.push(hit);
     for (const hit of voiceHits(text, tokens)) hits.push(hit);
   }
+  // Speech works on the whole text: a quote can cross the sentence splitter (“Ready?” asked Sam.).
+  for (const hit of speechHits(text)) hits.push(hit);
   return hits;
 }
 
@@ -318,7 +337,8 @@ export function checkSentenceSet(
   const list: Span[] = [];
   for (const s of sentences(text)) {
     const last = list.at(-1);
-    if (last && isInterjectionOnly(last.text)) {
+    // …and so is “Ready?” asked Sam., which the splitter cuts after the question mark.
+    if (last && (isInterjectionOnly(last.text) || continuesSpeech(last.text, s.text))) {
       list[list.length - 1] = {
         start: last.start,
         end: s.end,
@@ -366,7 +386,17 @@ export interface GrammarIssue {
     | 'fragment'
     | 'intro-comma'
     | 'passive-form'
-    | 'by-pronoun';
+    | 'by-pronoun'
+    | 'unmatched-quote'
+    | 'speech-comma'
+    | 'speech-punctuation'
+    | 'speech-capital'
+    | 'new-speaker'
+    | 'reported-quotes'
+    | 'reported-question'
+    | 'reported-command'
+    | 'backshift'
+    | 'reported-time';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -568,7 +598,17 @@ export const firstFeature = (hits: readonly FeatureHit[], feature: GrammarFeatur
   hits.find((h) => h.feature === feature)?.span;
 
 /** Verb mistakes: made-up pasts ("goed"), "I seen", "should of", "they was", tense slips. */
-export const verbIssues = (text: string): GrammarIssue[] => findVerbIssues(text, isPluralNoun);
+export const verbIssues = (text: string): GrammarIssue[] => {
+  const issues = findVerbIssues(text, isPluralNoun);
+  if (!issues.some((i) => i.kind === 'tense-shift')) return issues;
+  // Reported speech mixes tenses on purpose ("The article reports that attendance went up").
+  const reported = reportedClauses(text);
+  return issues.filter(
+    (i) =>
+      i.kind !== 'tense-shift' ||
+      !reported.some((c) => c.verb.start >= i.span.start && c.verb.end <= i.span.end),
+  );
+};
 
 /** Adjective and adverb mistakes: "more taller", "gooder", "biggest than", "did good", "ran quick". */
 export const modifierIssues = (text: string): GrammarIssue[] => findModifierIssues(text);
@@ -579,6 +619,9 @@ export const connectorIssues = (text: string): GrammarIssue[] => findConnectorIs
 /** Passive mistakes: "was took" → taken, "was eat by" → eaten, "by she" → by her. */
 export const voiceIssues = (text: string): GrammarIssue[] => findVoiceIssues(text);
 
+/** Speech mistakes: commas and capitals in direct speech; "asked where was it", "told us sit", "said that “…”", backshift. */
+export const speechIssues = (text: string): GrammarIssue[] => findSpeechIssues(text);
+
 /** Every grammar mistake the checks know about, in the order they appear. */
 export const grammarIssues = (text: string): GrammarIssue[] =>
   [
@@ -588,4 +631,5 @@ export const grammarIssues = (text: string): GrammarIssue[] =>
     ...modifierIssues(text),
     ...connectorIssues(text),
     ...voiceIssues(text),
+    ...speechIssues(text),
   ].toSorted((a, b) => a.span.start - b.span.start);

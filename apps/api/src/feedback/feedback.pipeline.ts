@@ -37,6 +37,8 @@ import {
   filterWords,
   grammarIssues,
   passiveNotes,
+  quotes,
+  reportedClauses,
   veryPhrases,
   senses,
   sentenceVariety,
@@ -76,6 +78,7 @@ const SKILL_NAMES: Record<string, string> = {
   modifiers: 'adjectives and adverbs',
   connectors: 'prepositions and conjunctions',
   voice: 'active and passive voice',
+  speech: 'direct and reported speech',
 };
 
 /**
@@ -156,9 +159,10 @@ export class FeedbackPipeline {
       `filter words: ${filterWords(text).total}`,
       `senses used: ${senses(text).used.join(', ') || 'none'}`,
       `dialogue punctuation issues: ${dialogue(text).issues.length}`,
-      `grammar mistakes found (nouns, pronouns, verbs, adjectives, adverbs, prepositions, conjunctions and passive forms): ${grammarIssues(text).length}`,
+      `grammar mistakes found (nouns, pronouns, verbs, adjectives, adverbs, prepositions, conjunctions, passive forms and speech): ${grammarIssues(text).length}`,
       `weak “very” phrases: ${veryPhrases(text).length}`,
       `passive verbs: ${passiveNotes(text).length}`,
+      `quotes: ${quotes(text).length}, reported speech: ${reportedClauses(text).length}`,
     ];
 
     // 3. LLM analyzers for this activity type.

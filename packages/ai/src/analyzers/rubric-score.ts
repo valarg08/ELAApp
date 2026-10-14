@@ -85,7 +85,9 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
     const coach = buildCoachReport(
       input.text,
       input.rubric.key === 'grammar.practice'
-        ? { analyzers: ['nouns', 'pronouns', 'verbs', 'modifiers', 'connectors', 'voice'] }
+        ? {
+            analyzers: ['nouns', 'pronouns', 'verbs', 'modifiers', 'connectors', 'voice', 'speech'],
+          }
         : {},
     );
     const levels: Record<string, number> = {

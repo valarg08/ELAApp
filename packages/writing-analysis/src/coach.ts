@@ -56,6 +56,7 @@ import {
   pronounIssues,
   verbIssues,
   veryPhrases,
+  speechIssues,
   voiceIssues,
 } from './analyzers/grammar.js';
 import { filterWords, telling } from './analyzers/word-choice.js';
@@ -83,6 +84,7 @@ export const ANALYZER_IDS = [
   'modifiers',
   'connectors',
   'voice',
+  'speech',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -668,7 +670,7 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
         analyzer: grammarSkillOf(first),
         title: `You used ${listing(used.map((f) => GRAMMAR_FEATURE_LABELS[f]))}`,
         message: span
-          ? `Like “${span.text}”. That's the skill this lesson practises.`
+          ? `Like ${inQuotes(span.text)}${/[.!?][”"]$/.test(span.text) ? '' : '.'} That's the skill this lesson practises.`
           : 'That is the skill this lesson practises.',
         span,
       });
@@ -725,6 +727,47 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
             ? `You put the doer first, like “${active.span.text}”, and keep the passive for when the doer doesn’t matter.`
             : `Your sentences put the doer first, like “${active.span.text}”, so they’re clear and direct.`,
           span: active.span,
+        });
+      }
+    }
+  }
+
+  if (enabled.has('speech')) {
+    const issues = speechIssues(text);
+    if (issues[0]) nextSteps.push(issueCard('speech', 'Check this speech', issues));
+    else if (wordCount >= 15) {
+      const hits = grammarFeatures(text);
+      const direct = hits.find((h) => h.feature === 'tag-before' || h.feature === 'tag-after');
+      const reported = hits.find(
+        (h) =>
+          h.feature === 'reported-speech' ||
+          h.feature === 'reported-question' ||
+          h.feature === 'reported-command',
+      );
+      const evidence = hits.find((h) => h.feature === 'quoted-evidence');
+      if (evidence) {
+        strengths.push({
+          id: 'speech',
+          analyzer: 'speech',
+          title: 'Quote with a lead-in',
+          message: `You introduce your quote, ${evidence.span.text}, so readers know where the words come from.`,
+          span: evidence.span,
+        });
+      } else if (direct) {
+        strengths.push({
+          id: 'speech',
+          analyzer: 'speech',
+          title: 'Speech punctuated right',
+          message: `${direct.span.text}: the quotation marks, comma and capital letters are all in place.`,
+          span: direct.span,
+        });
+      } else if (reported) {
+        strengths.push({
+          id: 'speech',
+          analyzer: 'speech',
+          title: 'Clear reported speech',
+          message: `“${reported.span.text}” reports the words smoothly, with no quotation marks needed.`,
+          span: reported.span,
         });
       }
     }
@@ -954,9 +997,12 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
   return report;
 }
 
+/** Quote a bit of the student's text, unless it already has its own quotation marks. */
+const inQuotes = (t: string) => (/[“”"]/.test(t) ? t : `“${t}”`);
+
 /** The first grammar issue as a card, with its fix and how many more there are. */
 function issueCard(
-  analyzer: 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice',
+  analyzer: 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice' | 'speech',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

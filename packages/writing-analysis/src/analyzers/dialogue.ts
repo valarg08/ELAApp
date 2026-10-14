@@ -2,7 +2,8 @@ import { type Span, type WordToken, paragraphs, quotedSpans, span, words } from 
 
 /** Rules for punctuating dialogue (Unit 8, and any story with speech). */
 
-const TAG_VERBS = new Set([
+/** Verbs of speaking that make a speech tag ("she said", "asked Mo", "the author writes"). */
+export const TAG_VERBS = new Set([
   'said',
   'says',
   'asked',
@@ -36,6 +37,30 @@ const TAG_VERBS = new Set([
   'sobbed',
   'stammered',
   'told',
+  'wrote',
+  'writes',
+  'stated',
+  'states',
+  'argued',
+  'argues',
+  'explains',
+  'insisted',
+  'admitted',
+  'promised',
+  'warned',
+  'suggested',
+  'agreed',
+  'announced',
+  'wondered',
+  'ordered',
+  'reminded',
+  'remarked',
+  'continued',
+  'joked',
+  'gasped',
+  'complained',
+  'boasted',
+  'protested',
 ]);
 const PRONOUNS = new Set(['he', 'she', 'they', 'it', 'we', 'you', 'i']);
 
@@ -58,12 +83,12 @@ export interface DialogueResult {
 }
 
 /** The speech tag right after a quote ("she said", "said Mo"), if there is one. */
-function tagAfter(text: string, end: number): { speaker: string; first: WordToken } | null {
+export function tagAfter(text: string, end: number): { speaker: string; first: WordToken } | null {
   const next = words(text, end, Math.min(text.length, end + 40)).slice(0, 3);
   const [a, b] = next;
   if (!a) return null;
-  // Only whitespace and punctuation between the quote and the tag.
-  if (/[\p{L}\p{N}]/u.test(text.slice(end, a.start))) return null;
+  // Only spaces and punctuation between the quote and the tag (a new line starts something new).
+  if (/[\p{L}\p{N}\n]/u.test(text.slice(end, a.start))) return null;
   if (TAG_VERBS.has(a.lower)) return { speaker: b?.lower ?? '', first: a };
   if (b && TAG_VERBS.has(b.lower)) return { speaker: a.lower, first: a };
   return null;

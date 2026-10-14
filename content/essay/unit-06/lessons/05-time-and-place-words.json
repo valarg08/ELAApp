@@ -1,0 +1,66 @@
+{
+  "slug": "essay-time-and-place-words",
+  "order": 5,
+  "title": "Time & Place Words",
+  "estMinutes": 35,
+  "focusSkills": ["speech", "clarity"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "The confusing note",
+      "paragraphs": [
+        "On Monday, Zoe’s cousin called and said, “I’ll visit tomorrow.”",
+        "On Friday, Zoe told her dad, “Lila said she would visit tomorrow.”",
+        "Dad looked up. “Tomorrow? So, Saturday?”",
+        "“No,” said Zoe. “She meant Tuesday. She’s already been!”",
+        "Words like tomorrow, here and now depend on when and where they were said. When you report them later, they have to change."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "example",
+          "title": "Time words",
+          "text": "now → then · today → that day · tonight → that night\ntomorrow → the next day / the following day\nyesterday → the day before / the previous day\nnext week → the following week · last week → the week before\nthis morning → that morning · two days ago → two days before",
+          "note": "The new words point back to the day the words were spoken, not to today."
+        },
+        {
+          "kind": "example",
+          "title": "Place and pointing words",
+          "text": "here → there · this → that · these → those",
+          "note": "“I left my bag here” said in the gym → She said she had left her bag there."
+        },
+        {
+          "kind": "example",
+          "title": "Putting it all together",
+          "text": "Coach (on Monday): “We will practise here tomorrow.”\nReported (on Friday): Coach said that we would practise there the next day.",
+          "note": "Pronoun ✓ (we stays: you were on the team) · verb ✓ (will → would) · place ✓ (here → there) · time ✓ (tomorrow → the next day)."
+        },
+        {
+          "kind": "definition",
+          "title": "Same day, same place?",
+          "body": "If you report the words on the same day and in the same place, you can keep them: at lunch, “Mom said she’s picking us up here today.” Shift them when the time or place has changed."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e06.time-blank", "e06.time-hunt", "e06.time-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e06.message-report" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which time word did you change in your message? What would go wrong if you hadn’t?",
+        "Make a list of the four changes to check in reported speech (pronouns, verbs, time, place). Which do you forget most?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

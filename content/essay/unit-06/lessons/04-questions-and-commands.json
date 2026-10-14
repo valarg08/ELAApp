@@ -1,0 +1,65 @@
+{
+  "slug": "essay-reporting-questions-and-commands",
+  "order": 4,
+  "title": "Reporting Questions & Commands",
+  "estMinutes": 40,
+  "focusSkills": ["speech", "word-order"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "The librarian asked, “Where is your library card?” Which report sounds right?",
+      "a": "The librarian asked me where was my library card?",
+      "b": "The librarian asked me where my library card was.",
+      "reveal": "B. A reported question isn’t a question any more: it’s a statement about a question. So the words go back to statement order (my library card was), and it ends with a full stop."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "example",
+          "title": "Yes/no questions: if or whether",
+          "text": "“Are you ready?” → She asked if I was ready.\n“Can we stay?” → They asked whether they could stay.",
+          "note": "Add “if” or “whether”, use statement order (I was, they could), shift the verb back, and end with a full stop."
+        },
+        {
+          "kind": "example",
+          "title": "Question-word questions",
+          "text": "“Where do you live?” → He asked where I lived.\n“What time is it?” → Dad asked what time it was.\n“Why did you leave?” → She asked why I had left.",
+          "note": "Keep the question word, then statement order. “Do”, “does” and “did” disappear: the main verb carries the tense."
+        },
+        {
+          "kind": "example",
+          "title": "Commands and requests: to + verb",
+          "text": "“Sit down.” → The teacher told us to sit down.\n“Please help me.” → Mia asked me to help her.\n“Don’t touch it!” → Dad told us not to touch it.",
+          "note": "Use told, asked, ordered, reminded or warned + the person + to + the verb. A “don’t” command becomes “not to”."
+        },
+        {
+          "kind": "compare",
+          "title": "The most common slips",
+          "telling": "Coach asked if were we tired? Then he told us run another lap.",
+          "showing": "Coach asked if we were tired. Then he told us to run another lap.",
+          "labels": ["Three slips ✗", "All fixed ✓"],
+          "note": "Check three things: statement order, a full stop, and “to” for commands."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e06.question-mc", "e06.if-to-blank", "e06.questions-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e06.interview-report" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Write one question someone asked you this week, then report it. What changed?",
+        "Which is harder to report, a question or a command? Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}
