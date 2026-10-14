@@ -49,9 +49,11 @@ import {
   type GrammarIssue,
   grammarFeatures,
   grammarSkillOf,
+  modifierIssues,
   nounIssues,
   pronounIssues,
   verbIssues,
+  veryPhrases,
 } from './analyzers/grammar.js';
 import { filterWords, telling } from './analyzers/word-choice.js';
 import { type Span, countWords, sentenceAt, sentences } from './text.js';
@@ -75,6 +77,7 @@ export const ANALYZER_IDS = [
   'nouns',
   'pronouns',
   'verbs',
+  'modifiers',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -667,6 +670,29 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
   }
 
+  if (enabled.has('modifiers')) {
+    const issues = modifierIssues(text);
+    if (issues[0]) nextSteps.push(issueCard('modifiers', 'Check this describing word', issues));
+    const weak = veryPhrases(text);
+    if (weak[0])
+      nextSteps.push({ ...issueCard('modifiers', 'Try one strong word', weak), id: 'very' });
+    if (!issues[0] && !weak[0] && wordCount >= 15) {
+      const strong = grammarFeatures(text).find(
+        (h) =>
+          h.feature === 'superlative' || h.feature === 'comparative' || h.feature === 'adverb-how',
+      );
+      strengths.push({
+        id: 'modifiers',
+        analyzer: 'modifiers',
+        title: 'Precise describing words',
+        message: strong
+          ? `Your adjectives and adverbs are the right forms, like “${strong.span.text}”, and you never lean on “very”.`
+          : 'Your adjectives and adverbs are the right forms, and you never lean on “very”.',
+        span: strong?.span,
+      });
+    }
+  }
+
   if (enabled.has('verbs')) {
     const issues = verbIssues(text);
     if (issues[0]) nextSteps.push(issueCard('verbs', 'Check this verb', issues));
@@ -848,7 +874,7 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
 
 /** The first grammar issue as a card, with its fix and how many more there are. */
 function issueCard(
-  analyzer: 'nouns' | 'pronouns' | 'verbs',
+  analyzer: 'nouns' | 'pronouns' | 'verbs' | 'modifiers',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

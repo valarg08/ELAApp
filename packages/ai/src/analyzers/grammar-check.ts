@@ -3,10 +3,9 @@ import {
   type GrammarFeature,
   checkSentenceSet,
   grammarFeatures,
-  nounIssues,
-  pronounIssues,
+  grammarIssues,
   sentences,
-  verbIssues,
+  veryPhrases,
 } from '@storyforge/writing-analysis';
 import { z } from 'zod/v4';
 import { QUILL_RULES, writingBlock } from '../prompts.js';
@@ -69,16 +68,16 @@ export const grammarCheckAnalyzer: AnalyzerDef<GrammarCheckInput, GrammarCheckRe
     ].join('\n'),
   fake(input) {
     const { text } = input;
-    const issues = [...nounIssues(text), ...pronounIssues(text), ...verbIssues(text)].toSorted(
-      (a, b) => a.span.start - b.span.start,
-    );
+    const issues = grammarIssues(text);
+    const weakPhrases = veryPhrases(text);
+    const weak = weakPhrases[0];
     const hits = grammarFeatures(text);
     const used = input.focus.filter((f) => hits.some((h) => h.feature === f));
     const missing = input.focus.find((f) => !used.includes(f));
     const firstUsed = used[0] ? hits.find((h) => h.feature === used[0])?.span : undefined;
     const checks = checkSentenceSet(text, input.tasks);
     const flawed = (s: { start: number; end: number }) =>
-      issues.some((i) => i.span.start >= s.start && i.span.start < s.end);
+      [...issues, ...weakPhrases].some((i) => i.span.start >= s.start && i.span.start < s.end);
     const best = sentences(text)
       .filter((s) => !flawed(s))
       .toSorted((a, b) => b.text.length - a.text.length)[0];
@@ -109,8 +108,9 @@ export const grammarCheckAnalyzer: AnalyzerDef<GrammarCheckInput, GrammarCheckRe
       bestSentence: best
         ? { quote: best.text.trim(), why: 'It is clear and correct, with no mistakes to fix.' }
         : null,
-      nextIdea:
-        issues.length === 0 && !missing
+      nextIdea: weak?.fix
+        ? `You could try swapping “${weak.span.text}” for one stronger word, like “${weak.fix}”.`
+        : issues.length === 0 && !missing
           ? 'You could try adding a describing word to make one sentence more vivid.'
           : null,
     };

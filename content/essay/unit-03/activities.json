@@ -1,0 +1,1478 @@
+[
+  {
+    "key": "e03.adjective-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Spot the adjectives",
+    "instructions": "Tap the six adjectives: the words that describe a noun (what kind, which one, how many).",
+    "text": "A rusty bicycle leaned against the old fence. Its flat tyres sagged in the wet grass. A crow watched from a crooked branch while a cold wind rattled the gate.",
+    "targets": ["rusty", "old", "flat", "wet", "crooked", "cold"],
+    "explanation": "Rusty, old, flat, wet, crooked and cold each describe a noun: bicycle, fence, tyres, grass, branch and wind."
+  },
+  {
+    "key": "e03.adjective-sort",
+    "type": "SORT",
+    "title": "What does it tell you?",
+    "instructions": "Each card has an adjective in capitals. Does it tell what kind, which one, or how many?",
+    "buckets": [
+      {
+        "id": "kind",
+        "label": "What kind?"
+      },
+      {
+        "id": "which",
+        "label": "Which one?"
+      },
+      {
+        "id": "many",
+        "label": "How many?"
+      }
+    ],
+    "items": [
+      {
+        "id": "muddy",
+        "text": "a MUDDY boot",
+        "bucketId": "kind"
+      },
+      {
+        "id": "that",
+        "text": "THAT house on the corner",
+        "bucketId": "which"
+      },
+      {
+        "id": "several",
+        "text": "SEVERAL questions",
+        "bucketId": "many"
+      },
+      {
+        "id": "silver",
+        "text": "a SILVER key",
+        "bucketId": "kind"
+      },
+      {
+        "id": "last",
+        "text": "the LAST slice",
+        "bucketId": "which"
+      },
+      {
+        "id": "twelve",
+        "text": "TWELVE eggs",
+        "bucketId": "many"
+      },
+      {
+        "id": "gigantic",
+        "text": "a GIGANTIC wave",
+        "bucketId": "kind"
+      },
+      {
+        "id": "these",
+        "text": "THESE shoes",
+        "bucketId": "which"
+      },
+      {
+        "id": "few",
+        "text": "a FEW minutes",
+        "bucketId": "many"
+      },
+      {
+        "id": "spicy",
+        "text": "SPICY noodles",
+        "bucketId": "kind"
+      }
+    ]
+  },
+  {
+    "key": "e03.adjective-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Adjectives that paint",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence paints the clearest picture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "We ate a nice meal at a good place."
+          },
+          {
+            "id": "b",
+            "text": "We ate steaming dumplings at a cramped little noodle shop."
+          },
+          {
+            "id": "c",
+            "text": "We ate a really nice meal at a really good place."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Steaming”, “cramped” and “little” are precise: you can see, smell and feel the place. “Nice” and “good” could mean anything.",
+        "hint": "Which adjectives could you draw?"
+      },
+      {
+        "id": "q2",
+        "prompt": "Where is the adjective in “The sky was grey”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "sky"
+          },
+          {
+            "id": "b",
+            "text": "was"
+          },
+          {
+            "id": "c",
+            "text": "grey"
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Grey” describes the sky. Adjectives can come after a linking verb (was, seems, looks) as well as before a noun."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which word is a proper adjective (made from a name, so it has a capital)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Italian, in “Italian pizza”"
+          },
+          {
+            "id": "b",
+            "text": "crispy, in “crispy pizza”"
+          },
+          {
+            "id": "c",
+            "text": "Pizza, in “Pizza is great”"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Italian” comes from the name Italy and describes the pizza, so it is a proper adjective with a capital letter."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence has the adjectives in the most natural order?",
+        "options": [
+          {
+            "id": "a",
+            "text": "She wore a red old wool scarf."
+          },
+          {
+            "id": "b",
+            "text": "She wore an old red wool scarf."
+          },
+          {
+            "id": "c",
+            "text": "She wore a wool red old scarf."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "English puts opinion and age before colour, and colour before material: old → red → wool. Native speakers feel it even without knowing the rule.",
+        "hint": "Read each one aloud. Which sounds right?"
+      }
+    ]
+  },
+  {
+    "key": "e03.adjective-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Paint the picture",
+    "prompt": "Write four sentences describing a place you know well: a kitchen, a bus stop, a beach, a locker room. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Pick adjectives a reader could see, hear, smell or touch: sticky, echoing, salty, frayed.",
+      "One precise adjective beats two vague ones. Swap “nice” and “good” for something exact.",
+      "Adjectives can come after a linking verb too: “The floor was sticky.”"
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 150,
+      "minSentences": 4
+    },
+    "analyzers": ["modifiers"],
+    "grammarFocus": ["adjective"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Describe something you can see, with an adjective before the noun.",
+          "needs": ["adjective"]
+        },
+        {
+          "ask": "Describe a sound or a smell, with a precise adjective (not “nice” or “good”).",
+          "needs": ["adjective"]
+        },
+        {
+          "ask": "Use an adjective after a linking verb: “The air was damp.”",
+          "needs": ["adjective", "linking-verb"]
+        },
+        {
+          "ask": "Describe one small detail most people would miss.",
+          "needs": ["adjective"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e03.compare-sort",
+    "type": "SORT",
+    "title": "Two or more?",
+    "instructions": "Is the word in capitals a comparative (comparing two) or a superlative (the most of three or more)?",
+    "buckets": [
+      {
+        "id": "comparative",
+        "label": "Comparative (two)"
+      },
+      {
+        "id": "superlative",
+        "label": "Superlative (three or more)"
+      }
+    ],
+    "items": [
+      {
+        "id": "faster",
+        "text": "A cheetah is FASTER than a lion.",
+        "bucketId": "comparative"
+      },
+      {
+        "id": "tallest",
+        "text": "Jaden is the TALLEST player on the team.",
+        "bucketId": "superlative"
+      },
+      {
+        "id": "more-careful",
+        "text": "Mia is MORE CAREFUL than her brother.",
+        "bucketId": "comparative"
+      },
+      {
+        "id": "best",
+        "text": "That was the BEST pizza in town.",
+        "bucketId": "superlative"
+      },
+      {
+        "id": "worse",
+        "text": "The storm got WORSE than yesterday.",
+        "bucketId": "comparative"
+      },
+      {
+        "id": "most-famous",
+        "text": "It is the MOST FAMOUS painting in the museum.",
+        "bucketId": "superlative"
+      },
+      {
+        "id": "happier",
+        "text": "The puppy looked HAPPIER after its walk.",
+        "bucketId": "comparative"
+      },
+      {
+        "id": "least",
+        "text": "This is the LEAST expensive phone in the shop.",
+        "bucketId": "superlative"
+      }
+    ]
+  },
+  {
+    "key": "e03.compare-blank",
+    "type": "FILL_BLANK",
+    "title": "Pick the right form",
+    "instructions": "Comparing two? Use -er or more. Three or more? Use -est or most. Short words add -er/-est; long words use more/most.",
+    "items": [
+      {
+        "id": "tall",
+        "sentence": "My sister is ___ than me.",
+        "answers": ["taller"],
+        "choices": ["taller", "tallest", "more tall"],
+        "hint": "Two people, and “tall” is a short word.",
+        "explanation": "Two people → comparative. Short word → add -er: taller."
+      },
+      {
+        "id": "beautiful",
+        "sentence": "This is the ___ sunset I have ever seen.",
+        "answers": ["most beautiful"],
+        "choices": ["beautifulest", "more beautiful", "most beautiful"],
+        "hint": "“Ever seen” compares it with every sunset. Is “beautiful” short or long?",
+        "explanation": "Of all sunsets → superlative. Long word → most: most beautiful."
+      },
+      {
+        "id": "good",
+        "sentence": "Your second draft is ___ than your first.",
+        "answers": ["better"],
+        "choices": ["gooder", "better", "best"],
+        "hint": "“Good” is irregular.",
+        "explanation": "good → better → best. Two drafts → better."
+      },
+      {
+        "id": "bad",
+        "sentence": "That was the ___ traffic jam of the whole year.",
+        "answers": ["worst"],
+        "choices": ["baddest", "worse", "worst"],
+        "hint": "“Bad” is irregular, and this is compared with the whole year.",
+        "explanation": "bad → worse → worst. The whole year → superlative: worst."
+      },
+      {
+        "id": "happy",
+        "sentence": "Our cat is ___ in the sun than in the shade.",
+        "answers": ["happier"],
+        "choices": ["happyer", "happier", "more happier"],
+        "hint": "Consonant + y: change y to i.",
+        "explanation": "happy → happier: change the y to i and add -er. Never “more happier”."
+      },
+      {
+        "id": "big",
+        "sentence": "The blue whale is the ___ animal on Earth.",
+        "answers": ["biggest"],
+        "choices": ["bigest", "biggest", "most big"],
+        "hint": "One vowel + one consonant at the end: double it.",
+        "explanation": "big → biggest: double the g, then add -est."
+      },
+      {
+        "id": "dangerous",
+        "sentence": "Crossing the river is ___ than taking the bridge.",
+        "answers": ["more dangerous"],
+        "choices": ["dangerouser", "more dangerous", "most dangerous"],
+        "hint": "Two choices, and a long word.",
+        "explanation": "Two ways → comparative. Long word → more dangerous."
+      },
+      {
+        "id": "far",
+        "sentence": "Of all the runners, Leo threw the javelin ___.",
+        "answers": ["farthest", "furthest"],
+        "choices": ["farther", "farthest", "farest"],
+        "hint": "“Of all the runners” means more than two.",
+        "explanation": "far → farther → farthest (or further → furthest). All the runners → farthest."
+      }
+    ]
+  },
+  {
+    "key": "e03.compare-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Comparison detective",
+    "instructions": "Five comparisons in this review are wrong. Tap each one, then type the right form.",
+    "text": "The new skate park is gooder than the old one. Its ramps are tallest than the old ramps, and the bowl is the bigest in the city. My friend Ana says it is the excitingest place she has ever skated. Of the two halfpipes, the left one is the steepest, so I started on the right one.",
+    "errors": [
+      {
+        "word": "gooder",
+        "fixes": ["better"],
+        "explanation": "good → better → best. “Gooder” isn’t a word."
+      },
+      {
+        "word": "tallest",
+        "fixes": ["taller"],
+        "explanation": "“Than” compares two things, so use the comparative: taller than."
+      },
+      {
+        "word": "bigest",
+        "fixes": ["biggest"],
+        "explanation": "One vowel + one consonant at the end: double the consonant. big → biggest."
+      },
+      {
+        "word": "excitingest",
+        "fixes": ["most exciting"],
+        "explanation": "Long words use most, not -est: the most exciting."
+      },
+      {
+        "word": "steepest",
+        "fixes": ["steeper"],
+        "explanation": "There are only two halfpipes, so use the comparative: steeper."
+      }
+    ]
+  },
+  {
+    "key": "e03.compare-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Head to head",
+    "prompt": "Compare two or more things you know well: two games, three snacks, two seasons, your favourite teams. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Comparing two: -er or more, often with “than”: faster than, more exciting than.",
+      "Three or more: the -est or the most: the fastest, the most exciting.",
+      "Irregular: good → better → best, bad → worse → worst. Never “more better”."
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 150,
+      "minSentences": 4
+    },
+    "analyzers": ["modifiers"],
+    "grammarFocus": ["comparative", "superlative"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Compare two things with a short word + -er and “than”.",
+          "needs": ["comparative"]
+        },
+        {
+          "ask": "Compare two things with “more” + a long word (more exciting, more comfortable).",
+          "needs": ["comparative"]
+        },
+        {
+          "ask": "Pick the best or worst of three or more with a superlative.",
+          "needs": ["superlative"]
+        },
+        {
+          "ask": "Use better, best, worse or worst.",
+          "needs": ["adjective"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e03.adverb-sort",
+    "type": "SORT",
+    "title": "How, when or where?",
+    "instructions": "What does the adverb in capitals tell you: how, when or where?",
+    "buckets": [
+      {
+        "id": "how",
+        "label": "How?"
+      },
+      {
+        "id": "when",
+        "label": "When?"
+      },
+      {
+        "id": "where",
+        "label": "Where?"
+      }
+    ],
+    "items": [
+      {
+        "id": "carefully",
+        "text": "Dev CAREFULLY lifted the lid.",
+        "bucketId": "how"
+      },
+      {
+        "id": "yesterday",
+        "text": "The package arrived YESTERDAY.",
+        "bucketId": "when"
+      },
+      {
+        "id": "upstairs",
+        "text": "Grandma is UPSTAIRS.",
+        "bucketId": "where"
+      },
+      {
+        "id": "silently",
+        "text": "The fox crept SILENTLY past the hens.",
+        "bucketId": "how"
+      },
+      {
+        "id": "soon",
+        "text": "The bus will come SOON.",
+        "bucketId": "when"
+      },
+      {
+        "id": "everywhere",
+        "text": "We looked EVERYWHERE for the cat.",
+        "bucketId": "where"
+      },
+      {
+        "id": "well",
+        "text": "Priya sings WELL.",
+        "bucketId": "how"
+      },
+      {
+        "id": "finally",
+        "text": "The rain FINALLY stopped.",
+        "bucketId": "when"
+      },
+      {
+        "id": "outside",
+        "text": "Let’s eat OUTSIDE.",
+        "bucketId": "where"
+      },
+      {
+        "id": "fast",
+        "text": "The river flowed FAST after the storm.",
+        "bucketId": "how"
+      },
+      {
+        "id": "never",
+        "text": "I NEVER skip breakfast.",
+        "bucketId": "when"
+      },
+      {
+        "id": "nearby",
+        "text": "A dog barked NEARBY.",
+        "bucketId": "where"
+      }
+    ]
+  },
+  {
+    "key": "e03.adverb-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Find the adverbs",
+    "instructions": "Tap the seven adverbs. Look for words that tell how, when or where something happened.",
+    "text": "Yesterday the power failed. My brother grabbed a candle and walked carefully downstairs. Outside, thunder crashed loudly. We waited nervously until the lights finally returned.",
+    "targets": [
+      "Yesterday",
+      "carefully",
+      "downstairs",
+      "Outside",
+      "loudly",
+      "nervously",
+      "finally"
+    ],
+    "explanation": "When: yesterday, finally. How: carefully, loudly, nervously. Where: downstairs, outside."
+  },
+  {
+    "key": "e03.adverb-transform",
+    "type": "TRANSFORM",
+    "title": "Adjective to adverb",
+    "instructions": "Rewrite each sentence so it uses an adverb that tells how. Change the adjective into an -ly adverb and move it next to the verb.",
+    "items": [
+      {
+        "id": "quiet",
+        "task": "Use an adverb that tells how she spoke.",
+        "source": "Her voice was quiet when she spoke.",
+        "answers": ["She spoke quietly.", "She spoke quietly when she spoke."],
+        "hints": ["What did she do? She spoke. How?", "quiet → quietly"],
+        "explanation": "“Quietly” describes the verb “spoke”: She spoke quietly."
+      },
+      {
+        "id": "careful",
+        "task": "Use an adverb that tells how Leo carried the tray.",
+        "source": "Leo was careful as he carried the tray.",
+        "answers": ["Leo carried the tray carefully.", "Leo carefully carried the tray."],
+        "hints": ["Start with “Leo carried the tray…”", "careful → carefully"],
+        "explanation": "careful → carefully. The adverb can go after the object or before the verb."
+      },
+      {
+        "id": "happy",
+        "task": "Use an adverb that tells how the dog wagged its tail.",
+        "source": "The dog was happy and wagged its tail.",
+        "answers": ["The dog wagged its tail happily.", "The dog happily wagged its tail."],
+        "hints": ["Consonant + y: change y to i before -ly.", "happy → happily"],
+        "explanation": "happy → happily: the y changes to i."
+      },
+      {
+        "id": "gentle",
+        "task": "Use an adverb that tells how Ms Park closed the door.",
+        "source": "Ms Park closed the door in a gentle way.",
+        "answers": ["Ms Park closed the door gently.", "Ms Park gently closed the door."],
+        "hints": ["Words ending in -le drop the e and add y.", "gentle → gently"],
+        "explanation": "gentle → gently. “In a gentle way” is four words; “gently” is one."
+      },
+      {
+        "id": "good",
+        "task": "Use an adverb that tells how the team played.",
+        "source": "The team played a good game.",
+        "answers": ["The team played well."],
+        "hints": ["“Good” has a special adverb. It isn’t “goodly”.", "good → well"],
+        "explanation": "The adverb of good is well: The team played well."
+      }
+    ]
+  },
+  {
+    "key": "e03.adverb-sentences",
+    "type": "SENTENCE_SET",
+    "title": "How, when, where",
+    "prompt": "Write four sentences about a morning that didn’t go to plan. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "How: quickly, carefully, nervously, well, hard. When: yesterday, soon, later, finally, always. Where: here, outside, upstairs, nearby, everywhere.",
+      "Adverbs can move: “Finally, the bus came.” “The bus finally came.”",
+      "Strong verbs need fewer adverbs: “sprinted” says more than “ran quickly”."
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 150,
+      "minSentences": 4
+    },
+    "analyzers": ["modifiers"],
+    "grammarFocus": ["adverb-how", "adverb-when", "adverb-where"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Start with an adverb that tells when (Yesterday, Suddenly, Finally…).",
+          "needs": ["adverb-when"]
+        },
+        {
+          "ask": "Show how someone moved, with an adverb that tells how.",
+          "needs": ["adverb-how"]
+        },
+        {
+          "ask": "Say where something happened, with an adverb that tells where.",
+          "needs": ["adverb-where"]
+        },
+        {
+          "ask": "Use two adverbs: one for how and one for when.",
+          "needs": ["adverb-how", "adverb-when"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e03.good-well-blank",
+    "type": "FILL_BLANK",
+    "title": "Good or well? Bad or badly?",
+    "instructions": "Adjectives describe nouns (and come after linking verbs like is, feels, looks). Adverbs describe how an action is done.",
+    "items": [
+      {
+        "id": "sings",
+        "sentence": "Ava sings really ___.",
+        "answers": ["well"],
+        "choices": ["good", "well"],
+        "hint": "Is it telling how she sings?",
+        "explanation": "It tells how she sings (an action), so use the adverb: well."
+      },
+      {
+        "id": "soup",
+        "sentence": "The soup smells ___.",
+        "answers": ["good"],
+        "choices": ["good", "well"],
+        "hint": "Swap in “is”: the soup is ___.",
+        "explanation": "“Smells” is a linking verb here (the soup is good), so use the adjective: good."
+      },
+      {
+        "id": "test",
+        "sentence": "I did ___ on my science test.",
+        "answers": ["well"],
+        "choices": ["good", "well"],
+        "hint": "How did you do?",
+        "explanation": "It tells how you did, so use the adverb: well."
+      },
+      {
+        "id": "idea",
+        "sentence": "That’s a ___ idea!",
+        "answers": ["good"],
+        "choices": ["good", "well"],
+        "explanation": "It describes the noun “idea”, so use the adjective: good."
+      },
+      {
+        "id": "played",
+        "sentence": "We played ___ in the first half but improved after the break.",
+        "answers": ["badly"],
+        "choices": ["bad", "badly"],
+        "hint": "How did you play?",
+        "explanation": "It tells how you played, so use the adverb: badly."
+      },
+      {
+        "id": "feel",
+        "sentence": "I feel ___ about forgetting your birthday.",
+        "answers": ["bad"],
+        "choices": ["bad", "badly"],
+        "hint": "“Feel” links you to a feeling here.",
+        "explanation": "“Feel” is a linking verb here (I am bad about it), so use the adjective: bad."
+      },
+      {
+        "id": "quick",
+        "sentence": "The deer ran ___ into the trees.",
+        "answers": ["quickly"],
+        "choices": ["quick", "quickly"],
+        "explanation": "It tells how the deer ran, so use the adverb: quickly."
+      },
+      {
+        "id": "really",
+        "sentence": "The movie was ___ funny.",
+        "answers": ["really"],
+        "choices": ["real", "really"],
+        "hint": "Which word makes “funny” stronger?",
+        "explanation": "“Really” is the adverb that makes funny stronger. “Real” describes nouns: a real diamond."
+      }
+    ]
+  },
+  {
+    "key": "e03.very-transform",
+    "type": "TRANSFORM",
+    "title": "Ditch “very”",
+    "instructions": "Replace “very” + the describing word with one strong word. Keep the rest of the sentence the same.",
+    "items": [
+      {
+        "id": "big",
+        "task": "Swap “very big” for one strong word.",
+        "source": "The dog was very big.",
+        "answers": [
+          "The dog was huge.",
+          "The dog was enormous.",
+          "The dog was gigantic.",
+          "The dog was massive.",
+          "The dog was immense."
+        ],
+        "hints": [
+          "Think of a word that means “bigger than big”.",
+          "Try huge, enormous or gigantic."
+        ],
+        "explanation": "Huge, enormous, gigantic or massive: one word does the job of two, and it’s more precise."
+      },
+      {
+        "id": "tired",
+        "task": "Swap “very tired” for one strong word.",
+        "source": "After the race, I was very tired.",
+        "answers": [
+          "After the race, I was exhausted.",
+          "After the race, I was drained.",
+          "After the race, I was worn out.",
+          "After the race, I was shattered."
+        ],
+        "hints": ["How do you feel after running a long way?", "Try exhausted."],
+        "explanation": "“Exhausted” or “drained” says exactly how tired."
+      },
+      {
+        "id": "cold",
+        "task": "Swap “very cold” for one strong word.",
+        "source": "The lake was very cold.",
+        "answers": [
+          "The lake was freezing.",
+          "The lake was icy.",
+          "The lake was frigid.",
+          "The lake was ice-cold."
+        ],
+        "hints": ["Colder than cold…", "Try freezing or icy."],
+        "explanation": "Freezing, icy or frigid: you can feel it."
+      },
+      {
+        "id": "angry",
+        "task": "Swap “very angry” for one strong word.",
+        "source": "Coach was very angry about the mud on the floor.",
+        "answers": [
+          "Coach was furious about the mud on the floor.",
+          "Coach was livid about the mud on the floor.",
+          "Coach was enraged about the mud on the floor.",
+          "Coach was fuming about the mud on the floor."
+        ],
+        "hints": ["Angrier than angry…", "Try furious."],
+        "explanation": "“Furious” or “livid” shows the size of the anger."
+      },
+      {
+        "id": "funny",
+        "task": "Swap “very funny” for one strong word.",
+        "source": "The movie was very funny.",
+        "answers": [
+          "The movie was hilarious.",
+          "The movie was hysterical.",
+          "The movie was comical."
+        ],
+        "hints": ["So funny you can’t stop laughing…", "Try hilarious."],
+        "explanation": "“Hilarious” is funnier than “very funny”."
+      },
+      {
+        "id": "quickly",
+        "task": "Swap “walked very quickly” for one strong verb.",
+        "source": "Maya walked very quickly to the door.",
+        "answers": [
+          "Maya hurried to the door.",
+          "Maya rushed to the door.",
+          "Maya raced to the door.",
+          "Maya dashed to the door.",
+          "Maya sprinted to the door.",
+          "Maya strode to the door.",
+          "Maya marched to the door.",
+          "Maya hustled to the door."
+        ],
+        "hints": ["A strong verb can replace a verb + adverb.", "Try hurried, rushed or raced."],
+        "explanation": "A strong verb (hurried, raced, dashed) can do the work of “walked very quickly”."
+      }
+    ]
+  },
+  {
+    "key": "e03.modifier-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Describing word clinic",
+    "instructions": "Five describing words in this match report are the wrong kind. Tap each one, then type the right word.",
+    "text": "Our team played good in the first half. Sam ran quick down the wing and passed the ball perfect to Jordan. Jordan scored easy. In the second half we defended real well, and the crowd went wild.",
+    "errors": [
+      {
+        "word": "good",
+        "fixes": ["well"],
+        "explanation": "It tells how the team played, so use the adverb: well."
+      },
+      {
+        "word": "quick",
+        "fixes": ["quickly"],
+        "explanation": "It tells how Sam ran: quickly."
+      },
+      {
+        "word": "perfect",
+        "fixes": ["perfectly"],
+        "explanation": "It tells how Sam passed: perfectly."
+      },
+      {
+        "word": "easy",
+        "fixes": ["easily"],
+        "explanation": "It tells how Jordan scored: easily (y → i)."
+      },
+      {
+        "word": "real",
+        "fixes": ["really"],
+        "explanation": "“Real” describes nouns. To make “well” stronger, use the adverb: really."
+      }
+    ]
+  },
+  {
+    "key": "e03.review-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "The honest review",
+    "prompt": "Write a review (6–10 sentences) of a game, a film, a meal or a place. Say what was done well and what was done badly, compare it with something else, and don’t use “very” once. Use “good” and “well” correctly at least once each.",
+    "tips": [
+      "Good describes a thing (a good ending). Well tells how something is done (the actors played their parts well).",
+      "Compare: better than, the best, worse than, the most exciting.",
+      "Instead of “very good”, try excellent, superb or outstanding. Instead of “very bad”, try awful or dreadful."
+    ],
+    "constraints": {
+      "minWords": 60,
+      "maxWords": 200,
+      "minSentences": 6
+    },
+    "analyzers": ["modifiers"],
+    "grammarFocus": ["adjective", "adverb-how", "comparative"]
+  },
+  {
+    "key": "e03.describe-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Which describes it best?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is the most precise?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The very old, very big tree was really tall."
+          },
+          {
+            "id": "b",
+            "text": "The ancient oak towered over the house."
+          },
+          {
+            "id": "c",
+            "text": "The tree was old and big and tall."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Ancient”, “oak” and “towered” replace six weak words. Precise beats piled-up.",
+        "hint": "Which one uses the fewest words to say the most?"
+      },
+      {
+        "id": "q2",
+        "prompt": "Which adjective works best? “The ___ kitten curled up in my lap.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "nice"
+          },
+          {
+            "id": "b",
+            "text": "fluffy"
+          },
+          {
+            "id": "c",
+            "text": "good"
+          },
+          {
+            "id": "d",
+            "text": "very cute"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Fluffy” lets you feel the kitten. “Nice”, “good” and “very cute” tell an opinion but show nothing."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence uses too many adjectives?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A thin, grey cat slipped through the fence."
+          },
+          {
+            "id": "b",
+            "text": "The big, huge, enormous, gigantic, massive truck rolled past."
+          },
+          {
+            "id": "c",
+            "text": "Cold rain soaked the empty playground."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Five adjectives that mean the same thing! Pick the best one: “The enormous truck rolled past.”"
+      },
+      {
+        "id": "q4",
+        "prompt": "Which is the best replacement for “ran very quickly”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "ran really quickly"
+          },
+          {
+            "id": "b",
+            "text": "sprinted"
+          },
+          {
+            "id": "c",
+            "text": "ran quick"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A strong verb like “sprinted” beats a verb + “very” + adverb. “Ran quick” uses an adjective where an adverb belongs."
+      },
+      {
+        "id": "q5",
+        "prompt": "In an essay, which sentence sounds most formal and precise?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Recycling is a really, really good idea."
+          },
+          {
+            "id": "b",
+            "text": "Recycling is super important and stuff."
+          },
+          {
+            "id": "c",
+            "text": "Recycling is an effective way to reduce waste."
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Effective” is precise and formal. Essays avoid “really, really”, “super” and “stuff”."
+      }
+    ]
+  },
+  {
+    "key": "e03.describe-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Tired words",
+    "instructions": "This paragraph leans on weak describing words. Tap the five tired words that could be swapped for something stronger.",
+    "text": "The market was very busy. There were nice smells from the food stalls and a lot of good fruit. A man was shouting really loudly about his bad prices.",
+    "targets": ["very", "nice", "good", "really", "bad"],
+    "explanation": "“Very” and “really” prop up weak words; “nice”, “good” and “bad” tell an opinion without showing anything. Try: “The market was packed. Spicy smells drifted from the food stalls…”"
+  },
+  {
+    "key": "e03.describe-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Describe it!",
+    "prompt": "Describe an object that matters to you (a hoodie, a phone case, a trophy, a book) so clearly that a reader could pick it out of a pile. Write 6–10 sentences with precise adjectives, at least one comparison, and adverbs that tell how, when or where. No “very”, “nice” or “good”.",
+    "tips": [
+      "Zoom in: colour, size, texture, smell, marks of age (a frayed cuff, a cracked corner).",
+      "Compare it: softer than…, the oldest thing I own, more battered than….",
+      "Adverbs: where you keep it (upstairs, everywhere), how you use it (carefully), when you got it (last summer)."
+    ],
+    "constraints": {
+      "minWords": 60,
+      "maxWords": 200,
+      "minSentences": 6
+    },
+    "analyzers": ["modifiers"],
+    "grammarFocus": ["adjective", "comparative", "adverb-how", "adverb-where"]
+  },
+  {
+    "key": "e03.unit-check",
+    "type": "QUIZ",
+    "title": "Adjectives & Adverbs check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "a1",
+        "prompt": "Which word is an adjective in “The hungry bear sniffed the air”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "hungry"
+          },
+          {
+            "id": "b",
+            "text": "bear"
+          },
+          {
+            "id": "c",
+            "text": "sniffed"
+          },
+          {
+            "id": "d",
+            "text": "air"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Hungry” describes the noun “bear”.",
+        "skill": "adjectives"
+      },
+      {
+        "id": "a2",
+        "prompt": "In “The cave was damp”, what does the adjective describe?",
+        "options": [
+          {
+            "id": "a",
+            "text": "was"
+          },
+          {
+            "id": "b",
+            "text": "cave"
+          },
+          {
+            "id": "c",
+            "text": "nothing"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Damp” comes after the linking verb “was” and describes the cave.",
+        "skill": "adjectives"
+      },
+      {
+        "id": "a3",
+        "prompt": "Which adjective is the most precise?",
+        "options": [
+          {
+            "id": "a",
+            "text": "a nice jacket"
+          },
+          {
+            "id": "b",
+            "text": "a good jacket"
+          },
+          {
+            "id": "c",
+            "text": "a waterproof jacket"
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Waterproof” tells the reader something exact. “Nice” and “good” are opinions that show nothing.",
+        "skill": "adjectives"
+      },
+      {
+        "id": "a4",
+        "prompt": "Which adjective tells “how many”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "several"
+          },
+          {
+            "id": "b",
+            "text": "wooden"
+          },
+          {
+            "id": "c",
+            "text": "this"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Several” tells how many. “Wooden” tells what kind; “this” tells which one.",
+        "skill": "adjectives"
+      },
+      {
+        "id": "c1",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "This box is more heavier than that one."
+          },
+          {
+            "id": "b",
+            "text": "This box is heavier than that one."
+          },
+          {
+            "id": "c",
+            "text": "This box is heaviest than that one."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Two boxes → comparative. Heavy → heavier (y → i). Never “more heavier”.",
+        "skill": "comparatives & superlatives"
+      },
+      {
+        "id": "c2",
+        "prompt": "Choose the right word: “Of all the books on the list, this one is the ___.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "more interesting"
+          },
+          {
+            "id": "b",
+            "text": "interestingest"
+          },
+          {
+            "id": "c",
+            "text": "most interesting"
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "All the books → superlative. Long word → most interesting.",
+        "skill": "comparatives & superlatives"
+      },
+      {
+        "id": "c3",
+        "prompt": "Which is the comparative of “good”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "gooder"
+          },
+          {
+            "id": "b",
+            "text": "better"
+          },
+          {
+            "id": "c",
+            "text": "best"
+          },
+          {
+            "id": "d",
+            "text": "more good"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "good → better → best. It is irregular.",
+        "skill": "comparatives & superlatives"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Of the two sisters, Lena is the oldest."
+          },
+          {
+            "id": "b",
+            "text": "Of the two sisters, Lena is the older."
+          },
+          {
+            "id": "c",
+            "text": "Of the two sisters, Lena is the most old."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Only two sisters, so use the comparative: the older.",
+        "skill": "comparatives & superlatives"
+      },
+      {
+        "id": "c5",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "the baddest weather"
+          },
+          {
+            "id": "b",
+            "text": "the worst weather"
+          },
+          {
+            "id": "c",
+            "text": "the most bad weather"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "bad → worse → worst.",
+        "skill": "comparatives & superlatives"
+      },
+      {
+        "id": "d1",
+        "prompt": "What does the adverb tell you in “We will leave soon”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "how"
+          },
+          {
+            "id": "b",
+            "text": "when"
+          },
+          {
+            "id": "c",
+            "text": "where"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Soon” tells when we will leave.",
+        "skill": "adverbs: how, when, where"
+      },
+      {
+        "id": "d2",
+        "prompt": "Which word is an adverb that tells where?",
+        "options": [
+          {
+            "id": "a",
+            "text": "quietly"
+          },
+          {
+            "id": "b",
+            "text": "upstairs"
+          },
+          {
+            "id": "c",
+            "text": "tomorrow"
+          },
+          {
+            "id": "d",
+            "text": "angry"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Upstairs” tells where. Quietly tells how; tomorrow tells when; angry is an adjective.",
+        "skill": "adverbs: how, when, where"
+      },
+      {
+        "id": "d3",
+        "prompt": "Which word does the adverb describe in “The kitten purred softly”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "kitten"
+          },
+          {
+            "id": "b",
+            "text": "purred"
+          },
+          {
+            "id": "c",
+            "text": "The"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Softly” tells how the kitten purred: adverbs describe verbs.",
+        "skill": "adverbs: how, when, where"
+      },
+      {
+        "id": "d4",
+        "prompt": "What is the adverb form of “gentle”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "gentlely"
+          },
+          {
+            "id": "b",
+            "text": "gently"
+          },
+          {
+            "id": "c",
+            "text": "gentley"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Words ending in -le drop the e and add y: gentle → gently.",
+        "skill": "adverbs: how, when, where"
+      },
+      {
+        "id": "d5",
+        "prompt": "Which sentence has an adverb that tells how?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The bus left early."
+          },
+          {
+            "id": "b",
+            "text": "The bus waited outside."
+          },
+          {
+            "id": "c",
+            "text": "The bus moved slowly."
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Slowly” tells how the bus moved. Early tells when; outside tells where.",
+        "skill": "adverbs: how, when, where"
+      },
+      {
+        "id": "g1",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "She plays the piano good."
+          },
+          {
+            "id": "b",
+            "text": "She plays the piano well."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "It tells how she plays (an action), so use the adverb: well.",
+        "skill": "good vs well"
+      },
+      {
+        "id": "g2",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The pizza tastes good."
+          },
+          {
+            "id": "b",
+            "text": "The pizza tastes well."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Tastes” is a linking verb here (the pizza is good), so use the adjective: good.",
+        "skill": "good vs well"
+      },
+      {
+        "id": "g3",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "He answered the questions correct."
+          },
+          {
+            "id": "b",
+            "text": "He answered the questions correctly."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "It tells how he answered, so use the adverb: correctly.",
+        "skill": "good vs well"
+      },
+      {
+        "id": "g4",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "That was real fun."
+          },
+          {
+            "id": "b",
+            "text": "That was really fun."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Really” (an adverb) makes “fun” stronger. “Real” describes nouns.",
+        "skill": "good vs well"
+      },
+      {
+        "id": "g5",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "I feel bad that I missed your game."
+          },
+          {
+            "id": "b",
+            "text": "I feel badly that I missed your game."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Feel” links you to a feeling, so use the adjective: bad.",
+        "skill": "good vs well"
+      },
+      {
+        "id": "v1",
+        "prompt": "Which is the best replacement for “very small”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "really small"
+          },
+          {
+            "id": "b",
+            "text": "tiny"
+          },
+          {
+            "id": "c",
+            "text": "smallest"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "One strong word (“tiny”) beats “very” + a weak word.",
+        "skill": "avoiding “very”"
+      },
+      {
+        "id": "v2",
+        "prompt": "Which is the best replacement for “very scared”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "terrified"
+          },
+          {
+            "id": "b",
+            "text": "scareder"
+          },
+          {
+            "id": "c",
+            "text": "so scared"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Terrified” says exactly how scared.",
+        "skill": "avoiding “very”"
+      },
+      {
+        "id": "v3",
+        "prompt": "Which sentence is the strongest?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The room was very, very quiet."
+          },
+          {
+            "id": "b",
+            "text": "The room was silent."
+          },
+          {
+            "id": "c",
+            "text": "The room was really quiet."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Silent” is precise; “very, very quiet” uses three words to say it less clearly.",
+        "skill": "avoiding “very”"
+      },
+      {
+        "id": "v4",
+        "prompt": "Which strong verb could replace “ate very quickly”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "gobbled"
+          },
+          {
+            "id": "b",
+            "text": "nibbled"
+          },
+          {
+            "id": "c",
+            "text": "ate quick"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Gobbled” means ate very quickly. “Nibbled” is the opposite!",
+        "skill": "avoiding “very”"
+      },
+      {
+        "id": "v5",
+        "prompt": "Which sentence describes most precisely?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It was a very good, very nice day."
+          },
+          {
+            "id": "b",
+            "text": "It was a sunny, breezy Saturday."
+          },
+          {
+            "id": "c",
+            "text": "It was a really good day."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Sunny”, “breezy” and “Saturday” show the day. “Good” and “nice” only judge it.",
+        "skill": "avoiding “very”"
+      }
+    ]
+  },
+  {
+    "key": "e03.check-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Unit check: the showdown",
+    "prompt": "Write a paragraph (at least 6 sentences) comparing two or three things: two places to live, three ways to get to school, two video games, two seasons. Show off this unit: precise adjectives, a comparative and a superlative, adverbs that tell how, when and where, “good” or “well” used correctly, and not a single “very”.",
+    "tips": [
+      "Checklist: precise adjectives · a comparative (faster than, more exciting than) · a superlative (the best, the most…) · adverbs for how, when and where · good/well used correctly.",
+      "Short words: -er/-est. Long words: more/most. Never both.",
+      "Read it aloud. Each “very” can become one stronger word."
+    ],
+    "constraints": {
+      "minWords": 70,
+      "maxWords": 220,
+      "minSentences": 6
+    },
+    "analyzers": ["modifiers"],
+    "grammarFocus": ["comparative", "superlative", "adverb-how", "adjective"]
+  }
+]

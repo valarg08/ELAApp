@@ -7,6 +7,15 @@ import {
   findVerbIssues,
   verbHits,
 } from './verbs.js';
+import {
+  MODIFIER_FEATURES,
+  MODIFIER_FEATURE_EXAMPLES,
+  MODIFIER_FEATURE_LABELS,
+  type ModifierFeature,
+  findModifierIssues,
+  modifierHits,
+  veryPhrases,
+} from './modifiers.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -25,6 +34,7 @@ export const GRAMMAR_FEATURES = [
   'object-pronoun',
   'possessive-pronoun',
   ...VERB_FEATURES,
+  ...MODIFIER_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -39,6 +49,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   'object-pronoun': 'an object pronoun',
   'possessive-pronoun': 'a possessive pronoun',
   ...VERB_FEATURE_LABELS,
+  ...MODIFIER_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -53,15 +64,20 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   'object-pronoun': 'me, him, her, us or them receiving the action',
   'possessive-pronoun': 'my, your, their, or mine, yours, theirs',
   ...VERB_FEATURE_EXAMPLES,
+  ...MODIFIER_FEATURE_EXAMPLES,
 };
 
 /** The Coach skill a grammar feature belongs to. */
-export function grammarSkillOf(feature: GrammarFeature): 'nouns' | 'pronouns' | 'verbs' {
+export function grammarSkillOf(
+  feature: GrammarFeature,
+): 'nouns' | 'pronouns' | 'verbs' | 'modifiers' {
   if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
+  if ((MODIFIER_FEATURES as readonly string[]).includes(feature)) return 'modifiers';
   return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
 }
 
-export type { VerbFeature };
+export type { ModifierFeature, VerbFeature };
+export { veryPhrases };
 
 const set = (s: string) => new Set(s.split(' '));
 
@@ -252,6 +268,7 @@ export function grammarFeatures(text: string): FeatureHit[] {
       else if (t.lower === 'his') add('possessive-pronoun');
     });
     for (const hit of verbHits(text, tokens)) hits.push(hit);
+    for (const hit of modifierHits(text, tokens)) hits.push(hit);
   }
   return hits;
 }
@@ -294,7 +311,14 @@ export interface GrammarIssue {
     | 'helper-past'
     | 'should-of'
     | 'agreement'
-    | 'tense-shift';
+    | 'tense-shift'
+    | 'wrong-comparison'
+    | 'double-comparison'
+    | 'comparison-form'
+    | 'real-really'
+    | 'good-well'
+    | 'adjective-for-adverb'
+    | 'weak-very';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -497,3 +521,15 @@ export const firstFeature = (hits: readonly FeatureHit[], feature: GrammarFeatur
 
 /** Verb mistakes: made-up pasts ("goed"), "I seen", "should of", "they was", tense slips. */
 export const verbIssues = (text: string): GrammarIssue[] => findVerbIssues(text, isPluralNoun);
+
+/** Adjective and adverb mistakes: "more taller", "gooder", "biggest than", "did good", "ran quick". */
+export const modifierIssues = (text: string): GrammarIssue[] => findModifierIssues(text);
+
+/** Every grammar mistake the checks know about, in the order they appear. */
+export const grammarIssues = (text: string): GrammarIssue[] =>
+  [
+    ...nounIssues(text),
+    ...pronounIssues(text),
+    ...verbIssues(text),
+    ...modifierIssues(text),
+  ].toSorted((a, b) => a.span.start - b.span.start);

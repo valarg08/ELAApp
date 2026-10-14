@@ -1,0 +1,63 @@
+{
+  "slug": "essay-adverbs-how-when-where",
+  "order": 3,
+  "title": "Adverbs: How, When, Where",
+  "estMinutes": 35,
+  "focusSkills": ["adverbs", "word-choice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Both sentences have the same verb. What extra information does the second one give you?",
+      "a": "The cat climbed.",
+      "b": "Yesterday the cat climbed silently upstairs.",
+      "reveal": "“Yesterday” tells when, “silently” tells how, and “upstairs” tells where. Words that tell how, when or where about a verb are adverbs."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What adverbs do",
+          "body": "An adverb describes a verb (and sometimes an adjective or another adverb). It answers how? (quickly, carefully, well), when? (yesterday, soon, finally, always) or where? (here, outside, upstairs, everywhere). Words like very and quite tell how much."
+        },
+        {
+          "kind": "definition",
+          "title": "Making -ly adverbs",
+          "body": "Many adverbs that tell how are adjectives + -ly: quiet → quietly, careful → carefully. Consonant + y becomes -ily (happy → happily). Words ending in -le swap the e for y (gentle → gently). Some adverbs have no -ly at all: fast, hard, well, soon, here."
+        },
+        {
+          "kind": "example",
+          "title": "Adverbs can move",
+          "text": "Finally, the bus arrived.\nThe bus finally arrived.\nThe bus arrived finally.",
+          "note": "Starting a sentence with an adverb (Suddenly, Later, Outside) is an easy way to vary your sentence openings. Put a comma after it."
+        },
+        {
+          "kind": "compare",
+          "title": "Strong verb or weak verb + adverb?",
+          "telling": "She walked slowly and tiredly to the door. He said loudly that he was angry.",
+          "showing": "She trudged to the door. He shouted that he was angry.",
+          "labels": ["Verb + adverb", "Strong verb"],
+          "note": "Adverbs are useful, but a precise verb often says more in fewer words."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e03.adverb-sort", "e03.adverb-highlight", "e03.adverb-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e03.adverb-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which adverb in your sentences gives the reader the most useful information?",
+        "Find one verb + adverb in your writing. Could a single stronger verb replace both?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

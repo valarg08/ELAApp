@@ -1,0 +1,65 @@
+{
+  "slug": "essay-good-well-and-very",
+  "order": 4,
+  "title": "Good vs Well, Avoiding “Very”",
+  "estMinutes": 40,
+  "focusSkills": ["adjectives", "adverbs", "word-choice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "The very, very, very long speech",
+      "paragraphs": [
+        "Jaden’s class captain speech began: “I will be a very good captain. I play very good, I am very, very organised, and I think it would be very fun.”",
+        "His teacher counted six “very”s in four sentences, and one “play good” that should have been “play well”.",
+        "His second draft: “I will be a dependable captain. I play well, I plan every practice, and I would love the job.” Shorter, stronger, and every word earns its place."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Good or well?",
+          "body": "Good is an adjective: it describes a noun (a good game) or comes after a linking verb (the soup smells good, I feel good). Well is an adverb: it tells how an action is done (she sings well, we played well). Test it: is the word telling how someone did something? Use well."
+        },
+        {
+          "kind": "definition",
+          "title": "The same trap",
+          "body": "After an action verb, use the adverb: ran quickly (not quick), played badly (not bad), answered correctly (not correct). “Real” describes nouns (a real diamond); to make a word stronger, use “really”. After a linking verb, keep the adjective: I feel bad, the room went quiet."
+        },
+        {
+          "kind": "compare",
+          "title": "Ditch “very”",
+          "telling": "very big · very tired · very cold · very angry · very funny · ran very quickly",
+          "showing": "enormous · exhausted · freezing · furious · hilarious · sprinted",
+          "labels": ["Very + weak word", "One strong word"],
+          "note": "“Very” props up a weak word. One precise word is shorter and stronger, especially in essays."
+        },
+        {
+          "kind": "example",
+          "title": "When “very” is fine",
+          "text": "the very first time · thank you very much · very well, let’s begin",
+          "note": "“Very” is fine in fixed phrases like these. The goal is not to ban the word, but to notice when it is propping up something weak."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e03.good-well-blank", "e03.very-transform", "e03.modifier-hunt"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e03.review-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain the difference between good and well in your own words, with an example of each.",
+        "Which “very” do you use most often? What strong word will you use instead?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

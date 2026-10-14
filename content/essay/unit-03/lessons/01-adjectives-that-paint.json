@@ -1,0 +1,63 @@
+{
+  "slug": "essay-adjectives-that-paint",
+  "order": 1,
+  "title": "Adjectives That Paint",
+  "estMinutes": 35,
+  "focusSkills": ["adjectives", "word-choice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which sentence could you draw? Which words make the difference?",
+      "a": "A dog sat by a door.",
+      "b": "A soggy, three-legged dog sat by a peeling red door.",
+      "reveal": "“Soggy”, “three-legged”, “peeling” and “red” are adjectives: they tell what kind of dog and which door. With them, every reader pictures the same scene."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What adjectives do",
+          "body": "An adjective describes a noun or pronoun. It answers what kind? (a muddy boot), which one? (that house, the last slice) or how many? (three eggs, several questions). Articles (a, an, the) are tiny adjectives too."
+        },
+        {
+          "kind": "definition",
+          "title": "Where adjectives go",
+          "body": "Most adjectives come before the noun: “a cold wind”. They can also come after a linking verb (is, was, seems, looks, feels): “The wind was cold.” Adjectives made from names are proper adjectives and take a capital: Italian pizza, Mexican art."
+        },
+        {
+          "kind": "example",
+          "title": "Adjective order",
+          "text": "an old red wool scarf ✓\na red old wool scarf ✗\nthree tiny round silver buttons ✓",
+          "note": "When you stack adjectives, English likes this order: how many → opinion → size → age → shape → colour → material. Read it aloud: the right order sounds right."
+        },
+        {
+          "kind": "compare",
+          "title": "Vague vs precise",
+          "telling": "We had a nice lunch in a good place. The food was great.",
+          "showing": "We ate steaming dumplings in a cramped noodle shop. The broth was salty and rich.",
+          "labels": ["Vague", "Precise"],
+          "note": "Nice, good and great judge without showing. Pick adjectives a reader can see, hear, smell, taste or touch."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e03.adjective-highlight", "e03.adjective-sort", "e03.adjective-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e03.adjective-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which adjective in your sentences paints the clearest picture? Why that one?",
+        "Why is “nice” a weak adjective? What could you use instead?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "essay-comparatives-and-superlatives",
+  "order": 2,
+  "title": "Comparatives & Superlatives",
+  "estMinutes": 40,
+  "focusSkills": ["adjectives", "comparisons"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Finish these: “My phone is ___ than my old one.” “This is the ___ day of the year.” What did you add to the describing word each time?",
+      "placeholder": "My phone is… This is the…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Two things or more?",
+          "body": "A comparative compares two things: “Mia is taller than Leo.” A superlative picks the most of three or more: “Mia is the tallest in the class.” Comparatives often come with “than”; superlatives usually come with “the”."
+        },
+        {
+          "kind": "definition",
+          "title": "-er/-est or more/most?",
+          "body": "Short words (one syllable, and most two-syllable words ending in -y) add -er and -est: fast, faster, fastest; happy, happier, happiest. Longer words use more and most: careful, more careful, most careful. Use one way, never both: not “more taller” or “most biggest”."
+        },
+        {
+          "kind": "example",
+          "title": "Spelling changes",
+          "text": "big → bigger → biggest (one vowel + one consonant: double it)\nnice → nicer → nicest (ends in e: just add -r/-st)\nhappy → happier → happiest (consonant + y: y becomes i)",
+          "note": "Read the word aloud with -er. If it sounds clumsy (beautifuller, excitinger), use more/most instead."
+        },
+        {
+          "kind": "example",
+          "title": "Irregular comparisons",
+          "text": "good → better → best\nbad → worse → worst\nfar → farther → farthest\nlittle → less → least\nmany/much → more → most",
+          "note": "These don’t follow the rules, so learn them by heart. “Gooder” and “baddest” are not words."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e03.compare-sort", "e03.compare-blank", "e03.compare-hunt"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e03.compare-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How do you decide between -er and more?",
+        "Which comparison mistake (more taller, gooder, the tallest of two) do you think people make most? Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

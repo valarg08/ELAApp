@@ -1,10 +1,9 @@
 import {
   buildCoachReport,
   dialogue,
-  nounIssues,
-  pronounIssues,
+  grammarIssues,
   senses,
-  verbIssues,
+  veryPhrases,
   wordStats,
 } from '@storyforge/writing-analysis';
 import { z } from 'zod/v4';
@@ -85,7 +84,9 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
     // Grammar practice is coached on grammar, not on story craft.
     const coach = buildCoachReport(
       input.text,
-      input.rubric.key === 'grammar.practice' ? { analyzers: ['nouns', 'pronouns', 'verbs'] } : {},
+      input.rubric.key === 'grammar.practice'
+        ? { analyzers: ['nouns', 'pronouns', 'verbs', 'modifiers'] }
+        : {},
     );
     const levels: Record<string, number> = {
       creativity: 3,
@@ -94,14 +95,8 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
       sensory: clampLevel(1 + usedSenses * 0.75),
       grammar: dialogueIssues > 2 ? 2 : 3,
       focus: 3,
-      conventions:
-        nounIssues(input.text).length +
-          pronounIssues(input.text).length +
-          verbIssues(input.text).length >
-        2
-          ? 2
-          : 3,
-      wordChoice: 3,
+      conventions: grammarIssues(input.text).length > 2 ? 2 : 3,
+      wordChoice: veryPhrases(input.text).length > 2 ? 2 : 3,
     };
     const first = coach.strengths[0];
     return {

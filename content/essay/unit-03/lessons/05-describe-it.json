@@ -1,0 +1,59 @@
+{
+  "slug": "essay-describe-it",
+  "order": 5,
+  "title": "Describe It!",
+  "estMinutes": 40,
+  "focusSkills": ["adjectives", "adverbs", "word-choice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Imagine your backpack is in a pile of thirty backpacks. Describe it in one sentence so a stranger could find it.",
+      "placeholder": "Mine is the…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Zoom in",
+          "body": "Good description picks details only this object has. Not “a blue backpack” (there are ten of those), but “a faded blue backpack with a broken zip and a keyring shaped like a taco”. Size, colour, texture, smell, sound, age and damage are all clues."
+        },
+        {
+          "kind": "definition",
+          "title": "Choose, don’t pile",
+          "body": "Two exact adjectives beat five vague ones. “The big, huge, enormous truck” says less than “the enormous truck”. If two words mean the same thing, keep the stronger one."
+        },
+        {
+          "kind": "example",
+          "title": "Compare to make it clear",
+          "text": "The trophy is smaller than my hand.\nIt is the oldest thing on my shelf.\nThe gold paint is more chipped on one side.",
+          "note": "Comparisons give the reader something to measure against. “Small” is vague; “smaller than my hand” is exact."
+        },
+        {
+          "kind": "example",
+          "title": "Adverbs set the scene",
+          "text": "Every morning I carefully zip it shut and hang it upstairs.",
+          "note": "When (every morning), how (carefully) and where (upstairs) show how the object fits into your life."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e03.describe-mc", "e03.describe-highlight"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e03.describe-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which detail in your description would help a stranger most? Why?",
+        "Did you cut any describing words while you revised? Which ones, and why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "slug": "essay-adjectives-and-adverbs-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Adjectives & Adverbs",
+  "estMinutes": 45,
+  "focusSkills": ["adjectives", "adverbs", "comparisons"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which part of this unit feels easiest, and which do you want to look at again?",
+      "placeholder": "Easiest… Look again at…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Adjectives: quick review",
+          "body": "Adjectives describe nouns: what kind (muddy), which one (that, last), how many (three, several). They go before a noun or after a linking verb (the room was silent). Pick precise ones, not nice, good or great."
+        },
+        {
+          "kind": "definition",
+          "title": "Comparisons: quick review",
+          "body": "Two things: -er or more (faster than, more careful than). Three or more: -est or most (the fastest, the most careful). Short words take -er/-est; long words take more/most; never both. Irregular: good, better, best; bad, worse, worst."
+        },
+        {
+          "kind": "definition",
+          "title": "Adverbs: quick review",
+          "body": "Adverbs tell how (carefully, well), when (yesterday, finally) and where (outside, upstairs). After an action verb, use the adverb: played well, ran quickly. After a linking verb, use the adjective: feels good, went quiet. Swap “very + weak word” for one strong word."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll write a short paragraph that shows off everything you’ve learned. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e03.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e03.check-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What did you learn about adjectives or adverbs that you didn’t know before this unit?",
+        "Which describing-word habit will you check for when you write your next essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}
