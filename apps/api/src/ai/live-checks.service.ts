@@ -7,6 +7,7 @@ import {
   type PovConsistencyResult,
   type ToneStyleResult,
   type FigurativeLanguageResult,
+  type PoetryCraftResult,
   type FeedbackPoint,
   HOLDING_MESSAGE,
   LIVE_ANALYZERS,
@@ -22,6 +23,7 @@ import {
   povPoints,
   tonePoints,
   figurativePoints,
+  poetryPoints,
   sensoryPoints,
   showVsTellPoints,
 } from '@storyforge/ai';
@@ -44,6 +46,7 @@ import { SafetyService } from '../safety/safety.service.js';
 import { AiRunnerService } from './ai-runner.service.js';
 import { plotInput, plotScope } from './plot-input.js';
 import { povInput, toneInput, toneScope } from './voice-input.js';
+import { poemInput, poemScope } from './poem-input.js';
 
 /** Live checks give up after 20 s (DESIGN.md §8.6) and ask the student to try again. */
 const LIVE_TIMEOUT_MS = 20_000;
@@ -195,6 +198,17 @@ export class LiveChecksService {
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = povPoints(req.text, outcome.result, extra.narrator);
+      } else if (req.analyzer === 'poetry-craft') {
+        const extra = poemInput(content, req.syllables);
+        const outcome: AnalyzerOutcome<PoetryCraftResult> = await withTimeout(
+          this.ai.run(
+            LIVE_ANALYZERS['poetry-craft'],
+            { ...ctx, ...extra },
+            { ...meta, cacheScope: `${activity.key}|${poemScope(extra)}` },
+          ),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = poetryPoints(req.text, outcome.result);
       } else if (req.analyzer === 'figurative-language') {
         const goals = content.figurativeHelper?.devices ?? [];
         const outcome: AnalyzerOutcome<FigurativeLanguageResult> = await withTimeout(

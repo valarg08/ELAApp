@@ -24,6 +24,14 @@ import {
 } from './analyzers/tone.js';
 import { type Sense, senses } from './analyzers/senses.js';
 import { type Device, figurative } from './analyzers/figurative.js';
+import {
+  SOUND_DEVICES,
+  type SoundDevice,
+  checkSyllablePattern,
+  lineBreaks,
+  poemLines,
+  soundDevices,
+} from './analyzers/poetry.js';
 import { type PacingSegment, pacing } from './analyzers/pacing.js';
 import {
   MOOD_AXES,
@@ -50,6 +58,9 @@ export const ANALYZER_IDS = [
   'pacing',
   'tone',
   'figurative',
+  'syllables',
+  'lineBreaks',
+  'sound',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -86,6 +97,8 @@ export interface CoachReport {
   figurative?: { device: Device; count: number; span?: Span }[];
   /** Per part of a multi-perspective rewrite, whether it keeps its point of view. */
   perspectives?: PerspectiveCheck[];
+  /** Sound devices found, when the sound check ran (Unit 7). */
+  sound?: { device: SoundDevice; count: number; span?: Span }[];
 }
 
 export interface Perspective {
@@ -112,6 +125,9 @@ export interface CoachOptions {
   perspectives?: readonly Perspective[];
   /** Figurative devices the activity asks for (Unit 6); the figurative check looks for each. */
   devices?: readonly Device[];
+  /** Syllables per line for each stanza (haiku: [5, 7, 5]) and the student's own counts (Unit 7). */
+  syllablePattern?: readonly number[];
+  syllableOverrides?: Readonly<Record<string, number>>;
   /** The tone the student aimed for, per scale (Unit 5). */
   tone?: Partial<Record<ToneAxis, ToneStep>>;
 }
@@ -134,6 +150,13 @@ const SENSE_PROMPTS: Record<Sense, string> = {
   taste: 'Is there a taste in the air or in someone’s mouth?',
   touch: 'What could someone feel on their skin or in their hands?',
 };
+const SOUND_TIPS: Record<SoundDevice, string> = {
+  alliteration: 'Start a few words close together with the same sound: “silver snakes slither”.',
+  repetition: 'Repeat a line or phrase, like a chorus. It gives the poem a heartbeat.',
+  rhyme: 'End two nearby lines with words that sound alike: night / light.',
+  onomatopoeia: 'Use a word that sounds like its meaning: crash, sizzle, whoosh, drip.',
+};
+
 const DEVICE_TIPS: Record<Device, string> = {
   simile:
     'Compare something to something else using “like” or “as”: “The hallway was as quiet as a held breath.”',
@@ -182,12 +205,15 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
   if (options.tenseLock) enabled.add('tense');
   if (options.narrator || options.perspectives?.length) enabled.add('pov');
   if (options.devices?.length) enabled.add('figurative');
+  if (options.syllablePattern?.length) enabled.add('syllables');
   const wordCount = countWords(text);
   const strengths: CoachCard[] = [];
   const nextSteps: CoachCard[] = [];
   const report: CoachReport = { wordCount, strengths, nextSteps };
 
-  if (wordCount < MIN_WORDS) {
+  // Poems are short: a haiku is about a dozen words.
+  const poem = enabled.has('syllables') || enabled.has('lineBreaks') || enabled.has('sound');
+  if (wordCount < (poem ? 3 : MIN_WORDS)) {
     nextSteps.push({
       id: 'length',
       analyzer: 'length',
@@ -431,6 +457,119 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
         title: `Looks like a ${best.device}`,
         message: `“${quote(best.span)}” ${DEVICE_PRAISE[best.device]}`,
         span: best.span,
+      });
+    }
+  }
+
+  if (enabled.has('syllables') && options.syllablePattern?.length) {
+    const pattern = options.syllablePattern;
+    const check = checkSyllablePattern(text, pattern, options.syllableOverrides);
+    const shape = pattern.join('-');
+    const badCount = check.stanzas.findIndex((st) => !st.lineCountOk);
+    const badLine = check.stanzas
+      .flatMap((st) => (st.lineCountOk ? st.lines.map((l, i) => ({ l, want: pattern[i]! })) : []))
+      .find(({ l, want }) => l.total !== want);
+    if (badCount >= 0) {
+      const st = check.stanzas[badCount]!;
+      nextSteps.push({
+        id: 'syllables',
+        analyzer: 'syllables',
+        title: `Each verse needs ${pattern.length} lines`,
+        message: `Verse ${badCount + 1} has ${st.lines.length} ${st.lines.length === 1 ? 'line' : 'lines'}. Press Enter to start a new line, and leave a blank line between verses.`,
+        span: st.lines[0]?.line,
+      });
+    } else if (badLine) {
+      const { l, want } = badLine;
+      nextSteps.push({
+        id: 'syllables',
+        analyzer: 'syllables',
+        title: `Line ${l.line.number}: ${l.total} syllables, aim for ${want}`,
+        message:
+          l.total > want
+            ? `Try a shorter word, or cut one you don't need. Clap the syllables as you read it aloud.`
+            : `Add a word that shows a detail: a colour, a sound, a sense. Clap the syllables as you read it aloud.`,
+        span: l.line,
+      });
+    } else if (check.fits) {
+      strengths.push({
+        id: 'syllables',
+        analyzer: 'syllables',
+        title: `Every line fits ${shape}`,
+        message:
+          check.stanzas.length > 1
+            ? `All ${check.stanzas.length} verses have exactly the right syllables.`
+            : 'Exactly the right syllables in every line.',
+      });
+    }
+  }
+
+  if (enabled.has('lineBreaks')) {
+    const lb = lineBreaks(text);
+    const long = lb.lines.find((l) => l.words > 12);
+    if (lb.lines.length < 4) {
+      nextSteps.push({
+        id: 'lines',
+        analyzer: 'lineBreaks',
+        title: 'Break it into lines',
+        message:
+          'A poem lives in lines. Press Enter where you want the reader to pause, or where a word deserves a line of its own.',
+      });
+    } else if (long) {
+      nextSteps.push({
+        id: 'lines',
+        analyzer: 'lineBreaks',
+        title: `Line ${long.number} is long`,
+        message: 'Where would you take a breath reading it aloud? Try breaking the line there.',
+        span: long,
+      });
+    } else if (lb.enjambment === 0) {
+      nextSteps.push({
+        id: 'lines',
+        analyzer: 'lineBreaks',
+        title: 'Try a run-on line',
+        message:
+          'Every line ends with punctuation. Try breaking one line in the middle of a thought, so the reader has to keep going to find out what happens.',
+      });
+    } else {
+      const lonely = lb.lines.find((l) => l.words === 1);
+      const run = lb.lines.find((l) => l.enjambed);
+      strengths.push({
+        id: 'lines',
+        analyzer: 'lineBreaks',
+        title: lonely ? 'A word on its own line' : 'Line breaks that pull the reader on',
+        message: lonely
+          ? `“${quote(lonely)}” stands alone, so the reader stops on it. That gives it weight.`
+          : `“${run ? quote(run) : ''}” runs on into the next line, so the reader has to keep going.`,
+        span: lonely ?? run,
+      });
+    }
+  }
+
+  if (enabled.has('sound') && poemLines(text).length >= 2) {
+    const snd = soundDevices(text);
+    report.sound = SOUND_DEVICES.map((device) => ({
+      device,
+      count: snd.found[device].length,
+      span: snd.found[device][0],
+    }));
+    const used = SOUND_DEVICES.filter((d) => snd.found[d].length > 0);
+    const first = used[0];
+    if (first) {
+      strengths.push({
+        id: 'sound',
+        analyzer: 'sound',
+        title: `Sound: ${listing(used)}`,
+        message: `“${quote(snd.found[first][0]!)}” makes the poem good to read aloud.`,
+        span: snd.found[first][0],
+      });
+    }
+    const missing = SOUND_DEVICES.find((d) => snd.found[d].length === 0);
+    if (missing && used.length < 2) {
+      nextSteps.push({
+        id: 'sound',
+        analyzer: 'sound',
+        title: `Try ${missing}`,
+        message: SOUND_TIPS[missing],
       });
     }
   }

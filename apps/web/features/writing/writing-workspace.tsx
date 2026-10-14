@@ -27,6 +27,9 @@ import { SaveStatusText } from './save-status';
 import { ConflictPicker } from './conflict-picker';
 import { MoodPicker } from './mood-picker';
 import { FigurativeHelper } from './figurative-helper';
+import { LineBreakView } from './line-break-view';
+import { RhythmPanel } from './rhythm-panel';
+import { SyllableMeter } from './syllable-meter';
 import { PerspectiveGuide } from './perspective-guide';
 import { SenseTracker } from './sense-tracker';
 import { WordBankPanel } from './word-bank-panel';
@@ -88,8 +91,11 @@ export function WritingWorkspace({
   const [submittedVersion, setSubmittedVersion] = useState(submission.version);
   const [started, setStarted] = useState(false);
   const [wordBank, setWordBank] = useWordBank();
+  const [syllables, setSyllables] = useState(submission.syllables);
 
-  const { wordCount, problems } = checkConstraints(state.text, constraints);
+  const { wordCount, problems } = checkConstraints(state.text, constraints, {
+    syllableOverrides: syllables,
+  });
   const blocked =
     wordCount === 0 ||
     needsTraits ||
@@ -141,6 +147,7 @@ export function WritingWorkspace({
       conflict={conflict}
       plot={plot}
       tone={tone}
+      syllables={syllables}
       onShow={showInText}
     />
   );
@@ -304,8 +311,22 @@ export function WritingWorkspace({
         onInsert={insertAtCursor}
       />
 
-      <ConstraintsBar text={state.text} constraints={constraints} started={started} />
+      <ConstraintsBar
+        text={state.text}
+        constraints={constraints}
+        started={started}
+        context={{ syllableOverrides: syllables }}
+      />
       {activity.senseTracker && <SenseTracker text={state.text} own={wordBank ?? []} />}
+      {constraints.syllablePattern && (
+        <SyllableMeter
+          submissionId={submission.id}
+          text={state.text}
+          pattern={constraints.syllablePattern}
+          overrides={syllables}
+          onOverridesChange={setSyllables}
+        />
+      )}
 
       <div className="flex flex-col gap-1">
         <label htmlFor="draft-text" className="font-medium">
@@ -326,6 +347,9 @@ export function WritingWorkspace({
           }`}
         />
       </div>
+
+      {activity.lineBreakView && <LineBreakView text={state.text} />}
+      {activity.rhythmMode && <RhythmPanel submissionId={submission.id} text={state.text} />}
 
       {errors.length > 0 && <ErrorMessage message={errors.join(' ')} />}
       {notice && <output className="font-semibold text-ok">{notice}</output>}

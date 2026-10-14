@@ -75,7 +75,7 @@ function CardView({ card, onSolved }: { card: LessonCard; onSolved: () => void }
       return (
         <div className={frame}>
           <h2 className="text-2xl font-bold">{card.title}</h2>
-          <blockquote className="mt-3 border-l-4 border-brand pl-4 text-xl italic">
+          <blockquote className="mt-3 border-l-4 border-brand pl-4 text-xl whitespace-pre-line italic">
             {card.text}
           </blockquote>
           {card.note && <p className="mt-3 text-muted">{card.note}</p>}
@@ -90,13 +90,13 @@ function CardView({ card, onSolved }: { card: LessonCard; onSolved: () => void }
               <p className="text-sm font-semibold tracking-wide text-muted uppercase">
                 {card.labels?.[0] ?? 'Telling'}
               </p>
-              <p className="mt-1 text-lg">{card.telling}</p>
+              <p className="mt-1 text-lg whitespace-pre-line">{card.telling}</p>
             </div>
             <div className="rounded-xl border-2 border-brand p-4">
               <p className="text-sm font-semibold tracking-wide text-brand uppercase">
                 {card.labels?.[1] ?? 'Showing'}
               </p>
-              <p className="mt-1 text-lg">{card.showing}</p>
+              <p className="mt-1 text-lg whitespace-pre-line">{card.showing}</p>
             </div>
           </div>
           {card.note && <p className="mt-3 text-muted">{card.note}</p>}
@@ -144,7 +144,7 @@ function ClueHunt({
     <div className={frame}>
       <h2 className="text-2xl font-bold">{card.title}</h2>
       <p className="mt-2 text-lg">{card.prompt}</p>
-      <p className="mt-4 text-xl leading-loose">
+      <p className="mt-4 text-xl leading-loose whitespace-pre-line">
         {splitWords(card.text).map((p) =>
           p.word ? (
             <button

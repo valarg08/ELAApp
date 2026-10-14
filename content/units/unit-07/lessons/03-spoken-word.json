@@ -1,0 +1,60 @@
+{
+  "slug": "spoken-word",
+  "order": 3,
+  "title": "Spoken Word: Poems for the Stage",
+  "estMinutes": 50,
+  "focusSkills": ["poetry", "rhythm", "voice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of a song lyric or a line you can't get out of your head. Why does it stick?",
+      "placeholder": "It sticks because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Spoken word",
+          "body": "Spoken word is poetry written to be performed. Listeners can't re-read a line, so poets use rhythm, repetition, pauses and their own voice to carry the poem. It often tells the truth about who the poet is."
+        },
+        {
+          "kind": "definition",
+          "title": "Rhythm and stress",
+          "body": "Every word has a strong beat: THUN-der, be-GIN. When strong beats fall in a pattern, a poem gets rhythm, like a drum. Read your lines to a steady beat and mark where the stresses land."
+        },
+        {
+          "kind": "example",
+          "title": "A line that comes back",
+          "text": "I come from loud kitchens,\nfrom Sunday songs and burnt toast.\nI come from stories\ntold twice and laughed at three times.\nI come from here.",
+          "note": "“I come from” returns like a chorus. Each time, the audience knows where they are, and waits for what comes next."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Feel the beat",
+          "prompt": "Tap the two words you'd say with the most force.",
+          "text": "They said I was too quiet.\nListen now.",
+          "clues": ["quiet", "listen"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u07.refrain-highlight", "u07.stress-sort", "u07.spoken-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u07.spoken-word" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which line did you choose to repeat, and why that one?",
+        "How did reading with the beat (or recording yourself) change your poem?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

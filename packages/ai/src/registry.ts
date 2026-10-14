@@ -6,6 +6,7 @@ import { showVsTellAnalyzer } from './analyzers/show-vs-tell.js';
 import { povConsistencyAnalyzer } from './analyzers/pov-consistency.js';
 import { toneStyleAnalyzer } from './analyzers/tone-style.js';
 import { figurativeLanguageAnalyzer } from './analyzers/figurative-language.js';
+import { poetryCraftAnalyzer } from './analyzers/poetry-craft.js';
 
 /** Analyzers students can run from the Coach panel ("Ask Quill"). */
 export const LIVE_ANALYZERS = {
@@ -17,6 +18,7 @@ export const LIVE_ANALYZERS = {
   'pov-consistency': povConsistencyAnalyzer,
   'tone-style': toneStyleAnalyzer,
   'figurative-language': figurativeLanguageAnalyzer,
+  'poetry-craft': poetryCraftAnalyzer,
 } as const;
 export type LiveAnalyzerId = keyof typeof LIVE_ANALYZERS;
 
@@ -56,6 +58,10 @@ const BY_ACTIVITY_TYPE: Record<string, LiveAnalyzerId[]> = {
   FIGURATIVE_LAB: ['figurative-language', 'sensory-analysis'],
   PERSONIFICATION_SCENE: ['figurative-language', 'show-vs-tell'],
   SENSORY_CHALLENGE: ['sensory-analysis', 'figurative-language'],
+  HAIKU: ['poetry-craft'],
+  FREE_VERSE: ['poetry-craft', 'figurative-language'],
+  SPOKEN_WORD: ['poetry-craft'],
+  SOUND_POEM: ['poetry-craft', 'figurative-language'],
 };
 
 /** Activity types where "Can your reader tell?" also checks the character's want and fear. */

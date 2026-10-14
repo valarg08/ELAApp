@@ -6,6 +6,7 @@ import {
   MOOD_AXIS_IDS,
   type MoodPole,
   TONE_AXIS_IDS,
+  syllableKey,
   type ToneAxis,
   type ToneStep,
   isToneStep,
@@ -154,6 +155,10 @@ export const WRITING_ACTIVITY_TYPES = [
   'FIGURATIVE_LAB',
   'PERSONIFICATION_SCENE',
   'SENSORY_CHALLENGE',
+  'HAIKU',
+  'FREE_VERSE',
+  'SPOKEN_WORD',
+  'SOUND_POEM',
 ] as const;
 
 /**
@@ -263,6 +268,10 @@ export const WritingActivity = z.object({
   figurativeHelper: FigurativeHelper.optional(),
   /** Shows the five senses beside the word count, updating as the student types (Unit 6). */
   senseTracker: z.boolean().optional(),
+  /** Free verse (Unit 7): the poem as a paragraph vs as lines, a line ruler and "Read with pauses". */
+  lineBreakView: z.boolean().optional(),
+  /** Spoken word (Unit 7): a metronome, stress marking and a recording that stays on the device. */
+  rhythmMode: z.boolean().optional(),
 });
 
 export const ActivityContent = z.discriminatedUnion('type', [
@@ -332,6 +341,29 @@ export const FIGURATIVE_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
   'PERSONIFICATION_SCENE',
   'SENSORY_CHALLENGE',
 ];
+
+/** Poetry activities (Unit 7): Quill reads the poem for form, imagery, line breaks and sound. */
+export const POETRY_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
+  'HAIKU',
+  'FREE_VERSE',
+  'SPOKEN_WORD',
+  'SOUND_POEM',
+];
+
+/** At most this many words with the student's own syllable counts. */
+export const MAX_SYLLABLE_OVERRIDES = 60;
+
+/** The student's syllable counts, cleaned: known words as keys ("fire"), whole counts 1–9. */
+export function validSyllables(overrides: unknown): Record<string, number> {
+  if (overrides === null || typeof overrides !== 'object') return {};
+  const out: Record<string, number> = {};
+  for (const [word, count] of Object.entries(overrides).slice(0, MAX_SYLLABLE_OVERRIDES)) {
+    const key = syllableKey(word);
+    if (key && key.length <= 30 && Number.isInteger(count) && count >= 1 && count <= 9)
+      out[key] = count;
+  }
+  return out;
+}
 
 /** Voice activities (Unit 5): Quill says what tone a reader hears. */
 export const TONE_ACTIVITY_TYPES: readonly WritingActivity['type'][] = ['VOICE_SCENE'];
@@ -617,6 +649,13 @@ export function validateUnitBundle({ unit, lessons, activities }: UnitBundle): s
       if (new Set(labels).size !== labels.length)
         errors.push(`${a.key}: duplicate perspective labels`);
       if (a.constraints.povLock) errors.push(`${a.key}: use perspectives or povLock, not both`);
+    }
+    if (isWritingActivity(a)) {
+      const c = a.constraints;
+      if (c.minStanzas && c.maxStanzas && c.minStanzas > c.maxStanzas)
+        errors.push(`${a.key}: minStanzas is more than maxStanzas`);
+      if (c.minLines && c.maxLines && c.minLines > c.maxLines)
+        errors.push(`${a.key}: minLines is more than maxLines`);
     }
     if (a.type === 'SENSORY_LAB') {
       const senses = a.stations.map((s) => s.sense);

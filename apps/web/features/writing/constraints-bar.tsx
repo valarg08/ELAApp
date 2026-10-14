@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  type ConstraintContext,
   type WritingConstraints,
   checkConstraints,
   describeProblem,
@@ -14,13 +15,16 @@ export function ConstraintsBar({
   text,
   constraints,
   started,
+  context,
 }: {
   text: string;
   constraints: WritingConstraints;
+  /** The student's own syllable counts (poems). */
+  context?: ConstraintContext;
   /** The timer starts at the first keystroke. */
   started: boolean;
 }) {
-  const { wordCount, problems } = checkConstraints(text, constraints);
+  const { wordCount, problems } = checkConstraints(text, constraints, context);
   const target = constraints.exactWords ?? constraints.minWords ?? constraints.maxWords;
   const goal =
     constraints.exactWords !== undefined

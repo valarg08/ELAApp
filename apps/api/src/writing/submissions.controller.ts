@@ -8,6 +8,7 @@ import {
   SetConflictRequest,
   SetMoodRequest,
   SetPlotRequest,
+  SetSyllablesRequest,
   SetToneRequest,
   SetTraitsRequest,
   type SaveDraftResponse,
@@ -100,6 +101,17 @@ export class SubmissionsController {
     @Body({ schema: SetPlotRequest }) body: SetPlotRequest,
   ): Promise<SubmissionDetail> {
     return this.submissions.setPlot(user, id, body.plot);
+  }
+
+  /** The student's own syllable counts for words in their poem (Unit 7). */
+  @Roles('STUDENT')
+  @Put(':id/syllables')
+  setSyllables(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetSyllablesRequest }) body: SetSyllablesRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setSyllables(user, id, body.overrides);
   }
 
   /** The tone aimed for on the activity's tone sliders (Unit 5). */

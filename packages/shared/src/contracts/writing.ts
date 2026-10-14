@@ -52,6 +52,8 @@ export const SubmissionDetail = z.object({
   plot: PlotPlan.default(PlotPlan.parse({})),
   /** Tone aimed for on the activity's tone sliders. */
   tone: ToneChoice.default({}),
+  /** The student's own syllable counts for words (poems). */
+  syllables: z.record(z.string(), z.number()).default({}),
 });
 export type SubmissionDetail = z.infer<typeof SubmissionDetail>;
 
@@ -62,6 +64,7 @@ export const SubmissionChoices = z.object({
   conflict: z.string().max(40).nullable().default(null),
   plot: PlotPlan.default(PlotPlan.parse({})),
   tone: ToneChoice.default({}),
+  syllables: z.record(z.string().max(30), z.number().int().min(1).max(9)).default({}),
 });
 export type SubmissionChoices = z.infer<typeof SubmissionChoices>;
 
@@ -75,6 +78,11 @@ export const SetTraitsRequest = z.object({
   traits: z.array(z.string().trim().toLowerCase().min(1).max(30)).max(3),
 });
 export type SetTraitsRequest = z.infer<typeof SetTraitsRequest>;
+
+export const SetSyllablesRequest = z.object({
+  overrides: z.record(z.string().max(30), z.number().int().min(1).max(9)),
+});
+export type SetSyllablesRequest = z.infer<typeof SetSyllablesRequest>;
 
 export const SetToneRequest = z.object({ tone: ToneChoice });
 export type SetToneRequest = z.infer<typeof SetToneRequest>;

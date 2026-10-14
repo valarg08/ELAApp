@@ -12,4 +12,5 @@ export * from './analyzers/mood.js';
 export * from './analyzers/pacing.js';
 export * from './analyzers/tone.js';
 export * from './analyzers/figurative.js';
+export * from './analyzers/poetry.js';
 export * from './coach.js';

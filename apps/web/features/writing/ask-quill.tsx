@@ -6,6 +6,7 @@ import {
   FIGURATIVE_ACTIVITY_TYPES,
   type LiveAnalyzerId,
   PLOT_ACTIVITY_TYPES,
+  POETRY_ACTIVITY_TYPES,
   POV_ACTIVITY_TYPES,
   type PlotPlan,
   SETTING_ACTIVITY_TYPES,
@@ -37,6 +38,7 @@ export function AskQuill({
   conflict,
   plot,
   tone,
+  syllables,
   text,
   onShow,
 }: {
@@ -47,6 +49,7 @@ export function AskQuill({
   conflict: string | null;
   plot: PlotPlan;
   tone: ToneChoice;
+  syllables: Record<string, number>;
   text: string;
   onShow: (span: Span) => void;
 }) {
@@ -59,6 +62,9 @@ export function AskQuill({
       : []),
     ...(POV_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'pov-consistency' as const, label: 'Is my point of view steady?' }]
+      : []),
+    ...(POETRY_ACTIVITY_TYPES.includes(activity.type)
+      ? [{ id: 'poetry-craft' as const, label: 'Does my poem work?' }]
       : []),
     ...(FIGURATIVE_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'figurative-language' as const, label: 'Did my comparisons work?' }]
@@ -93,6 +99,7 @@ export function AskQuill({
         conflict,
         plot,
         tone,
+        syllables,
       });
       setResult({ text, response });
     } catch (e) {

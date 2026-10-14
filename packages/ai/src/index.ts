@@ -18,6 +18,7 @@ export * from './analyzers/plot-check.js';
 export * from './analyzers/pov-consistency.js';
 export * from './analyzers/tone-style.js';
 export * from './analyzers/figurative-language.js';
+export * from './analyzers/poetry-craft.js';
 export * from './analyzers/rubric-score.js';
 export * from './analyzers/explain-card.js';
 export * from './analyzers/extra-practice.js';

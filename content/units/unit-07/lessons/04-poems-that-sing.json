@@ -1,0 +1,64 @@
+{
+  "slug": "poems-that-sing",
+  "order": 4,
+  "title": "Poems That Sing",
+  "estMinutes": 45,
+  "focusSkills": ["poetry", "sound-devices"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Read both aloud. Which one can you hear?",
+      "a": "The storm was loud and the rain came down hard on the house.",
+      "b": "Crash! The thunder cracked.\nRain rattled the roof, racing, rushing,\ndrip, drip, drip\non the windowsill.",
+      "reveal": "The second one uses sound devices: crash, cracked and drip sound like their meaning, and rain rattled the roof, racing, rushing repeats the “r” sound. You don't just read it, you hear it."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Four sound devices",
+          "body": "Alliteration: words close together start with the same sound (silver snakes slither). Onomatopoeia: words that sound like their meaning (sizzle, crash). Rhyme: words that end with the same sound (night, light). Repetition: a word or line that comes back."
+        },
+        {
+          "kind": "definition",
+          "title": "Sound and mood",
+          "body": "Sounds carry feeling. Soft sounds (sh, m, l, w) feel calm: “hush, the whispering willows”. Hard sounds (k, t, b, p) feel sharp or loud: “crack, the ticking clock, the banging door”. Choose sounds that match your mood."
+        },
+        {
+          "kind": "compare",
+          "title": "Forced or natural?",
+          "telling": "I saw a cat upon a mat,\nit wore a hat and that was that.",
+          "showing": "The cat stretched long across the warm mat,\nsoft as a held breath.",
+          "labels": ["Forced rhyme", "Natural sound"],
+          "note": "Rhyme is optional. If a rhyme forces a silly word, choose another sound device instead."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Hear the sounds",
+          "prompt": "Tap the two words that sound like what they mean.",
+          "text": "The bacon sizzled in the pan while the old fridge hummed.",
+          "clues": ["sizzled", "hummed"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u07.sound-sort", "u07.sound-highlight", "u07.sound-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u07.sound-poem" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which sound device did you enjoy using most? Show the line.",
+        "Which of your Unit 7 poems would you put first in a poetry collection, and why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

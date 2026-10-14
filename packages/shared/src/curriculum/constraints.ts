@@ -4,7 +4,10 @@ import {
   type Tense,
   breaksTenseLock,
   checkPerspectives,
+  checkSyllablePattern,
   countWords,
+  poemLines,
+  stanzas,
   pointOfView,
   povShifts,
   splitSections,
@@ -44,6 +47,13 @@ export const WritingConstraints = z
       .min(2)
       .max(3)
       .optional(),
+    /** Syllables per line in every stanza (haiku: [5, 7, 5]); stanzas are split by blank lines. */
+    syllablePattern: z.array(z.number().int().min(1).max(20)).min(1).max(10).optional(),
+    minStanzas: z.number().int().min(1).max(20).optional(),
+    maxStanzas: z.number().int().min(1).max(20).optional(),
+    /** Non-empty lines (poems). */
+    minLines: z.number().int().min(1).max(200).optional(),
+    maxLines: z.number().int().min(1).max(200).optional(),
     /** Narration must use this tense (quoted speech is ignored). */
     tenseLock: z.enum(['past', 'present']).optional(),
     /** Shows a countdown in the workspace. Informational: running out of time never blocks. */
@@ -64,7 +74,19 @@ export type ConstraintProblem =
   | { rule: 'requiredWords'; missing: string[] }
   | { rule: 'povLock'; expected: Pov; found: Pov }
   | { rule: 'tenseLock'; expected: Tense }
-  | { rule: 'perspectives'; label: string; issue: 'missing' | 'short' | 'shift'; expected: Pov };
+  | { rule: 'perspectives'; label: string; issue: 'missing' | 'short' | 'shift'; expected: Pov }
+  | { rule: 'syllables'; line: number; expected: number; actual: number }
+  | { rule: 'stanzaLines'; stanza: number; expected: number; actual: number }
+  | {
+      rule: 'minStanzas' | 'maxStanzas' | 'minLines' | 'maxLines';
+      expected: number;
+      actual: number;
+    };
+
+/** Extra inputs some rules need: the student's own syllable counts (Unit 7). */
+export interface ConstraintContext {
+  syllableOverrides?: Readonly<Record<string, number>>;
+}
 
 const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -93,6 +115,7 @@ export function findBannedWords(text: string, banned: readonly string[]): string
 export function checkConstraints(
   text: string,
   c: WritingConstraints,
+  context: ConstraintContext = {},
 ): { wordCount: number; problems: ConstraintProblem[] } {
   const wordCount = countWords(text) - headingWords(text, c);
   const problems: ConstraintProblem[] = [];
@@ -117,6 +140,44 @@ export function checkConstraints(
   }
   if (c.tenseLock && breaksTenseLock(tense(text), c.tenseLock)) {
     problems.push({ rule: 'tenseLock', expected: c.tenseLock });
+  }
+  if (c.minStanzas || c.maxStanzas || c.syllablePattern) {
+    const count = stanzas(text).length;
+    if (c.minStanzas && count < c.minStanzas)
+      problems.push({ rule: 'minStanzas', expected: c.minStanzas, actual: count });
+    if (c.maxStanzas && count > c.maxStanzas)
+      problems.push({ rule: 'maxStanzas', expected: c.maxStanzas, actual: count });
+  }
+  if (c.minLines || c.maxLines) {
+    const count = poemLines(text).length;
+    if (c.minLines && count < c.minLines)
+      problems.push({ rule: 'minLines', expected: c.minLines, actual: count });
+    if (c.maxLines && count > c.maxLines)
+      problems.push({ rule: 'maxLines', expected: c.maxLines, actual: count });
+  }
+  if (c.syllablePattern) {
+    const pattern = c.syllablePattern;
+    const check = checkSyllablePattern(text, pattern, context.syllableOverrides);
+    // Only the first problem: a list of every line would overwhelm.
+    const shape = check.stanzas.findIndex((st) => !st.lineCountOk);
+    const line = check.stanzas
+      .flatMap((st) => (st.lineCountOk ? st.lines.map((l, i) => ({ l, want: pattern[i]! })) : []))
+      .find(({ l, want }) => l.total !== want);
+    if (shape >= 0) {
+      problems.push({
+        rule: 'stanzaLines',
+        stanza: shape + 1,
+        expected: pattern.length,
+        actual: check.stanzas[shape]!.lines.length,
+      });
+    } else if (line) {
+      problems.push({
+        rule: 'syllables',
+        line: line.l.line.number,
+        expected: line.want,
+        actual: line.l.total,
+      });
+    }
   }
   for (const part of c.perspectives ? checkPerspectives(text, c.perspectives) : []) {
     if (part.status === 'missing' || part.status === 'short' || part.status === 'shift') {
@@ -157,6 +218,18 @@ export function describeProblem(p: ConstraintProblem): string {
       return p.expected === 'past'
         ? 'Keep the story in the past tense (walked, was). Some sentences are in the present.'
         : 'Keep the story in the present tense (walks, is). Some sentences are in the past.';
+    case 'syllables':
+      return `Line ${p.line} has ${p.actual} syllables; it needs ${p.expected}.`;
+    case 'stanzaLines':
+      return `Verse ${p.stanza} has ${p.actual} lines; each verse needs ${p.expected}. Leave a blank line between verses.`;
+    case 'minStanzas':
+      return `Write at least ${p.expected} verses, with a blank line between them (you have ${p.actual}).`;
+    case 'maxStanzas':
+      return `Keep it to ${p.expected} verses or fewer (you have ${p.actual}).`;
+    case 'minLines':
+      return `Write at least ${p.expected} lines (you have ${p.actual}).`;
+    case 'maxLines':
+      return `Keep it to ${p.expected} lines or fewer (you have ${p.actual}).`;
     case 'perspectives':
       if (p.issue === 'missing')
         return `Add the heading “${p.label}” on its own line, then write that part.`;

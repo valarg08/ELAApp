@@ -3,6 +3,17 @@
   "slug": "poetry",
   "title": "Poetry",
   "summary": "Play with sound, rhythm and line breaks through haiku, free verse and spoken word, then build a poetry collection.",
-  "bigIdeas": ["Line breaks shape meaning.", "Sound and rhythm carry feeling."],
-  "published": false
+  "bigIdeas": [
+    "A poem can hold a whole moment in a few words.",
+    "Line breaks shape meaning.",
+    "Sound and rhythm carry feeling.",
+    "Poems are made to be heard."
+  ],
+  "published": true,
+  "projectSpec": {
+    "title": "My Poetry Collection",
+    "description": "Gather at least five of your poems (haiku, free verse, spoken word, sound poems or new ones), revise them, put them in an order that tells a story or builds a mood, give the collection a title, and write a short introduction (100–200 words) about what connects them.",
+    "minWords": 150,
+    "maxWords": 1200
+  }
 }

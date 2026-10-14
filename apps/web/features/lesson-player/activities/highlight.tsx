@@ -50,7 +50,7 @@ export function Highlight({
   return (
     <div className="flex flex-col gap-4">
       <p className="text-lg">{activity.instructions}</p>
-      <p className="rounded-xl border border-border bg-card p-4 text-xl leading-loose">
+      <p className="rounded-xl border border-border bg-card p-4 text-xl leading-loose whitespace-pre-line">
         {parts.map((p) =>
           p.word ? (
             <button

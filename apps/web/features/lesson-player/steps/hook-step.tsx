@@ -16,7 +16,7 @@ export function HookStep({ step, done, busy, onComplete }: StepProps<Hook>) {
       <div className="flex flex-col gap-5">
         <h2 className="text-2xl font-bold">{step.title}</h2>
         {step.paragraphs.map((p) => (
-          <p key={p} className="text-xl leading-relaxed">
+          <p key={p} className="text-xl leading-relaxed whitespace-pre-line">
             {p}
           </p>
         ))}
@@ -38,7 +38,7 @@ export function HookStep({ step, done, busy, onComplete }: StepProps<Hook>) {
               type="button"
               onClick={() => setPicked(key)}
               aria-pressed={picked === key}
-              className={`min-h-28 rounded-2xl border-2 bg-card p-5 text-left text-lg transition focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand ${
+              className={`min-h-28 rounded-2xl border-2 bg-card p-5 text-left text-lg whitespace-pre-line transition focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand ${
                 picked === key ? 'border-brand' : 'border-border hover:border-brand'
               }`}
             >

@@ -1,0 +1,62 @@
+{
+  "slug": "free-verse",
+  "order": 2,
+  "title": "Free Verse: Breaking the Line",
+  "estMinutes": 45,
+  "focusSkills": ["poetry", "line-breaks"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Same words. Which one makes you feel the wait?",
+      "a": "I opened the box that had waited under my bed for a year and inside there was nothing.",
+      "b": "I opened the box\nthat had waited under my bed\nfor a year\nand inside\nthere was\nnothing.",
+      "reveal": "The words are the same. The line breaks make you slow down, wait, and feel the surprise of “nothing”. In free verse, where the line breaks is part of the meaning."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Free verse",
+          "body": "Free verse is poetry without fixed rules for rhyme or rhythm. Instead, the poet shapes it with line breaks: deciding where each line ends, how long it is, and which words stand alone."
+        },
+        {
+          "kind": "definition",
+          "title": "Stop or run on",
+          "body": "A line that ends with punctuation stops, and the reader rests. A line that ends in the middle of a thought runs on (enjambment): the reader is pulled into the next line. Mix both to control the pace."
+        },
+        {
+          "kind": "example",
+          "title": "One word, one line",
+          "text": "The house was empty\nand\nI walked from room to room\nlistening.",
+          "note": "“and” on its own line makes the reader wait. “listening” on its own stretches out the silence."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Where does it run on?",
+          "prompt": "Tap the two words that end lines that run on into the next.",
+          "text": "The rain keeps falling on\nthe roof of my\ngrandmother's house.",
+          "clues": ["on", "my"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u07.break-sort", "u07.alone-highlight", "u07.linebreak-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u07.free-verse" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which line break are you proudest of? What does it make the reader do?",
+        "How did your poem sound read with pauses compared with read straight through?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

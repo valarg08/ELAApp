@@ -30,6 +30,7 @@ import {
   diffWords,
   isWritingActivity,
   type PlotPlan,
+  type SetSyllablesRequest,
   type SetToneRequest,
   planComplete,
   toneComplete,
@@ -37,6 +38,7 @@ import {
   validConflict,
   validMoods,
   validPlot,
+  validSyllables,
   validTone,
   validTraits,
 } from '@storyforge/shared';
@@ -261,6 +263,25 @@ export class SubmissionsService {
     return this.saveChoices(current, { tone: validTone(activity, tone) });
   }
 
+  /** Save the student's own syllable counts for words in their poem (Unit 7). */
+  async setSyllables(
+    user: AuthUser,
+    id: string,
+    overrides: SetSyllablesRequest['overrides'],
+  ): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    if (!activity.constraints.syllablePattern) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'No syllables here',
+        'This activity doesn’t count syllables.',
+      );
+    }
+    return this.saveChoices(current, { syllables: validSyllables(overrides) });
+  }
+
   private async saveChoices(
     current: LoadedSubmission,
     change: Partial<SubmissionChoices>,
@@ -342,7 +363,9 @@ export class SubmissionsService {
       );
     }
     const constraints = constraintsWithTraits(activity, traits);
-    const { wordCount, problems } = checkConstraints(current.contentText, constraints);
+    const { wordCount, problems } = checkConstraints(current.contentText, constraints, {
+      syllableOverrides: validSyllables(choicesOf(current).syllables),
+    });
     if (wordCount === 0) {
       throw new AppError(
         HttpStatus.UNPROCESSABLE_ENTITY,
@@ -567,6 +590,7 @@ export class SubmissionsService {
       conflict: choicesOf(s).conflict,
       plot: choicesOf(s).plot,
       tone: choicesOf(s).tone,
+      syllables: choicesOf(s).syllables,
     };
   }
 }

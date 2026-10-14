@@ -7,6 +7,7 @@ import type { ShowVsTellResult } from './analyzers/show-vs-tell.js';
 import type { PovConsistencyResult } from './analyzers/pov-consistency.js';
 import type { ToneStyleResult } from './analyzers/tone-style.js';
 import type { FigurativeLanguageResult } from './analyzers/figurative-language.js';
+import type { PoetryCraftResult } from './analyzers/poetry-craft.js';
 import { isToneStep, toneStepLabel } from '@storyforge/writing-analysis';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
@@ -392,6 +393,55 @@ export function figurativePoints(text: string, r: FigurativeLanguageResult) {
       ),
     );
   }
+  return {
+    strengths: strengths.filter(isPoint).slice(0, 3),
+    nextSteps: nextSteps.filter(isPoint).slice(0, 3),
+  };
+}
+
+/** "Does my poem work?": form, image, line breaks, sound and the strongest line as strengths; a form problem and one idea as next steps. */
+export function poetryPoints(text: string, r: PoetryCraftResult) {
+  const strengths: (FeedbackPoint | null)[] = [];
+  const nextSteps: (FeedbackPoint | null)[] = [];
+  if (r.form.fits) strengths.push({ title: 'It works as a poem ✓', message: r.form.note });
+  else nextSteps.push({ title: 'Check the form', message: r.form.note });
+  if (r.image)
+    strengths.push(
+      anchored(text, { title: 'A clear picture', message: r.image.why }, r.image.quote),
+    );
+  const lineBreak = r.lineBreaks[0];
+  if (lineBreak) {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'A line break that works', message: lineBreak.effect },
+        lineBreak.quote,
+      ),
+    );
+  }
+  const sound = r.sound[0];
+  if (sound) {
+    strengths.push(
+      anchored(
+        text,
+        {
+          title: `Sound: ${r.sound.map((s) => s.device).join(', ')}`,
+          message: 'It makes the poem good to read aloud.',
+        },
+        sound.quote,
+      ),
+    );
+  }
+  if (r.strongestLine) {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'Your strongest line', message: r.strongestLine.why },
+        r.strongestLine.quote,
+      ),
+    );
+  }
+  if (r.nextIdea) nextSteps.push({ title: 'One idea', message: r.nextIdea });
   return {
     strengths: strengths.filter(isPoint).slice(0, 3),
     nextSteps: nextSteps.filter(isPoint).slice(0, 3),

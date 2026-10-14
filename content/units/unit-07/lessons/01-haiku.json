@@ -1,0 +1,66 @@
+{
+  "slug": "haiku",
+  "order": 1,
+  "title": "Haiku: One Moment, Three Lines",
+  "estMinutes": 45,
+  "focusSkills": ["poetry", "syllables", "imagery"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "A poem in one breath",
+      "paragraphs": [
+        "An old silent pond.\nA frog jumps into the pond.\nSplash! Silence again.",
+        "This poem was written in Japan over 300 years ago by a poet called Bashō. It's only seventeen syllables long, yet you can see the pond, hear the splash, and feel the quiet afterwards.",
+        "That's a haiku: a whole moment in one breath."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Haiku",
+          "body": "A haiku is a three-line poem from Japan. The lines have 5, 7 and 5 syllables. It catches one small moment, often from nature, so clearly that the reader can see it. Many haiku hide a season word, and end with a small surprise."
+        },
+        {
+          "kind": "definition",
+          "title": "Counting syllables",
+          "body": "A syllable is a beat in a word. Clap as you say it: “frog” (1), “ri-ver” (2), “but-ter-fly” (3). The counter in your workspace counts for you, but it can make mistakes, so clap to check and tap a word to fix its count."
+        },
+        {
+          "kind": "compare",
+          "title": "Tell it, or picture it?",
+          "telling": "Autumn is beautiful\nand makes me feel peaceful\nI love the season",
+          "showing": "Red leaves on the path\ncrunch beneath my muddy boots.\nOne leaf still falling.",
+          "labels": ["Telling", "Picturing"],
+          "note": "The second haiku never says “beautiful” or “peaceful”. It shows a picture, and the feeling comes by itself."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "The surprise",
+          "prompt": "Tap the two words in the last line that surprise you.",
+          "text": "Morning cereal\nspoon halfway towards my mouth.\nThe cat drinks my milk.",
+          "clues": ["cat", "milk"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["u07.syllable-sort", "u07.season-highlight", "u07.haiku-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "u07.haiku-sequence" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which of your three haiku shows its moment most clearly? Why?",
+        "Did you have to change a word to make a line fit? What did you choose instead?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

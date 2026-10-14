@@ -13,6 +13,7 @@ import {
   povPoints,
   tonePoints,
   figurativePoints,
+  poetryPoints,
   rubricPoints,
   rubricScoreAnalyzer,
   sensoryPoints,
@@ -25,6 +26,7 @@ import {
   classSettings,
   FeedbackPoint as FeedbackPointSchema,
   isWritingActivity,
+  POETRY_ACTIVITY_TYPES,
   SENSORY_ACTIVITY_TYPES,
   submissionChoices,
 } from '@storyforge/shared';
@@ -41,6 +43,7 @@ import { DatabaseService } from '../database/database.service.js';
 import { SafetyService } from '../safety/safety.service.js';
 import { plotInput, plotScope } from '../ai/plot-input.js';
 import { povInput, toneInput, toneScope } from '../ai/voice-input.js';
+import { poemInput, poemScope } from '../ai/poem-input.js';
 
 const toJson = (value: unknown): Prisma.InputJsonValue => JSON.parse(JSON.stringify(value));
 const points = (list: FeedbackPoint[]) => FeedbackPointSchema.array().parse(list);
@@ -58,6 +61,9 @@ const SKILL_NAMES: Record<string, string> = {
   pacing: 'pacing',
   tone: 'tone and voice',
   figurative: 'figurative language',
+  syllables: 'syllables and form',
+  lineBreaks: 'line breaks',
+  sound: 'sound devices',
 };
 
 /**
@@ -151,7 +157,14 @@ export class FeedbackPipeline {
     let declined = false;
     const versions: string[] = [];
     const runMeta = { ...meta, cacheScope: activity.key, text };
-    const { traits, mood: moods, conflict, plot, tone } = submissionChoices(submission.choices);
+    const {
+      traits,
+      mood: moods,
+      conflict,
+      plot,
+      tone,
+      syllables,
+    } = submissionChoices(submission.choices);
     const checkWantFear = WANT_FEAR_TYPES.includes(content.type);
     const collect = (p: { strengths: FeedbackPoint[]; nextSteps: FeedbackPoint[] }) => {
       extraStrengths.push(...p.strengths);
@@ -222,6 +235,25 @@ export class FeedbackPipeline {
           `point of view: ${r.detectedPov}, ${r.shifts.length} shifts${r.narrator ? `; narrator ${r.narrator.detected} (target ${extra.narrator})` : ''}${r.parts.length > 0 ? `; parts that slip: ${broken.join(', ') || 'none'}` : ''}`,
         );
         const p = povPoints(text, r, extra.narrator);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
+      } else if (id === 'poetry-craft') {
+        const extra = poemInput(content, syllables);
+        const outcome = await this.ai.run(
+          LIVE_ANALYZERS[id],
+          { ...ctx, ...extra },
+          { ...runMeta, cacheScope: `${activity.key}|${poemScope(extra)}` },
+        );
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        notes.push(
+          `poem (${extra.form}): form ${r.form.fits ? 'fits' : 'does not fit'}; sound ${r.sound.map((x) => x.device).join(', ') || 'none'}`,
+        );
+        const p = poetryPoints(text, r);
         focusStrengths.push(...p.strengths);
         focusNextSteps.push(...p.nextSteps);
       } else if (id === 'figurative-language') {
@@ -310,6 +342,11 @@ export class FeedbackPipeline {
 
     // 4–5. Rubric score + composition.
     versions.push(rubricScoreAnalyzer.version);
+    if (POETRY_ACTIVITY_TYPES.includes(content.type)) {
+      notes.push(
+        'this is a poem: line breaks are deliberate; judge rhythm and line breaks instead of sentences',
+      );
+    }
     const rubricInput = { ...ctx, rubric: DEFAULT_RUBRIC, evidence, analyzerNotes: notes };
     const scored = await this.ai.run(rubricScoreAnalyzer, rubricInput, {
       ...meta,
@@ -364,6 +401,8 @@ export class FeedbackPipeline {
       (levels.grammar === 4 && dialogueIssues >= 5);
 
     const composed = rubricPoints(text, r);
+    // The rubric's next steps are about prose (sentences, paragraphs); poems get the poetry check's.
+    const poem = POETRY_ACTIVITY_TYPES.includes(content.type);
     const strengths = dedupe([
       ...focusStrengths.slice(0, 3),
       ...composed.strengths,
@@ -371,7 +410,7 @@ export class FeedbackPipeline {
     ]).slice(0, focusStrengths.length > 1 ? 3 : 2);
     const nextSteps = dedupe([
       ...focusNextSteps.slice(0, 2),
-      ...composed.nextSteps,
+      ...(poem ? [] : composed.nextSteps),
       ...extraNextSteps,
     ]).slice(0, 3);
 

@@ -1,0 +1,350 @@
+[
+  {
+    "key": "u07.syllable-sort",
+    "type": "SORT",
+    "title": "Clap the syllables",
+    "instructions": "Say each word aloud and clap its beats. Sort it by how many syllables it has.",
+    "buckets": [
+      { "id": "one", "label": "1 syllable" },
+      { "id": "two", "label": "2 syllables" },
+      { "id": "three", "label": "3 syllables" }
+    ],
+    "items": [
+      { "id": "frog", "text": "frog", "bucketId": "one" },
+      { "id": "splash", "text": "splash", "bucketId": "one" },
+      { "id": "moon", "text": "moon", "bucketId": "one" },
+      { "id": "river", "text": "river", "bucketId": "two" },
+      { "id": "autumn", "text": "autumn", "bucketId": "two" },
+      { "id": "blossom", "text": "blossom", "bucketId": "two" },
+      { "id": "butterfly", "text": "butterfly", "bucketId": "three" },
+      { "id": "whispering", "text": "whispering", "bucketId": "three" },
+      { "id": "beautiful", "text": "beautiful", "bucketId": "three" }
+    ]
+  },
+  {
+    "key": "u07.season-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Find the season",
+    "instructions": "Many haiku hide a season word. Tap the two words that tell you when this haiku happens.",
+    "text": "Cold snowflakes falling\non the empty playground swings.\nWinter holds its breath.",
+    "targets": ["snowflakes", "winter"],
+    "explanation": "Snowflakes and winter tell us the season without a long description. Haiku poets use one season word to set the whole scene."
+  },
+  {
+    "key": "u07.haiku-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "What makes a haiku?",
+    "questions": [
+      {
+        "id": "pattern",
+        "prompt": "How many syllables are in each line of a haiku?",
+        "options": [
+          { "id": "a", "text": "5, 7, 5" },
+          { "id": "b", "text": "7, 5, 7" },
+          { "id": "c", "text": "3, 5, 3" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A haiku has three lines of 5, 7 and 5 syllables: short, longer, short."
+      },
+      {
+        "id": "moment",
+        "prompt": "What does a haiku usually capture?",
+        "options": [
+          { "id": "a", "text": "A whole story with a beginning, middle and end" },
+          { "id": "b", "text": "One small moment, often from nature, seen clearly" },
+          { "id": "c", "text": "A list of rhyming words" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A haiku is like a photograph: one moment, seen so clearly the reader can step into it."
+      },
+      {
+        "id": "rhyme",
+        "prompt": "Do haiku have to rhyme?",
+        "options": [
+          { "id": "a", "text": "Yes, every line must rhyme" },
+          { "id": "b", "text": "Only the first and last lines" },
+          { "id": "c", "text": "No. Haiku count syllables, not rhymes" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Haiku are built on syllables and images, not rhyme. Rhyme can even make a haiku feel forced."
+      }
+    ]
+  },
+  {
+    "key": "u07.haiku-sequence",
+    "type": "HAIKU",
+    "title": "A day in three haiku",
+    "prompt": "Write three haiku about one day: morning, afternoon and night. Each haiku catches one small moment you could see, hear or feel. Leave a blank line between them.",
+    "tips": [
+      "5 syllables, then 7, then 5. Watch the counter go green.",
+      "Show one moment, like a photograph. Skip the feelings words: let the picture do it.",
+      "Try a small surprise in the last line."
+    ],
+    "constraints": {
+      "syllablePattern": [5, 7, 5],
+      "minStanzas": 3,
+      "maxStanzas": 3,
+      "enforcement": "hard"
+    },
+    "analyzers": ["syllables", "senses"]
+  },
+  {
+    "key": "u07.break-sort",
+    "type": "SORT",
+    "title": "Stop or run on?",
+    "instructions": "Does each line stop, or run on into the next line?",
+    "buckets": [
+      { "id": "stop", "label": "Stops (the reader rests)" },
+      { "id": "run", "label": "Runs on (the reader keeps going)" }
+    ],
+    "items": [
+      { "id": "door", "text": "I closed the door.", "bucketId": "stop" },
+      { "id": "rain", "text": "The rain has stopped,", "bucketId": "stop" },
+      { "id": "quiet", "text": "Everything is quiet now.", "bucketId": "stop" },
+      { "id": "under", "text": "and under the", "bucketId": "run" },
+      { "id": "looked", "text": "I looked up and", "bucketId": "run" },
+      { "id": "my", "text": "the last thing my", "bucketId": "run" }
+    ]
+  },
+  {
+    "key": "u07.alone-highlight",
+    "type": "HIGHLIGHT",
+    "title": "A word alone",
+    "instructions": "The poet gave two words a line of their own. Tap them.",
+    "text": "The house was empty\nand\nI walked from room to room\nlistening\nfor footsteps that would never come.",
+    "targets": ["and", "listening"],
+    "explanation": "A word on its own line makes the reader pause on it. “and” makes us wait; “listening” stretches the silence. Line breaks are choices."
+  },
+  {
+    "key": "u07.linebreak-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Why break a line?",
+    "questions": [
+      {
+        "id": "freeverse",
+        "prompt": "What is free verse?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A poem with no rhyme scheme or fixed rhythm, shaped by its line breaks"
+          },
+          { "id": "b", "text": "A poem that is free to read online" },
+          { "id": "c", "text": "A poem with exactly 14 lines" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Free verse doesn't follow rules for rhyme or rhythm. The poet chooses where every line breaks."
+      },
+      {
+        "id": "surprise",
+        "prompt": "“I opened the box and found / nothing.” Why put “nothing” on its own line?",
+        "options": [
+          { "id": "a", "text": "Because the first line was too long" },
+          { "id": "b", "text": "To make the reader pause, then feel the surprise" },
+          { "id": "c", "text": "Poems must have short lines" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The line break makes the reader wait for what's in the box, so “nothing” lands like a surprise."
+      },
+      {
+        "id": "runon",
+        "prompt": "What does a line that runs on (no punctuation at the end) do?",
+        "options": [
+          { "id": "a", "text": "Makes the reader stop for a long time" },
+          { "id": "b", "text": "Pulls the reader into the next line, building speed or suspense" },
+          { "id": "c", "text": "Is a mistake" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A run-on line (enjambment) carries the reader forward. It can build tension or make the poem flow."
+      }
+    ]
+  },
+  {
+    "key": "u07.free-verse",
+    "type": "FREE_VERSE",
+    "title": "A place I know by heart",
+    "prompt": "Write a free-verse poem about a place you know by heart: your kitchen, a bus stop, a grandparent's garden, a corner of the playground. Show the place with details, and choose every line break on purpose: where should the reader pause, rush on, or stop on one word?",
+    "tips": [
+      "Write it first as sentences, then break it into lines.",
+      "Try “Read with pauses” and “Read straight through” to hear your breaks.",
+      "Give your most important word a line of its own."
+    ],
+    "constraints": { "minLines": 8, "maxLines": 30, "enforcement": "hard" },
+    "analyzers": ["lineBreaks", "senses", "figurative"],
+    "lineBreakView": true
+  },
+  {
+    "key": "u07.refrain-highlight",
+    "type": "HIGHLIGHT",
+    "title": "The chorus",
+    "instructions": "Spoken-word poets repeat a line like a chorus. Tap the three words of the repeated phrase.",
+    "text": "I come from loud kitchens,\nfrom Sunday songs and burnt toast.\nI come from stories\ntold twice and laughed at three times.\nI come from here.",
+    "targets": ["i", "come", "from"],
+    "explanation": "“I come from” returns again and again, like a chorus. Repetition gives a spoken poem its heartbeat and helps listeners follow it."
+  },
+  {
+    "key": "u07.stress-sort",
+    "type": "SORT",
+    "title": "Where's the beat?",
+    "instructions": "Say each word aloud. Is the strong beat on the first syllable or the second?",
+    "buckets": [
+      { "id": "first", "label": "STRONG-weak (TA-ble)" },
+      { "id": "second", "label": "weak-STRONG (be-GIN)" }
+    ],
+    "items": [
+      { "id": "thunder", "text": "thunder", "bucketId": "first" },
+      { "id": "happy", "text": "happy", "bucketId": "first" },
+      { "id": "window", "text": "window", "bucketId": "first" },
+      { "id": "begin", "text": "begin", "bucketId": "second" },
+      { "id": "today", "text": "today", "bucketId": "second" },
+      { "id": "alone", "text": "alone", "bucketId": "second" }
+    ]
+  },
+  {
+    "key": "u07.spoken-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Made for the stage",
+    "questions": [
+      {
+        "id": "what",
+        "prompt": "What makes spoken word different from a poem on the page?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It's written to be performed out loud, so rhythm and voice matter most"
+          },
+          { "id": "b", "text": "It never uses line breaks" },
+          { "id": "c", "text": "It must be exactly one minute long" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Spoken word is poetry for the ear. Performers use rhythm, repetition, pauses and their own voice."
+      },
+      {
+        "id": "repeat",
+        "prompt": "Why do spoken-word poets repeat lines?",
+        "options": [
+          { "id": "a", "text": "They forgot what they wrote" },
+          {
+            "id": "b",
+            "text": "Listeners can't re-read, so repetition helps them follow and feel the beat"
+          },
+          { "id": "c", "text": "To make the poem longer" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "On a page you can look back; in a performance you can't. A repeated line is an anchor for the audience."
+      },
+      {
+        "id": "pause",
+        "prompt": "When performing, where is a good place to pause?",
+        "options": [
+          { "id": "a", "text": "In the middle of a word" },
+          { "id": "b", "text": "At a line break, or just before an important word" },
+          { "id": "c", "text": "Never: keep going as fast as possible" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A pause before an important word makes the audience lean in. Line breaks show you where to breathe."
+      }
+    ]
+  },
+  {
+    "key": "u07.spoken-word",
+    "type": "SPOKEN_WORD",
+    "title": "Where I'm from",
+    "prompt": "Write a spoken-word poem called “Where I'm From”. Fill it with the sounds, foods, sayings and places that made you. Choose a line to repeat, like a chorus, and write it to be read aloud. Then try it with the beat and record yourself.",
+    "tips": [
+      "Start several lines the same way: “I'm from…”.",
+      "Use details only you would know: a smell, a saying, a song.",
+      "Mark the stressed syllables and read along with the beat."
+    ],
+    "constraints": { "minLines": 10, "maxLines": 40, "enforcement": "hard" },
+    "analyzers": ["sound", "lineBreaks", "senses"],
+    "rhythmMode": true
+  },
+  {
+    "key": "u07.sound-sort",
+    "type": "SORT",
+    "title": "Name that sound",
+    "instructions": "Sort each line by the sound device it uses most.",
+    "buckets": [
+      { "id": "alliteration", "label": "Alliteration" },
+      { "id": "onomatopoeia", "label": "Onomatopoeia" },
+      { "id": "rhyme", "label": "Rhyme" },
+      { "id": "repetition", "label": "Repetition" }
+    ],
+    "items": [
+      { "id": "snakes", "text": "Silver snakes slither silently.", "bucketId": "alliteration" },
+      { "id": "bees", "text": "Busy bees buzz by the bench.", "bucketId": "alliteration" },
+      { "id": "kettle", "text": "The kettle hisses, the toast pops.", "bucketId": "onomatopoeia" },
+      { "id": "rain", "text": "Drip, drop, splash goes the rain.", "bucketId": "onomatopoeia" },
+      {
+        "id": "night",
+        "text": "The stars came out at night / and filled the sky with light.",
+        "bucketId": "rhyme"
+      },
+      { "id": "sea", "text": "I sat beside the sea / as calm as I could be.", "bucketId": "rhyme" },
+      { "id": "run", "text": "Run, run, run, as fast as you can.", "bucketId": "repetition" },
+      { "id": "never", "text": "Never again, never again, I said.", "bucketId": "repetition" }
+    ]
+  },
+  {
+    "key": "u07.sound-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Hear it",
+    "instructions": "Tap the three words that sound like what they mean.",
+    "text": "The pan began to sizzle, the door banged shut, and somewhere outside a car horn honked twice.",
+    "targets": ["sizzle", "banged", "honked"],
+    "explanation": "Sizzle, bang and honk are onomatopoeia: words that sound like the noise they describe. Read them aloud and you can hear the kitchen."
+  },
+  {
+    "key": "u07.sound-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Sound on purpose",
+    "questions": [
+      {
+        "id": "alliteration",
+        "prompt": "Which line uses alliteration?",
+        "options": [
+          { "id": "a", "text": "Wild wind whips the washing line." },
+          { "id": "b", "text": "The wind is very strong today." },
+          { "id": "c", "text": "The washing is drying outside." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Wild, wind, whips and washing all start with the same “w” sound. That's alliteration."
+      },
+      {
+        "id": "why",
+        "prompt": "Why do poets use sound devices?",
+        "options": [
+          { "id": "a", "text": "To make the poem longer" },
+          { "id": "b", "text": "To make the poem fun to read aloud and to add to its mood" },
+          { "id": "c", "text": "Because every poem must rhyme" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Sound devices make poems musical. Soft sounds can calm the reader; hard sounds can startle them."
+      },
+      {
+        "id": "mood",
+        "prompt": "Which sounds best fit a calm, sleepy poem?",
+        "options": [
+          { "id": "a", "text": "Crash, bang, smash" },
+          { "id": "b", "text": "Hush, whisper, murmur" },
+          { "id": "c", "text": "Pop, crack, snap" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Soft “sh” and “m” sounds feel quiet and gentle. Hard sounds like “crash” and “crack” feel loud and sudden."
+      }
+    ]
+  },
+  {
+    "key": "u07.sound-poem",
+    "type": "SOUND_POEM",
+    "title": "A poem you can hear",
+    "prompt": "Write a poem about a noisy (or very quiet) place: a storm, a kitchen at dinnertime, a swimming pool, a library, a city at night. Use at least three sound devices on purpose: alliteration, onomatopoeia, rhyme or repetition. Choose sounds that fit the mood.",
+    "tips": [
+      "Read every line aloud as you write it.",
+      "Match the sounds to the mood: soft sounds for calm, hard sounds for chaos.",
+      "Rhyme is optional. Don't let it force a word you don't mean."
+    ],
+    "constraints": { "minLines": 8, "maxLines": 24, "enforcement": "hard" },
+    "analyzers": ["sound", "figurative", "lineBreaks"]
+  }
+]

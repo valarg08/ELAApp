@@ -38,6 +38,7 @@ export function CoachPanel({
   conflict,
   plot,
   tone,
+  syllables,
   onShow,
 }: {
   text: string;
@@ -52,6 +53,8 @@ export function CoachPanel({
   plot: PlotPlan;
   /** Tone aimed for on the tone sliders (the tone check compares against it). */
   tone: ToneChoice;
+  /** The student's own syllable counts (poems). */
+  syllables: Record<string, number>;
   /** Select the words a card points at in the editor. */
   onShow: (span: Span) => void;
 }) {
@@ -70,6 +73,8 @@ export function CoachPanel({
         perspectives: activity.constraints.perspectives,
         tone: activity.tonePicker ? validTone(activity, tone) : undefined,
         devices: activity.figurativeHelper?.devices,
+        syllablePattern: activity.constraints.syllablePattern,
+        syllableOverrides: syllables,
       }),
     });
   }
@@ -134,6 +139,9 @@ export function CoachPanel({
               />
             )}
             {checked.report.tone && <ToneBand scales={checked.report.tone} />}
+            {checked.report.sound && (
+              <SoundMeter sounds={checked.report.sound} canShow={canShow} onShow={onShow} />
+            )}
             {checked.report.figurative && (
               <FigurativeMeter
                 devices={checked.report.figurative}
@@ -156,6 +164,7 @@ export function CoachPanel({
         conflict={conflict}
         plot={plot}
         tone={tone}
+        syllables={syllables}
         text={text}
         onShow={onShow}
       />
@@ -405,6 +414,51 @@ function FigurativeMeter({
                 className="font-semibold text-brand underline focus-visible:outline-3 focus-visible:outline-brand"
               >
                 Show me<span className="sr-only"> the {d.device}</span>
+              </button>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+const SOUND_LABELS = {
+  alliteration: '🐍 Alliteration',
+  repetition: '🔁 Repetition',
+  rhyme: '🎵 Rhyme',
+  onomatopoeia: '💥 Onomatopoeia',
+} as const;
+
+/** Sound devices Quill spotted in a poem, with "Show me" for the first of each. */
+function SoundMeter({
+  sounds,
+  canShow,
+  onShow,
+}: {
+  sounds: NonNullable<CoachReport['sound']>;
+  canShow: (span: Span | undefined) => span is Span;
+  onShow: (span: Span) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      <h3 className="font-semibold">Sounds Quill heard</h3>
+      <ul className="flex flex-wrap gap-2">
+        {sounds.map((s) => (
+          <li
+            key={s.device}
+            className={`flex items-center gap-2 rounded-full border px-3 py-1 text-sm ${
+              s.count > 0 ? 'border-ok text-ok' : 'border-border text-muted'
+            }`}
+          >
+            {SOUND_LABELS[s.device]} {s.count > 0 ? '✓' : '–'}
+            {s.count > 0 && canShow(s.span) && (
+              <button
+                type="button"
+                onClick={() => s.span && onShow(s.span)}
+                className="font-semibold text-brand underline focus-visible:outline-3 focus-visible:outline-brand"
+              >
+                Show me<span className="sr-only"> the {s.device}</span>
               </button>
             )}
           </li>
