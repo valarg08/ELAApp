@@ -1,0 +1,63 @@
+{
+  "slug": "essay-active-voice",
+  "order": 2,
+  "title": "Active Voice",
+  "estMinutes": 35,
+  "focusSkills": ["voice", "clarity"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "You’re reading the sports page. Which headline grabs you?",
+      "a": "The championship was won by the Hawks in the final second.",
+      "b": "The Hawks won the championship in the final second.",
+      "reveal": "B is active: the team comes first and the verb hits right after. It’s two words shorter and far more exciting. Reporters write mostly in the active voice for exactly that reason."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Doer + verb + receiver",
+          "body": "An active sentence follows the natural order of action: the doer, then the verb, then the receiver. “The chef sliced the onions.” Readers see who acted and what they did, in that order."
+        },
+        {
+          "kind": "definition",
+          "title": "Why active is usually stronger",
+          "body": "Active sentences are shorter (no “was” or “by”), clearer (the doer is never missing) and more energetic (the verb comes early). That’s why essays, news reports and stories use the active voice most of the time."
+        },
+        {
+          "kind": "example",
+          "title": "Flip it in three moves",
+          "text": "The cake was eaten by the dog.\n1. Find the doer after “by”: the dog.\n2. Put the doer first: The dog…\n3. Make the verb active, same tense: The dog ate the cake.",
+          "note": "Keep the tense: “is eaten” → eats, “will be eaten” → will eat, “has been eaten” → has eaten."
+        },
+        {
+          "kind": "compare",
+          "title": "Active doesn’t mean “no be”",
+          "telling": "The players were cheered by the fans.",
+          "showing": "The fans were cheering for the players.",
+          "labels": ["Passive", "Active (progressive)"],
+          "note": "Be + an -ing verb is active: the fans are doing the cheering. Only be + a past participle makes the passive."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e05.active-transform", "e05.active-blank", "e05.active-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e05.active-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which sentence in your report has the strongest verb? Why does it work?",
+        "When you flipped a passive sentence, what changed besides the word order?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

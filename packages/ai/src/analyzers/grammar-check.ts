@@ -68,7 +68,10 @@ export const grammarCheckAnalyzer: AnalyzerDef<GrammarCheckInput, GrammarCheckRe
     ].join('\n'),
   fake(input) {
     const { text } = input;
-    const issues = grammarIssues(text);
+    // A sentence set's tasks can ask for different tenses on purpose, so tense slips don't count.
+    const issues = grammarIssues(text).filter(
+      (i) => input.tasks.length === 0 || i.kind !== 'tense-shift',
+    );
     const weakPhrases = veryPhrases(text);
     const weak = weakPhrases[0];
     const hits = grammarFeatures(text);

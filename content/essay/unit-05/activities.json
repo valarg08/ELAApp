@@ -1,0 +1,1655 @@
+[
+  {
+    "key": "e05.doer-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Find the doers",
+    "instructions": "Tap the five doers: the person or thing that does each action.",
+    "text": "The goalkeeper caught the ball. Then a gust of wind knocked over the scoreboard. Our coach blew her whistle, and the fans cheered. The referee checked his watch.",
+    "targets": ["goalkeeper", "wind", "coach", "fans", "referee"],
+    "explanation": "The goalkeeper caught · the wind knocked over · our coach blew · the fans cheered · the referee checked. In every sentence the doer comes first, before the verb: that’s the active voice."
+  },
+  {
+    "key": "e05.voice-sort",
+    "type": "SORT",
+    "title": "Active or passive?",
+    "instructions": "Does the sentence start with the doer (active) or with the thing that receives the action (passive)?",
+    "buckets": [
+      {
+        "id": "active",
+        "label": "Active: doer first"
+      },
+      {
+        "id": "passive",
+        "label": "Passive: receiver first"
+      }
+    ],
+    "items": [
+      {
+        "id": "maya-kicked",
+        "text": "Maya kicked the ball.",
+        "bucketId": "active"
+      },
+      {
+        "id": "ball-kicked",
+        "text": "The ball was kicked by Maya.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "bike-stolen",
+        "text": "My bike was stolen last night.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "chef-made",
+        "text": "The chef made a giant pancake.",
+        "bucketId": "active"
+      },
+      {
+        "id": "song-sung",
+        "text": "The anthem is sung before every game.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "storm-flooded",
+        "text": "The storm flooded the basement.",
+        "bucketId": "active"
+      },
+      {
+        "id": "winners-announced",
+        "text": "The winners will be announced on Friday.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "kids-built",
+        "text": "The kids built a fort out of blankets.",
+        "bucketId": "active"
+      },
+      {
+        "id": "letter-written",
+        "text": "The letter was written by my great-grandmother.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "dog-chewed",
+        "text": "Our puppy chewed my homework.",
+        "bucketId": "active"
+      }
+    ]
+  },
+  {
+    "key": "e05.doer-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Who did it?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "In “The window was broken by Leo,” who did the breaking?",
+        "options": [
+          {
+            "id": "a",
+            "text": "the window"
+          },
+          {
+            "id": "b",
+            "text": "Leo"
+          },
+          {
+            "id": "c",
+            "text": "We can’t tell."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“By Leo” names the doer. The window is the receiver: it had the action done to it."
+      },
+      {
+        "id": "q2",
+        "prompt": "In “The cookies were eaten,” who ate the cookies?",
+        "options": [
+          {
+            "id": "a",
+            "text": "the cookies"
+          },
+          {
+            "id": "b",
+            "text": "the writer"
+          },
+          {
+            "id": "c",
+            "text": "The sentence doesn’t say."
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "A passive sentence doesn’t have to name the doer. Here we only know what happened to the cookies."
+      },
+      {
+        "id": "q3",
+        "prompt": "What is the receiver in “The coach praised the team”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "the coach"
+          },
+          {
+            "id": "b",
+            "text": "praised"
+          },
+          {
+            "id": "c",
+            "text": "the team"
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "The coach does the praising; the team receives it. The doer comes first, so this sentence is active."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence is in the passive voice?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The bees chased Omar across the field."
+          },
+          {
+            "id": "b",
+            "text": "Omar was chased across the field by the bees."
+          },
+          {
+            "id": "c",
+            "text": "Omar ran across the field."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Was chased” is a form of be + a past participle, and the receiver (Omar) comes first."
+      },
+      {
+        "id": "q5",
+        "prompt": "Which two words are a clue that a sentence might be passive?",
+        "options": [
+          {
+            "id": "a",
+            "text": "a form of be (is, was, were…) + a past participle (taken, built…)"
+          },
+          {
+            "id": "b",
+            "text": "an adjective + a noun"
+          },
+          {
+            "id": "c",
+            "text": "the word “and” + a verb"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The passive is built from be + a past participle: is made, was taken, were built. Often “by” + the doer comes next."
+      }
+    ]
+  },
+  {
+    "key": "e05.doer-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Doer first, receiver first",
+    "prompt": "Write four sentences about something that happened at school or at home this week (a spill, a game, a lost item, a surprise). Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Active: doer + verb + receiver. “My sister spilled the paint.”",
+      "Passive: receiver + be + past participle (+ by the doer). “The paint was spilled by my sister.”",
+      "When you don’t know who did it, leave out “by”: “My pencil case was taken.”"
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 150,
+      "minSentences": 4
+    },
+    "analyzers": ["voice"],
+    "grammarFocus": ["active-voice", "passive-voice", "passive-agent"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Say what someone did, with the doer first (active).",
+          "needs": ["active-voice"]
+        },
+        {
+          "ask": "Tell the same thing with the receiver first, and “by” + the doer at the end (passive).",
+          "needs": ["passive-voice", "passive-agent"]
+        },
+        {
+          "ask": "Say what happened to something when nobody knows who did it (passive, no “by”).",
+          "needs": ["passive-voice"]
+        },
+        {
+          "ask": "Finish with an active sentence and a strong action verb.",
+          "needs": ["active-voice"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e05.active-transform",
+    "type": "TRANSFORM",
+    "title": "Doer to the front",
+    "instructions": "Rewrite each passive sentence in the active voice. Move the doer (after “by”) to the front and keep the same tense.",
+    "items": [
+      {
+        "id": "maya",
+        "task": "Make it active.",
+        "source": "The ball was kicked by Maya.",
+        "answers": ["Maya kicked the ball."],
+        "hints": ["Who kicked? Start with her.", "Maya kicked…"],
+        "explanation": "Doer (Maya) + verb (kicked) + receiver (the ball). “Was kicked” in the past → “kicked”."
+      },
+      {
+        "id": "brother",
+        "task": "Make it active.",
+        "source": "The cookies were eaten by my little brother.",
+        "answers": ["My little brother ate the cookies."],
+        "hints": ["Start with “My little brother”.", "“Were eaten” in the active past is “ate”."],
+        "explanation": "My little brother (doer) ate (past) the cookies (receiver)."
+      },
+      {
+        "id": "mural",
+        "task": "Make it active.",
+        "source": "The mural was painted by the art club.",
+        "answers": ["The art club painted the mural."],
+        "hints": ["Who painted it?", "The art club painted…"],
+        "explanation": "The doer moves to the front, and the passive “was painted” becomes the active “painted”."
+      },
+      {
+        "id": "patel",
+        "task": "Make it active. (It’s in the present tense.)",
+        "source": "The windows are cleaned by Mr. Patel every Friday.",
+        "answers": [
+          "Mr. Patel cleans the windows every Friday.",
+          "Every Friday, Mr. Patel cleans the windows.",
+          "Every Friday Mr. Patel cleans the windows."
+        ],
+        "hints": ["Present tense: one person → “cleans”.", "Mr. Patel cleans…"],
+        "explanation": "“Are cleaned” is present, so the active verb is present too: Mr. Patel cleans."
+      },
+      {
+        "id": "grandpa",
+        "task": "Make it active. (It’s in the future.)",
+        "source": "The dog will be walked by Grandpa.",
+        "answers": ["Grandpa will walk the dog."],
+        "hints": ["Keep “will”.", "Grandpa will walk…"],
+        "explanation": "“Will be walked” (future passive) → “will walk” (future active)."
+      },
+      {
+        "id": "storm",
+        "task": "Make it active.",
+        "source": "The old oak tree was knocked down by the storm.",
+        "answers": [
+          "The storm knocked down the old oak tree.",
+          "The storm knocked the old oak tree down."
+        ],
+        "hints": ["What did the knocking?", "The storm knocked…"],
+        "explanation": "The doer doesn’t have to be a person: the storm is doing the action."
+      }
+    ]
+  },
+  {
+    "key": "e05.active-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Why active?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is clearer and stronger?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A home run was hit by Ana in the last inning."
+          },
+          {
+            "id": "b",
+            "text": "Ana hit a home run in the last inning."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The active sentence puts Ana first and uses fewer words. Readers see who acted straight away."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which sentence is in the active voice?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The test was graded by Ms. Ruiz."
+          },
+          {
+            "id": "b",
+            "text": "The test has been graded."
+          },
+          {
+            "id": "c",
+            "text": "Ms. Ruiz graded the test."
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "In “Ms. Ruiz graded the test,” the doer (Ms. Ruiz) comes before the verb."
+      },
+      {
+        "id": "q3",
+        "prompt": "Count the words: “The song was sung by the choir” (7) vs “The choir sang the song.” How many words does the active save?",
+        "options": [
+          {
+            "id": "a",
+            "text": "none"
+          },
+          {
+            "id": "b",
+            "text": "two"
+          },
+          {
+            "id": "c",
+            "text": "five"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The active version has 5 words. Dropping “was” and “by” makes it tighter."
+      },
+      {
+        "id": "q4",
+        "prompt": "Is “Sam is running to the bus” active or passive?",
+        "options": [
+          {
+            "id": "a",
+            "text": "active: Sam is the doer"
+          },
+          {
+            "id": "b",
+            "text": "passive: it has “is”"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Is running” is be + an -ing verb (progressive), not be + a past participle. Sam does the running, so it’s active."
+      },
+      {
+        "id": "q5",
+        "prompt": "Why do essay writers mostly use the active voice?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It’s the only correct voice."
+          },
+          {
+            "id": "b",
+            "text": "It shows clearly who does what, in fewer words."
+          },
+          {
+            "id": "c",
+            "text": "It makes sentences longer."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The passive isn’t wrong, but the active is usually more direct. Use the passive on purpose (that’s Lesson 5)."
+      }
+    ]
+  },
+  {
+    "key": "e05.active-blank",
+    "type": "FILL_BLANK",
+    "title": "Pick the active verb",
+    "instructions": "Choose the verb that keeps the sentence in the active voice, with the doer first.",
+    "items": [
+      {
+        "id": "chef",
+        "sentence": "The chef ___ the soup with fresh basil.",
+        "choices": ["topped", "was topped"],
+        "answers": ["topped"],
+        "explanation": "The chef does the topping: “The chef topped the soup.”"
+      },
+      {
+        "id": "wind",
+        "sentence": "The wind ___ the kite into the clouds.",
+        "choices": ["lifted", "was lifted"],
+        "answers": ["lifted"],
+        "explanation": "The wind is the doer, so it gets the active verb: lifted."
+      },
+      {
+        "id": "students",
+        "sentence": "Our class ___ two hundred cans for the food drive.",
+        "choices": ["collected", "were collected"],
+        "answers": ["collected"],
+        "explanation": "Our class did the collecting: active."
+      },
+      {
+        "id": "judges",
+        "sentence": "Tomorrow, the judges ___ the best robot.",
+        "choices": ["will choose", "will be chosen"],
+        "answers": ["will choose"],
+        "explanation": "The judges do the choosing. “Will be chosen” would make the judges the ones being picked!"
+      },
+      {
+        "id": "fire",
+        "sentence": "Firefighters ___ the cat from the roof.",
+        "choices": ["rescued", "were rescued"],
+        "answers": ["rescued"],
+        "explanation": "Firefighters rescued the cat. (“Were rescued” would mean someone rescued the firefighters.)"
+      },
+      {
+        "id": "grandma",
+        "sentence": "My grandma ___ this quilt in 1975.",
+        "choices": ["sewed", "was sewn"],
+        "answers": ["sewed"],
+        "explanation": "Grandma did the sewing: “My grandma sewed this quilt.”"
+      }
+    ]
+  },
+  {
+    "key": "e05.active-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Sports desk",
+    "prompt": "You’re a sports reporter. Write a short news report (6–10 sentences) about a game, a race or a match (real or made up). Use the active voice in every sentence: put the player or team first, then a strong action verb.",
+    "tips": [
+      "Doer + strong verb: “Jordan sprinted down the sideline.” “The Hawks crushed the Tigers 4–1.”",
+      "Spot a “was … by”? Flip it: “The goal was scored by Lee” → “Lee scored the goal.”",
+      "Strong verbs: sprinted, blocked, smashed, dodged, snatched, rallied, sealed."
+    ],
+    "constraints": {
+      "minWords": 60,
+      "maxWords": 200,
+      "minSentences": 6
+    },
+    "analyzers": ["voice", "verbs"],
+    "grammarFocus": ["active-voice"]
+  },
+  {
+    "key": "e05.passive-blank",
+    "type": "FILL_BLANK",
+    "title": "Build the passive",
+    "instructions": "Choose the passive verb that fits the tense. The time words are your clue.",
+    "items": [
+      {
+        "id": "present",
+        "sentence": "Fresh bread ___ every morning at the corner bakery.",
+        "choices": ["is baked", "was baked", "will be baked"],
+        "answers": ["is baked"],
+        "hint": "“Every morning” means it happens again and again: the present.",
+        "explanation": "Present passive: am/is/are + past participle → is baked."
+      },
+      {
+        "id": "past",
+        "sentence": "The Eiffel Tower ___ in 1889.",
+        "choices": ["is completed", "was completed", "has been completed"],
+        "answers": ["was completed"],
+        "hint": "1889 is a finished time in the past.",
+        "explanation": "Past passive: was/were + past participle → was completed."
+      },
+      {
+        "id": "future",
+        "sentence": "The new gym ___ next spring.",
+        "choices": ["will be opened", "was opened", "is being opened"],
+        "answers": ["will be opened"],
+        "hint": "“Next spring” hasn’t happened yet.",
+        "explanation": "Future passive: will be + past participle → will be opened."
+      },
+      {
+        "id": "progressive",
+        "sentence": "Shh! The baby’s room ___ right now.",
+        "choices": ["is being painted", "was painted", "will be painted"],
+        "answers": ["is being painted"],
+        "hint": "“Right now” means it’s in progress.",
+        "explanation": "Present progressive passive: is/are being + past participle → is being painted."
+      },
+      {
+        "id": "perfect",
+        "sentence": "Good news: all the tickets ___ already.",
+        "choices": ["have been sold", "are selling", "will be sold"],
+        "answers": ["have been sold"],
+        "hint": "“Already” goes with the perfect.",
+        "explanation": "Present perfect passive: has/have been + past participle → have been sold."
+      },
+      {
+        "id": "plural",
+        "sentence": "Last year, the school’s old computers ___ to a charity.",
+        "choices": ["was given", "were given", "were gave"],
+        "answers": ["were given"],
+        "hint": "Computers: more than one. And “gave” isn’t a participle.",
+        "explanation": "Plural subject → were; give → given. The passive always needs the past participle."
+      },
+      {
+        "id": "past-progressive",
+        "sentence": "When we arrived, the stage ___ by the crew.",
+        "choices": ["was being set up", "is set up", "will be set up"],
+        "answers": ["was being set up"],
+        "hint": "It was in progress when we arrived (in the past).",
+        "explanation": "Past progressive passive: was/were being + past participle → was being set up."
+      },
+      {
+        "id": "irregular",
+        "sentence": "The answer ___ on the back of the card.",
+        "choices": ["is written", "is wrote", "is writing"],
+        "answers": ["is written"],
+        "hint": "write, wrote, … which form goes after be?",
+        "explanation": "The past participle of write is written: is written."
+      }
+    ]
+  },
+  {
+    "key": "e05.passive-tense-sort",
+    "type": "SORT",
+    "title": "Passive tense sort",
+    "instructions": "Every sentence is passive. Which tense is its verb?",
+    "buckets": [
+      {
+        "id": "present",
+        "label": "Present (is/are + participle)"
+      },
+      {
+        "id": "past",
+        "label": "Past (was/were + participle)"
+      },
+      {
+        "id": "future",
+        "label": "Future (will be + participle)"
+      },
+      {
+        "id": "perfect",
+        "label": "Perfect (has/have/had been + participle)"
+      }
+    ],
+    "items": [
+      {
+        "id": "spoken",
+        "text": "Spanish is spoken in twenty-one countries.",
+        "bucketId": "present"
+      },
+      {
+        "id": "sold",
+        "text": "Tickets are sold at the door.",
+        "bucketId": "present"
+      },
+      {
+        "id": "found",
+        "text": "The fossil was found by a ten-year-old.",
+        "bucketId": "past"
+      },
+      {
+        "id": "cancelled",
+        "text": "The concert was cancelled because of the storm.",
+        "bucketId": "past"
+      },
+      {
+        "id": "posted",
+        "text": "The grades will be posted tomorrow.",
+        "bucketId": "future"
+      },
+      {
+        "id": "served",
+        "text": "Dinner will be served at six.",
+        "bucketId": "future"
+      },
+      {
+        "id": "eaten",
+        "text": "Someone’s sandwich has been eaten!",
+        "bucketId": "perfect"
+      },
+      {
+        "id": "chosen",
+        "text": "The team captains have been chosen.",
+        "bucketId": "perfect"
+      },
+      {
+        "id": "locked",
+        "text": "By noon, the doors had been locked.",
+        "bucketId": "perfect"
+      },
+      {
+        "id": "repaired",
+        "text": "The swings were repaired last week.",
+        "bucketId": "past"
+      }
+    ]
+  },
+  {
+    "key": "e05.participle-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Participle patrol",
+    "instructions": "Five passive verbs in this school notice use the wrong verb form. Tap each wrong word, then type the past participle.",
+    "text": "Attention, students! This week the old library was took apart, and the new shelves were build by a team of volunteers. The new books have been chose by your teachers, and the reading rules were wrote on a big poster. Sadly, one window was broke during the move, but it will be fixed soon.",
+    "errors": [
+      {
+        "word": "took",
+        "fixes": ["taken"],
+        "explanation": "take, took, taken: the passive needs the participle, “was taken”."
+      },
+      {
+        "word": "build",
+        "fixes": ["built"],
+        "explanation": "After “were”, use the past participle: “were built”."
+      },
+      {
+        "word": "chose",
+        "fixes": ["chosen"],
+        "explanation": "choose, chose, chosen: “have been chosen”."
+      },
+      {
+        "word": "wrote",
+        "fixes": ["written"],
+        "explanation": "write, wrote, written: “were written”."
+      },
+      {
+        "word": "broke",
+        "fixes": ["broken"],
+        "explanation": "break, broke, broken: “was broken”."
+      }
+    ]
+  },
+  {
+    "key": "e05.passive-tenses",
+    "type": "SENTENCE_SET",
+    "title": "Passive in every tense",
+    "prompt": "Write five sentences about how a big school event (a play, a fair, a sports day) is put together. Each sentence uses the passive in a different tense. The tasks are listed above the writing box: write them in order.",
+    "tips": [
+      "Present: is/are + participle. Past: was/were + participle. Future: will be + participle.",
+      "Perfect: has/have/had been + participle. Progressive: is/are/was/were being + participle.",
+      "Irregular participles: built, chosen, written, sold, made, taken, given, hung."
+    ],
+    "constraints": {
+      "minWords": 30,
+      "maxWords": 180,
+      "minSentences": 5
+    },
+    "analyzers": ["voice"],
+    "grammarFocus": ["passive-present", "passive-past", "passive-future", "passive-perfect"],
+    "sentenceSet": {
+      "label": "Your five sentences",
+      "sentences": [
+        {
+          "ask": "Something that is done every year (present passive).",
+          "needs": ["passive-present"]
+        },
+        {
+          "ask": "Something that was done last week (past passive).",
+          "needs": ["passive-past"]
+        },
+        {
+          "ask": "Something that is being done right now (progressive passive).",
+          "needs": ["passive-progressive"]
+        },
+        {
+          "ask": "Something that has already been done (perfect passive).",
+          "needs": ["passive-perfect"]
+        },
+        {
+          "ask": "Something that will be done on the big day (future passive).",
+          "needs": ["passive-future"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e05.to-passive-transform",
+    "type": "TRANSFORM",
+    "title": "Flip it to passive",
+    "instructions": "Rewrite each active sentence in the passive voice. The receiver goes first, then be + the past participle, then “by” + the doer. Keep the tense.",
+    "items": [
+      {
+        "id": "sam",
+        "task": "Make it passive.",
+        "source": "Sam fixed the bike.",
+        "answers": ["The bike was fixed by Sam."],
+        "hints": ["Start with the receiver: “The bike…”", "The bike was fixed…"],
+        "explanation": "Receiver (the bike) + was + fixed + by Sam. Past active → past passive."
+      },
+      {
+        "id": "chef",
+        "task": "Make it passive. (Present tense.)",
+        "source": "The chef makes the soup.",
+        "answers": ["The soup is made by the chef."],
+        "hints": ["Present passive: is + participle.", "The soup is made…"],
+        "explanation": "“Makes” (present) → “is made” (present passive)."
+      },
+      {
+        "id": "principal",
+        "task": "Make it passive. (Future.)",
+        "source": "The principal will announce the winners.",
+        "answers": ["The winners will be announced by the principal."],
+        "hints": ["Future passive: will be + participle.", "The winners will be announced…"],
+        "explanation": "“Will announce” → “will be announced”."
+      },
+      {
+        "id": "crew",
+        "task": "Make it passive. (It’s happening now.)",
+        "source": "The crew is painting the stage.",
+        "answers": ["The stage is being painted by the crew."],
+        "hints": ["Progressive passive: is being + participle.", "The stage is being painted…"],
+        "explanation": "“Is painting” → “is being painted”."
+      },
+      {
+        "id": "someone",
+        "task": "Make it passive, and leave out the doer.",
+        "source": "Someone has eaten my sandwich.",
+        "answers": ["My sandwich has been eaten."],
+        "hints": ["“Someone” tells us nothing, so drop it.", "My sandwich has been…"],
+        "explanation": "“Has eaten” → “has been eaten”. When the doer is unknown, the passive can leave it out."
+      },
+      {
+        "id": "she",
+        "task": "Make it passive. Watch the pronoun!",
+        "source": "She wrote the poem.",
+        "answers": ["The poem was written by her."],
+        "hints": [
+          "After “by”, use an object pronoun: me, him, her, us, them.",
+          "The poem was written by…"
+        ],
+        "explanation": "“She” becomes “her” after “by”: “by her”, never “by she”."
+      }
+    ]
+  },
+  {
+    "key": "e05.to-active-transform",
+    "type": "TRANSFORM",
+    "title": "Flip it to active",
+    "instructions": "Rewrite each passive sentence in the active voice. Keep the tense, and make the verb agree with its new subject.",
+    "items": [
+      {
+        "id": "them",
+        "task": "Make it active. Watch the pronoun!",
+        "source": "The trophy was won by them.",
+        "answers": ["They won the trophy."],
+        "hints": ["“Them” becomes a subject pronoun at the front.", "They won…"],
+        "explanation": "At the front of the sentence, “them” becomes “they”: They won the trophy."
+      },
+      {
+        "id": "lily",
+        "task": "Make it active. (Perfect.)",
+        "source": "The cake has been decorated by Lily.",
+        "answers": ["Lily has decorated the cake."],
+        "hints": ["Keep “has”, drop “been”.", "Lily has decorated…"],
+        "explanation": "“Has been decorated” → “has decorated”."
+      },
+      {
+        "id": "brothers",
+        "task": "Make it active. (It’s happening now.)",
+        "source": "The car is being washed by my brothers.",
+        "answers": ["My brothers are washing the car."],
+        "hints": ["Brothers: more than one, so “are”.", "My brothers are washing…"],
+        "explanation": "“Is being washed” → “are washing”. The verb now agrees with “my brothers” (plural)."
+      },
+      {
+        "id": "ruiz",
+        "task": "Make it active. (Future.)",
+        "source": "The results will be posted by Ms. Ruiz.",
+        "answers": ["Ms. Ruiz will post the results."],
+        "hints": ["Keep “will”.", "Ms. Ruiz will post…"],
+        "explanation": "“Will be posted” → “will post”."
+      },
+      {
+        "id": "roof",
+        "task": "Make it active.",
+        "source": "The roof was damaged by the storm.",
+        "answers": ["The storm damaged the roof."],
+        "hints": ["What did the damage?", "The storm damaged…"],
+        "explanation": "“Was damaged” (past passive) → “damaged” (past active)."
+      }
+    ]
+  },
+  {
+    "key": "e05.transform-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Spot the right flip",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which is the passive of “The dog dug a hole”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A hole was dug by the dog."
+          },
+          {
+            "id": "b",
+            "text": "A hole was digged by the dog."
+          },
+          {
+            "id": "c",
+            "text": "A hole dug the dog."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "dig, dug, dug: “was dug”. “Digged” isn’t a word."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The prize was given to Ana by he."
+          },
+          {
+            "id": "b",
+            "text": "The prize was given to Ana by him."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "After “by”, use an object pronoun: him, her, them, us, me."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which keeps the tense of “The class is planting trees”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Trees were planted by the class."
+          },
+          {
+            "id": "b",
+            "text": "Trees are being planted by the class."
+          },
+          {
+            "id": "c",
+            "text": "Trees will be planted by the class."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Is planting” is present progressive, so the passive is “are being planted” (trees: plural)."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which is the active of “The muffins were baked by Dad”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Dad baked the muffins."
+          },
+          {
+            "id": "b",
+            "text": "Dad was baked the muffins."
+          },
+          {
+            "id": "c",
+            "text": "The muffins baked Dad."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The doer (Dad) moves to the front, and “were baked” becomes “baked”."
+      },
+      {
+        "id": "q5",
+        "prompt": "Choose the verb: “The cookies ___ by the twins.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "was eaten"
+          },
+          {
+            "id": "b",
+            "text": "were eaten"
+          },
+          {
+            "id": "c",
+            "text": "were ate"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "In the passive, the verb agrees with the new subject (cookies, plural): were. And the participle is eaten."
+      }
+    ]
+  },
+  {
+    "key": "e05.both-ways",
+    "type": "SENTENCE_SET",
+    "title": "Both ways",
+    "prompt": "Write six sentences about a neighbourhood or school event (a clean-up, a bake sale, a talent show). Write each idea twice, once active and once passive, by following the tasks above the writing box in order.",
+    "tips": [
+      "Active → passive: the receiver moves to the front, add be + participle, and “by” + the doer.",
+      "Passive → active: the doer after “by” moves to the front. Keep the tense.",
+      "After “by”, use me, him, her, us, them."
+    ],
+    "constraints": {
+      "minWords": 40,
+      "maxWords": 220,
+      "minSentences": 6
+    },
+    "analyzers": ["voice"],
+    "grammarFocus": ["active-voice", "passive-agent"],
+    "sentenceSet": {
+      "label": "Your six sentences",
+      "sentences": [
+        {
+          "ask": "Say what someone did (active, past tense).",
+          "needs": ["active-voice"]
+        },
+        {
+          "ask": "Now write sentence 1 in the passive, with “by”.",
+          "needs": ["passive-past", "passive-agent"]
+        },
+        {
+          "ask": "Say what someone will do (active, with “will”).",
+          "needs": ["active-voice", "future-tense"]
+        },
+        {
+          "ask": "Now write sentence 3 in the passive, with “by”.",
+          "needs": ["passive-future", "passive-agent"]
+        },
+        {
+          "ask": "Something that has been done, without saying who (perfect passive).",
+          "needs": ["passive-perfect"]
+        },
+        {
+          "ask": "Now write sentence 5 in the active, and say who did it.",
+          "needs": ["active-voice"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e05.when-sort",
+    "type": "SORT",
+    "title": "Keep it or flip it?",
+    "instructions": "Every sentence is passive. Sort it: does the passive work here (the doer is unknown, unimportant or obvious), or would the active be better (the doer is named and matters)?",
+    "buckets": [
+      {
+        "id": "passive",
+        "label": "Passive works"
+      },
+      {
+        "id": "active",
+        "label": "Flip it to active"
+      }
+    ],
+    "items": [
+      {
+        "id": "bike",
+        "text": "My bike was stolen.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "pyramids",
+        "text": "The pyramids were built over 4,500 years ago.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "water",
+        "text": "The water is heated to 100 °C.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "ella",
+        "text": "The ball was kicked by Ella into the top corner.",
+        "bucketId": "active"
+      },
+      {
+        "id": "speech",
+        "text": "A funny speech was given by our principal.",
+        "bucketId": "active"
+      },
+      {
+        "id": "winners",
+        "text": "The winners will be announced on Friday.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "pie",
+        "text": "The whole pie was eaten by my brother.",
+        "bucketId": "active"
+      },
+      {
+        "id": "penicillin",
+        "text": "Penicillin was discovered in 1928.",
+        "bucketId": "passive"
+      },
+      {
+        "id": "cat",
+        "text": "The cat was chased by the dog all over the yard.",
+        "bucketId": "active"
+      },
+      {
+        "id": "me",
+        "text": "The cake was baked by me.",
+        "bucketId": "active"
+      }
+    ]
+  },
+  {
+    "key": "e05.when-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "The passive on purpose",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Why is the passive a good choice in “My wallet was stolen”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "We don’t know who stole it."
+          },
+          {
+            "id": "b",
+            "text": "The passive is always better."
+          },
+          {
+            "id": "c",
+            "text": "It is shorter than the active."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "When the doer is unknown, the passive lets you focus on what happened."
+      },
+      {
+        "id": "q2",
+        "prompt": "In a science report, why might you write “The seeds were planted in three pots”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The steps matter more than who did them."
+          },
+          {
+            "id": "b",
+            "text": "Scientists never use “I”."
+          },
+          {
+            "id": "c",
+            "text": "It is in the future tense."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "In procedures and reports, the action is the focus, so the passive is common."
+      },
+      {
+        "id": "q3",
+        "prompt": "A company says, “Mistakes were made.” What does the passive do here?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It hides who made the mistakes."
+          },
+          {
+            "id": "b",
+            "text": "It names who is to blame."
+          },
+          {
+            "id": "c",
+            "text": "It makes the sentence active."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The passive can dodge responsibility. As a reader, notice it; as a writer, be honest about who did what."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence should be flipped to active?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The museum was founded in 1902."
+          },
+          {
+            "id": "b",
+            "text": "The winning basket was scored by Ty with one second left."
+          },
+          {
+            "id": "c",
+            "text": "Rice is grown in many countries."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Ty is the hero of this sentence, so put him first: “Ty scored the winning basket with one second left.”"
+      },
+      {
+        "id": "q5",
+        "prompt": "Which is the best reason to choose the passive in an essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To make every sentence sound formal"
+          },
+          {
+            "id": "b",
+            "text": "To keep the focus on the thing the action happens to"
+          },
+          {
+            "id": "c",
+            "text": "To use more words"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“The Great Wall was built over centuries” keeps the focus on the wall. Use the passive for focus, not to sound fancy."
+      }
+    ]
+  },
+  {
+    "key": "e05.lab-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Lab report passives",
+    "instructions": "This lab report uses the passive because the steps matter more than who did them. Tap the five past participles in its passive verbs.",
+    "text": "First, the water was poured into a glass beaker. Next, it was heated over a small flame. The temperature was checked every minute, and the bubbles were counted. Finally, the results were recorded in a table.",
+    "targets": ["poured", "heated", "checked", "counted", "recorded"],
+    "explanation": "was poured · was heated · was checked · were counted · were recorded. Nobody needs to know who held the beaker: the method is what matters."
+  },
+  {
+    "key": "e05.science-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "How it’s made",
+    "prompt": "Explain how something is made or done (pizza, maple syrup, recycling, a school yearbook, a hip-hop track). Write 6–10 sentences. Use the passive at least twice where the doer doesn’t matter, and the active voice at least twice where the doer does matter.",
+    "tips": [
+      "Passive for the process: “The dough is stretched by hand. Then it is topped with sauce.”",
+      "Active when the doer matters: “Our neighbour, Mr. Diaz, runs the oven like a pro.”",
+      "If you write “by” + a person who matters, try flipping that sentence to active."
+    ],
+    "constraints": {
+      "minWords": 60,
+      "maxWords": 220,
+      "minSentences": 6
+    },
+    "analyzers": ["voice", "verbs"],
+    "grammarFocus": ["passive-voice", "active-voice"]
+  },
+  {
+    "key": "e05.unit-check",
+    "type": "QUIZ",
+    "title": "Active & Passive Voice check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "w1",
+        "prompt": "Who is the doer in “The fence was painted by Grandpa”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "the fence"
+          },
+          {
+            "id": "b",
+            "text": "Grandpa"
+          },
+          {
+            "id": "c",
+            "text": "nobody"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“By Grandpa” names the doer; the fence receives the action.",
+        "skill": "who’s doing it"
+      },
+      {
+        "id": "w2",
+        "prompt": "Which sentence is passive?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The children laughed at the clown."
+          },
+          {
+            "id": "b",
+            "text": "The clown was laughed at by the children."
+          },
+          {
+            "id": "c",
+            "text": "The clown was funny."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Was laughed at” is be + participle, and the receiver comes first. “Was funny” is a linking verb + adjective.",
+        "skill": "who’s doing it"
+      },
+      {
+        "id": "w3",
+        "prompt": "What is the receiver in “Lightning struck the old barn”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "lightning"
+          },
+          {
+            "id": "b",
+            "text": "struck"
+          },
+          {
+            "id": "c",
+            "text": "the old barn"
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "The barn receives the action; lightning does it.",
+        "skill": "who’s doing it"
+      },
+      {
+        "id": "w4",
+        "prompt": "Is “We were exhausted after the hike” passive?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Yes: it has “were” + an -ed word."
+          },
+          {
+            "id": "b",
+            "text": "No: “exhausted” describes how we felt; nobody did anything to us."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Feeling words (tired, excited, exhausted) after be work like adjectives. Ask: is there a doer?",
+        "skill": "who’s doing it"
+      },
+      {
+        "id": "w5",
+        "prompt": "Which sentence is active?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The goal was blocked by the goalie."
+          },
+          {
+            "id": "b",
+            "text": "The goalie blocked the goal."
+          },
+          {
+            "id": "c",
+            "text": "The goal has been blocked."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The doer (the goalie) comes first, before the verb.",
+        "skill": "active voice"
+      },
+      {
+        "id": "w6",
+        "prompt": "Which is the active version of “The song was written by Mia”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Mia wrote the song."
+          },
+          {
+            "id": "b",
+            "text": "Mia was written the song."
+          },
+          {
+            "id": "c",
+            "text": "The song wrote Mia."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Doer (Mia) + verb (wrote) + receiver (the song).",
+        "skill": "active voice"
+      },
+      {
+        "id": "w7",
+        "prompt": "Why is the active usually stronger in essays?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It shows who does what, directly and in fewer words."
+          },
+          {
+            "id": "b",
+            "text": "It is the only correct voice."
+          },
+          {
+            "id": "c",
+            "text": "It always uses “by”."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The active is clearer and tighter; the passive is for when the doer doesn’t matter.",
+        "skill": "active voice"
+      },
+      {
+        "id": "w8",
+        "prompt": "Is “The dog is chasing its tail” active or passive?",
+        "options": [
+          {
+            "id": "a",
+            "text": "active"
+          },
+          {
+            "id": "b",
+            "text": "passive"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Is chasing” is be + an -ing verb (progressive). The dog is the doer, so it’s active.",
+        "skill": "active voice"
+      },
+      {
+        "id": "w9",
+        "prompt": "Choose the right form: “The house ___ in 1920.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "was build"
+          },
+          {
+            "id": "b",
+            "text": "was built"
+          },
+          {
+            "id": "c",
+            "text": "was builded"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The passive needs the past participle: built.",
+        "skill": "forming the passive"
+      },
+      {
+        "id": "w10",
+        "prompt": "Which is the future passive?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The bridge is repaired."
+          },
+          {
+            "id": "b",
+            "text": "The bridge will be repaired."
+          },
+          {
+            "id": "c",
+            "text": "The bridge was repaired."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Future passive: will be + past participle.",
+        "skill": "forming the passive"
+      },
+      {
+        "id": "w11",
+        "prompt": "Which is the perfect passive?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The tickets have been sold."
+          },
+          {
+            "id": "b",
+            "text": "The tickets were selling."
+          },
+          {
+            "id": "c",
+            "text": "The tickets sell."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Perfect passive: has/have/had been + past participle.",
+        "skill": "forming the passive"
+      },
+      {
+        "id": "w12",
+        "prompt": "Fix it: “The window was broke during the game.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "was broked"
+          },
+          {
+            "id": "b",
+            "text": "was broken"
+          },
+          {
+            "id": "c",
+            "text": "was breaking"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "break, broke, broken: the passive uses broken.",
+        "skill": "forming the passive"
+      },
+      {
+        "id": "w13",
+        "prompt": "Which is the progressive passive?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The road is being repaved."
+          },
+          {
+            "id": "b",
+            "text": "The road is repaving."
+          },
+          {
+            "id": "c",
+            "text": "The road repaved."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Progressive passive: is/are/was/were being + past participle.",
+        "skill": "forming the passive"
+      },
+      {
+        "id": "w14",
+        "prompt": "Choose the verb: “The flowers ___ every morning.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "is watered"
+          },
+          {
+            "id": "b",
+            "text": "are watered"
+          },
+          {
+            "id": "c",
+            "text": "are water"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Flowers is plural → are; and the participle is watered.",
+        "skill": "forming the passive"
+      },
+      {
+        "id": "w15",
+        "prompt": "Make it passive: “The coach chose Ana.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ana was chose by the coach."
+          },
+          {
+            "id": "b",
+            "text": "Ana was chosen by the coach."
+          },
+          {
+            "id": "c",
+            "text": "Ana chose the coach."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "choose, chose, chosen: “was chosen by the coach”.",
+        "skill": "active ↔ passive"
+      },
+      {
+        "id": "w16",
+        "prompt": "Make it passive: “They will open the pool on Monday.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "The pool will be opened on Monday."
+          },
+          {
+            "id": "b",
+            "text": "The pool was opened on Monday."
+          },
+          {
+            "id": "c",
+            "text": "The pool will open them on Monday."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Will open” → “will be opened”. “They” tells us nothing, so it can be left out.",
+        "skill": "active ↔ passive"
+      },
+      {
+        "id": "w17",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The mural was designed by we."
+          },
+          {
+            "id": "b",
+            "text": "The mural was designed by us."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "After “by”, use an object pronoun: us.",
+        "skill": "active ↔ passive"
+      },
+      {
+        "id": "w18",
+        "prompt": "Make it active: “The pizza is being delivered by Raj.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "Raj delivered the pizza."
+          },
+          {
+            "id": "b",
+            "text": "Raj is delivering the pizza."
+          },
+          {
+            "id": "c",
+            "text": "Raj will deliver the pizza."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Keep the tense: “is being delivered” (present progressive) → “is delivering”.",
+        "skill": "active ↔ passive"
+      },
+      {
+        "id": "w19",
+        "prompt": "Make it active: “The prize was won by them.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "Them won the prize."
+          },
+          {
+            "id": "b",
+            "text": "They won the prize."
+          },
+          {
+            "id": "c",
+            "text": "They were won the prize."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "At the front, the pronoun is a subject: they.",
+        "skill": "active ↔ passive"
+      },
+      {
+        "id": "w20",
+        "prompt": "Why does the passive work in “The Great Wall was built over many centuries”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The builders are many and unknown; the wall is the focus."
+          },
+          {
+            "id": "b",
+            "text": "The passive is always more formal."
+          },
+          {
+            "id": "c",
+            "text": "It hides who is to blame."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "When the doer is unknown or unimportant, the passive keeps the focus on the thing.",
+        "skill": "when passive works"
+      },
+      {
+        "id": "w21",
+        "prompt": "Which sentence would be better in the active voice?",
+        "options": [
+          {
+            "id": "a",
+            "text": "My phone was stolen."
+          },
+          {
+            "id": "b",
+            "text": "The final speech was delivered by our class president, Zoe."
+          },
+          {
+            "id": "c",
+            "text": "English is spoken here."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Zoe matters in this sentence, so start with her: “Our class president, Zoe, delivered the final speech.”",
+        "skill": "when passive works"
+      },
+      {
+        "id": "w22",
+        "prompt": "What does “Mistakes were made” leave out?",
+        "options": [
+          {
+            "id": "a",
+            "text": "who made the mistakes"
+          },
+          {
+            "id": "b",
+            "text": "the verb"
+          },
+          {
+            "id": "c",
+            "text": "the tense"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The passive can hide the doer. Good readers notice when that happens.",
+        "skill": "when passive works"
+      },
+      {
+        "id": "w23",
+        "prompt": "In a science procedure, which sentence fits best?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The soil was measured with a ruler."
+          },
+          {
+            "id": "b",
+            "text": "My lab partner Kenji, who is really tall, measured the soil."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "In a procedure, the step matters, not who did it, so the passive fits.",
+        "skill": "when passive works"
+      },
+      {
+        "id": "w24",
+        "prompt": "A paragraph has eight sentences, and seven are passive with “by”. What should the writer do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Nothing: the passive is more formal."
+          },
+          {
+            "id": "b",
+            "text": "Flip most of them to active, keeping the passive only where the doer doesn’t matter."
+          },
+          {
+            "id": "c",
+            "text": "Take out every verb."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Too many passives make writing slow and vague. Choose the passive on purpose.",
+        "skill": "when passive works"
+      }
+    ]
+  },
+  {
+    "key": "e05.check-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Unit check: breaking news",
+    "prompt": "Write a news report (at least 6 sentences) about an event at your school or in your town: a flood, a science fair, a record-breaking bake sale, a lost-and-found mystery. Show off this unit: mostly active sentences with the doer first, plus at least two passive sentences used on purpose (the doer is unknown or unimportant), one of them in a tense other than the simple past.",
+    "tips": [
+      "Checklist: doer-first active sentences · two passives on purpose · a passive in the present, future, perfect or progressive.",
+      "Passive = be + past participle: was found, will be repaired, has been cancelled.",
+      "Named the doer with “by”? Ask yourself if the sentence would be stronger flipped to active."
+    ],
+    "constraints": {
+      "minWords": 70,
+      "maxWords": 220,
+      "minSentences": 6
+    },
+    "analyzers": ["voice", "verbs"],
+    "grammarFocus": ["active-voice", "passive-voice"]
+  }
+]

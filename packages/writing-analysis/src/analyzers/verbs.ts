@@ -166,6 +166,24 @@ const isIng = (w: string) => w.length >= 5 && w.endsWith('ing') && !NOT_ING.has(
 const isRegularEd = (w: string) => w.length > 3 && w.endsWith('ed') && !NOT_PAST_ED.has(w);
 const isParticiple = (w: string) => BY_PARTICIPLE.has(w) || SAME_FORMS.has(w) || isRegularEd(w);
 
+/** Verb forms for other analyzers (the passive in voice.ts). */
+export const verbForms = {
+  BE,
+  BE_CONTRACTED,
+  HAVE,
+  MODALS,
+  ADVERBS,
+  BASES,
+  SAME_FORMS,
+  byPast: (w: string) => BY_PAST.get(w),
+  byParticiple: (w: string) => BY_PARTICIPLE.get(w),
+  byBase: (w: string) => BY_BASE.get(w),
+  isRegularEd,
+  isIng,
+  thirdPerson,
+  regularPast,
+};
+
 /** The next word after `i`, skipping little adverbs ("has never been", "was still running"). */
 function nextVerbIndex(tokens: readonly WordToken[], i: number): number {
   let j = i + 1;
@@ -370,7 +388,8 @@ export function findVerbIssues(
 
       const wrong = WRONG_PAST.get(w);
       if (wrong) {
-        const helped = prev !== undefined && HAVE.has(prev.lower);
+        // After have/has/had, or be in the passive ("was eated" → eaten), use the participle.
+        const helped = prev !== undefined && (HAVE.has(prev.lower) || BE.has(prev.lower));
         const fix = helped ? wrong.participle : wrong.past;
         issues.push({
           kind: 'wrong-past',
@@ -536,6 +555,8 @@ export function findVerbIssues(
     const first = words(text, sentence.start, sentence.end)[0];
     if (first && TIME_SIGNALS.has(first.lower)) return [];
     const hits = verbHits(text, words(text, sentence.start, sentence.end));
+    // "The game has been moved": the present perfect links the past to now, so it isn't a slip.
+    if (hits.some((x) => x.feature === 'perfect')) return [];
     const past = hits.some((x) => x.feature === 'past-tense');
     const present = hits.some((x) => x.feature === 'present-tense');
     if (past === present) return [];

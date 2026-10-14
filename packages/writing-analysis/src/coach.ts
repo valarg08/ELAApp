@@ -52,9 +52,11 @@ import {
   grammarSkillOf,
   modifierIssues,
   nounIssues,
+  passiveNotes,
   pronounIssues,
   verbIssues,
   veryPhrases,
+  voiceIssues,
 } from './analyzers/grammar.js';
 import { filterWords, telling } from './analyzers/word-choice.js';
 import { type Span, countWords, sentenceAt, sentences } from './text.js';
@@ -80,6 +82,7 @@ export const ANALYZER_IDS = [
   'verbs',
   'modifiers',
   'connectors',
+  'voice',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -672,6 +675,61 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
   }
 
+  if (enabled.has('voice')) {
+    const issues = voiceIssues(text);
+    if (issues[0]) nextSteps.push(issueCard('voice', 'Check this passive verb', issues));
+    const notes = passiveNotes(text);
+    const focus = options.grammarFocus ?? [];
+    // Practising the passive (forming it, "by" + the doer): don't nudge toward the active.
+    const formingPassive =
+      focus.some((f) => f.startsWith('passive')) && !focus.includes('active-voice');
+    const withDoer = focus.includes('passive-agent')
+      ? undefined
+      : (notes.find((n) => n.rewrite) ?? notes.find((n) => n.hasAgent));
+    const total = sentences(text).length;
+    const passiveCount = new Set(notes.map((n) => n.sentence.start)).size;
+    if (!formingPassive && withDoer) {
+      nextSteps.push({
+        id: 'passive',
+        analyzer: 'voice',
+        title: 'Who’s doing it?',
+        message: withDoer.rewrite
+          ? `“${withDoer.span.text}” names the doer, so the active voice is usually clearer and stronger: “${withDoer.rewrite}”`
+          : `“${withDoer.span.text}” names the doer. Try starting the sentence with the doer instead (active voice).`,
+        span: withDoer.span,
+      });
+    } else if (!formingPassive && total >= 3 && passiveCount * 3 > total * 2 && notes[0]) {
+      nextSteps.push({
+        id: 'passive',
+        analyzer: 'voice',
+        title: 'Mostly passive',
+        message: `${passiveCount} of your ${total} sentences are passive. Keep the passive for when the doer is unknown or unimportant, and put the doer first everywhere else.`,
+        span: notes[0].span,
+      });
+    } else if (!issues[0] && wordCount >= 15) {
+      const active = grammarFeatures(text).find((h) => h.feature === 'active-voice');
+      if (formingPassive && notes[0]) {
+        strengths.push({
+          id: 'voice',
+          analyzer: 'voice',
+          title: 'Well-built passive',
+          message: `“${notes[0].span.text}” uses a form of be + the past participle, just right.`,
+          span: notes[0].span,
+        });
+      } else if (active) {
+        strengths.push({
+          id: 'voice',
+          analyzer: 'voice',
+          title: notes[0] ? 'Voice chosen with care' : 'Strong active voice',
+          message: notes[0]
+            ? `You put the doer first, like “${active.span.text}”, and keep the passive for when the doer doesn’t matter.`
+            : `Your sentences put the doer first, like “${active.span.text}”, so they’re clear and direct.`,
+          span: active.span,
+        });
+      }
+    }
+  }
+
   if (enabled.has('connectors')) {
     const issues = connectorIssues(text);
     if (issues[0]) nextSteps.push(issueCard('connectors', 'Check this joining word', issues));
@@ -898,7 +956,7 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
 
 /** The first grammar issue as a card, with its fix and how many more there are. */
 function issueCard(
-  analyzer: 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors',
+  analyzer: 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

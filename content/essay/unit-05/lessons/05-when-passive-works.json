@@ -1,0 +1,67 @@
+{
+  "slug": "essay-when-passive-works",
+  "order": 5,
+  "title": "When the Passive Works",
+  "estMinutes": 40,
+  "focusSkills": ["voice", "style"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "Who broke the vase?",
+      "paragraphs": [
+        "Mom walked into the living room and froze. Pieces of blue vase lay all over the rug.",
+        "“The vase was broken,” said Theo, staring at the ceiling.",
+        "“Was broken?” said Mom. “By whom?”",
+        "Theo sighed. “By me. I broke it. I was practising my soccer kicks.”",
+        "Theo’s first answer was passive, and it left out the doer on purpose. His second answer was active, and honest."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "When the passive is the right choice",
+          "body": "Use the passive when the doer is unknown (“My bike was stolen”), unimportant or obvious (“The pyramids were built over 4,500 years ago”), or when you want the focus on the receiver (“Penicillin was discovered in 1928”)."
+        },
+        {
+          "kind": "example",
+          "title": "Science and procedures",
+          "text": "The water was heated to 100 °C. The temperature was recorded every minute.",
+          "note": "In lab reports, the steps matter more than who did them, so the passive is common."
+        },
+        {
+          "kind": "compare",
+          "title": "When to flip it",
+          "telling": "The winning basket was scored by Ty with one second left.",
+          "showing": "Ty scored the winning basket with one second left.",
+          "labels": ["Passive", "Active: better here"],
+          "note": "If the doer is named and matters, the active is usually stronger."
+        },
+        {
+          "kind": "definition",
+          "title": "Watch out for the dodge",
+          "body": "“Mistakes were made.” “The rules were broken.” The passive can hide who is responsible. Notice it when you read; be honest when you write."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e05.when-sort", "e05.when-mc", "e05.lab-highlight"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e05.science-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Point to one passive sentence in your paragraph. Why is the passive the right choice there?",
+        "Where have you seen the passive used to dodge blame (news, ads, excuses at home)?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

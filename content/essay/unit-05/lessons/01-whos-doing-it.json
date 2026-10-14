@@ -1,0 +1,64 @@
+{
+  "slug": "essay-whos-doing-it",
+  "order": 1,
+  "title": "Who’s Doing It?",
+  "estMinutes": 35,
+  "focusSkills": ["voice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Both sentences tell the same event. Which one makes you look at the dog first? Which one makes you look at the shoe first?",
+      "a": "The puppy chewed my new shoe.",
+      "b": "My new shoe was chewed by the puppy.",
+      "reveal": "Same event, different spotlight. Sentence A starts with the doer (the puppy): that’s the active voice. Sentence B starts with the thing the action happened to (the shoe): that’s the passive voice."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Doer and receiver",
+          "body": "In most action sentences, someone or something does the action (the doer) and someone or something receives it (the receiver). In “Lena threw the ball,” Lena is the doer and the ball is the receiver."
+        },
+        {
+          "kind": "compare",
+          "title": "Active and passive",
+          "telling": "Lena threw the ball.",
+          "showing": "The ball was thrown by Lena.",
+          "labels": ["Active: doer first", "Passive: receiver first"],
+          "note": "Voice is about which one gets the spotlight at the start of the sentence."
+        },
+        {
+          "kind": "example",
+          "title": "How to spot the passive",
+          "text": "1. A form of be: am, is, are, was, were, be, being, been\n2. + a past participle: thrown, taken, built, chewed, painted\n3. Often + “by” + the doer: by Lena, by the storm",
+          "note": "Careful: “I was tired” is not passive. “Tired” describes a feeling, and nobody did anything to you. Ask: is there a doer?"
+        },
+        {
+          "kind": "example",
+          "title": "The doer can disappear",
+          "text": "The window was broken by a baseball. (doer named)\nThe window was broken. (doer not named)",
+          "note": "The passive doesn’t have to say who did it. That can be useful… or sneaky."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e05.doer-highlight", "e05.voice-sort", "e05.doer-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e05.doer-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain in your own words how you can tell if a sentence is active or passive.",
+        "Look at your sentence with no doer. Why might a writer leave out who did it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

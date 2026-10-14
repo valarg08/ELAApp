@@ -1,0 +1,52 @@
+{
+  "slug": "essay-active-and-passive-voice-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Active & Passive Voice",
+  "estMinutes": 45,
+  "focusSkills": ["voice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which part of this unit feels easiest, and which do you want to look at again?",
+      "placeholder": "Easiest… Look again at…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Voice: quick review",
+          "body": "Active: the doer comes first (The dog chased the cat). Passive: the receiver comes first, with be + a past participle, and maybe “by” + the doer (The cat was chased by the dog). Feeling words after be (tired, excited) are not passive."
+        },
+        {
+          "kind": "definition",
+          "title": "Forming and flipping: quick review",
+          "body": "The be part shows the tense: is/are, was/were, will be, is being, has been. The participle never changes (taken, written, built). When you flip, keep the tense, make the verb agree with its new subject, and switch pronouns (by her, They…)."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll write a short news report that shows off everything you’ve learned. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e05.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e05.check-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What did you learn about active and passive voice that you didn’t know before this unit?",
+        "In your next essay, how will you decide between the active and the passive?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

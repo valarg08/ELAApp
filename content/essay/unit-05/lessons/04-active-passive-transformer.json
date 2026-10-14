@@ -1,0 +1,61 @@
+{
+  "slug": "essay-active-passive-transformer",
+  "order": 4,
+  "title": "Active ↔ Passive Transformer",
+  "estMinutes": 40,
+  "focusSkills": ["voice", "verb-tense", "pronouns"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Someone flipped sentence A into the passive. Can you spot the two mistakes in B?",
+      "a": "She is painting the fence.",
+      "b": "The fence was painted by she.",
+      "reveal": "The tense changed (is painting → was painted; it should be “is being painted”), and “she” should be “her” after “by”. A good flip keeps the meaning, the tense and the right pronouns: “The fence is being painted by her.”"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "example",
+          "title": "Active → passive",
+          "text": "Our class planted ten trees.\n1. The receiver moves to the front: Ten trees…\n2. Add be in the same tense + the participle: …were planted…\n3. Add “by” + the doer (or leave it out): …by our class.",
+          "note": "Ten trees were planted by our class."
+        },
+        {
+          "kind": "example",
+          "title": "Passive → active",
+          "text": "The trophy has been won by them.\n1. The doer after “by” moves to the front: They…\n2. Make the verb active, same tense: …have won…\n3. The old subject goes after the verb: …the trophy.",
+          "note": "They have won the trophy."
+        },
+        {
+          "kind": "definition",
+          "title": "Pronouns switch jobs",
+          "body": "A subject pronoun (I, he, she, we, they) that moves behind “by” becomes an object pronoun (me, him, her, us, them): “He helped me” → “I was helped by him.” And the other way round: “by them” at the front becomes “They…”."
+        },
+        {
+          "kind": "definition",
+          "title": "The verb agrees with its new subject",
+          "body": "When the subject changes, check the verb: “The twins are washing the car” → “The car is being washed by the twins.” “The car is being washed by my brothers” → “My brothers are washing the car.”"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e05.to-passive-transform", "e05.to-active-transform", "e05.transform-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e05.both-ways" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which pair of your sentences sounds better active, and which better passive? Why?",
+        "What three things do you check every time you flip a sentence?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

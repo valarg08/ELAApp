@@ -1,0 +1,62 @@
+{
+  "slug": "essay-forming-the-passive",
+  "order": 3,
+  "title": "Forming the Passive (All Tenses)",
+  "estMinutes": 40,
+  "focusSkills": ["voice", "verb-tense"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "One sign at the pool says: “The pool was clean every morning.” Another says: “The pool is cleaned every morning.” Which sign tells you someone does a job? What tiny change makes the difference?",
+      "placeholder": "The second sign…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The passive recipe",
+          "body": "Passive = a form of BE + a PAST PARTICIPLE. The form of be shows the tense; the participle never changes. The be verb agrees with the new subject (the receiver): the cookie was eaten, the cookies were eaten."
+        },
+        {
+          "kind": "example",
+          "title": "Every tense",
+          "text": "Present: The pool is cleaned. / The pools are cleaned.\nPast: The pool was cleaned. / The pools were cleaned.\nFuture: The pool will be cleaned.\nPresent progressive: The pool is being cleaned.\nPast progressive: The pool was being cleaned.\nPresent perfect: The pool has been cleaned.\nPast perfect: The pool had been cleaned.\nWith can, must or should: The pool must be cleaned.",
+          "note": "Only the be part changes. “Cleaned” stays the same in every line."
+        },
+        {
+          "kind": "example",
+          "title": "Irregular participles",
+          "text": "take → taken · write → written · break → broken · choose → chosen · eat → eaten · give → given · build → built · sing → sung · steal → stolen · find → found",
+          "note": "The passive needs the participle, never the simple past: “was taken”, not “was took”."
+        },
+        {
+          "kind": "compare",
+          "title": "The most common slip",
+          "telling": "The poem was wrote by my sister.",
+          "showing": "The poem was written by my sister.",
+          "labels": ["Past form ✗", "Participle ✓"],
+          "note": "Test it with “have”: you’d say “I have written”, not “I have wrote”. The form that fits after have is the one for the passive."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e05.passive-blank", "e05.passive-tense-sort", "e05.participle-hunt"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e05.passive-tenses" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which passive tense was hardest to build? Write the recipe for it in your own words.",
+        "Which irregular participle do you mix up most? Make up a trick to remember it."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}
