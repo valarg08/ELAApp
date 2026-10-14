@@ -1,0 +1,63 @@
+{
+  "slug": "essay-common-and-proper-nouns",
+  "order": 1,
+  "title": "Common & Proper Nouns",
+  "estMinutes": 35,
+  "focusSkills": ["nouns", "capital-letters"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which sentence tells you more? What makes the difference?",
+      "a": "A girl visited a city on a day in a month.",
+      "b": "Priya visited Chicago on a Saturday in May.",
+      "reveal": "The second sentence uses proper nouns: names of one particular person, place, day and month. Proper nouns make writing specific, and specific writing is easier to picture."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What is a noun?",
+          "body": "A noun names a person, place, thing or idea: teacher, park, pencil, happiness. If you can put “a”, “the” or “my” in front of it, it’s probably a noun: a teacher, the park, my pencil."
+        },
+        {
+          "kind": "compare",
+          "title": "Common vs proper",
+          "telling": "girl · city · river · day · school · dog",
+          "showing": "Priya · Chicago · the Nile · Saturday · Lincoln Middle School · Biscuit",
+          "labels": ["Common: any one", "Proper: one particular"],
+          "note": "A common noun names any one of a kind. A proper noun names one particular person, place or thing, and it always starts with a capital letter."
+        },
+        {
+          "kind": "definition",
+          "title": "What gets a capital?",
+          "body": "Names of people and pets · places (cities, states, countries, rivers, streets, parks) · days, months and holidays · names of buildings, schools, teams and companies · languages and nationalities (English, Mexican) · the word “I”. Seasons don’t: spring, summer."
+        },
+        {
+          "kind": "example",
+          "title": "Specific is strong",
+          "text": "We went to a big park. → We went to Golden Gate Park.\nMy dog barked. → Biscuit barked.",
+          "note": "In essays, proper nouns are evidence: the name of a place, a person or an event shows you know exactly what you’re talking about."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e01.proper-sort", "e01.capital-hunt", "e01.noun-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e01.name-it-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which proper noun in your sentences makes the reader picture something most clearly?",
+        "What’s one kind of proper noun you sometimes forget to capitalize?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

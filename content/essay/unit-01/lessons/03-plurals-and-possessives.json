@@ -1,0 +1,63 @@
+{
+  "slug": "essay-plurals-and-possessives",
+  "order": 3,
+  "title": "Plurals & Possessives",
+  "estMinutes": 40,
+  "focusSkills": ["nouns", "apostrophes", "spelling"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "These two signs differ by one tiny mark. What does each one mean?",
+      "a": "The girls’ bikes are outside.",
+      "b": "The girl’s bikes are outside.",
+      "reveal": "In the first, the bikes belong to several girls (girls’). In the second, all the bikes belong to one girl (girl’s). One apostrophe changes who owns what!"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Making plurals",
+          "body": "Most nouns add -s: dog → dogs. Words ending in s, x, z, ch or sh add -es: box → boxes, bench → benches. Consonant + y: change y to -ies: city → cities. Vowel + y: just add -s: monkey → monkeys. Many words ending in f or fe change to -ves: leaf → leaves, knife → knives."
+        },
+        {
+          "kind": "example",
+          "title": "Irregular plurals",
+          "text": "child → children · man → men · woman → women · person → people · mouse → mice · tooth → teeth · foot → feet · goose → geese · sheep → sheep · deer → deer · fish → fish",
+          "note": "These don’t follow the rules, so learn them by heart."
+        },
+        {
+          "kind": "definition",
+          "title": "Possessives show belonging",
+          "body": "One owner: add ’s → the dog’s bowl, Sam’s jacket. Plural owners ending in s: add just ’ → the dogs’ bowls, the players’ locker room. Plurals that don’t end in s: add ’s → the children’s toys, the men’s team."
+        },
+        {
+          "kind": "compare",
+          "title": "Plural or possessive?",
+          "telling": "Banana’s for sale. The cookie’s are ready.",
+          "showing": "Bananas for sale. The cookies are ready. The cookie’s icing is pink.",
+          "labels": ["Wrong", "Right"],
+          "note": "An apostrophe never makes a plural. Ask: does something belong to it? If not, no apostrophe."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e01.plural-blank", "e01.possessive-mc", "e01.apostrophe-hunt"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e01.belongs-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain the difference between “the student’s ideas” and “the students’ ideas” in your own words.",
+        "Which plural rule or irregular plural do you most need to remember?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import type { PovConsistencyResult } from './analyzers/pov-consistency.js';
 import type { ToneStyleResult } from './analyzers/tone-style.js';
 import type { FigurativeLanguageResult } from './analyzers/figurative-language.js';
 import type { PoetryCraftResult } from './analyzers/poetry-craft.js';
+import type { GrammarCheckResult } from './analyzers/grammar-check.js';
 import { isToneStep, toneStepLabel } from '@storyforge/writing-analysis';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
@@ -393,6 +394,48 @@ export function figurativePoints(text: string, r: FigurativeLanguageResult) {
       ),
     );
   }
+  return {
+    strengths: strengths.filter(isPoint).slice(0, 3),
+    nextSteps: nextSteps.filter(isPoint).slice(0, 3),
+  };
+}
+
+/** "Is my grammar right?": the lesson skill, finished tasks and best sentence as strengths; mistakes with fixes as next steps. */
+export function grammarPoints(text: string, r: GrammarCheckResult) {
+  const strengths: (FeedbackPoint | null)[] = [];
+  const nextSteps: (FeedbackPoint | null)[] = [];
+  if (r.focus.used) {
+    strengths.push(
+      anchored(text, { title: 'Lesson skill ✓', message: r.focus.note }, r.focus.quote) ?? {
+        title: 'Lesson skill ✓',
+        message: r.focus.note,
+      },
+    );
+  } else {
+    nextSteps.push({ title: 'Use the lesson skill', message: r.focus.note });
+  }
+  const done = r.tasks.filter((t) => t.done).length;
+  if (r.tasks.length > 0 && done === r.tasks.length) {
+    strengths.push({
+      title: `All ${r.tasks.length} sentences ✓`,
+      message: 'Every sentence does what its task asks.',
+    });
+  }
+  for (const e of r.errors.slice(0, 2)) {
+    nextSteps.push(anchored(text, { title: `Try “${e.fix}”`, message: e.rule }, e.quote));
+  }
+  const task = r.tasks.find((t) => !t.done);
+  if (task) nextSteps.push({ title: `Sentence ${task.number}`, message: task.note });
+  if (r.bestSentence) {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'Your strongest sentence', message: r.bestSentence.why },
+        r.bestSentence.quote,
+      ),
+    );
+  }
+  if (r.nextIdea) nextSteps.push({ title: 'One idea', message: r.nextIdea });
   return {
     strengths: strengths.filter(isPoint).slice(0, 3),
     nextSteps: nextSteps.filter(isPoint).slice(0, 3),

@@ -1,0 +1,1055 @@
+[
+  {
+    "key": "e01.proper-sort",
+    "type": "SORT",
+    "title": "Common or proper?",
+    "instructions": "Sort each noun. A common noun names any person, place or thing. A proper noun names a particular one and starts with a capital letter.",
+    "buckets": [
+      { "id": "common", "label": "Common noun" },
+      { "id": "proper", "label": "Proper noun" }
+    ],
+    "items": [
+      { "id": "city", "text": "city", "bucketId": "common" },
+      { "id": "chicago", "text": "Chicago", "bucketId": "proper" },
+      { "id": "teacher", "text": "teacher", "bucketId": "common" },
+      { "id": "ms-ortiz", "text": "Ms Ortiz", "bucketId": "proper" },
+      { "id": "river", "text": "river", "bucketId": "common" },
+      { "id": "nile", "text": "the Nile", "bucketId": "proper" },
+      { "id": "day", "text": "day", "bucketId": "common" },
+      { "id": "friday", "text": "Friday", "bucketId": "proper" },
+      { "id": "dog", "text": "dog", "bucketId": "common" },
+      { "id": "biscuit", "text": "Biscuit (my dog)", "bucketId": "proper" }
+    ]
+  },
+  {
+    "key": "e01.capital-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Capital hunt",
+    "instructions": "Five proper nouns forgot their capital letters. Tap each one, then type it correctly.",
+    "text": "Every saturday, my cousin elena and I take the bus to Lincoln Park. In july we watched a parade for the Fourth of July, and a band from texas played. Next year i want to march in it.",
+    "errors": [
+      {
+        "word": "saturday",
+        "fixes": ["Saturday"],
+        "explanation": "Days of the week are proper nouns, so they always start with a capital."
+      },
+      {
+        "word": "elena",
+        "fixes": ["Elena"],
+        "explanation": "A person’s name is a proper noun."
+      },
+      {
+        "word": "july",
+        "fixes": ["July"],
+        "explanation": "Months are proper nouns. (The second July already has its capital.)"
+      },
+      {
+        "word": "texas",
+        "fixes": ["Texas"],
+        "explanation": "Names of places (states, cities, countries) are proper nouns."
+      },
+      {
+        "word": "i",
+        "occurrence": 2,
+        "fixes": ["I"],
+        "explanation": "“I” is always a capital letter when you mean yourself."
+      }
+    ]
+  },
+  {
+    "key": "e01.noun-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Spot the noun",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which word in this sentence is a noun? “The tired hikers rested quietly.”",
+        "options": [
+          { "id": "a", "text": "tired" },
+          { "id": "b", "text": "hikers" },
+          { "id": "c", "text": "rested" },
+          { "id": "d", "text": "quietly" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Hikers” names people. “Tired” describes them, “rested” is the action and “quietly” says how.",
+        "hint": "Which word names a person, place, thing or idea?"
+      },
+      {
+        "id": "q2",
+        "prompt": "Which sentence uses capital letters correctly?",
+        "options": [
+          { "id": "a", "text": "We visited the Museum in Boston." },
+          { "id": "b", "text": "We visited the Boston Science Museum." },
+          { "id": "c", "text": "We visited the boston science museum." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Boston Science Museum” is the name of one particular museum, so each main word is capitalized. “the museum” on its own is a common noun."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which word is a proper noun?",
+        "options": [
+          { "id": "a", "text": "planet" },
+          { "id": "b", "text": "Mars" },
+          { "id": "c", "text": "rocket" },
+          { "id": "d", "text": "astronaut" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Mars is the name of one particular planet. The others name any planet, rocket or astronaut."
+      }
+    ]
+  },
+  {
+    "key": "e01.name-it-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Name it!",
+    "prompt": "Write five sentences about a trip, real or imagined. Each sentence has its own task, listed above the writing box. Write them in order, one per line.",
+    "tips": [
+      "Proper nouns name ONE particular person, place, day or thing: Maya, Lake Erie, Monday.",
+      "Common nouns name any one: a girl, the lake, a day.",
+      "Check every proper noun has a capital letter."
+    ],
+    "constraints": { "minWords": 25, "maxWords": 150, "minSentences": 5 },
+    "analyzers": ["nouns"],
+    "grammarFocus": ["proper-noun", "common-noun"],
+    "sentenceSet": {
+      "label": "Your five sentences",
+      "sentences": [
+        { "ask": "Name the place you went, using a proper noun.", "needs": ["proper-noun"] },
+        {
+          "ask": "Say who went with you: a common noun and a name.",
+          "needs": ["proper-noun", "common-noun"]
+        },
+        { "ask": "Say which day or month it was.", "needs": ["proper-noun"] },
+        {
+          "ask": "Describe something you saw there, using common nouns.",
+          "needs": ["common-noun"]
+        },
+        {
+          "ask": "End with a sentence that names a street, building or park.",
+          "needs": ["proper-noun"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e01.kinds-sort",
+    "type": "SORT",
+    "title": "Touch it, feel it, group it",
+    "instructions": "Sort the nouns. Concrete: you can see or touch it. Abstract: an idea or feeling. Collective: one word for a group.",
+    "buckets": [
+      { "id": "concrete", "label": "Concrete" },
+      { "id": "abstract", "label": "Abstract" },
+      { "id": "collective", "label": "Collective" }
+    ],
+    "items": [
+      { "id": "backpack", "text": "backpack", "bucketId": "concrete" },
+      { "id": "thunder", "text": "thunder", "bucketId": "concrete" },
+      { "id": "pizza", "text": "pizza", "bucketId": "concrete" },
+      { "id": "courage", "text": "courage", "bucketId": "abstract" },
+      { "id": "friendship", "text": "friendship", "bucketId": "abstract" },
+      { "id": "freedom", "text": "freedom", "bucketId": "abstract" },
+      { "id": "curiosity", "text": "curiosity", "bucketId": "abstract" },
+      { "id": "flock", "text": "flock", "bucketId": "collective" },
+      { "id": "team", "text": "team", "bucketId": "collective" },
+      { "id": "audience", "text": "audience", "bucketId": "collective" },
+      { "id": "swarm", "text": "swarm", "bucketId": "collective" },
+      { "id": "pebble", "text": "pebble", "bucketId": "concrete" }
+    ]
+  },
+  {
+    "key": "e01.collective-blank",
+    "type": "FILL_BLANK",
+    "title": "Name the group",
+    "instructions": "Pick the collective noun that fits each group.",
+    "choices": ["flock", "pack", "swarm", "herd", "crowd", "choir"],
+    "items": [
+      {
+        "id": "sheep",
+        "sentence": "A ___ of sheep wandered across the road.",
+        "answers": ["flock"],
+        "hint": "Birds come in this kind of group too.",
+        "explanation": "Sheep and birds gather in a flock."
+      },
+      {
+        "id": "wolves",
+        "sentence": "We heard a ___ of wolves howling.",
+        "answers": ["pack"],
+        "explanation": "Wolves hunt together in a pack."
+      },
+      {
+        "id": "bees",
+        "sentence": "A ___ of bees buzzed around the hive.",
+        "answers": ["swarm"],
+        "hint": "Think of a busy, buzzing cloud.",
+        "explanation": "Bees fly in a swarm."
+      },
+      {
+        "id": "cows",
+        "sentence": "The farmer led a ___ of cows to the barn.",
+        "answers": ["herd"],
+        "explanation": "Cows, elephants and deer move in a herd."
+      },
+      {
+        "id": "fans",
+        "sentence": "A ___ of fans waited outside the stadium.",
+        "answers": ["crowd"],
+        "explanation": "A large group of people is a crowd."
+      },
+      {
+        "id": "singers",
+        "sentence": "The ___ sang three songs at the concert.",
+        "answers": ["choir"],
+        "explanation": "A group of singers is a choir."
+      }
+    ]
+  },
+  {
+    "key": "e01.abstract-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Find the ideas",
+    "instructions": "Tap the four abstract nouns: ideas or feelings you can’t see or touch.",
+    "text": "Jamal felt a wave of fear as he stepped onto the stage. Then he remembered his grandmother’s advice: courage is just fear that keeps going. He played the first note, and his worry turned into joy.",
+    "targets": ["fear", "courage", "worry", "joy"],
+    "explanation": "Fear, courage, worry and joy are feelings: you can’t hold them, but you know them. Stage, grandmother and note are concrete nouns."
+  },
+  {
+    "key": "e01.big-ideas-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Big ideas, real things",
+    "prompt": "Write five sentences about a time you or a character worked with a group. Follow each task in order, one sentence per line.",
+    "tips": [
+      "Abstract nouns name ideas and feelings: hope, pride, friendship.",
+      "Collective nouns name a group as one thing: team, class, band, crowd.",
+      "Pair an abstract noun with something concrete so the reader can picture it: “Pride glowed on her face.”"
+    ],
+    "constraints": { "minWords": 30, "maxWords": 160, "minSentences": 5 },
+    "analyzers": ["nouns"],
+    "grammarFocus": ["abstract-noun", "collective-noun"],
+    "sentenceSet": {
+      "label": "Your five sentences",
+      "sentences": [
+        {
+          "ask": "Name the group, using a collective noun (team, class, band…).",
+          "needs": ["collective-noun"]
+        },
+        { "ask": "Describe the place with two concrete nouns.", "needs": ["common-noun"] },
+        { "ask": "Say how someone felt, using an abstract noun.", "needs": ["abstract-noun"] },
+        { "ask": "Show a problem the group had.", "needs": [] },
+        {
+          "ask": "End with an abstract noun that sums up what you learned.",
+          "needs": ["abstract-noun"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e01.plural-blank",
+    "type": "FILL_BLANK",
+    "title": "One, two, many",
+    "instructions": "Type the plural of the word in brackets.",
+    "items": [
+      {
+        "id": "box",
+        "sentence": "We packed the books into three ___ (box).",
+        "answers": ["boxes"],
+        "hint": "Words ending in x, s, ch or sh add -es.",
+        "explanation": "box → boxes: words ending in x add -es."
+      },
+      {
+        "id": "city",
+        "sentence": "My aunt has lived in four different ___ (city).",
+        "answers": ["cities"],
+        "hint": "Consonant + y: change the y to i and add -es.",
+        "explanation": "city → cities: a consonant before the y, so y becomes ies."
+      },
+      {
+        "id": "child",
+        "sentence": "The ___ (child) ran to the playground.",
+        "answers": ["children"],
+        "hint": "This one is irregular: it doesn’t add -s at all.",
+        "explanation": "child → children is an irregular plural."
+      },
+      {
+        "id": "leaf",
+        "sentence": "Orange ___ (leaf) covered the path.",
+        "answers": ["leaves"],
+        "hint": "Many words ending in f change to -ves.",
+        "explanation": "leaf → leaves: the f changes to v, then add -es."
+      },
+      {
+        "id": "mouse",
+        "sentence": "Two ___ (mouse) hid behind the fridge.",
+        "answers": ["mice"],
+        "hint": "Irregular: the vowel changes, like foot → feet.",
+        "explanation": "mouse → mice is an irregular plural."
+      },
+      {
+        "id": "monkey",
+        "sentence": "The ___ (monkey) swung from branch to branch.",
+        "answers": ["monkeys"],
+        "hint": "Vowel + y: just add -s.",
+        "explanation": "monkey → monkeys: a vowel (e) before the y, so just add -s."
+      },
+      {
+        "id": "tooth",
+        "sentence": "The dentist checked all my ___ (tooth).",
+        "answers": ["teeth"],
+        "explanation": "tooth → teeth is an irregular plural."
+      },
+      {
+        "id": "sheep",
+        "sentence": "Ten ___ (sheep) grazed on the hill.",
+        "answers": ["sheep"],
+        "hint": "Some words stay the same.",
+        "explanation": "sheep stays sheep: one sheep, ten sheep."
+      }
+    ]
+  },
+  {
+    "key": "e01.possessive-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Whose is it?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "The bike belongs to one girl. Which is correct?",
+        "options": [
+          { "id": "a", "text": "the girls bike" },
+          { "id": "b", "text": "the girl’s bike" },
+          { "id": "c", "text": "the girls’ bike" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "One owner: add ’s → the girl’s bike."
+      },
+      {
+        "id": "q2",
+        "prompt": "The locker room belongs to all the players. Which is correct?",
+        "options": [
+          { "id": "a", "text": "the players’ locker room" },
+          { "id": "b", "text": "the player’s locker room" },
+          { "id": "c", "text": "the players locker room" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Plural owner ending in s: add just the apostrophe → the players’ locker room."
+      },
+      {
+        "id": "q3",
+        "prompt": "The toys belong to the children. Which is correct?",
+        "options": [
+          { "id": "a", "text": "the childrens’ toys" },
+          { "id": "b", "text": "the childrens toys" },
+          { "id": "c", "text": "the children’s toys" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Children” is already plural and doesn’t end in s, so add ’s → children’s."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "The cookie’s are on the table." },
+          { "id": "b", "text": "The cookies are on the table." },
+          { "id": "c", "text": "The cookies’ are on the table." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Nothing belongs to the cookies here, so the plural needs no apostrophe."
+      }
+    ]
+  },
+  {
+    "key": "e01.apostrophe-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Apostrophe patrol",
+    "instructions": "Five words have a plural or apostrophe mistake. Tap each one and type the fix.",
+    "text": "The puppy's are asleep in a basket by the door. My brothers bed is covered in their toys, and the childrens shoes are in a pile. Mom says the two familys next door will take most of the puppies, and we will keep the smallest puppys blanket.",
+    "errors": [
+      {
+        "word": "puppy's",
+        "fixes": ["puppies"],
+        "explanation": "More than one puppy, and nothing belongs to them: puppies, no apostrophe."
+      },
+      {
+        "word": "brothers",
+        "fixes": ["brother's", "brothers'"],
+        "explanation": "The bed belongs to my brother, so it needs an apostrophe: brother’s bed (or brothers’ if they share it)."
+      },
+      {
+        "word": "childrens",
+        "fixes": ["children's"],
+        "explanation": "The shoes belong to the children: children’s."
+      },
+      {
+        "word": "familys",
+        "fixes": ["families"],
+        "explanation": "Consonant + y: change y to ies → families."
+      },
+      {
+        "word": "puppys",
+        "fixes": ["puppy's"],
+        "explanation": "The blanket belongs to one puppy (the smallest), so add ’s: puppy’s blanket."
+      }
+    ]
+  },
+  {
+    "key": "e01.belongs-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Mine, yours, the team’s",
+    "prompt": "Write five sentences about a busy day at school or at home. Follow each task in order, one sentence per line.",
+    "tips": [
+      "Plural: more than one (dogs, boxes, children).",
+      "One owner: add ’s (the dog’s bowl). More than one owner ending in s: add ’ (the dogs’ bowls).",
+      "An apostrophe never makes a plural: “three apples”, not “three apple’s”."
+    ],
+    "constraints": { "minWords": 30, "maxWords": 160, "minSentences": 5 },
+    "analyzers": ["nouns"],
+    "grammarFocus": ["plural", "possessive"],
+    "sentenceSet": {
+      "label": "Your five sentences",
+      "sentences": [
+        { "ask": "Use a regular plural (add -s or -es).", "needs": ["plural"] },
+        {
+          "ask": "Use an irregular plural: children, people, feet, mice, teeth…",
+          "needs": ["plural"]
+        },
+        { "ask": "Show something that belongs to one person (’s).", "needs": ["possessive"] },
+        {
+          "ask": "Show something that belongs to a group ending in s (s’).",
+          "needs": ["possessive"]
+        },
+        {
+          "ask": "Use a plural AND a possessive in the same sentence.",
+          "needs": ["plural", "possessive"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e01.pronoun-sort",
+    "type": "SORT",
+    "title": "Pronoun jobs",
+    "instructions": "Sort the pronouns by their job. Subject: does the action. Object: receives the action. Possessive: shows who owns something.",
+    "buckets": [
+      { "id": "subject", "label": "Subject" },
+      { "id": "object", "label": "Object" },
+      { "id": "possessive", "label": "Possessive" }
+    ],
+    "items": [
+      { "id": "i", "text": "I", "bucketId": "subject" },
+      { "id": "she", "text": "she", "bucketId": "subject" },
+      { "id": "we", "text": "we", "bucketId": "subject" },
+      { "id": "they", "text": "they", "bucketId": "subject" },
+      { "id": "me", "text": "me", "bucketId": "object" },
+      { "id": "him", "text": "him", "bucketId": "object" },
+      { "id": "us", "text": "us", "bucketId": "object" },
+      { "id": "them", "text": "them", "bucketId": "object" },
+      { "id": "mine", "text": "mine", "bucketId": "possessive" },
+      { "id": "their", "text": "their", "bucketId": "possessive" },
+      { "id": "yours", "text": "yours", "bucketId": "possessive" },
+      { "id": "our", "text": "our", "bucketId": "possessive" }
+    ]
+  },
+  {
+    "key": "e01.pronoun-blank",
+    "type": "FILL_BLANK",
+    "title": "Pick the pronoun",
+    "instructions": "Choose the pronoun that fits. Tip: cover up the other person and read the sentence again.",
+    "items": [
+      {
+        "id": "sam-and-i",
+        "sentence": "Sam and ___ built a robot for the science fair.",
+        "answers": ["I"],
+        "choices": ["I", "me"],
+        "hint": "Cover “Sam and”: would you say “me built a robot”?",
+        "explanation": "“I built a robot” sounds right, so it’s “Sam and I”."
+      },
+      {
+        "id": "with-me",
+        "sentence": "Grandpa went fishing with Leo and ___.",
+        "answers": ["me"],
+        "choices": ["I", "me"],
+        "hint": "Cover “Leo and”: “went fishing with ___”.",
+        "explanation": "After “with” you need an object pronoun: “with me”, so “with Leo and me”."
+      },
+      {
+        "id": "she",
+        "sentence": "___ scored the winning goal.",
+        "answers": ["She"],
+        "choices": ["She", "Her"],
+        "explanation": "The person doing the action needs a subject pronoun: she."
+      },
+      {
+        "id": "them",
+        "sentence": "The coach gave ___ new jerseys.",
+        "answers": ["them"],
+        "choices": ["they", "them"],
+        "explanation": "They receive the jerseys, so it’s the object pronoun: them."
+      },
+      {
+        "id": "theirs",
+        "sentence": "That tent is ours, and the blue one is ___.",
+        "answers": ["theirs"],
+        "choices": ["their", "theirs", "there’s"],
+        "hint": "Which one can stand on its own without a noun after it?",
+        "explanation": "“Theirs” stands alone. “Their” needs a noun after it: their tent."
+      },
+      {
+        "id": "we",
+        "sentence": "My sister and ___ share a room.",
+        "answers": ["I"],
+        "choices": ["I", "me", "myself"],
+        "explanation": "“I share a room” → “My sister and I share a room.”"
+      },
+      {
+        "id": "us",
+        "sentence": "Ms Ortiz asked ___ students to line up.",
+        "answers": ["us"],
+        "choices": ["we", "us"],
+        "hint": "Cover “students”: “asked ___ to line up”.",
+        "explanation": "“Asked us to line up”, so “asked us students”."
+      },
+      {
+        "id": "its",
+        "sentence": "The cat licked ___ paw.",
+        "answers": ["its"],
+        "choices": ["its", "it’s"],
+        "explanation": "“Its” shows belonging. “It’s” means “it is”."
+      }
+    ]
+  },
+  {
+    "key": "e01.pronoun-transform",
+    "type": "TRANSFORM",
+    "title": "Swap in a pronoun",
+    "instructions": "Repeating a noun sounds clunky. Rewrite each sentence, replacing the repeated noun with the right pronoun.",
+    "items": [
+      {
+        "id": "maya",
+        "task": "Replace the second “Maya’s” with a pronoun.",
+        "source": "Maya lost Maya’s keys.",
+        "answers": ["Maya lost her keys."],
+        "hints": ["Which word means “belonging to Maya”?", "Use a possessive pronoun: her."],
+        "explanation": "“Her” is the possessive pronoun for Maya."
+      },
+      {
+        "id": "twins",
+        "task": "Replace “the twins” at the end with a pronoun.",
+        "source": "We invited the twins because we like the twins.",
+        "answers": ["We invited the twins because we like them."],
+        "hints": [
+          "The twins receive the action “like”.",
+          "Use the object pronoun for more than one person."
+        ],
+        "explanation": "The twins receive the action, so the object pronoun is “them”."
+      },
+      {
+        "id": "dad",
+        "task": "Replace the second “Dad” with a pronoun.",
+        "source": "Dad said Dad would drive us.",
+        "answers": ["Dad said he would drive us."],
+        "hints": ["Dad does the action “would drive”.", "Use a subject pronoun."],
+        "explanation": "Dad is doing the driving, so the subject pronoun is “he”."
+      },
+      {
+        "id": "book",
+        "task": "Replace “the book” at the end with a pronoun.",
+        "source": "I found the book and returned the book to the library.",
+        "answers": [
+          "I found the book and returned it to the library.",
+          "I found the book and returned it to the library"
+        ],
+        "hints": ["One thing, not a person."],
+        "explanation": "“It” replaces one thing."
+      }
+    ]
+  },
+  {
+    "key": "e01.pronoun-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Pronouns at work",
+    "prompt": "Write six sentences about a game, match or competition. Follow each task in order, one sentence per line.",
+    "tips": [
+      "Subject pronouns do the action: I, he, she, we, they.",
+      "Object pronouns receive it, and come after words like with, to, for: me, him, her, us, them.",
+      "Test a pair by covering the other person: “Sam and I won” → “I won”."
+    ],
+    "constraints": { "minWords": 35, "maxWords": 180, "minSentences": 6 },
+    "analyzers": ["pronouns"],
+    "grammarFocus": ["subject-pronoun", "object-pronoun", "possessive-pronoun"],
+    "sentenceSet": {
+      "label": "Your six sentences",
+      "sentences": [
+        { "ask": "Start with a subject pronoun doing an action.", "needs": ["subject-pronoun"] },
+        {
+          "ask": "Use an object pronoun after a verb (told him, helped us).",
+          "needs": ["object-pronoun"]
+        },
+        { "ask": "Use a pair as the subject: “My friend and I…”", "needs": ["subject-pronoun"] },
+        {
+          "ask": "Use a pair after with, for or to: “with Ana and me”.",
+          "needs": ["object-pronoun"]
+        },
+        {
+          "ask": "Use a possessive pronoun before a noun (my, our, their).",
+          "needs": ["possessive-pronoun"]
+        },
+        {
+          "ask": "Use a possessive pronoun on its own (mine, ours, theirs).",
+          "needs": ["possessive-pronoun"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e01.agreement-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Does it agree?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "The dogs wagged ___ tails.",
+        "options": [
+          { "id": "a", "text": "its" },
+          { "id": "b", "text": "their" },
+          { "id": "c", "text": "his" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Dogs” is plural, so the pronoun is plural too: their."
+      },
+      {
+        "id": "q2",
+        "prompt": "The team celebrated ___ first win.",
+        "options": [
+          { "id": "a", "text": "its" },
+          { "id": "b", "text": "it’s" },
+          { "id": "c", "text": "they’re" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A collective noun acting as one group takes a singular pronoun: its."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence is clear?",
+        "options": [
+          { "id": "a", "text": "When Ana met Priya, she smiled." },
+          { "id": "b", "text": "When Ana met Priya, Priya smiled." },
+          { "id": "c", "text": "When she met her, she smiled." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "With two people in the sentence, “she” could mean either. Using the name makes it clear."
+      },
+      {
+        "id": "q4",
+        "prompt": "Every student needs ___ own pencil.",
+        "options": [
+          { "id": "a", "text": "their" },
+          { "id": "b", "text": "them" },
+          { "id": "c", "text": "they" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Their” is the possessive and works for one person whose gender we don’t know. (“His or her” is also correct.)"
+      }
+    ]
+  },
+  {
+    "key": "e01.clear-transform",
+    "type": "TRANSFORM",
+    "title": "Who do you mean?",
+    "instructions": "Each sentence has a pronoun that could mean two people. Rewrite it so it’s clear, using the name.",
+    "items": [
+      {
+        "id": "prize",
+        "task": "Make it clear that Leila won.",
+        "source": "Maya told Leila that she had won the prize.",
+        "answers": ["Maya told Leila that Leila had won the prize."],
+        "hints": [
+          "Which word could mean Maya or Leila?",
+          "Replace “she” with the name of the winner."
+        ],
+        "explanation": "Swapping “she” for “Leila” removes the doubt."
+      },
+      {
+        "id": "bike",
+        "task": "Make it clear that the bike was Omar’s.",
+        "source": "Omar and Ben fixed his bike.",
+        "answers": ["Omar and Ben fixed Omar's bike.", "Omar and Ben fixed Omar’s bike."],
+        "hints": ["“his” could be Omar or Ben.", "Use the possessive form of the name: Omar’s."],
+        "explanation": "“Omar’s bike” says exactly whose bike it was."
+      },
+      {
+        "id": "phone",
+        "task": "Make it clear that Mom’s phone rang.",
+        "source": "Mom called Aunt Rosa while her phone was ringing.",
+        "answers": [
+          "Mom called Aunt Rosa while Mom's phone was ringing.",
+          "Mom called Aunt Rosa while Mom’s phone was ringing."
+        ],
+        "hints": ["Whose phone? “her” could be either.", "Use Mom’s."],
+        "explanation": "Naming the owner makes it clear."
+      }
+    ]
+  },
+  {
+    "key": "e01.pronoun-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Pronoun detectives",
+    "instructions": "Five pronouns are wrong. Tap each one and type the right pronoun.",
+    "text": "Me and Jada joined the robotics club last fall. The members built a robot, and they gave it a name. Our coach helped Jada and I with the wires. The wheels kept losing its grip, so us tried rubber bands. Now the trophy is our’s!",
+    "errors": [
+      {
+        "word": "Me",
+        "fixes": ["I"],
+        "explanation": "“Me” is doing the action (joined), so it needs the subject pronoun. Better still: “Jada and I joined…”."
+      },
+      {
+        "word": "I",
+        "fixes": ["me"],
+        "explanation": "After “helped”, the pronoun receives the action: “helped Jada and me”."
+      },
+      {
+        "word": "its",
+        "fixes": ["their"],
+        "explanation": "“Wheels” is plural, so the pronoun is too: their grip."
+      },
+      {
+        "word": "us",
+        "fixes": ["we"],
+        "explanation": "“Us” is doing the trying, so it needs the subject pronoun: we tried."
+      },
+      {
+        "word": "our’s",
+        "fixes": ["ours"],
+        "explanation": "Possessive pronouns never have an apostrophe: ours, yours, theirs."
+      }
+    ]
+  },
+  {
+    "key": "e01.pronoun-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Two friends, one problem",
+    "prompt": "Write a paragraph (6–10 sentences) about two friends solving a problem together. Use pronouns so you don’t repeat names, but use a name whenever “he”, “she” or “they” could mean either friend.",
+    "tips": [
+      "Introduce both friends by name first.",
+      "After a sentence with both names, start the next with a name, not “he” or “she”.",
+      "Check that every pronoun agrees: one person → he/she/they, more than one → they; things → it/they."
+    ],
+    "constraints": { "minWords": 60, "maxWords": 200, "minSentences": 6 },
+    "analyzers": ["pronouns", "nouns"],
+    "grammarFocus": ["subject-pronoun", "object-pronoun", "possessive-pronoun"]
+  },
+  {
+    "key": "e01.unit-check",
+    "type": "QUIZ",
+    "title": "Nouns & Pronouns check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "n1",
+        "prompt": "Which word is a proper noun?",
+        "options": [
+          { "id": "a", "text": "ocean" },
+          { "id": "b", "text": "Pacific" },
+          { "id": "c", "text": "wave" },
+          { "id": "d", "text": "beach" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The Pacific is one particular ocean, so it’s a proper noun with a capital.",
+        "skill": "common & proper nouns"
+      },
+      {
+        "id": "n2",
+        "prompt": "Which sentence needs a capital letter that it doesn’t have?",
+        "options": [
+          { "id": "a", "text": "We swim every summer." },
+          { "id": "b", "text": "My birthday is in october." },
+          { "id": "c", "text": "The library opens at nine." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Months are proper nouns: October.",
+        "skill": "common & proper nouns"
+      },
+      {
+        "id": "n3",
+        "prompt": "In “The scientist studied the volcano near Naples,” which nouns are common?",
+        "options": [
+          { "id": "a", "text": "scientist, volcano" },
+          { "id": "b", "text": "scientist, Naples" },
+          { "id": "c", "text": "Naples only" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Scientist” and “volcano” name any scientist or volcano; Naples is a particular city.",
+        "skill": "common & proper nouns"
+      },
+      {
+        "id": "n4",
+        "prompt": "Which word is an abstract noun?",
+        "options": [
+          { "id": "a", "text": "honesty" },
+          { "id": "b", "text": "pillow" },
+          { "id": "c", "text": "thunder" },
+          { "id": "d", "text": "lemon" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Honesty is an idea; you can’t see or touch it.",
+        "skill": "concrete, abstract & collective nouns"
+      },
+      {
+        "id": "n5",
+        "prompt": "Which word is a collective noun?",
+        "options": [
+          { "id": "a", "text": "orchestra" },
+          { "id": "b", "text": "violin" },
+          { "id": "c", "text": "music" },
+          { "id": "d", "text": "loud" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "An orchestra is one word for a group of musicians.",
+        "skill": "concrete, abstract & collective nouns"
+      },
+      {
+        "id": "n6",
+        "prompt": "“Her kindness surprised everyone.” What kind of noun is “kindness”?",
+        "options": [
+          { "id": "a", "text": "concrete" },
+          { "id": "b", "text": "abstract" },
+          { "id": "c", "text": "collective" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Kindness is a quality, an idea, so it’s abstract.",
+        "skill": "concrete, abstract & collective nouns"
+      },
+      {
+        "id": "n7",
+        "prompt": "A group of fish swimming together is called a…",
+        "options": [
+          { "id": "a", "text": "school" },
+          { "id": "b", "text": "herd" },
+          { "id": "c", "text": "pack" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Fish swim in a school (or a shoal).",
+        "skill": "concrete, abstract & collective nouns"
+      },
+      {
+        "id": "p1",
+        "prompt": "What is the plural of “bench”?",
+        "options": [
+          { "id": "a", "text": "benchs" },
+          { "id": "b", "text": "benches" },
+          { "id": "c", "text": "bench’s" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Words ending in ch add -es: benches.",
+        "skill": "plurals"
+      },
+      {
+        "id": "p2",
+        "prompt": "What is the plural of “story”?",
+        "options": [
+          { "id": "a", "text": "storys" },
+          { "id": "b", "text": "stories" },
+          { "id": "c", "text": "storyes" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Consonant + y: change y to i and add -es → stories.",
+        "skill": "plurals"
+      },
+      {
+        "id": "p3",
+        "prompt": "Which plural is correct?",
+        "options": [
+          { "id": "a", "text": "two foots" },
+          { "id": "b", "text": "two feet" },
+          { "id": "c", "text": "two feets" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "foot → feet is an irregular plural.",
+        "skill": "plurals"
+      },
+      {
+        "id": "p4",
+        "prompt": "What is the plural of “knife”?",
+        "options": [
+          { "id": "a", "text": "knifes" },
+          { "id": "b", "text": "knives" },
+          { "id": "c", "text": "knife’s" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Many words ending in -fe change to -ves: knives.",
+        "skill": "plurals"
+      },
+      {
+        "id": "s1",
+        "prompt": "The tail belongs to one cat. Which is correct?",
+        "options": [
+          { "id": "a", "text": "the cats tail" },
+          { "id": "b", "text": "the cat’s tail" },
+          { "id": "c", "text": "the cats’ tail" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "One owner: add ’s.",
+        "skill": "possessives"
+      },
+      {
+        "id": "s2",
+        "prompt": "The coats belong to several girls. Which is correct?",
+        "options": [
+          { "id": "a", "text": "the girl’s coats" },
+          { "id": "b", "text": "the girls’ coats" },
+          { "id": "c", "text": "the girls coats’" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Plural owner ending in s: add just the apostrophe.",
+        "skill": "possessives"
+      },
+      {
+        "id": "s3",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "the men’s team" },
+          { "id": "b", "text": "the mens’ team" },
+          { "id": "c", "text": "the mens team" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Men” is plural without an s, so add ’s: men’s.",
+        "skill": "possessives"
+      },
+      {
+        "id": "s4",
+        "prompt": "Which sentence uses an apostrophe correctly?",
+        "options": [
+          { "id": "a", "text": "Banana’s are on sale." },
+          { "id": "b", "text": "The banana’s peel is brown." },
+          { "id": "c", "text": "I bought three banana’s." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Only (b) shows belonging: the peel of the banana. Plurals don’t take apostrophes.",
+        "skill": "possessives"
+      },
+      {
+        "id": "c1",
+        "prompt": "Choose the correct sentence.",
+        "options": [
+          { "id": "a", "text": "Me and Theo walked home." },
+          { "id": "b", "text": "Theo and me walked home." },
+          { "id": "c", "text": "Theo and I walked home." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "The people doing the action need the subject pronoun “I”, and it’s polite to put yourself last.",
+        "skill": "pronoun case"
+      },
+      {
+        "id": "c2",
+        "prompt": "Choose the correct sentence.",
+        "options": [
+          { "id": "a", "text": "The prize was shared between you and I." },
+          { "id": "b", "text": "The prize was shared between you and me." },
+          { "id": "c", "text": "The prize was shared between yourself and I." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "After a preposition like “between”, use object pronouns: you and me.",
+        "skill": "pronoun case"
+      },
+      {
+        "id": "c3",
+        "prompt": "“Coach thanked ___ for helping.” Which pronoun fits?",
+        "options": [
+          { "id": "a", "text": "they" },
+          { "id": "b", "text": "them" },
+          { "id": "c", "text": "their" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "They receive the thanks, so use the object pronoun: them.",
+        "skill": "pronoun case"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which word is a possessive pronoun that can stand on its own?",
+        "options": [
+          { "id": "a", "text": "your" },
+          { "id": "b", "text": "yours" },
+          { "id": "c", "text": "you’re" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Yours” stands alone: “The red one is yours.” “Your” needs a noun after it.",
+        "skill": "pronoun case"
+      },
+      {
+        "id": "c5",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "The dog chased it’s tail." },
+          { "id": "b", "text": "The dog chased its tail." },
+          { "id": "c", "text": "The dog chased its’ tail." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Its” shows belonging; “it’s” means “it is”; “its’” is never correct.",
+        "skill": "pronoun case"
+      },
+      {
+        "id": "a1",
+        "prompt": "The students put ___ bags on the shelf.",
+        "options": [
+          { "id": "a", "text": "his" },
+          { "id": "b", "text": "its" },
+          { "id": "c", "text": "their" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“Students” is plural, so the pronoun is plural: their.",
+        "skill": "pronoun agreement"
+      },
+      {
+        "id": "a2",
+        "prompt": "The tree dropped ___ leaves.",
+        "options": [
+          { "id": "a", "text": "its" },
+          { "id": "b", "text": "their" },
+          { "id": "c", "text": "it’s" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One tree, so the singular possessive: its.",
+        "skill": "pronoun agreement"
+      },
+      {
+        "id": "u1",
+        "prompt": "Which sentence is clearest?",
+        "options": [
+          { "id": "a", "text": "Dad told Grandpa that he needed glasses." },
+          { "id": "b", "text": "Dad told Grandpa, “You need glasses.”" },
+          { "id": "c", "text": "He told him that he needed them." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "In (a), “he” could be Dad or Grandpa. In (b), it’s clear Grandpa needs glasses.",
+        "skill": "clear pronouns"
+      },
+      {
+        "id": "u2",
+        "prompt": "“Lucia and Mei raced to the finish, and she won.” What’s the problem?",
+        "options": [
+          { "id": "a", "text": "“she” could mean Lucia or Mei" },
+          { "id": "b", "text": "“raced” should be “race”" },
+          { "id": "c", "text": "There’s no problem" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "With two girls named, “she” is unclear. Use the winner’s name.",
+        "skill": "clear pronouns"
+      }
+    ]
+  },
+  {
+    "key": "e01.check-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Unit check: a scene to remember",
+    "prompt": "Write a paragraph (at least 6 sentences) about a celebration, game or trip with a group of people. Show off this unit: use proper nouns with capitals, a collective noun, an abstract noun, plurals and possessives, and pronouns that are the right kind and clear.",
+    "tips": [
+      "Checklist: 2+ proper nouns · a collective noun (team, class, crowd) · an abstract noun (joy, pride) · a possessive (Maya’s, the players’).",
+      "Use “I” and “me” correctly: “my friends and I”, “with my friends and me”.",
+      "Read it aloud. Is every “he”, “she” and “they” clear?"
+    ],
+    "constraints": { "minWords": 70, "maxWords": 220, "minSentences": 6 },
+    "analyzers": ["nouns", "pronouns"],
+    "grammarFocus": ["proper-noun", "collective-noun", "abstract-noun", "possessive"]
+  }
+]

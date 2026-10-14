@@ -93,6 +93,64 @@ export const DEFAULT_RUBRIC: Rubric = {
   ],
 };
 
+/** `grammar.practice`: Essay Writing grammar sentences and paragraphs (DESIGN.md §9.12). */
+export const GRAMMAR_RUBRIC: Rubric = {
+  key: 'grammar.practice',
+  name: 'Grammar practice',
+  maxScore: 100,
+  criteria: [
+    {
+      key: 'focus',
+      label: 'Lesson skill',
+      description: 'Uses the grammar this lesson teaches, correctly, and does what each task asks.',
+      weight: 0.4,
+      levels: levels(
+        'The lesson skill is missing or mostly wrong.',
+        'Tries the lesson skill, with several mistakes or tasks not done.',
+        'Uses the lesson skill correctly in most places; most tasks done.',
+        'Uses the lesson skill correctly every time, and every task is done.',
+      ),
+    },
+    {
+      key: 'conventions',
+      label: 'Capitals, punctuation and spelling',
+      description:
+        'Sentences start with capitals and end with punctuation; words are spelled right.',
+      weight: 0.25,
+      levels: levels(
+        'Errors often get in the way of meaning.',
+        'Some errors that sometimes distract.',
+        'Mostly correct; errors rarely distract.',
+        'Correct throughout.',
+      ),
+    },
+    {
+      key: 'clarity',
+      label: 'Complete, clear sentences',
+      description: 'Each sentence is complete and makes sense on its own.',
+      weight: 0.2,
+      levels: levels(
+        'Many sentences are incomplete or confusing.',
+        'Some sentences are incomplete or hard to follow.',
+        'Sentences are complete and clear.',
+        'Sentences are complete, clear and well built.',
+      ),
+    },
+    {
+      key: 'wordChoice',
+      label: 'Word choice',
+      description: 'Precise, interesting words that make each sentence worth reading.',
+      weight: 0.15,
+      levels: levels(
+        'Words are vague or repeated.',
+        'Some precise words, mostly plain.',
+        'Precise words that fit.',
+        'Vivid, precise words chosen with care.',
+      ),
+    },
+  ],
+};
+
 /** total = Σ level × weight, scaled to maxScore (level 4 everywhere = maxScore). */
 export function totalScore(rubric: Rubric, levelsByKey: Record<string, number>): number {
   const weighted = rubric.criteria.reduce(

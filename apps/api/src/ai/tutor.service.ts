@@ -17,6 +17,7 @@ import {
   POV_VERSION_LABELS,
   type PracticeActivity,
   TUTOR_LIMITS,
+  blankMatches,
   isWritingActivity,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
@@ -220,6 +221,55 @@ function describeActivity(
               options,
               correctIndex: options.indexOf(item.answers[0]!),
               explanation: item.explanation,
+            };
+          }),
+      };
+    }
+    case 'FILL_BLANK': {
+      const { items } = activity;
+      return {
+        text: [
+          activity.instructions,
+          ...items.map((i) => `"${i.sentence}" → ${i.answers[0]}. Why: ${i.explanation}`),
+        ].join('\n'),
+        fallback: shuffle(items, variant)
+          .slice(0, 3)
+          .flatMap((item, i) => {
+            const right = item.answers[0]!;
+            // The choices, or the other items' answers when the student typed.
+            const pool = item.choices ?? activity.choices ?? items.map((x) => x.answers[0]!);
+            const others = [...new Set(pool)].filter((c) => !blankMatches(c, item.answers));
+            if (others.length === 0) return [];
+            const options = shuffle([right, ...others.slice(0, 3)], variant + i);
+            return [
+              {
+                prompt: `Which word fills the blank? “${item.sentence}”`,
+                options,
+                correctIndex: options.indexOf(right),
+                explanation: item.explanation,
+              },
+            ];
+          }),
+      };
+    }
+    case 'ERROR_HUNT': {
+      const { errors } = activity;
+      return {
+        text: [
+          activity.instructions,
+          `Text: ${activity.text}`,
+          ...errors.map((e) => `Wrong: "${e.word}" → "${e.fixes[0]}". Why: ${e.explanation}`),
+        ].join('\n'),
+        fallback: shuffle(errors, variant)
+          .slice(0, 3)
+          .map((e, i) => {
+            const right = e.fixes[0]!;
+            const options = shuffle([...new Set([right, e.word])], variant + i);
+            return {
+              prompt: `Which is correct: “${e.word}” or “${right}”?`,
+              options,
+              correctIndex: options.indexOf(right),
+              explanation: e.explanation,
             };
           }),
       };

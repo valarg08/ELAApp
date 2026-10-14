@@ -75,6 +75,7 @@ export function CoachPanel({
         devices: activity.figurativeHelper?.devices,
         syllablePattern: activity.constraints.syllablePattern,
         syllableOverrides: syllables,
+        grammarFocus: activity.grammarFocus,
       }),
     });
   }

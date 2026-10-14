@@ -8,6 +8,7 @@ import {
   checkConstraints,
   FIGURATIVE_ACTIVITY_TYPES,
   SENSORY_ACTIVITY_TYPES,
+  trackOfActivityKey,
   constraintsWithTraits,
   planComplete,
   toneComplete,
@@ -32,6 +33,7 @@ import { RhythmPanel } from './rhythm-panel';
 import { SyllableMeter } from './syllable-meter';
 import { PerspectiveGuide } from './perspective-guide';
 import { SenseTracker } from './sense-tracker';
+import { SentenceSetPanel } from './sentence-set-panel';
 import { WordBankPanel } from './word-bank-panel';
 import { useWordBank } from './use-word-bank';
 import { PlotPlanner } from './plot-planner';
@@ -301,15 +303,20 @@ export function WritingWorkspace({
         <FigurativeHelper helper={activity.figurativeHelper} onUseFrame={insertAtCursor} />
       )}
 
-      <WordBankPanel
-        open={
-          SENSORY_ACTIVITY_TYPES.includes(activity.type) ||
-          FIGURATIVE_ACTIVITY_TYPES.includes(activity.type)
-        }
-        words={wordBank}
-        onWordsChange={setWordBank}
-        onInsert={insertAtCursor}
-      />
+      {/* The sensory word bank belongs to Story Writing. */}
+      {trackOfActivityKey(activity.key) === 'STORY' && (
+        <WordBankPanel
+          open={
+            SENSORY_ACTIVITY_TYPES.includes(activity.type) ||
+            FIGURATIVE_ACTIVITY_TYPES.includes(activity.type)
+          }
+          words={wordBank}
+          onWordsChange={setWordBank}
+          onInsert={insertAtCursor}
+        />
+      )}
+
+      {activity.sentenceSet && <SentenceSetPanel set={activity.sentenceSet} text={state.text} />}
 
       <ConstraintsBar
         text={state.text}

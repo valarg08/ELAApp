@@ -4,6 +4,8 @@ import type { LessonActivity, LessonSteps } from '@storyforge/shared';
 import { useState } from 'react';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError } from '@/lib/api-client';
+import { ErrorHunt } from '../activities/error-hunt';
+import { FillBlank } from '../activities/fill-blank';
 import { Highlight } from '../activities/highlight';
 import { MultipleChoice } from '../activities/multiple-choice';
 import { Quiz } from '../activities/quiz';
@@ -132,9 +134,11 @@ export function PracticeStep({
           const baseline =
             activity.type === 'MULTIPLE_CHOICE'
               ? activity.questions.length
-              : activity.type === 'TRANSFORM'
+              : activity.type === 'TRANSFORM' || activity.type === 'FILL_BLANK'
                 ? activity.items.length
-                : 1;
+                : activity.type === 'ERROR_HUNT'
+                  ? activity.errors.length
+                  : 1;
           if (
             activity.type !== 'REFLECTION' &&
             activity.type !== 'QUIZ' &&
@@ -185,6 +189,10 @@ function ActivityView({
       return <Quiz lessonId={lessonId} activity={activity} onDone={onDone} />;
     case 'TRANSFORM':
       return <Transform activity={activity} onDone={onDone} />;
+    case 'FILL_BLANK':
+      return <FillBlank activity={activity} onDone={onDone} />;
+    case 'ERROR_HUNT':
+      return <ErrorHunt activity={activity} onDone={onDone} />;
     case 'REFLECTION':
       return <ReflectionActivity activity={activity} onDone={onDone} />;
     default:

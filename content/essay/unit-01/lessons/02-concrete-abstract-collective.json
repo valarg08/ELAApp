@@ -1,0 +1,60 @@
+{
+  "slug": "essay-concrete-abstract-collective",
+  "order": 2,
+  "title": "Concrete, Abstract & Collective Nouns",
+  "estMinutes": 35,
+  "focusSkills": ["nouns", "word-choice"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Can you hold “friendship” in your hand? What about a friend? What’s the difference?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Concrete nouns",
+          "body": "A concrete noun names something you can see, hear, touch, taste or smell: a drum, thunder, pizza, a pebble. If one of your five senses can notice it, it’s concrete."
+        },
+        {
+          "kind": "definition",
+          "title": "Abstract nouns",
+          "body": "An abstract noun names an idea, feeling or quality you can’t touch: courage, fear, freedom, friendship, honesty. Many end in -ness, -dom, -hood or -ship: kindness, freedom, childhood, friendship."
+        },
+        {
+          "kind": "definition",
+          "title": "Collective nouns",
+          "body": "A collective noun is one word for a group: a team of players, a flock of birds, a crowd of fans, a class of students. When the group acts as one, treat it as singular: “The team is ready.”"
+        },
+        {
+          "kind": "compare",
+          "title": "Make big ideas real",
+          "telling": "She had a lot of courage.",
+          "showing": "Her courage showed in her steady hands as she lit the stage lights.",
+          "labels": ["Abstract only", "Abstract + concrete"],
+          "note": "Abstract nouns are powerful in essays (justice, safety, freedom), but readers understand them best when you connect them to something concrete."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e01.kinds-sort", "e01.collective-blank", "e01.abstract-highlight"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e01.big-ideas-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which abstract noun did you use, and what concrete detail helped show it?",
+        "Think of a topic you might write an essay about. Which abstract noun is at the heart of it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

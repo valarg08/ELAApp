@@ -3,6 +3,7 @@
 import { type LessonActivity, transformMatches } from '@storyforge/shared';
 import { useId, useState } from 'react';
 import { Button } from '@/components/ui';
+import { focusOnMount } from './focus';
 import type { ActivityResult } from './types';
 
 type Activity = Extract<LessonActivity, { type: 'TRANSFORM' }>;
@@ -114,7 +115,9 @@ export function Transform({
             )}
           </>
         ) : (
-          <Button onClick={next}>{isLast ? 'Done' : 'Next sentence'}</Button>
+          <Button ref={focusOnMount} onClick={next}>
+            {isLast ? 'Done' : 'Next sentence'}
+          </Button>
         )}
       </div>
     </div>

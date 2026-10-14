@@ -7,6 +7,7 @@ import {
   checkSyllablePattern,
   countWords,
   poemLines,
+  sentences,
   stanzas,
   pointOfView,
   povShifts,
@@ -54,6 +55,9 @@ export const WritingConstraints = z
     /** Non-empty lines (poems). */
     minLines: z.number().int().min(1).max(200).optional(),
     maxLines: z.number().int().min(1).max(200).optional(),
+    /** Sentences (Essay Writing sentence sets); a sentence ends at . ! ? or a line break. */
+    minSentences: z.number().int().min(1).max(30).optional(),
+    maxSentences: z.number().int().min(1).max(30).optional(),
     /** Narration must use this tense (quoted speech is ignored). */
     tenseLock: z.enum(['past', 'present']).optional(),
     /** Shows a countdown in the workspace. Informational: running out of time never blocks. */
@@ -78,7 +82,7 @@ export type ConstraintProblem =
   | { rule: 'syllables'; line: number; expected: number; actual: number }
   | { rule: 'stanzaLines'; stanza: number; expected: number; actual: number }
   | {
-      rule: 'minStanzas' | 'maxStanzas' | 'minLines' | 'maxLines';
+      rule: 'minStanzas' | 'maxStanzas' | 'minLines' | 'maxLines' | 'minSentences' | 'maxSentences';
       expected: number;
       actual: number;
     };
@@ -155,6 +159,13 @@ export function checkConstraints(
     if (c.maxLines && count > c.maxLines)
       problems.push({ rule: 'maxLines', expected: c.maxLines, actual: count });
   }
+  if (c.minSentences || c.maxSentences) {
+    const count = sentences(text).length;
+    if (c.minSentences && count < c.minSentences)
+      problems.push({ rule: 'minSentences', expected: c.minSentences, actual: count });
+    if (c.maxSentences && count > c.maxSentences)
+      problems.push({ rule: 'maxSentences', expected: c.maxSentences, actual: count });
+  }
   if (c.syllablePattern) {
     const pattern = c.syllablePattern;
     const check = checkSyllablePattern(text, pattern, context.syllableOverrides);
@@ -230,6 +241,10 @@ export function describeProblem(p: ConstraintProblem): string {
       return `Write at least ${p.expected} lines (you have ${p.actual}).`;
     case 'maxLines':
       return `Keep it to ${p.expected} lines or fewer (you have ${p.actual}).`;
+    case 'minSentences':
+      return `Write at least ${p.expected} sentences (you have ${p.actual}).`;
+    case 'maxSentences':
+      return `Keep it to ${p.expected} sentences or fewer (you have ${p.actual}).`;
     case 'perspectives':
       if (p.issue === 'missing')
         return `Add the heading “${p.label}” on its own line, then write that part.`;

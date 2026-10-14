@@ -1,6 +1,7 @@
 import {
   ANALYZER_IDS,
   DEVICES,
+  GRAMMAR_FEATURES,
   SENSES,
   MOOD_AXES,
   MOOD_AXIS_IDS,
@@ -38,6 +39,9 @@ export const ActivityKey = z
     /^[ue]\d{2}\.[a-z0-9][a-z0-9-]*$/,
     'Activity keys look like "u01.sort-show-tell" (or "e01.…" in Essay Writing)',
   );
+
+/** The track an activity belongs to, from its key ("e01." is Essay Writing). */
+export const trackOfActivityKey = (key: string): Track => (key.startsWith('e') ? 'ESSAY' : 'STORY');
 
 /** The prefix every activity key of a unit starts with. */
 export const activityKeyPrefix = (track: Track, unitNumber: number) =>
@@ -207,6 +211,97 @@ export function normalizeRewrite(value: string): string {
 export const transformMatches = (answer: string, accepted: readonly string[]) =>
   accepted.some((a) => normalizeRewrite(a) === normalizeRewrite(answer));
 
+/** The blank in a fill-the-blank sentence. */
+export const BLANK = '___';
+
+/**
+ * Fill the blank (Essay Writing grammar, DESIGN.md §9.12): each sentence has one blank. With
+ * `choices` (for the item, or for every item) the student picks a word; without, they type it.
+ */
+export const FillBlankActivity = z.object({
+  ...activityBase,
+  type: z.literal('FILL_BLANK'),
+  instructions: text(500),
+  /** Words to pick from for every item (a word bank). */
+  choices: z.array(text(40)).min(2).max(12).optional(),
+  items: z
+    .array(
+      z.object({
+        id,
+        /** The sentence, with the blank written as "___". */
+        sentence: text(300),
+        answers: z.array(text(60)).min(1).max(6),
+        /** Words to pick from for this item (instead of the activity's). */
+        choices: z.array(text(40)).min(2).max(6).optional(),
+        hint: text(300).optional(),
+        explanation: text(400),
+      }),
+    )
+    .min(1)
+    .max(10),
+});
+export type FillBlankActivity = z.infer<typeof FillBlankActivity>;
+
+const answerForm = (v: string) => normalizeRewrite(v).replace(/[.!?]$/, '');
+
+/** True when a blank's answer matches (ignoring case, spacing, curly quotes and end punctuation). */
+export const blankMatches = (answer: string, accepted: readonly string[]) =>
+  accepted.some((a) => answerForm(a) === answerForm(answer));
+
+/**
+ * The error hunt (Essay Writing grammar): tap the wrong words in a passage, then type the fix.
+ * Each error is one word of the passage; `occurrence` says which one when it appears twice.
+ */
+export const ErrorHuntActivity = z.object({
+  ...activityBase,
+  type: z.literal('ERROR_HUNT'),
+  instructions: text(500),
+  text: text(1500),
+  errors: z
+    .array(
+      z.object({
+        /** The wrong word exactly as it is written in the text. */
+        word: text(40),
+        occurrence: z.number().int().min(1).max(20).default(1),
+        fixes: z.array(text(60)).min(1).max(4),
+        explanation: text(300),
+      }),
+    )
+    .min(1)
+    .max(15),
+});
+export type ErrorHuntActivity = z.infer<typeof ErrorHuntActivity>;
+
+const fixForm = (v: string) =>
+  v
+    .replace(/[‘’]/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/[.!?,]$/, '');
+
+/**
+ * True when a fix matches. Capitals count when the mistake is about capitals ("monday" →
+ * "Monday"); otherwise case is ignored.
+ */
+export function errorFixMatches(wrong: string, answer: string, fixes: readonly string[]): boolean {
+  const caseOnly = fixes.some((f) => fixForm(f).toLowerCase() === fixForm(wrong).toLowerCase());
+  return fixes.some((f) =>
+    caseOnly
+      ? fixForm(f) === fixForm(answer)
+      : fixForm(f).toLowerCase() === fixForm(answer).toLowerCase(),
+  );
+}
+
+/** Word positions (in `tokenize` order) of each error in an error hunt, or -1 if not found. */
+export function errorPositions(activity: Pick<ErrorHuntActivity, 'text' | 'errors'>): number[] {
+  const tokens = tokenize(activity.text).map((t) => t.replace(/’/g, "'"));
+  return activity.errors.map((e) => {
+    const want = e.word.toLowerCase().replace(/’/g, "'");
+    let seen = 0;
+    return tokens.findIndex((t) => t === want && ++seen === e.occurrence);
+  });
+}
+
 export const ReflectionActivity = z.object({
   ...activityBase,
   type: z.literal('REFLECTION'),
@@ -243,7 +338,28 @@ export const WRITING_ACTIVITY_TYPES = [
   'FREE_VERSE',
   'SPOKEN_WORD',
   'SOUND_POEM',
+  'SENTENCE_SET',
+  'GRAMMAR_PARAGRAPH',
 ] as const;
+
+/**
+ * A sentence set (Essay Writing): N sentences, each with its own task ("Use a proper noun for a
+ * place"). Sentence n of the draft answers task n; `needs` are the grammar features the Coach
+ * checks for in it. A guide: only the sentence count (constraints.minSentences) blocks submitting.
+ */
+export const SentenceSet = z.object({
+  label: text(120),
+  sentences: z
+    .array(
+      z.object({
+        ask: text(200),
+        needs: z.array(z.enum(GRAMMAR_FEATURES)).max(3).default([]),
+      }),
+    )
+    .min(2)
+    .max(10),
+});
+export type SentenceSet = z.infer<typeof SentenceSet>;
 
 /**
  * The simile / metaphor / personification helper (Unit 6): pick a subject and a device, get frames
@@ -358,6 +474,10 @@ export const WritingActivity = z.object({
   lineBreakView: z.boolean().optional(),
   /** Spoken word (Unit 7): a metronome, stress marking and a recording that stays on the device. */
   rhythmMode: z.boolean().optional(),
+  /** Essay Writing: numbered sentence tasks, each checked (see `SentenceSet`). */
+  sentenceSet: SentenceSet.optional(),
+  /** Essay Writing: the grammar this activity practises; the Coach and Quill look for it. */
+  grammarFocus: z.array(z.enum(GRAMMAR_FEATURES)).min(1).max(4).optional(),
 });
 
 export const ActivityContent = z.discriminatedUnion('type', [
@@ -368,6 +488,8 @@ export const ActivityContent = z.discriminatedUnion('type', [
   SensoryLabActivity,
   QuizActivity,
   TransformActivity,
+  FillBlankActivity,
+  ErrorHuntActivity,
   ReflectionActivity,
   WritingActivity,
 ]);
@@ -398,6 +520,8 @@ export const LessonActivity = z.discriminatedUnion('type', [
   SensoryLabActivity,
   QuizActivityPublic,
   TransformActivity,
+  FillBlankActivity,
+  ErrorHuntActivity,
   ReflectionActivity,
   WritingActivity,
 ]);
@@ -425,6 +549,8 @@ export const PRACTICE_ACTIVITY_TYPES = [
   'SENSORY_LAB',
   'QUIZ',
   'TRANSFORM',
+  'FILL_BLANK',
+  'ERROR_HUNT',
   'REFLECTION',
 ] as const;
 
@@ -483,6 +609,12 @@ export const POETRY_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
 ];
 
 /** At most this many words with the student's own syllable counts. */
+/** Essay Writing grammar activities: grammar Coach checks and "Is my grammar right?". */
+export const GRAMMAR_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
+  'SENTENCE_SET',
+  'GRAMMAR_PARAGRAPH',
+];
+
 export const MAX_SYLLABLE_OVERRIDES = 60;
 
 /** The student's syllable counts, cleaned: known words as keys ("fire"), whole counts 1–9. */
@@ -839,6 +971,34 @@ export function validateUnitBundle({
       if (new Set(ids).size !== ids.length) errors.push(`${a.key}: duplicate item ids`);
       if (a.labels && a.labels.length !== a.items.length)
         errors.push(`${a.key}: labels must match the number of items`);
+    }
+    if (a.type === 'FILL_BLANK') {
+      const ids = a.items.map((i) => i.id);
+      if (new Set(ids).size !== ids.length) errors.push(`${a.key}: duplicate item ids`);
+      for (const item of a.items) {
+        if (item.sentence.split(BLANK).length !== 2)
+          errors.push(`${a.key}/${item.id}: the sentence needs exactly one "${BLANK}"`);
+        const choices = item.choices ?? a.choices;
+        if (choices && !item.answers.some((ans) => blankMatches(ans, choices)))
+          errors.push(`${a.key}/${item.id}: no answer is one of the choices`);
+      }
+    }
+    if (a.type === 'ERROR_HUNT') {
+      const at = errorPositions(a);
+      a.errors.forEach((e, i) => {
+        if (at[i] === -1)
+          errors.push(
+            `${a.key}: error "${e.word}" (occurrence ${e.occurrence}) is not a word in the text`,
+          );
+        if (errorFixMatches(e.word, e.word, e.fixes))
+          errors.push(`${a.key}: error "${e.word}" is already one of its fixes`);
+      });
+      if (new Set(at).size !== at.length)
+        errors.push(`${a.key}: two errors point at the same word`);
+    }
+    if (isWritingActivity(a) && a.sentenceSet) {
+      if (a.constraints.minSentences !== a.sentenceSet.sentences.length)
+        errors.push(`${a.key}: constraints.minSentences must equal the number of sentence tasks`);
     }
     if (a.type === 'HIGHLIGHT') {
       const tokens = new Set(tokenize(a.text));

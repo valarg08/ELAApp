@@ -13,4 +13,5 @@ export * from './analyzers/pacing.js';
 export * from './analyzers/tone.js';
 export * from './analyzers/figurative.js';
 export * from './analyzers/poetry.js';
+export * from './analyzers/grammar.js';
 export * from './coach.js';

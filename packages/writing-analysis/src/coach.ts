@@ -42,6 +42,15 @@ import {
   oppositeOf,
 } from './analyzers/mood.js';
 import { sentenceVariety } from './analyzers/stats.js';
+import {
+  GRAMMAR_FEATURE_EXAMPLES,
+  GRAMMAR_FEATURE_LABELS,
+  type GrammarFeature,
+  type GrammarIssue,
+  grammarFeatures,
+  nounIssues,
+  pronounIssues,
+} from './analyzers/grammar.js';
 import { filterWords, telling } from './analyzers/word-choice.js';
 import { type Span, countWords, sentenceAt, sentences } from './text.js';
 
@@ -61,6 +70,8 @@ export const ANALYZER_IDS = [
   'syllables',
   'lineBreaks',
   'sound',
+  'nouns',
+  'pronouns',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -130,6 +141,8 @@ export interface CoachOptions {
   syllableOverrides?: Readonly<Record<string, number>>;
   /** The tone the student aimed for, per scale (Unit 5). */
   tone?: Partial<Record<ToneAxis, ToneStep>>;
+  /** Grammar the activity practises (Essay Writing): the Coach looks for each. */
+  grammarFocus?: readonly GrammarFeature[];
 }
 
 const MAX_STRENGTHS = 2;
@@ -624,6 +637,68 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
   }
 
+  if (options.grammarFocus?.length) {
+    const hits = grammarFeatures(text);
+    const missing = options.grammarFocus.find((f) => !hits.some((h) => h.feature === f));
+    const used = options.grammarFocus.filter((f) => hits.some((h) => h.feature === f));
+    if (missing) {
+      nextSteps.push({
+        id: 'grammar-focus',
+        analyzer: options.grammarFocus.some((f) => f.endsWith('pronoun')) ? 'pronouns' : 'nouns',
+        title: `Use ${GRAMMAR_FEATURE_LABELS[missing]}`,
+        message: `This activity practises ${GRAMMAR_FEATURE_LABELS[missing]}: ${GRAMMAR_FEATURE_EXAMPLES[missing]}.`,
+      });
+    }
+    const first = used[0];
+    if (first) {
+      const span = hits.find((h) => h.feature === first)?.span;
+      strengths.push({
+        id: 'grammar-focus',
+        analyzer: first.endsWith('pronoun') ? 'pronouns' : 'nouns',
+        title: `You used ${listing(used.map((f) => GRAMMAR_FEATURE_LABELS[f]))}`,
+        message: span
+          ? `Like “${span.text}”. That's the skill this lesson practises.`
+          : 'That is the skill this lesson practises.',
+        span,
+      });
+    }
+  }
+
+  if (enabled.has('pronouns')) {
+    const issues = pronounIssues(text);
+    if (issues[0]) nextSteps.push(issueCard('pronouns', 'Check this pronoun', issues));
+    else if (wordCount >= 15 && grammarFeatures(text).some((h) => h.feature.endsWith('pronoun'))) {
+      strengths.push({
+        id: 'pronouns',
+        analyzer: 'pronouns',
+        title: 'Clear pronouns',
+        message: 'Your pronouns are the right kind, and it is clear who each one means.',
+      });
+    }
+  }
+
+  if (enabled.has('nouns')) {
+    const issues = nounIssues(text);
+    if (issues[0]) nextSteps.push(issueCard('nouns', 'Check this noun', issues));
+    else if (wordCount >= 15) {
+      const names = [
+        ...new Set(
+          grammarFeatures(text)
+            .filter((h) => h.feature === 'proper-noun')
+            .map((h) => h.span.text),
+        ),
+      ];
+      if (names.length >= 2) {
+        strengths.push({
+          id: 'nouns',
+          analyzer: 'nouns',
+          title: 'Names with capitals',
+          message: `${listing(names.slice(0, 3))} start with capital letters, just right for proper nouns.`,
+        });
+      }
+    }
+  }
+
   if (enabled.has('telling')) {
     const { phrases } = telling(text);
     const first = phrases[0];
@@ -747,6 +822,23 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
   report.strengths = strengths.slice(0, MAX_STRENGTHS);
   report.nextSteps = nextSteps.slice(0, MAX_NEXT_STEPS);
   return report;
+}
+
+/** The first grammar issue as a card, with its fix and how many more there are. */
+function issueCard(
+  analyzer: 'nouns' | 'pronouns',
+  title: string,
+  issues: GrammarIssue[],
+): CoachCard {
+  const first = issues[0]!;
+  const more = issues.length > 1 ? ` (${plural(issues.length - 1, 'more spot')} to check.)` : '';
+  return {
+    id: analyzer,
+    analyzer,
+    title: first.fix ? `“${first.span.text}” → “${first.fix}”` : title,
+    message: `${first.message}${more}`,
+    span: first.span,
+  };
 }
 
 /** Check each part of a rewrite: heading present, long enough, its point of view and narrator. */

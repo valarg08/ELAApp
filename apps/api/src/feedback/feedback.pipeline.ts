@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { Prisma } from '@storyforge/db';
 import {
-  DEFAULT_RUBRIC,
   type FeedbackPoint,
   LIVE_ANALYZERS,
   WANT_FEAR_TYPES,
@@ -14,6 +13,8 @@ import {
   tonePoints,
   figurativePoints,
   poetryPoints,
+  grammarPoints,
+  rubricForActivity,
   rubricPoints,
   rubricScoreAnalyzer,
   sensoryPoints,
@@ -26,6 +27,7 @@ import {
   classSettings,
   FeedbackPoint as FeedbackPointSchema,
   isWritingActivity,
+  GRAMMAR_ACTIVITY_TYPES,
   POETRY_ACTIVITY_TYPES,
   SENSORY_ACTIVITY_TYPES,
   submissionChoices,
@@ -33,6 +35,8 @@ import {
 import {
   dialogue,
   filterWords,
+  nounIssues,
+  pronounIssues,
   senses,
   sentenceVariety,
   telling,
@@ -44,6 +48,7 @@ import { SafetyService } from '../safety/safety.service.js';
 import { plotInput, plotScope } from '../ai/plot-input.js';
 import { povInput, toneInput, toneScope } from '../ai/voice-input.js';
 import { poemInput, poemScope } from '../ai/poem-input.js';
+import { grammarInput } from '../ai/grammar-input.js';
 
 const toJson = (value: unknown): Prisma.InputJsonValue => JSON.parse(JSON.stringify(value));
 const points = (list: FeedbackPoint[]) => FeedbackPointSchema.array().parse(list);
@@ -64,6 +69,8 @@ const SKILL_NAMES: Record<string, string> = {
   syllables: 'syllables and form',
   lineBreaks: 'line breaks',
   sound: 'sound devices',
+  nouns: 'nouns',
+  pronouns: 'pronouns',
 };
 
 /**
@@ -144,6 +151,7 @@ export class FeedbackPipeline {
       `filter words: ${filterWords(text).total}`,
       `senses used: ${senses(text).used.join(', ') || 'none'}`,
       `dialogue punctuation issues: ${dialogue(text).issues.length}`,
+      `noun and pronoun mistakes found: ${nounIssues(text).length + pronounIssues(text).length}`,
     ];
 
     // 3. LLM analyzers for this activity type.
@@ -256,6 +264,21 @@ export class FeedbackPipeline {
         const p = poetryPoints(text, r);
         focusStrengths.push(...p.strengths);
         focusNextSteps.push(...p.nextSteps);
+      } else if (id === 'grammar-check') {
+        const extra = grammarInput(content);
+        const outcome = await this.ai.run(LIVE_ANALYZERS[id], { ...ctx, ...extra }, runMeta);
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        notes.push(
+          `grammar: ${r.errors.length} mistakes; lesson skill ${r.focus.used ? 'used' : 'missing'}${r.tasks.length > 0 ? `; tasks done ${r.tasks.filter((t) => t.done).length}/${r.tasks.length}` : ''}`,
+        );
+        const p = grammarPoints(text, r);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
       } else if (id === 'figurative-language') {
         const goals = content.figurativeHelper?.devices ?? [];
         const outcome = await this.ai.run(LIVE_ANALYZERS[id], { ...ctx, goals }, runMeta);
@@ -341,25 +364,26 @@ export class FeedbackPipeline {
     }
 
     // 4–5. Rubric score + composition.
+    const rubric = rubricForActivity(content.type);
     versions.push(rubricScoreAnalyzer.version);
     if (POETRY_ACTIVITY_TYPES.includes(content.type)) {
       notes.push(
         'this is a poem: line breaks are deliberate; judge rhythm and line breaks instead of sentences',
       );
     }
-    const rubricInput = { ...ctx, rubric: DEFAULT_RUBRIC, evidence, analyzerNotes: notes };
+    const rubricInput = { ...ctx, rubric, evidence, analyzerNotes: notes };
     const scored = await this.ai.run(rubricScoreAnalyzer, rubricInput, {
       ...meta,
-      cacheScope: `${activity.key}|${DEFAULT_RUBRIC.key}`,
+      cacheScope: `${activity.key}|${rubric.key}`,
       text,
     });
     const rubricRow = await this.db.client.rubric.upsert({
-      where: { key: DEFAULT_RUBRIC.key },
+      where: { key: rubric.key },
       create: {
-        key: DEFAULT_RUBRIC.key,
-        name: DEFAULT_RUBRIC.name,
-        criteria: toJson(DEFAULT_RUBRIC.criteria),
-        maxScore: DEFAULT_RUBRIC.maxScore,
+        key: rubric.key,
+        name: rubric.name,
+        criteria: toJson(rubric.criteria),
+        maxScore: rubric.maxScore,
       },
       update: {},
     });
@@ -379,7 +403,7 @@ export class FeedbackPipeline {
     }
 
     const r = scored.result;
-    const scores: CriterionScore[] = DEFAULT_RUBRIC.criteria.flatMap((c) => {
+    const scores: CriterionScore[] = rubric.criteria.flatMap((c) => {
       const found = r.criteria.find((x) => x.key === c.key);
       if (!found) return [];
       return [
@@ -396,13 +420,14 @@ export class FeedbackPipeline {
     const levels = Object.fromEntries(scores.map((s) => [s.key, s.level]));
     const dialogueIssues = dialogue(text).issues.length;
     const needsTeacherAttention =
-      scores.length < DEFAULT_RUBRIC.criteria.length ||
+      scores.length < rubric.criteria.length ||
       scores.some((s) => s.confidence < 0.6) ||
       (levels.grammar === 4 && dialogueIssues >= 5);
 
     const composed = rubricPoints(text, r);
-    // The rubric's next steps are about prose (sentences, paragraphs); poems get the poetry check's.
-    const poem = POETRY_ACTIVITY_TYPES.includes(content.type);
+    // The rubric's next steps are about prose craft; poems and grammar practice get their own check's.
+    const ownSteps =
+      POETRY_ACTIVITY_TYPES.includes(content.type) || GRAMMAR_ACTIVITY_TYPES.includes(content.type);
     const strengths = dedupe([
       ...focusStrengths.slice(0, 3),
       ...composed.strengths,
@@ -410,7 +435,7 @@ export class FeedbackPipeline {
     ]).slice(0, focusStrengths.length > 1 ? 3 : 2);
     const nextSteps = dedupe([
       ...focusNextSteps.slice(0, 2),
-      ...(poem ? [] : composed.nextSteps),
+      ...(ownSteps ? [] : composed.nextSteps),
       ...extraNextSteps,
     ]).slice(0, 3);
 
@@ -422,7 +447,7 @@ export class FeedbackPipeline {
         promptVersion: versions.join(','),
         rubricId: rubricRow.id,
         scores: toJson(scores),
-        totalScore: totalScore(DEFAULT_RUBRIC, levels),
+        totalScore: totalScore(rubric, levels),
         summary: r.summary,
         strengths: toJson(points(strengths)),
         nextSteps: toJson(points(nextSteps)),

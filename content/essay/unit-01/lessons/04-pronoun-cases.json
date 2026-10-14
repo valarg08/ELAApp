@@ -1,0 +1,62 @@
+{
+  "slug": "essay-subject-object-possessive-pronouns",
+  "order": 4,
+  "title": "Subject, Object & Possessive Pronouns",
+  "estMinutes": 40,
+  "focusSkills": ["pronouns"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "Too many Marcuses",
+      "paragraphs": [
+        "Marcus grabbed Marcus’s skateboard. Marcus told Marcus’s mom that Marcus would be home by six. Marcus’s mom told Marcus to take Marcus’s helmet.",
+        "Exhausting, right? Pronouns are the short words that stand in for nouns so we don’t have to repeat them.",
+        "Marcus grabbed his skateboard. He told his mom he would be home by six. She told him to take his helmet."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Subject pronouns do the action",
+          "body": "I · you · he · she · it · we · they. Use them for whoever is doing the verb: “She kicked the ball.” “We won.”"
+        },
+        {
+          "kind": "definition",
+          "title": "Object pronouns receive the action",
+          "body": "me · you · him · her · it · us · them. Use them after a verb or after words like with, to, for, between: “The ball hit him.” “Come with us.” “This is between you and me.”"
+        },
+        {
+          "kind": "definition",
+          "title": "Possessive pronouns show ownership",
+          "body": "Before a noun: my · your · his · her · its · our · their (my bike). On their own: mine · yours · his · hers · ours · theirs (The bike is mine). Possessive pronouns never have an apostrophe: “its”, “ours”, not “it’s” or “our’s”."
+        },
+        {
+          "kind": "example",
+          "title": "The cover-up test",
+          "text": "Sam and (I / me) went to the game. → Cover “Sam and”: I went. ✓ → Sam and I went.\nThe coach picked Sam and (I / me). → Cover “Sam and”: picked me. ✓ → Sam and me.",
+          "note": "When there are two people, cover the other one and say the sentence. Your ear will pick the right pronoun. Put yourself last: “Sam and I”, not “I and Sam”."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e01.pronoun-sort", "e01.pronoun-blank", "e01.pronoun-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e01.pronoun-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain the cover-up test to a friend who always says “Me and my friend went…”.",
+        "Which pronoun pair is hardest for you: I/me, he/him, we/us or they/them?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

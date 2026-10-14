@@ -1,0 +1,64 @@
+{
+  "slug": "essay-pronoun-agreement-and-clarity",
+  "order": 5,
+  "title": "Pronoun Agreement & Clear Pronouns",
+  "estMinutes": 40,
+  "focusSkills": ["pronouns", "clarity"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Who fell in the pool?",
+      "a": "Grandma told Aunt Jo that she had fallen in the pool.",
+      "b": "Grandma laughed. “Jo, you fell in the pool!”",
+      "reveal": "In the first sentence, “she” could be Grandma or Aunt Jo, so the reader has to guess. The second makes it clear. A pronoun only works when the reader knows exactly who it means."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The antecedent",
+          "body": "The antecedent is the noun a pronoun stands for. In “Leo forgot his lunch,” the antecedent of “his” is Leo. Every pronoun needs an antecedent the reader can find."
+        },
+        {
+          "kind": "definition",
+          "title": "Agreement",
+          "body": "A pronoun must match its antecedent. One thing → it/its: “The tree lost its leaves.” More than one → they/their: “The trees lost their leaves.” A group acting as one → it/its: “The team won its match.” For one person whose gender you don’t know, “they/their” is fine: “Each student brought their lunch.”"
+        },
+        {
+          "kind": "compare",
+          "title": "Unclear vs clear",
+          "telling": "Omar and Ben fixed his bike.",
+          "showing": "Omar and Ben fixed Omar’s bike.",
+          "labels": ["Unclear", "Clear"],
+          "note": "When two people could be “he”, “she” or “they”, use the name. Repeating a name is better than confusing the reader."
+        },
+        {
+          "kind": "clue-hunt",
+          "title": "Find the problem pronouns",
+          "prompt": "Tap the two pronouns that don’t agree with their antecedents.",
+          "text": "The puppies chased its ball across the yard. My sister found a wallet and returned them to the office.",
+          "clues": ["its", "them"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e01.agreement-mc", "e01.clear-transform", "e01.pronoun-hunt"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e01.pronoun-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Find one place in your paragraph where you chose a name instead of a pronoun. Why?",
+        "Why do clear pronouns matter even more in an essay than in a chat with a friend?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

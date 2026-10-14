@@ -4,14 +4,10 @@ import { type LessonActivity, QuizAttemptView, QuizResult, QuizStatus } from '@s
 import { useEffect, useState } from 'react';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
+import { focusOnMount } from './focus';
 import type { ActivityResult } from './types';
 
 type Activity = Extract<LessonActivity, { type: 'QUIZ' }>;
-
-/** Each screen's heading takes focus when it appears (the questions, then the result). */
-function focusOnMount(el: HTMLHeadingElement | null) {
-  el?.focus();
-}
 
 const message = (e: unknown, fallback: string) =>
   e instanceof ApiError ? e.userMessage : fallback;

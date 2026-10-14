@@ -4,6 +4,7 @@ import { DEFAULT_ANALYZERS, type AnalyzerId, type Span } from '@storyforge/writi
 import {
   CHARACTER_ACTIVITY_TYPES,
   FIGURATIVE_ACTIVITY_TYPES,
+  GRAMMAR_ACTIVITY_TYPES,
   type LiveAnalyzerId,
   PLOT_ACTIVITY_TYPES,
   POETRY_ACTIVITY_TYPES,
@@ -65,6 +66,9 @@ export function AskQuill({
       : []),
     ...(POETRY_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'poetry-craft' as const, label: 'Does my poem work?' }]
+      : []),
+    ...(GRAMMAR_ACTIVITY_TYPES.includes(activity.type)
+      ? [{ id: 'grammar-check' as const, label: 'Is my grammar right?' }]
       : []),
     ...(FIGURATIVE_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'figurative-language' as const, label: 'Did my comparisons work?' }]

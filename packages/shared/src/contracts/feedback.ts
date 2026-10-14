@@ -96,6 +96,7 @@ export const LiveAnalyzerId = z.enum([
   'tone-style',
   'figurative-language',
   'poetry-craft',
+  'grammar-check',
 ]);
 export type LiveAnalyzerId = z.infer<typeof LiveAnalyzerId>;
 

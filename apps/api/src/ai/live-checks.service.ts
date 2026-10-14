@@ -8,6 +8,7 @@ import {
   type ToneStyleResult,
   type FigurativeLanguageResult,
   type PoetryCraftResult,
+  type GrammarCheckResult,
   type FeedbackPoint,
   HOLDING_MESSAGE,
   LIVE_ANALYZERS,
@@ -24,6 +25,7 @@ import {
   tonePoints,
   figurativePoints,
   poetryPoints,
+  grammarPoints,
   sensoryPoints,
   showVsTellPoints,
 } from '@storyforge/ai';
@@ -47,6 +49,7 @@ import { AiRunnerService } from './ai-runner.service.js';
 import { plotInput, plotScope } from './plot-input.js';
 import { povInput, toneInput, toneScope } from './voice-input.js';
 import { poemInput, poemScope } from './poem-input.js';
+import { grammarInput } from './grammar-input.js';
 
 /** Live checks give up after 20 s (DESIGN.md §8.6) and ask the student to try again. */
 const LIVE_TIMEOUT_MS = 20_000;
@@ -209,6 +212,12 @@ export class LiveChecksService {
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = poetryPoints(req.text, outcome.result);
+      } else if (req.analyzer === 'grammar-check') {
+        const outcome: AnalyzerOutcome<GrammarCheckResult> = await withTimeout(
+          this.ai.run(LIVE_ANALYZERS['grammar-check'], { ...ctx, ...grammarInput(content) }, meta),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = grammarPoints(req.text, outcome.result);
       } else if (req.analyzer === 'figurative-language') {
         const goals = content.figurativeHelper?.devices ?? [];
         const outcome: AnalyzerOutcome<FigurativeLanguageResult> = await withTimeout(
