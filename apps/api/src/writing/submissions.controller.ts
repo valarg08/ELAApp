@@ -7,6 +7,7 @@ import {
   SaveDraftRequest,
   SetConflictRequest,
   SetMoodRequest,
+  SetParagraphRequest,
   SetPlotRequest,
   SetSyllablesRequest,
   SetToneRequest,
@@ -101,6 +102,17 @@ export class SubmissionsController {
     @Body({ schema: SetPlotRequest }) body: SetPlotRequest,
   ): Promise<SubmissionDetail> {
     return this.submissions.setPlot(user, id, body.plot);
+  }
+
+  /** The paragraph builder's boxes (Essay Unit 10). */
+  @Roles('STUDENT')
+  @Put(':id/paragraph')
+  setParagraph(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetParagraphRequest }) body: SetParagraphRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setParagraph(user, id, body.paragraph);
   }
 
   /** The student's own syllable counts for words in their poem (Unit 7). */

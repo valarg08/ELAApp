@@ -1,0 +1,58 @@
+{
+  "slug": "essay-topic-sentences",
+  "order": 1,
+  "title": "Topic Sentences",
+  "estMinutes": 35,
+  "focusSkills": ["paragraphs", "topic-sentences"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Both paragraphs start the same story about school lunches. After the first sentence, which one tells you what the paragraph will be about?",
+      "a": "Lunch happens every day. There are many foods. Some students bring lunch from home.",
+      "b": "Our school should serve healthier lunches. Right now, the most popular meal is pizza with fries.",
+      "reveal": "B’s first sentence is a topic sentence: it tells the reader the main idea of the whole paragraph (healthier lunches), so every sentence after it makes sense. A’s first sentence could lead anywhere."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What is a topic sentence?",
+          "body": "A topic sentence states the main idea of a paragraph in one sentence. It usually comes first. Every other sentence in the paragraph supports it."
+        },
+        {
+          "kind": "compare",
+          "title": "Specific, not vague",
+          "telling": "This paragraph is about dogs.",
+          "showing": "Dogs make better pets than cats for busy families.",
+          "labels": ["Vague ✗", "Specific ✓"],
+          "note": "A strong topic sentence takes a position or makes a clear point. Never announce it (“This paragraph is about…”). Just say it."
+        },
+        {
+          "kind": "example",
+          "title": "Topic sentence recipe",
+          "text": "Topic + what you say about it\nSchool uniforms + save families money → School uniforms save families money.\nRecess + should be longer → Recess should be longer for middle schoolers.",
+          "note": "Not too broad (“Sports are good.”) and not too narrow (“I scored two goals on Saturday.”)."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e10.topic-mc", "e10.topic-sort", "e10.topic-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e10.topic-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which of your topic sentences is the most specific? What makes it specific?",
+        "How can a topic sentence help you plan the rest of a paragraph?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

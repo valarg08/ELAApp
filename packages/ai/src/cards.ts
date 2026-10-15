@@ -9,6 +9,7 @@ import type { ToneStyleResult } from './analyzers/tone-style.js';
 import type { FigurativeLanguageResult } from './analyzers/figurative-language.js';
 import type { PoetryCraftResult } from './analyzers/poetry-craft.js';
 import type { GrammarCheckResult } from './analyzers/grammar-check.js';
+import type { ParagraphStructureResult } from './analyzers/paragraph-structure.js';
 import { isToneStep, toneStepLabel } from '@storyforge/writing-analysis';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
@@ -434,6 +435,59 @@ export function grammarPoints(text: string, r: GrammarCheckResult) {
         r.bestSentence.quote,
       ),
     );
+  }
+  if (r.nextIdea) nextSteps.push({ title: 'One idea', message: r.nextIdea });
+  return {
+    strengths: strengths.filter(isPoint).slice(0, 3),
+    nextSteps: nextSteps.filter(isPoint).slice(0, 3),
+  };
+}
+
+/** "Is my paragraph built well?": the parts that work as strengths; a missing part, unexplained evidence or a wandering sentence as next steps. */
+export function paragraphPoints(text: string, r: ParagraphStructureResult) {
+  const strengths: (FeedbackPoint | null)[] = [];
+  const nextSteps: (FeedbackPoint | null)[] = [];
+  if (r.topic.present) {
+    strengths.push(
+      anchored(text, { title: 'A clear main idea', message: r.topic.note }, r.topic.quote),
+    );
+  } else {
+    nextSteps.push({ title: 'Start with a topic sentence', message: r.topic.note });
+  }
+  if (r.evidence.length === 0) {
+    nextSteps.push({
+      title: 'Add evidence',
+      message: 'Support your main idea with a fact, an example or a quote (For example, …).',
+    });
+  }
+  const loose = r.evidence.find((e) => !e.explained);
+  if (loose) {
+    nextSteps.push(
+      anchored(text, { title: 'Explain your evidence', message: loose.note }, loose.quote),
+    );
+  } else if (r.evidence[0]) {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'Evidence, explained', message: r.evidence[0].note },
+        r.evidence[0].quote,
+      ),
+    );
+  }
+  if (!r.unity.focused) {
+    nextSteps.push(
+      anchored(text, { title: 'Stay on your main idea', message: r.unity.note }, r.unity.quote),
+    );
+  }
+  if (r.closing.present) {
+    strengths.push(
+      anchored(text, { title: 'A closing that sums up', message: r.closing.note }, r.closing.quote),
+    );
+  } else {
+    nextSteps.push({ title: 'Add a closing sentence', message: r.closing.note });
+  }
+  if (r.transitions.quotes.length === 0) {
+    nextSteps.push({ title: 'Link your ideas', message: r.transitions.note });
   }
   if (r.nextIdea) nextSteps.push({ title: 'One idea', message: r.nextIdea });
   return {

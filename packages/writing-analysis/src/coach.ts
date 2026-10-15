@@ -53,6 +53,9 @@ import {
   modifierIssues,
   nounIssues,
   passiveNotes,
+  type ParagraphRole,
+  paragraphNotes,
+  paragraphRoles,
   pronounIssues,
   punctuationIssues,
   SENTENCE_TYPES,
@@ -95,6 +98,7 @@ export const ANALYZER_IDS = [
   'structure',
   'punctuation',
   'sentenceTypes',
+  'paragraphs',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -135,6 +139,8 @@ export interface CoachReport {
   sound?: { device: SoundDevice; count: number; span?: Span }[];
   /** Each sentence with its type, when the sentence-types check ran (Essay Unit 9 sentence map). */
   sentenceTypes?: (Span & { type?: SentenceType })[];
+  /** Each sentence with its part of the paragraph, when the paragraph check ran (Essay Unit 10 paragraph map). */
+  paragraphs?: (Span & { role: ParagraphRole; paragraph: number; transition?: string })[];
 }
 
 export interface Perspective {
@@ -797,8 +803,7 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
     if (!note && counted.length >= 4 && used.length >= 3) {
       // Quote the most complex sentence they wrote.
-      const best = [...SENTENCE_TYPES]
-        .reverse()
+      const best = SENTENCE_TYPES.toReversed()
         .map((type) => counted.find((t) => t.type === type))
         .find((t) => t !== undefined);
       strengths.push({
@@ -807,6 +812,49 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
         title: 'A good mix of sentences',
         message: `You use ${listing(used.map((t) => SENTENCE_TYPE_LABELS[t].toLowerCase()))} sentences, so your writing flows. Like this one: ${inQuotes(best!.span.text)}`,
         span: best?.span,
+      });
+    }
+  }
+
+  if (enabled.has('paragraphs')) {
+    const roles = paragraphRoles(text);
+    report.paragraphs = roles.map((s) => ({
+      ...s.span,
+      role: s.role,
+      paragraph: s.paragraph,
+      ...(s.transition ? { transition: s.transition.text } : {}),
+    }));
+    const notes = paragraphNotes(text);
+    const note = notes[0];
+    if (note) {
+      const more = notes.length > 1 ? ` (${plural(notes.length - 1, 'more spot')} to check.)` : '';
+      nextSteps.push({
+        id: 'paragraphs',
+        analyzer: 'paragraphs',
+        title: PARAGRAPH_TITLES[note.kind] ?? 'Check this paragraph',
+        message: `${note.message}${more}`,
+        span: note.span,
+      });
+    }
+    const has = (role: ParagraphRole) => roles.some((s) => s.role === role);
+    const topic = roles.find((s) => s.role === 'topic');
+    if (!note && topic && has('evidence') && has('explanation') && has('closing')) {
+      strengths.push({
+        id: 'paragraphs',
+        analyzer: 'paragraphs',
+        title: 'Every part of a paragraph',
+        message: `Topic sentence, evidence, explanation and a closing sentence: your paragraph is built well. It starts with a clear main idea: ${inQuotes(topic.span.text)}`,
+        span: topic.span,
+      });
+    }
+    const linked = roles.filter((s) => s.transition);
+    if (linked.length >= 2 && strengths.every((c) => c.id !== 'paragraphs')) {
+      strengths.push({
+        id: 'transitions',
+        analyzer: 'paragraphs',
+        title: 'Transitions that guide the reader',
+        message: `You link your ideas with ${listing(linked.slice(0, 3).map((s) => `“${s.transition!.text}”`))}, so the reader can follow your thinking.`,
+        span: linked[0]!.transition,
       });
     }
   }
@@ -1111,6 +1159,14 @@ const VARIETY_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
   'repeated-opener': 'Vary how your sentences start',
 };
 
+const PARAGRAPH_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
+  'no-topic-sentence': 'Start with a topic sentence',
+  'no-evidence': 'Add evidence',
+  'unexplained-evidence': 'Explain your evidence',
+  'no-closing': 'Add a closing sentence',
+  'no-transitions': 'Link your ideas',
+};
+
 /** What to try when every sentence is the same type. */
 const MIX_IDEAS: Record<SentenceType, string> = {
   simple:
@@ -1138,7 +1194,8 @@ function issueCard(
     | 'speech'
     | 'structure'
     | 'punctuation'
-    | 'sentenceTypes',
+    | 'sentenceTypes'
+    | 'paragraphs',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

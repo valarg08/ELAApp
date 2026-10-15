@@ -1,0 +1,59 @@
+{
+  "slug": "essay-paragraph-builder",
+  "order": 4,
+  "title": "Topic → Evidence → Explanation → Closing",
+  "estMinutes": 45,
+  "focusSkills": ["paragraphs", "paragraph-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "A paragraph is a burger",
+      "paragraphs": [
+        "Think of a paragraph as a burger.",
+        "The top bun is the topic sentence: it tells you what you’re about to eat.",
+        "The fillings are the evidence and explanations: the meat, the cheese, the lettuce. That’s where the flavour is.",
+        "The bottom bun is the closing sentence: it holds everything together.",
+        "Take away a bun and it falls apart. Take away the fillings and there’s nothing to eat."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The four parts",
+          "body": "1. Topic sentence: the main idea. 2. Evidence: a fact, example or quote. 3. Explanation: what the evidence shows. (Repeat 2 and 3 for a second piece of evidence.) 4. Closing sentence: sum up the main idea in new words."
+        },
+        {
+          "kind": "example",
+          "title": "A paragraph, part by part",
+          "text": "Topic: Every student should learn to cook.\nEvidence: For example, a student who can cook can make a healthy dinner instead of buying fast food.\nExplanation: This shows that cooking protects your health.\nEvidence: In addition, home-cooked meals cost about half as much as takeaway.\nExplanation: As a result, cooks save money.\nClosing: For these reasons, cooking belongs on every school timetable.",
+          "note": "Notice the transitions: For example, This shows, In addition, As a result, For these reasons."
+        },
+        {
+          "kind": "definition",
+          "title": "Your paragraph builder",
+          "body": "In the challenge, the paragraph builder gives you a box for each part, with sentence starters. When every box has words, press “Put it in my writing”, then polish it in the writing box. The Coach’s paragraph map labels each sentence T, E, X or C."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e10.order-sequence", "e10.parts-sort", "e10.parts-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e10.built-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which part of the paragraph was hardest to write? Why?",
+        "Look at your paragraph map. Does every piece of evidence have an explanation after it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

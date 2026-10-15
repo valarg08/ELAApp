@@ -29,6 +29,7 @@ import {
   diffStats,
   diffWords,
   isWritingActivity,
+  type ParagraphPlan,
   type PlotPlan,
   type SetSyllablesRequest,
   type SetToneRequest,
@@ -37,6 +38,7 @@ import {
   submissionChoices,
   validConflict,
   validMoods,
+  validParagraph,
   validPlot,
   validSyllables,
   validTone,
@@ -250,6 +252,21 @@ export class SubmissionsService {
       );
     }
     return this.saveChoices(current, { plot: validPlot(activity, plot) });
+  }
+
+  /** Save the paragraph builder's boxes (Essay Unit 10). */
+  async setParagraph(user: AuthUser, id: string, plan: ParagraphPlan): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    if (!activity.paragraphBuilder) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'No builder here',
+        'This activity doesn’t have a paragraph builder.',
+      );
+    }
+    return this.saveChoices(current, { paragraph: validParagraph(activity, plan) });
   }
 
   /** Save the tone aimed for on the activity's tone sliders (Unit 5; other scales are dropped). */
@@ -599,6 +616,7 @@ export class SubmissionsService {
       plot: choicesOf(s).plot,
       tone: choicesOf(s).tone,
       syllables: choicesOf(s).syllables,
+      paragraph: choicesOf(s).paragraph,
     };
   }
 }

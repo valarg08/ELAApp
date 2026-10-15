@@ -1,0 +1,1076 @@
+[
+  {
+    "key": "e10.topic-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Pick the best topic sentence",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which is the strongest topic sentence for a paragraph about school start times?",
+        "options": [
+          { "id": "a", "text": "This paragraph is about school start times." },
+          { "id": "b", "text": "Middle schools should start at 9:00 instead of 7:30." },
+          { "id": "c", "text": "School starts in the morning." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B makes a clear, specific point the rest of the paragraph can support. A announces; C is a fact with nothing to argue."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which topic sentence is too broad?",
+        "options": [
+          { "id": "a", "text": "Sports are good." },
+          { "id": "b", "text": "Team sports teach students how to handle losing." },
+          { "id": "c", "text": "Swimming lessons should be free for every child." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Sports are good” could mean anything. A paragraph can’t cover it all."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which topic sentence is too narrow?",
+        "options": [
+          { "id": "a", "text": "Libraries are still important in the internet age." },
+          { "id": "b", "text": "I borrowed a book on Tuesday." },
+          { "id": "c", "text": "Our library should stay open later on school nights." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B is a single detail. There’s nothing more to say about it, so it can’t lead a paragraph."
+      },
+      {
+        "id": "q4",
+        "prompt": "Where does a topic sentence usually go?",
+        "options": [
+          { "id": "a", "text": "At the start of the paragraph" },
+          { "id": "b", "text": "In the middle" },
+          { "id": "c", "text": "At the end, as a surprise" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "In essays, the topic sentence comes first so the reader knows what the paragraph is about."
+      }
+    ]
+  },
+  {
+    "key": "e10.topic-sort",
+    "type": "SORT",
+    "title": "Topic sentence or supporting detail?",
+    "instructions": "A topic sentence states a main idea. A supporting detail backs it up. Sort each sentence.",
+    "buckets": [
+      { "id": "topic", "label": "Topic sentence" },
+      { "id": "detail", "label": "Supporting detail" }
+    ],
+    "items": [
+      { "id": "t1", "text": "Our school should start a recycling program.", "bucketId": "topic" },
+      {
+        "id": "d1",
+        "text": "For example, the cafeteria throws away about 200 plastic bottles a day.",
+        "bucketId": "detail"
+      },
+      { "id": "t2", "text": "Learning a second language has many benefits.", "bucketId": "topic" },
+      {
+        "id": "d2",
+        "text": "Bilingual students often find it easier to learn a third language.",
+        "bucketId": "detail"
+      },
+      {
+        "id": "t3",
+        "text": "Dogs make better pets than cats for active families.",
+        "bucketId": "topic"
+      },
+      { "id": "d3", "text": "A dog will happily join you on a long run.", "bucketId": "detail" },
+      { "id": "t4", "text": "Video games can teach useful skills.", "bucketId": "topic" },
+      {
+        "id": "d4",
+        "text": "Strategy games make players plan several moves ahead.",
+        "bucketId": "detail"
+      }
+    ]
+  },
+  {
+    "key": "e10.topic-transform",
+    "type": "TRANSFORM",
+    "title": "Stop announcing",
+    "instructions": "Each sentence announces the topic. Rewrite it as a real topic sentence that just says the main idea.",
+    "items": [
+      {
+        "id": "recess",
+        "task": "Say the main idea without “This paragraph is about”.",
+        "source": "This paragraph is about why recess should be longer.",
+        "answers": ["Recess should be longer."],
+        "hints": ["What is the main idea? Recess should…", "Recess should be longer."],
+        "explanation": "Recess should be longer. Just say it."
+      },
+      {
+        "id": "uniforms",
+        "task": "Say the main idea without “I am going to tell you”.",
+        "source": "I am going to tell you why school uniforms save money.",
+        "answers": ["School uniforms save money."],
+        "hints": ["Start with the topic: School uniforms…"],
+        "explanation": "School uniforms save money."
+      },
+      {
+        "id": "pets",
+        "task": "Say the main idea without “In this paragraph, I will explain”.",
+        "source": "In this paragraph, I will explain that every class should have a pet.",
+        "answers": ["Every class should have a pet."],
+        "hints": ["Every class should…"],
+        "explanation": "Every class should have a pet."
+      }
+    ]
+  },
+  {
+    "key": "e10.topic-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Three topic sentences",
+    "prompt": "Write one topic sentence for each topic. Each sentence has its own task, listed above the writing box. Make each one a clear, specific main idea that a paragraph could support. Don’t announce it (“This paragraph is about…”).",
+    "tips": [
+      "Topic + what you say about it: Homework + should be limited → Homework should be limited to one hour a night.",
+      "Not too broad (“Food is important.”), not too narrow (“I ate toast today.”).",
+      "Taking a side makes a topic sentence stronger: should, must, is better than…"
+    ],
+    "constraints": { "minWords": 18, "maxWords": 90, "minSentences": 3 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["topic-sentence"],
+    "sentenceSet": {
+      "label": "Your three topic sentences",
+      "sentences": [
+        {
+          "ask": "Topic: homework. Write a topic sentence that takes a side.",
+          "needs": ["topic-sentence"]
+        },
+        { "ask": "Topic: a place in your town. Say why it matters.", "needs": ["topic-sentence"] },
+        {
+          "ask": "Topic: technology at school. Make a clear, specific point.",
+          "needs": ["topic-sentence"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e10.evidence-sort",
+    "type": "SORT",
+    "title": "Evidence or explanation?",
+    "instructions": "The topic sentence is: “Our town needs a skate park.” Sort each sentence: does it give evidence (a fact, example or quote), or explain what the evidence shows?",
+    "buckets": [
+      { "id": "evidence", "label": "Evidence" },
+      { "id": "explanation", "label": "Explanation" }
+    ],
+    "items": [
+      {
+        "id": "e1",
+        "text": "Last year, police gave 40 warnings to skaters in the mall car park.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "x1",
+        "text": "This shows that teens have nowhere safe to skate.",
+        "bucketId": "explanation"
+      },
+      {
+        "id": "e2",
+        "text": "According to the town survey, 300 teenagers skate every week.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "x2",
+        "text": "This means a skate park would be used every single day.",
+        "bucketId": "explanation"
+      },
+      {
+        "id": "e3",
+        "text": "For example, the nearby town of Millbrook built a park in 2023.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "x3",
+        "text": "As a result, fewer skaters there get hurt on busy streets.",
+        "bucketId": "explanation"
+      },
+      {
+        "id": "e4",
+        "text": "My cousin broke his wrist skating on a steep car park ramp.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "x4",
+        "text": "In other words, a proper park would protect skaters.",
+        "bucketId": "explanation"
+      }
+    ]
+  },
+  {
+    "key": "e10.evidence-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Strong evidence",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Topic sentence: “Students should drink more water at school.” Which is the best evidence?",
+        "options": [
+          { "id": "a", "text": "Water is nice." },
+          {
+            "id": "b",
+            "text": "Doctors say that even mild thirst can make it harder to concentrate."
+          },
+          { "id": "c", "text": "My favourite drink is orange juice." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B is an expert fact that supports the topic sentence. A is an opinion; C is off topic."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is NOT a kind of evidence?",
+        "options": [
+          { "id": "a", "text": "A fact or number" },
+          { "id": "b", "text": "An example" },
+          { "id": "c", "text": "Repeating the topic sentence louder" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Evidence is a fact, number, example, quote or expert view. Repeating your idea doesn’t prove it."
+      },
+      {
+        "id": "q3",
+        "prompt": "Evidence: “Teens need 8 to 10 hours of sleep.” Which explanation fits best?",
+        "options": [
+          { "id": "a", "text": "This means a 7:30 school start leaves many teens short of sleep." },
+          { "id": "b", "text": "Sleep is when you close your eyes." },
+          { "id": "c", "text": "I like sleeping in on Saturdays." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A links the fact back to the main idea (school start times). B and C don’t explain anything."
+      },
+      {
+        "id": "q4",
+        "prompt": "What should come right after a piece of evidence?",
+        "options": [
+          { "id": "a", "text": "Another topic sentence" },
+          { "id": "b", "text": "An explanation of what it shows" },
+          { "id": "c", "text": "The closing sentence, always" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Evidence + explanation is a pair. Don’t leave evidence on its own."
+      }
+    ]
+  },
+  {
+    "key": "e10.explain-blank",
+    "type": "FILL_BLANK",
+    "title": "Start the explanation",
+    "instructions": "Choose the words that start an explanation of the evidence.",
+    "items": [
+      {
+        "id": "shows",
+        "sentence": "Our cafeteria throws away 200 bottles a day. This ___ that we waste a lot of plastic.",
+        "choices": ["shows", "example", "first"],
+        "answers": ["shows", "proves", "means"],
+        "hint": "Which word links the evidence to what it proves?",
+        "explanation": "This shows that… explains what the evidence proves."
+      },
+      {
+        "id": "result",
+        "sentence": "Libraries offer free internet. As a ___, students without wifi at home can still do homework.",
+        "choices": ["result", "example", "conclusion"],
+        "answers": ["result"],
+        "hint": "The second part is what happens because of the first.",
+        "explanation": "As a result, … shows what the evidence leads to."
+      },
+      {
+        "id": "words",
+        "sentence": "Nine out of ten students said they feel calmer after recess. In other ___, recess helps students focus.",
+        "choices": ["words", "times", "places"],
+        "answers": ["words"],
+        "hint": "It’s a phrase that means “to say it another way”.",
+        "explanation": "In other words, … restates the evidence as a point."
+      },
+      {
+        "id": "means",
+        "sentence": "A uniform costs about $40, while new trendy clothes can cost $200. This ___ that uniforms save families money.",
+        "choices": ["means", "says", "asks"],
+        "answers": ["means", "shows", "proves"],
+        "hint": "This ___ that… What does the evidence tell us?",
+        "explanation": "This means that… explains the numbers."
+      }
+    ]
+  },
+  {
+    "key": "e10.evidence-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Two pieces of evidence, explained",
+    "prompt": "Topic sentence: “Every student should learn to swim.” Write four sentences that support it: evidence, its explanation, more evidence, its explanation. Each sentence has its own task, listed above the writing box.",
+    "tips": [
+      "Evidence: For example, … / According to … / One study found that …",
+      "Explanation: This shows that … / This means … / As a result, …",
+      "You may use a true example from your own life as evidence."
+    ],
+    "constraints": { "minWords": 40, "maxWords": 160, "minSentences": 4 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["evidence-sentence", "explanation-sentence"],
+    "sentenceSet": {
+      "label": "Your evidence and explanations",
+      "sentences": [
+        {
+          "ask": "Give a piece of evidence: start with “For example,” or “According to…”.",
+          "needs": ["evidence-sentence"]
+        },
+        {
+          "ask": "Explain what it shows: start with “This shows that…” or “This means…”.",
+          "needs": ["explanation-sentence"]
+        },
+        {
+          "ask": "Give a second piece of evidence: a fact, a number or an example.",
+          "needs": ["evidence-sentence"]
+        },
+        {
+          "ask": "Explain it: start with “As a result,” or “In other words,”.",
+          "needs": ["explanation-sentence"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e10.transition-blank",
+    "type": "FILL_BLANK",
+    "title": "Choose the transition",
+    "instructions": "Pick the transition that shows how the two ideas connect.",
+    "items": [
+      {
+        "id": "however",
+        "sentence": "Phones help students research. ___, they can also be distracting.",
+        "choices": ["However", "For example", "In addition"],
+        "answers": ["However", "On the other hand"],
+        "hint": "The second idea is the opposite side.",
+        "explanation": "However shows a contrast."
+      },
+      {
+        "id": "example",
+        "sentence": "Gardens teach responsibility. ___, students must water the plants every day.",
+        "choices": ["For example", "However", "Finally"],
+        "answers": ["For example", "For instance"],
+        "hint": "The second sentence shows the idea in action.",
+        "explanation": "For example introduces evidence."
+      },
+      {
+        "id": "result",
+        "sentence": "The field flooded overnight. ___, the match was moved indoors.",
+        "choices": ["As a result", "For example", "Also"],
+        "answers": ["As a result", "Therefore", "Because of this"],
+        "hint": "The second idea happened because of the first.",
+        "explanation": "As a result shows cause and effect."
+      },
+      {
+        "id": "addition",
+        "sentence": "Uniforms save money. ___, they make mornings faster.",
+        "choices": ["In addition", "However", "As a result"],
+        "answers": ["In addition", "Also", "Furthermore", "Moreover", "Additionally"],
+        "hint": "The second idea is one more reason on the same side.",
+        "explanation": "In addition adds another point."
+      },
+      {
+        "id": "closing",
+        "sentence": "___, a longer lunch would help students eat better and focus more.",
+        "choices": ["For these reasons", "For example", "However"],
+        "answers": ["For these reasons", "Overall", "In conclusion"],
+        "hint": "This sentence sums up the whole paragraph.",
+        "explanation": "For these reasons signals the closing sentence."
+      }
+    ]
+  },
+  {
+    "key": "e10.transition-sort",
+    "type": "SORT",
+    "title": "Transitions by job",
+    "instructions": "Sort each transition by its job.",
+    "buckets": [
+      { "id": "add", "label": "Add an idea" },
+      { "id": "example", "label": "Give an example" },
+      { "id": "contrast", "label": "Show a contrast" },
+      { "id": "result", "label": "Show a result" }
+    ],
+    "items": [
+      { "id": "a1", "text": "In addition", "bucketId": "add" },
+      { "id": "a2", "text": "Furthermore", "bucketId": "add" },
+      { "id": "a3", "text": "Also", "bucketId": "add" },
+      { "id": "e1", "text": "For example", "bucketId": "example" },
+      { "id": "e2", "text": "For instance", "bucketId": "example" },
+      { "id": "e3", "text": "To illustrate", "bucketId": "example" },
+      { "id": "c1", "text": "However", "bucketId": "contrast" },
+      { "id": "c2", "text": "On the other hand", "bucketId": "contrast" },
+      { "id": "c3", "text": "Even so", "bucketId": "contrast" },
+      { "id": "r1", "text": "As a result", "bucketId": "result" },
+      { "id": "r2", "text": "Therefore", "bucketId": "result" },
+      { "id": "r3", "text": "Because of this", "bucketId": "result" }
+    ]
+  },
+  {
+    "key": "e10.transition-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Transitions that fit",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "“Recess gives students exercise. ___, it gives them time to make friends.” Which fits?",
+        "options": [
+          { "id": "a", "text": "However" },
+          { "id": "b", "text": "In addition" },
+          { "id": "c", "text": "As a result" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The second sentence adds another benefit, so “In addition” fits."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "However the plan has one problem." },
+          { "id": "b", "text": "However, the plan has one problem." },
+          { "id": "c", "text": "However; the plan has one problem." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A transition at the start of a sentence is followed by a comma."
+      },
+      {
+        "id": "q3",
+        "prompt": "What’s wrong here? “For example, I love pizza. For example, pasta is great. For example, tacos are fun.”",
+        "options": [
+          { "id": "a", "text": "Nothing: transitions are always good." },
+          { "id": "b", "text": "The same transition is overused, and there’s no topic sentence." },
+          { "id": "c", "text": "The sentences are too long." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Vary your transitions, and use them only where they match the job. This paragraph also needs a main idea first."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which transition starts a closing sentence?",
+        "options": [
+          { "id": "a", "text": "For instance" },
+          { "id": "b", "text": "Overall" },
+          { "id": "c", "text": "First" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Overall,” “For these reasons,” and “In conclusion,” signal that the paragraph is wrapping up."
+      }
+    ]
+  },
+  {
+    "key": "e10.transition-paragraph",
+    "type": "PARAGRAPH",
+    "title": "Link it up",
+    "prompt": "This paragraph has good ideas but no transitions, so it reads like a list. Revise it in the writing box: add at least four transitions that match each job (adding an idea, giving an example, showing a contrast, showing a result, summing up). Put a comma after each one. Then press “Check my writing” and look at your paragraph map.",
+    "starter": "Students should be allowed to use phones at lunch. Phones let students relax after a busy morning. Many students use them to check in with their parents. Some adults worry that phones stop students from talking to each other. Lunch is free time, and students should choose how to spend it. A study at one school found that students who used phones at lunch were just as happy as students who did not. This shows that phones do not ruin lunch. Phones should be part of lunch time.",
+    "starterInEditor": true,
+    "tips": [
+      "Adding: In addition, Also, Furthermore",
+      "Contrast: However, On the other hand · Result: As a result, Therefore",
+      "Summing up: For these reasons, Overall"
+    ],
+    "constraints": { "minWords": 80, "maxWords": 200, "minSentences": 7 },
+    "analyzers": ["paragraphs", "punctuation"],
+    "grammarFocus": ["transition"]
+  },
+  {
+    "key": "e10.order-sequence",
+    "type": "SEQUENCE",
+    "title": "Put the paragraph together",
+    "instructions": "These six sentences make one paragraph, but they’re jumbled. Put them in order: topic sentence, evidence, explanation, evidence, explanation, closing sentence.",
+    "items": [
+      { "id": "topic", "text": "Every town still needs a public library." },
+      {
+        "id": "ev1",
+        "text": "For example, our library lends laptops and wifi hotspots to families for free."
+      },
+      {
+        "id": "ex1",
+        "text": "This means students without internet at home can still finish their homework."
+      },
+      {
+        "id": "ev2",
+        "text": "In addition, the library runs reading clubs for children every Saturday."
+      },
+      { "id": "ex2", "text": "As a result, young children grow up loving books." },
+      {
+        "id": "close",
+        "text": "For these reasons, libraries matter more than ever in the internet age."
+      }
+    ],
+    "labels": [
+      "Topic sentence",
+      "Evidence",
+      "Explanation",
+      "Evidence",
+      "Explanation",
+      "Closing sentence"
+    ],
+    "explanation": "The topic sentence states the idea; each piece of evidence (For example, In addition) is followed by its explanation (This means, As a result); the closing (For these reasons) sums it up."
+  },
+  {
+    "key": "e10.parts-sort",
+    "type": "SORT",
+    "title": "Name the part",
+    "instructions": "These sentences come from a paragraph about four-day school weeks. Sort each one into its part.",
+    "buckets": [
+      { "id": "topic", "label": "Topic sentence" },
+      { "id": "evidence", "label": "Evidence" },
+      { "id": "explanation", "label": "Explanation" },
+      { "id": "closing", "label": "Closing sentence" }
+    ],
+    "items": [
+      {
+        "id": "t",
+        "text": "A four-day school week would help students and teachers.",
+        "bucketId": "topic"
+      },
+      {
+        "id": "e1",
+        "text": "For instance, schools in parts of Colorado switched and saw attendance rise.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "x1",
+        "text": "This shows that students are keener to come to school when they get a longer break.",
+        "bucketId": "explanation"
+      },
+      {
+        "id": "e2",
+        "text": "According to one survey, 85% of teachers in four-day schools said they felt less tired.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "x2",
+        "text": "In other words, rested teachers can teach better lessons.",
+        "bucketId": "explanation"
+      },
+      {
+        "id": "c",
+        "text": "Overall, a shorter week could make school better for everyone.",
+        "bucketId": "closing"
+      }
+    ]
+  },
+  {
+    "key": "e10.parts-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Paragraph parts",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What is the right order for a body paragraph?",
+        "options": [
+          { "id": "a", "text": "Evidence → topic sentence → closing → explanation" },
+          { "id": "b", "text": "Topic sentence → evidence → explanation → closing sentence" },
+          { "id": "c", "text": "Closing sentence → evidence → topic sentence" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Main idea first, then support (evidence + explanation), then wrap up."
+      },
+      {
+        "id": "q2",
+        "prompt": "A paragraph has a topic sentence, three facts and a closing sentence. What’s missing?",
+        "options": [
+          { "id": "a", "text": "Transitions only" },
+          { "id": "b", "text": "Explanations of what the facts show" },
+          { "id": "c", "text": "Nothing" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Facts on their own don’t make the argument. Each one needs an explanation."
+      },
+      {
+        "id": "q3",
+        "prompt": "How many main ideas should one paragraph have?",
+        "options": [
+          { "id": "a", "text": "One" },
+          { "id": "b", "text": "Two or three" },
+          { "id": "c", "text": "As many as you can fit" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One paragraph, one main idea. A new main idea starts a new paragraph."
+      }
+    ]
+  },
+  {
+    "key": "e10.built-paragraph",
+    "type": "PARAGRAPH",
+    "title": "Build a paragraph",
+    "prompt": "Should students get homework on weekends? Use the paragraph builder to write one paragraph that answers the question: a topic sentence, two pieces of evidence each with an explanation, and a closing sentence. Then press “Put it in my writing”, polish it in the writing box and check your paragraph map.",
+    "tips": [
+      "Evidence can be a fact, a number, an expert, or a true example from your own life.",
+      "Explain each piece of evidence before moving on.",
+      "Use transitions: For example, In addition, As a result, For these reasons."
+    ],
+    "constraints": { "minWords": 60, "maxWords": 220, "minSentences": 5 },
+    "analyzers": ["paragraphs", "structure", "punctuation"],
+    "grammarFocus": [
+      "topic-sentence",
+      "evidence-sentence",
+      "explanation-sentence",
+      "closing-sentence"
+    ],
+    "paragraphBuilder": { "label": "Paragraph builder", "points": 2 }
+  },
+  {
+    "key": "e10.closing-sort",
+    "type": "SORT",
+    "title": "Strong closing or not?",
+    "instructions": "The topic sentence is: “Recess should be longer for middle schoolers.” Sort each possible closing sentence.",
+    "buckets": [
+      { "id": "strong", "label": "Strong closing" },
+      { "id": "copy", "label": "Just copies the topic" },
+      { "id": "new", "label": "Adds a new idea" }
+    ],
+    "items": [
+      {
+        "id": "s1",
+        "text": "For these reasons, fifteen more minutes outside would help students learn more inside.",
+        "bucketId": "strong"
+      },
+      {
+        "id": "s2",
+        "text": "Overall, a longer recess means healthier and happier students.",
+        "bucketId": "strong"
+      },
+      {
+        "id": "s3",
+        "text": "That is why our school should extend recess starting next term.",
+        "bucketId": "strong"
+      },
+      { "id": "c1", "text": "Recess should be longer for middle schoolers.", "bucketId": "copy" },
+      {
+        "id": "c2",
+        "text": "In conclusion, recess should be longer for middle schoolers.",
+        "bucketId": "copy"
+      },
+      { "id": "n1", "text": "Also, the cafeteria food should be better.", "bucketId": "new" },
+      { "id": "n2", "text": "Another problem is that the bus is always late.", "bucketId": "new" }
+    ]
+  },
+  {
+    "key": "e10.closing-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Closing sentences",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What does a closing sentence do?",
+        "options": [
+          { "id": "a", "text": "Sums up the main idea in new words" },
+          { "id": "b", "text": "Starts a new topic" },
+          { "id": "c", "text": "Gives the first piece of evidence" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It wraps up the paragraph, often showing why the idea matters."
+      },
+      {
+        "id": "q2",
+        "prompt": "Topic: “Schools should teach cooking.” Which closing is best?",
+        "options": [
+          { "id": "a", "text": "Schools should teach cooking." },
+          {
+            "id": "b",
+            "text": "For these reasons, cooking lessons would give students a skill for life."
+          },
+          { "id": "c", "text": "Also, my favourite food is lasagne." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B echoes the idea in new words and shows why it matters. A copies; C adds an unrelated idea."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which word or phrase does NOT usually start a closing sentence?",
+        "options": [
+          { "id": "a", "text": "For these reasons," },
+          { "id": "b", "text": "For example," },
+          { "id": "c", "text": "Overall," }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“For example” introduces evidence, which belongs in the middle."
+      }
+    ]
+  },
+  {
+    "key": "e10.closing-transform",
+    "type": "TRANSFORM",
+    "title": "From topic to closing",
+    "instructions": "Turn each topic sentence into a closing sentence that starts with the transition the task gives. Keep the same main idea.",
+    "items": [
+      {
+        "id": "reasons",
+        "task": "Start with “For these reasons,”.",
+        "source": "Our school should plant a garden.",
+        "answers": ["For these reasons, our school should plant a garden."],
+        "hints": [
+          "For these reasons, our school…",
+          "Keep the rest of the sentence the same, with a small “our”."
+        ],
+        "explanation": "For these reasons, our school should plant a garden."
+      },
+      {
+        "id": "overall",
+        "task": "Start with “Overall,”.",
+        "source": "Libraries are still important.",
+        "answers": ["Overall, libraries are still important."],
+        "hints": ["Overall, libraries…"],
+        "explanation": "Overall, libraries are still important."
+      },
+      {
+        "id": "why",
+        "task": "Start with “That is why” (no comma).",
+        "source": "Every class should have a pet.",
+        "answers": ["That is why every class should have a pet."],
+        "hints": ["That is why every class…"],
+        "explanation": "That is why every class should have a pet."
+      }
+    ]
+  },
+  {
+    "key": "e10.finish-paragraph",
+    "type": "PARAGRAPH",
+    "title": "Finish the paragraph",
+    "prompt": "This paragraph has a topic sentence and three pieces of evidence, but no explanations and no closing sentence. Revise it in the writing box: add a sentence after each piece of evidence that explains what it shows, and end with a closing sentence that sums up the main idea in new words. Check the paragraph map: every E should be followed by an X, and the last sentence should be a C.",
+    "starter": "Our school should plant a garden. For example, students could grow vegetables for the cafeteria. In addition, a garden would give science classes a place to study plants up close. According to one gardening charity, students who grow food eat more vegetables.",
+    "starterInEditor": true,
+    "tips": [
+      "Explain: This means … / This shows that … / As a result, …",
+      "Close: For these reasons, … / Overall, … / That is why …",
+      "Don’t copy the topic sentence for your closing. Say it in new words."
+    ],
+    "constraints": { "minWords": 65, "maxWords": 200, "minSentences": 7 },
+    "analyzers": ["paragraphs", "punctuation"],
+    "grammarFocus": ["explanation-sentence", "closing-sentence"]
+  },
+  {
+    "key": "e10.unit-check",
+    "type": "QUIZ",
+    "title": "Building Paragraphs check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "c1",
+        "prompt": "What is a topic sentence?",
+        "options": [
+          { "id": "a", "text": "One sentence that states the main idea of the paragraph" },
+          { "id": "b", "text": "The longest sentence in the paragraph" },
+          { "id": "c", "text": "A sentence that asks the reader a question" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It tells the reader what the whole paragraph is about.",
+        "skill": "topic sentences"
+      },
+      {
+        "id": "c2",
+        "prompt": "Which is the strongest topic sentence?",
+        "options": [
+          { "id": "a", "text": "This paragraph is about pets." },
+          { "id": "b", "text": "Pets are things." },
+          { "id": "c", "text": "Caring for a pet teaches children responsibility." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "C makes a clear, specific point. A announces; B says nothing.",
+        "skill": "topic sentences"
+      },
+      {
+        "id": "c3",
+        "prompt": "Which topic sentence is too broad?",
+        "options": [
+          { "id": "a", "text": "Music is important." },
+          { "id": "b", "text": "Learning an instrument improves memory." },
+          { "id": "c", "text": "Our school band needs new drums." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Music is important” is too big for one paragraph.",
+        "skill": "topic sentences"
+      },
+      {
+        "id": "c4",
+        "prompt": "Topic: “Students should walk to school when they can.” Which sentence does NOT belong in the paragraph?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Walking for twenty minutes counts toward a child’s daily exercise."
+          },
+          { "id": "b", "text": "My favourite TV show is on at seven." },
+          { "id": "c", "text": "Fewer cars at the gate make the street safer." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Every sentence should support the main idea. B is off topic.",
+        "skill": "topic sentences"
+      },
+      {
+        "id": "c5",
+        "prompt": "Which is evidence?",
+        "options": [
+          { "id": "a", "text": "I think phones are bad." },
+          {
+            "id": "b",
+            "text": "A 2023 survey found that 70% of teachers see phones as a distraction."
+          },
+          { "id": "c", "text": "Phones should be banned." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B is a fact with a source and a number. A and C are opinions.",
+        "skill": "evidence"
+      },
+      {
+        "id": "c6",
+        "prompt": "Which phrase usually introduces evidence?",
+        "options": [
+          { "id": "a", "text": "For example," },
+          { "id": "b", "text": "In conclusion," },
+          { "id": "c", "text": "However," }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“For example,” “For instance,” and “According to…” introduce evidence.",
+        "skill": "evidence"
+      },
+      {
+        "id": "c7",
+        "prompt": "Which of these is NOT a kind of evidence?",
+        "options": [
+          { "id": "a", "text": "A quote from an expert" },
+          { "id": "b", "text": "A true example" },
+          { "id": "c", "text": "Saying “trust me”" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Evidence is something the reader can check or picture: facts, numbers, examples, quotes.",
+        "skill": "evidence"
+      },
+      {
+        "id": "c8",
+        "prompt": "Evidence: “Students who eat breakfast score higher on morning tests.” Which explanation fits?",
+        "options": [
+          {
+            "id": "a",
+            "text": "This shows that a free breakfast program could help students learn."
+          },
+          { "id": "b", "text": "Breakfast is a meal." },
+          { "id": "c", "text": "Some people skip lunch too." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A says what the evidence proves and links it to the main idea.",
+        "skill": "explanation"
+      },
+      {
+        "id": "c9",
+        "prompt": "Why does evidence need an explanation?",
+        "options": [
+          { "id": "a", "text": "To show the reader how it supports the main idea" },
+          { "id": "b", "text": "To make the paragraph longer" },
+          { "id": "c", "text": "It doesn’t: evidence speaks for itself" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The explanation connects the dots for the reader.",
+        "skill": "explanation"
+      },
+      {
+        "id": "c10",
+        "prompt": "Which sentence starter begins an explanation?",
+        "options": [
+          { "id": "a", "text": "This means that…" },
+          { "id": "b", "text": "According to…" },
+          { "id": "c", "text": "First of all…" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“This means…”, “This shows…”, “As a result,” and “In other words,” explain.",
+        "skill": "explanation"
+      },
+      {
+        "id": "c11",
+        "prompt": "“Recycling saves resources. ___, it creates jobs.” Which transition fits?",
+        "options": [
+          { "id": "a", "text": "In addition" },
+          { "id": "b", "text": "However" },
+          { "id": "c", "text": "For example" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The second idea adds another benefit.",
+        "skill": "transitions"
+      },
+      {
+        "id": "c12",
+        "prompt": "“Uniforms are cheap. ___, some students say they’re uncomfortable.” Which transition fits?",
+        "options": [
+          { "id": "a", "text": "As a result" },
+          { "id": "b", "text": "On the other hand" },
+          { "id": "c", "text": "Furthermore" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The second idea is a contrast.",
+        "skill": "transitions"
+      },
+      {
+        "id": "c13",
+        "prompt": "“The bridge closed for repairs. ___, buses took a longer route.” Which transition fits?",
+        "options": [
+          { "id": "a", "text": "As a result" },
+          { "id": "b", "text": "For instance" },
+          { "id": "c", "text": "However" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The longer route happened because the bridge closed: cause and effect.",
+        "skill": "transitions"
+      },
+      {
+        "id": "c14",
+        "prompt": "Which is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "Therefore we need more buses." },
+          { "id": "b", "text": "Therefore, we need more buses." },
+          { "id": "c", "text": "Therefore we, need more buses." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Put a comma after a transition that starts a sentence.",
+        "skill": "transitions"
+      },
+      {
+        "id": "c15",
+        "prompt": "What is the job of “However,”?",
+        "options": [
+          { "id": "a", "text": "To add a similar idea" },
+          { "id": "b", "text": "To show a contrast" },
+          { "id": "c", "text": "To give an example" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "However signals that the next idea goes the other way.",
+        "skill": "transitions"
+      },
+      {
+        "id": "c16",
+        "prompt": "What is the usual order of a body paragraph?",
+        "options": [
+          { "id": "a", "text": "Topic sentence, evidence, explanation, closing sentence" },
+          { "id": "b", "text": "Evidence, closing sentence, topic sentence" },
+          { "id": "c", "text": "Explanation, evidence, topic sentence" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Main idea, support, wrap-up.",
+        "skill": "paragraph structure"
+      },
+      {
+        "id": "c17",
+        "prompt": "A paragraph starts with “For example, my sister…”. What is missing?",
+        "options": [
+          { "id": "a", "text": "A topic sentence before the example" },
+          { "id": "b", "text": "Nothing" },
+          { "id": "c", "text": "A second example" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "An example needs a main idea to be an example of.",
+        "skill": "paragraph structure"
+      },
+      {
+        "id": "c18",
+        "prompt": "You have two different reasons for your opinion. How should you organise them?",
+        "options": [
+          { "id": "a", "text": "One paragraph for each reason" },
+          { "id": "b", "text": "Both in one sentence" },
+          { "id": "c", "text": "Only use the better one" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One main idea per paragraph keeps your writing clear.",
+        "skill": "paragraph structure"
+      },
+      {
+        "id": "c19",
+        "prompt": "On your paragraph map, you see: T E E E C. What should you add?",
+        "options": [
+          { "id": "a", "text": "More evidence" },
+          { "id": "b", "text": "Explanations after the evidence (X)" },
+          { "id": "c", "text": "A second topic sentence" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Three pieces of evidence with no explanation: the reader doesn’t know what they prove.",
+        "skill": "paragraph structure"
+      },
+      {
+        "id": "c20",
+        "prompt": "What does a closing sentence do?",
+        "options": [
+          { "id": "a", "text": "Sums up the main idea in new words" },
+          { "id": "b", "text": "Introduces a new reason" },
+          { "id": "c", "text": "Copies the topic sentence word for word" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It wraps up the idea without repeating it exactly or adding a new point.",
+        "skill": "closing sentences"
+      },
+      {
+        "id": "c21",
+        "prompt": "Topic: “Every school should have a library.” Which is the best closing?",
+        "options": [
+          { "id": "a", "text": "Every school should have a library." },
+          {
+            "id": "b",
+            "text": "For these reasons, a library is worth every penny a school spends on it."
+          },
+          { "id": "c", "text": "Also, the gym needs new balls." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B echoes the idea in new words. A copies; C adds a new topic.",
+        "skill": "closing sentences"
+      },
+      {
+        "id": "c22",
+        "prompt": "Which phrase often starts a closing sentence?",
+        "options": [
+          { "id": "a", "text": "For instance," },
+          { "id": "b", "text": "Overall," },
+          { "id": "c", "text": "Second," }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Overall,” “For these reasons,” and “That is why” signal the end.",
+        "skill": "closing sentences"
+      },
+      {
+        "id": "c23",
+        "prompt": "What’s wrong with this closing? “Another reason is that pets are cute.”",
+        "options": [
+          { "id": "a", "text": "It adds a new reason instead of wrapping up." },
+          { "id": "b", "text": "It is too short." },
+          { "id": "c", "text": "Nothing" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A new reason belongs in its own paragraph. A closing sums up.",
+        "skill": "closing sentences"
+      },
+      {
+        "id": "c24",
+        "prompt": "Which closing move shows why the idea matters?",
+        "options": [
+          { "id": "a", "text": "Overall, a later start would mean healthier, happier students." },
+          { "id": "b", "text": "School should start later." },
+          { "id": "c", "text": "For example, my friend is always tired." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A sums up and says what difference it makes.",
+        "skill": "closing sentences"
+      }
+    ]
+  },
+  {
+    "key": "e10.check-response",
+    "type": "PARAGRAPH",
+    "title": "Two-paragraph response",
+    "prompt": "Should students be allowed to choose some of their own school subjects? Write a two-paragraph response. Each paragraph gives a different reason for your answer and has a topic sentence, at least one piece of evidence with an explanation, transitions and a closing sentence. Press Enter to start the second paragraph. You can build each paragraph with the paragraph builder first: build one, add it, then change the boxes for the second.",
+    "tips": [
+      "Paragraph 1: your first reason. Paragraph 2: a different reason, starting “In addition,” or “Another reason…”.",
+      "Evidence can be a fact, an expert, or a true example from your school or life.",
+      "Check the paragraph map: each paragraph should show T, E, X and C."
+    ],
+    "constraints": {
+      "minWords": 90,
+      "maxWords": 360,
+      "minSentences": 8,
+      "minParagraphs": 2,
+      "maxParagraphs": 2
+    },
+    "analyzers": ["paragraphs", "structure", "punctuation"],
+    "grammarFocus": [
+      "topic-sentence",
+      "evidence-sentence",
+      "explanation-sentence",
+      "closing-sentence"
+    ],
+    "paragraphBuilder": { "label": "Paragraph builder (one paragraph at a time)", "points": 1 }
+  }
+]

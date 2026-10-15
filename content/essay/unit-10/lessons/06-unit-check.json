@@ -1,0 +1,52 @@
+{
+  "slug": "essay-paragraphs-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Building Paragraphs",
+  "estMinutes": 50,
+  "focusSkills": ["paragraphs", "paragraph-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which part of a paragraph (topic, evidence, explanation, transitions, closing) do you feel best at? Which needs more work?",
+      "placeholder": "I’m best at… I need more work on…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Paragraphs: quick review",
+          "body": "Topic sentence: one clear main idea. Evidence: facts, examples or quotes. Explanation: what each piece of evidence shows. Transitions: signposts between ideas. Closing sentence: the main idea in new words."
+        },
+        {
+          "kind": "definition",
+          "title": "Two paragraphs, two ideas",
+          "body": "When you write two paragraphs, give each one its own main idea (for example, two different reasons). Press Enter to start the second paragraph, and open it with a transition like “In addition,” or “Another reason…”."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll write a two-paragraph response. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e10.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e10.check-response" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Look at your paragraph map. Does each paragraph have all four parts?",
+        "What will you check in every paragraph you write from now on?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -9,6 +9,8 @@ import {
 import {
   type CoachCard,
   type CoachReport,
+  PARAGRAPH_ROLE_LABELS,
+  type ParagraphRole,
   SENSES,
   SENTENCE_TYPES,
   SENTENCE_TYPE_LABELS,
@@ -156,6 +158,13 @@ export function CoachPanel({
             {checked.report.sentenceTypes && checked.report.sentenceTypes.length > 0 && (
               <SentenceMap
                 sentences={checked.report.sentenceTypes}
+                canShow={canShow}
+                onShow={onShow}
+              />
+            )}
+            {checked.report.paragraphs && checked.report.paragraphs.length > 0 && (
+              <ParagraphMap
+                sentences={checked.report.paragraphs}
                 canShow={canShow}
                 onShow={onShow}
               />
@@ -485,6 +494,78 @@ const TYPE_STYLES: Record<SentenceType, { badge: string; className: string }> = 
   complex: { badge: 'Cx', className: 'border-ok bg-card' },
   'compound-complex': { badge: 'CC', className: 'border-warn bg-card' },
 };
+
+const ROLE_STYLES: Record<ParagraphRole, { badge: string; className: string }> = {
+  topic: { badge: 'T', className: 'border-brand bg-card' },
+  evidence: { badge: 'E', className: 'border-ok bg-card' },
+  explanation: { badge: 'X', className: 'border-warn bg-card' },
+  closing: { badge: 'C', className: 'border-brand bg-card border-2' },
+  detail: { badge: 'D', className: 'border-border bg-card' },
+};
+
+/** The paragraph map (Essay Unit 10): every sentence with its part of the paragraph, and its transition. */
+function ParagraphMap({
+  sentences,
+  canShow,
+  onShow,
+}: {
+  sentences: NonNullable<CoachReport['paragraphs']>;
+  canShow: (span: Span | undefined) => span is Span;
+  onShow: (span: Span) => void;
+}) {
+  const count = sentences.reduce((max, s) => Math.max(max, s.paragraph + 1), 0);
+  const groups = Array.from({ length: count }, (_, p) =>
+    sentences.map((s, i) => ({ ...s, number: i + 1 })).filter((s) => s.paragraph === p),
+  );
+  return (
+    <div className="flex flex-col gap-2">
+      <h3 className="font-semibold">Your paragraph map</h3>
+      {groups.map((group, p) => (
+        <div key={p} className="flex flex-col gap-1">
+          {count > 1 && <h4 className="text-sm font-medium text-muted">Paragraph {p + 1}</h4>}
+          <ol
+            className="flex flex-col gap-1"
+            aria-label={
+              count > 1
+                ? `Paragraph ${p + 1}: the part each sentence plays`
+                : 'The part each sentence plays'
+            }
+          >
+            {group.map((s) => {
+              const style = ROLE_STYLES[s.role];
+              const span = { start: s.start, end: s.end, text: s.text };
+              const role = PARAGRAPH_ROLE_LABELS[s.role];
+              return (
+                <li key={s.start}>
+                  <button
+                    type="button"
+                    disabled={!canShow(span)}
+                    onClick={() => onShow(span)}
+                    className={`flex min-h-11 w-full items-center gap-2 rounded-lg border px-2 py-1 text-left text-sm focus-visible:outline-3 focus-visible:outline-brand ${style.className}`}
+                    aria-label={`Sentence ${s.number}: ${role}${s.transition ? `, starts with the transition “${s.transition}”` : ''}. Show it in my writing`}
+                  >
+                    <span aria-hidden="true" className="w-6 shrink-0 font-semibold">
+                      {style.badge}
+                    </span>
+                    <span className="font-medium">{role}</span>
+                    {s.transition && (
+                      <span aria-hidden="true" className="truncate text-muted">
+                        · {s.transition}
+                      </span>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      ))}
+      <p className="text-xs text-muted">
+        T topic sentence · E evidence · X explanation · C closing sentence · D supporting detail
+      </p>
+    </div>
+  );
+}
 
 /** The sentence map (Essay Unit 9): every sentence with its type, and how many of each. */
 function SentenceMap({

@@ -330,7 +330,7 @@ export function offTenseSentences(result: TenseResult, expected: Tense): Span[] 
   return result.sentenceTenses.filter((s) => s.tense !== expected).map((s) => s.sentence);
 }
 
-const INNER_SPEECH = /(thought|wondered|said|asked|whispered|told (?:him|her|them)self)/i;
+const INNER_SPEECH = /\b(thought|wondered|said|asked|whispered|told (?:him|her|them)self)\b/i;
 
 /**
  * Stricter than `povShifts` for a third-person part: any I, me, my, we… in the narration is a slip,

@@ -1,0 +1,55 @@
+{
+  "slug": "essay-transitions",
+  "order": 3,
+  "title": "Transitions",
+  "estMinutes": 35,
+  "focusSkills": ["paragraphs", "transitions"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Read both out loud. Which one is easier to follow? Which words make the difference?",
+      "a": "Phones can help students learn. Phones can distract students. Schools should let students use phones in class only for research.",
+      "b": "Phones can help students learn. However, they can also distract students. As a result, schools should let students use phones in class only for research.",
+      "reveal": "B uses transitions: “However” warns the reader that a contrast is coming, and “As a result” shows the last idea follows from the first two. Transitions are signposts for your reader."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Transitions are signposts",
+          "body": "A transition is a word or phrase that shows how one idea links to the next. Most go at the start of a sentence, followed by a comma."
+        },
+        {
+          "kind": "example",
+          "title": "Pick the transition by its job",
+          "text": "Add an idea: In addition, Also, Furthermore\nGive an example: For example, For instance\nShow a contrast: However, On the other hand\nShow a result: As a result, Therefore, Because of this\nPut things in order: First, Next, Finally\nSum up: For these reasons, Overall, In conclusion",
+          "note": "Choose the one that matches how the ideas really connect."
+        },
+        {
+          "kind": "definition",
+          "title": "Don’t overdo it",
+          "body": "Not every sentence needs a transition. Use them where the reader needs a signpost: a new point, an example, a contrast, a result or the end."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e10.transition-blank", "e10.transition-sort", "e10.transition-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e10.transition-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which transition did you add that changed the paragraph the most? Why?",
+        "Which transitions do you use too often? Which new ones will you try?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

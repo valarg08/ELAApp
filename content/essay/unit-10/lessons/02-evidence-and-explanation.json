@@ -1,0 +1,60 @@
+{
+  "slug": "essay-evidence-and-explanation",
+  "order": 2,
+  "title": "Evidence, Examples & Explanation",
+  "estMinutes": 40,
+  "focusSkills": ["paragraphs", "evidence", "explanation"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Your friend says, “Our town needs a skate park.” You ask, “Why should I believe you?” What could they say to convince you?",
+      "placeholder": "They could tell me that…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Evidence: prove it",
+          "body": "Evidence supports your topic sentence. It can be a fact or number (“Teens need 8–10 hours of sleep.”), an example (“For example, my brother…”), a quote from a text, or what an expert says (“According to…”)."
+        },
+        {
+          "kind": "definition",
+          "title": "Explanation: so what?",
+          "body": "Evidence never speaks for itself. After each piece, explain what it shows and how it supports your main idea. Start with “This shows that…”, “This means…” or “As a result, …”."
+        },
+        {
+          "kind": "example",
+          "title": "Evidence + explanation",
+          "text": "Topic: Our town needs a skate park.\nEvidence: Last year, police gave 40 warnings to skaters in the mall car park.\nExplanation: This shows that teens have nowhere safe to skate, so they use places that are dangerous.",
+          "note": "The explanation links the evidence back to the topic sentence."
+        },
+        {
+          "kind": "compare",
+          "title": "Don’t drop the evidence and run",
+          "telling": "Teens need 8–10 hours of sleep. School starts at 7:30.",
+          "showing": "Teens need 8–10 hours of sleep. This means a 7:30 start forces many of them to come to class tired.",
+          "labels": ["Evidence only ✗", "Explained ✓"]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e10.evidence-sort", "e10.evidence-mc", "e10.explain-blank"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e10.evidence-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which kind of evidence (fact, example, quote, expert) do you find easiest to use? Which is most convincing?",
+        "Why does evidence need an explanation after it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

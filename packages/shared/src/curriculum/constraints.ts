@@ -6,6 +6,7 @@ import {
   checkPerspectives,
   checkSyllablePattern,
   countWords,
+  paragraphs,
   poemLines,
   sentences,
   stanzas,
@@ -58,6 +59,9 @@ export const WritingConstraints = z
     /** Sentences (Essay Writing sentence sets); a sentence ends at . ! ? or a line break. */
     minSentences: z.number().int().min(1).max(30).optional(),
     maxSentences: z.number().int().min(1).max(30).optional(),
+    /** Paragraphs (Essay Writing); a paragraph is a non-empty line. */
+    minParagraphs: z.number().int().min(1).max(10).optional(),
+    maxParagraphs: z.number().int().min(1).max(10).optional(),
     /** Narration must use this tense (quoted speech is ignored). */
     tenseLock: z.enum(['past', 'present']).optional(),
     /** Shows a countdown in the workspace. Informational: running out of time never blocks. */
@@ -82,7 +86,15 @@ export type ConstraintProblem =
   | { rule: 'syllables'; line: number; expected: number; actual: number }
   | { rule: 'stanzaLines'; stanza: number; expected: number; actual: number }
   | {
-      rule: 'minStanzas' | 'maxStanzas' | 'minLines' | 'maxLines' | 'minSentences' | 'maxSentences';
+      rule:
+        | 'minStanzas'
+        | 'maxStanzas'
+        | 'minLines'
+        | 'maxLines'
+        | 'minSentences'
+        | 'maxSentences'
+        | 'minParagraphs'
+        | 'maxParagraphs';
       expected: number;
       actual: number;
     };
@@ -166,6 +178,13 @@ export function checkConstraints(
     if (c.maxSentences && count > c.maxSentences)
       problems.push({ rule: 'maxSentences', expected: c.maxSentences, actual: count });
   }
+  if (c.minParagraphs || c.maxParagraphs) {
+    const count = paragraphs(text).length;
+    if (c.minParagraphs && count < c.minParagraphs)
+      problems.push({ rule: 'minParagraphs', expected: c.minParagraphs, actual: count });
+    if (c.maxParagraphs && count > c.maxParagraphs)
+      problems.push({ rule: 'maxParagraphs', expected: c.maxParagraphs, actual: count });
+  }
   if (c.syllablePattern) {
     const pattern = c.syllablePattern;
     const check = checkSyllablePattern(text, pattern, context.syllableOverrides);
@@ -245,6 +264,10 @@ export function describeProblem(p: ConstraintProblem): string {
       return `Write at least ${p.expected} sentences (you have ${p.actual}).`;
     case 'maxSentences':
       return `Keep it to ${p.expected} sentences or fewer (you have ${p.actual}).`;
+    case 'minParagraphs':
+      return `Write ${p.expected} paragraphs: press Enter to start each new one (you have ${p.actual}).`;
+    case 'maxParagraphs':
+      return `Keep it to ${p.expected} paragraphs or fewer (you have ${p.actual}).`;
     case 'perspectives':
       if (p.issue === 'missing')
         return `Add the heading “${p.label}” on its own line, then write that part.`;

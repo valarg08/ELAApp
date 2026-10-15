@@ -14,6 +14,7 @@ import {
   figurativePoints,
   poetryPoints,
   grammarPoints,
+  paragraphPoints,
   rubricForActivity,
   rubricPoints,
   rubricScoreAnalyzer,
@@ -28,6 +29,7 @@ import {
   FeedbackPoint as FeedbackPointSchema,
   isWritingActivity,
   GRAMMAR_ACTIVITY_TYPES,
+  PARAGRAPH_ACTIVITY_TYPES,
   POETRY_ACTIVITY_TYPES,
   SENSORY_ACTIVITY_TYPES,
   submissionChoices,
@@ -36,6 +38,8 @@ import {
   dialogue,
   filterWords,
   grammarIssues,
+  paragraphNotes,
+  paragraphRoles,
   passiveNotes,
   quotes,
   reportedClauses,
@@ -55,6 +59,7 @@ import { plotInput, plotScope } from '../ai/plot-input.js';
 import { povInput, toneInput, toneScope } from '../ai/voice-input.js';
 import { poemInput, poemScope } from '../ai/poem-input.js';
 import { grammarInput } from '../ai/grammar-input.js';
+import { paragraphInput } from '../ai/paragraph-input.js';
 
 const toJson = (value: unknown): Prisma.InputJsonValue => JSON.parse(JSON.stringify(value));
 const points = (list: FeedbackPoint[]) => FeedbackPointSchema.array().parse(list);
@@ -85,6 +90,7 @@ const SKILL_NAMES: Record<string, string> = {
   structure: 'sentence structure',
   punctuation: 'capitals and punctuation',
   sentenceTypes: 'sentence types and variety',
+  paragraphs: 'paragraph structure (topic sentence, evidence, explanation, transitions, closing)',
 };
 
 /**
@@ -159,6 +165,7 @@ export class FeedbackPipeline {
     const stats = wordStats(text);
     const variety = sentenceVariety(text);
     const typed = sentenceTypes(text);
+    const roles = paragraphRoles(text);
     const evidence = [
       `${stats.words} words, ${stats.sentences} sentences, ${stats.paragraphs} paragraphs`,
       `sentence lengths: ${variety.short} short, ${variety.medium} medium, ${variety.long} long`,
@@ -171,6 +178,7 @@ export class FeedbackPipeline {
       `passive verbs: ${passiveNotes(text).length}`,
       `quotes: ${quotes(text).length}, reported speech: ${reportedClauses(text).length}`,
       `sentence types: ${SENTENCE_TYPES.map((t) => `${typed.filter((s) => s.type === t).length} ${t}`).join(', ')}; variety notes (stringy, choppy, too long, same opener): ${varietyNotes(text).length}`,
+      `paragraph parts: ${['topic', 'evidence', 'explanation', 'closing'].map((r) => `${roles.filter((s) => s.role === r).length} ${r}`).join(', ')}; transitions: ${roles.filter((s) => s.transition).length}; paragraph notes (no topic sentence, no evidence, unexplained evidence, no closing, no transitions): ${paragraphNotes(text).length}`,
     ];
 
     // 3. LLM analyzers for this activity type.
@@ -296,6 +304,21 @@ export class FeedbackPipeline {
           `grammar: ${r.errors.length} mistakes; lesson skill ${r.focus.used ? 'used' : 'missing'}${r.tasks.length > 0 ? `; tasks done ${r.tasks.filter((t) => t.done).length}/${r.tasks.length}` : ''}`,
         );
         const p = grammarPoints(text, r);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
+      } else if (id === 'paragraph-structure') {
+        const extra = paragraphInput(content);
+        const outcome = await this.ai.run(LIVE_ANALYZERS[id], { ...ctx, ...extra }, runMeta);
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        notes.push(
+          `paragraph: topic ${r.topic.present ? 'clear' : 'missing'}; evidence ${r.evidence.length} (${r.evidence.filter((e) => e.explained).length} explained); transitions ${r.transitions.quotes.length}; closing ${r.closing.present ? 'present' : 'missing'}; ${r.unity.focused ? 'focused' : 'wanders'}`,
+        );
+        const p = paragraphPoints(text, r);
         focusStrengths.push(...p.strengths);
         focusNextSteps.push(...p.nextSteps);
       } else if (id === 'figurative-language') {
@@ -446,7 +469,9 @@ export class FeedbackPipeline {
     const composed = rubricPoints(text, r);
     // The rubric's next steps are about prose craft; poems and grammar practice get their own check's.
     const ownSteps =
-      POETRY_ACTIVITY_TYPES.includes(content.type) || GRAMMAR_ACTIVITY_TYPES.includes(content.type);
+      POETRY_ACTIVITY_TYPES.includes(content.type) ||
+      GRAMMAR_ACTIVITY_TYPES.includes(content.type) ||
+      PARAGRAPH_ACTIVITY_TYPES.includes(content.type);
     const strengths = dedupe([
       ...focusStrengths.slice(0, 3),
       ...composed.strengths,

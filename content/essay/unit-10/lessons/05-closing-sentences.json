@@ -1,0 +1,56 @@
+{
+  "slug": "essay-closing-sentences",
+  "order": 5,
+  "title": "Closing Sentences",
+  "estMinutes": 35,
+  "focusSkills": ["paragraphs", "closing-sentences"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of the last line of a song, a film or a speech you remember. Why do endings stick in our heads?",
+      "placeholder": "I remember… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What a closing sentence does",
+          "body": "A closing sentence wraps up the paragraph. It sums up the main idea in new words and shows why it matters. It doesn’t add a brand-new point."
+        },
+        {
+          "kind": "compare",
+          "title": "Echo, don’t copy",
+          "telling": "Topic: Recess should be longer. … Closing: Recess should be longer.",
+          "showing": "Topic: Recess should be longer. … Closing: For these reasons, an extra fifteen minutes outside would help students learn more inside.",
+          "labels": ["Copied ✗", "Echoed ✓"],
+          "note": "Repeat the idea, not the exact words."
+        },
+        {
+          "kind": "example",
+          "title": "Three closing moves",
+          "text": "Sum up: For these reasons, uniforms are a smart choice.\nShow why it matters: Overall, a later start would mean healthier, happier students.\nLook ahead: That is why our town should build a skate park before next summer.",
+          "note": "Avoid a new idea at the end (“Also, uniforms come in many colours.”): it belongs in its own paragraph."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e10.closing-sort", "e10.closing-mc", "e10.closing-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e10.finish-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Read your topic sentence and closing sentence together. How did you say the same idea in new words?",
+        "Which closing move (sum up, why it matters, look ahead) do you like best?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

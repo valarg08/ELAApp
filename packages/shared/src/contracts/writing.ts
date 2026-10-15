@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { ToneChoice, WritingActivity } from '../curriculum/content.js';
 import { PlotPlan } from '../curriculum/plot.js';
+import { ParagraphPlan } from '../curriculum/paragraph.js';
 import { LessonProgressView } from './curriculum.js';
 
 /** Writing workspace contracts (DESIGN.md §5.4). Drafts are plain text. */
@@ -54,6 +55,8 @@ export const SubmissionDetail = z.object({
   tone: ToneChoice.default({}),
   /** The student's own syllable counts for words (poems). */
   syllables: z.record(z.string(), z.number()).default({}),
+  /** The paragraph builder's boxes. */
+  paragraph: ParagraphPlan.default(ParagraphPlan.parse({})),
 });
 export type SubmissionDetail = z.infer<typeof SubmissionDetail>;
 
@@ -65,6 +68,7 @@ export const SubmissionChoices = z.object({
   plot: PlotPlan.default(PlotPlan.parse({})),
   tone: ToneChoice.default({}),
   syllables: z.record(z.string().max(30), z.number().int().min(1).max(9)).default({}),
+  paragraph: ParagraphPlan.default(ParagraphPlan.parse({})),
 });
 export type SubmissionChoices = z.infer<typeof SubmissionChoices>;
 
@@ -97,6 +101,9 @@ export type SetConflictRequest = z.infer<typeof SetConflictRequest>;
 
 export const SetPlotRequest = z.object({ plot: PlotPlan });
 export type SetPlotRequest = z.infer<typeof SetPlotRequest>;
+
+export const SetParagraphRequest = z.object({ paragraph: ParagraphPlan });
+export type SetParagraphRequest = z.infer<typeof SetParagraphRequest>;
 
 export const SaveDraftRequest = z.object({ text: DraftText, baseRevision: Revision });
 export type SaveDraftRequest = z.infer<typeof SaveDraftRequest>;

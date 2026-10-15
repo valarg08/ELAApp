@@ -16,6 +16,7 @@ import { z } from 'zod';
 import { Proofread, normaliseForProofread, occurrences } from './proofread.js';
 import { WritingConstraints } from './constraints.js';
 import { CONFLICT_TYPE_IDS, type ConflictTypeId, PlotPlan } from './plot.js';
+import { ParagraphBuilder, ParagraphPlan } from './paragraph.js';
 
 /**
  * Curriculum content format (DESIGN.md §9). Units, lessons and activities live as JSON files in
@@ -341,6 +342,7 @@ export const WRITING_ACTIVITY_TYPES = [
   'SOUND_POEM',
   'SENTENCE_SET',
   'GRAMMAR_PARAGRAPH',
+  'PARAGRAPH',
 ] as const;
 
 /**
@@ -479,6 +481,8 @@ export const WritingActivity = z.object({
   sentenceSet: SentenceSet.optional(),
   /** Essay Writing: a checklist of the planted mistakes in the starter (see `Proofread`). */
   proofread: Proofread.optional(),
+  /** Essay Writing: the paragraph builder (see `ParagraphBuilder`). */
+  paragraphBuilder: ParagraphBuilder.optional(),
   /** Essay Writing: the grammar this activity practises; the Coach and Quill look for it. */
   grammarFocus: z.array(z.enum(GRAMMAR_FEATURES)).min(1).max(4).optional(),
 });
@@ -618,6 +622,9 @@ export const GRAMMAR_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
   'GRAMMAR_PARAGRAPH',
 ];
 
+/** Essay paragraphs (Unit 10 on): the paragraph Coach check, "Is my paragraph built well?" and the paragraph rubric. */
+export const PARAGRAPH_ACTIVITY_TYPES: readonly WritingActivity['type'][] = ['PARAGRAPH'];
+
 export const MAX_SYLLABLE_OVERRIDES = 60;
 
 /** The student's syllable counts, cleaned: known words as keys ("fire"), whole counts 1–9. */
@@ -662,6 +669,12 @@ export function validConflict(
 }
 
 /** The plan, cleaned (empty when the activity has no planner). */
+/** The paragraph builder's boxes, or empty boxes when the activity has no builder. */
+export function validParagraph(activity: WritingActivity, plan: unknown): ParagraphPlan {
+  const parsed = ParagraphPlan.safeParse(activity.paragraphBuilder ? (plan ?? {}) : {});
+  return parsed.success ? parsed.data : ParagraphPlan.parse({});
+}
+
 export function validPlot(activity: WritingActivity, plot: unknown): PlotPlan {
   const parsed = PlotPlan.safeParse(activity.plotPlanner ? (plot ?? {}) : {});
   return parsed.success ? parsed.data : PlotPlan.parse({});
@@ -951,6 +964,8 @@ export function validateUnitBundle({
     }
     if (isWritingActivity(a) && a.starterInEditor && !a.starter)
       errors.push(`${a.key}: starterInEditor needs a starter`);
+    if (isWritingActivity(a) && a.paragraphBuilder && a.type !== 'PARAGRAPH')
+      errors.push(`${a.key}: paragraphBuilder is for PARAGRAPH activities`);
     if (isWritingActivity(a)) {
       const c = a.constraints;
       if (c.minStanzas && c.maxStanzas && c.minStanzas > c.maxStanzas)

@@ -151,6 +151,64 @@ export const GRAMMAR_RUBRIC: Rubric = {
   ],
 };
 
+/** `paragraph.essay`: Essay Writing paragraphs (Unit 10 on, DESIGN.md §9.12). */
+export const PARAGRAPH_RUBRIC: Rubric = {
+  key: 'paragraph.essay',
+  name: 'Essay paragraph',
+  maxScore: 100,
+  criteria: [
+    {
+      key: 'topic',
+      label: 'Topic sentence',
+      description: 'The paragraph opens with one clear main idea that answers the prompt.',
+      weight: 0.25,
+      levels: levels(
+        'No clear main idea, or it does not answer the prompt.',
+        'A main idea is there, but it is vague or buried.',
+        'A clear topic sentence that answers the prompt.',
+        'A sharp, specific topic sentence that sets up everything after it.',
+      ),
+    },
+    {
+      key: 'support',
+      label: 'Evidence and explanation',
+      description: 'Facts, examples or quotes support the main idea, and each one is explained.',
+      weight: 0.35,
+      levels: levels(
+        'No evidence, or evidence that does not fit.',
+        'Some evidence, but it is thin or not explained.',
+        'Relevant evidence, and most of it is explained.',
+        'Strong, specific evidence, each piece clearly explained and tied to the main idea.',
+      ),
+    },
+    {
+      key: 'organization',
+      label: 'Organization and transitions',
+      description:
+        'Sentences follow a clear order, transitions link them, and a closing sentence sums up.',
+      weight: 0.25,
+      levels: levels(
+        'Ideas jump around; no closing sentence.',
+        'Some order, few transitions, or a weak closing.',
+        'A clear order with transitions and a closing sentence.',
+        'Smooth, logical order; well-chosen transitions; a closing that lands.',
+      ),
+    },
+    {
+      key: 'conventions',
+      label: 'Grammar and conventions',
+      description: 'Complete sentences, capitals, punctuation and spelling help the reader.',
+      weight: 0.15,
+      levels: levels(
+        'Errors often get in the way of meaning.',
+        'Some errors that sometimes distract.',
+        'Mostly correct; errors rarely distract.',
+        'Correct throughout, with varied sentences.',
+      ),
+    },
+  ],
+};
+
 /** total = Σ level × weight, scaled to maxScore (level 4 everywhere = maxScore). */
 export function totalScore(rubric: Rubric, levelsByKey: Record<string, number>): number {
   const weighted = rubric.criteria.reduce(

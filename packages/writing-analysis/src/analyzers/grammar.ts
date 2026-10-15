@@ -68,6 +68,14 @@ import {
   sentenceTypeHits,
   varietyNotes as findVarietyNotes,
 } from './sentence-types.js';
+import {
+  PARAGRAPH_FEATURES,
+  PARAGRAPH_FEATURE_EXAMPLES,
+  PARAGRAPH_FEATURE_LABELS,
+  type ParagraphFeature,
+  paragraphHits,
+  paragraphNotes as findParagraphNotes,
+} from './paragraphs.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -93,6 +101,7 @@ export const GRAMMAR_FEATURES = [
   ...STRUCTURE_FEATURES,
   ...PUNCTUATION_FEATURES,
   ...SENTENCE_TYPE_FEATURES,
+  ...PARAGRAPH_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -114,6 +123,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   ...STRUCTURE_FEATURE_LABELS,
   ...PUNCTUATION_FEATURE_LABELS,
   ...SENTENCE_TYPE_FEATURE_LABELS,
+  ...PARAGRAPH_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -135,6 +145,7 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   ...STRUCTURE_FEATURE_EXAMPLES,
   ...PUNCTUATION_FEATURE_EXAMPLES,
   ...SENTENCE_TYPE_FEATURE_EXAMPLES,
+  ...PARAGRAPH_FEATURE_EXAMPLES,
 };
 
 /** The Coach skill a grammar feature belongs to. */
@@ -150,7 +161,8 @@ export function grammarSkillOf(
   | 'speech'
   | 'structure'
   | 'punctuation'
-  | 'sentenceTypes' {
+  | 'sentenceTypes'
+  | 'paragraphs' {
   if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
   if ((MODIFIER_FEATURES as readonly string[]).includes(feature)) return 'modifiers';
   if ((CONNECTOR_FEATURES as readonly string[]).includes(feature)) return 'connectors';
@@ -159,12 +171,14 @@ export function grammarSkillOf(
   if ((STRUCTURE_FEATURES as readonly string[]).includes(feature)) return 'structure';
   if ((PUNCTUATION_FEATURES as readonly string[]).includes(feature)) return 'punctuation';
   if ((SENTENCE_TYPE_FEATURES as readonly string[]).includes(feature)) return 'sentenceTypes';
+  if ((PARAGRAPH_FEATURES as readonly string[]).includes(feature)) return 'paragraphs';
   return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
 }
 
 export type {
   ConnectorFeature,
   ModifierFeature,
+  ParagraphFeature,
   PunctuationFeature,
   SentenceTypeFeature,
   SpeechFeature,
@@ -376,6 +390,8 @@ export function grammarFeatures(text: string): FeatureHit[] {
   }
   // Speech works on the whole text: a quote can cross the sentence splitter (“Ready?” asked Sam.).
   for (const hit of speechHits(text)) hits.push(hit);
+  // Paragraph parts depend on where a sentence sits in its paragraph.
+  for (const hit of paragraphHits(text)) hits.push(hit);
   return hits;
 }
 
@@ -471,7 +487,12 @@ export interface GrammarIssue {
     | 'stringy-sentence'
     | 'long-sentence'
     | 'choppy-sentences'
-    | 'repeated-opener';
+    | 'repeated-opener'
+    | 'no-topic-sentence'
+    | 'no-evidence'
+    | 'unexplained-evidence'
+    | 'no-closing'
+    | 'no-transitions';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -713,6 +734,11 @@ export const punctuationIssues = (text: string): GrammarIssue[] => findPunctuati
 export const varietyNotes = (text: string): GrammarIssue[] => findVarietyNotes(text);
 export { SENTENCE_TYPES, SENTENCE_TYPE_LABELS, sentenceTypes } from './sentence-types.js';
 export type { SentenceType, TypedSentence } from './sentence-types.js';
+
+/** Paragraph notes (starts with evidence, no evidence, unexplained evidence, no closing, no transitions): not counted as mistakes. */
+export const paragraphNotes = (text: string): GrammarIssue[] => findParagraphNotes(text);
+export { PARAGRAPH_ROLES, PARAGRAPH_ROLE_LABELS, paragraphRoles } from './paragraphs.js';
+export type { ParagraphRole, ParagraphSentence } from './paragraphs.js';
 
 /** Every grammar mistake the checks know about, in the order they appear (one per stretch of text). */
 export const grammarIssues = (text: string): GrammarIssue[] =>

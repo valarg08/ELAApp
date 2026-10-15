@@ -8,7 +8,8 @@ import { toneStyleAnalyzer } from './analyzers/tone-style.js';
 import { figurativeLanguageAnalyzer } from './analyzers/figurative-language.js';
 import { poetryCraftAnalyzer } from './analyzers/poetry-craft.js';
 import { grammarCheckAnalyzer } from './analyzers/grammar-check.js';
-import { DEFAULT_RUBRIC, GRAMMAR_RUBRIC, type Rubric } from './rubric.js';
+import { paragraphStructureAnalyzer } from './analyzers/paragraph-structure.js';
+import { DEFAULT_RUBRIC, GRAMMAR_RUBRIC, PARAGRAPH_RUBRIC, type Rubric } from './rubric.js';
 
 /** Analyzers students can run from the Coach panel ("Ask Quill"). */
 export const LIVE_ANALYZERS = {
@@ -22,6 +23,7 @@ export const LIVE_ANALYZERS = {
   'figurative-language': figurativeLanguageAnalyzer,
   'poetry-craft': poetryCraftAnalyzer,
   'grammar-check': grammarCheckAnalyzer,
+  'paragraph-structure': paragraphStructureAnalyzer,
 } as const;
 export type LiveAnalyzerId = keyof typeof LIVE_ANALYZERS;
 
@@ -67,12 +69,17 @@ const BY_ACTIVITY_TYPE: Record<string, LiveAnalyzerId[]> = {
   SOUND_POEM: ['poetry-craft', 'figurative-language'],
   SENTENCE_SET: ['grammar-check'],
   GRAMMAR_PARAGRAPH: ['grammar-check'],
+  PARAGRAPH: ['paragraph-structure'],
 };
 
-/** Grammar activities are scored on the grammar rubric; everything else on the narrative one. */
+/** Grammar activities use the grammar rubric, essay paragraphs the paragraph one, everything else the narrative one. */
 const GRAMMAR_TYPES: readonly string[] = ['SENTENCE_SET', 'GRAMMAR_PARAGRAPH'];
 export const rubricForActivity = (type: string): Rubric =>
-  GRAMMAR_TYPES.includes(type) ? GRAMMAR_RUBRIC : DEFAULT_RUBRIC;
+  type === 'PARAGRAPH'
+    ? PARAGRAPH_RUBRIC
+    : GRAMMAR_TYPES.includes(type)
+      ? GRAMMAR_RUBRIC
+      : DEFAULT_RUBRIC;
 
 /** Activity types where "Can your reader tell?" also checks the character's want and fear. */
 export const WANT_FEAR_TYPES: readonly string[] = ['CHARACTER_SKETCH', 'FLAW_SCENE'];

@@ -38,6 +38,7 @@ import { SentenceSetPanel } from './sentence-set-panel';
 import { WordBankPanel } from './word-bank-panel';
 import { useWordBank } from './use-word-bank';
 import { PlotPlanner } from './plot-planner';
+import { ParagraphBuilder } from './paragraph-builder';
 import { TonePicker } from './tone-picker';
 import { TraitPicker } from './trait-picker';
 import { useAutosave } from './use-autosave';
@@ -81,6 +82,8 @@ export function WritingWorkspace({
   const [plot, setPlot] = useState(submission.plot);
   const needsConflict = conflictPicker !== undefined && conflict === null;
   const needsPlot = plotPlanner !== undefined && !planComplete(plot);
+  const paragraphBuilder = activity.paragraphBuilder;
+  const [paragraph, setParagraph] = useState(submission.paragraph);
   const tonePicker = activity.tonePicker;
   const [tone, setTone] = useState(submission.tone);
   const needsTone = tonePicker !== undefined && !toneComplete(activity, validTone(activity, tone));
@@ -276,6 +279,21 @@ export function WritingWorkspace({
           planner={plotPlanner}
           plot={plot}
           onChange={setPlot}
+        />
+      )}
+
+      {paragraphBuilder && (
+        <ParagraphBuilder
+          submissionId={submission.id}
+          builder={paragraphBuilder}
+          plan={paragraph}
+          onChange={setParagraph}
+          draft={state.text}
+          onUse={(next) => {
+            setStarted(true);
+            controller.setText(next);
+            showInText({ start: next.length, end: next.length, text: '' });
+          }}
         />
       )}
 
