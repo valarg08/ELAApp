@@ -44,6 +44,14 @@ import {
   reportedClauses,
   speechHits,
 } from './speech.js';
+import {
+  STRUCTURE_FEATURES,
+  STRUCTURE_FEATURE_EXAMPLES,
+  STRUCTURE_FEATURE_LABELS,
+  type StructureFeature,
+  findStructureIssues,
+  structureHits,
+} from './structure.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -66,6 +74,7 @@ export const GRAMMAR_FEATURES = [
   ...CONNECTOR_FEATURES,
   ...VOICE_FEATURES,
   ...SPEECH_FEATURES,
+  ...STRUCTURE_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -84,6 +93,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   ...CONNECTOR_FEATURE_LABELS,
   ...VOICE_FEATURE_LABELS,
   ...SPEECH_FEATURE_LABELS,
+  ...STRUCTURE_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -102,21 +112,30 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   ...CONNECTOR_FEATURE_EXAMPLES,
   ...VOICE_FEATURE_EXAMPLES,
   ...SPEECH_FEATURE_EXAMPLES,
+  ...STRUCTURE_FEATURE_EXAMPLES,
 };
 
 /** The Coach skill a grammar feature belongs to. */
 export function grammarSkillOf(
   feature: GrammarFeature,
-): 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice' | 'speech' {
+): 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice' | 'speech' | 'structure' {
   if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
   if ((MODIFIER_FEATURES as readonly string[]).includes(feature)) return 'modifiers';
   if ((CONNECTOR_FEATURES as readonly string[]).includes(feature)) return 'connectors';
   if ((VOICE_FEATURES as readonly string[]).includes(feature)) return 'voice';
   if ((SPEECH_FEATURES as readonly string[]).includes(feature)) return 'speech';
+  if ((STRUCTURE_FEATURES as readonly string[]).includes(feature)) return 'structure';
   return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
 }
 
-export type { ConnectorFeature, ModifierFeature, SpeechFeature, VerbFeature, VoiceFeature };
+export type {
+  ConnectorFeature,
+  ModifierFeature,
+  SpeechFeature,
+  StructureFeature,
+  VerbFeature,
+  VoiceFeature,
+};
 export type { PassiveNote } from './voice.js';
 export { passiveNotes, veryPhrases };
 export { reportedClauses };
@@ -315,6 +334,7 @@ export function grammarFeatures(text: string): FeatureHit[] {
     for (const hit of modifierHits(text, tokens)) hits.push(hit);
     for (const hit of connectorHits(text, tokens)) hits.push(hit);
     for (const hit of voiceHits(text, tokens)) hits.push(hit);
+    for (const hit of structureHits(text, tokens)) hits.push(hit);
   }
   // Speech works on the whole text: a quote can cross the sentence splitter (“Ready?” asked Sam.).
   for (const hit of speechHits(text)) hits.push(hit);
@@ -396,7 +416,9 @@ export interface GrammarIssue {
     | 'reported-question'
     | 'reported-command'
     | 'backshift'
-    | 'reported-time';
+    | 'reported-time'
+    | 'run-on'
+    | 'comma-splice';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -622,6 +644,9 @@ export const voiceIssues = (text: string): GrammarIssue[] => findVoiceIssues(tex
 /** Speech mistakes: commas and capitals in direct speech; "asked where was it", "told us sit", "said that “…”", backshift. */
 export const speechIssues = (text: string): GrammarIssue[] => findSpeechIssues(text);
 
+/** Sentence mistakes: fragments ("A big dog in the yard."), run-ons and comma splices. */
+export const structureIssues = (text: string): GrammarIssue[] => findStructureIssues(text);
+
 /** Every grammar mistake the checks know about, in the order they appear. */
 export const grammarIssues = (text: string): GrammarIssue[] =>
   [
@@ -632,4 +657,5 @@ export const grammarIssues = (text: string): GrammarIssue[] =>
     ...connectorIssues(text),
     ...voiceIssues(text),
     ...speechIssues(text),
+    ...structureIssues(text),
   ].toSorted((a, b) => a.span.start - b.span.start);

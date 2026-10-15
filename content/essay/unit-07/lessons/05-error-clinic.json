@@ -1,0 +1,53 @@
+{
+  "slug": "essay-sentence-error-clinic",
+  "order": 5,
+  "title": "Error Clinic",
+  "estMinutes": 45,
+  "focusSkills": ["structure", "proofreading"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Some editors proofread a page one sentence at a time, starting from the last sentence and working back to the first. Why do you think reading backwards helps them catch mistakes?",
+      "placeholder": "Reading backwards helps because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The sentence check",
+          "body": "For each sentence, from full stop to full stop, ask three questions: 1. Who or what? (subject) 2. Does or is what? (verb) 3. Is the thought finished? Then ask: are there two sentences hiding in here?"
+        },
+        {
+          "kind": "example",
+          "title": "Fix it fast",
+          "text": "Fragment → join it to its neighbour, or add the missing subject or verb.\nRun-on → add a full stop, a semicolon, or a comma + and/but/so.\nComma splice → same fixes: a comma alone can’t join two sentences.",
+          "note": "Change as little as you can: punctuation, a capital letter or a joining word is usually enough."
+        },
+        {
+          "kind": "definition",
+          "title": "How the clinic works",
+          "body": "The report in the writing box has 20 mistakes. Fix them right in the box. The checklist counts each one you fix and explains it. Stuck? The hint button shows you where to look."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e07.proofread-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e07.error-clinic" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which kind of mistake was hardest to spot: fragments, run-ons or comma splices? Why?",
+        "What will you do differently when you proofread your next essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

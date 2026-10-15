@@ -1,0 +1,64 @@
+{
+  "slug": "essay-phrases-and-clauses",
+  "order": 2,
+  "title": "Phrases vs Clauses",
+  "estMinutes": 40,
+  "focusSkills": ["structure", "clauses", "commas"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Both start with “after”. What’s different about the first part of each?",
+      "a": "After lunch, we played tag.",
+      "b": "After we ate lunch, we played tag.",
+      "reveal": "Both are fine sentences! But look at the first part. “After lunch” has no subject or verb: it’s a phrase. “After we ate lunch” has its own subject and verb (we ate): it’s a clause. Knowing the difference helps you spot fragments and place your commas."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Phrase or clause?",
+          "body": "A phrase is a group of words without its own subject and verb: in the park, running fast, the shiny new bike. A clause has a subject and a verb: the dog barked, because we were late."
+        },
+        {
+          "kind": "example",
+          "title": "Independent and dependent",
+          "text": "Independent: we were late (a complete thought)\nDependent: because we were late (waits for more)\nTogether: We missed the bus because we were late.",
+          "note": "Words like because, when, if, although, after, before, since, until and while make a clause dependent. It can’t be a sentence by itself."
+        },
+        {
+          "kind": "example",
+          "title": "Relative clauses",
+          "text": "The boy who sits next to me plays the drums.\nOur phone, which was brand new, fell in the pool.\nThe book that I borrowed is overdue.",
+          "note": "A relative clause starts with who, which or that and describes a noun. Use who for people and which or that for things."
+        },
+        {
+          "kind": "compare",
+          "title": "The comma rule",
+          "telling": "When the bell rang we ran outside.",
+          "showing": "When the bell rang, we ran outside.",
+          "labels": ["Comma missing ✗", "Comma after the clause ✓"],
+          "note": "When a dependent clause comes first, put a comma after it. When it comes last (We ran outside when the bell rang), you usually don’t need one."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e07.phrase-or-clause", "e07.clause-mc", "e07.clause-blank"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e07.clause-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Pick one of your sentences. Which part is the independent clause, and which is dependent?",
+        "Why do you think a dependent clause at the start needs a comma?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

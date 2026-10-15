@@ -1,0 +1,64 @@
+{
+  "slug": "essay-fragments",
+  "order": 3,
+  "title": "Fragments",
+  "estMinutes": 40,
+  "focusSkills": ["structure", "fragments"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "The unfinished text",
+      "paragraphs": [
+        "Dev got a text from his sister: “Because the car broke down.”",
+        "He stared at it. Because the car broke down… what? Was she late? Was dinner cancelled? Was she stuck on the highway?",
+        "Ten minutes later: “Sorry! Meant to say I’ll be late because the car broke down.”",
+        "A fragment is like that first text. It starts a thought and leaves the reader to guess the rest."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What is a fragment?",
+          "body": "A fragment is a group of words that starts with a capital and ends with a full stop but isn’t a complete sentence. It is missing a subject, a verb or a finished thought."
+        },
+        {
+          "kind": "example",
+          "title": "Four common fragments",
+          "text": "No verb: The best day of the summer.\nNo subject: Jumped over the fence and ran.\nDependent clause alone: Because the bus was late. / Which made us laugh.\nAdded detail alone: Especially the chocolate ones. / For example, the bake sale.",
+          "note": "Read each sentence by itself. If it leaves you asking “what about it?” or “who did?”, it’s a fragment."
+        },
+        {
+          "kind": "example",
+          "title": "Two ways to fix one",
+          "text": "Join it: We stayed inside. Because it was storming. → We stayed inside because it was storming.\nComplete it: Running through the rain. → I was running through the rain.",
+          "note": "Most fragments belong to the sentence right before or after them. Joining is often the quickest fix."
+        },
+        {
+          "kind": "definition",
+          "title": "What about stories?",
+          "body": "Authors sometimes use a fragment on purpose for effect (“Silence. Then a scream.”). In essays and reports, write complete sentences."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e07.fragment-sort", "e07.fragment-mc", "e07.fragment-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e07.fragment-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which kind of fragment do you write most often? How will you catch it?",
+        "Did the Coach find a fragment in your paragraph? How did you fix it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

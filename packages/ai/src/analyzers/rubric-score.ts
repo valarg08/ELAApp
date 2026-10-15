@@ -86,7 +86,16 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
       input.text,
       input.rubric.key === 'grammar.practice'
         ? {
-            analyzers: ['nouns', 'pronouns', 'verbs', 'modifiers', 'connectors', 'voice', 'speech'],
+            analyzers: [
+              'nouns',
+              'pronouns',
+              'verbs',
+              'modifiers',
+              'connectors',
+              'voice',
+              'speech',
+              'structure',
+            ],
           }
         : {},
     );

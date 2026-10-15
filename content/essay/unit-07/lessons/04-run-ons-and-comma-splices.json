@@ -1,0 +1,61 @@
+{
+  "slug": "essay-run-ons-and-comma-splices",
+  "order": 4,
+  "title": "Run-ons & Comma Splices",
+  "estMinutes": 40,
+  "focusSkills": ["structure", "run-ons", "comma-splices"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Read this aloud without stopping: “The power went out we lit candles the cat hid under the bed it was so dark.” How did it feel? Where would you take a breath?",
+      "placeholder": "I’d stop after…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Run-ons and comma splices",
+          "body": "A run-on jams two complete sentences together with nothing between them: The bell rang we ran outside. A comma splice joins them with only a comma: The bell rang, we ran outside. A comma alone isn’t strong enough to hold two sentences."
+        },
+        {
+          "kind": "example",
+          "title": "Four ways to fix them",
+          "text": "1. Full stop: The bell rang. We ran outside.\n2. Comma + and/but/or/so: The bell rang, and we ran outside.\n3. Semicolon: The bell rang; we ran outside.\n4. Dependent clause: When the bell rang, we ran outside.",
+          "note": "Choose the fix that shows how the ideas connect: so for a result, but for a contrast, because for a reason."
+        },
+        {
+          "kind": "compare",
+          "title": "Watch out for “however”",
+          "telling": "We practised hard, however, we lost.",
+          "showing": "We practised hard; however, we lost.",
+          "labels": ["Comma splice ✗", "Semicolon ✓"],
+          "note": "However, then, also and therefore aren’t joining words. Use a full stop or a semicolon before them, or add “and”: and then."
+        },
+        {
+          "kind": "definition",
+          "title": "Long isn’t the problem",
+          "body": "A run-on isn’t just a long sentence. “Although it rained all morning, my brother and I walked to the park and played soccer until dinner” is long but correct. A short one can be a run-on: “I ran I fell.”"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e07.runon-sort", "e07.splice-blank", "e07.runon-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e07.fix-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which of the four fixes do you use most? Which one would you like to try more?",
+        "Why might a writer choose a semicolon instead of a full stop?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

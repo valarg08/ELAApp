@@ -1,0 +1,52 @@
+{
+  "slug": "essay-sentence-structure-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Sentence Structure",
+  "estMinutes": 45,
+  "focusSkills": ["structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which part of this unit feels easiest, and which do you want to look at again?",
+      "placeholder": "Easiest… Look again at…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Building sentences: quick review",
+          "body": "A sentence needs a subject and a predicate. Subjects and predicates can be compound (Maya and Leo built it; Maya built and tested it). A phrase has no subject and verb; a clause does. A dependent clause (because…, when…, which…) can’t stand alone, and it takes a comma after it when it comes first."
+        },
+        {
+          "kind": "definition",
+          "title": "Fixing sentences: quick review",
+          "body": "Fragment: join it to a neighbour or add what’s missing. Run-on or comma splice: use a full stop, a semicolon, a comma + and/but/or/so, or make one part a dependent clause. However and then need a semicolon or a full stop before them."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll write an opinion paragraph that shows off your sentence building. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e07.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e07.check-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What did you learn about building sentences that you didn’t know before this unit?",
+        "Which proofreading question will you ask yourself every time you write an essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

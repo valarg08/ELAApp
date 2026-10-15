@@ -57,6 +57,7 @@ import {
   verbIssues,
   veryPhrases,
   speechIssues,
+  structureIssues,
   voiceIssues,
 } from './analyzers/grammar.js';
 import { filterWords, telling } from './analyzers/word-choice.js';
@@ -85,6 +86,7 @@ export const ANALYZER_IDS = [
   'connectors',
   'voice',
   'speech',
+  'structure',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -732,6 +734,32 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
   }
 
+  if (enabled.has('structure')) {
+    const issues = structureIssues(text);
+    if (issues[0]) nextSteps.push(issueCard('structure', 'Check this sentence', issues));
+    else if (wordCount >= 15) {
+      const hits = grammarFeatures(text);
+      const complete = hits.filter((h) => h.feature === 'complete-sentence').length;
+      const joined = hits.find(
+        (h) =>
+          h.feature === 'dependent-clause' ||
+          h.feature === 'compound-predicate' ||
+          h.feature === 'compound-subject',
+      );
+      if (complete >= 2) {
+        strengths.push({
+          id: 'structure',
+          analyzer: 'structure',
+          title: 'Complete sentences',
+          message: joined
+            ? `Every sentence has a subject and a verb, and you build longer ones well, like “${joined.span.text}…”.`
+            : 'Every sentence has a subject and a verb and stands on its own. No fragments or run-ons!',
+          span: joined?.span,
+        });
+      }
+    }
+  }
+
   if (enabled.has('speech')) {
     const issues = speechIssues(text);
     if (issues[0]) nextSteps.push(issueCard('speech', 'Check this speech', issues));
@@ -1002,7 +1030,8 @@ const inQuotes = (t: string) => (/[“”"]/.test(t) ? t : `“${t}”`);
 
 /** The first grammar issue as a card, with its fix and how many more there are. */
 function issueCard(
-  analyzer: 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice' | 'speech',
+  analyzer:
+    'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice' | 'speech' | 'structure',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

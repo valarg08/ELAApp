@@ -1,0 +1,61 @@
+{
+  "slug": "essay-subjects-and-predicates",
+  "order": 1,
+  "title": "Subjects & Predicates",
+  "estMinutes": 35,
+  "focusSkills": ["structure", "subjects", "predicates"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "One of these is a sentence. The other just leaves you hanging. Which is which?",
+      "a": "The giant squid with eyes as big as dinner plates.",
+      "b": "The giant squid has eyes as big as dinner plates.",
+      "reveal": "B is a sentence. A names something amazing, then never tells you anything about it: there’s no verb. Every sentence needs two parts: who or what it’s about (the subject) and what they do or are (the predicate)."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Subject + predicate",
+          "body": "The subject is who or what the sentence is about. The predicate starts with the verb and tells what the subject does or is. Together they make a complete thought: a sentence."
+        },
+        {
+          "kind": "example",
+          "title": "Complete and simple",
+          "text": "The tall girl in the red jacket | won the race.\nComplete subject: The tall girl in the red jacket → simple subject: girl\nComplete predicate: won the race → simple predicate (verb): won",
+          "note": "Find the verb first, then ask “who or what did it?” to find the subject."
+        },
+        {
+          "kind": "example",
+          "title": "Compound subjects and predicates",
+          "text": "Compound subject: Maya and Leo built a robot.\nCompound predicate: Maya built the robot and tested it.\nBoth: Maya and Leo built the robot and tested it.",
+          "note": "Two subjects can share one verb, and one subject can do two things. It’s still one sentence."
+        },
+        {
+          "kind": "definition",
+          "title": "Hidden subjects",
+          "body": "Commands have an understood subject, “you”: (You) Close the door. So “Stop.” is a complete sentence, but “The big red door.” is not."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e07.subject-mc", "e07.subject-highlight", "e07.compound-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e07.compound-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How do you find the subject of a long sentence? Explain your trick with one of your sentences.",
+        "When would a compound subject or predicate make your writing smoother?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

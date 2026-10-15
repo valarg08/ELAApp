@@ -33,6 +33,7 @@ import { RhythmPanel } from './rhythm-panel';
 import { SyllableMeter } from './syllable-meter';
 import { PerspectiveGuide } from './perspective-guide';
 import { SenseTracker } from './sense-tracker';
+import { ProofreadPanel } from './proofread-panel';
 import { SentenceSetPanel } from './sentence-set-panel';
 import { WordBankPanel } from './word-bank-panel';
 import { useWordBank } from './use-word-bank';
@@ -317,6 +318,7 @@ export function WritingWorkspace({
       )}
 
       {activity.sentenceSet && <SentenceSetPanel set={activity.sentenceSet} text={state.text} />}
+      {activity.proofread && <ProofreadPanel proofread={activity.proofread} text={state.text} />}
 
       <ConstraintsBar
         text={state.text}

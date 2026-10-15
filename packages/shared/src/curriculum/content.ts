@@ -13,6 +13,7 @@ import {
   isToneStep,
 } from '@storyforge/writing-analysis';
 import { z } from 'zod';
+import { Proofread, normaliseForProofread, occurrences } from './proofread.js';
 import { WritingConstraints } from './constraints.js';
 import { CONFLICT_TYPE_IDS, type ConflictTypeId, PlotPlan } from './plot.js';
 
@@ -476,6 +477,8 @@ export const WritingActivity = z.object({
   rhythmMode: z.boolean().optional(),
   /** Essay Writing: numbered sentence tasks, each checked (see `SentenceSet`). */
   sentenceSet: SentenceSet.optional(),
+  /** Essay Writing: a checklist of the planted mistakes in the starter (see `Proofread`). */
+  proofread: Proofread.optional(),
   /** Essay Writing: the grammar this activity practises; the Coach and Quill look for it. */
   grammarFocus: z.array(z.enum(GRAMMAR_FEATURES)).min(1).max(4).optional(),
 });
@@ -995,6 +998,26 @@ export function validateUnitBundle({
       });
       if (new Set(at).size !== at.length)
         errors.push(`${a.key}: two errors point at the same word`);
+    }
+    if (isWritingActivity(a) && a.proofread) {
+      if (!a.starter || !a.starterInEditor)
+        errors.push(`${a.key}: proofread needs a starter with starterInEditor`);
+      const starter = normaliseForProofread(a.starter ?? '');
+      const wrongs = a.proofread.errors.map((e) => normaliseForProofread(e.wrong));
+      a.proofread.errors.forEach((e, i) => {
+        const wrong = wrongs[i]!;
+        if (occurrences(starter, wrong) !== 1)
+          errors.push(`${a.key}: proofread "${e.wrong}" must appear exactly once in the starter`);
+        if (wrongs.some((w, j) => j !== i && (w.includes(wrong) || wrong.includes(w))))
+          errors.push(`${a.key}: proofread "${e.wrong}" overlaps another mistake`);
+        for (const f of e.fixes) {
+          const fix = normaliseForProofread(f);
+          if (fix.includes(wrong))
+            errors.push(`${a.key}: proofread fix "${f}" still contains the mistake`);
+          else if (starter.includes(fix))
+            errors.push(`${a.key}: proofread fix "${f}" is already in the starter`);
+        }
+      });
     }
     if (isWritingActivity(a) && a.sentenceSet) {
       if (a.constraints.minSentences !== a.sentenceSet.sentences.length)

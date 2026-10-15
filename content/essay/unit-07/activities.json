@@ -1,0 +1,1725 @@
+[
+  {
+    "key": "e07.subject-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Find the subject and predicate",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What is the complete subject of this sentence? “The tall girl in the red jacket won the race.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "The tall girl in the red jacket"
+          },
+          {
+            "id": "b",
+            "text": "won the race"
+          },
+          {
+            "id": "c",
+            "text": "the red jacket"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The complete subject is who the sentence is about, with all its describing words: the tall girl in the red jacket."
+      },
+      {
+        "id": "q2",
+        "prompt": "What is the complete predicate? “My little brother hid under the table.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "My little brother"
+          },
+          {
+            "id": "b",
+            "text": "hid under the table"
+          },
+          {
+            "id": "c",
+            "text": "under the table"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The predicate starts with the verb and tells what the subject does: hid under the table."
+      },
+      {
+        "id": "q3",
+        "prompt": "What is the simple subject? “The old dog with the floppy ears sleeps all day.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "ears"
+          },
+          {
+            "id": "b",
+            "text": "dog"
+          },
+          {
+            "id": "c",
+            "text": "The old dog"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The simple subject is the one main noun: dog. “Ears” is inside the phrase “with the floppy ears”, which only describes the dog."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence has a compound subject?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Maya and Leo built a robot."
+          },
+          {
+            "id": "b",
+            "text": "Maya built and tested a robot."
+          },
+          {
+            "id": "c",
+            "text": "Maya built a robot with Leo."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A compound subject is two or more subjects sharing one verb: Maya and Leo built."
+      },
+      {
+        "id": "q5",
+        "prompt": "Which sentence has a compound predicate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The cat and the dog slept."
+          },
+          {
+            "id": "b",
+            "text": "The cat stretched and yawned."
+          },
+          {
+            "id": "c",
+            "text": "The cat slept on the warm rug."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A compound predicate is two or more verbs sharing one subject: the cat stretched and yawned."
+      }
+    ]
+  },
+  {
+    "key": "e07.subject-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Tap the simple subjects",
+    "instructions": "Each sentence has one simple subject: the main noun or pronoun the sentence is about. Tap the five simple subjects.",
+    "text": "The bright yellow bus was late again. Every student in our class groaned. Then our teacher had an idea. She opened her laptop. A short video about volcanoes filled the screen.",
+    "targets": ["bus", "student", "teacher", "She", "video"],
+    "explanation": "bus (was late) · student (groaned) · teacher (had an idea) · She (opened) · video (filled). “Class” and “volcanoes” sit inside phrases (in our class, about volcanoes) that only describe the subject."
+  },
+  {
+    "key": "e07.compound-transform",
+    "type": "TRANSFORM",
+    "title": "Two sentences into one",
+    "instructions": "Combine the two sentences into one sentence with a compound subject or a compound predicate, as the task says.",
+    "items": [
+      {
+        "id": "pizza",
+        "task": "Make a compound subject (two subjects, one verb).",
+        "source": "Jada loves pizza. Omar loves pizza.",
+        "answers": ["Jada and Omar love pizza.", "Omar and Jada love pizza."],
+        "hints": [
+          "Who loves pizza? Put both names first.",
+          "Jada and Omar … (two people: love, not loves)"
+        ],
+        "explanation": "Jada and Omar love pizza. Two subjects share one verb, and the verb changes to fit a plural subject: love."
+      },
+      {
+        "id": "ball",
+        "task": "Make a compound predicate (one subject, two verbs).",
+        "source": "Theo caught the ball. Theo threw it to first base.",
+        "answers": ["Theo caught the ball and threw it to first base."],
+        "hints": ["Keep “Theo” once, then join the two actions.", "Theo caught the ball and …"],
+        "explanation": "Theo caught the ball and threw it to first base. One subject, two verbs joined by “and”."
+      },
+      {
+        "id": "rain",
+        "task": "Make a compound subject.",
+        "source": "The wind howled all night. The rain howled all night.",
+        "answers": [
+          "The wind and the rain howled all night.",
+          "The wind and rain howled all night.",
+          "The rain and the wind howled all night.",
+          "The rain and wind howled all night."
+        ],
+        "hints": ["What howled? Name both things first."],
+        "explanation": "The wind and the rain howled all night."
+      },
+      {
+        "id": "dog",
+        "task": "Make a compound predicate with three verbs.",
+        "source": "The puppy ran to the door. The puppy barked. The puppy wagged its tail.",
+        "answers": [
+          "The puppy ran to the door, barked and wagged its tail.",
+          "The puppy ran to the door, barked, and wagged its tail."
+        ],
+        "hints": [
+          "Three actions in a list: commas between them, “and” before the last.",
+          "The puppy ran to the door, barked …"
+        ],
+        "explanation": "The puppy ran to the door, barked and wagged its tail. Three verbs in a list share one subject."
+      }
+    ]
+  },
+  {
+    "key": "e07.compound-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Build four sentences",
+    "prompt": "Write four sentences about your favourite place in your town or neighbourhood. Each sentence has its own task, listed above the writing box. Write them in order, and end each one with a full stop.",
+    "tips": [
+      "Every sentence needs a subject (who or what) and a predicate (what they do or are).",
+      "Compound subject: My cousins and I ride our bikes there.",
+      "Compound predicate: We buy ice cream and sit by the fountain."
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 120,
+      "minSentences": 4
+    },
+    "analyzers": ["structure"],
+    "grammarFocus": ["complete-sentence", "compound-subject", "compound-predicate"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Name the place and say where it is, in one complete sentence.",
+          "needs": ["complete-sentence"]
+        },
+        {
+          "ask": "Two people (or things) do something there: use a compound subject.",
+          "needs": ["compound-subject"]
+        },
+        {
+          "ask": "Someone does two things there: use a compound predicate.",
+          "needs": ["compound-predicate"]
+        },
+        {
+          "ask": "Say why you like it, in one complete sentence.",
+          "needs": ["complete-sentence"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e07.phrase-or-clause",
+    "type": "SORT",
+    "title": "Phrase or clause?",
+    "instructions": "A clause has its own subject and verb. A phrase doesn’t. Sort each group of words.",
+    "buckets": [
+      {
+        "id": "phrase",
+        "label": "Phrase (no subject + verb)"
+      },
+      {
+        "id": "clause",
+        "label": "Clause (subject + verb)"
+      }
+    ],
+    "items": [
+      {
+        "id": "park",
+        "text": "in the park",
+        "bucketId": "phrase"
+      },
+      {
+        "id": "barked",
+        "text": "the dog barked",
+        "bucketId": "clause"
+      },
+      {
+        "id": "running",
+        "text": "running down the hall",
+        "bucketId": "phrase"
+      },
+      {
+        "id": "because",
+        "text": "because we were late",
+        "bucketId": "clause"
+      },
+      {
+        "id": "lunch",
+        "text": "after lunch",
+        "bucketId": "phrase"
+      },
+      {
+        "id": "after",
+        "text": "after we ate lunch",
+        "bucketId": "clause"
+      },
+      {
+        "id": "shiny",
+        "text": "the shiny new bike",
+        "bucketId": "phrase"
+      },
+      {
+        "id": "who",
+        "text": "who lives next door",
+        "bucketId": "clause"
+      },
+      {
+        "id": "under",
+        "text": "under the old bridge",
+        "bucketId": "phrase"
+      },
+      {
+        "id": "when",
+        "text": "when the bell rang",
+        "bucketId": "clause"
+      }
+    ]
+  },
+  {
+    "key": "e07.clause-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Independent or dependent?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which clause can stand alone as a sentence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "because the game was cancelled"
+          },
+          {
+            "id": "b",
+            "text": "the game was cancelled"
+          },
+          {
+            "id": "c",
+            "text": "when the game was cancelled"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“The game was cancelled” is an independent clause: a complete thought. Because and when make the others dependent: they leave you waiting for more."
+      },
+      {
+        "id": "q2",
+        "prompt": "What is the dependent clause? “Although it was cold, we swam in the lake.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "Although it was cold"
+          },
+          {
+            "id": "b",
+            "text": "we swam in the lake"
+          },
+          {
+            "id": "c",
+            "text": "in the lake"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Although it was cold” has a subject and verb (it was), but “although” makes it depend on the rest of the sentence."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence has a relative clause (one that describes a noun)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The boy who sits next to me plays the drums."
+          },
+          {
+            "id": "b",
+            "text": "The boy next to me plays the drums."
+          },
+          {
+            "id": "c",
+            "text": "The boy plays the drums after school."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“who sits next to me” has its own verb (sits) and describes the boy. “next to me” is just a phrase."
+      },
+      {
+        "id": "q4",
+        "prompt": "“Before the movie” is…",
+        "options": [
+          {
+            "id": "a",
+            "text": "a phrase"
+          },
+          {
+            "id": "b",
+            "text": "a dependent clause"
+          },
+          {
+            "id": "c",
+            "text": "an independent clause"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "There’s no subject and verb, so it’s a phrase. “Before the movie started” would be a dependent clause."
+      },
+      {
+        "id": "q5",
+        "prompt": "Where does the comma go? “When the bus finally came we cheered.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "After “bus”"
+          },
+          {
+            "id": "b",
+            "text": "After “came”"
+          },
+          {
+            "id": "c",
+            "text": "No comma is needed"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "When a dependent clause comes first, put a comma after it: When the bus finally came, we cheered."
+      }
+    ]
+  },
+  {
+    "key": "e07.clause-blank",
+    "type": "FILL_BLANK",
+    "title": "Pick the joining word",
+    "instructions": "Choose the word that turns the first idea into a dependent clause and makes the sentence make sense.",
+    "items": [
+      {
+        "id": "umbrella",
+        "sentence": "___ it was raining, Mia took an umbrella.",
+        "choices": ["Because", "Unless", "Until"],
+        "answers": ["Because"],
+        "explanation": "The rain is the reason: Because it was raining, Mia took an umbrella."
+      },
+      {
+        "id": "practice",
+        "sentence": "We practised every day ___ the concert started.",
+        "choices": ["until", "although", "if"],
+        "answers": ["until"],
+        "explanation": "“until” shows when the practising stopped."
+      },
+      {
+        "id": "tired",
+        "sentence": "___ he was tired, Sam finished his homework.",
+        "choices": ["Although", "Because", "When"],
+        "answers": ["Although"],
+        "explanation": "Being tired and still finishing is a contrast, so “although”."
+      },
+      {
+        "id": "dessert",
+        "sentence": "You can have dessert ___ you eat your vegetables.",
+        "choices": ["if", "since", "while"],
+        "answers": ["if"],
+        "explanation": "Dessert depends on a condition: if."
+      },
+      {
+        "id": "friend",
+        "sentence": "The friend ___ lent me her book is moving away.",
+        "choices": ["who", "which", "where"],
+        "answers": ["who"],
+        "explanation": "Use “who” for people: the friend who lent me her book."
+      },
+      {
+        "id": "phone",
+        "sentence": "The phone, ___ was brand new, slipped into the pool.",
+        "choices": ["which", "who", "when"],
+        "answers": ["which"],
+        "explanation": "Use “which” (or “that”) for things."
+      }
+    ]
+  },
+  {
+    "key": "e07.clause-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Clauses at work",
+    "prompt": "Write four sentences about a time something surprised you. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Dependent clause first? Add a comma after it: When I opened the box, I gasped.",
+      "Relative clause: the neighbour who waved at me, the box that sat on the step.",
+      "A phrase is fine for extra detail (in the morning, on the step), but each sentence still needs its own subject and verb."
+    ],
+    "constraints": {
+      "minWords": 30,
+      "maxWords": 140,
+      "minSentences": 4
+    },
+    "analyzers": ["structure"],
+    "grammarFocus": ["dependent-clause", "relative-clause", "complete-sentence"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Start with a dependent clause (When…, Because…, Although…) and a comma.",
+          "needs": ["dependent-clause"]
+        },
+        {
+          "ask": "Describe a person or thing with a relative clause (who…, which…, that…).",
+          "needs": ["relative-clause"]
+        },
+        {
+          "ask": "Put a dependent clause at the end (… because …, … until …).",
+          "needs": ["dependent-clause"]
+        },
+        {
+          "ask": "End with one short independent clause: a complete thought.",
+          "needs": ["complete-sentence"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e07.fragment-sort",
+    "type": "SORT",
+    "title": "Sentence or fragment?",
+    "instructions": "A fragment looks like a sentence but is missing a subject, a verb or a complete thought. Sort each one.",
+    "buckets": [
+      {
+        "id": "sentence",
+        "label": "Complete sentence"
+      },
+      {
+        "id": "fragment",
+        "label": "Fragment"
+      }
+    ],
+    "items": [
+      {
+        "id": "dog",
+        "text": "The dog chased its tail.",
+        "bucketId": "sentence"
+      },
+      {
+        "id": "because",
+        "text": "Because the bus was late.",
+        "bucketId": "fragment"
+      },
+      {
+        "id": "running",
+        "text": "Running through the rain.",
+        "bucketId": "fragment"
+      },
+      {
+        "id": "stop",
+        "text": "Stop.",
+        "bucketId": "sentence"
+      },
+      {
+        "id": "which",
+        "text": "Which made everyone laugh.",
+        "bucketId": "fragment"
+      },
+      {
+        "id": "noun",
+        "text": "A huge pile of laundry on the floor.",
+        "bucketId": "fragment"
+      },
+      {
+        "id": "we",
+        "text": "We waited.",
+        "bucketId": "sentence"
+      },
+      {
+        "id": "example",
+        "text": "For example, the bake sale in May.",
+        "bucketId": "fragment"
+      },
+      {
+        "id": "when",
+        "text": "When I got home, I ate dinner.",
+        "bucketId": "sentence"
+      },
+      {
+        "id": "tired",
+        "text": "Tired from the long game.",
+        "bucketId": "fragment"
+      }
+    ]
+  },
+  {
+    "key": "e07.fragment-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "What’s missing?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "“Jumped over the fence and ran away.” What is this fragment missing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A subject"
+          },
+          {
+            "id": "b",
+            "text": "A verb"
+          },
+          {
+            "id": "c",
+            "text": "Nothing: it’s complete"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Who jumped? Add a subject: The dog jumped over the fence and ran away."
+      },
+      {
+        "id": "q2",
+        "prompt": "“The best day of the whole summer.” What is this fragment missing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A subject"
+          },
+          {
+            "id": "b",
+            "text": "A verb"
+          },
+          {
+            "id": "c",
+            "text": "A capital letter"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "It names something but says nothing about it. Add a verb: It was the best day of the whole summer."
+      },
+      {
+        "id": "q3",
+        "prompt": "“If you finish early.” Why is this a fragment?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It has no verb."
+          },
+          {
+            "id": "b",
+            "text": "It has no subject."
+          },
+          {
+            "id": "c",
+            "text": "It’s a dependent clause: the thought isn’t finished."
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "It has a subject and verb (you finish), but “if” leaves us waiting: If you finish early, what happens?"
+      },
+      {
+        "id": "q4",
+        "prompt": "Which is the best fix? “We packed snacks. Like chips and apples.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "We packed snacks, like chips and apples."
+          },
+          {
+            "id": "b",
+            "text": "We packed snacks. Like chips, and apples."
+          },
+          {
+            "id": "c",
+            "text": "We packed snacks like. Chips and apples."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Join the example to the sentence it belongs to with a comma."
+      },
+      {
+        "id": "q5",
+        "prompt": "Which one is a complete sentence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Since the store closed early."
+          },
+          {
+            "id": "b",
+            "text": "Closed early on Sundays."
+          },
+          {
+            "id": "c",
+            "text": "The store closes early on Sundays."
+          }
+        ],
+        "correctOptionId": "c",
+        "explanation": "It has a subject (the store), a verb (closes) and a complete thought."
+      }
+    ]
+  },
+  {
+    "key": "e07.fragment-transform",
+    "type": "TRANSFORM",
+    "title": "Fix the fragment",
+    "instructions": "Each line has a fragment. Fix it by joining it to the sentence next to it. Change only the punctuation and capital letters.",
+    "items": [
+      {
+        "id": "because",
+        "task": "Join the “because” fragment to the sentence before it.",
+        "source": "We stayed inside. Because it was storming.",
+        "answers": ["We stayed inside because it was storming."],
+        "hints": ["Take out the full stop before “Because”.", "We stayed inside because …"],
+        "explanation": "A dependent clause can’t stand alone. Join it: We stayed inside because it was storming."
+      },
+      {
+        "id": "which",
+        "task": "Join the “which” fragment to the sentence before it.",
+        "source": "Our team lost the final. Which was a huge surprise.",
+        "answers": ["Our team lost the final, which was a huge surprise."],
+        "hints": ["“Which” describes the whole first sentence: join them with a comma."],
+        "explanation": "Our team lost the final, which was a huge surprise."
+      },
+      {
+        "id": "when",
+        "task": "Join the “when” fragment to the sentence after it.",
+        "source": "When the lights went out. Everyone screamed.",
+        "answers": ["When the lights went out, everyone screamed."],
+        "hints": [
+          "The dependent clause comes first, so it needs a comma after it.",
+          "When the lights went out, everyone …"
+        ],
+        "explanation": "When the lights went out, everyone screamed. A comma follows a dependent clause that comes first."
+      },
+      {
+        "id": "ing",
+        "task": "Join the “-ing” fragment to the sentence after it.",
+        "source": "Laughing at the joke. Rosa spilled her juice.",
+        "answers": ["Laughing at the joke, Rosa spilled her juice."],
+        "hints": ["Who was laughing? Rosa: join the phrase to her sentence with a comma."],
+        "explanation": "Laughing at the joke, Rosa spilled her juice. The phrase describes Rosa, so it sits right before her name."
+      },
+      {
+        "id": "example",
+        "task": "Join the example to the sentence before it.",
+        "source": "I love spicy food. Especially tacos with jalapeños.",
+        "answers": ["I love spicy food, especially tacos with jalapeños."],
+        "hints": ["An example joins the sentence it belongs to with a comma."],
+        "explanation": "I love spicy food, especially tacos with jalapeños."
+      }
+    ]
+  },
+  {
+    "key": "e07.fragment-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "No fragments allowed",
+    "prompt": "Write a paragraph (6–9 sentences) about the best or worst meal you have ever eaten. Use at least two dependent clauses (because, when, although, which…) and at least one -ing or example phrase (Smelling the smoke, …; especially the …), joined to a full sentence so there are no fragments. The Coach will point out any group of words that isn’t a complete sentence.",
+    "tips": [
+      "Check each sentence: who or what? does or is what? Is the thought finished?",
+      "Because, when, although, if: the clause needs another part in the same sentence.",
+      "Which, especially, for example, like: these usually join the sentence before with a comma."
+    ],
+    "constraints": {
+      "minWords": 60,
+      "maxWords": 220,
+      "minSentences": 6
+    },
+    "analyzers": ["structure", "connectors"],
+    "grammarFocus": ["complete-sentence", "dependent-clause", "relative-clause"]
+  },
+  {
+    "key": "e07.runon-sort",
+    "type": "SORT",
+    "title": "Run-on, comma splice or correct?",
+    "instructions": "A run-on jams two sentences together with nothing between them. A comma splice joins them with only a comma. Sort each one.",
+    "buckets": [
+      {
+        "id": "runon",
+        "label": "Run-on"
+      },
+      {
+        "id": "splice",
+        "label": "Comma splice"
+      },
+      {
+        "id": "correct",
+        "label": "Correct"
+      }
+    ],
+    "items": [
+      {
+        "id": "bell",
+        "text": "The bell rang we ran outside.",
+        "bucketId": "runon"
+      },
+      {
+        "id": "late",
+        "text": "I was late, the door was locked.",
+        "bucketId": "splice"
+      },
+      {
+        "id": "and",
+        "text": "I was late, and the door was locked.",
+        "bucketId": "correct"
+      },
+      {
+        "id": "pizza",
+        "text": "We ordered pizza it was cold.",
+        "bucketId": "runon"
+      },
+      {
+        "id": "semi",
+        "text": "The sky darkened; the storm was close.",
+        "bucketId": "correct"
+      },
+      {
+        "id": "game",
+        "text": "The game was close, we won by one point.",
+        "bucketId": "splice"
+      },
+      {
+        "id": "when",
+        "text": "When the bell rang, we ran outside.",
+        "bucketId": "correct"
+      },
+      {
+        "id": "however",
+        "text": "I studied hard, however, I failed the test.",
+        "bucketId": "splice"
+      },
+      {
+        "id": "dog",
+        "text": "My dog loves the beach he runs into the waves.",
+        "bucketId": "runon"
+      },
+      {
+        "id": "split",
+        "text": "We missed the bus. Dad drove us.",
+        "bucketId": "correct"
+      }
+    ]
+  },
+  {
+    "key": "e07.splice-blank",
+    "type": "FILL_BLANK",
+    "title": "Fix it with a joining word",
+    "instructions": "Each sentence was a comma splice. Pick the joining word that fixes it and makes sense.",
+    "items": [
+      {
+        "id": "rain",
+        "sentence": "It started to rain, ___ we went inside.",
+        "choices": ["so", "but", "or"],
+        "answers": ["so"],
+        "explanation": "Going inside is the result of the rain: so."
+      },
+      {
+        "id": "tried",
+        "sentence": "I tried to call you, ___ your phone was off.",
+        "choices": ["but", "so", "and"],
+        "answers": ["but"],
+        "explanation": "The second part goes against what you expected: but."
+      },
+      {
+        "id": "hurry",
+        "sentence": "We need to hurry, ___ we will miss the movie.",
+        "choices": ["or", "and", "so"],
+        "answers": ["or"],
+        "explanation": "“Or” shows what happens otherwise."
+      },
+      {
+        "id": "snack",
+        "sentence": "Ana made the popcorn, ___ Ben picked the movie.",
+        "choices": ["and", "or", "so"],
+        "answers": ["and"],
+        "explanation": "Two things that both happened: and."
+      },
+      {
+        "id": "yet",
+        "sentence": "The test was hard, ___ I still finished it.",
+        "choices": ["yet", "so", "or"],
+        "answers": ["yet"],
+        "explanation": "“Yet” works like “but”: it shows a surprise. A comma plus yet can join two sentences."
+      }
+    ]
+  },
+  {
+    "key": "e07.runon-transform",
+    "type": "TRANSFORM",
+    "title": "Fix it four ways",
+    "instructions": "Fix each run-on or comma splice the way the task says. Keep the words; change the punctuation, or add the one joining word you’re told to use.",
+    "items": [
+      {
+        "id": "period",
+        "task": "Fix it with a full stop: make two sentences.",
+        "source": "The movie ended we walked home.",
+        "answers": ["The movie ended. We walked home."],
+        "hints": ["Where does the first complete thought end?", "The movie ended. W…"],
+        "explanation": "The movie ended. We walked home. Two complete sentences, two capitals, two full stops."
+      },
+      {
+        "id": "and",
+        "task": "Fix it with a comma and “and”.",
+        "source": "Lena brought the drinks, Jo brought the cups.",
+        "answers": ["Lena brought the drinks, and Jo brought the cups."],
+        "hints": ["Keep the comma, then add the joining word after it."],
+        "explanation": "Lena brought the drinks, and Jo brought the cups. Comma + and, but, or, so joins two sentences."
+      },
+      {
+        "id": "semicolon",
+        "task": "Fix it with a semicolon.",
+        "source": "The hallway was silent, everyone was taking the test.",
+        "answers": ["The hallway was silent; everyone was taking the test."],
+        "hints": ["Swap the comma for a semicolon (;). No capital after it."],
+        "explanation": "The hallway was silent; everyone was taking the test. A semicolon joins two closely linked sentences."
+      },
+      {
+        "id": "because",
+        "task": "Fix it with “because”: make the second part a dependent clause.",
+        "source": "I was tired I stayed up too late.",
+        "answers": ["I was tired because I stayed up too late."],
+        "hints": ["Why were you tired? Put “because” in front of the reason."],
+        "explanation": "I was tired because I stayed up too late. “Because” turns the second part into a dependent clause."
+      },
+      {
+        "id": "however",
+        "task": "Fix the comma splice before “however”.",
+        "source": "We practised for weeks, however, we lost the match.",
+        "answers": [
+          "We practised for weeks; however, we lost the match.",
+          "We practised for weeks. However, we lost the match."
+        ],
+        "hints": [
+          "“However” isn’t a joining word like “but”. It needs a semicolon or a full stop before it."
+        ],
+        "explanation": "We practised for weeks; however, we lost the match. Use a semicolon (or a full stop) before however and a comma after it."
+      }
+    ]
+  },
+  {
+    "key": "e07.fix-sentences",
+    "type": "SENTENCE_SET",
+    "title": "One run-on, four fixes",
+    "prompt": "Here is a run-on: “The power went out we lit candles.” Fix it four different ways, one per task listed above the writing box. Write each fix as its own sentence (or pair of sentences), in order.",
+    "tips": [
+      "Full stop: two sentences. Comma + and/but/so: one sentence.",
+      "Semicolon: The power went out; we lit candles.",
+      "Dependent clause: When the power went out, we lit candles."
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 120,
+      "minSentences": 4
+    },
+    "analyzers": ["structure"],
+    "grammarFocus": ["complete-sentence", "dependent-clause"],
+    "sentenceSet": {
+      "label": "Your four fixes",
+      "sentences": [
+        {
+          "ask": "Fix it with a comma and a joining word (and, but, so).",
+          "needs": ["complete-sentence"]
+        },
+        {
+          "ask": "Fix it with a semicolon.",
+          "needs": ["complete-sentence"]
+        },
+        {
+          "ask": "Fix it with a dependent clause first (When…, Because…, After…).",
+          "needs": ["dependent-clause"]
+        },
+        {
+          "ask": "Fix it with a dependent clause at the end (… because …).",
+          "needs": ["dependent-clause"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e07.proofread-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Proofreading warm-up",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What’s the best way to catch fragments and run-ons?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Read quickly to the end, then fix what sounds wrong."
+          },
+          {
+            "id": "b",
+            "text": "Read one sentence at a time, from full stop to full stop."
+          },
+          {
+            "id": "c",
+            "text": "Only check the longest sentences."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Going sentence by sentence lets you ask each one: does it have a subject, a verb and a finished thought?"
+      },
+      {
+        "id": "q2",
+        "prompt": "“The lights flickered, the room went dark.” What is wrong?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It’s a fragment."
+          },
+          {
+            "id": "b",
+            "text": "It’s a comma splice."
+          },
+          {
+            "id": "c",
+            "text": "Nothing."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Two complete sentences joined only by a comma. Fix: The lights flickered, and the room went dark."
+      },
+      {
+        "id": "q3",
+        "prompt": "“After the game ended.” What is wrong?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It’s a fragment: a dependent clause on its own."
+          },
+          {
+            "id": "b",
+            "text": "It’s a run-on."
+          },
+          {
+            "id": "c",
+            "text": "Nothing."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“After” leaves the thought unfinished: After the game ended, what happened?"
+      },
+      {
+        "id": "q4",
+        "prompt": "“My sister plays violin she practises every night.” What is wrong?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It’s a comma splice."
+          },
+          {
+            "id": "b",
+            "text": "It’s a run-on."
+          },
+          {
+            "id": "c",
+            "text": "It’s a fragment."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Two sentences with nothing between them: My sister plays violin. She practises every night."
+      }
+    ]
+  },
+  {
+    "key": "e07.error-clinic",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Error clinic: Field Day",
+    "prompt": "This field day report has 20 sentence mistakes: fragments, run-ons and comma splices. Fix all 20 right in the writing box. The checklist counts each one as you fix it and tells you what was wrong. Don’t rewrite the whole report: change the punctuation and capitals, or add a joining word.",
+    "starter": "Our school’s field day was last Friday. It did not go as planned. The morning started with rain, the teachers moved everything into the gym. Which was way too small for three hundred kids. The sack race came first my team finished last. Because Jamal’s sack had a hole in it. He laughed about it, I was not happy. Next came the tug-of-war. The worst part of the day. The rope snapped in the middle everyone fell over. Including Mr. Diaz, our gym teacher. Nobody was hurt, we could not stop laughing.\n\nAt noon the rain stopped we all ran outside. Excited to finally use the field. The relay was the best event, our class won by a whole lap. Everyone cheered for our runners. Especially Ana, who ran the last leg. She crossed the line the crowd went wild. Then the clouds came back, it poured again. We ran for the doors. Our shoes full of water. My mom picked me up she laughed at my muddy socks. Field day was a mess, it was also the most fun day of the year. Even with all the mud. Next year I hope it stays sunny I will bring extra socks just in case.",
+    "starterInEditor": true,
+    "tips": [
+      "Go one sentence at a time: who or what? does what? Is the thought finished?",
+      "Fragment: join it to the sentence next to it. Run-on or comma splice: split it, or join it with a comma and and/but/so, or a semicolon.",
+      "Stuck? Use the hint button in the checklist."
+    ],
+    "constraints": {
+      "minWords": 150,
+      "maxWords": 320,
+      "minSentences": 12
+    },
+    "analyzers": ["structure"],
+    "grammarFocus": ["complete-sentence", "dependent-clause"],
+    "proofread": {
+      "label": "Error clinic",
+      "errors": [
+        {
+          "wrong": "rain, the teachers",
+          "fixes": [
+            "rain. The teachers",
+            "rain; the teachers",
+            "rain, so the teachers",
+            "rain, and the teachers"
+          ],
+          "explanation": "Comma splice: two sentences joined only by a comma. Split them, or add “so”.",
+          "hint": "The third sentence has two complete thoughts."
+        },
+        {
+          "wrong": "gym. Which was",
+          "fixes": ["gym, which was"],
+          "explanation": "Fragment: “Which was way too small…” describes the gym, so it joins that sentence with a comma.",
+          "hint": "A sentence starts with “Which”."
+        },
+        {
+          "wrong": "first my team",
+          "fixes": ["first. My team", "first, and my team", "first; my team"],
+          "explanation": "Run-on: “The sack race came first” and “my team finished last” are two sentences with nothing between them.",
+          "hint": "Look at the sack race sentence."
+        },
+        {
+          "wrong": "last. Because Jamal",
+          "fixes": ["last because Jamal"],
+          "explanation": "Fragment: a “because” clause can’t stand alone. Join it to the sentence it explains.",
+          "hint": "A sentence starts with “Because”."
+        },
+        {
+          "wrong": "it, I was not",
+          "fixes": ["it. I was not", "it, but I was not", "it; I was not"],
+          "explanation": "Comma splice: “He laughed about it” and “I was not happy” are both sentences. “But” shows the contrast.",
+          "hint": "Who laughed, and who wasn’t happy?"
+        },
+        {
+          "wrong": "tug-of-war. The worst part",
+          "fixes": [
+            "tug-of-war, the worst part",
+            "tug-of-war: the worst part",
+            "tug-of-war—the worst part",
+            "tug-of-war. It was the worst part",
+            "tug-of-war, which was the worst part"
+          ],
+          "explanation": "Fragment: “The worst part of the day” has no verb. Join it to the tug-of-war sentence, or add “It was”.",
+          "hint": "One “sentence” in the first paragraph has no verb."
+        },
+        {
+          "wrong": "middle everyone",
+          "fixes": [
+            "middle. Everyone",
+            "middle, and everyone",
+            "middle; everyone",
+            "middle, so everyone"
+          ],
+          "explanation": "Run-on: the rope snapping and everyone falling are two sentences.",
+          "hint": "What happened to the rope?"
+        },
+        {
+          "wrong": "over. Including Mr. Diaz",
+          "fixes": ["over, including Mr. Diaz"],
+          "explanation": "Fragment: “Including…” adds an example to the sentence before, so join it with a comma.",
+          "hint": "A sentence starts with “Including”."
+        },
+        {
+          "wrong": "hurt, we could not",
+          "fixes": ["hurt. We could not", "hurt, but we could not", "hurt; we could not"],
+          "explanation": "Comma splice: two sentences joined only by a comma.",
+          "hint": "The last sentence of the first paragraph."
+        },
+        {
+          "wrong": "stopped we all ran",
+          "fixes": [
+            "stopped. We all ran",
+            "stopped, and we all ran",
+            "stopped; we all ran",
+            "stopped, so we all ran"
+          ],
+          "explanation": "Run-on: “the rain stopped” and “we all ran outside” need a full stop, a semicolon or a comma and a joining word.",
+          "hint": "The first sentence of the second paragraph."
+        },
+        {
+          "wrong": "outside. Excited to finally",
+          "fixes": ["outside, excited to finally"],
+          "explanation": "Fragment: “Excited to finally use the field” has no subject or verb. It describes us, so join it with a comma.",
+          "hint": "A sentence starts with “Excited”."
+        },
+        {
+          "wrong": "event, our class won",
+          "fixes": [
+            "event. Our class won",
+            "event; our class won",
+            "event, and our class won",
+            "event because our class won"
+          ],
+          "explanation": "Comma splice: “The relay was the best event” and “our class won by a whole lap” are both sentences.",
+          "hint": "The relay sentence."
+        },
+        {
+          "wrong": "runners. Especially Ana",
+          "fixes": ["runners, especially Ana"],
+          "explanation": "Fragment: “Especially Ana…” is an example, so it joins the sentence before with a comma.",
+          "hint": "A sentence starts with “Especially”."
+        },
+        {
+          "wrong": "line the crowd",
+          "fixes": ["line. The crowd", "line, and the crowd", "line; the crowd"],
+          "explanation": "Run-on: Ana crossing the line and the crowd going wild are two sentences.",
+          "hint": "What happened when Ana finished?"
+        },
+        {
+          "wrong": "back, it poured",
+          "fixes": ["back. It poured", "back; it poured", "back, and it poured"],
+          "explanation": "Comma splice: “it poured again” is a complete sentence, so a comma alone can’t join it.",
+          "hint": "What did the clouds do?"
+        },
+        {
+          "wrong": "doors. Our shoes full",
+          "fixes": [
+            "doors with our shoes full",
+            "doors, our shoes full",
+            "doors. Our shoes were full"
+          ],
+          "explanation": "Fragment: “Our shoes full of water” has no verb. Join it with “with”, or add “were”.",
+          "hint": "One “sentence” about shoes has no verb."
+        },
+        {
+          "wrong": "up she laughed",
+          "fixes": ["up. She laughed", "up, and she laughed", "up; she laughed"],
+          "explanation": "Run-on: “My mom picked me up” and “she laughed at my muddy socks” are two sentences.",
+          "hint": "Who picked you up?"
+        },
+        {
+          "wrong": "mess, it was also",
+          "fixes": ["mess. It was also", "mess, but it was also", "mess; it was also"],
+          "explanation": "Comma splice. “But” is the best fix here: a mess, but also the most fun day.",
+          "hint": "Was field day a mess or fun?"
+        },
+        {
+          "wrong": "year. Even with all",
+          "fixes": ["year, even with all", "year even with all"],
+          "explanation": "Fragment: “Even with all the mud” has no subject or verb. Join it to the sentence before.",
+          "hint": "A sentence starts with “Even”."
+        },
+        {
+          "wrong": "sunny I will bring",
+          "fixes": [
+            "sunny. I will bring",
+            "sunny, but I will bring",
+            "sunny; I will bring",
+            "sunny, and I will bring"
+          ],
+          "explanation": "Run-on: hoping for sun and bringing extra socks are two sentences.",
+          "hint": "The very last sentence."
+        }
+      ]
+    }
+  },
+  {
+    "key": "e07.unit-check",
+    "type": "QUIZ",
+    "title": "Sentence Structure check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "c1",
+        "prompt": "What is the complete subject? “The girls on the swim team practise at dawn.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "The girls on the swim team"
+          },
+          {
+            "id": "b",
+            "text": "practise at dawn"
+          },
+          {
+            "id": "c",
+            "text": "the swim team"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The complete subject is who the sentence is about, with its describing words.",
+        "skill": "subjects and predicates"
+      },
+      {
+        "id": "c2",
+        "prompt": "What is the simple predicate (the verb)? “My grandpa grows tomatoes in his backyard.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "grandpa"
+          },
+          {
+            "id": "b",
+            "text": "grows"
+          },
+          {
+            "id": "c",
+            "text": "tomatoes"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The simple predicate is the verb: grows.",
+        "skill": "subjects and predicates"
+      },
+      {
+        "id": "c3",
+        "prompt": "Which sentence has a compound subject?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Lions and tigers hunt at night."
+          },
+          {
+            "id": "b",
+            "text": "Lions hunt and sleep."
+          },
+          {
+            "id": "c",
+            "text": "Lions hunt at night in the grass."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Two subjects, one verb: lions and tigers hunt.",
+        "skill": "subjects and predicates"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which sentence has a compound predicate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Jen and Max won."
+          },
+          {
+            "id": "b",
+            "text": "Jen cooked dinner and washed the dishes."
+          },
+          {
+            "id": "c",
+            "text": "Jen cooked dinner for Max."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "One subject, two verbs: Jen cooked … and washed.",
+        "skill": "subjects and predicates"
+      },
+      {
+        "id": "c5",
+        "prompt": "“Sit down.” Is this a complete sentence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Yes: the subject “you” is understood."
+          },
+          {
+            "id": "b",
+            "text": "No: it has no subject."
+          },
+          {
+            "id": "c",
+            "text": "No: it’s too short."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A command has an understood subject: (You) sit down.",
+        "skill": "subjects and predicates"
+      },
+      {
+        "id": "c6",
+        "prompt": "Which is a phrase, not a clause?",
+        "options": [
+          {
+            "id": "a",
+            "text": "during the storm"
+          },
+          {
+            "id": "b",
+            "text": "while it stormed"
+          },
+          {
+            "id": "c",
+            "text": "the storm passed"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“During the storm” has no subject and verb.",
+        "skill": "phrases and clauses"
+      },
+      {
+        "id": "c7",
+        "prompt": "Which is an independent clause?",
+        "options": [
+          {
+            "id": "a",
+            "text": "since the bus left"
+          },
+          {
+            "id": "b",
+            "text": "the bus left"
+          },
+          {
+            "id": "c",
+            "text": "after the bus left"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“The bus left” is a complete thought. Since and after make the others dependent.",
+        "skill": "phrases and clauses"
+      },
+      {
+        "id": "c8",
+        "prompt": "What is the dependent clause? “We cheered when the goal went in.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "We cheered"
+          },
+          {
+            "id": "b",
+            "text": "when the goal went in"
+          },
+          {
+            "id": "c",
+            "text": "the goal"
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“when the goal went in” has a subject and verb but can’t stand alone.",
+        "skill": "phrases and clauses"
+      },
+      {
+        "id": "c9",
+        "prompt": "Which sentence has a relative clause?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The book that I borrowed is overdue."
+          },
+          {
+            "id": "b",
+            "text": "The book on the shelf is overdue."
+          },
+          {
+            "id": "c",
+            "text": "The book is overdue again."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“that I borrowed” has a subject and verb and describes the book.",
+        "skill": "phrases and clauses"
+      },
+      {
+        "id": "c10",
+        "prompt": "Which sentence is punctuated correctly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "If it snows tomorrow we will build a fort."
+          },
+          {
+            "id": "b",
+            "text": "If it snows tomorrow, we will build a fort."
+          },
+          {
+            "id": "c",
+            "text": "If it snows, tomorrow we will build, a fort."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A comma follows a dependent clause that starts the sentence.",
+        "skill": "phrases and clauses"
+      },
+      {
+        "id": "c11",
+        "prompt": "Which is a fragment?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Because the store was closed."
+          },
+          {
+            "id": "b",
+            "text": "The store was closed."
+          },
+          {
+            "id": "c",
+            "text": "Close the store."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A “because” clause on its own leaves the thought unfinished.",
+        "skill": "fragments"
+      },
+      {
+        "id": "c12",
+        "prompt": "“Walking home in the snow.” What does this fragment need?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A subject and a main verb"
+          },
+          {
+            "id": "b",
+            "text": "Only a capital letter"
+          },
+          {
+            "id": "c",
+            "text": "Nothing: it’s complete"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Who was walking? Add them: I was walking home in the snow.",
+        "skill": "fragments"
+      },
+      {
+        "id": "c13",
+        "prompt": "Which is the best fix? “I have three pets. A cat, a dog and a lizard.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "I have three pets: a cat, a dog and a lizard."
+          },
+          {
+            "id": "b",
+            "text": "I have three pets, I have a cat, a dog and a lizard."
+          },
+          {
+            "id": "c",
+            "text": "I have. Three pets, a cat, a dog and a lizard."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Join the list to the sentence it belongs to. A colon introduces a list.",
+        "skill": "fragments"
+      },
+      {
+        "id": "c14",
+        "prompt": "“The movie was long. Which made me sleepy.” How do you fix it?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The movie was long, which made me sleepy."
+          },
+          {
+            "id": "b",
+            "text": "The movie was long which. Made me sleepy."
+          },
+          {
+            "id": "c",
+            "text": "The movie was long; which made me sleepy."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A “which” clause joins the sentence it describes with a comma.",
+        "skill": "fragments"
+      },
+      {
+        "id": "c15",
+        "prompt": "Which one is a complete sentence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The old house at the end of our street."
+          },
+          {
+            "id": "b",
+            "text": "The old house at the end of our street is empty."
+          },
+          {
+            "id": "c",
+            "text": "At the end of our street."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Only B has a verb (is) to go with its subject.",
+        "skill": "fragments"
+      },
+      {
+        "id": "c16",
+        "prompt": "“The dog barked all night we couldn’t sleep.” What is it?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A run-on"
+          },
+          {
+            "id": "b",
+            "text": "A comma splice"
+          },
+          {
+            "id": "c",
+            "text": "A fragment"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Two sentences with nothing between them.",
+        "skill": "run-ons"
+      },
+      {
+        "id": "c17",
+        "prompt": "Which is the correct fix? “The dog barked all night we couldn’t sleep.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "The dog barked all night, we couldn’t sleep."
+          },
+          {
+            "id": "b",
+            "text": "The dog barked all night, so we couldn’t sleep."
+          },
+          {
+            "id": "c",
+            "text": "The dog barked all night so, we couldn’t sleep."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A comma plus a joining word (so) joins two sentences. A comma alone makes a comma splice.",
+        "skill": "run-ons"
+      },
+      {
+        "id": "c18",
+        "prompt": "Which sentence is a run-on?",
+        "options": [
+          {
+            "id": "a",
+            "text": "I finished my essay then I watched TV."
+          },
+          {
+            "id": "b",
+            "text": "I finished my essay, and then I watched TV."
+          },
+          {
+            "id": "c",
+            "text": "After I finished my essay, I watched TV."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Then” isn’t a joining word. Fix: I finished my essay. Then I watched TV.",
+        "skill": "run-ons"
+      },
+      {
+        "id": "c19",
+        "prompt": "“Max loves soccer, he plays every weekend.” What is it?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A comma splice"
+          },
+          {
+            "id": "b",
+            "text": "A fragment"
+          },
+          {
+            "id": "c",
+            "text": "Correct"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Two complete sentences joined only by a comma.",
+        "skill": "comma splices"
+      },
+      {
+        "id": "c20",
+        "prompt": "Which fixes the comma splice? “Max loves soccer, he plays every weekend.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "Max loves soccer; he plays every weekend."
+          },
+          {
+            "id": "b",
+            "text": "Max loves soccer, plays, every weekend."
+          },
+          {
+            "id": "c",
+            "text": "Max loves soccer he plays every weekend."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A semicolon can join two complete sentences.",
+        "skill": "comma splices"
+      },
+      {
+        "id": "c21",
+        "prompt": "Which is punctuated correctly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It was late, however, we kept playing."
+          },
+          {
+            "id": "b",
+            "text": "It was late; however, we kept playing."
+          },
+          {
+            "id": "c",
+            "text": "It was late however we kept playing."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“However” needs a semicolon (or a full stop) before it and a comma after it.",
+        "skill": "comma splices"
+      },
+      {
+        "id": "c22",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The test was easy, I finished early."
+          },
+          {
+            "id": "b",
+            "text": "The test was easy, so I finished early."
+          },
+          {
+            "id": "c",
+            "text": "The test was easy I finished early."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Comma + so joins two sentences. A is a comma splice and C is a run-on.",
+        "skill": "comma splices"
+      },
+      {
+        "id": "c23",
+        "prompt": "Which joining words can fix a comma splice when you add them after the comma?",
+        "options": [
+          {
+            "id": "a",
+            "text": "and, but, or, so"
+          },
+          {
+            "id": "b",
+            "text": "then, also, however"
+          },
+          {
+            "id": "c",
+            "text": "very, really, too"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Coordinating conjunctions (and, but, or, so, for, nor, yet) can join two sentences after a comma. Then, also and however can’t.",
+        "skill": "comma splices"
+      },
+      {
+        "id": "c24",
+        "prompt": "Which version has no fragments, run-ons or comma splices?",
+        "options": [
+          {
+            "id": "a",
+            "text": "We reached the top. Tired but happy. The view was amazing."
+          },
+          {
+            "id": "b",
+            "text": "We reached the top, tired but happy. The view was amazing."
+          },
+          {
+            "id": "c",
+            "text": "We reached the top, the view was amazing we were happy."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B joins the phrase “tired but happy” to the sentence it describes. A has a fragment; C has a comma splice and a run-on.",
+        "skill": "fragments"
+      }
+    ]
+  },
+  {
+    "key": "e07.check-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "My opinion, built right",
+    "prompt": "Should students have homework on weekends? Write an opinion paragraph (8–12 sentences) that gives your answer and at least two reasons. Show off your sentence building: use at least one compound subject or compound predicate, at least two dependent clauses (because, when, although, if…) and one relative clause (who, which, that). Before you finish, proofread sentence by sentence: no fragments, run-ons or comma splices.",
+    "tips": [
+      "Opinion: I believe that… Reasons: First, … Also, … Finally, …",
+      "Dependent clause first? Comma after it: Although homework helps, weekends are for rest.",
+      "Proofread: who or what? does what? Is the thought finished? Two sentences joined? Use a full stop, a semicolon, or a comma and and/but/so."
+    ],
+    "constraints": {
+      "minWords": 90,
+      "maxWords": 280,
+      "minSentences": 8
+    },
+    "analyzers": ["structure", "connectors"],
+    "grammarFocus": ["dependent-clause", "relative-clause", "compound-predicate"]
+  }
+]
