@@ -50,6 +50,11 @@ export function WritePage({ submission }: { submission: SubmissionDetail }) {
         ← {back.label}
       </Link>
 
+      {/* On phones the prompt (and its h1) is hidden behind another tab: keep one h1 for screen readers. */}
+      {tab !== 'prompt' && (
+        <h1 className="sr-only lg:hidden">{submission.activity.content.title}</h1>
+      )}
+
       <div role="tablist" aria-label="Workspace" className="flex gap-2 lg:hidden">
         {TABS.map((t) => (
           <button
