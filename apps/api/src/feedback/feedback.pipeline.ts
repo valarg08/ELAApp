@@ -39,6 +39,9 @@ import {
   passiveNotes,
   quotes,
   reportedClauses,
+  SENTENCE_TYPES,
+  sentenceTypes,
+  varietyNotes,
   veryPhrases,
   senses,
   sentenceVariety,
@@ -81,6 +84,7 @@ const SKILL_NAMES: Record<string, string> = {
   speech: 'direct and reported speech',
   structure: 'sentence structure',
   punctuation: 'capitals and punctuation',
+  sentenceTypes: 'sentence types and variety',
 };
 
 /**
@@ -154,6 +158,7 @@ export class FeedbackPipeline {
     // 2. Deterministic analyzers: counts only go into the prompt.
     const stats = wordStats(text);
     const variety = sentenceVariety(text);
+    const typed = sentenceTypes(text);
     const evidence = [
       `${stats.words} words, ${stats.sentences} sentences, ${stats.paragraphs} paragraphs`,
       `sentence lengths: ${variety.short} short, ${variety.medium} medium, ${variety.long} long`,
@@ -165,6 +170,7 @@ export class FeedbackPipeline {
       `weak “very” phrases: ${veryPhrases(text).length}`,
       `passive verbs: ${passiveNotes(text).length}`,
       `quotes: ${quotes(text).length}, reported speech: ${reportedClauses(text).length}`,
+      `sentence types: ${SENTENCE_TYPES.map((t) => `${typed.filter((s) => s.type === t).length} ${t}`).join(', ')}; variety notes (stringy, choppy, too long, same opener): ${varietyNotes(text).length}`,
     ];
 
     // 3. LLM analyzers for this activity type.

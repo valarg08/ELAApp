@@ -1,0 +1,55 @@
+{
+  "slug": "essay-simple-sentences",
+  "order": 1,
+  "title": "Simple Sentences",
+  "estMinutes": 35,
+  "focusSkills": ["sentence-types", "simple-sentences"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which one hits harder at the end of a scary story? Why?",
+      "a": "The door, which had been locked for years, slowly began to open while we watched from the stairs.",
+      "b": "The door opened.",
+      "reveal": "B is a simple sentence: one subject, one verb, one complete thought. Simple doesn’t mean babyish. Short simple sentences land like a drumbeat, which is why writers save them for big moments."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What makes a sentence simple?",
+          "body": "A simple sentence has one independent clause: one subject–verb pair that makes a complete thought. “Dogs bark.” is simple. So is “The scruffy dog next door barks at every passing car.”"
+        },
+        {
+          "kind": "example",
+          "title": "Simple can still be long",
+          "text": "Compound subject: Maya and Leo built a robot.\nCompound predicate: The robot beeped and rolled away.\nPhrases: After lunch, the robot rolled across the gym floor.",
+          "note": "Two subjects sharing one verb, or one subject doing two things, is still one clause. Phrases (after lunch, across the gym floor) add detail without adding a clause."
+        },
+        {
+          "kind": "definition",
+          "title": "When to use them",
+          "body": "Use simple sentences for your clearest points: a claim, a key fact, a turning point. In an essay, “Homework should be optional.” is a strong simple sentence."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e09.simple-sort", "e09.simple-mc", "e09.simple-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e09.simple-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Why can a long sentence still be simple? Use one of your sentences to explain.",
+        "Where in an essay would a short simple sentence work best?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

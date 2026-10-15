@@ -1,0 +1,58 @@
+{
+  "slug": "essay-compound-complex-sentences",
+  "order": 4,
+  "title": "Compound-Complex Sentences",
+  "estMinutes": 40,
+  "focusSkills": ["sentence-types", "compound-complex-sentences"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "Building with blocks",
+      "paragraphs": [
+        "Think of clauses as building blocks.",
+        "A simple sentence is one block. A compound sentence is two blocks side by side. A complex sentence is one block with a smaller block leaning on it.",
+        "Now put them all together: two big blocks side by side, and a small one leaning on one of them. That’s a compound-complex sentence.",
+        "“When the bell rang, the students cheered, and the teacher smiled.”"
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The recipe",
+          "body": "A compound-complex sentence has at least two independent clauses and at least one dependent clause. Compound (two independents) + complex (a dependent) = compound-complex."
+        },
+        {
+          "kind": "example",
+          "title": "Find the parts",
+          "text": "When the storm hit, the lights went out, and we lit candles.\nDependent: When the storm hit\nIndependent 1: the lights went out\nIndependent 2: we lit candles",
+          "note": "Comma after the opening dependent clause, and a comma before “and” where the second independent clause begins."
+        },
+        {
+          "kind": "definition",
+          "title": "Use them sparingly",
+          "body": "One or two compound-complex sentences can tie ideas together beautifully, often near the end of a paragraph. A whole paragraph of them is exhausting to read."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e09.types-sort", "e09.cc-mc", "e09.cc-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e09.cc-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Take one of your compound-complex sentences apart. What are its clauses?",
+        "When might a compound-complex sentence be too much for the reader?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

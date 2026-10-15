@@ -1,0 +1,58 @@
+{
+  "slug": "essay-compound-sentences",
+  "order": 2,
+  "title": "Compound Sentences",
+  "estMinutes": 35,
+  "focusSkills": ["sentence-types", "compound-sentences"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Same two facts, different joining words. How does the meaning change?",
+      "a": "It was raining, so we played outside.",
+      "b": "It was raining, but we played outside.",
+      "reveal": "“So” says the rain caused the outdoor play, which makes no sense. “But” shows a surprise: we played despite the rain. In a compound sentence, the joining word tells the reader how the two ideas connect."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Two independent clauses",
+          "body": "A compound sentence joins two (or more) independent clauses: each could be a sentence on its own. Join them with a comma + a FANBOYS word (for, and, nor, but, or, yet, so) or with a semicolon."
+        },
+        {
+          "kind": "example",
+          "title": "Pick the joining word that fits",
+          "text": "and = adds: My brother plays guitar, and my sister sings.\nbut / yet = contrast: The test was hard, but I passed.\nso = result: I was hungry, so I made a sandwich.\nor = choice: You can take the bus, or you can walk.\n; = closely linked: The bell rang; everyone cheered.",
+          "note": "The comma goes before the FANBOYS word, not after it."
+        },
+        {
+          "kind": "compare",
+          "title": "Compound sentence or compound predicate?",
+          "telling": "The dog barked and ran away.",
+          "showing": "The dog barked, and the cat ran away.",
+          "labels": ["One subject: simple", "Two subjects: compound"],
+          "note": "Look after the joining word. Is there a new subject (the cat)? Then it’s a second clause, and it needs the comma."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e09.compound-blank", "e09.compound-sort", "e09.compound-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e09.compound-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which joining word did you find most useful? Why?",
+        "How can you tell a compound sentence from a simple sentence with two verbs?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

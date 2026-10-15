@@ -1,0 +1,61 @@
+{
+  "slug": "essay-combining-and-clarity",
+  "order": 6,
+  "title": "Combining & Clarity",
+  "estMinutes": 40,
+  "focusSkills": ["sentence-types", "combining", "clarity"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Read this out loud in one breath: “We went to the fair and it was crowded and we waited in line for an hour and then the ride broke so we went home and we were annoyed.” Where did you run out of air? How would you fix it?",
+      "placeholder": "I would split it after…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Combining: fewer, stronger sentences",
+          "body": "Choppy writing has too many short sentences. Combine them by joining with and/but/so, with because/when/although, with a who/which clause, or by folding one into the other as a phrase."
+        },
+        {
+          "kind": "example",
+          "title": "Four ways to combine",
+          "text": "Start: Ms. Lee is our coach. She played in college. She is strict.\nCompound: Ms. Lee is strict, but she is fair.\nComplex: Because she played in college, Ms. Lee knows the game.\nRelative clause: Ms. Lee, who played in college, is our coach.\nPhrase: Ms. Lee, our strict coach, played in college.",
+          "note": "Choose the way that shows how the ideas connect."
+        },
+        {
+          "kind": "compare",
+          "title": "Clarity: untangle stringy sentences",
+          "telling": "We waited an hour and the ride broke so we went home and we were annoyed.",
+          "showing": "We waited an hour. Then the ride broke, so we went home, annoyed.",
+          "labels": ["Stringy ✗", "Clear ✓"],
+          "note": "If a sentence has three or more “and”s or “so”s joining whole ideas, split it, or turn one idea into a because or when clause."
+        },
+        {
+          "kind": "definition",
+          "title": "Long isn’t the problem; tangled is",
+          "body": "A 30-word sentence can be perfectly clear if its parts are organised. But past about 40 words, readers lose track. Ask: can I split this where one idea ends?"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e09.combine-transform", "e09.clarity-mc", "e09.untangle-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e09.clarity-revision" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which combining method do you use most? Which would you like to try more?",
+        "Do you tend to write choppy sentences or stringy ones? How will you catch them?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

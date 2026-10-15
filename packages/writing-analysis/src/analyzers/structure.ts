@@ -87,6 +87,22 @@ const plainSpace = (text: string, a: Span, b: Span) => /^\s+$/.test(gap(text, a,
 const isCapital = (t: WordToken) => /^\p{Lu}/u.test(t.text);
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const QUOTE_MARK = /[“”"]/;
+/** after/before/since… can start a phrase ("after lunch") or a clause ("after we ate"). */
+const TIME_OPENER = /^(?:after|before|since|until|till|as)$/;
+
+/** "Before a big match, I…": a comma comes before the opener's first verb, so it's a phrase. */
+function phraseBeforeComma(
+  text: string,
+  tokens: readonly WordToken[],
+  finite: ReadonlySet<number>,
+  i: number,
+): boolean {
+  for (let k = i + 1; k < tokens.length; k++) {
+    if (gap(text, tokens[k - 1]!, tokens[k]!).includes(',')) return true;
+    if (finite.has(k)) return false;
+  }
+  return false;
+}
 
 /** Indexes of the words that are a finite verb (one that has a tense: was, ran, is eating, will go). */
 function finiteVerbs(text: string, tokens: readonly WordToken[]): Set<number> {
@@ -190,9 +206,9 @@ export function structureHits(text: string, tokens: readonly WordToken[]): Struc
   const second = tokens[1]!;
   const opensClause =
     SUBORDINATORS.has(first.lower) &&
-    (!/^(?:after|before|since|until|till|as)$/.test(first.lower) ||
-      CLAUSE_SUBJECTS.has(second.lower) ||
-      DETERMINERS.has(second.lower));
+    (!TIME_OPENER.test(first.lower) ||
+      ((CLAUSE_SUBJECTS.has(second.lower) || DETERMINERS.has(second.lower)) &&
+        !phraseBeforeComma(text, tokens, finite, 0)));
   if (finite.size > (opensClause ? 1 : 0) && !fragment) {
     hits.push({ feature: 'complete-sentence', span: sentenceSpan });
   }
@@ -231,10 +247,9 @@ export function structureHits(text: string, tokens: readonly WordToken[]): Struc
     if (SUBORDINATORS.has(w) && verbSoon && !PREPOSITIONS.has(next.lower)) {
       // "after lunch" is a phrase; "after we ate" a clause.
       if (
-        /^(?:after|before|since|until|till|as)$/.test(w) &&
-        !CLAUSE_SUBJECTS.has(next.lower) &&
-        !DETERMINERS.has(next.lower) &&
-        !isCapital(next)
+        TIME_OPENER.test(w) &&
+        ((!CLAUSE_SUBJECTS.has(next.lower) && !DETERMINERS.has(next.lower) && !isCapital(next)) ||
+          phraseBeforeComma(text, tokens, finite, i))
       )
         return;
       hits.push({
@@ -455,3 +470,69 @@ export function findStructureIssues(text: string): GrammarIssue[] {
   }
   return issues;
 }
+
+// ───────── Clauses (for sentence types) ─────────
+
+export interface ClauseCounts {
+  /** Clauses that could stand alone, joined by and/but/so… or a semicolon. */
+  independent: number;
+  /** because/when/if… clauses and who/which/that clauses. */
+  dependent: number;
+  /** A subject and a verb, and not a fragment. */
+  complete: boolean;
+  /** The words that join independent clauses (and, but, ;…), in order. */
+  joins: string[];
+}
+
+const FANBOYS = set('and but or so yet nor for');
+
+/** How many independent and dependent clauses one sentence has. */
+export function clauseCounts(text: string, tokens: readonly WordToken[]): ClauseCounts {
+  const finite = finiteVerbs(text, tokens);
+  const first = tokens[0];
+  if (!first || finite.size === 0) {
+    return { independent: 0, dependent: 0, complete: false, joins: [] };
+  }
+  const span = spanOf(text, first, tokens.at(-1));
+  const complete =
+    !fragmentIn(text, { span, tokens, finite }) &&
+    structureHits(text, tokens).some((h) => h.feature === 'complete-sentence');
+  const dependent = structureHits(text, tokens).filter(
+    (h) => h.feature === 'dependent-clause',
+  ).length;
+  const joins: string[] = [];
+  for (let k = 1; k < tokens.length - 1; k++) {
+    const t = tokens[k]!;
+    const before = gap(text, tokens[k - 1]!, t);
+    const semicolon = before.includes(';');
+    const fanboys =
+      FANBOYS.has(t.lower) &&
+      (t.lower !== 'for' || before.includes(',')) &&
+      !(t.lower === 'so' && tokens[k + 1]?.lower === 'that');
+    if (!semicolon && !fanboys) continue;
+    // A verb must come before the join, inside this sentence.
+    if (![...finite].some((f) => f < k)) continue;
+    // The subject of the new clause: skip the joining word, then a transition ("; however, we").
+    let s = fanboys ? k + 1 : k;
+    while (tokens[s] && (TRANSITIONS.has(tokens[s]!.lower) || ADVERBS.has(tokens[s]!.lower))) s++;
+    const subject = tokens[s];
+    // "barked and ran": a verb straight after "and" shares the subject (a compound predicate).
+    if (!subject || finite.has(s) || SUBORDINATORS.has(subject.lower)) continue;
+    let v = s + 1;
+    while (v < tokens.length && v <= s + 4 && !finite.has(v)) {
+      if (
+        PREPOSITIONS.has(tokens[v]!.lower) ||
+        /^(?:and|or|who|which|that)$/.test(tokens[v]!.lower)
+      )
+        break;
+      v++;
+    }
+    if (!finite.has(v)) continue;
+    joins.push(semicolon ? ';' : t.lower);
+  }
+  return { independent: 1 + joins.length, dependent, complete, joins };
+}
+
+/** Sentences with their words ("Mr. Diaz" kept together), for other analyzers. */
+export const structureSentences = (text: string): { span: Span; tokens: readonly WordToken[] }[] =>
+  split(text).map(({ span, tokens }) => ({ span, tokens }));

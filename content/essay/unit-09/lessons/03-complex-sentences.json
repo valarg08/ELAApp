@@ -1,0 +1,53 @@
+{
+  "slug": "essay-complex-sentences",
+  "order": 3,
+  "title": "Complex Sentences",
+  "estMinutes": 40,
+  "focusSkills": ["sentence-types", "complex-sentences"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Two facts: “The power went out.” “We finished the game by flashlight.” Join them in a way that shows WHEN or WHY something happened. Which word did you use to join them?",
+      "placeholder": "When the power went out, …"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "One main idea, one helper",
+          "body": "A complex sentence has one independent clause and at least one dependent clause. The dependent clause can’t stand alone: it starts with a word like because, when, although, if, since, until, while, or who, which, that."
+        },
+        {
+          "kind": "example",
+          "title": "Dependent clause first or last",
+          "text": "First (add a comma): Although it rained, we finished the game.\nLast (usually no comma): We finished the game although it rained.\nIn the middle: The girl who won the race is my cousin.",
+          "note": "Moving the dependent clause changes the emphasis: the end of a sentence is where readers notice most."
+        },
+        {
+          "kind": "definition",
+          "title": "Why essays love complex sentences",
+          "body": "They show how ideas connect: cause (because), contrast (although), condition (if), time (when, after). “Schools should start later because teenagers need more sleep” is a claim and a reason in one sentence."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e09.complex-highlight", "e09.complex-mc", "e09.complex-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e09.complex-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which subordinating conjunction will you use most in essays? Why?",
+        "Did putting the dependent clause first or last change how your sentence sounds?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

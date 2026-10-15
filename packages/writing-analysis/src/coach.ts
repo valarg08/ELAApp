@@ -55,6 +55,11 @@ import {
   passiveNotes,
   pronounIssues,
   punctuationIssues,
+  SENTENCE_TYPES,
+  SENTENCE_TYPE_LABELS,
+  type SentenceType,
+  sentenceTypes,
+  varietyNotes,
   verbIssues,
   veryPhrases,
   speechIssues,
@@ -89,6 +94,7 @@ export const ANALYZER_IDS = [
   'speech',
   'structure',
   'punctuation',
+  'sentenceTypes',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -127,6 +133,8 @@ export interface CoachReport {
   perspectives?: PerspectiveCheck[];
   /** Sound devices found, when the sound check ran (Unit 7). */
   sound?: { device: SoundDevice; count: number; span?: Span }[];
+  /** Each sentence with its type, when the sentence-types check ran (Essay Unit 9 sentence map). */
+  sentenceTypes?: (Span & { type?: SentenceType })[];
 }
 
 export interface Perspective {
@@ -762,6 +770,47 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
   }
 
+  if (enabled.has('sentenceTypes')) {
+    const typed = sentenceTypes(text);
+    report.sentenceTypes = typed.map((t) => ({ ...t.span, type: t.type }));
+    const notes = varietyNotes(text);
+    const counted = typed.filter((t) => t.type);
+    const used = SENTENCE_TYPES.filter((type) => counted.some((t) => t.type === type));
+    const note = notes[0];
+    if (note) {
+      const more = notes.length > 1 ? ` (${plural(notes.length - 1, 'more spot')} to check.)` : '';
+      nextSteps.push({
+        id: 'sentence-types',
+        analyzer: 'sentenceTypes',
+        title: VARIETY_TITLES[note.kind] ?? 'Check this sentence',
+        message: `${note.message}${more}`,
+        span: note.span,
+      });
+    } else if (counted.length >= 4 && used.length === 1) {
+      const only = used[0]!;
+      nextSteps.push({
+        id: 'sentence-types',
+        analyzer: 'sentenceTypes',
+        title: 'Mix your sentence types',
+        message: `All ${counted.length} of your sentences are ${SENTENCE_TYPE_LABELS[only].toLowerCase()}. Try ${MIX_IDEAS[only]}.`,
+      });
+    }
+    if (!note && counted.length >= 4 && used.length >= 3) {
+      // Quote the most complex sentence they wrote.
+      const best = [...SENTENCE_TYPES]
+        .reverse()
+        .map((type) => counted.find((t) => t.type === type))
+        .find((t) => t !== undefined);
+      strengths.push({
+        id: 'sentence-types',
+        analyzer: 'sentenceTypes',
+        title: 'A good mix of sentences',
+        message: `You use ${listing(used.map((t) => SENTENCE_TYPE_LABELS[t].toLowerCase()))} sentences, so your writing flows. Like this one: ${inQuotes(best!.span.text)}`,
+        span: best?.span,
+      });
+    }
+  }
+
   if (enabled.has('punctuation')) {
     const issues = punctuationIssues(text);
     if (issues[0]) nextSteps.push(issueCard('punctuation', 'Check this punctuation', issues));
@@ -1055,6 +1104,25 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
   return report;
 }
 
+const VARIETY_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
+  'stringy-sentence': 'Untangle this stringy sentence',
+  'long-sentence': 'Split this long sentence',
+  'choppy-sentences': 'Smooth out choppy sentences',
+  'repeated-opener': 'Vary how your sentences start',
+};
+
+/** What to try when every sentence is the same type. */
+const MIX_IDEAS: Record<SentenceType, string> = {
+  simple:
+    'joining two with a comma and and, but or so (compound), or with because or when (complex)',
+  compound:
+    'starting one with When…, Because… or Although… (complex), or a short simple sentence for your key point',
+  complex:
+    'a short simple sentence for your key point, or joining two ideas with a comma and but (compound)',
+  'compound-complex':
+    'a short simple sentence for your key point: short sentences hit hard after long ones',
+};
+
 /** Quote a bit of the student's text, unless it already has its own quotation marks. */
 const inQuotes = (t: string) => (/[“”"]/.test(t) ? t : `“${t}”`);
 
@@ -1069,7 +1137,8 @@ function issueCard(
     | 'voice'
     | 'speech'
     | 'structure'
-    | 'punctuation',
+    | 'punctuation'
+    | 'sentenceTypes',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

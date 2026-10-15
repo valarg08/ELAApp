@@ -10,6 +10,9 @@ import {
   type CoachCard,
   type CoachReport,
   SENSES,
+  SENTENCE_TYPES,
+  SENTENCE_TYPE_LABELS,
+  type SentenceType,
   type Sense,
   type Span,
   MOOD_POLES,
@@ -146,6 +149,13 @@ export function CoachPanel({
             {checked.report.figurative && (
               <FigurativeMeter
                 devices={checked.report.figurative}
+                canShow={canShow}
+                onShow={onShow}
+              />
+            )}
+            {checked.report.sentenceTypes && checked.report.sentenceTypes.length > 0 && (
+              <SentenceMap
+                sentences={checked.report.sentenceTypes}
                 canShow={canShow}
                 onShow={onShow}
               />
@@ -465,6 +475,59 @@ function SoundMeter({
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+const TYPE_STYLES: Record<SentenceType, { badge: string; className: string }> = {
+  simple: { badge: 'S', className: 'border-border bg-card' },
+  compound: { badge: 'C', className: 'border-brand bg-card' },
+  complex: { badge: 'Cx', className: 'border-ok bg-card' },
+  'compound-complex': { badge: 'CC', className: 'border-warn bg-card' },
+};
+
+/** The sentence map (Essay Unit 9): every sentence with its type, and how many of each. */
+function SentenceMap({
+  sentences,
+  canShow,
+  onShow,
+}: {
+  sentences: NonNullable<CoachReport['sentenceTypes']>;
+  canShow: (span: Span | undefined) => span is Span;
+  onShow: (span: Span) => void;
+}) {
+  const count = (type: SentenceType) => sentences.filter((s) => s.type === type).length;
+  return (
+    <div className="flex flex-col gap-2">
+      <h3 className="font-semibold">Your sentence map</h3>
+      <p className="text-sm text-muted">
+        {SENTENCE_TYPES.map((t) => `${SENTENCE_TYPE_LABELS[t]} ${count(t)}`).join(' · ')}
+      </p>
+      <ol className="flex flex-wrap gap-1" aria-label="The type of each sentence">
+        {sentences.map((s, i) => {
+          const style = s.type ? TYPE_STYLES[s.type] : undefined;
+          const label = s.type ? SENTENCE_TYPE_LABELS[s.type] : 'Not a full sentence?';
+          const span = { start: s.start, end: s.end, text: s.text };
+          return (
+            <li key={s.start}>
+              <button
+                type="button"
+                disabled={!canShow(span)}
+                onClick={() => onShow(span)}
+                title={s.text}
+                className={`min-h-11 rounded-lg border px-2 py-1 text-left text-sm focus-visible:outline-3 focus-visible:outline-brand ${style?.className ?? 'border-dashed border-border text-muted'}`}
+                aria-label={`Sentence ${i + 1}: ${label}. Show it in my writing`}
+              >
+                <span className="font-semibold">{i + 1}</span>{' '}
+                <span aria-hidden="true">{style?.badge ?? '?'}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+      <p className="text-xs text-muted">
+        S simple · C compound · Cx complex · CC compound-complex · ? check it’s a full sentence
+      </p>
     </div>
   );
 }

@@ -60,6 +60,14 @@ import {
   findPunctuationIssues,
   punctuationHits,
 } from './punctuation.js';
+import {
+  SENTENCE_TYPE_FEATURES,
+  SENTENCE_TYPE_FEATURE_EXAMPLES,
+  SENTENCE_TYPE_FEATURE_LABELS,
+  type SentenceTypeFeature,
+  sentenceTypeHits,
+  varietyNotes as findVarietyNotes,
+} from './sentence-types.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -84,6 +92,7 @@ export const GRAMMAR_FEATURES = [
   ...SPEECH_FEATURES,
   ...STRUCTURE_FEATURES,
   ...PUNCTUATION_FEATURES,
+  ...SENTENCE_TYPE_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -104,6 +113,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   ...SPEECH_FEATURE_LABELS,
   ...STRUCTURE_FEATURE_LABELS,
   ...PUNCTUATION_FEATURE_LABELS,
+  ...SENTENCE_TYPE_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -124,6 +134,7 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   ...SPEECH_FEATURE_EXAMPLES,
   ...STRUCTURE_FEATURE_EXAMPLES,
   ...PUNCTUATION_FEATURE_EXAMPLES,
+  ...SENTENCE_TYPE_FEATURE_EXAMPLES,
 };
 
 /** The Coach skill a grammar feature belongs to. */
@@ -138,7 +149,8 @@ export function grammarSkillOf(
   | 'voice'
   | 'speech'
   | 'structure'
-  | 'punctuation' {
+  | 'punctuation'
+  | 'sentenceTypes' {
   if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
   if ((MODIFIER_FEATURES as readonly string[]).includes(feature)) return 'modifiers';
   if ((CONNECTOR_FEATURES as readonly string[]).includes(feature)) return 'connectors';
@@ -146,6 +158,7 @@ export function grammarSkillOf(
   if ((SPEECH_FEATURES as readonly string[]).includes(feature)) return 'speech';
   if ((STRUCTURE_FEATURES as readonly string[]).includes(feature)) return 'structure';
   if ((PUNCTUATION_FEATURES as readonly string[]).includes(feature)) return 'punctuation';
+  if ((SENTENCE_TYPE_FEATURES as readonly string[]).includes(feature)) return 'sentenceTypes';
   return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
 }
 
@@ -153,6 +166,7 @@ export type {
   ConnectorFeature,
   ModifierFeature,
   PunctuationFeature,
+  SentenceTypeFeature,
   SpeechFeature,
   StructureFeature,
   VerbFeature,
@@ -358,6 +372,7 @@ export function grammarFeatures(text: string): FeatureHit[] {
     for (const hit of voiceHits(text, tokens)) hits.push(hit);
     for (const hit of structureHits(text, tokens)) hits.push(hit);
     for (const hit of punctuationHits(text, sentence, tokens)) hits.push(hit);
+    for (const hit of sentenceTypeHits(text, sentence, tokens)) hits.push(hit);
   }
   // Speech works on the whole text: a quote can cross the sentence splitter (“Ready?” asked Sam.).
   for (const hit of speechHits(text)) hits.push(hit);
@@ -452,7 +467,11 @@ export interface GrammarIssue {
     | 'apostrophe-confusion'
     | 'colon-use'
     | 'semicolon-use'
-    | 'pair-comma';
+    | 'pair-comma'
+    | 'stringy-sentence'
+    | 'long-sentence'
+    | 'choppy-sentences'
+    | 'repeated-opener';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -689,6 +708,11 @@ export const structureIssues = (text: string): GrammarIssue[] => findStructureIs
 
 /** Capital and punctuation mistakes: "we went", "in the Summer", "dont", "its raining", "However we", "are: ". */
 export const punctuationIssues = (text: string): GrammarIssue[] => findPunctuationIssues(text);
+
+/** Style notes for sentence variety (stringy, choppy, too long, same opener): not counted as mistakes. */
+export const varietyNotes = (text: string): GrammarIssue[] => findVarietyNotes(text);
+export { SENTENCE_TYPES, SENTENCE_TYPE_LABELS, sentenceTypes } from './sentence-types.js';
+export type { SentenceType, TypedSentence } from './sentence-types.js';
 
 /** Every grammar mistake the checks know about, in the order they appear (one per stretch of text). */
 export const grammarIssues = (text: string): GrammarIssue[] =>

@@ -1,0 +1,1207 @@
+[
+  {
+    "key": "e09.simple-sort",
+    "type": "SORT",
+    "title": "Simple or not?",
+    "instructions": "A simple sentence has one subject–verb pair (it can share two subjects or two verbs). Sort each sentence.",
+    "buckets": [
+      { "id": "simple", "label": "Simple sentence" },
+      { "id": "more", "label": "More than one clause" }
+    ],
+    "items": [
+      { "id": "dogs", "text": "Dogs bark.", "bucketId": "simple" },
+      {
+        "id": "scruffy",
+        "text": "The scruffy dog next door barks at every car.",
+        "bucketId": "simple"
+      },
+      { "id": "maya", "text": "Maya and Leo built a robot.", "bucketId": "simple" },
+      { "id": "beeped", "text": "The robot beeped and rolled away.", "bucketId": "simple" },
+      { "id": "lunch", "text": "After lunch, we played tag in the park.", "bucketId": "simple" },
+      { "id": "rang", "text": "The bell rang, and we ran outside.", "bucketId": "more" },
+      { "id": "because", "text": "We stayed inside because it was raining.", "bucketId": "more" },
+      { "id": "who", "text": "The girl who won the race is my cousin.", "bucketId": "more" },
+      {
+        "id": "semicolon",
+        "text": "The lights flickered; the room went dark.",
+        "bucketId": "more"
+      },
+      { "id": "running", "text": "Running to the bus, Sam dropped his bag.", "bucketId": "simple" }
+    ]
+  },
+  {
+    "key": "e09.simple-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Spot the simple sentence",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is simple?",
+        "options": [
+          { "id": "a", "text": "My cousins and I swam in the lake and ate lunch on the dock." },
+          { "id": "b", "text": "My cousins swam, and I ate lunch." },
+          { "id": "c", "text": "I ate lunch while my cousins swam." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It’s long, but there’s only one clause: a compound subject (My cousins and I) doing two things (swam… and ate)."
+      },
+      {
+        "id": "q2",
+        "prompt": "How many independent clauses does a simple sentence have?",
+        "options": [
+          { "id": "a", "text": "One" },
+          { "id": "b", "text": "Two" },
+          { "id": "c", "text": "One, plus a dependent clause" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A simple sentence is exactly one independent clause, with no dependent clauses."
+      },
+      {
+        "id": "q3",
+        "prompt": "“During the long summer holiday, my best friend from school visited her grandparents in Mexico.” What type is it?",
+        "options": [
+          { "id": "a", "text": "Simple" },
+          { "id": "b", "text": "Compound" },
+          { "id": "c", "text": "Complex" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One subject (my best friend) and one verb (visited). Everything else is phrases."
+      },
+      {
+        "id": "q4",
+        "prompt": "Where does a short simple sentence work best in an essay?",
+        "options": [
+          { "id": "a", "text": "Everywhere, so the essay is easy to read" },
+          { "id": "b", "text": "For a key point you want the reader to notice" },
+          { "id": "c", "text": "Never: essays need long sentences" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A short simple sentence stands out, especially after longer ones. Save it for what matters most."
+      }
+    ]
+  },
+  {
+    "key": "e09.simple-transform",
+    "type": "TRANSFORM",
+    "title": "Simple, but richer",
+    "instructions": "Combine the sentences into ONE simple sentence: one subject–verb pair. Use a compound subject, a compound predicate or a phrase, as the task says.",
+    "items": [
+      {
+        "id": "subject",
+        "task": "Use a compound subject.",
+        "source": "Ava plays chess. Ben plays chess.",
+        "answers": ["Ava and Ben play chess.", "Ben and Ava play chess."],
+        "hints": [
+          "Who plays chess? Put both names before the verb.",
+          "Two people: play, not plays."
+        ],
+        "explanation": "Ava and Ben play chess. One verb, shared by two subjects."
+      },
+      {
+        "id": "predicate",
+        "task": "Use a compound predicate.",
+        "source": "The puppy chewed my shoe. The puppy hid under the bed.",
+        "answers": ["The puppy chewed my shoe and hid under the bed."],
+        "hints": ["Keep one subject (The puppy) and join the two actions with “and”."],
+        "explanation": "The puppy chewed my shoe and hid under the bed. One subject doing two things."
+      },
+      {
+        "id": "phrase",
+        "task": "Turn the second sentence into a phrase at the start.",
+        "source": "We ate pizza. It was after the game.",
+        "answers": ["After the game, we ate pizza.", "After the game we ate pizza."],
+        "hints": ["When did you eat pizza? Start with that phrase.", "After the game, …"],
+        "explanation": "After the game, we ate pizza. The time phrase adds detail without adding a clause."
+      },
+      {
+        "id": "both",
+        "task": "Use a compound subject AND a compound predicate.",
+        "source": "Mia cleaned the kitchen. Jon cleaned the kitchen. Mia washed the dishes. Jon washed the dishes.",
+        "answers": [
+          "Mia and Jon cleaned the kitchen and washed the dishes.",
+          "Jon and Mia cleaned the kitchen and washed the dishes."
+        ],
+        "hints": ["Two people did the same two things.", "Mia and Jon cleaned … and washed …"],
+        "explanation": "Mia and Jon cleaned the kitchen and washed the dishes. Still just one clause."
+      }
+    ]
+  },
+  {
+    "key": "e09.simple-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Four simple sentences",
+    "prompt": "Write four simple sentences about a sport, game or hobby you enjoy. Each sentence has its own task, listed above the writing box. Each one must have only one subject–verb pair, so no and/but/so joining two clauses, and no because, when or who clauses.",
+    "tips": [
+      "Short and strong: Soccer is my favourite sport.",
+      "Compound subject: My sister and I play every Saturday.",
+      "Compound predicate: We stretch, warm up and run drills. Phrase: Before every game, …"
+    ],
+    "constraints": { "minWords": 25, "maxWords": 110, "minSentences": 4 },
+    "analyzers": ["sentenceTypes", "structure"],
+    "grammarFocus": ["simple-sentence"],
+    "sentenceSet": {
+      "label": "Your four simple sentences",
+      "sentences": [
+        {
+          "ask": "Name the sport, game or hobby in a short simple sentence.",
+          "needs": ["simple-sentence"]
+        },
+        {
+          "ask": "Use a compound subject: two people (or things) doing it.",
+          "needs": ["simple-sentence", "compound-subject"]
+        },
+        {
+          "ask": "Use a compound predicate: one subject doing two things.",
+          "needs": ["simple-sentence", "compound-predicate"]
+        },
+        {
+          "ask": "Start with a phrase and a comma (Before a game, … / On weekends, …).",
+          "needs": ["simple-sentence", "intro-comma"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e09.compound-blank",
+    "type": "FILL_BLANK",
+    "title": "Choose the joining word",
+    "instructions": "Pick the FANBOYS word that shows how the two clauses connect.",
+    "items": [
+      {
+        "id": "rain",
+        "sentence": "It was raining, ___ we played inside.",
+        "choices": ["so", "but", "or"],
+        "answers": ["so"],
+        "hint": "Playing inside is the result of the rain.",
+        "explanation": "so = result."
+      },
+      {
+        "id": "hard",
+        "sentence": "The test was hard, ___ I still passed.",
+        "choices": ["but", "so", "and"],
+        "answers": ["but", "yet"],
+        "hint": "Passing is a surprise after a hard test.",
+        "explanation": "but (or yet) = contrast."
+      },
+      {
+        "id": "bus",
+        "sentence": "You can take the bus, ___ you can ride your bike.",
+        "choices": ["or", "so", "for"],
+        "answers": ["or"],
+        "hint": "It’s a choice between two things.",
+        "explanation": "or = choice."
+      },
+      {
+        "id": "guitar",
+        "sentence": "My brother plays guitar, ___ my sister plays drums.",
+        "choices": ["and", "so", "nor"],
+        "answers": ["and"],
+        "hint": "The second fact is simply added to the first.",
+        "explanation": "and = adding another idea."
+      },
+      {
+        "id": "tired",
+        "sentence": "She went to bed early, ___ she was exhausted.",
+        "choices": ["for", "or", "yet"],
+        "answers": ["for"],
+        "hint": "The second clause gives a reason. Which FANBOYS word means “because”?",
+        "explanation": "for = because (a little formal)."
+      }
+    ]
+  },
+  {
+    "key": "e09.compound-sort",
+    "type": "SORT",
+    "title": "Compound sentence or compound predicate?",
+    "instructions": "Look after the joining word. Is there a new subject? Sort each sentence.",
+    "buckets": [
+      { "id": "compound", "label": "Compound sentence (two clauses)" },
+      { "id": "simple", "label": "Simple (two verbs, one subject)" }
+    ],
+    "items": [
+      { "id": "barked", "text": "The dog barked and ran away.", "bucketId": "simple" },
+      { "id": "cat", "text": "The dog barked, and the cat ran away.", "bucketId": "compound" },
+      { "id": "laughed", "text": "We laughed but kept working.", "bucketId": "simple" },
+      { "id": "teacher", "text": "We laughed, but the teacher frowned.", "bucketId": "compound" },
+      { "id": "semicolon", "text": "The game ended; nobody moved.", "bucketId": "compound" },
+      { "id": "packed", "text": "Leo packed his bag and caught the bus.", "bucketId": "simple" },
+      { "id": "hungry", "text": "I was hungry, so I made a sandwich.", "bucketId": "compound" },
+      { "id": "sang", "text": "The choir sang and danced on stage.", "bucketId": "simple" }
+    ]
+  },
+  {
+    "key": "e09.compound-transform",
+    "type": "TRANSFORM",
+    "title": "Build compound sentences",
+    "instructions": "Join the two sentences into one compound sentence, the way the task says. Remember the comma before the FANBOYS word.",
+    "items": [
+      {
+        "id": "but",
+        "task": "Join them with “but”.",
+        "source": "The movie was long. We loved it.",
+        "answers": ["The movie was long, but we loved it."],
+        "hints": ["Swap the full stop for a comma, then add “but”.", "The movie was long, but …"],
+        "explanation": "The movie was long, but we loved it. “but” shows the contrast."
+      },
+      {
+        "id": "so",
+        "task": "Join them with “so”.",
+        "source": "I forgot my lunch. My friend shared hers.",
+        "answers": ["I forgot my lunch, so my friend shared hers."],
+        "hints": ["The second clause is the result of the first.", "…, so my friend …"],
+        "explanation": "I forgot my lunch, so my friend shared hers."
+      },
+      {
+        "id": "semicolon",
+        "task": "Join them with a semicolon.",
+        "source": "The crowd cheered. The players waved.",
+        "answers": ["The crowd cheered; the players waved."],
+        "hints": ["After a semicolon, the next word stays small."],
+        "explanation": "The crowd cheered; the players waved."
+      },
+      {
+        "id": "and",
+        "task": "Join them with “and”.",
+        "source": "Maya wrote the song. Her brother played the piano.",
+        "answers": ["Maya wrote the song, and her brother played the piano."],
+        "hints": ["Two subjects (Maya, her brother), so the comma goes before “and”."],
+        "explanation": "Maya wrote the song, and her brother played the piano."
+      }
+    ]
+  },
+  {
+    "key": "e09.compound-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Four compound sentences",
+    "prompt": "Write four compound sentences about a time you tried something new. Each sentence has its own task, listed above the writing box. Each one needs two independent clauses: two subjects with their own verbs.",
+    "tips": [
+      "Comma + FANBOYS: I was nervous, but my friend cheered me on.",
+      "Semicolon: The water was freezing; I jumped in anyway.",
+      "Check: is there a new subject after the joining word?"
+    ],
+    "constraints": { "minWords": 35, "maxWords": 140, "minSentences": 4 },
+    "analyzers": ["sentenceTypes", "connectors"],
+    "grammarFocus": ["compound-sentence"],
+    "sentenceSet": {
+      "label": "Your four compound sentences",
+      "sentences": [
+        {
+          "ask": "Say what you tried, joining two clauses with “and”.",
+          "needs": ["compound-sentence"]
+        },
+        { "ask": "Show a contrast with “but” or “yet”.", "needs": ["compound-sentence"] },
+        { "ask": "Show a result with “so”.", "needs": ["compound-sentence"] },
+        {
+          "ask": "Join two closely linked clauses with a semicolon.",
+          "needs": ["compound-sentence", "semicolon"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e09.complex-highlight",
+    "type": "HIGHLIGHT",
+    "title": "Tap the clause starters",
+    "instructions": "Each sentence has one dependent clause. Tap the word that starts it (because, when, although, who, which…). There are five.",
+    "text": "Although the hike was long, nobody complained. We stopped when we reached the lake. The ranger who met us there told us about the fish. We ate lunch, which tasted amazing after the climb. We headed back because the sky was getting dark.",
+    "targets": ["Although", "when", "who", "which", "because"],
+    "explanation": "Although (contrast) · when (time) · who (describes the ranger) · which (describes lunch) · because (reason). Each starts a clause that can’t stand alone."
+  },
+  {
+    "key": "e09.complex-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Complex sentences",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is complex?",
+        "options": [
+          { "id": "a", "text": "The bus was late, so we walked." },
+          { "id": "b", "text": "Because the bus was late, we walked." },
+          { "id": "c", "text": "The bus was late. We walked." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Because the bus was late” is a dependent clause joined to an independent one."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which word starts the dependent clause? “The book that I borrowed is overdue.”",
+        "options": [
+          { "id": "a", "text": "The" },
+          { "id": "b", "text": "that" },
+          { "id": "c", "text": "is" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“that I borrowed” describes the book. It’s a relative clause, so the sentence is complex."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which punctuation is right?",
+        "options": [
+          { "id": "a", "text": "When the bell rang we left." },
+          { "id": "b", "text": "When the bell rang, we left." },
+          { "id": "c", "text": "When, the bell rang we left." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A dependent clause at the start takes a comma after it."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which conjunction shows a contrast?",
+        "options": [
+          { "id": "a", "text": "because" },
+          { "id": "b", "text": "although" },
+          { "id": "c", "text": "when" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "although = in spite of. because = reason; when = time."
+      },
+      {
+        "id": "q5",
+        "prompt": "Which is NOT a complete complex sentence?",
+        "options": [
+          { "id": "a", "text": "If you finish early, you can read." },
+          { "id": "b", "text": "Since the store was closed." },
+          { "id": "c", "text": "We waited until the rain stopped." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Since the store was closed.” is a dependent clause on its own: a fragment. It needs an independent clause."
+      }
+    ]
+  },
+  {
+    "key": "e09.complex-transform",
+    "type": "TRANSFORM",
+    "title": "Build complex sentences",
+    "instructions": "Join the two sentences into one complex sentence using the word the task gives.",
+    "items": [
+      {
+        "id": "because",
+        "task": "Use “because” in the middle.",
+        "source": "We cancelled the picnic. It was raining.",
+        "answers": ["We cancelled the picnic because it was raining."],
+        "hints": ["Which sentence is the reason? Put “because” before it."],
+        "explanation": "We cancelled the picnic because it was raining. No comma needed when the clause comes last."
+      },
+      {
+        "id": "when",
+        "task": "Start with “When”.",
+        "source": "The alarm rang. Everyone jumped.",
+        "answers": ["When the alarm rang, everyone jumped."],
+        "hints": ["When the alarm rang, …", "Don’t forget the comma after the opening clause."],
+        "explanation": "When the alarm rang, everyone jumped."
+      },
+      {
+        "id": "although",
+        "task": "Start with “Although”.",
+        "source": "The hill was steep. We reached the top.",
+        "answers": ["Although the hill was steep, we reached the top."],
+        "hints": ["Although the hill was steep, …"],
+        "explanation": "Although the hill was steep, we reached the top. “Although” shows the contrast."
+      },
+      {
+        "id": "who",
+        "task": "Use “who” to describe Mr. Diaz.",
+        "source": "Mr. Diaz teaches art. Mr. Diaz painted the mural.",
+        "answers": [
+          "Mr. Diaz, who teaches art, painted the mural.",
+          "Mr. Diaz, who painted the mural, teaches art."
+        ],
+        "hints": [
+          "Mr. Diaz, who …, painted the mural.",
+          "Extra information takes a comma on both sides."
+        ],
+        "explanation": "Mr. Diaz, who teaches art, painted the mural."
+      }
+    ]
+  },
+  {
+    "key": "e09.complex-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Four complex sentences",
+    "prompt": "Should students be allowed to use phones at lunch? Write four complex sentences giving your opinion and reasons. Each sentence has its own task, listed above the writing box.",
+    "tips": [
+      "Reason: Students should use phones at lunch because they can relax.",
+      "Contrast first: Although phones can distract, lunch is free time.",
+      "Who/which: Students who finish eating early could …"
+    ],
+    "constraints": { "minWords": 35, "maxWords": 150, "minSentences": 4 },
+    "analyzers": ["sentenceTypes", "connectors"],
+    "grammarFocus": ["complex-sentence", "dependent-clause"],
+    "sentenceSet": {
+      "label": "Your four complex sentences",
+      "sentences": [
+        {
+          "ask": "Give your opinion with a reason, using “because”.",
+          "needs": ["complex-sentence"]
+        },
+        {
+          "ask": "Start with “Although” or “Even though” to admit the other side, then a comma.",
+          "needs": ["complex-sentence", "intro-comma"]
+        },
+        { "ask": "Use “If” to describe what would happen.", "needs": ["complex-sentence"] },
+        {
+          "ask": "Describe a group of people with a who clause.",
+          "needs": ["complex-sentence", "relative-clause"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e09.types-sort",
+    "type": "SORT",
+    "title": "Sort the four types",
+    "instructions": "Count the clauses in each sentence. Sort it into its type.",
+    "buckets": [
+      { "id": "simple", "label": "Simple" },
+      { "id": "compound", "label": "Compound" },
+      { "id": "complex", "label": "Complex" },
+      { "id": "cc", "label": "Compound-complex" }
+    ],
+    "items": [
+      { "id": "s1", "text": "The storm hit the coast.", "bucketId": "simple" },
+      { "id": "s2", "text": "Maya and Leo fixed the bike and rode home.", "bucketId": "simple" },
+      { "id": "c1", "text": "The storm hit, but the town was ready.", "bucketId": "compound" },
+      { "id": "c2", "text": "The bell rang; everyone cheered.", "bucketId": "compound" },
+      { "id": "x1", "text": "When the storm hit, the lights went out.", "bucketId": "complex" },
+      { "id": "x2", "text": "The girl who won the race is my cousin.", "bucketId": "complex" },
+      { "id": "x3", "text": "We left early because it was snowing.", "bucketId": "complex" },
+      {
+        "id": "cc1",
+        "text": "When the storm hit, the lights went out, and we lit candles.",
+        "bucketId": "cc"
+      },
+      {
+        "id": "cc2",
+        "text": "I wanted to stay, but we left because it was late.",
+        "bucketId": "cc"
+      },
+      {
+        "id": "cc3",
+        "text": "Although we lost, we played well; the coach was proud.",
+        "bucketId": "cc"
+      }
+    ]
+  },
+  {
+    "key": "e09.cc-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Compound-complex sentences",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What does a compound-complex sentence need?",
+        "options": [
+          { "id": "a", "text": "Two independent clauses" },
+          { "id": "b", "text": "Two independent clauses and at least one dependent clause" },
+          { "id": "c", "text": "One independent clause and two dependent clauses" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Compound (2+ independent) + complex (1+ dependent)."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which sentence is compound-complex?",
+        "options": [
+          { "id": "a", "text": "Because we were late, we missed the bus." },
+          { "id": "b", "text": "We were late, so we missed the bus." },
+          { "id": "c", "text": "Because we were late, we missed the bus, and Mom drove us." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Dependent: Because we were late. Independent: we missed the bus. Independent: Mom drove us."
+      },
+      {
+        "id": "q3",
+        "prompt": "“The team that won the trophy celebrated, but the losers went home.” How many independent clauses?",
+        "options": [
+          { "id": "a", "text": "One" },
+          { "id": "b", "text": "Two" },
+          { "id": "c", "text": "Three" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The team… celebrated / the losers went home. “that won the trophy” is a dependent clause."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "After the movie ended we went home and we slept." },
+          { "id": "b", "text": "After the movie ended, we went home, and we slept." },
+          { "id": "c", "text": "After the movie ended, we went home and, we slept." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A comma after the opening dependent clause, and a comma before “and” joining the two independent clauses."
+      }
+    ]
+  },
+  {
+    "key": "e09.cc-transform",
+    "type": "TRANSFORM",
+    "title": "Build compound-complex sentences",
+    "instructions": "Combine the three sentences into one compound-complex sentence, the way the task says.",
+    "items": [
+      {
+        "id": "storm",
+        "task": "Start with “When”, and join the last two with “, and”.",
+        "source": "The storm hit. The lights went out. We lit candles.",
+        "answers": ["When the storm hit, the lights went out, and we lit candles."],
+        "hints": ["When the storm hit, …", "…, the lights went out, and we lit candles."],
+        "explanation": "When the storm hit, the lights went out, and we lit candles."
+      },
+      {
+        "id": "late",
+        "task": "Join the first two with “, but”, and add the reason with “because”.",
+        "source": "I wanted to stay. We left. It was late.",
+        "answers": ["I wanted to stay, but we left because it was late."],
+        "hints": ["I wanted to stay, but we left …", "… because it was late."],
+        "explanation": "I wanted to stay, but we left because it was late."
+      },
+      {
+        "id": "although",
+        "task": "Start with “Although”, and join the last two with a semicolon.",
+        "source": "We lost. We played well. The coach was proud.",
+        "answers": ["Although we lost, we played well; the coach was proud."],
+        "hints": ["Although we lost, we played well …", "Use a semicolon before “the coach”."],
+        "explanation": "Although we lost, we played well; the coach was proud."
+      }
+    ]
+  },
+  {
+    "key": "e09.cc-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Three compound-complex sentences",
+    "prompt": "Write three compound-complex sentences about a time something went wrong but turned out fine. Each sentence has its own task, listed above the writing box. Each needs two independent clauses and a dependent clause.",
+    "tips": [
+      "Dependent first: When the cake fell, I panicked, but my dad laughed.",
+      "Dependent last: The cake fell, so we bought cupcakes because the party was in an hour.",
+      "Relative clause: My friend, who loves baking, came over, and we started again."
+    ],
+    "constraints": { "minWords": 40, "maxWords": 150, "minSentences": 3 },
+    "analyzers": ["sentenceTypes", "connectors"],
+    "grammarFocus": ["compound-complex-sentence"],
+    "sentenceSet": {
+      "label": "Your three compound-complex sentences",
+      "sentences": [
+        {
+          "ask": "Start with a dependent clause (When…, After…, Because…), then two independent clauses joined with , and/, but/, so.",
+          "needs": ["compound-complex-sentence", "intro-comma"]
+        },
+        {
+          "ask": "Join two independent clauses, then add a because or although clause at the end.",
+          "needs": ["compound-complex-sentence"]
+        },
+        {
+          "ask": "Describe a person with a who clause, and join two independent clauses.",
+          "needs": ["compound-complex-sentence", "relative-clause"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e09.variety-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Variety check",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which paragraph has the best sentence variety?",
+        "options": [
+          { "id": "a", "text": "I went to the zoo. I saw lions. I saw bears. I ate a hot dog." },
+          {
+            "id": "b",
+            "text": "At the zoo, I watched the lions pace while the bears slept. Then I ate a hot dog. It was the best part."
+          },
+          {
+            "id": "c",
+            "text": "I went to the zoo and I saw lions and I saw bears and I ate a hot dog."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B mixes a complex sentence, a simple one and a short punchy one, with different openers. A is choppy; C is stringy."
+      },
+      {
+        "id": "q2",
+        "prompt": "Five sentences in a row start with “The”. What’s the best fix?",
+        "options": [
+          { "id": "a", "text": "Change every “The” to “A”." },
+          {
+            "id": "b",
+            "text": "Start some with a phrase or a dependent clause (After lunch, … / When…, …)."
+          },
+          { "id": "c", "text": "Make every sentence longer." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Varying openers changes the rhythm without changing your ideas."
+      },
+      {
+        "id": "q3",
+        "prompt": "Why does a short sentence after several long ones work so well?",
+        "options": [
+          { "id": "a", "text": "It stands out, so the reader notices that point." },
+          { "id": "b", "text": "It makes the paragraph look shorter." },
+          { "id": "c", "text": "Short sentences are always better." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Contrast creates emphasis: a short sentence after long ones feels like a drumbeat."
+      },
+      {
+        "id": "q4",
+        "prompt": "Your sentence map shows: S S S S S S. What should you try?",
+        "options": [
+          { "id": "a", "text": "Nothing: simple is clearest." },
+          { "id": "b", "text": "Combine some sentences into compound or complex ones." },
+          { "id": "c", "text": "Make them all compound-complex." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Six simple sentences in a row sound choppy. Combine a few, and keep one short sentence for emphasis."
+      }
+    ]
+  },
+  {
+    "key": "e09.opener-transform",
+    "type": "TRANSFORM",
+    "title": "Change the opener",
+    "instructions": "Rewrite each sentence so it starts the way the task says. Keep the same meaning.",
+    "items": [
+      {
+        "id": "phrase",
+        "task": "Start with the time phrase.",
+        "source": "We went to the beach after school.",
+        "answers": ["After school, we went to the beach.", "After school we went to the beach."],
+        "hints": ["Move “after school” to the front and add a comma."],
+        "explanation": "After school, we went to the beach."
+      },
+      {
+        "id": "clause",
+        "task": "Start with the dependent clause.",
+        "source": "The crowd went silent when the singer walked on stage.",
+        "answers": ["When the singer walked on stage, the crowd went silent."],
+        "hints": ["When the singer walked on stage, …"],
+        "explanation": "When the singer walked on stage, the crowd went silent."
+      },
+      {
+        "id": "ing",
+        "task": "Start with an -ing phrase (Grabbing…).",
+        "source": "Sam grabbed his bag and ran for the bus.",
+        "answers": ["Grabbing his bag, Sam ran for the bus."],
+        "hints": ["Grabbing his bag, …", "Who ran? Put Sam right after the comma."],
+        "explanation": "Grabbing his bag, Sam ran for the bus."
+      },
+      {
+        "id": "adverb",
+        "task": "Start with the adverb.",
+        "source": "The door creaked open slowly.",
+        "answers": ["Slowly, the door creaked open.", "Slowly the door creaked open."],
+        "hints": ["Slowly, …"],
+        "explanation": "Slowly, the door creaked open. Starting with the adverb builds suspense."
+      }
+    ]
+  },
+  {
+    "key": "e09.variety-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Revise for variety",
+    "prompt": "This paragraph about a school trip is all short simple sentences, and most start with “We”. Revise it in the writing box so it flows: combine sentences, vary the openers and use all four sentence types at least once. Keep at least one short simple sentence for a key moment. Press “Check my writing” to see your sentence map.",
+    "starter": "We went to the science museum. We took a bus. The bus was loud. We arrived at ten. We saw a dinosaur skeleton. It was huge. We learned about volcanoes. A guide showed us a model. The model erupted. Everyone screamed. We ate lunch in the park. We bought souvenirs. I got a rock. We were tired. We went home. It was a great day.",
+    "starterInEditor": true,
+    "tips": [
+      "Combine: We took a loud bus to the science museum, and we arrived at ten.",
+      "Vary openers: After lunch, … / When the model erupted, … / Tired but happy, …",
+      "Keep one short simple sentence for the big moment: Everyone screamed."
+    ],
+    "constraints": { "minWords": 50, "maxWords": 220, "minSentences": 6 },
+    "analyzers": ["sentenceTypes", "structure"],
+    "grammarFocus": [
+      "simple-sentence",
+      "compound-sentence",
+      "complex-sentence",
+      "compound-complex-sentence"
+    ]
+  },
+  {
+    "key": "e09.combine-transform",
+    "type": "TRANSFORM",
+    "title": "Combine the choppy sentences",
+    "instructions": "Combine each group into one sentence, the way the task says.",
+    "items": [
+      {
+        "id": "who",
+        "task": "Use a who clause.",
+        "source": "Ms. Lee is our coach. She played in college.",
+        "answers": [
+          "Ms. Lee, who played in college, is our coach.",
+          "Our coach is Ms. Lee, who played in college."
+        ],
+        "hints": ["Ms. Lee, who …, is our coach."],
+        "explanation": "Ms. Lee, who played in college, is our coach."
+      },
+      {
+        "id": "phrase",
+        "task": "Fold the second sentence into the first as a describing phrase.",
+        "source": "We swam in the lake. The lake was cold.",
+        "answers": ["We swam in the cold lake."],
+        "hints": ["What kind of lake? Put the describing word before “lake”."],
+        "explanation": "We swam in the cold lake. One word replaces a whole sentence."
+      },
+      {
+        "id": "because",
+        "task": "Use “because”.",
+        "source": "The game was cancelled. The field was flooded.",
+        "answers": [
+          "The game was cancelled because the field was flooded.",
+          "Because the field was flooded, the game was cancelled."
+        ],
+        "hints": ["Which one is the reason?"],
+        "explanation": "The game was cancelled because the field was flooded."
+      },
+      {
+        "id": "three",
+        "task": "Combine all three into one simple sentence with a list.",
+        "source": "I packed a map. I packed snacks. I packed a torch.",
+        "answers": ["I packed a map, snacks and a torch.", "I packed a map, snacks, and a torch."],
+        "hints": ["One verb (packed), three things."],
+        "explanation": "I packed a map, snacks and a torch."
+      }
+    ]
+  },
+  {
+    "key": "e09.clarity-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Clear or tangled?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What’s the problem? “We got to the fair and it was crowded and we waited an hour and the ride broke.”",
+        "options": [
+          { "id": "a", "text": "It’s a fragment." },
+          { "id": "b", "text": "It’s stringy: too many ideas joined with “and”." },
+          { "id": "c", "text": "Nothing: it’s fine." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Four ideas strung on “and”. Split it, or show how the ideas connect (because, when, so)."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is the clearest fix?",
+        "options": [
+          {
+            "id": "a",
+            "text": "We got to the fair, and it was crowded, and we waited an hour, and the ride broke."
+          },
+          { "id": "b", "text": "The fair was crowded. After we waited an hour, the ride broke." },
+          {
+            "id": "c",
+            "text": "We got to the fair it was crowded we waited an hour the ride broke."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Two clear sentences, and “After…” shows the order of events."
+      },
+      {
+        "id": "q3",
+        "prompt": "A sentence has 52 words. What should you do first?",
+        "options": [
+          { "id": "a", "text": "Look for a place where one idea ends and split it there." },
+          { "id": "b", "text": "Add more commas." },
+          { "id": "c", "text": "Leave it: long sentences sound smart." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Past about 40 words, readers lose track. Splitting usually makes it clearer."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which version is clearest?",
+        "options": [
+          { "id": "a", "text": "Due to the fact that it was raining, the game was postponed." },
+          { "id": "b", "text": "Because it was raining, the game was postponed." },
+          {
+            "id": "c",
+            "text": "The game, due to the rain that was falling, was, at that time, postponed."
+          }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Because” says the same as “due to the fact that” in one word."
+      }
+    ]
+  },
+  {
+    "key": "e09.untangle-transform",
+    "type": "TRANSFORM",
+    "title": "Untangle it",
+    "instructions": "Fix each stringy sentence the way the task says.",
+    "items": [
+      {
+        "id": "split",
+        "task": "Split it into two sentences: take out the second “and”.",
+        "source": "We arrived late and the show had started and we missed the opening.",
+        "answers": [
+          "We arrived late, and the show had started. We missed the opening.",
+          "We arrived late and the show had started. We missed the opening."
+        ],
+        "hints": [
+          "Keep the first “and”. Where does the second idea end?",
+          "… the show had started. We missed the opening."
+        ],
+        "explanation": "We arrived late, and the show had started. We missed the opening."
+      },
+      {
+        "id": "because",
+        "task": "Use “because” instead of “so”, starting with the result.",
+        "source": "It was snowing so school was closed.",
+        "answers": ["School was closed because it was snowing."],
+        "hints": ["What happened? School was closed. Why? Because…"],
+        "explanation": "School was closed because it was snowing."
+      },
+      {
+        "id": "when",
+        "task": "Start with “When” and remove “and then”.",
+        "source": "The music started and then everyone danced.",
+        "answers": ["When the music started, everyone danced."],
+        "hints": ["When the music started, …"],
+        "explanation": "When the music started, everyone danced. The clause shows the timing."
+      }
+    ]
+  },
+  {
+    "key": "e09.clarity-revision",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Clear it up",
+    "prompt": "This review of a theme park is hard to follow: it has stringy “and… and… so” sentences and one very long sentence. Revise it in the writing box: split the stringy sentences, show how ideas connect with because, when or although, and combine the choppy bits. Keep all the facts. The Coach will point to sentences that still need work.",
+    "starter": "Thrill Valley is a theme park near our town and my family went there last weekend and it was packed so we waited a long time for every ride. The best ride is the Dragon Coaster and it goes really fast and it has three loops and my little brother was too short so he couldn’t ride it and he was upset. The food was expensive. It was cold. The lines for the water rides were shorter in the afternoon because most people were eating lunch or watching the parade, which happens at two o’clock every day and goes all the way around the park past every ride and shop, so if you go, you should plan to ride the water rides then. I would go back.",
+    "starterInEditor": true,
+    "tips": [
+      "Count the “and”s and “so”s that join whole ideas. Three or more? Split the sentence.",
+      "Show connections: Because the park was packed, we waited a long time.",
+      "Find the longest sentence and split it where one idea ends."
+    ],
+    "constraints": { "minWords": 100, "maxWords": 260, "minSentences": 8 },
+    "analyzers": ["sentenceTypes", "structure"],
+    "grammarFocus": ["complex-sentence", "compound-sentence"]
+  },
+  {
+    "key": "e09.unit-check",
+    "type": "QUIZ",
+    "title": "Sentence Types & Variety check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "c1",
+        "prompt": "What type is this? “The hungry puppy chewed my new shoe.”",
+        "options": [
+          { "id": "a", "text": "Simple" },
+          { "id": "b", "text": "Compound" },
+          { "id": "c", "text": "Complex" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One subject (puppy), one verb (chewed): one independent clause.",
+        "skill": "simple sentences"
+      },
+      {
+        "id": "c2",
+        "prompt": "Which sentence is simple?",
+        "options": [
+          { "id": "a", "text": "Jada and her sister painted the fence and cleaned the brushes." },
+          { "id": "b", "text": "Jada painted the fence, and her sister cleaned the brushes." },
+          { "id": "c", "text": "Jada painted the fence while her sister cleaned the brushes." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A compound subject and a compound predicate, but still one clause.",
+        "skill": "simple sentences"
+      },
+      {
+        "id": "c3",
+        "prompt": "“After the long and tiring game, the players on both teams shook hands.” What type is it?",
+        "options": [
+          { "id": "a", "text": "Simple" },
+          { "id": "b", "text": "Complex" },
+          { "id": "c", "text": "Compound" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“After the long and tiring game” is a phrase (no verb), so there is only one clause.",
+        "skill": "simple sentences"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which sentence is compound?",
+        "options": [
+          { "id": "a", "text": "The dog barked and growled." },
+          { "id": "b", "text": "The dog barked, and the cat hissed." },
+          { "id": "c", "text": "The dog barked when the cat hissed." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Two independent clauses (The dog barked / the cat hissed) joined by a comma and “and”.",
+        "skill": "compound sentences"
+      },
+      {
+        "id": "c5",
+        "prompt": "Which joining word fits? “I studied all week, ___ the test was still hard.”",
+        "options": [
+          { "id": "a", "text": "so" },
+          { "id": "b", "text": "yet" },
+          { "id": "c", "text": "or" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The second clause is a surprise after the first: yet (or but) shows contrast.",
+        "skill": "compound sentences"
+      },
+      {
+        "id": "c6",
+        "prompt": "Which compound sentence is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "The rain stopped, the sun came out." },
+          { "id": "b", "text": "The rain stopped; the sun came out." },
+          { "id": "c", "text": "The rain stopped the sun came out." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A semicolon (or a comma + FANBOYS) joins two independent clauses. A comma alone is a comma splice.",
+        "skill": "compound sentences"
+      },
+      {
+        "id": "c7",
+        "prompt": "Which sentence is complex?",
+        "options": [
+          { "id": "a", "text": "Although she was tired, she finished her essay." },
+          { "id": "b", "text": "She was tired, but she finished her essay." },
+          { "id": "c", "text": "She was tired. She finished her essay." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Although she was tired” is a dependent clause.",
+        "skill": "complex sentences"
+      },
+      {
+        "id": "c8",
+        "prompt": "Which word starts a dependent clause in “The phone that I bought broke”?",
+        "options": [
+          { "id": "a", "text": "that" },
+          { "id": "b", "text": "I" },
+          { "id": "c", "text": "broke" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“that I bought” describes the phone: a relative (dependent) clause.",
+        "skill": "complex sentences"
+      },
+      {
+        "id": "c9",
+        "prompt": "Where does the comma go? “If we leave now we will make the train.”",
+        "options": [
+          { "id": "a", "text": "After “If”" },
+          { "id": "b", "text": "After “now”" },
+          { "id": "c", "text": "After “will”" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "If we leave now, we will make the train. The comma follows the opening dependent clause.",
+        "skill": "complex sentences"
+      },
+      {
+        "id": "c10",
+        "prompt": "Which is NOT a complete sentence?",
+        "options": [
+          { "id": "a", "text": "Because the library was closed." },
+          { "id": "b", "text": "The library was closed." },
+          { "id": "c", "text": "We left because the library was closed." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A dependent clause on its own is a fragment.",
+        "skill": "complex sentences"
+      },
+      {
+        "id": "c11",
+        "prompt": "Which sentence is compound-complex?",
+        "options": [
+          { "id": "a", "text": "When the bell rang, we packed up, and the teacher waved." },
+          { "id": "b", "text": "When the bell rang, we packed up." },
+          { "id": "c", "text": "The bell rang, and we packed up." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Dependent (When the bell rang) + two independents (we packed up / the teacher waved).",
+        "skill": "compound-complex sentences"
+      },
+      {
+        "id": "c12",
+        "prompt": "How many independent clauses? “Although it was late, Mia kept reading, and her brother fell asleep.”",
+        "options": [
+          { "id": "a", "text": "One" },
+          { "id": "b", "text": "Two" },
+          { "id": "c", "text": "Three" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Mia kept reading / her brother fell asleep. “Although it was late” is dependent.",
+        "skill": "compound-complex sentences"
+      },
+      {
+        "id": "c13",
+        "prompt": "Add one thing to make this compound-complex: “We missed the bus, so we walked.”",
+        "options": [
+          { "id": "a", "text": "a second “so”" },
+          { "id": "b", "text": "a dependent clause, like “because we overslept”" },
+          { "id": "c", "text": "an adjective, like “yellow”" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "It’s already compound. Adding a dependent clause makes it compound-complex: We missed the bus because we overslept, so we walked.",
+        "skill": "compound-complex sentences"
+      },
+      {
+        "id": "c14",
+        "prompt": "Which is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "Because it rained we stayed in, and we baked cookies." },
+          { "id": "b", "text": "Because it rained, we stayed in, and we baked cookies." },
+          { "id": "c", "text": "Because it rained, we stayed in and, we baked cookies." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A comma after the opening dependent clause, and a comma before “and” where the second independent clause begins.",
+        "skill": "compound-complex sentences"
+      },
+      {
+        "id": "c15",
+        "prompt": "Which paragraph has the most sentence variety?",
+        "options": [
+          { "id": "a", "text": "I like dogs. I have a dog. My dog is brown. He is fast." },
+          {
+            "id": "b",
+            "text": "Although I like all animals, dogs are my favourite. Mine is a fast brown mutt. He never stops."
+          },
+          { "id": "c", "text": "I like dogs and I have a dog and he is brown and he is fast." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B mixes a complex sentence, a simple one with describing words, and a short punchy one.",
+        "skill": "sentence variety"
+      },
+      {
+        "id": "c16",
+        "prompt": "Four sentences in a row start with “I”. What’s a good fix?",
+        "options": [
+          { "id": "a", "text": "Start one with a phrase, like “After school, …”." },
+          { "id": "b", "text": "Change “I” to “Me”." },
+          { "id": "c", "text": "Join all four with “and”." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A different opener changes the rhythm. Joining all four with “and” makes a stringy sentence.",
+        "skill": "sentence variety"
+      },
+      {
+        "id": "c17",
+        "prompt": "Why put a short simple sentence after two long ones?",
+        "options": [
+          { "id": "a", "text": "To make the important point stand out" },
+          { "id": "b", "text": "To make the paragraph longer" },
+          { "id": "c", "text": "Because short sentences are always correct" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The change in length makes the reader notice the short sentence.",
+        "skill": "sentence variety"
+      },
+      {
+        "id": "c18",
+        "prompt": "Your sentence map shows: Cx Cx Cx Cx Cx. What could you add?",
+        "options": [
+          { "id": "a", "text": "A short simple sentence for your key point" },
+          { "id": "b", "text": "Another complex sentence" },
+          { "id": "c", "text": "Nothing: complex sentences are best" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "All one type, even complex, gets tiring. A short simple sentence adds contrast.",
+        "skill": "sentence variety"
+      },
+      {
+        "id": "c19",
+        "prompt": "Combine with a who clause: “My aunt is a pilot. She flies to Japan.”",
+        "options": [
+          { "id": "a", "text": "My aunt, who is a pilot, flies to Japan." },
+          { "id": "b", "text": "My aunt who is a pilot flies, to Japan." },
+          { "id": "c", "text": "My aunt is a pilot, who flies to Japan, she." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The who clause adds extra information between two commas.",
+        "skill": "combining and clarity"
+      },
+      {
+        "id": "c20",
+        "prompt": "Which is the best way to combine? “The road was icy. We drove slowly.”",
+        "options": [
+          { "id": "a", "text": "The road was icy, we drove slowly." },
+          { "id": "b", "text": "Because the road was icy, we drove slowly." },
+          { "id": "c", "text": "The road was icy and we drove slowly and." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Because” shows the cause. A is a comma splice; C is broken.",
+        "skill": "combining and clarity"
+      },
+      {
+        "id": "c21",
+        "prompt": "What is a “stringy” sentence?",
+        "options": [
+          { "id": "a", "text": "A sentence with many ideas strung together with and/so" },
+          { "id": "b", "text": "A very short sentence" },
+          { "id": "c", "text": "A sentence with a list" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Stringy sentences chain idea after idea with and/so, so nothing stands out.",
+        "skill": "combining and clarity"
+      },
+      {
+        "id": "c22",
+        "prompt": "Which fixes the stringy sentence best? “I woke up late and I missed the bus and I walked and I was late.”",
+        "options": [
+          {
+            "id": "a",
+            "text": "Because I woke up late, I missed the bus. I walked, so I was late."
+          },
+          {
+            "id": "b",
+            "text": "I woke up late, and I missed the bus, and I walked, and I was late."
+          },
+          { "id": "c", "text": "I woke up late I missed the bus I walked I was late." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Two clear sentences that show cause and result. B only adds commas; C is a run-on.",
+        "skill": "combining and clarity"
+      },
+      {
+        "id": "c23",
+        "prompt": "Which is clearer and shorter?",
+        "options": [
+          { "id": "a", "text": "In my personal opinion, I think that homework is helpful." },
+          { "id": "b", "text": "I think homework is helpful." },
+          { "id": "c", "text": "Homework, in my opinion, which I think, is helpful." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“In my personal opinion, I think that” says the same thing three times.",
+        "skill": "combining and clarity"
+      },
+      {
+        "id": "c24",
+        "prompt": "Fold the second sentence into the first: “We hiked up the trail. The trail was steep.”",
+        "options": [
+          { "id": "a", "text": "We hiked up the steep trail." },
+          { "id": "b", "text": "We hiked up the trail, it was steep." },
+          { "id": "c", "text": "The trail we hiked up the steep." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One describing word replaces a whole sentence. B is a comma splice.",
+        "skill": "combining and clarity"
+      }
+    ]
+  },
+  {
+    "key": "e09.check-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Every type, one paragraph",
+    "prompt": "What is one change that would make your school better? Write a paragraph (8–12 sentences) that explains the change and gives at least two reasons. Use all four sentence types at least once: simple, compound, complex and compound-complex. Vary your openers, and save one short simple sentence for your most important point. Check your sentence map before you hand it in.",
+    "tips": [
+      "Complex for reasons: Because lunch is only 20 minutes, many students don’t finish eating.",
+      "Compound-complex to tie ideas together: If lunch were longer, students would eat properly, and they would focus better in class.",
+      "End strong with a short simple sentence: Every student deserves that."
+    ],
+    "constraints": { "minWords": 100, "maxWords": 280, "minSentences": 8 },
+    "analyzers": ["sentenceTypes", "structure", "punctuation"],
+    "grammarFocus": [
+      "simple-sentence",
+      "compound-sentence",
+      "complex-sentence",
+      "compound-complex-sentence"
+    ]
+  }
+]

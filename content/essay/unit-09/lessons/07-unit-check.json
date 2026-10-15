@@ -1,0 +1,52 @@
+{
+  "slug": "essay-sentence-types-check",
+  "order": 7,
+  "title": "⭐ Unit Check: Sentence Types & Variety",
+  "estMinutes": 45,
+  "focusSkills": ["sentence-types", "variety"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which sentence type do you find easiest to write, and which one do you want more practice with?",
+      "placeholder": "Easiest… More practice with…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The four types: quick review",
+          "body": "Simple: one independent clause. Compound: two independent clauses (comma + FANBOYS, or a semicolon). Complex: one independent + a dependent clause (because, when, although, who, which…). Compound-complex: two independents + a dependent."
+        },
+        {
+          "kind": "definition",
+          "title": "Variety and clarity: quick review",
+          "body": "Mix types, lengths and openers. Combine choppy short sentences. Split stringy and/so sentences and anything past about 40 words. Save short simple sentences for your key points."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll write a paragraph that uses all four sentence types. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e09.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e09.check-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Look at your sentence map. Which type did you use most, and was that a good choice?",
+        "What will you check in your sentences every time you write an essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

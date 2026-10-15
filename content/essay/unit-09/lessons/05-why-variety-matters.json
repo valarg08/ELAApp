@@ -1,0 +1,55 @@
+{
+  "slug": "essay-why-variety-matters",
+  "order": 5,
+  "title": "Why Variety Matters",
+  "estMinutes": 40,
+  "focusSkills": ["sentence-types", "variety"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Read both paragraphs out loud. Which one would you rather keep reading? What makes the difference?",
+      "a": "Our team practised every day. We ran laps. We did drills. We were tired. We still lost the first game. We felt terrible.",
+      "b": "Our team practised every day, running laps and doing drills until our legs ached. Although we were exhausted, we felt ready. Then we lost the first game. It stung.",
+      "reveal": "A sounds like a robot: every sentence is short, simple and starts with “We”. B mixes long and short, simple and complex, and starts its sentences in different ways. The short one at the end (“It stung.”) hits hard because of the long ones before it."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Three kinds of variety",
+          "body": "1. Type: mix simple, compound, complex and compound-complex. 2. Length: follow long sentences with a short one. 3. Openers: don’t start every sentence with the same word; try a phrase (After the game, …), a dependent clause (When…, …) or an -ing phrase (Gasping for air, …)."
+        },
+        {
+          "kind": "example",
+          "title": "Your sentence map",
+          "text": "In the writing workspace, the Coach shows a sentence map: one box per sentence, labelled S (simple), C (compound), Cx (complex) or CC (compound-complex).\nA map of S S S S S means it’s time to combine.\nA map of S Cx C S CC Cx shows a good mix.",
+          "note": "Use “Show me” on any box to jump to that sentence."
+        },
+        {
+          "kind": "definition",
+          "title": "Variety with a purpose",
+          "body": "Don’t mix for the sake of mixing. Use a short simple sentence for your most important point. Use complex sentences to explain reasons. Use compound sentences to balance two ideas."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e09.variety-mc", "e09.opener-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e09.variety-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What did your sentence map look like before and after your revision?",
+        "Which kind of variety (type, length or openers) made the biggest difference?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}
