@@ -1,0 +1,63 @@
+{
+  "slug": "essay-colons-semicolons-and-dashes",
+  "order": 5,
+  "title": "Colons, Semicolons & Dashes",
+  "estMinutes": 40,
+  "focusSkills": ["punctuation", "colons", "semicolons"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Both sentences say the same thing. Which one makes you lean in? Why?",
+      "a": "I opened the box and found that there was nothing inside it.",
+      "b": "I opened the box — nothing.",
+      "reveal": "B uses a dash to create a pause, like a held breath before the surprise. Colons, semicolons and dashes are tools for showing how ideas connect, and for controlling the reader’s pace."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The colon: here it comes",
+          "body": "A colon comes after a complete sentence and points to what follows: a list, an explanation or an example. “I packed three things: a map, a torch and snacks.” “The reason was simple: we were lost.”"
+        },
+        {
+          "kind": "compare",
+          "title": "No colon after a verb",
+          "telling": "My favourite sports are: soccer, tennis and swimming.",
+          "showing": "My favourite sports are soccer, tennis and swimming. / I love three sports: soccer, tennis and swimming.",
+          "labels": ["Colon after “are” ✗", "Complete sentence first ✓"],
+          "note": "Test: cover everything after the colon. Is what’s left a complete sentence? If not, take the colon out."
+        },
+        {
+          "kind": "example",
+          "title": "The semicolon: two linked sentences",
+          "text": "The storm hit; the lights went out.\nWe were exhausted; however, we kept climbing.\nNot: The storm hit; and the lights went out. (a semicolon or “and”, not both)",
+          "note": "Both sides of a semicolon must be complete sentences that are closely linked."
+        },
+        {
+          "kind": "definition",
+          "title": "The dash: a sudden break",
+          "body": "A dash (—) adds a dramatic pause or an extra detail: “We had one job — win the game.” A pair of dashes can work like a pair of commas: “My cousin — the one who plays drums — is visiting.” In essays, use one or two at most."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e08.marks-mc", "e08.marks-sort", "e08.marks-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e08.marks-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which mark (colon, semicolon or dash) feels most useful for your essays? Why?",
+        "How is a semicolon different from a comma?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -52,6 +52,14 @@ import {
   findStructureIssues,
   structureHits,
 } from './structure.js';
+import {
+  PUNCTUATION_FEATURES,
+  PUNCTUATION_FEATURE_EXAMPLES,
+  PUNCTUATION_FEATURE_LABELS,
+  type PunctuationFeature,
+  findPunctuationIssues,
+  punctuationHits,
+} from './punctuation.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -75,6 +83,7 @@ export const GRAMMAR_FEATURES = [
   ...VOICE_FEATURES,
   ...SPEECH_FEATURES,
   ...STRUCTURE_FEATURES,
+  ...PUNCTUATION_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -94,6 +103,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   ...VOICE_FEATURE_LABELS,
   ...SPEECH_FEATURE_LABELS,
   ...STRUCTURE_FEATURE_LABELS,
+  ...PUNCTUATION_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -113,24 +123,36 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   ...VOICE_FEATURE_EXAMPLES,
   ...SPEECH_FEATURE_EXAMPLES,
   ...STRUCTURE_FEATURE_EXAMPLES,
+  ...PUNCTUATION_FEATURE_EXAMPLES,
 };
 
 /** The Coach skill a grammar feature belongs to. */
 export function grammarSkillOf(
   feature: GrammarFeature,
-): 'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice' | 'speech' | 'structure' {
+):
+  | 'nouns'
+  | 'pronouns'
+  | 'verbs'
+  | 'modifiers'
+  | 'connectors'
+  | 'voice'
+  | 'speech'
+  | 'structure'
+  | 'punctuation' {
   if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
   if ((MODIFIER_FEATURES as readonly string[]).includes(feature)) return 'modifiers';
   if ((CONNECTOR_FEATURES as readonly string[]).includes(feature)) return 'connectors';
   if ((VOICE_FEATURES as readonly string[]).includes(feature)) return 'voice';
   if ((SPEECH_FEATURES as readonly string[]).includes(feature)) return 'speech';
   if ((STRUCTURE_FEATURES as readonly string[]).includes(feature)) return 'structure';
+  if ((PUNCTUATION_FEATURES as readonly string[]).includes(feature)) return 'punctuation';
   return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
 }
 
 export type {
   ConnectorFeature,
   ModifierFeature,
+  PunctuationFeature,
   SpeechFeature,
   StructureFeature,
   VerbFeature,
@@ -335,6 +357,7 @@ export function grammarFeatures(text: string): FeatureHit[] {
     for (const hit of connectorHits(text, tokens)) hits.push(hit);
     for (const hit of voiceHits(text, tokens)) hits.push(hit);
     for (const hit of structureHits(text, tokens)) hits.push(hit);
+    for (const hit of punctuationHits(text, sentence, tokens)) hits.push(hit);
   }
   // Speech works on the whole text: a quote can cross the sentence splitter (“Ready?” asked Sam.).
   for (const hit of speechHits(text)) hits.push(hit);
@@ -418,7 +441,18 @@ export interface GrammarIssue {
     | 'backshift'
     | 'reported-time'
     | 'run-on'
-    | 'comma-splice';
+    | 'comma-splice'
+    | 'sentence-capital'
+    | 'extra-capital'
+    | 'question-mark'
+    | 'end-mark'
+    | 'double-mark'
+    | 'mark-spacing'
+    | 'missing-apostrophe'
+    | 'apostrophe-confusion'
+    | 'colon-use'
+    | 'semicolon-use'
+    | 'pair-comma';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -601,7 +635,13 @@ export function pronounIssues(text: string): GrammarIssue[] {
     // "its" pointing back to a plural ("The dogs wagged its tails").
     const its = tokens.findIndex((t) => t.lower === 'its');
     if (its > 0) {
-      const plural = tokens.slice(0, its).find((_, i) => isPluralNoun(tokens, i));
+      // Not the verb right before "its" ("The team keeps its trophies").
+      const plural = tokens
+        .slice(0, its)
+        .find(
+          (_, i) =>
+            i < its - 1 && isPluralNoun(tokens, i) && !COLLECTIVE.has(tokens[i - 1]?.lower ?? ''),
+        );
       if (plural) {
         issues.push({
           kind: 'pronoun-number',
@@ -647,7 +687,10 @@ export const speechIssues = (text: string): GrammarIssue[] => findSpeechIssues(t
 /** Sentence mistakes: fragments ("A big dog in the yard."), run-ons and comma splices. */
 export const structureIssues = (text: string): GrammarIssue[] => findStructureIssues(text);
 
-/** Every grammar mistake the checks know about, in the order they appear. */
+/** Capital and punctuation mistakes: "we went", "in the Summer", "dont", "its raining", "However we", "are: ". */
+export const punctuationIssues = (text: string): GrammarIssue[] => findPunctuationIssues(text);
+
+/** Every grammar mistake the checks know about, in the order they appear (one per stretch of text). */
 export const grammarIssues = (text: string): GrammarIssue[] =>
   [
     ...nounIssues(text),
@@ -658,4 +701,12 @@ export const grammarIssues = (text: string): GrammarIssue[] =>
     ...voiceIssues(text),
     ...speechIssues(text),
     ...structureIssues(text),
-  ].toSorted((a, b) => a.span.start - b.span.start);
+    ...punctuationIssues(text),
+  ]
+    .toSorted((a, b) => a.span.start - b.span.start)
+    // "monday was fun": the day check and the sentence-capital check find the same word.
+    .filter(
+      (issue, i, all) =>
+        all.findIndex((o) => o.span.start === issue.span.start && o.span.end === issue.span.end) ===
+        i,
+    );

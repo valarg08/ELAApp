@@ -1,0 +1,52 @@
+{
+  "slug": "essay-grammar-foundations-check",
+  "order": 7,
+  "title": "⭐ Grammar Foundations Check",
+  "estMinutes": 50,
+  "focusSkills": ["punctuation", "grammar"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You’ve finished eight grammar units: nouns and pronouns, verbs, adjectives and adverbs, prepositions and conjunctions, voice, speech, sentences and punctuation. Which unit helped your writing the most?",
+      "placeholder": "The unit that helped me most was… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The parts of speech: quick review",
+          "body": "Nouns name (Maya, city, courage). Pronouns replace nouns (she, them, its). Verbs show action or being (ran, is). Adjectives describe nouns (tall, quieter). Adverbs describe verbs (quickly, yesterday, here). Prepositions show place and time (under, during). Conjunctions join (and, because). Interjections show feeling (Wow!)."
+        },
+        {
+          "kind": "definition",
+          "title": "Punctuation: quick review",
+          "body": "Capitals start sentences and names. Every sentence has an end mark. Commas go in lists, after openers and around extra information. Apostrophes show missing letters or belonging, never plurals. Colons and semicolons come after a complete sentence."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz on all eight units: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll write a six-sentence paragraph, with a task for each sentence. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e08.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e08.check-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which part of speech or punctuation mark do you feel most confident about now?",
+        "What grammar habit will you take with you into writing full essays?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

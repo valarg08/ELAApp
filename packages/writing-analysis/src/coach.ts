@@ -54,6 +54,7 @@ import {
   nounIssues,
   passiveNotes,
   pronounIssues,
+  punctuationIssues,
   verbIssues,
   veryPhrases,
   speechIssues,
@@ -87,6 +88,7 @@ export const ANALYZER_IDS = [
   'voice',
   'speech',
   'structure',
+  'punctuation',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -760,6 +762,34 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
   }
 
+  if (enabled.has('punctuation')) {
+    const issues = punctuationIssues(text);
+    if (issues[0]) nextSteps.push(issueCard('punctuation', 'Check this punctuation', issues));
+    else if (wordCount >= 15) {
+      const hits = grammarFeatures(text);
+      const order = [
+        'semicolon',
+        'colon',
+        'dash',
+        'extra-info-commas',
+        'list-commas',
+        'intro-comma',
+        'contraction',
+        'question-mark',
+      ] as const;
+      const best = order.map((f) => hits.find((h) => h.feature === f)).find((h) => h !== undefined);
+      strengths.push({
+        id: 'punctuation',
+        analyzer: 'punctuation',
+        title: 'Capitals and punctuation in place',
+        message: best
+          ? `Every sentence starts with a capital and ends with a mark, and you use ${GRAMMAR_FEATURE_LABELS[best.feature]} well: ${inQuotes(best.span.text)}.`
+          : 'Every sentence starts with a capital letter and ends with an end mark. Your apostrophes are right too.',
+        span: best?.span,
+      });
+    }
+  }
+
   if (enabled.has('speech')) {
     const issues = speechIssues(text);
     if (issues[0]) nextSteps.push(issueCard('speech', 'Check this speech', issues));
@@ -1031,7 +1061,15 @@ const inQuotes = (t: string) => (/[“”"]/.test(t) ? t : `“${t}”`);
 /** The first grammar issue as a card, with its fix and how many more there are. */
 function issueCard(
   analyzer:
-    'nouns' | 'pronouns' | 'verbs' | 'modifiers' | 'connectors' | 'voice' | 'speech' | 'structure',
+    | 'nouns'
+    | 'pronouns'
+    | 'verbs'
+    | 'modifiers'
+    | 'connectors'
+    | 'voice'
+    | 'speech'
+    | 'structure'
+    | 'punctuation',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

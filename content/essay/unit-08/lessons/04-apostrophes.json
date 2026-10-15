@@ -1,0 +1,66 @@
+{
+  "slug": "essay-apostrophes",
+  "order": 4,
+  "title": "Apostrophes",
+  "estMinutes": 40,
+  "focusSkills": ["punctuation", "apostrophes"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "The bakery sign",
+      "paragraphs": [
+        "A bakery put up a new sign: “Fresh cookie’s and muffin’s daily!”",
+        "A girl walking by frowned. “Cookie’s what?” she asked her dad. “The cookie’s hat? The cookie’s homework?”",
+        "Her dad laughed. “They mean more than one cookie. That’s just cookies, no apostrophe.”",
+        "An apostrophe has only two jobs. Plurals isn’t one of them."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Job 1: missing letters",
+          "body": "In a contraction, the apostrophe sits where letters were taken out: do not → don’t, I am → I’m, they are → they’re, we will → we’ll, it is → it’s. In formal essays, use contractions sparingly."
+        },
+        {
+          "kind": "example",
+          "title": "Job 2: belonging",
+          "text": "One owner: add ’s → the dog’s bowl, Sam’s bike, James’s coat\nMore than one owner ending in s: add ’ → the dogs’ bowls, the girls’ team\nPlural not ending in s: add ’s → the children’s books, the men’s room",
+          "note": "First write the owner, then add the apostrophe. Owner “girls” → girls’. Owner “children” → children’s."
+        },
+        {
+          "kind": "compare",
+          "title": "The tricky pairs",
+          "telling": "Its raining and the dog lost it’s ball. Your late! Their coming.",
+          "showing": "It’s raining and the dog lost its ball. You’re late! They’re coming.",
+          "labels": ["Mixed up ✗", "Sorted ✓"],
+          "note": "Test: say it as two words. “It is raining” works → it’s. “The dog lost it is ball” doesn’t → its. The same goes for you’re/your and they’re/their."
+        },
+        {
+          "kind": "definition",
+          "title": "No apostrophe for plurals",
+          "body": "More than one is just s: cookies, apples, the 1990s, CDs. Possessive pronouns never take an apostrophe either: its, yours, hers, ours, theirs."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e08.apostrophe-sort", "e08.apostrophe-blank", "e08.apostrophe-hunt"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e08.apostrophe-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which pair (its/it’s, your/you’re, their/they’re) do you mix up most? What trick will you use?",
+        "Explain the difference between “the girl’s team” and “the girls’ team”."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -276,6 +276,8 @@ function fragmentIn(text: string, s: Sentence): string | undefined {
     return `“${first.text} …” on its own isn’t a sentence: it describes something in the sentence before. Join it to that sentence with a comma (“…, ${first.lower} …”).`;
   }
   if (finite.size > 0) return undefined;
+  // "Thank you for reading." is a set phrase with an understood "I".
+  if (/^(?:thank|thanks)$/.test(first.lower)) return undefined;
   if (
     EXAMPLE_STARTS.has(first.lower) ||
     (first.lower === 'for' && tokens[1]?.lower === 'example')
@@ -309,6 +311,13 @@ function runOnIn(text: string, s: Sentence): GrammarIssue | undefined {
     while (tokens[v] && ADVERBS.has(tokens[v]!.lower)) v++;
     if (!finite.has(v)) continue;
     if (LINKS.has(prev.lower) || CLAUSE_TAKERS.has(prev.lower) || PREPOSITIONS.has(prev.lower))
+      continue;
+    // Question order: "Why do you like…?", "How can we help?".
+    if (
+      /^(?:do|does|did|don't|doesn't|didn't|can|could|will|would|should|may|might|must|is|are|was|were|am|has|have|had)$/.test(
+        prev.lower,
+      )
+    )
       continue;
     // "told him I was…", "made sure we had…".
     const prev2 = tokens[i - 2];

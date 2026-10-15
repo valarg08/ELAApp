@@ -80,6 +80,7 @@ const SKILL_NAMES: Record<string, string> = {
   voice: 'active and passive voice',
   speech: 'direct and reported speech',
   structure: 'sentence structure',
+  punctuation: 'capitals and punctuation',
 };
 
 /**
@@ -160,7 +161,7 @@ export class FeedbackPipeline {
       `filter words: ${filterWords(text).total}`,
       `senses used: ${senses(text).used.join(', ') || 'none'}`,
       `dialogue punctuation issues: ${dialogue(text).issues.length}`,
-      `grammar mistakes found (nouns, pronouns, verbs, adjectives, adverbs, prepositions, conjunctions, passive forms, speech, fragments, run-ons and comma splices): ${grammarIssues(text).length}`,
+      `grammar mistakes found (nouns, pronouns, verbs, adjectives, adverbs, prepositions, conjunctions, passive forms, speech, fragments, run-ons, comma splices, capitals and punctuation): ${grammarIssues(text).length}`,
       `weak “very” phrases: ${veryPhrases(text).length}`,
       `passive verbs: ${passiveNotes(text).length}`,
       `quotes: ${quotes(text).length}, reported speech: ${reportedClauses(text).length}`,

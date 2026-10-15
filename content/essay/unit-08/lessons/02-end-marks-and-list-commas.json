@@ -1,0 +1,63 @@
+{
+  "slug": "essay-end-marks-and-list-commas",
+  "order": 2,
+  "title": "End Marks & List Commas",
+  "estMinutes": 35,
+  "focusSkills": ["punctuation", "end-marks", "commas"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Read both out loud. How does one comma change the meaning?",
+      "a": "Let’s eat, Grandma!",
+      "b": "Let’s eat Grandma!",
+      "reveal": "A invites Grandma to dinner. B puts Grandma on the menu! Punctuation tells the reader where to pause and how to read, and sometimes it saves a life."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Three end marks",
+          "body": "A full stop (.) ends a statement or a polite command. A question mark (?) ends a direct question. An exclamation mark (!) shows strong feeling, but in essays, use it rarely, and only one at a time."
+        },
+        {
+          "kind": "compare",
+          "title": "Is it really a question?",
+          "telling": "I wonder if it will rain?",
+          "showing": "I wonder if it will rain. / Will it rain?",
+          "labels": ["Wrong mark ✗", "Right marks ✓"],
+          "note": "“I wonder if…” and “She asked whether…” tell about a question, so they end with a full stop. A real question asks the reader directly: Will it rain? Do you agree?"
+        },
+        {
+          "kind": "example",
+          "title": "Commas in a list",
+          "text": "Three or more things: We packed sandwiches, apples, juice and cookies.\nActions too: We swam, ate lunch and played cards.\nThe last comma before “and” (the serial comma) is optional: apples, juice, and cookies.",
+          "note": "Pick one style and use it the whole way through. Never put a comma after the last item: “apples, juice and cookies, were packed” ✗."
+        },
+        {
+          "kind": "definition",
+          "title": "Two items? No comma",
+          "body": "With only two things, “and” does the job by itself: Sam and Leo, pizza or tacos. Commas start when there are three or more."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e08.endmark-sort", "e08.endmark-mc", "e08.list-transform"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e08.endmark-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Why do you think essay writers use exclamation marks so rarely?",
+        "Do you use the serial comma (…, juice, and cookies)? Why or why not?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

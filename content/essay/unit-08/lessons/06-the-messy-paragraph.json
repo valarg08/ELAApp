@@ -1,0 +1,53 @@
+{
+  "slug": "essay-the-messy-paragraph",
+  "order": 6,
+  "title": "The Messy Paragraph",
+  "estMinutes": 45,
+  "focusSkills": ["punctuation", "proofreading"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Imagine you get a letter full of missing capitals, wrong apostrophes and no full stops. What would you think about the person who wrote it, even if their ideas were great?",
+      "placeholder": "I would think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Proofread in passes",
+          "body": "Don’t look for everything at once. Read the paragraph several times, each time hunting for one thing: 1. Capitals. 2. End marks. 3. Commas. 4. Apostrophes. 5. Colons and semicolons."
+        },
+        {
+          "kind": "example",
+          "title": "Questions for each pass",
+          "text": "Capitals: Does every sentence start with one? Is every name capitalised, and nothing else?\nEnd marks: Is each question a real question?\nCommas: Is there a comma after each opener and in each list?\nApostrophes: Is it a contraction, belonging, or just a plural?\nColons and semicolons: Is there a complete sentence before each one?",
+          "note": "Point at each word with your finger or cursor. It slows you down, and slow is how you catch mistakes."
+        },
+        {
+          "kind": "definition",
+          "title": "How the paragraph works",
+          "body": "The letter in the writing box has 20 mistakes. Fix them right in the box. The checklist counts each fix and explains it. Stuck? The hint button shows you where to look."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e08.proofread-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e08.messy-paragraph" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which pass found the most mistakes for you?",
+        "Which mistake in the letter do you think you make in your own writing?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

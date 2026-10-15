@@ -255,7 +255,12 @@ export function verbHits(text: string, tokens: readonly WordToken[]): VerbHit[] 
       SENSE_LINKING.has(w) &&
       tokens[i + 1] !== undefined &&
       !NOT_DESCRIPTION.has(tokens[i + 1]!.lower) &&
-      !(prev && DESCRIBERS.has(prev.lower));
+      // "That sounds great!": a sentence-opening that/this is a pronoun before a verb in -s.
+      !(
+        prev &&
+        DESCRIBERS.has(prev.lower) &&
+        !(i === 1 && /^(?:that|this)$/.test(prev.lower) && w.endsWith('s'))
+      );
     if (senseLinking) add('linking-verb', spanOf(text, t));
 
     // Action verbs: known verbs, -ed verbs, and the word right after a subject pronoun.

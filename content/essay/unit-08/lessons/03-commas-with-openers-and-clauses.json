@@ -1,0 +1,61 @@
+{
+  "slug": "essay-commas-with-openers-and-clauses",
+  "order": 3,
+  "title": "Commas After Openers & With Clauses",
+  "estMinutes": 40,
+  "focusSkills": ["punctuation", "commas"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Read this without a comma: “While the chef was cooking the soup boiled over.” Did you trip over it? Where did you expect the sentence to go after “cooking the soup”?",
+      "placeholder": "I tripped because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "A comma after an opener",
+          "body": "When something comes before the main sentence, a comma shows where the main sentence begins. Openers can be a word (However, Finally, Yes), a phrase (After lunch, For example, Running late) or a dependent clause (When the bell rang, Because it was cold)."
+        },
+        {
+          "kind": "example",
+          "title": "Openers and their commas",
+          "text": "However, the plan didn’t work.\nFor example, the bake sale raised $200.\nAfter the long game, we were starving.\nWhen the bell rang, we ran outside.",
+          "note": "Clause at the end? Usually no comma: We ran outside when the bell rang."
+        },
+        {
+          "kind": "compare",
+          "title": "Commas around extra information",
+          "telling": "My sister who is twelve plays the drums.",
+          "showing": "My sister, who is twelve, plays the drums.",
+          "labels": ["Missing the pair ✗", "A pair of commas ✓"],
+          "note": "If you can lift the words out and the sentence still works (My sister plays the drums), they are extra information: put a comma on both sides. Ms. Lee, our coach, smiled works the same way."
+        },
+        {
+          "kind": "definition",
+          "title": "Don’t lift out what you need",
+          "body": "“The students who finished early went outside.” Here “who finished early” tells you which students: lift it out and the meaning changes. Information you need takes no commas."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e08.comma-sort", "e08.intro-transform", "e08.extra-info-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e08.comma-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Pick one of your sentences. Read it with and without the comma. What changes for the reader?",
+        "How can you tell if a who or which clause needs commas?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

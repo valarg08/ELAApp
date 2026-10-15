@@ -1,0 +1,1489 @@
+[
+  {
+    "key": "e08.capitals-sort",
+    "type": "SORT",
+    "title": "Capital or small?",
+    "instructions": "Would each word need a capital letter in the middle of a sentence? Sort them.",
+    "buckets": [
+      { "id": "capital", "label": "Needs a capital" },
+      { "id": "small", "label": "Stays small" }
+    ],
+    "items": [
+      { "id": "tuesday", "text": "tuesday", "bucketId": "capital" },
+      { "id": "spring", "text": "spring (the season)", "bucketId": "small" },
+      { "id": "thanksgiving", "text": "thanksgiving", "bucketId": "capital" },
+      { "id": "science", "text": "science (the school subject)", "bucketId": "small" },
+      { "id": "spanish", "text": "spanish (the language)", "bucketId": "capital" },
+      { "id": "mom", "text": "mom, in “my mom”", "bucketId": "small" },
+      { "id": "dr", "text": "dr., before a name", "bucketId": "capital" },
+      { "id": "river", "text": "a river", "bucketId": "small" },
+      { "id": "mississippi", "text": "the mississippi river", "bucketId": "capital" },
+      { "id": "november", "text": "november", "bucketId": "capital" },
+      { "id": "dog", "text": "my dog", "bucketId": "small" },
+      { "id": "rex", "text": "rex (my dog’s name)", "bucketId": "capital" }
+    ]
+  },
+  {
+    "key": "e08.capitals-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Capital choices",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence uses capital letters correctly?",
+        "options": [
+          { "id": "a", "text": "Last Summer, my family visited Lake Erie." },
+          { "id": "b", "text": "Last summer, my family visited Lake Erie." },
+          { "id": "c", "text": "Last summer, my family visited lake erie." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Seasons stay small (summer). Lake Erie is the name of one particular lake, so both words get capitals."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is right?",
+        "options": [
+          { "id": "a", "text": "I asked Mom if we could go." },
+          { "id": "b", "text": "I asked my Mom if we could go." },
+          { "id": "c", "text": "i asked mom if we could go." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "With no “my” in front, Mom is used as her name, so it takes a capital. After “my”, it’s an ordinary noun: my mom."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which school subject always needs a capital letter?",
+        "options": [
+          { "id": "a", "text": "math" },
+          { "id": "b", "text": "history" },
+          { "id": "c", "text": "French" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Languages are proper nouns (French, English, Spanish). Most other subjects stay small."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which book title is capitalised correctly?",
+        "options": [
+          { "id": "a", "text": "Charlotte’s Web" },
+          { "id": "b", "text": "Charlotte’s web" },
+          { "id": "c", "text": "charlotte’s Web" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "In a title, the first word and every important word get a capital."
+      },
+      {
+        "id": "q5",
+        "prompt": "In which sentence does “aunt” need a capital?",
+        "options": [
+          { "id": "a", "text": "My aunt lives in Ohio." },
+          { "id": "b", "text": "We visited aunt Rosa on Sunday." },
+          { "id": "c", "text": "Her aunt is a pilot." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Right before a name, a family word is part of the name: Aunt Rosa, Uncle Jack, Grandpa Joe."
+      }
+    ]
+  },
+  {
+    "key": "e08.capitals-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Capital hunt",
+    "instructions": "This trip story has 13 capital letter mistakes: some words need a capital, and some have one they shouldn’t. Tap each mistake and fix it.",
+    "text": "Last saturday, my cousin maria and i drove to Lake Tahoe with my Uncle. We left early in the Morning and listened to a podcast about the history of california. Maria said the water would be colder than it is in december. We ate lunch at a café called the Blue Spoon, where the menu was in english and spanish. In the Summer, we hope to go back with our friends from lincoln middle school.",
+    "errors": [
+      {
+        "word": "saturday",
+        "fixes": ["Saturday"],
+        "explanation": "Days of the week are names: Saturday."
+      },
+      {
+        "word": "maria",
+        "fixes": ["Maria"],
+        "explanation": "People’s names always start with a capital."
+      },
+      {
+        "word": "i",
+        "fixes": ["I"],
+        "explanation": "When you mean yourself, I is always a capital."
+      },
+      {
+        "word": "Uncle",
+        "fixes": ["uncle"],
+        "explanation": "After “my”, uncle is an ordinary noun, not part of a name."
+      },
+      {
+        "word": "Morning",
+        "fixes": ["morning"],
+        "explanation": "Times of day are ordinary words: in the morning."
+      },
+      {
+        "word": "california",
+        "fixes": ["California"],
+        "explanation": "Places such as states and countries are proper nouns."
+      },
+      { "word": "december", "fixes": ["December"], "explanation": "Months are names: December." },
+      {
+        "word": "english",
+        "fixes": ["English"],
+        "explanation": "Languages always take a capital: English."
+      },
+      {
+        "word": "spanish",
+        "fixes": ["Spanish"],
+        "explanation": "Languages always take a capital: Spanish."
+      },
+      {
+        "word": "Summer",
+        "fixes": ["summer"],
+        "explanation": "Seasons stay small: in the summer."
+      },
+      {
+        "word": "lincoln",
+        "fixes": ["Lincoln"],
+        "explanation": "Lincoln Middle School is the name of one school, so each word gets a capital."
+      },
+      {
+        "word": "middle",
+        "fixes": ["Middle"],
+        "explanation": "Part of the school’s name: Lincoln Middle School."
+      },
+      {
+        "word": "school",
+        "fixes": ["School"],
+        "explanation": "Part of the school’s name: Lincoln Middle School."
+      }
+    ]
+  },
+  {
+    "key": "e08.capitals-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Capitals on a trip",
+    "prompt": "Write four sentences about a trip, a holiday or a special day you remember. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Names of people, places, days, months, holidays and titles get capitals: Grandma Lu, Miami, Friday, July, Diwali, Frozen.",
+      "Seasons and most school subjects stay small: in the winter, my math homework.",
+      "Every sentence starts with a capital, and I is always a capital."
+    ],
+    "constraints": { "minWords": 25, "maxWords": 120, "minSentences": 4 },
+    "analyzers": ["punctuation", "nouns"],
+    "grammarFocus": ["proper-noun"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        { "ask": "Name a person you were with and the place you went.", "needs": ["proper-noun"] },
+        {
+          "ask": "Say when it happened: on a day of the week, in a month or on a holiday.",
+          "needs": ["proper-noun"]
+        },
+        {
+          "ask": "Mention a title: a book, a movie, a song or a game from that day.",
+          "needs": ["proper-noun"]
+        },
+        {
+          "ask": "Tell how you felt using the word I, and mention a season (it stays small).",
+          "needs": ["subject-pronoun", "complete-sentence"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e08.endmark-sort",
+    "type": "SORT",
+    "title": "Which end mark?",
+    "instructions": "Each sentence is missing its end mark. Sort it into the mark it needs.",
+    "buckets": [
+      { "id": "stop", "label": "Full stop ." },
+      { "id": "question", "label": "Question mark ?" },
+      { "id": "exclaim", "label": "Exclamation mark !" }
+    ],
+    "items": [
+      { "id": "shoes", "text": "Where did you leave your shoes", "bucketId": "question" },
+      { "id": "wonder", "text": "I wonder where you left your shoes", "bucketId": "stop" },
+      { "id": "watch", "text": "Watch out for that car", "bucketId": "exclaim" },
+      { "id": "door", "text": "Please close the door", "bucketId": "stop" },
+      { "id": "sunset", "text": "What a beautiful sunset", "bucketId": "exclaim" },
+      { "id": "homework", "text": "Have you finished your homework", "bucketId": "question" },
+      { "id": "asked", "text": "She asked if we were ready", "bucketId": "stop" },
+      { "id": "pencil", "text": "Can I borrow a pencil", "bucketId": "question" },
+      { "id": "ouch", "text": "Ouch, that really hurts", "bucketId": "exclaim" }
+    ]
+  },
+  {
+    "key": "e08.endmark-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "End marks and list commas",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "I wonder if the library is open?" },
+          { "id": "b", "text": "I wonder if the library is open." },
+          { "id": "c", "text": "I wonder if the library is open!" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“I wonder if…” tells about a question; it doesn’t ask one. It ends with a full stop."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is best in an essay?",
+        "options": [
+          { "id": "a", "text": "Recycling really matters!!!" },
+          { "id": "b", "text": "Recycling really matters?!" },
+          { "id": "c", "text": "Recycling really matters." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "In essays, let your words show strong feeling. Use one end mark, and keep exclamation marks rare."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which list is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "We need flour, sugar, and eggs." },
+          { "id": "b", "text": "We need flour sugar and eggs." },
+          { "id": "c", "text": "We need, flour, sugar and eggs." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Commas separate the items. The last comma (before “and”) is optional, but no comma goes before the first item."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence needs NO comma?",
+        "options": [
+          { "id": "a", "text": "I invited Sam and Leo." },
+          { "id": "b", "text": "I invited Sam Leo and Ava." },
+          { "id": "c", "text": "I invited Sam Leo Ava and Kim." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "With only two items, “and” joins them. Lists of three or more need commas."
+      },
+      {
+        "id": "q5",
+        "prompt": "Which is a real question that needs a question mark?",
+        "options": [
+          { "id": "a", "text": "She asked whether we had eaten" },
+          { "id": "b", "text": "Have you ever eaten sushi" },
+          { "id": "c", "text": "I want to know what you ate" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Have you ever eaten sushi?” asks the reader directly. The others report or describe a question."
+      }
+    ]
+  },
+  {
+    "key": "e08.list-transform",
+    "type": "TRANSFORM",
+    "title": "Add the list commas",
+    "instructions": "Add commas to each list. Change only the punctuation. You can use the comma before “and” or leave it out.",
+    "items": [
+      {
+        "id": "picnic",
+        "task": "Add commas to the list of four foods.",
+        "source": "We packed sandwiches apples juice and cookies.",
+        "answers": [
+          "We packed sandwiches, apples, juice and cookies.",
+          "We packed sandwiches, apples, juice, and cookies."
+        ],
+        "hints": [
+          "There are four things. Put a comma after each one before “and”.",
+          "sandwiches, apples, …"
+        ],
+        "explanation": "We packed sandwiches, apples, juice and cookies. A comma after each item except the last two, which “and” joins (or add the serial comma before “and”)."
+      },
+      {
+        "id": "maya",
+        "task": "Add commas to the list of actions.",
+        "source": "Maya sings dances and plays the piano.",
+        "answers": [
+          "Maya sings, dances and plays the piano.",
+          "Maya sings, dances, and plays the piano."
+        ],
+        "hints": ["Lists can be actions too. What three things does Maya do?", "Maya sings, …"],
+        "explanation": "Maya sings, dances and plays the piano. Three actions, so commas separate them."
+      },
+      {
+        "id": "flag",
+        "task": "Add commas to the list of colours.",
+        "source": "Our flag is red white and blue.",
+        "answers": ["Our flag is red, white and blue.", "Our flag is red, white, and blue."],
+        "hints": ["How many colours are there?", "red, …"],
+        "explanation": "Our flag is red, white and blue."
+      },
+      {
+        "id": "two",
+        "task": "Only two things: take out the comma.",
+        "source": "I like apples, and bananas.",
+        "answers": ["I like apples and bananas."],
+        "hints": ["With two things, “and” is enough on its own."],
+        "explanation": "I like apples and bananas. Two items don’t need a comma."
+      },
+      {
+        "id": "supplies",
+        "task": "Add commas to the list of supplies.",
+        "source": "Bring a pencil a ruler a calculator and an eraser.",
+        "answers": [
+          "Bring a pencil, a ruler, a calculator and an eraser.",
+          "Bring a pencil, a ruler, a calculator, and an eraser."
+        ],
+        "hints": [
+          "Each item starts with “a” or “an”. The comma goes before each new item.",
+          "Bring a pencil, a ruler, …"
+        ],
+        "explanation": "Bring a pencil, a ruler, a calculator and an eraser. Items can be more than one word."
+      }
+    ]
+  },
+  {
+    "key": "e08.endmark-sentences",
+    "type": "SENTENCE_SET",
+    "title": "The food interview",
+    "prompt": "Write four sentences for a short interview with a classmate or family member about their favourite foods. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "A real question asks directly: Do you like spicy food? What is your favourite meal?",
+      "Three or more foods? Commas between them: pasta, tacos and curry.",
+      "One exclamation mark is plenty: That sounds delicious!"
+    ],
+    "constraints": { "minWords": 20, "maxWords": 110, "minSentences": 4 },
+    "analyzers": ["punctuation"],
+    "grammarFocus": ["question-mark", "list-commas"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        { "ask": "Ask a question about their favourite food.", "needs": ["question-mark"] },
+        {
+          "ask": "Write their answer with a list of three or more foods.",
+          "needs": ["list-commas"]
+        },
+        {
+          "ask": "Show a strong reaction with one exclamation mark.",
+          "needs": ["exclamation-mark"]
+        },
+        {
+          "ask": "Ask a second question that begins with Why, How or What.",
+          "needs": ["question-mark"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e08.comma-sort",
+    "type": "SORT",
+    "title": "Correct or missing a comma?",
+    "instructions": "Some of these sentences are missing a comma after an opener or around extra information. Sort them.",
+    "buckets": [
+      { "id": "correct", "label": "Correct" },
+      { "id": "missing", "label": "Missing a comma" }
+    ],
+    "items": [
+      { "id": "game", "text": "After the game, we ate pizza.", "bucketId": "correct" },
+      { "id": "however", "text": "However we still lost.", "bucketId": "missing" },
+      { "id": "rained", "text": "When it rained we stayed in.", "bucketId": "missing" },
+      { "id": "end", "text": "We stayed in when it rained.", "bucketId": "correct" },
+      { "id": "rex", "text": "My dog, Rex, loves the beach.", "bucketId": "correct" },
+      { "id": "sister", "text": "My sister who is twelve, plays drums.", "bucketId": "missing" },
+      { "id": "example", "text": "For example, the bake sale raised $200.", "bucketId": "correct" },
+      { "id": "yes", "text": "Yes I finished my homework.", "bucketId": "missing" },
+      { "id": "running", "text": "Running late Maya grabbed her bag.", "bucketId": "missing" },
+      {
+        "id": "students",
+        "text": "The students who finished early went outside.",
+        "bucketId": "correct"
+      }
+    ]
+  },
+  {
+    "key": "e08.intro-transform",
+    "type": "TRANSFORM",
+    "title": "Comma in the right place",
+    "instructions": "Add the missing comma or commas. Change only the punctuation.",
+    "items": [
+      {
+        "id": "game",
+        "task": "Add a comma after the opening phrase.",
+        "source": "After the long game we were starving.",
+        "answers": ["After the long game, we were starving."],
+        "hints": ["Where does the main sentence (we were starving) begin?"],
+        "explanation": "After the long game, we were starving. The comma shows where the opener ends."
+      },
+      {
+        "id": "however",
+        "task": "Add a comma after the transition word.",
+        "source": "However the plan didn’t work.",
+        "answers": ["However, the plan didn’t work."],
+        "hints": [
+          "Transition words like However, Finally and Therefore take a comma when they start a sentence."
+        ],
+        "explanation": "However, the plan didn’t work."
+      },
+      {
+        "id": "bus",
+        "task": "Add a comma after the dependent clause.",
+        "source": "Because the bus was late we missed the start.",
+        "answers": ["Because the bus was late, we missed the start."],
+        "hints": ["The clause “Because the bus was late” comes first. Where does it end?"],
+        "explanation": "Because the bus was late, we missed the start. A dependent clause at the start takes a comma after it."
+      },
+      {
+        "id": "coach",
+        "task": "Put commas around the extra information.",
+        "source": "Ms. Lee our new coach gave a short speech.",
+        "answers": ["Ms. Lee, our new coach, gave a short speech."],
+        "hints": [
+          "Which words can you lift out? Ms. Lee … gave a short speech.",
+          "Ms. Lee, our new coach, …"
+        ],
+        "explanation": "Ms. Lee, our new coach, gave a short speech. The extra information gets a comma on each side."
+      },
+      {
+        "id": "amazon",
+        "task": "Put commas around the which clause.",
+        "source": "The Amazon which is the largest rainforest is in South America.",
+        "answers": ["The Amazon, which is the largest rainforest, is in South America."],
+        "hints": [
+          "Lift out “which is the largest rainforest”. Does the sentence still work?",
+          "The Amazon, which …, is …"
+        ],
+        "explanation": "The Amazon, which is the largest rainforest, is in South America. There is only one Amazon, so the which clause is extra information."
+      }
+    ]
+  },
+  {
+    "key": "e08.extra-info-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Commas with clauses",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "My grandfather, who was born in Peru, speaks three languages." },
+          { "id": "b", "text": "My grandfather, who was born in Peru speaks three languages." },
+          { "id": "c", "text": "My grandfather who was born in Peru, speaks three languages." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Extra information needs a pair of commas: one before it and one after it."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which sentence should have NO commas around the who clause?",
+        "options": [
+          { "id": "a", "text": "Students who forget their gym clothes can borrow some." },
+          { "id": "b", "text": "My best friend who lives next door has a trampoline." },
+          { "id": "c", "text": "Mr. Diaz who teaches art painted the mural." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“who forget their gym clothes” tells you which students. Lift it out and the meaning changes, so no commas."
+      },
+      {
+        "id": "q3",
+        "prompt": "Where does the comma go? “When the alarm went off the whole class jumped.”",
+        "options": [
+          { "id": "a", "text": "After “When”" },
+          { "id": "b", "text": "After “off”" },
+          { "id": "c", "text": "After “class”" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "When the alarm went off, the whole class jumped. The comma comes at the end of the opening clause."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence needs a comma?",
+        "options": [
+          { "id": "a", "text": "We left early because it was snowing." },
+          { "id": "b", "text": "Because it was snowing we left early." },
+          { "id": "c", "text": "We left early." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The because clause comes first, so it needs a comma: Because it was snowing, we left early."
+      },
+      {
+        "id": "q5",
+        "prompt": "Which opener is followed by the right punctuation?",
+        "options": [
+          { "id": "a", "text": "For example the school could plant trees." },
+          { "id": "b", "text": "For example; the school could plant trees." },
+          { "id": "c", "text": "For example, the school could plant trees." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Opening phrases such as For example, In addition and As a result take a comma."
+      }
+    ]
+  },
+  {
+    "key": "e08.comma-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Morning commas",
+    "prompt": "Write four sentences about getting ready for school in the morning. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Openers take a comma: First, … / However, … / After breakfast, … / When my alarm rings, …",
+      "Extra information takes a pair of commas: My brother, who hates mornings, …",
+      "Read each sentence aloud: the comma goes where you pause."
+    ],
+    "constraints": { "minWords": 30, "maxWords": 130, "minSentences": 4 },
+    "analyzers": ["punctuation", "connectors"],
+    "grammarFocus": ["intro-comma", "extra-info-commas"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Start with a transition word and a comma (First, Usually, However…).",
+          "needs": ["intro-comma"]
+        },
+        {
+          "ask": "Start with a dependent clause and a comma (When…, Because…, If…).",
+          "needs": ["dependent-clause", "intro-comma"]
+        },
+        {
+          "ask": "Describe a person with extra information between two commas (My sister, who…, …).",
+          "needs": ["extra-info-commas"]
+        },
+        {
+          "ask": "Start with a phrase and a comma (After breakfast, … / Running late, …).",
+          "needs": ["intro-comma"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e08.apostrophe-sort",
+    "type": "SORT",
+    "title": "What is the apostrophe doing?",
+    "instructions": "Sort each one: does it need an apostrophe for missing letters, for belonging, or no apostrophe at all?",
+    "buckets": [
+      { "id": "contraction", "label": "Missing letters" },
+      { "id": "belonging", "label": "Belonging" },
+      { "id": "plural", "label": "Plural: no apostrophe" }
+    ],
+    "items": [
+      { "id": "dont", "text": "don’t", "bucketId": "contraction" },
+      { "id": "theyre", "text": "they’re (they are)", "bucketId": "contraction" },
+      { "id": "its", "text": "it’s (it is)", "bucketId": "contraction" },
+      { "id": "ive", "text": "I’ve", "bucketId": "contraction" },
+      { "id": "sam", "text": "Sam’s bike", "bucketId": "belonging" },
+      { "id": "girls", "text": "the girls’ team", "bucketId": "belonging" },
+      { "id": "children", "text": "the children’s books", "bucketId": "belonging" },
+      { "id": "dog", "text": "the dog’s bowl", "bucketId": "belonging" },
+      { "id": "apples", "text": "five apples", "bucketId": "plural" },
+      { "id": "nineties", "text": "the 1990s", "bucketId": "plural" },
+      { "id": "cookies", "text": "fresh cookies", "bucketId": "plural" },
+      { "id": "cds", "text": "two CDs", "bucketId": "plural" }
+    ]
+  },
+  {
+    "key": "e08.apostrophe-blank",
+    "type": "FILL_BLANK",
+    "title": "Pick the right one",
+    "instructions": "Choose the word that fits. Test it: can you say it as two words (it is, you are, they are)?",
+    "items": [
+      {
+        "id": "tail",
+        "sentence": "The dog wagged ___ tail.",
+        "choices": ["its", "it’s"],
+        "answers": ["its"],
+        "hint": "Try “it is”: the dog wagged it is tail? No, so it’s the one without an apostrophe.",
+        "explanation": "its = belonging (no apostrophe), like his and hers."
+      },
+      {
+        "id": "rain",
+        "sentence": "___ going to rain later.",
+        "choices": ["It’s", "Its"],
+        "answers": ["It’s"],
+        "hint": "Try “It is going to rain”.",
+        "explanation": "It’s = it is. The apostrophe stands for the missing i."
+      },
+      {
+        "id": "jacket",
+        "sentence": "Is this ___ jacket?",
+        "choices": ["your", "you’re"],
+        "answers": ["your"],
+        "hint": "Try “you are jacket”. Does it work?",
+        "explanation": "your = belonging: your jacket."
+      },
+      {
+        "id": "goalie",
+        "sentence": "___ the best goalie on the team.",
+        "choices": ["You’re", "Your"],
+        "answers": ["You’re"],
+        "hint": "Try “You are the best goalie”.",
+        "explanation": "You’re = you are."
+      },
+      {
+        "id": "bags",
+        "sentence": "The players packed ___ bags.",
+        "choices": ["their", "they’re", "there"],
+        "answers": ["their"],
+        "hint": "The bags belong to the players.",
+        "explanation": "their = belonging. they’re = they are; there = a place."
+      },
+      {
+        "id": "noon",
+        "sentence": "___ leaving at noon.",
+        "choices": ["They’re", "Their", "There"],
+        "answers": ["They’re"],
+        "hint": "Try “They are leaving at noon”.",
+        "explanation": "They’re = they are."
+      },
+      {
+        "id": "dogs",
+        "sentence": "Both ___ tails were wagging.",
+        "choices": ["dogs’", "dog’s", "dogs"],
+        "answers": ["dogs’"],
+        "hint": "Two dogs own the tails. Write the owner first (dogs), then add the apostrophe.",
+        "explanation": "dogs’ tails: the owners are plural and end in s, so the apostrophe goes after the s."
+      }
+    ]
+  },
+  {
+    "key": "e08.apostrophe-hunt",
+    "type": "ERROR_HUNT",
+    "title": "Apostrophe hunt",
+    "instructions": "This bake sale report has 8 apostrophe mistakes: missing apostrophes, extra ones, and mixed-up pairs. Tap each mistake and fix it.",
+    "text": "Our schools bake sale was a big success. We sold cookie’s, cupcakes and brownies to raise money for the libraries new books. Its amazing how fast everything went. My friend Jada didnt expect the lemon bars to sell out, but they did. The teachers said there proud of us, and the principal said your all invited to plan the next one. The class with the most helpers will win a pizza party, and it’s prize money will go to the art room.",
+    "errors": [
+      {
+        "word": "schools",
+        "fixes": ["school’s"],
+        "explanation": "The bake sale belongs to one school: school’s."
+      },
+      {
+        "word": "cookie’s",
+        "fixes": ["cookies"],
+        "explanation": "More than one cookie is a plural: no apostrophe."
+      },
+      {
+        "word": "libraries",
+        "fixes": ["library’s"],
+        "explanation": "The new books belong to one library: library’s."
+      },
+      { "word": "Its", "fixes": ["It’s"], "explanation": "It is amazing → It’s amazing." },
+      {
+        "word": "didnt",
+        "fixes": ["didn’t"],
+        "explanation": "did not → didn’t: the apostrophe takes the place of the o."
+      },
+      { "word": "there", "fixes": ["they’re"], "explanation": "They are proud → they’re proud." },
+      {
+        "word": "your",
+        "fixes": ["you’re"],
+        "explanation": "You are all invited → you’re all invited."
+      },
+      {
+        "word": "it’s",
+        "fixes": ["its"],
+        "explanation": "The prize money belongs to the class: its, with no apostrophe."
+      }
+    ]
+  },
+  {
+    "key": "e08.apostrophe-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Our team’s sentences",
+    "prompt": "Write four sentences about a team, club or group you belong to (or would like to join). Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "One owner: ’s (the coach’s whistle). More than one owner ending in s: s’ (the players’ shirts).",
+      "Contractions: don’t, we’re, it’s, I’ve. The apostrophe goes where letters are missing.",
+      "No apostrophe in its, their, your (belonging) or in plain plurals (two goals)."
+    ],
+    "constraints": { "minWords": 25, "maxWords": 120, "minSentences": 4 },
+    "analyzers": ["punctuation", "nouns"],
+    "grammarFocus": ["possessive", "contraction"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Show that something belongs to one person or thing (the coach’s whistle).",
+          "needs": ["possessive"]
+        },
+        {
+          "ask": "Show that something belongs to more than one (the players’ shirts).",
+          "needs": ["possessive"]
+        },
+        { "ask": "Use a contraction (don’t, we’re, it’s, I’ve…).", "needs": ["contraction"] },
+        {
+          "ask": "Use its, their or your to show belonging (no apostrophe).",
+          "needs": ["possessive-pronoun"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e08.marks-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Colon, semicolon or dash?",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which mark fits? “I need three things ___ a tent, a torch and a map.”",
+        "options": [
+          { "id": "a", "text": "a colon (:)" },
+          { "id": "b", "text": "a semicolon (;)" },
+          { "id": "c", "text": "no mark" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A complete sentence (I need three things) introduces a list, so a colon fits."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which mark fits? “The rain stopped ___ the sun came out.”",
+        "options": [
+          { "id": "a", "text": "a colon (:)" },
+          { "id": "b", "text": "a semicolon (;)" },
+          { "id": "c", "text": "a comma (,)" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Two complete, linked sentences: a semicolon joins them. A comma alone would be a comma splice."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence uses the colon correctly?",
+        "options": [
+          { "id": "a", "text": "My hobbies include: painting and chess." },
+          { "id": "b", "text": "I have two hobbies: painting and chess." },
+          { "id": "c", "text": "My: hobbies are painting and chess." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“I have two hobbies” is a complete sentence, so a colon can follow it. Never put a colon straight after include or are."
+      },
+      {
+        "id": "q4",
+        "prompt": "Which sentence uses the semicolon correctly?",
+        "options": [
+          { "id": "a", "text": "We were tired; however, we kept going." },
+          { "id": "b", "text": "We were tired; but we kept going." },
+          { "id": "c", "text": "Because we were tired; we stopped." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Both sides are complete sentences, and “however” takes a semicolon before it and a comma after it."
+      },
+      {
+        "id": "q5",
+        "prompt": "What does the dash do here? “We had one job — win the game.”",
+        "options": [
+          { "id": "a", "text": "It joins two lists." },
+          { "id": "b", "text": "It adds a dramatic pause before the key detail." },
+          { "id": "c", "text": "It ends the sentence." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A dash makes the reader pause, so the words after it stand out."
+      }
+    ]
+  },
+  {
+    "key": "e08.marks-sort",
+    "type": "SORT",
+    "title": "Used right or wrong?",
+    "instructions": "Is the colon, semicolon or dash in each sentence used correctly? Sort them.",
+    "buckets": [
+      { "id": "right", "label": "Used correctly" },
+      { "id": "wrong", "label": "Used wrongly" }
+    ],
+    "items": [
+      { "id": "things", "text": "I need three things: paper, glue and tape.", "bucketId": "right" },
+      { "id": "are", "text": "My favourite colours are: blue and green.", "bucketId": "wrong" },
+      { "id": "storm", "text": "The storm hit; the lights went out.", "bucketId": "right" },
+      { "id": "and", "text": "The storm hit; and the lights went out.", "bucketId": "wrong" },
+      { "id": "because", "text": "Because it rained; we stayed inside.", "bucketId": "wrong" },
+      { "id": "job", "text": "We had one job — win the game.", "bucketId": "right" },
+      { "id": "reason", "text": "The reason was simple: we were lost.", "bucketId": "right" },
+      { "id": "bought", "text": "We bought: apples, pears and plums.", "bucketId": "wrong" },
+      {
+        "id": "however",
+        "text": "I studied hard; however, the test was tough.",
+        "bucketId": "right"
+      },
+      { "id": "fun", "text": "I like soccer; because it’s fun.", "bucketId": "wrong" }
+    ]
+  },
+  {
+    "key": "e08.marks-transform",
+    "type": "TRANSFORM",
+    "title": "Fix the marks",
+    "instructions": "Do what each task says. Change only the punctuation and capital letters (and take out a word if the task tells you to).",
+    "items": [
+      {
+        "id": "bell",
+        "task": "Join the two sentences with a semicolon.",
+        "source": "The bell rang. Everyone cheered.",
+        "answers": ["The bell rang; everyone cheered."],
+        "hints": [
+          "Swap the full stop for a semicolon.",
+          "After a semicolon, the next word stays small (unless it’s a name)."
+        ],
+        "explanation": "The bell rang; everyone cheered. Two linked sentences, one semicolon."
+      },
+      {
+        "id": "packed",
+        "task": "Add a colon before the list.",
+        "source": "I packed three things a map, a torch and snacks.",
+        "answers": [
+          "I packed three things: a map, a torch and snacks.",
+          "I packed three things: a map, a torch, and snacks."
+        ],
+        "hints": ["Where does the complete sentence end?", "I packed three things: …"],
+        "explanation": "I packed three things: a map, a torch and snacks."
+      },
+      {
+        "id": "sports",
+        "task": "Fix the colon by taking it out.",
+        "source": "My favourite sports are: soccer and tennis.",
+        "answers": ["My favourite sports are soccer and tennis."],
+        "hints": ["Is “My favourite sports are” a complete sentence?"],
+        "explanation": "My favourite sports are soccer and tennis. No colon straight after a verb."
+      },
+      {
+        "id": "music",
+        "task": "Fix the semicolon: the opening clause needs a comma.",
+        "source": "When the music started; everyone danced.",
+        "answers": ["When the music started, everyone danced."],
+        "hints": ["“When the music started” can’t stand alone, so a semicolon can’t follow it."],
+        "explanation": "When the music started, everyone danced. A dependent clause first takes a comma."
+      },
+      {
+        "id": "however",
+        "task": "Fix the comma splice: use a semicolon before “however”.",
+        "source": "We were tired, however, we kept going.",
+        "answers": ["We were tired; however, we kept going."],
+        "hints": ["Swap the first comma for a semicolon. Keep the comma after however."],
+        "explanation": "We were tired; however, we kept going."
+      }
+    ]
+  },
+  {
+    "key": "e08.marks-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Getting ready for the big day",
+    "prompt": "Write four sentences about getting ready for a big event: a game, a show, a trip or a test. Each sentence has its own task, listed above the writing box. Write them in order.",
+    "tips": [
+      "Colon: a complete sentence first, then the list or explanation. I needed three things: …",
+      "Semicolon: two complete, linked sentences. I practised every night; my coach noticed.",
+      "Can’t find the long dash (—)? Type two hyphens (--) or a hyphen with a space on each side ( - )."
+    ],
+    "constraints": { "minWords": 30, "maxWords": 130, "minSentences": 4 },
+    "analyzers": ["punctuation"],
+    "grammarFocus": ["colon", "semicolon", "dash"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        {
+          "ask": "Use a colon before a list of things you needed.",
+          "needs": ["colon", "list-commas"]
+        },
+        { "ask": "Join two linked sentences with a semicolon.", "needs": ["semicolon"] },
+        { "ask": "Add a dramatic pause or an extra detail with a dash.", "needs": ["dash"] },
+        {
+          "ask": "Use a colon before an explanation (The problem was simple: …).",
+          "needs": ["colon"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e08.proofread-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Proofreading warm-up",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What’s the best way to proofread for punctuation?",
+        "options": [
+          { "id": "a", "text": "Read it once, fast, and fix whatever jumps out." },
+          {
+            "id": "b",
+            "text": "Read it several times, hunting for one kind of mistake each time."
+          },
+          { "id": "c", "text": "Only check the first and last sentences." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Looking for one thing at a time (capitals, then end marks, then commas…) catches far more mistakes."
+      },
+      {
+        "id": "q2",
+        "prompt": "On your apostrophe pass, you find “The dogs bark at night.” What do you do?",
+        "options": [
+          { "id": "a", "text": "Change it to “dog’s”." },
+          { "id": "b", "text": "Change it to “dogs’”." },
+          { "id": "c", "text": "Nothing: it’s a plain plural." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "The dogs don’t own anything here, so there is no apostrophe."
+      },
+      {
+        "id": "q3",
+        "prompt": "On your capitals pass, which word needs fixing? “We visited aunt Rosa in july.”",
+        "options": [
+          { "id": "a", "text": "Only “july”" },
+          { "id": "b", "text": "Both “aunt” and “july”" },
+          { "id": "c", "text": "Only “Rosa”" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Aunt is part of her name here (Aunt Rosa), and months are names (July)."
+      },
+      {
+        "id": "q4",
+        "prompt": "On your colons pass, which needs fixing?",
+        "options": [
+          { "id": "a", "text": "Our goals are: win and have fun." },
+          { "id": "b", "text": "We have two goals: win and have fun." },
+          { "id": "c", "text": "Both are fine." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Our goals are” isn’t a complete sentence, so the colon has to go."
+      }
+    ]
+  },
+  {
+    "key": "e08.messy-paragraph",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "The messy paragraph: a letter to the principal",
+    "prompt": "Ava wrote a letter to her principal, but she didn’t proofread it. It has 20 mistakes with capitals, end marks, commas, apostrophes, colons and semicolons. Fix all 20 right in the writing box. The checklist counts each one as you fix it and tells you what was wrong. Don’t rewrite the letter: change the punctuation and capitals only.",
+    "starter": "Dear Ms. Patel,\n\nIm writing to ask if our class can start a garden club this Spring. Last year Mr. Okafors class grew tomatoes beans and peppers behind the gym. everyone loved them. The cafeteria even used the vegetables in a salad on friday.\n\nWe would need three things seeds, tools and a little space. My Aunt, who owns a plant nursery has offered to donate the seeds. The students parents can lend us tools. However we still need your permission to use the empty lot by the Library.\n\nA garden would teach us about Science, food and teamwork. Its also a great way to spend time outside. Have you seen how happy the kindergarten kids get when they find a worm. Their already asking when its going to start.\n\nCould we meet on monday to talk about it? I can bring a plan; and my friend Leo is drawing a map.\n\nThank you for reading my letter.\n\nSincerely,\nAva Romero",
+    "starterInEditor": true,
+    "tips": [
+      "Proofread in passes: capitals, then end marks, then commas, then apostrophes, then colons and semicolons.",
+      "Say contractions as two words: Its also → It is also → It’s also.",
+      "Stuck? Use the hint button in the checklist."
+    ],
+    "constraints": { "minWords": 150, "maxWords": 320, "minSentences": 12 },
+    "analyzers": ["punctuation", "nouns"],
+    "grammarFocus": ["intro-comma", "list-commas", "contraction"],
+    "proofread": {
+      "label": "Messy paragraph",
+      "errors": [
+        {
+          "wrong": "Im writing",
+          "fixes": ["I’m writing", "I am writing"],
+          "explanation": "I am → I’m: a contraction needs an apostrophe (and I is always a capital).",
+          "hint": "Look at the very first word of the letter."
+        },
+        {
+          "wrong": "this Spring",
+          "fixes": ["this spring"],
+          "explanation": "Seasons don’t take a capital letter.",
+          "hint": "First paragraph: a season."
+        },
+        {
+          "wrong": "Last year Mr.",
+          "fixes": ["Last year, Mr."],
+          "explanation": "“Last year” is an opener, so it takes a comma before the main sentence.",
+          "hint": "The second sentence starts with an opener."
+        },
+        {
+          "wrong": "Okafors class",
+          "fixes": ["Okafor’s class"],
+          "explanation": "The class belongs to Mr. Okafor: Okafor’s.",
+          "hint": "Whose class is it?"
+        },
+        {
+          "wrong": "tomatoes beans and peppers",
+          "fixes": ["tomatoes, beans and peppers", "tomatoes, beans, and peppers"],
+          "explanation": "Three vegetables in a list need commas between them.",
+          "hint": "There is a list of three things in the first paragraph."
+        },
+        {
+          "wrong": "everyone loved",
+          "fixes": ["Everyone loved"],
+          "explanation": "Every sentence starts with a capital letter.",
+          "hint": "A short sentence in the first paragraph starts with a small letter."
+        },
+        {
+          "wrong": "on friday",
+          "fixes": ["on Friday", "on Fridays"],
+          "explanation": "Days of the week are names: Friday.",
+          "hint": "First paragraph, last word."
+        },
+        {
+          "wrong": "things seeds",
+          "fixes": ["things: seeds"],
+          "explanation": "“We would need three things” is a complete sentence that introduces a list, so a colon fits.",
+          "hint": "Second paragraph: a complete sentence leads into a list."
+        },
+        {
+          "wrong": "My Aunt",
+          "fixes": ["My aunt"],
+          "explanation": "After “my”, aunt is an ordinary noun, not a name.",
+          "hint": "Second paragraph: a family word."
+        },
+        {
+          "wrong": "nursery has",
+          "fixes": ["nursery, has"],
+          "explanation": "Extra information (who owns a plant nursery) needs a comma on both sides.",
+          "hint": "The who clause has a comma before it. Does it have one after it?"
+        },
+        {
+          "wrong": "The students parents",
+          "fixes": ["The students’ parents"],
+          "explanation": "The parents belong to the students (more than one): students’.",
+          "hint": "Whose parents?"
+        },
+        {
+          "wrong": "However we",
+          "fixes": ["However, we"],
+          "explanation": "A transition word at the start of a sentence takes a comma.",
+          "hint": "Look for a transition word at the start of a sentence."
+        },
+        {
+          "wrong": "the Library",
+          "fixes": ["the library"],
+          "explanation": "“library” here is an ordinary noun, not a name, so no capital.",
+          "hint": "Second paragraph, last word."
+        },
+        {
+          "wrong": "about Science",
+          "fixes": ["about science"],
+          "explanation": "School subjects (except languages) stay small.",
+          "hint": "Third paragraph: a school subject."
+        },
+        {
+          "wrong": "Its also",
+          "fixes": ["It’s also", "It is also"],
+          "explanation": "It is also → It’s also.",
+          "hint": "Third paragraph: say it as two words."
+        },
+        {
+          "wrong": "a worm.",
+          "fixes": ["a worm?"],
+          "explanation": "“Have you seen…” asks a real question, so it ends with a question mark.",
+          "hint": "One sentence in the third paragraph asks something."
+        },
+        {
+          "wrong": "Their already",
+          "fixes": ["They’re already", "They are already"],
+          "explanation": "They are already asking → They’re already asking.",
+          "hint": "Third paragraph: their, they’re or there?"
+        },
+        {
+          "wrong": "its going",
+          "fixes": ["it’s going", "it is going"],
+          "explanation": "it is going → it’s going.",
+          "hint": "Third paragraph: say it as two words."
+        },
+        {
+          "wrong": "on monday",
+          "fixes": ["on Monday"],
+          "explanation": "Days of the week are names: Monday.",
+          "hint": "The fourth paragraph names a day."
+        },
+        {
+          "wrong": "plan; and",
+          "fixes": ["plan, and", "plan; my", "plan. My"],
+          "explanation": "Use a semicolon or a joining word, not both: “plan, and my friend…” or “plan; my friend…”.",
+          "hint": "Fourth paragraph: a semicolon with a joining word."
+        }
+      ]
+    }
+  },
+  {
+    "key": "e08.unit-check",
+    "type": "QUIZ",
+    "title": "Grammar Foundations check",
+    "instructions": "Ten questions on all eight grammar units: parts of speech and punctuation. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "c1",
+        "prompt": "Which word is a proper noun? “Our class visited the museum in Boston.”",
+        "options": [
+          { "id": "a", "text": "class" },
+          { "id": "b", "text": "museum" },
+          { "id": "c", "text": "Boston" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Boston names one particular place, so it’s a proper noun.",
+        "skill": "nouns and pronouns"
+      },
+      {
+        "id": "c2",
+        "prompt": "Which word is an abstract noun?",
+        "options": [
+          { "id": "a", "text": "courage" },
+          { "id": "b", "text": "ladder" },
+          { "id": "c", "text": "team" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Courage is an idea you can’t touch, so it’s abstract. Team is a collective noun.",
+        "skill": "nouns and pronouns"
+      },
+      {
+        "id": "c3",
+        "prompt": "Which sentence uses pronouns correctly?",
+        "options": [
+          { "id": "a", "text": "Me and Sam went to the park." },
+          { "id": "b", "text": "Sam and I went to the park." },
+          { "id": "c", "text": "Sam and me went to the park." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Doing the action, use the subject pronoun I. Test: “I went” (not “me went”).",
+        "skill": "nouns and pronouns"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which pronoun fits? “The coach gave the trophy to Ava and ___.”",
+        "options": [
+          { "id": "a", "text": "I" },
+          { "id": "b", "text": "me" },
+          { "id": "c", "text": "myself" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "After “to”, use an object pronoun: gave it to me.",
+        "skill": "nouns and pronouns"
+      },
+      {
+        "id": "c5",
+        "prompt": "Which word is a linking verb? “The soup smells delicious.”",
+        "options": [
+          { "id": "a", "text": "soup" },
+          { "id": "b", "text": "smells" },
+          { "id": "c", "text": "delicious" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“smells” links the soup to a description (delicious). Nobody is doing any smelling.",
+        "skill": "verbs"
+      },
+      {
+        "id": "c6",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "She has went home." },
+          { "id": "b", "text": "She has gone home." },
+          { "id": "c", "text": "She has goed home." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "After has/have/had, use the past participle: gone.",
+        "skill": "verbs"
+      },
+      {
+        "id": "c7",
+        "prompt": "Which verb agrees? “The box of crayons ___ on the shelf.”",
+        "options": [
+          { "id": "a", "text": "is" },
+          { "id": "b", "text": "are" },
+          { "id": "c", "text": "were" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The subject is “box” (one), not “crayons”: The box is.",
+        "skill": "verbs"
+      },
+      {
+        "id": "c8",
+        "prompt": "Which tense? “By noon, we had finished the hike.”",
+        "options": [
+          { "id": "a", "text": "Past progressive" },
+          { "id": "b", "text": "Past perfect" },
+          { "id": "c", "text": "Simple future" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "had + past participle (had finished) is the past perfect.",
+        "skill": "verbs"
+      },
+      {
+        "id": "c9",
+        "prompt": "Which word is an adverb? “The tired runner finished slowly.”",
+        "options": [
+          { "id": "a", "text": "tired" },
+          { "id": "b", "text": "runner" },
+          { "id": "c", "text": "slowly" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "“slowly” tells how the runner finished, so it’s an adverb. “tired” describes the runner (an adjective).",
+        "skill": "adjectives and adverbs"
+      },
+      {
+        "id": "c10",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "This is the most tallest tree." },
+          { "id": "b", "text": "This is the tallest tree." },
+          { "id": "c", "text": "This is the more tall tree." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Short adjectives add -est for the superlative. Never use most and -est together.",
+        "skill": "adjectives and adverbs"
+      },
+      {
+        "id": "c11",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          { "id": "a", "text": "She sings good." },
+          { "id": "b", "text": "She sings well." },
+          { "id": "c", "text": "She sings goodly." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“well” is the adverb that tells how she sings. “good” describes nouns: a good singer.",
+        "skill": "adjectives and adverbs"
+      },
+      {
+        "id": "c12",
+        "prompt": "Which is a stronger choice than “very big”?",
+        "options": [
+          { "id": "a", "text": "really big" },
+          { "id": "b", "text": "enormous" },
+          { "id": "c", "text": "big big" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "One precise word (enormous) is stronger than very + a plain word.",
+        "skill": "adjectives and adverbs"
+      },
+      {
+        "id": "c13",
+        "prompt": "Which preposition fits? “The party is ___ Saturday.”",
+        "options": [
+          { "id": "a", "text": "in" },
+          { "id": "b", "text": "at" },
+          { "id": "c", "text": "on" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Use “on” with days: on Saturday. (in July, at noon)",
+        "skill": "prepositions and conjunctions"
+      },
+      {
+        "id": "c14",
+        "prompt": "Which word is a subordinating conjunction? “We stayed inside because it was raining.”",
+        "options": [
+          { "id": "a", "text": "inside" },
+          { "id": "b", "text": "because" },
+          { "id": "c", "text": "was" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“because” starts a dependent clause and links it to the main clause.",
+        "skill": "prepositions and conjunctions"
+      },
+      {
+        "id": "c15",
+        "prompt": "Which pair is correct?",
+        "options": [
+          { "id": "a", "text": "Neither Sam or Leo came." },
+          { "id": "b", "text": "Neither Sam nor Leo came." },
+          { "id": "c", "text": "Either Sam nor Leo came." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "neither goes with nor; either goes with or.",
+        "skill": "prepositions and conjunctions"
+      },
+      {
+        "id": "c16",
+        "prompt": "What part of speech is “Wow” in “Wow, that was close!”?",
+        "options": [
+          { "id": "a", "text": "An interjection" },
+          { "id": "b", "text": "An adverb" },
+          { "id": "c", "text": "A preposition" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "An interjection shows a sudden feeling and stands apart from the rest of the sentence.",
+        "skill": "prepositions and conjunctions"
+      },
+      {
+        "id": "c17",
+        "prompt": "Which sentence uses capitals correctly?",
+        "options": [
+          { "id": "a", "text": "In the Fall, we visited Grandma in Texas." },
+          { "id": "b", "text": "In the fall, we visited Grandma in Texas." },
+          { "id": "c", "text": "In the fall, we visited grandma in texas." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Seasons stay small. Grandma (used as her name) and Texas (a place) take capitals.",
+        "skill": "capitals and end marks"
+      },
+      {
+        "id": "c18",
+        "prompt": "Which sentence ends with the right mark?",
+        "options": [
+          { "id": "a", "text": "She asked if the bus had left?" },
+          { "id": "b", "text": "Has the bus left?" },
+          { "id": "c", "text": "Has the bus left." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Has the bus left?” asks directly. “She asked if…” reports a question, so it ends with a full stop.",
+        "skill": "capitals and end marks"
+      },
+      {
+        "id": "c19",
+        "prompt": "Which word needs a capital? “my favourite subject is english.”",
+        "options": [
+          { "id": "a", "text": "Only “my”" },
+          { "id": "b", "text": "“my” and “english”" },
+          { "id": "c", "text": "“my”, “subject” and “english”" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The first word of the sentence and the language take capitals: My favourite subject is English.",
+        "skill": "capitals and end marks"
+      },
+      {
+        "id": "c20",
+        "prompt": "Which sentence needs a comma added?",
+        "options": [
+          { "id": "a", "text": "After the movie we went home." },
+          { "id": "b", "text": "We went home after the movie." },
+          { "id": "c", "text": "We went home." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "An opener (After the movie) takes a comma: After the movie, we went home.",
+        "skill": "commas"
+      },
+      {
+        "id": "c21",
+        "prompt": "Which sentence is punctuated correctly?",
+        "options": [
+          { "id": "a", "text": "Our neighbour, who is a nurse works at night." },
+          { "id": "b", "text": "Our neighbour who is a nurse, works at night." },
+          { "id": "c", "text": "Our neighbour, who is a nurse, works at night." }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Extra information takes a pair of commas.",
+        "skill": "commas"
+      },
+      {
+        "id": "c22",
+        "prompt": "Which list is correct?",
+        "options": [
+          { "id": "a", "text": "I play soccer, chess and guitar." },
+          { "id": "b", "text": "I play soccer chess, and guitar." },
+          { "id": "c", "text": "I play, soccer, chess and guitar." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Commas go between the items, not before the first one.",
+        "skill": "commas"
+      },
+      {
+        "id": "c23",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "The cat licked it’s paw." },
+          { "id": "b", "text": "The cat licked its paw." },
+          { "id": "c", "text": "The cat licked its’ paw." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "its (belonging) has no apostrophe. it’s always means it is or it has.",
+        "skill": "apostrophes"
+      },
+      {
+        "id": "c24",
+        "prompt": "Three girls share one locker room. Which is right?",
+        "options": [
+          { "id": "a", "text": "the girl’s locker room" },
+          { "id": "b", "text": "the girls’ locker room" },
+          { "id": "c", "text": "the girls locker room" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "More than one owner ending in s: the apostrophe goes after the s (girls’).",
+        "skill": "apostrophes"
+      },
+      {
+        "id": "c25",
+        "prompt": "Which needs an apostrophe?",
+        "options": [
+          { "id": "a", "text": "We sold fifty cupcakes." },
+          { "id": "b", "text": "We dont have time." },
+          { "id": "c", "text": "The books are new." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "do not → don’t. Plurals such as cupcakes and books never need one.",
+        "skill": "apostrophes"
+      },
+      {
+        "id": "c26",
+        "prompt": "Which is correct?",
+        "options": [
+          { "id": "a", "text": "Your going to love this book." },
+          { "id": "b", "text": "You’re going to love this book." },
+          { "id": "c", "text": "Youre going to love this book." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "You are going → You’re going.",
+        "skill": "apostrophes"
+      },
+      {
+        "id": "c27",
+        "prompt": "Which sentence uses a colon correctly?",
+        "options": [
+          { "id": "a", "text": "The recipe needs: eggs, milk and flour." },
+          { "id": "b", "text": "The recipe needs three things: eggs, milk and flour." },
+          { "id": "c", "text": "The recipe: needs eggs, milk and flour." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A colon follows a complete sentence (The recipe needs three things).",
+        "skill": "colons, semicolons and dashes"
+      },
+      {
+        "id": "c28",
+        "prompt": "Which sentence uses a semicolon correctly?",
+        "options": [
+          { "id": "a", "text": "I love winter; the snow makes everything quiet." },
+          { "id": "b", "text": "I love winter; and snow." },
+          { "id": "c", "text": "Although I love winter; I hate the cold." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Both sides of a semicolon must be complete sentences, with no and/but after it.",
+        "skill": "colons, semicolons and dashes"
+      },
+      {
+        "id": "c29",
+        "prompt": "Which mark best fits? “The ending surprised everyone ___ even the author’s mom.”",
+        "options": [
+          { "id": "a", "text": "a dash (—)" },
+          { "id": "b", "text": "a semicolon (;)" },
+          { "id": "c", "text": "a question mark (?)" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A dash adds a dramatic extra detail. A semicolon needs a complete sentence after it.",
+        "skill": "colons, semicolons and dashes"
+      },
+      {
+        "id": "c30",
+        "prompt": "Which sentence has NO mistakes?",
+        "options": [
+          { "id": "a", "text": "However, the team’s best player was sick; we still won." },
+          { "id": "b", "text": "However the teams best player was sick, we still won." },
+          { "id": "c", "text": "however, the team’s best player was sick; and we still won." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A comma after However, an apostrophe for belonging (team’s), and a semicolon joining two complete sentences.",
+        "skill": "colons, semicolons and dashes"
+      }
+    ]
+  },
+  {
+    "key": "e08.check-sentences",
+    "type": "SENTENCE_SET",
+    "title": "Six sentences, every skill",
+    "prompt": "Write a six-sentence paragraph about a place you would love to visit. Each sentence has its own task, listed above the writing box, using skills from all eight grammar units. Write them in order, as one paragraph, and proofread before you hand it in.",
+    "tips": [
+      "Names of places take capitals: Tokyo, the Grand Canyon, Lake Victoria.",
+      "Opener first? Comma after it: When I get there, … / Because it is so far away, …",
+      "Colon after a complete sentence: I would pack three things: …"
+    ],
+    "constraints": { "minWords": 50, "maxWords": 200, "minSentences": 6 },
+    "analyzers": ["punctuation", "structure"],
+    "grammarFocus": ["proper-noun", "intro-comma", "colon"],
+    "sentenceSet": {
+      "label": "Your six sentences",
+      "sentences": [
+        {
+          "ask": "Name the place you want to visit (a proper noun) and where it is.",
+          "needs": ["proper-noun"]
+        },
+        {
+          "ask": "Describe it with an adjective and an adverb that tells how.",
+          "needs": ["adjective", "adverb-how"]
+        },
+        {
+          "ask": "Tell how you first heard about it, using a past-tense verb and a prepositional phrase.",
+          "needs": ["past-tense", "prepositional-phrase"]
+        },
+        {
+          "ask": "Start with a dependent clause and a comma (When I get there, …).",
+          "needs": ["dependent-clause", "intro-comma"]
+        },
+        {
+          "ask": "Join two ideas with a comma and a FANBOYS word (and, but, so…).",
+          "needs": ["coordinating-conjunction"]
+        },
+        {
+          "ask": "End with a colon and a list of things you would pack or do.",
+          "needs": ["colon", "list-commas"]
+        }
+      ]
+    }
+  }
+]

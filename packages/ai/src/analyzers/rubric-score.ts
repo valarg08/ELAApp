@@ -95,6 +95,7 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
               'voice',
               'speech',
               'structure',
+              'punctuation',
             ],
           }
         : {},

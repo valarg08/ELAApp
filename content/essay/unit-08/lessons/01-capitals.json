@@ -1,0 +1,63 @@
+{
+  "slug": "essay-capitals",
+  "order": 1,
+  "title": "Capital Letters",
+  "estMinutes": 35,
+  "focusSkills": ["punctuation", "capitals"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Same letters, different meaning. What changes?",
+      "a": "I helped my uncle Jack off a horse.",
+      "b": "I helped my uncle jack off a horse.",
+      "reveal": "In A, Uncle Jack is a person getting off a horse. In B, “jack” is a verb, and it sounds like your uncle is using a car jack to lift a horse! One capital letter tells the reader which words are names."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Always a capital",
+          "body": "The first word of every sentence. The word I (and I’m, I’ve, I’ll). Names of people and pets (Maya, Rex). Titles before a name (Mr. Diaz, Dr. Lee, Aunt Rosa)."
+        },
+        {
+          "kind": "example",
+          "title": "Names of places and things",
+          "text": "Places: Chicago, Lake Michigan, Main Street, Canada\nDays, months and holidays: Tuesday, March, Thanksgiving\nLanguages and nationalities: English, Spanish, Mexican\nTitles: The Hunger Games, “Happy Birthday”",
+          "note": "In titles, capitalise the first word and the important words. Little words (a, the, of, and, in) stay small unless they come first."
+        },
+        {
+          "kind": "compare",
+          "title": "No capital needed",
+          "telling": "In the Summer, my Mom took a Science class.",
+          "showing": "In the summer, my mom took a science class.",
+          "labels": ["Too many capitals ✗", "Just right ✓"],
+          "note": "Seasons and most school subjects are ordinary nouns. “mom” after my/your/his is a common noun; “Mom” on its own is used as a name: “Mom, where are my shoes?”"
+        },
+        {
+          "kind": "definition",
+          "title": "The name test",
+          "body": "Ask: is this the name of one particular person, place or thing? Then it needs a capital: a river → the Amazon River; my school → Lincoln Middle School."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e08.capitals-sort", "e08.capitals-mc", "e08.capitals-hunt"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e08.capitals-sentences" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which capital letter rule surprised you the most?",
+        "Think of your own writing. Do you add capitals where they don’t belong, or forget them where they do?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}
