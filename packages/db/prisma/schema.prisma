@@ -188,29 +188,32 @@ model Organization {
 }
 
 model User {
-  id                String         @id @default(cuid())
+  id                String            @id @default(cuid())
   role              Role
   orgId             String?
-  org               Organization?  @relation(fields: [orgId], references: [id])
+  org               Organization?     @relation(fields: [orgId], references: [id])
   displayName       String // first name or nickname only for students
-  username          String         @unique // students: generated; teachers: email local-part
-  email             String?        @unique // null for students
+  username          String            @unique // students: generated; teachers: email local-part
+  email             String?           @unique // null for students
   passwordHash      String? // teachers/admins
   studentSecretHash String? // students: picture sequence or word code
   studentSecretKind String? // students: "PICTURE" | "WORD"
   avatar            Json? // unlocked cosmetic choices
   preferences       Json? // a11y: font, textSize, readAloud, reducedMotion, theme
-  failedLogins      Int            @default(0) // consecutive failures, reset on success
+  failedLogins      Int               @default(0) // consecutive failures, reset on success
   lockedUntil       DateTime?
   lastLoginAt       DateTime?
   enrollments       Enrollment[]
-  taughtClasses     Class[]        @relation("ClassTeacher")
+  taughtClasses     Class[]           @relation("ClassTeacher")
   submissions       Submission[]
   sensoryWords      SensoryWord[]
   quizAttempts      QuizAttempt[]
   mathErrors        MathErrorLog[]
+  mathAnswers       MathAnswerLog[]
+  mathSkillStates   MathSkillState[]
+  mathTestAttempts  MathTestAttempt[]
   stats             StudentStats?
-  createdAt         DateTime       @default(now())
+  createdAt         DateTime          @default(now())
   deletedAt         DateTime? // soft delete, hard purge after retention window
 }
 
@@ -359,6 +362,7 @@ model MathErrorLog {
   lessonId     String
   activityKey  String
   problemId    String
+  seed         Int? // the template variant missed (math-design.md §3.1 A2)
   skill        String
   wrongTimes   Int       @default(1)
   correctRedos Int       @default(0)
@@ -372,6 +376,68 @@ model MathErrorLog {
 }
 
 // Personal sensory word bank (Unit 6): words collected in the sensory lab, shown in every workspace.
+/// Math-wide content from /content/math (math-design.md §3): skills, stages, tests, fact sheets.
+model MathContent {
+  key         String   @id // "skills", "stages", "test:diagnostic", "facts:1"
+  data        Json
+  contentHash String
+  updatedAt   DateTime @updatedAt
+}
+
+/// One answered Math problem (math-design.md §3.2 B1). The verdict only: never the typed text.
+model MathAnswerLog {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  source      String // practice | set | review | sprint | test | redo
+  lessonId    String?
+  activityKey String? // the activity, or "test:<key>" for the diagnostic and checkpoints
+  problemId   String
+  seed        Int?
+  skill       String
+  difficulty  Int
+  verdict     String // correct | wrong | form | blank | shown
+  hintsUsed   Int      @default(0)
+  seconds     Int?
+  confidence  Int? // 1 Guessing, 2 Think so, 3 Sure
+  createdAt   DateTime @default(now())
+
+  @@index([studentId, skill, createdAt])
+  @@index([studentId, createdAt])
+}
+
+/// Spaced review per skill (math-design.md §3.2 B3): boxes of 1, 2, 4, 8, 16 and 30 days.
+model MathSkillState {
+  studentId String
+  student   User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  skill     String
+  box       Int      @default(1)
+  dueAt     DateTime
+  updatedAt DateTime @updatedAt
+
+  @@id([studentId, skill])
+  @@index([studentId, dueAt])
+}
+
+/// A Math test, sprint or daily review (math-design.md §3.2 B3–B4, §3.4 D1).
+model MathTestAttempt {
+  id               String    @id @default(cuid())
+  studentId        String
+  student          User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  kind             String // diagnostic | checkpoint | sprint | review | light-review
+  testKey          String // "diagnostic", "checkpoint-1", "sprint", "review:2026-10-16"
+  items            Json // MathTestItem[] (Zod)
+  answers          Json // { [index]: MathTestAnswer } (Zod)
+  timeLimitSeconds Int?
+  startedAt        DateTime  @default(now())
+  submittedAt      DateTime?
+  correct          Int?
+  points           Float?
+  total            Int
+
+  @@index([studentId, kind, startedAt])
+}
+
 model SensoryWord {
   id        String   @id @default(cuid())
   studentId String

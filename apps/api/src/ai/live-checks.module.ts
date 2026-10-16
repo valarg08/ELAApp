@@ -10,5 +10,7 @@ import { TutorService } from './tutor.service.js';
   imports: [CurriculumModule, SafetyModule],
   controllers: [LiveChecksController, TutorController],
   providers: [LiveChecksService, TutorService],
+  // The Math track's Quill shares the tutor rate limit.
+  exports: [TutorService],
 })
 export class LiveChecksModule {}

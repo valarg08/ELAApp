@@ -1,0 +1,52 @@
+[
+  {
+    "number": 1,
+    "title": "Core Skills + Diagnostics",
+    "focus": "See where you stand, build contest habits, and get the algebra fundamentals solid: systems, quadratics, factoring and inequalities.",
+    "items": [
+      { "kind": "diagnostic" },
+      { "kind": "unit", "unit": 1 },
+      { "kind": "unit", "unit": 2 },
+      { "kind": "unit", "unit": 3 },
+      { "kind": "unit", "unit": 4 },
+      { "kind": "unit", "unit": 5 }
+    ]
+  },
+  {
+    "number": 2,
+    "title": "AMC Thinking + Speed",
+    "focus": "Sequences, number theory and modular arithmetic, counting with casework and complements, and probability, with timed sprints to build speed.",
+    "items": [
+      { "kind": "unit", "unit": 6 },
+      { "kind": "unit", "unit": 7 },
+      { "kind": "unit", "unit": 8 },
+      { "kind": "checkpoint", "key": "checkpoint-1" },
+      { "kind": "unit", "unit": 9 },
+      { "kind": "unit", "unit": 10 },
+      { "kind": "sprints" }
+    ]
+  },
+  {
+    "number": 3,
+    "title": "Strategy + Score Optimization",
+    "focus": "Geometry (similar triangles, angle chasing, power of a point, coordinates), then timed tests, the 2-minute rule, refreshes and your danger zones.",
+    "items": [
+      { "kind": "unit", "unit": 11 },
+      { "kind": "unit", "unit": 12 },
+      { "kind": "unit", "unit": 13 },
+      { "kind": "checkpoint", "key": "checkpoint-2" },
+      { "kind": "unit", "unit": 14 },
+      { "kind": "unit", "unit": 15, "lessons": { "from": 1, "to": 7 } }
+    ]
+  },
+  {
+    "number": 4,
+    "title": "Final Prep + Confidence",
+    "focus": "Light review, fact sheets, identities, shortcuts and patterns: stay sharp and calm for contest day.",
+    "items": [
+      { "kind": "unit", "unit": 15, "lessons": { "from": 8, "to": 10 } },
+      { "kind": "light-review" },
+      { "kind": "fact-sheets" }
+    ]
+  }
+]

@@ -88,8 +88,17 @@ export const PracticeResponse = z.object({
 /** The writing is submitted from the workspace; completing the step only checks that it was. */
 export const ChallengeResponse = z.object({});
 export const ReflectResponse = z.object({
-  answers: z.array(z.string().trim().min(1, 'Write a short answer').max(1000)).min(1).max(3),
+  /** One per prompt (a Math reflect step with the trap picker may have no prompts). */
+  answers: z.array(z.string().trim().min(1, 'Write a short answer').max(1000)).max(3),
   confidence: z.number().int().min(1).max(4).optional(),
+  /** Math trap picker (math-design.md §3.3 C3): the problem that tricked the student, and the trap. */
+  trap: z
+    .object({
+      activityKey: z.string().min(1).max(80),
+      problemId: z.string().min(1).max(80),
+      note: z.string().trim().min(1, 'Say what the trap was').max(300),
+    })
+    .optional(),
 });
 
 export const STEP_RESPONSE_SCHEMAS = {

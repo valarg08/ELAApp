@@ -4,6 +4,7 @@ import type { LessonCard, LessonSteps } from '@storyforge/shared';
 import { useRef, useState } from 'react';
 import { TrackText } from '@/components/math-text';
 import { Button } from '@/components/ui';
+import { MathCardTutor, WorkedExample } from '@/features/math/worked-example';
 import { splitWords } from '@/lib/tokens';
 import { ExplainAnother } from '../tutor/explain-another';
 import { PovSimulator } from './pov-simulator';
@@ -25,7 +26,11 @@ export function LearnStep({
 }: StepProps<Learn> & { lessonId: string; math?: boolean }) {
   const [index, setIndex] = useState(0);
   const [cardDone, setCardDone] = useState<boolean[]>(
-    step.cards.map((c) => done || (c.kind !== 'clue-hunt' && c.kind !== 'pov-simulator')),
+    step.cards.map(
+      (c) =>
+        done ||
+        (c.kind !== 'clue-hunt' && c.kind !== 'pov-simulator' && c.kind !== 'worked-example'),
+    ),
   );
   const card = step.cards[index];
   if (!card) return null;
@@ -42,8 +47,12 @@ export function LearnStep({
         math={math}
         onSolved={() => setCardDone(cardDone.map((d, i) => (i === index ? true : d)))}
       />
-      {/* The card tutor is a writing tutor; Math gets Quill on each problem instead. */}
-      {!math && <ExplainAnother key={`explain-${index}`} lessonId={lessonId} cardIndex={index} />}
+      {/* The writing card tutor; Math has its own (steps and a key idea, math-design.md §3.3). */}
+      {math ? (
+        <MathCardTutor key={`explain-${index}`} lessonId={lessonId} cardIndex={index} />
+      ) : (
+        <ExplainAnother key={`explain-${index}`} lessonId={lessonId} cardIndex={index} />
+      )}
       <div className="flex gap-3">
         <Button variant="secondary" disabled={index === 0} onClick={() => setIndex(index - 1)}>
           ← Back
@@ -119,6 +128,8 @@ function CardView({
       return <ClueHunt card={card} onSolved={onSolved} frame={frame} />;
     case 'pov-simulator':
       return <PovSimulator card={card} onSolved={onSolved} frame={frame} />;
+    case 'worked-example':
+      return <WorkedExample card={card} onSolved={onSolved} frame={frame} />;
   }
   const unreachable: never = card;
   return unreachable;

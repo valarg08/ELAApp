@@ -7,6 +7,7 @@ import {
   asInteger,
   asRational,
   div,
+  equal,
   fromInt,
   fromRational,
   gcd,
@@ -19,10 +20,18 @@ import {
 } from './value.js';
 
 /**
- * A small, safe expression reader (no variables, no loops, no eval): numbers, + − × ÷ ^,
- * parentheses, √ / sqrt(), π / pi, ! and, with `functions`, binom gcd lcm floor ceil abs min max mod.
- * Students' answers use it without functions; content `compute` checks use it with them.
+ * A small, safe expression reader (no loops, no eval): numbers, + − × ÷ ^, parentheses, √ / sqrt(),
+ * π / pi, ! and, with `functions`, binom gcd lcm floor ceil abs min max mod. Students' answers use
+ * it without functions or variables; content (`compute`, problem templates) uses both, and
+ * template conditions add comparisons (== != < <= > >=) joined by `and` / `or`.
  */
+
+export interface EvaluateOptions {
+  /** binom, gcd, lcm… (content only). */
+  functions?: boolean;
+  /** Template variables by name (content only). */
+  vars?: Readonly<Record<string, Value>>;
+}
 
 type Token = { t: 'num'; v: string } | { t: 'id'; v: string } | { t: 'op'; v: string };
 
@@ -41,13 +50,19 @@ const ALIASES: Record<string, string> = {
   '}': ')',
 };
 
-function tokenize(input: string): Token[] {
+const COMPARISONS = ['==', '!=', '<=', '>=', '<', '>'];
+
+function tokenize(input: string, comparisons = false): Token[] {
   const tokens: Token[] = [];
   let i = 0;
   while (i < input.length) {
     const raw = input[i]!;
     const ch = ALIASES[raw] ?? raw;
-    if (/\s/.test(ch)) {
+    const comparison = comparisons && COMPARISONS.find((c) => input.startsWith(c, i));
+    if (comparison) {
+      tokens.push({ t: 'op', v: comparison });
+      i += comparison.length;
+    } else if (/\s/.test(ch)) {
       i += 1;
     } else if (/[0-9.]/.test(ch)) {
       const m = /^(\d+\.?\d*|\.\d+)/.exec(input.slice(i));
@@ -70,6 +85,9 @@ function tokenize(input: string): Token[] {
   }
   return tokens;
 }
+
+/** Words that join conditions, never variables or implicit factors. */
+const KEYWORDS = new Set(['and', 'or']);
 
 const FUNCTIONS = ['binom', 'gcd', 'lcm', 'floor', 'ceil', 'abs', 'min', 'max', 'mod', 'fact'];
 
@@ -165,6 +183,7 @@ class Parser {
   constructor(
     private readonly tokens: Token[],
     private readonly functions: boolean,
+    private readonly vars: Readonly<Record<string, Value>> = {},
   ) {}
 
   parse(): Value {
@@ -172,6 +191,58 @@ class Parser {
     const v = this.expr();
     if (this.i < this.tokens.length) throw new MathError('Check the end of your answer');
     return v;
+  }
+
+  /** A template condition: comparisons joined by `and` / `or` (`and` binds tighter). */
+  parseCondition(): boolean {
+    if (this.tokens.length === 0) throw new MathError('The condition is empty');
+    let result = this.conjunction();
+    while (this.isWord('or')) {
+      this.i += 1;
+      const rhs = this.conjunction();
+      result = result || rhs;
+    }
+    if (this.i < this.tokens.length) throw new MathError('Check the end of the condition');
+    return result;
+  }
+
+  private isWord(w: string) {
+    const t = this.peek();
+    return t?.t === 'id' && t.v === w;
+  }
+
+  private conjunction(): boolean {
+    let result = this.comparison();
+    while (this.isWord('and')) {
+      this.i += 1;
+      const rhs = this.comparison();
+      result = result && rhs;
+    }
+    return result;
+  }
+
+  private comparison(): boolean {
+    const a = this.expr();
+    const t = this.peek();
+    if (t?.t !== 'op' || !COMPARISONS.includes(t.v))
+      throw new MathError('A condition needs a comparison (== != < <= > >=)');
+    this.i += 1;
+    const b = this.expr();
+    const same = equal(a, b);
+    switch (t.v) {
+      case '==':
+        return same;
+      case '!=':
+        return !same;
+      case '<':
+        return !same && approx(a) < approx(b);
+      case '<=':
+        return same || approx(a) < approx(b);
+      case '>':
+        return !same && approx(a) > approx(b);
+      default:
+        return same || approx(a) > approx(b);
+    }
   }
 
   private peek() {
@@ -201,7 +272,7 @@ class Parser {
   private startsImplicitFactor() {
     const t = this.peek();
     if (!t) return false;
-    if (t.t === 'id') return true;
+    if (t.t === 'id') return !KEYWORDS.has(t.v);
     return t.t === 'op' && (t.v === '(' || t.v === '√');
   }
 
@@ -273,6 +344,8 @@ class Parser {
     if (t.t === 'id') {
       this.i += 1;
       if (t.v === 'pi') return PI;
+      const variable = Object.hasOwn(this.vars, t.v) ? this.vars[t.v] : undefined;
+      if (variable) return variable;
       if (t.v === 'sqrt' || (this.functions && FUNCTIONS.includes(t.v))) {
         this.expect('(');
         const args = [this.expr()];
@@ -289,9 +362,14 @@ class Parser {
   }
 }
 
-/** Evaluate an expression. `functions` allows binom, gcd… (content checks only). */
-export function evaluate(input: string, { functions = false } = {}): Value {
-  return new Parser(tokenize(input.trim()), functions).parse();
+/** Evaluate an expression. `functions` allows binom, gcd…, `vars` template variables (content only). */
+export function evaluate(input: string, { functions = false, vars }: EvaluateOptions = {}): Value {
+  return new Parser(tokenize(input.trim()), functions, vars).parse();
+}
+
+/** Whether a template condition like "a != b and gcd(a, b) == 1" holds for these variables. */
+export function holds(condition: string, vars: Readonly<Record<string, Value>> = {}): boolean {
+  return new Parser(tokenize(condition.trim(), true), true, vars).parseCondition();
 }
 
 /** Mixed numbers like "2 1/3" (or "-2 1/3"). */

@@ -159,9 +159,9 @@ export const wrongPictureSecret = (secret: string) =>
 
 /** Load /content into the (freshly reset) test database. */
 export async function seedContent(db: PrismaClient): Promise<void> {
-  const { units, errors } = await loadContent();
+  const { units, errors, math } = await loadContent();
   if (errors.length > 0) throw new Error(`Invalid content:\n${errors.join('\n')}`);
-  await syncContent(db, units);
+  await syncContent(db, units, math);
 }
 
 /** Open the student's working copy of a writing activity. */

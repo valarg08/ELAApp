@@ -14,6 +14,8 @@ export * from './curriculum/checklist.js';
 export * from './curriculum/proofread.js';
 export * from './curriculum/figurative.js';
 export * from './curriculum/math.js';
+export * from './curriculum/math-content.js';
+export * from './curriculum/math-mastery.js';
 export * from './contracts/curriculum.js';
 export * from './contracts/writing.js';
 export * from './contracts/feedback.js';

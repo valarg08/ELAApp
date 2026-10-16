@@ -79,9 +79,12 @@ export function hasForm(input: string, form: AnswerForm): boolean {
   }
 }
 
-/** The value of an accepted answer or a compute expression (content, so functions are allowed). */
-export function contentValue(expression: string): Value {
-  return evaluate(expression, { functions: true });
+/**
+ * The value of an accepted answer or a compute expression (content, so functions are allowed, and
+ * template variables when given).
+ */
+export function contentValue(expression: string, vars?: Readonly<Record<string, Value>>): Value {
+  return evaluate(expression, { functions: true, vars });
 }
 
 /**

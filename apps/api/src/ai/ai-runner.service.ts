@@ -15,6 +15,8 @@ export interface RunMeta {
   /** Extra cache-key input (e.g. the activity key), besides the analyzer, version, model and text. */
   cacheScope: string;
   text: string;
+  /** Neither read nor write the result cache (requests that carry student text, like Math working). */
+  noCache?: boolean;
 }
 
 /**
@@ -43,7 +45,9 @@ export class AiRunnerService {
       classId: meta.classId ?? null,
     };
 
-    const cached = await this.db.client.aiCache.findUnique({ where: { key } });
+    const cached = meta.noCache
+      ? null
+      : await this.db.client.aiCache.findUnique({ where: { key } });
     if (cached && cached.expiresAt > new Date()) {
       const parsed = def.schema.safeParse(cached.output);
       if (parsed.success) {
@@ -81,7 +85,7 @@ export class AiRunnerService {
       `${def.id} ${outcome.status} model=${this.gateway.model} in=${outcome.usage.inputTokens} out=${outcome.usage.outputTokens} cacheRead=${outcome.usage.cacheReadTokens} ${outcome.usage.latencyMs}ms`,
     );
 
-    if (outcome.status === 'ok') {
+    if (outcome.status === 'ok' && !meta.noCache) {
       const output: Prisma.InputJsonValue = JSON.parse(JSON.stringify(outcome.result));
       const expiresAt = new Date(Date.now() + CACHE_DAYS * 86_400_000);
       await this.db.client.aiCache.upsert({

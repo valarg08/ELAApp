@@ -2,6 +2,8 @@
 
 import {
   type LessonActivity,
+  MATH_CONFIDENCE,
+  type MathConfidence,
   type ProblemReviewItem,
   ProblemSetAttemptView,
   ProblemSetResult,
@@ -11,6 +13,8 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Button, ErrorMessage } from '@/components/ui';
 import { MathText } from '@/components/math-text';
+import { MATH_COPY } from '@/features/math/copy';
+import { ConfidenceChips } from '@/features/math/practice-tools';
 import { ProblemView } from '@/features/math/problem-view';
 import { QuillMath } from '@/features/math/quill-math';
 import { ApiError, apiJson } from '@/lib/api-client';
@@ -49,6 +53,7 @@ export function ProblemSet({
   const [status, setStatus] = useState<ProblemSetStatus | null>(null);
   const [attempt, setAttempt] = useState<ProblemSetAttemptView | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [confidence, setConfidence] = useState<Record<string, MathConfidence>>({});
   const [result, setResult] = useState<ProblemSetResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -73,6 +78,7 @@ export function ProblemSet({
     try {
       setAttempt(await apiJson(`${base}/attempts`, ProblemSetAttemptView, 'POST', {}));
       setAnswers({});
+      setConfidence({});
       setResult(null);
     } catch (e) {
       setError(message(e, 'Could not start the set. Try again.'));
@@ -90,7 +96,7 @@ export function ProblemSet({
         `${base}/attempts/${encodeURIComponent(attempt.attemptId)}/submit`,
         ProblemSetResult,
         'POST',
-        { answers },
+        { answers, confidence },
       );
       setResult(marked);
       setAttempt(null);
@@ -148,6 +154,14 @@ export function ProblemSet({
                 onAnswer={(v) => setAnswers((a) => ({ ...a, [p.id]: v }))}
                 allowBlank
               />
+              {answers[p.id]?.trim() && (
+                <div className="mt-3">
+                  <ConfidenceChips
+                    value={confidence[p.id]}
+                    onChange={(c) => setConfidence((all) => ({ ...all, [p.id]: c }))}
+                  />
+                </div>
+              )}
             </li>
           ))}
         </ol>
@@ -220,16 +234,12 @@ function SetReview({
       >
         <h2 ref={focusOnMount} tabIndex={-1} className="text-2xl font-bold outline-none">
           {!hasPassMark
-            ? '✓ Set handed in'
+            ? MATH_COPY.handedIn(result.score, result.total)
             : result.passed
-              ? '🎉 You passed!'
-              : 'Not yet: keep going'}
+              ? MATH_COPY.passed(result.score, result.total, result.percent)
+              : MATH_COPY.notYet(result.score, result.total, result.percent)}
         </h2>
-        <p className="mt-1 text-lg">
-          {result.score} of {result.total} right ·{' '}
-          <strong className={result.passed ? 'text-ok' : 'text-warn'}>{result.percent}%</strong>
-          {hasPassMark && ` (pass mark ${result.passPercent}%)`}
-        </p>
+        {hasPassMark && <p className="mt-1 text-lg">Pass mark {result.passPercent}%</p>}
         {missed.length > 0 && (
           <p className="mt-2">
             Look again at: <strong>{result.reviewSkills.join(', ')}</strong>.{' '}
@@ -278,6 +288,7 @@ function ReviewItem({
   activityKey: string;
 }) {
   const v = VERDICT[item.verdict];
+  const locator = { lessonId, activityKey, problemId: item.problem.id, seed: item.problem.seed };
   return (
     <li className="flex flex-col gap-3 border-b border-border pb-6 last:border-b-0">
       <ProblemView
@@ -296,26 +307,25 @@ function ReviewItem({
           </span>
         )}
       </p>
+      {item.confidence !== null && (
+        <p className="text-sm text-muted">
+          You said: {MATH_CONFIDENCE.find((c) => c.value === item.confidence)?.label}
+        </p>
+      )}
+      {item.note && (
+        <p className="rounded-xl border border-warn/40 bg-background p-3">
+          <MathText text={item.note} />
+        </p>
+      )}
       <div className="rounded-xl bg-background p-3">
         <p className="text-sm font-semibold">Worked solution</p>
         <MathText as="p" text={item.solution} className="leading-relaxed" />
       </div>
       <div className="flex flex-col gap-2">
         {item.verdict === 'wrong' && item.given && (
-          <QuillMath
-            lessonId={lessonId}
-            activityKey={activityKey}
-            problemId={item.problem.id}
-            mode="mistake"
-            answer={item.given}
-          />
+          <QuillMath locator={locator} mode="mistake" answer={item.given} />
         )}
-        <QuillMath
-          lessonId={lessonId}
-          activityKey={activityKey}
-          problemId={item.problem.id}
-          mode="explain"
-        />
+        <QuillMath locator={locator} mode="explain" />
       </div>
     </li>
   );

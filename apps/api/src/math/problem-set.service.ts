@@ -2,7 +2,8 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 import type { QuizAttempt } from '@storyforge/db';
 import {
   ErrorCode,
-  type MathProblem,
+  type MathVariant,
+  MathConfidence,
   type ProblemSetActivity,
   type ProblemSetAttemptView,
   type ProblemSetResult,
@@ -10,17 +11,24 @@ import {
   type SubmitProblemSetRequest,
   answerLabel,
   markAnswer,
+  newSeed,
+  parseProblemRef,
+  problemRef,
+  problemVariant,
   publicProblem,
 } from '@storyforge/shared';
 import { z } from 'zod';
 import type { AuthUser } from '../auth/auth.types.js';
 import { AppError, forbidden, notFound } from '../common/app-error.js';
 import { DatabaseService } from '../database/database.service.js';
+import { AnswerLogService } from './answer-log.service.js';
 import { ErrorLogService } from './error-log.service.js';
 import { MathContentService } from './math-content.service.js';
 
 const ProblemIds = z.array(z.string());
+/** Saved answers: by problem id, plus the confidence per problem id under "_confidence". */
 const Answers = z.record(z.string(), z.string());
+const Confidence = z.record(z.string(), MathConfidence);
 
 /** A random order (Fisher–Yates). */
 function shuffled<T>(items: readonly T[]): T[] {
@@ -47,6 +55,7 @@ export class ProblemSetService {
     private readonly db: DatabaseService,
     private readonly content: MathContentService,
     private readonly errorLog: ErrorLogService,
+    private readonly answers: AnswerLogService,
   ) {}
 
   async status(user: AuthUser, lessonId: string, key: string): Promise<ProblemSetStatus> {
@@ -64,7 +73,7 @@ export class ProblemSetService {
       passPercent: set.passPercent ?? null,
       problemCount: set.problemsPerAttempt ?? set.problems.length,
       timeLimitMinutes: set.timeLimitMinutes ?? null,
-      last: last ? this.result(set, last, 0) : null,
+      last: last ? this.result(set, last, 0, await this.skillLabels()) : null,
     };
   }
 
@@ -83,13 +92,19 @@ export class ProblemSetService {
       if (problems.length > 0) return this.view(set, open, attemptNumber, problems);
     }
 
-    const seen = new Set(finished[0] ? ProblemIds.parse(finished[0].questionIds) : []);
+    const seen = new Set(
+      finished[0]
+        ? ProblemIds.parse(finished[0].questionIds).map((ref) => parseProblemRef(ref).problemId)
+        : [],
+    );
     const count = set.problemsPerAttempt ?? set.problems.length;
+    // Template problems get new numbers on every try (math-design.md §3.1 A2).
     const picked = shuffled(set.problems)
       .toSorted((a, b) => Number(seen.has(a.id)) - Number(seen.has(b.id)))
       .slice(0, count)
-      .toSorted((a, b) => a.difficulty - b.difficulty);
-    const ids = picked.map((p) => p.id);
+      .toSorted((a, b) => a.difficulty - b.difficulty)
+      .map((p) => problemVariant(p, p.template ? newSeed() : undefined));
+    const ids = picked.map((p) => problemRef(p.id, p.seed));
     const attempt = await this.db.client.quizAttempt.create({
       data: { studentId: user.id, lessonId, activityKey: key, questionIds: ids, total: ids.length },
     });
@@ -122,18 +137,45 @@ export class ProblemSetService {
     const answers = Object.fromEntries(
       problems.map((p) => [p.id, (body.answers[p.id] ?? '').trim()]),
     );
+    const confidence = Object.fromEntries(
+      problems.flatMap((p) => {
+        const c = body.confidence?.[p.id];
+        return c ? [[p.id, c]] : [];
+      }),
+    );
     const marks = problems.map((p) => ({ p, mark: markAnswer(p, answers[p.id] ?? '') }));
     const score = marks.filter((m) => m.mark.verdict === 'correct').length;
     const passed =
       set.passPercent === undefined || percentOf(score, problems.length) >= set.passPercent;
     const saved = await this.db.client.quizAttempt.update({
       where: { id: attempt.id },
-      data: { answers, score, total: problems.length, passed, submittedAt: new Date() },
+      data: {
+        answers: { ...answers, _confidence: confidence },
+        score,
+        total: problems.length,
+        passed,
+        submittedAt: new Date(),
+      },
     });
 
+    await this.answers.record(
+      user.id,
+      marks.map(({ p, mark }) => ({
+        source: 'set',
+        lessonId,
+        activityKey: key,
+        problemId: p.id,
+        seed: p.seed ?? null,
+        skill: p.skill,
+        difficulty: p.difficulty,
+        verdict: mark.verdict,
+        confidence: confidence[p.id] ?? null,
+      })),
+    );
     const missed = marks.filter((m) => m.mark.verdict !== 'correct');
-    for (const { p } of missed) await this.errorLog.record(user.id, lessonId, key, p.id, p.skill);
-    return this.result(set, saved, missed.length);
+    for (const { p } of missed)
+      await this.errorLog.record(user.id, lessonId, key, p.id, p.skill, p.seed);
+    return this.result(set, saved, missed.length, await this.skillLabels());
   }
 
   // ───────── helpers ─────────
@@ -157,16 +199,20 @@ export class ProblemSetService {
     });
   }
 
-  /** The problems with these ids, in this order (ones removed from the content are skipped). */
-  private problems(set: ProblemSetActivity, ids: readonly string[]): MathProblem[] {
-    return ids.flatMap((id) => set.problems.filter((p) => p.id === id));
+  /** The problems (variants) these refs name, in order (ones removed from the content are skipped). */
+  private problems(set: ProblemSetActivity, refs: readonly string[]): MathVariant[] {
+    return refs.flatMap((ref) => {
+      const { problemId, seed } = parseProblemRef(ref);
+      const p = set.problems.find((x) => x.id === problemId);
+      return p ? [problemVariant(p, p.template ? (seed ?? 0) : undefined)] : [];
+    });
   }
 
   private view(
     set: ProblemSetActivity,
     attempt: QuizAttempt,
     attemptNumber: number,
-    problems: MathProblem[],
+    problems: MathVariant[],
   ): ProblemSetAttemptView {
     return {
       attemptId: attempt.id,
@@ -178,21 +224,33 @@ export class ProblemSetService {
     };
   }
 
+  /** Skill ids → names, for "Look again at: …". */
+  private async skillLabels(): Promise<Map<string, string>> {
+    return new Map((await this.content.skills()).map((s) => [s.id, s.label]));
+  }
+
   private result(
     set: ProblemSetActivity,
     attempt: QuizAttempt,
     addedToErrorLog: number,
+    labels: ReadonlyMap<string, string>,
   ): ProblemSetResult {
-    const answers = Answers.catch({}).parse(attempt.answers);
+    const raw = z.record(z.string(), z.unknown()).catch({}).parse(attempt.answers);
+    const { _confidence, ...given } = raw;
+    const answers = Answers.catch({}).parse(given);
+    const confidence = Confidence.catch({}).parse(_confidence ?? {});
     const review = this.problems(set, ProblemIds.parse(attempt.questionIds)).map((p) => {
-      const given = answers[p.id] ?? '';
+      const answer = answers[p.id] ?? '';
+      const mark = markAnswer(p, answer);
       return {
         problem: publicProblem(p),
-        given,
-        verdict: markAnswer(p, given).verdict,
+        given: answer,
+        verdict: mark.verdict,
         rightAnswer: answerLabel(p),
         solution: p.solution,
         skill: p.skill,
+        note: mark.note,
+        confidence: confidence[p.id] ?? null,
       };
     });
     const score = attempt.score ?? 0;
@@ -204,7 +262,11 @@ export class ProblemSetService {
       passed: attempt.passed,
       passPercent: set.passPercent ?? null,
       review,
-      reviewSkills: [...new Set(review.flatMap((r) => (r.verdict === 'correct' ? [] : [r.skill])))],
+      reviewSkills: [
+        ...new Set(
+          review.flatMap((r) => (r.verdict === 'correct' ? [] : [labels.get(r.skill) ?? r.skill])),
+        ),
+      ],
       addedToErrorLog,
     };
   }

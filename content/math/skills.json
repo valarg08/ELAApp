@@ -1,0 +1,428 @@
+[
+  {
+    "id": "amc-scoring",
+    "label": "AMC format & scoring",
+    "strand": "strategy",
+    "units": [1]
+  },
+  {
+    "id": "read-and-draw",
+    "label": "Read carefully & draw it",
+    "strand": "strategy",
+    "units": [1]
+  },
+  {
+    "id": "work-backwards",
+    "label": "Work backwards",
+    "strand": "strategy",
+    "units": [1]
+  },
+  {
+    "id": "test-choices",
+    "label": "Test the choices",
+    "strand": "strategy",
+    "units": [1]
+  },
+  {
+    "id": "estimate-eliminate",
+    "label": "Estimate & eliminate",
+    "strand": "strategy",
+    "units": [1]
+  },
+  {
+    "id": "pacing",
+    "label": "Pacing & the 2-minute rule",
+    "strand": "strategy",
+    "units": [1, 15]
+  },
+  {
+    "id": "guessing",
+    "label": "Guessing vs leaving a blank",
+    "strand": "strategy",
+    "units": [1, 15]
+  },
+  {
+    "id": "logic-puzzles",
+    "label": "Logic puzzles",
+    "strand": "strategy",
+    "units": [14]
+  },
+  {
+    "id": "invariants-parity",
+    "label": "Invariants & parity",
+    "strand": "strategy",
+    "units": [14]
+  },
+  {
+    "id": "games-strategy",
+    "label": "Games & strategy",
+    "strand": "strategy",
+    "units": [14]
+  },
+  {
+    "id": "clocks-calendars",
+    "label": "Clocks, calendars & time",
+    "strand": "strategy",
+    "units": [14]
+  },
+  {
+    "id": "fractions-percents",
+    "label": "Fractions, decimals & percents",
+    "strand": "algebra",
+    "units": [2]
+  },
+  {
+    "id": "ratios-rates",
+    "label": "Ratios, rates & proportions",
+    "strand": "algebra",
+    "units": [2]
+  },
+  {
+    "id": "averages",
+    "label": "Averages & weighted averages",
+    "strand": "algebra",
+    "units": [2]
+  },
+  {
+    "id": "exponents-roots",
+    "label": "Exponents & roots",
+    "strand": "algebra",
+    "units": [2]
+  },
+  {
+    "id": "clever-arithmetic",
+    "label": "Clever arithmetic",
+    "strand": "algebra",
+    "units": [2]
+  },
+  {
+    "id": "linear-equations",
+    "label": "Linear equations",
+    "strand": "algebra",
+    "units": [3]
+  },
+  {
+    "id": "systems",
+    "label": "Systems of equations",
+    "strand": "algebra",
+    "units": [3]
+  },
+  {
+    "id": "distance-rate-time",
+    "label": "Distance, rate & time",
+    "strand": "algebra",
+    "units": [3]
+  },
+  {
+    "id": "work-mixtures",
+    "label": "Work & mixtures",
+    "strand": "algebra",
+    "units": [3]
+  },
+  {
+    "id": "ages-coins-money",
+    "label": "Ages, coins & money",
+    "strand": "algebra",
+    "units": [3]
+  },
+  {
+    "id": "factoring",
+    "label": "Factoring",
+    "strand": "algebra",
+    "units": [4]
+  },
+  {
+    "id": "quadratic-formula",
+    "label": "Quadratic formula & discriminant",
+    "strand": "algebra",
+    "units": [4]
+  },
+  {
+    "id": "vieta",
+    "label": "Vieta's formulas",
+    "strand": "algebra",
+    "units": [4]
+  },
+  {
+    "id": "completing-square",
+    "label": "Completing the square & the vertex",
+    "strand": "algebra",
+    "units": [4]
+  },
+  {
+    "id": "polynomial-remainders",
+    "label": "Polynomial remainders",
+    "strand": "algebra",
+    "units": [4]
+  },
+  {
+    "id": "functions",
+    "label": "Functions & notation",
+    "strand": "algebra",
+    "units": [5]
+  },
+  {
+    "id": "graph-transformations",
+    "label": "Graphs & transformations",
+    "strand": "algebra",
+    "units": [5]
+  },
+  {
+    "id": "absolute-value",
+    "label": "Absolute value",
+    "strand": "algebra",
+    "units": [5]
+  },
+  {
+    "id": "inequalities",
+    "label": "Inequalities & AM–GM",
+    "strand": "algebra",
+    "units": [5]
+  },
+  {
+    "id": "floor-ceiling",
+    "label": "Floor, ceiling & piecewise",
+    "strand": "algebra",
+    "units": [5]
+  },
+  {
+    "id": "arithmetic-sequences",
+    "label": "Arithmetic sequences",
+    "strand": "algebra",
+    "units": [6]
+  },
+  {
+    "id": "geometric-sequences",
+    "label": "Geometric sequences & series",
+    "strand": "algebra",
+    "units": [6]
+  },
+  {
+    "id": "recursion",
+    "label": "Recursion",
+    "strand": "algebra",
+    "units": [6]
+  },
+  {
+    "id": "telescoping",
+    "label": "Telescoping & clever sums",
+    "strand": "algebra",
+    "units": [6]
+  },
+  {
+    "id": "patterns",
+    "label": "Finding the pattern",
+    "strand": "algebra",
+    "units": [6]
+  },
+  {
+    "id": "divisibility",
+    "label": "Divisibility rules",
+    "strand": "number-theory",
+    "units": [7]
+  },
+  {
+    "id": "primes-factorization",
+    "label": "Primes & factorization",
+    "strand": "number-theory",
+    "units": [7]
+  },
+  {
+    "id": "gcd-lcm",
+    "label": "GCD & LCM",
+    "strand": "number-theory",
+    "units": [7]
+  },
+  {
+    "id": "counting-divisors",
+    "label": "Counting divisors",
+    "strand": "number-theory",
+    "units": [7]
+  },
+  {
+    "id": "factorials-zeros",
+    "label": "Factorials & trailing zeros",
+    "strand": "number-theory",
+    "units": [7]
+  },
+  {
+    "id": "modular-arithmetic",
+    "label": "Remainders & modular arithmetic",
+    "strand": "number-theory",
+    "units": [8]
+  },
+  {
+    "id": "units-digits",
+    "label": "Units digits & cycles",
+    "strand": "number-theory",
+    "units": [8]
+  },
+  {
+    "id": "number-bases",
+    "label": "Number bases",
+    "strand": "number-theory",
+    "units": [8]
+  },
+  {
+    "id": "digit-problems",
+    "label": "Digit problems",
+    "strand": "number-theory",
+    "units": [8]
+  },
+  {
+    "id": "integer-equations",
+    "label": "Integer equations",
+    "strand": "number-theory",
+    "units": [8]
+  },
+  {
+    "id": "multiplication-principle",
+    "label": "Multiplication principle",
+    "strand": "counting",
+    "units": [9]
+  },
+  {
+    "id": "permutations",
+    "label": "Permutations",
+    "strand": "counting",
+    "units": [9]
+  },
+  {
+    "id": "combinations",
+    "label": "Combinations",
+    "strand": "counting",
+    "units": [9]
+  },
+  {
+    "id": "casework",
+    "label": "Casework",
+    "strand": "counting",
+    "units": [9]
+  },
+  {
+    "id": "complementary-counting",
+    "label": "Complementary counting",
+    "strand": "counting",
+    "units": [9]
+  },
+  {
+    "id": "stars-bars",
+    "label": "Stars & bars",
+    "strand": "counting",
+    "units": [10]
+  },
+  {
+    "id": "inclusion-exclusion",
+    "label": "Inclusion–exclusion",
+    "strand": "counting",
+    "units": [10]
+  },
+  {
+    "id": "probability",
+    "label": "Probability",
+    "strand": "counting",
+    "units": [10]
+  },
+  {
+    "id": "geometric-probability",
+    "label": "Geometric probability",
+    "strand": "counting",
+    "units": [10]
+  },
+  {
+    "id": "expected-value",
+    "label": "Expected value",
+    "strand": "counting",
+    "units": [10]
+  },
+  {
+    "id": "angle-chasing",
+    "label": "Angles, parallel lines & angle chasing",
+    "strand": "geometry",
+    "units": [11]
+  },
+  {
+    "id": "pythagoras",
+    "label": "Pythagoras & special right triangles",
+    "strand": "geometry",
+    "units": [11]
+  },
+  {
+    "id": "similar-triangles",
+    "label": "Similar triangles",
+    "strand": "geometry",
+    "units": [11]
+  },
+  {
+    "id": "triangle-area",
+    "label": "Area (including Heron's formula)",
+    "strand": "geometry",
+    "units": [11]
+  },
+  {
+    "id": "polygons",
+    "label": "Polygons & angle sums",
+    "strand": "geometry",
+    "units": [11]
+  },
+  {
+    "id": "circle-angles",
+    "label": "Arcs, chords & inscribed angles",
+    "strand": "geometry",
+    "units": [12]
+  },
+  {
+    "id": "tangents",
+    "label": "Tangents",
+    "strand": "geometry",
+    "units": [12]
+  },
+  {
+    "id": "power-of-a-point",
+    "label": "Power of a point",
+    "strand": "geometry",
+    "units": [12]
+  },
+  {
+    "id": "inscribed-circles",
+    "label": "Inscribed & circumscribed circles",
+    "strand": "geometry",
+    "units": [12]
+  },
+  {
+    "id": "circle-areas",
+    "label": "Areas with circles",
+    "strand": "geometry",
+    "units": [12]
+  },
+  {
+    "id": "coordinate-geometry",
+    "label": "Coordinate geometry",
+    "strand": "geometry",
+    "units": [13]
+  },
+  {
+    "id": "grid-areas",
+    "label": "Areas on the grid (shoelace, Pick's theorem)",
+    "strand": "geometry",
+    "units": [13]
+  },
+  {
+    "id": "transformations-symmetry",
+    "label": "Transformations & symmetry",
+    "strand": "geometry",
+    "units": [13]
+  },
+  {
+    "id": "solids-3d",
+    "label": "3D solids",
+    "strand": "geometry",
+    "units": [13]
+  },
+  {
+    "id": "nets-diagonals",
+    "label": "Nets & space diagonals",
+    "strand": "geometry",
+    "units": [13]
+  }
+]

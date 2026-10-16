@@ -7,62 +7,118 @@
     "problems": [
       {
         "id": "priya-score",
-        "prompt": "Priya answers $15$ questions correctly, leaves $7$ blank and gets $3$ wrong. What is her score?",
-        "answer": { "kind": "value", "accepted": ["100.5"], "form": "any" },
+        "prompt": "Priya answers $[[r]]$ questions correctly, leaves $[[b]]$ blank and gets $[[w]]$ wrong. What is her score?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[6*r + 1.5*b|decimal]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[6*r]]",
+              "why": "That is only the points from right answers. Each blank earns $1.5$ points too."
+            },
+            {
+              "value": "[[6*r + b]]",
+              "why": "Blanks are worth $1.5$ points each, not $1$."
+            }
+          ]
+        },
         "hints": [
           "Work out the points from each kind of answer separately.",
-          "Right answers give $15 \\times 6$ points. Blanks give $7 \\times 1.5$ points.",
-          "$90 + 10.5 = ?$ (wrong answers add nothing)"
+          "Right answers give $[[r]] \\times 6$ points. Blanks give $[[b]] \\times 1.5$ points.",
+          "$[[6*r]] + [[1.5*b|decimal]] = ?$ (wrong answers add nothing)"
         ],
-        "solution": "Right answers: $15 \\times 6 = 90$. Blanks: $7 \\times 1.5 = 10.5$. Wrong answers: $0$. Her score is $90 + 10.5 = 100.5$.",
-        "skill": "AMC scoring",
+        "solution": "Right answers: $[[r]] \\times 6 = [[6*r]]$. Blanks: $[[b]] \\times 1.5 = [[1.5*b|decimal]]$. Wrong answers: $0$. Her score is $[[6*r]] + [[1.5*b|decimal]] = [[6*r + 1.5*b|decimal]]$.",
+        "skill": "amc-scoring",
         "difficulty": 1,
-        "compute": "15*6 + 7*1.5"
+        "compute": "6*r + 1.5*b",
+        "template": {
+          "vars": {
+            "r": {
+              "from": 8,
+              "to": 20
+            },
+            "b": {
+              "from": 2,
+              "to": 10
+            },
+            "w": {
+              "let": "25 - r - b"
+            }
+          },
+          "where": ["w >= 1"]
+        }
       },
       {
         "id": "all-blank",
         "prompt": "What score would you get if you left all $25$ questions blank?",
-        "answer": { "kind": "value", "accepted": ["37.5"], "form": "any" },
+        "answer": {
+          "kind": "value",
+          "accepted": ["37.5"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "0",
+              "why": "A blank is not worth $0$: each one earns $1.5$ points."
+            },
+            {
+              "value": "25",
+              "why": "Each blank earns $1.5$ points, not $1$."
+            }
+          ]
+        },
         "hints": ["Each blank is worth $1.5$ points.", "$25 \\times 1.5 = ?$"],
         "solution": "Each of the $25$ blanks earns $1.5$ points, so the score is $25 \\times 1.5 = 37.5$.",
-        "skill": "AMC scoring",
+        "skill": "amc-scoring",
         "difficulty": 1,
         "compute": "25*1.5"
       },
       {
         "id": "random-guess",
         "prompt": "You guess at random on a question with five choices. On average, how many points is the guess worth? Give your answer as a common fraction.",
-        "answer": { "kind": "value", "accepted": ["6/5"], "form": "fraction" },
+        "answer": {
+          "kind": "value",
+          "accepted": ["6/5"],
+          "form": "fraction"
+        },
         "hints": [
           "A random guess is right $1$ time in $5$.",
           "On average you earn $6$ points $\\frac{1}{5}$ of the time and $0$ the rest of the time.",
           "$\\frac{1}{5} \\times 6 = ?$"
         ],
         "solution": "The guess is right with probability $\\frac{1}{5}$ and then earns $6$ points; otherwise it earns $0$. On average it is worth $\\frac{1}{5} \\times 6 = \\frac{6}{5}$ points. That is less than the $\\frac{3}{2}$ points of a blank, so a blind guess is a bad deal.",
-        "skill": "Guessing vs blanks",
+        "skill": "guessing",
         "difficulty": 2,
         "compute": "6/5"
       },
       {
         "id": "two-left",
         "prompt": "You rule out $3$ of the $5$ choices and guess between the other $2$. On average, how many points is that guess worth?",
-        "answer": { "kind": "value", "accepted": ["3"], "form": "any" },
+        "answer": {
+          "kind": "value",
+          "accepted": ["3"],
+          "form": "any"
+        },
         "hints": ["Now the guess is right $1$ time in $2$.", "$\\frac{1}{2} \\times 6 = ?$"],
         "solution": "The guess is right half the time, so it is worth $\\frac{1}{2} \\times 6 = 3$ points on average: double the $1.5$ points of a blank. Once you can rule out choices, guessing pays.",
-        "skill": "Guessing vs blanks",
+        "skill": "guessing",
         "difficulty": 2,
         "compute": "6/2"
       },
       {
         "id": "minutes-each",
         "prompt": "You have $75$ minutes for $25$ questions. You want to keep the last $15$ minutes to check your work. On average, how many minutes can you spend on each question?",
-        "answer": { "kind": "value", "accepted": ["12/5", "2.4"], "form": "any" },
+        "answer": {
+          "kind": "value",
+          "accepted": ["12/5", "2.4"],
+          "form": "any"
+        },
         "hints": [
           "How many minutes are left for answering once you keep $15$ for checking?",
           "Share $60$ minutes between $25$ questions."
         ],
         "solution": "You have $75 - 15 = 60$ minutes for answering, so each question gets $\\frac{60}{25} = 2.4$ minutes on average: about $2$ minutes and $24$ seconds.",
-        "skill": "Pacing",
+        "skill": "pacing",
         "difficulty": 2,
         "compute": "(75-15)/25"
       }
@@ -80,10 +136,15 @@
         "answer": {
           "kind": "choice",
           "choices": ["$120$", "$125$", "$127.5$", "$130$", "$150$"],
-          "correct": "C"
+          "correct": "C",
+          "why": {
+            "A": "That counts only the right answers. The $5$ blanks earn $1.5$ points each.",
+            "B": "That counts each blank as $1$ point. Blanks earn $1.5$.",
+            "E": "That is the top score: it needs all $25$ answers right."
+          }
         },
         "solution": "Right answers: $20 \\times 6 = 120$. Blanks: $5 \\times 1.5 = 7.5$. The score is $120 + 7.5 = 127.5$, choice (C).",
-        "skill": "AMC scoring",
+        "skill": "amc-scoring",
         "difficulty": 1,
         "compute": "20*6 + 5*1.5"
       },
@@ -93,10 +154,14 @@
         "answer": {
           "kind": "choice",
           "choices": ["$11$", "$12$", "$13$", "$14$", "$15$"],
-          "correct": "D"
+          "correct": "D",
+          "why": {
+            "C": "$13$ right gives $78 + 18 = 96$, which is not more than $100$.",
+            "E": "$15$ works, but $14$ already gives $100.5$."
+          }
         },
         "solution": "With $r$ right and $25 - r$ blank, the score is $6r + 1.5(25 - r) = 37.5 + 4.5r$. We need $37.5 + 4.5r > 100$, so $4.5r > 62.5$ and $r > 13.\\overline{8}$. The least whole number is $14$, choice (D). Check: $14$ right gives $84 + 16.5 = 100.5$, while $13$ right gives $78 + 18 = 96$.",
-        "skill": "AMC scoring",
+        "skill": "amc-scoring",
         "difficulty": 2,
         "compute": "floor(62.5/4.5) + 1"
       },
@@ -110,10 +175,14 @@
         "answer": {
           "kind": "choice",
           "choices": ["$12$", "$18$", "$24$", "$27$", "$36$"],
-          "correct": "B"
+          "correct": "B",
+          "why": {
+            "E": "That is the whole square. The triangle is half of it.",
+            "A": "Check the height: it is the full side of the square, $6$."
+          }
         },
         "solution": "The triangle's base is the bottom side, length $6$, and its height is the side of the square, $6$, because $M$ is on the top side. Its area is $\\frac{1}{2} \\times 6 \\times 6 = 18$, choice (B): half of the square, wherever $M$ is on the top side.",
-        "skill": "Draw it",
+        "skill": "read-and-draw",
         "difficulty": 2,
         "compute": "6*6/2"
       },
@@ -126,7 +195,7 @@
           "correct": "D"
         },
         "solution": "The first $20$ questions get $75 - 15 - 10 = 50$ minutes, so each gets $\\frac{50}{20} = 2.5$ minutes, choice (D).",
-        "skill": "Pacing",
+        "skill": "pacing",
         "difficulty": 2,
         "compute": "(75-15-10)/20"
       },
@@ -136,10 +205,14 @@
         "answer": {
           "kind": "choice",
           "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
-          "correct": "C"
+          "correct": "C",
+          "why": {
+            "B": "With $k = 1$ the guess is worth $\\frac{6}{4} = 1.5$: only equal to a blank, not more.",
+            "A": "A blind guess is worth $\\frac{6}{5} = 1.2$ points, less than a blank."
+          }
         },
         "solution": "Guessing among $5 - k$ choices is worth $\\frac{6}{5-k}$ points on average. A blank is worth $1.5 = \\frac{3}{2}$. With $k = 1$: $\\frac{6}{4} = 1.5$, only equal. With $k = 2$: $\\frac{6}{3} = 2 > 1.5$. So the least $k$ is $2$, choice (C).",
-        "skill": "Guessing vs blanks",
+        "skill": "guessing",
         "difficulty": 3,
         "compute": "2"
       }

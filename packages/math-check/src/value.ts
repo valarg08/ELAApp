@@ -219,6 +219,42 @@ export function equal(a: Value, b: Value): boolean {
   return Math.abs(x - y) <= TOLERANCE * Math.max(1, Math.abs(x), Math.abs(y));
 }
 
+/** A terminating decimal like "100.5" when the value is one, else the readable form ("1/3"). */
+export function formatDecimal(v: Value): string {
+  const r = asRational(v);
+  if (!r) return format(v);
+  for (let k = 0; k <= 12; k += 1) {
+    const scale = 10n ** BigInt(k);
+    if ((r.n * scale) % r.d !== 0n) continue;
+    const scaled = (r.n * scale) / r.d;
+    const digits = abs(scaled)
+      .toString()
+      .padStart(k + 1, '0');
+    const whole = digits.slice(0, digits.length - k);
+    const frac = digits.slice(digits.length - k);
+    return `${scaled < 0n ? '-' : ''}${whole}${k ? `.${frac}` : ''}`;
+  }
+  return format(v);
+}
+
+/** TeX for a value, for filling template placeholders inside $…$: "\frac{3}{4}", "2\sqrt{3}", "\frac{5\pi}{2}". */
+export function formatTex(v: Value): string {
+  if (v.kind === 'approx') return String(Number(v.x.toPrecision(12)));
+  if (v.terms.size === 0) return '0';
+  return [...v.terms]
+    .map(([key, c]) => ({ ...parseKey(key), c }))
+    .toSorted((a, b) => a.pi - b.pi || Number(a.radicand - b.radicand))
+    .map(({ radicand, pi, c }, i) => {
+      const symbol = `${radicand === 1n ? '' : `\\sqrt{${radicand}}`}${pi === 0 ? '' : pi === 1 ? '\\pi' : `\\pi^{${pi}}`}`;
+      const n = abs(c.n);
+      const top = `${symbol && n === 1n ? '' : String(n)}${symbol}`;
+      const body = c.d === 1n ? top : `\\frac{${top}}{${c.d}}`;
+      const sign = c.n < 0n ? '-' : '+';
+      return i === 0 ? (sign === '-' ? `-${body}` : body) : ` ${sign} ${body}`;
+    })
+    .join('');
+}
+
 /** A readable form for messages: "3/4", "2√3", "5π/2", "1 + √2". */
 export function format(v: Value): string {
   if (v.kind === 'approx') return String(Number(v.x.toPrecision(12)));

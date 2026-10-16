@@ -11,7 +11,7 @@ import { syncContent } from '../curriculum/content-sync.js';
 loadEnvFile();
 const checkOnly = process.argv.includes('--check');
 const root = defaultContentDir();
-const { units, errors } = await loadContent(root);
+const { units, errors, math } = await loadContent(root);
 
 if (errors.length > 0) {
   console.error(`✗ Content has ${errors.length} problem(s) in ${root}:`);
@@ -33,7 +33,7 @@ if (!url) {
 }
 const db = createPrismaClient(url);
 try {
-  const report = await syncContent(db, units);
+  const report = await syncContent(db, units, math);
   console.log(
     `✓ Synced ${report.units} units, ${report.lessons} lessons, ${report.activities} activities.`,
   );

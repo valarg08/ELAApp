@@ -19,7 +19,8 @@ import { CONFLICT_TYPE_IDS, type ConflictTypeId, PlotPlan } from './plot.js';
 import { ParagraphBuilder, ParagraphPlan } from './paragraph.js';
 import { Checklist } from './checklist.js';
 import { EssayConfig, EssayPrompt, OutlineBuilder, OutlinePlan } from './outline.js';
-import { MathProblem, problemErrors } from './math.js';
+import { AnswerFormId, MathProblem, problemErrors } from './math.js';
+import { checkAnswer, contentValue, equal, hasForm } from '@storyforge/math-check';
 
 /**
  * Curriculum content format (DESIGN.md §9). Units, lessons and activities live as JSON files in
@@ -903,8 +904,41 @@ export const LessonCard = z.discriminatedUnion('kind', [
     text: text(800),
     clues: z.array(z.string().trim().min(1)).min(1).max(6),
   }),
+  /**
+   * Math only (math-design.md §3.1 A4): a worked example that opens one step at a time. A step
+   * with `try` asks the student to do that step first (checked with math-check; "Show me" after
+   * two tries). Later examples in a lesson usually ask for the last step or two (faded examples).
+   */
+  z.object({
+    kind: z.literal('worked-example'),
+    title: text(120),
+    problem: text(1500),
+    steps: z
+      .array(
+        z.object({
+          text: text(800),
+          try: z
+            .object({
+              prompt: text(300).optional(),
+              accepted: z.array(text(100)).min(1).max(6),
+              form: AnswerFormId.default('any'),
+              compute: text(300).optional(),
+            })
+            .optional(),
+        }),
+      )
+      .min(2)
+      .max(8),
+  }),
 ]);
 export type LessonCard = z.infer<typeof LessonCard>;
+export type WorkedExampleCard = Extract<LessonCard, { kind: 'worked-example' }>;
+
+/** Check a typed step answer in a worked example (math-check, like a practice problem). */
+export const checkWorkedStep = (
+  t: NonNullable<WorkedExampleCard['steps'][number]['try']>,
+  given: string,
+) => checkAnswer(given, t.accepted, t.form);
 
 /** Tab names for the POV simulator. */
 export const POV_VERSION_LABELS = {
@@ -934,8 +968,14 @@ export const ChallengeStep = z.object({
 export const ReflectStep = z.object({
   id: z.literal('reflect'),
   type: z.literal('reflection'),
-  prompts: z.array(text(300)).min(1).max(3),
+  /** At least one, except in a Math lesson with the trap picker (checked in validateUnitBundle). */
+  prompts: z.array(text(300)).max(3),
   confidenceCheck: z.boolean().default(true),
+  /**
+   * Math only (math-design.md §3.3 C3): "Which problem tricked you?" lists the lesson's problems
+   * the student missed, then asks "What's the trap?" in one line.
+   */
+  trapPicker: z.boolean().optional(),
 });
 
 export const LessonSteps = z.tuple([HookStep, LearnStep, PracticeStep, ChallengeStep, ReflectStep]);
@@ -1204,8 +1244,33 @@ export function validateUnitBundle({
     orders.add(lesson.order);
     slugs.add(lesson.slug);
 
-    const [, learn, practice, challenge] = lesson.steps;
+    const [, learn, practice, challenge, reflect] = lesson.steps;
+    if (reflect.trapPicker && track !== 'MATH')
+      errors.push(`${where}: the trap picker belongs to the Math track`);
+    if (reflect.prompts.length === 0 && !reflect.trapPicker)
+      errors.push(
+        `${where}: the reflect step needs a prompt${track === 'MATH' ? ' or the trap picker' : ''}`,
+      );
     for (const card of learn.cards) {
+      if (card.kind === 'worked-example') {
+        if (track !== 'MATH')
+          errors.push(`${where}: worked-example cards belong to the Math track`);
+        for (const [i, s] of card.steps.entries()) {
+          if (!s.try) continue;
+          const at = `${where}: worked example "${card.title}" step ${i + 1}`;
+          try {
+            const [first, ...rest] = s.try.accepted.map((a) => contentValue(a));
+            if (rest.some((v) => !equal(v, first!)))
+              errors.push(`${at}: the accepted answers differ`);
+            if (!s.try.accepted.some((a) => hasForm(a, s.try!.form)))
+              errors.push(`${at}: no accepted answer is written as the form "${s.try.form}"`);
+            if (s.try.compute && !equal(contentValue(s.try.compute), first!))
+              errors.push(`${at}: compute doesn't match the accepted answer`);
+          } catch (e) {
+            errors.push(`${at}: ${e instanceof Error ? e.message : 'cannot read the answer'}`);
+          }
+        }
+      }
       if (card.kind === 'pov-simulator') {
         const povs = card.versions.map((v) => v.pov);
         if (new Set(povs).size !== povs.length)

@@ -4,5 +4,13 @@
  * content:check (verifying every `compute` against its answer).
  */
 export * from './answer.js';
-export { evaluate, readAnswer, texToExpression } from './parse.js';
-export { type Value, approx, equal, format, MathError as MathCheckError } from './value.js';
+export { type EvaluateOptions, evaluate, holds, readAnswer, texToExpression } from './parse.js';
+export {
+  type Value,
+  approx,
+  equal,
+  format,
+  formatDecimal,
+  formatTex,
+  MathError as MathCheckError,
+} from './value.js';

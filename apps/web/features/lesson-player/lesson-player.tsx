@@ -160,6 +160,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
         {view === 4 && (
           <ReflectStep
             step={reflect}
+            lessonId={lesson.id}
             done={done('reflect')}
             busy={busy}
             onComplete={(b) => complete('reflect', b)}

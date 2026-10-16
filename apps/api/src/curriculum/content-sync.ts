@@ -1,6 +1,6 @@
 import type { Prisma, PrismaClient } from '@storyforge/db';
 import { isWritingActivity } from '@storyforge/shared';
-import type { LoadedUnit } from './content-loader.js';
+import type { LoadResult, LoadedUnit } from './content-loader.js';
 
 /** Plain JSON copy for a Prisma Json column (drops undefined fields). */
 function toJson(value: unknown): Prisma.InputJsonValue {
@@ -21,7 +21,11 @@ export interface SyncReport {
  * activities by key. Nothing is deleted, because student progress and submissions may point at it;
  * items missing from /content are reported as orphans instead.
  */
-export async function syncContent(db: PrismaClient, units: LoadedUnit[]): Promise<SyncReport> {
+export async function syncContent(
+  db: PrismaClient,
+  units: LoadedUnit[],
+  math?: LoadResult['math'],
+): Promise<SyncReport> {
   const report: SyncReport = { units: 0, lessons: 0, activities: 0, orphans: [] };
 
   for (const { track, unit, lessons, activities, contentHash } of units) {
@@ -105,5 +109,25 @@ export async function syncContent(db: PrismaClient, units: LoadedUnit[]): Promis
       );
     });
   }
+  if (math) await syncMathContent(db, math);
   return report;
+}
+
+/** Math-wide content into MathContent, one row per file (math-design.md §3). */
+async function syncMathContent(db: PrismaClient, math: NonNullable<LoadResult['math']>) {
+  const rows: [string, unknown][] = [
+    ['skills', math.skills],
+    ...(math.stages ? [['stages', math.stages] as [string, unknown]] : []),
+    ...math.tests.map((t): [string, unknown] => [`test:${t.key}`, t]),
+    ...Object.entries(math.facts).map(([n, f]): [string, unknown] => [`facts:${n}`, f]),
+  ];
+  await db.$transaction(
+    rows.map(([key, value]) =>
+      db.mathContent.upsert({
+        where: { key },
+        create: { key, data: toJson(value), contentHash: math.contentHash },
+        update: { data: toJson(value), contentHash: math.contentHash },
+      }),
+    ),
+  );
 }

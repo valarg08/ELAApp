@@ -1,0 +1,388 @@
+{
+  "key": "diagnostic",
+  "title": "Diagnostic test",
+  "instructions": "25 original AMC-style problems from all five strands, getting harder as you go. There is no time limit, so try every problem honestly: leave a problem blank rather than guess wildly. Your results show where to focus, and you can take it again any time to see how far you have come.",
+  "timeLimitMinutes": null,
+  "afterUnit": null,
+  "problems": [
+    {
+      "id": "lena-score",
+      "prompt": "On a $25$-question test scored $6$ points for a right answer, $1.5$ for a blank and $0$ for a wrong answer, Lena answers $15$ correctly, gets $4$ wrong and leaves the rest blank. What is her score?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$87$", "$90$", "$93$", "$96$", "$99$"],
+        "correct": "E",
+        "why": {
+          "B": "That counts only the right answers. The $6$ blanks earn $1.5$ points each."
+        }
+      },
+      "solution": "Lena leaves $25 - 15 - 4 = 6$ blank. Her score is $15 \\times 6 + 6 \\times 1.5 = 90 + 9 = 99$, choice (E).",
+      "skill": "amc-scoring",
+      "difficulty": 1,
+      "compute": "15*6 + 6*1.5"
+    },
+    {
+      "id": "jacket-price",
+      "prompt": "A jacket costs $80$ dollars. Its price is cut by $25\\%$, and then the new price is raised by $10\\%$. What is the final price, in dollars?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$64$", "$66$", "$68$", "$70$", "$72$"],
+        "correct": "B",
+        "why": {
+          "E": "Taking off $25\\%$ and adding $10\\%$ is not the same as taking off $15\\%$: the $10\\%$ is of the lower price."
+        }
+      },
+      "solution": "After the cut the price is $80 \\times 0.75 = 60$. Raising it by $10\\%$ gives $60 \\times 1.1 = 66$, choice (B).",
+      "skill": "fractions-percents",
+      "difficulty": 1,
+      "compute": "80*0.75*1.1"
+    },
+    {
+      "id": "removed-number",
+      "prompt": "The average of five numbers is $12$. When one of the numbers is removed, the average of the other four is $10$. What number was removed?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2$", "$10$", "$12$", "$18$", "$20$"],
+        "correct": "E",
+        "why": {
+          "A": "Averages don't subtract like that. Work with the totals: $5 \\times 12$ and $4 \\times 10$."
+        }
+      },
+      "solution": "The five numbers add up to $5 \\times 12 = 60$ and the four add up to $4 \\times 10 = 40$, so the removed number is $60 - 40 = 20$, choice (E).",
+      "skill": "averages",
+      "difficulty": 1,
+      "compute": "5*12 - 4*10"
+    },
+    {
+      "id": "solve-then-square",
+      "prompt": "If $3x - 7 = 2x + 5$, what is the value of $x^2$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$64$", "$100$", "$121$", "$144$", "$169$"],
+        "correct": "D"
+      },
+      "solution": "Subtract $2x$ from both sides and add $7$: $x = 12$. So $x^2 = 144$, choice (D).",
+      "skill": "linear-equations",
+      "difficulty": 1,
+      "compute": "(5 + 7)^2"
+    },
+    {
+      "id": "divisors-72",
+      "prompt": "How many positive divisors does $72$ have?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$8$", "$9$", "$10$", "$11$", "$12$"],
+        "correct": "E"
+      },
+      "solution": "$72 = 2^3 \\times 3^2$. A divisor is $2^a 3^b$ with $a$ from $0$ to $3$ and $b$ from $0$ to $2$, so there are $4 \\times 3 = 12$ divisors, choice (E).",
+      "skill": "counting-divisors",
+      "difficulty": 1,
+      "compute": "(3 + 1)*(2 + 1)"
+    },
+    {
+      "id": "cafe-meals",
+      "prompt": "A café offers $4$ drinks, $3$ sandwiches and $2$ desserts. A meal is one drink, one sandwich and one dessert. How many different meals are possible?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$24$", "$28$", "$30$", "$32$", "$36$"],
+        "correct": "A"
+      },
+      "solution": "Each choice multiplies the number of meals: $4 \\times 3 \\times 2 = 24$, choice (A).",
+      "skill": "multiplication-principle",
+      "difficulty": 1,
+      "compute": "4*3*2"
+    },
+    {
+      "id": "triangle-perimeter",
+      "prompt": "A right triangle has legs of length $9$ and $12$. What is its perimeter?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$30$", "$33$", "$36$", "$39$", "$42$"],
+        "correct": "C",
+        "why": {
+          "B": "That is $9 + 12 + 12$: find the hypotenuse with the Pythagorean theorem first."
+        }
+      },
+      "solution": "The hypotenuse is $\\sqrt{9^2 + 12^2} = \\sqrt{225} = 15$, so the perimeter is $9 + 12 + 15 = 36$, choice (C).",
+      "skill": "pythagoras",
+      "difficulty": 1,
+      "compute": "9 + 12 + sqrt(9^2 + 12^2)"
+    },
+    {
+      "id": "marble-ratio",
+      "prompt": "A jar holds red and blue marbles in the ratio $3 : 5$. After $8$ red marbles are added, the ratio of red to blue is $1 : 1$. How many marbles are in the jar now?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$40$", "$44$", "$48$", "$52$", "$56$"],
+        "correct": "A"
+      },
+      "solution": "Say there were $3k$ red and $5k$ blue marbles. Then $3k + 8 = 5k$, so $k = 4$: $12$ red and $20$ blue. Now there are $20$ red and $20$ blue, $40$ in all, choice (A).",
+      "skill": "ratios-rates",
+      "difficulty": 2,
+      "compute": "2*5*4"
+    },
+    {
+      "id": "power-fraction",
+      "prompt": "What is the value of $\\frac{2^{10} + 2^{9}}{2^{8}}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2$", "$3$", "$4$", "$6$", "$8$"],
+        "correct": "D",
+        "why": {
+          "E": "$2^{10} + 2^9$ is not $2^{19}$, and you can't add the exponents of a sum. Divide each term by $2^8$."
+        }
+      },
+      "solution": "Divide each term by $2^8$: $\\frac{2^{10}}{2^8} + \\frac{2^9}{2^8} = 4 + 2 = 6$, choice (D).",
+      "skill": "exponents-roots",
+      "difficulty": 2,
+      "compute": "(2^10 + 2^9)/2^8"
+    },
+    {
+      "id": "units-digit-7",
+      "prompt": "What is the units digit of $7^{2026}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$3$", "$5$", "$7$", "$9$"],
+        "correct": "E"
+      },
+      "solution": "The units digits of $7^1, 7^2, 7^3, 7^4$ are $7, 9, 3, 1$, and then they repeat every $4$. Since $2026 = 4 \\times 506 + 2$, the units digit is the second in the cycle, $9$, choice (E).",
+      "skill": "units-digits",
+      "difficulty": 2,
+      "compute": "mod(7^2026, 10)"
+    },
+    {
+      "id": "committee-not-both",
+      "prompt": "A committee of $3$ is chosen from $8$ students. Two of the students, Ana and Ben, refuse to serve together. How many committees are possible?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$42$", "$48$", "$50$", "$52$", "$56$"],
+        "correct": "C",
+        "why": {
+          "E": "That counts every committee, including the ones with both Ana and Ben."
+        }
+      },
+      "solution": "There are $\\binom{8}{3} = 56$ committees in all. Those with both Ana and Ben need one more member from the other $6$, so there are $6$ of them. That leaves $56 - 6 = 50$, choice (C).",
+      "skill": "complementary-counting",
+      "difficulty": 2,
+      "compute": "binom(8, 3) - binom(6, 1)"
+    },
+    {
+      "id": "bisector-angle",
+      "prompt": "In triangle $ABC$, $\\angle A = 50^\\circ$ and $\\angle B = 70^\\circ$. The bisector of $\\angle C$ meets side $AB$ at $D$. What is $\\angle ADC$, in degrees?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$100$", "$105$", "$110$", "$115$", "$120$"],
+        "correct": "A"
+      },
+      "solution": "$\\angle C = 180^\\circ - 50^\\circ - 70^\\circ = 60^\\circ$, so $\\angle ACD = 30^\\circ$. In triangle $ADC$, $\\angle ADC = 180^\\circ - 50^\\circ - 30^\\circ = 100^\\circ$, choice (A).",
+      "skill": "angle-chasing",
+      "difficulty": 2,
+      "compute": "180 - 50 - (180 - 50 - 70)/2"
+    },
+    {
+      "id": "sum-of-squares",
+      "prompt": "If $x + y = 7$ and $xy = 10$, what is $x^2 + y^2$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$19$", "$29$", "$39$", "$49$", "$59$"],
+        "correct": "B",
+        "why": {
+          "D": "$(x + y)^2$ is $x^2 + 2xy + y^2$, not $x^2 + y^2$: take away $2xy$."
+        }
+      },
+      "solution": "$(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = 7^2 - 2 \\times 10 = 29$, choice (B).",
+      "skill": "factoring",
+      "difficulty": 2,
+      "compute": "7^2 - 2*10"
+    },
+    {
+      "id": "lighthouses",
+      "prompt": "Two lighthouses flash every $12$ seconds and every $18$ seconds. They flash together exactly at noon. How many times do they flash together in the next $10$ minutes, not counting noon?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$16$", "$17$", "$18$", "$19$", "$20$"],
+        "correct": "A"
+      },
+      "solution": "They flash together every $\\operatorname{lcm}(12, 18) = 36$ seconds. Ten minutes is $600$ seconds, and $600 = 36 \\times 16 + 24$, so they flash together $16$ times, choice (A).",
+      "skill": "gcd-lcm",
+      "difficulty": 2,
+      "compute": "floor(600/lcm(12, 18))"
+    },
+    {
+      "id": "dice-sum-8",
+      "prompt": "Two fair six-sided dice are rolled. What is the probability that the numbers add up to $8$?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{1}{9}$",
+          "$\\frac{5}{36}$",
+          "$\\frac{1}{6}$",
+          "$\\frac{7}{36}$",
+          "$\\frac{2}{9}$"
+        ],
+        "correct": "B",
+        "why": {
+          "C": "A sum of $7$ has $6$ ways. A sum of $8$ has only $5$: $2+6$, $3+5$, $4+4$, $5+3$, $6+2$."
+        }
+      },
+      "solution": "The pairs that add to $8$ are $(2,6), (3,5), (4,4), (5,3), (6,2)$: $5$ of the $36$ equally likely outcomes. The probability is $\\frac{5}{36}$, choice (B).",
+      "skill": "probability",
+      "difficulty": 2,
+      "compute": "5/36"
+    },
+    {
+      "id": "coordinate-triangle",
+      "prompt": "What is the area of the triangle with vertices $(0, 0)$, $(8, 0)$ and $(3, 6)$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$12$", "$16$", "$20$", "$24$", "$48$"],
+        "correct": "D",
+        "why": {
+          "E": "That is base times height. A triangle's area is half of it."
+        }
+      },
+      "solution": "Take the base along the $x$-axis, of length $8$. The third vertex is $6$ above it, so the area is $\\frac{1}{2} \\times 8 \\times 6 = 24$, choice (D).",
+      "skill": "coordinate-geometry",
+      "difficulty": 2,
+      "compute": "8*6/2"
+    },
+    {
+      "id": "twentieth-term",
+      "prompt": "The $3$rd term of an arithmetic sequence is $11$ and the $8$th term is $31$. What is the $20$th term?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$79$", "$81$", "$83$", "$85$", "$87$"],
+        "correct": "A"
+      },
+      "solution": "Five steps take the sequence from $11$ to $31$, so each step is $4$. From the $8$th term to the $20$th is $12$ more steps: $31 + 12 \\times 4 = 79$, choice (A).",
+      "skill": "arithmetic-sequences",
+      "difficulty": 2,
+      "compute": "31 + 12*(31 - 11)/5"
+    },
+    {
+      "id": "reciprocal-roots",
+      "prompt": "The roots of $x^2 - 6x + 4 = 0$ are $r$ and $s$. What is $\\frac{1}{r} + \\frac{1}{s}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$\\frac{1}{2}$", "$\\frac{2}{3}$", "$1$", "$\\frac{3}{2}$", "$6$"],
+        "correct": "D",
+        "why": {
+          "B": "That is $\\frac{rs}{r + s}$, upside down. $\\frac{1}{r} + \\frac{1}{s} = \\frac{r + s}{rs}$."
+        }
+      },
+      "solution": "$\\frac{1}{r} + \\frac{1}{s} = \\frac{r + s}{rs}$. The sum of the roots is $6$ and the product is $4$, so the answer is $\\frac{6}{4} = \\frac{3}{2}$, choice (D).",
+      "skill": "vieta",
+      "difficulty": 3,
+      "compute": "6/4"
+    },
+    {
+      "id": "three-to-hundred",
+      "prompt": "What is the remainder when $3^{100}$ is divided by $7$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+        "correct": "E"
+      },
+      "solution": "Powers of $3$ modulo $7$ go $3, 2, 6, 4, 5, 1$ and then repeat every $6$. Since $100 = 6 \\times 16 + 4$, $3^{100}$ leaves the same remainder as $3^4 = 81$, which is $4$, choice (E).",
+      "skill": "modular-arithmetic",
+      "difficulty": 3,
+      "compute": "mod(3^100, 7)"
+    },
+    {
+      "id": "digit-sum-five",
+      "prompt": "How many three-digit positive integers have digits that add up to $5$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$10$", "$12$", "$15$", "$18$", "$21$"],
+        "correct": "C",
+        "why": {
+          "E": "The first digit can't be $0$. Give it $1$ first, then share out the remaining $4$."
+        }
+      },
+      "solution": "Write the number as $abc$ with $a \\ge 1$. Let $a' = a - 1$; then $a' + b + c = 4$ with each at least $0$. By stars and bars there are $\\binom{6}{2} = 15$ ways, choice (C).",
+      "skill": "stars-bars",
+      "difficulty": 3,
+      "compute": "binom(6, 2)"
+    },
+    {
+      "id": "parallel-segment",
+      "prompt": "In triangle $ABC$, point $D$ is on side $AB$ and point $E$ is on side $AC$, with $DE$ parallel to $BC$. If $AD = 4$, $DB = 6$ and $BC = 15$, what is $DE$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$5$", "$6$", "$7.5$", "$9$", "$10$"],
+        "correct": "B",
+        "why": {
+          "E": "That uses $\\frac{DB}{AB}$. Triangle $ADE$ matches triangle $ABC$, so use $\\frac{AD}{AB} = \\frac{4}{10}$."
+        }
+      },
+      "solution": "Triangle $ADE$ is similar to triangle $ABC$ with ratio $\\frac{AD}{AB} = \\frac{4}{10}$. So $DE = \\frac{4}{10} \\times 15 = 6$, choice (B).",
+      "skill": "similar-triangles",
+      "difficulty": 3,
+      "compute": "4/(4 + 6)*15"
+    },
+    {
+      "id": "composition-difference",
+      "prompt": "Let $f(x) = 2x + 3$ and $g(x) = x^2 - 1$. What is $f(g(3)) - g(f(1))$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$-7$", "$-5$", "$-3$", "$3$", "$5$"],
+        "correct": "B"
+      },
+      "solution": "$g(3) = 8$, so $f(g(3)) = 19$. $f(1) = 5$, so $g(f(1)) = 24$. The difference is $19 - 24 = -5$, choice (B).",
+      "skill": "functions",
+      "difficulty": 3,
+      "compute": "(2*(3^2 - 1) + 3) - ((2*1 + 3)^2 - 1)"
+    },
+    {
+      "id": "circle-around-square",
+      "prompt": "A square has side length $4$. A circle passes through all four corners of the square. What is the area of the region inside the circle but outside the square?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$4\\pi$", "$4\\pi - 8$", "$16\\pi - 16$", "$8\\pi - 8$", "$8\\pi - 16$"],
+        "correct": "E",
+        "why": {
+          "C": "The radius is half the diagonal, $2\\sqrt{2}$, not $4$."
+        }
+      },
+      "solution": "The diagonal of the square, $4\\sqrt{2}$, is a diameter, so the radius is $2\\sqrt{2}$ and the circle's area is $\\pi (2\\sqrt{2})^2 = 8\\pi$. Taking away the square's area $16$ leaves $8\\pi - 16$, choice (E).",
+      "skill": "circle-areas",
+      "difficulty": 3,
+      "compute": "pi*(2*sqrt(2))^2 - 16"
+    },
+    {
+      "id": "at-least-one-red",
+      "prompt": "A bag holds $4$ red and $6$ blue marbles. Three marbles are drawn at random without replacement. What is the probability that at least one of them is red?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{1}{2}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{3}{4}$",
+          "$\\frac{5}{6}$",
+          "$\\frac{9}{10}$"
+        ],
+        "correct": "D"
+      },
+      "solution": "Count the opposite: all three blue. That has probability $\\frac{\\binom{6}{3}}{\\binom{10}{3}} = \\frac{20}{120} = \\frac{1}{6}$. So the probability of at least one red is $1 - \\frac{1}{6} = \\frac{5}{6}$, choice (D).",
+      "skill": "complementary-counting",
+      "difficulty": 4,
+      "compute": "1 - binom(6, 3)/binom(10, 3)"
+    },
+    {
+      "id": "unit-fraction-pairs",
+      "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{6}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$6$", "$8$", "$9$", "$10$", "$12$"],
+        "correct": "C",
+        "why": {
+          "E": "Check whether both factors can be negative: $x - 6$ and $y - 6$ are each at least $-5$, so their product can't be $36$."
+        }
+      },
+      "solution": "Clear fractions: $6y + 6x = xy$, so $xy - 6x - 6y + 36 = 36$, that is $(x - 6)(y - 6) = 36$. Both factors are greater than $-6$, so they can't both be negative; they are positive divisor pairs of $36 = 2^2 \\times 3^2$, which has $3 \\times 3 = 9$ divisors. That gives $9$ ordered pairs, choice (C).",
+      "skill": "integer-equations",
+      "difficulty": 4,
+      "compute": "(2 + 1)*(2 + 1)"
+    }
+  ]
+}

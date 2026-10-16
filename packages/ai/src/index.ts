@@ -26,4 +26,6 @@ export * from './analyzers/essay-structure.js';
 export * from './analyzers/rubric-score.js';
 export * from './analyzers/explain-card.js';
 export * from './analyzers/math-explain.js';
+export * from './analyzers/math-nudge.js';
+export * from './analyzers/math-card.js';
 export * from './analyzers/extra-practice.js';

@@ -12,6 +12,10 @@ import { MathText } from '@/components/math-text';
 import { ApiError, apiJson } from '@/lib/api-client';
 import { ProblemView } from './problem-view';
 
+/** "Math Unit 3: Lesson title", or the test's title for a test problem. */
+const where = (e: ErrorLogEntry) =>
+  e.unitNumber > 0 ? `Math Unit ${e.unitNumber}: ${e.lessonTitle}` : e.lessonTitle;
+
 /** The error log's open problems (each can be redone) and the resolved ones. */
 export function ErrorLogView({ initial }: { initial: ErrorLogList }) {
   const [open, setOpen] = useState(initial.open);
@@ -61,7 +65,7 @@ export function ErrorLogView({ initial }: { initial: ErrorLogList }) {
             <ul className="mt-3 flex flex-col gap-2">
               {resolved.map((e) => (
                 <li key={e.id} className="text-sm">
-                  <strong>{e.skill}</strong> · Math Unit {e.unitNumber}: {e.lessonTitle}
+                  <strong>{e.skill}</strong> · {where(e)}
                 </li>
               ))}
             </ul>
@@ -91,6 +95,8 @@ function Redo({ entry, onUpdate }: { entry: ErrorLogEntry; onUpdate: (e: ErrorLo
         { answer },
       );
       setResult(r);
+      // A template problem comes back with new numbers for the next redo.
+      if (r.entry.problem.seed !== entry.problem.seed) setAnswer('');
       onUpdate(r.entry);
     } catch (e) {
       setError(e instanceof ApiError ? e.userMessage : 'Could not check it. Try again.');
@@ -106,8 +112,7 @@ function Redo({ entry, onUpdate }: { entry: ErrorLogEntry; onUpdate: (e: ErrorLo
     >
       <p className="flex flex-wrap justify-between gap-2 text-sm text-muted">
         <span>
-          <strong className="text-foreground">{entry.skill}</strong> · Math Unit {entry.unitNumber}:{' '}
-          {entry.lessonTitle}
+          <strong className="text-foreground">{entry.skill}</strong> · {where(entry)}
         </span>
         <span>
           {done
@@ -115,7 +120,19 @@ function Redo({ entry, onUpdate }: { entry: ErrorLogEntry; onUpdate: (e: ErrorLo
             : `Right redos: ${entry.correctRedos} of ${REDOS_TO_RESOLVE} · missed ${entry.wrongTimes}×`}
         </span>
       </p>
+      {entry.missed && (
+        <details className="rounded-xl bg-background p-3">
+          <summary className="cursor-pointer font-semibold">The one you missed</summary>
+          <div className="mt-3">
+            <ProblemView problem={entry.missed} answer="" onAnswer={() => {}} disabled />
+          </div>
+        </details>
+      )}
+      {entry.missed && !done && (
+        <p className="text-sm text-muted">This redo has new numbers: same idea, fresh problem.</p>
+      )}
       <ProblemView
+        key={entry.problem.seed ?? entry.problem.id}
         problem={entry.problem}
         answer={answer}
         onAnswer={(v) => {
@@ -139,6 +156,11 @@ function Redo({ entry, onUpdate }: { entry: ErrorLogEntry; onUpdate: (e: ErrorLo
           <p className={`font-semibold ${result.verdict === 'correct' ? 'text-ok' : 'text-warn'}`}>
             {result.message}
           </p>
+          {result.note && (
+            <p className="rounded-xl border border-warn/40 bg-background p-3">
+              <MathText text={result.note} />
+            </p>
+          )}
           {result.solution && (
             <details className="rounded-xl bg-background p-3">
               <summary className="cursor-pointer font-semibold">

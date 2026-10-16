@@ -1,4 +1,5 @@
 import {
+  ClassMathSkills,
   ClassProgress,
   ClassSummary,
   INACTIVE_DAYS,
@@ -11,6 +12,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { TrackTabs } from '@/components/track-tabs';
 import { Card, PageShell } from '@/components/ui';
+import { ClassSkillsGrid } from '@/features/math/class-skills-grid';
 import { serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
@@ -34,12 +36,15 @@ export default async function ClassProgressPage({
   const track = Track.catch('STORY').parse(one(query.track)?.toUpperCase());
   const unitParam = one(query.unit);
   const filter: Filter = FILTERS.find((f) => f.id === one(query.show))?.id ?? 'all';
-  const [klass, progress] = await Promise.all([
+  // Math only: the skills × students grid (math-design.md §3.3 C5) instead of the lesson heatmap.
+  const skillsView = track === 'MATH' && one(query.view) === 'skills';
+  const [klass, progress, mathSkills] = await Promise.all([
     serverApi(`/teacher/classes/${classId}`, ClassSummary),
     serverApi(
       `/teacher/classes/${classId}/progress?track=${track}${unitParam ? `&unit=${encodeURIComponent(unitParam)}` : ''}`,
       ClassProgress,
     ),
+    skillsView ? serverApi(`/teacher/classes/${classId}/math-skills`, ClassMathSkills) : null,
   ]);
   if (!klass || !progress) notFound();
 
@@ -98,7 +103,41 @@ export default async function ClassProgressPage({
 
         <TrackTabs current={track} hrefFor={(t) => href({ track: t })} />
 
-        {progress.unit === null ? (
+        {track === 'MATH' && (
+          <nav aria-label="Math view">
+            <ul className="flex flex-wrap gap-2">
+              {[
+                { id: 'lessons', label: 'Lessons', to: href({}) },
+                { id: 'skills', label: 'Skills', to: `${base}?track=math&view=skills` },
+              ].map((v) => {
+                const active = (v.id === 'skills') === skillsView;
+                return (
+                  <li key={v.id}>
+                    <Link
+                      href={v.to}
+                      aria-current={active ? 'page' : undefined}
+                      className={`inline-flex min-h-11 items-center rounded-full border px-4 text-sm font-semibold focus-visible:outline-3 focus-visible:outline-brand ${
+                        active
+                          ? 'border-brand bg-brand text-white'
+                          : 'border-border bg-card hover:border-brand'
+                      }`}
+                    >
+                      {v.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        )}
+
+        {skillsView ? (
+          mathSkills ? (
+            <ClassSkillsGrid data={mathSkills} />
+          ) : (
+            <p className="text-muted">Could not load the skills.</p>
+          )
+        ) : progress.unit === null ? (
           <p className="text-muted">No units are published in this track yet.</p>
         ) : (
           <section aria-labelledby="heatmap-heading" className="flex flex-col gap-4">

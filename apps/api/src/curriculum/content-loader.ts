@@ -6,10 +6,18 @@ import {
   ActivitiesFile,
   type ActivityContent,
   LessonContent,
+  type MathContentBundle,
+  MathFactsFile,
+  type MathProblem,
+  MathSkillsFile,
+  MathStagesFile,
+  MathTestFile,
   type Track,
   type UnitBundle,
   UnitContent,
+  checkedVariants,
   splitMath,
+  validateMathContent,
   validateUnitBundle,
 } from '@storyforge/shared';
 import { renderToString } from 'katex';
@@ -28,6 +36,8 @@ export interface LoadedUnit extends UnitBundle {
 export interface LoadResult {
   units: LoadedUnit[];
   errors: string[];
+  /** Math-wide content (skills, stages, tests, fact sheets), when content/math exists. */
+  math?: MathContentBundle & { contentHash: string };
 }
 
 const formatIssues = (file: string, error: z.ZodError) =>
@@ -68,6 +78,159 @@ function texErrors(where: string, value: string): string[] {
   return errors;
 }
 
+/** Every string inside a value (lesson cards, worked-example steps…). */
+function stringsIn(value: unknown): string[] {
+  if (typeof value === 'string') return [value];
+  if (Array.isArray(value)) return value.flatMap(stringsIn);
+  if (value && typeof value === 'object') return Object.values(value).flatMap(stringsIn);
+  return [];
+}
+
+/** The texts KaTeX must render for one (filled) problem. */
+function problemTexts(p: MathProblem): string[] {
+  const texts = [p.prompt, p.solution, ...p.hints];
+  if (p.answer.kind === 'choice')
+    texts.push(...p.answer.choices, ...Object.values(p.answer.why ?? {}).flatMap((w) => w ?? []));
+  else texts.push(...p.answer.mistakes.map((m) => m.why));
+  return texts;
+}
+
+/** TeX errors in a problem; for a template, in its checked variants (the first one that fails). */
+function problemTexErrors(where: string, p: MathProblem): string[] {
+  let variants: MathProblem[];
+  try {
+    variants = checkedVariants(p);
+  } catch {
+    return []; // problemErrors reports templates that can't be filled
+  }
+  for (const v of variants) {
+    const errors = problemTexts(v).flatMap((t) => texErrors(where, t));
+    if (errors.length > 0) return errors;
+  }
+  return [];
+}
+
+/** Read, check and inline a problem's figure from `dir/figures/`; returns errors. */
+async function inlineFigure(
+  dir: string,
+  where: string,
+  p: MathProblem,
+  hash: ReturnType<typeof createHash>,
+): Promise<string[]> {
+  if (!p.figure) return [];
+  const rel = `figures/${p.figure.file}`;
+  const svg = await readFile(path.join(dir, rel), 'utf8').catch(() => null);
+  if (svg === null) return [`${where}: figure ${rel} is missing`];
+  if (Buffer.byteLength(svg) > MAX_FIGURE_BYTES) return [`${where}: figure ${rel} is over 60 KB`];
+  if (!/^\s*(<\?xml[^>]*>\s*)?<svg[\s>]/.test(svg) || UNSAFE_SVG.test(svg))
+    return [`${where}: figure ${rel} must be a plain drawn SVG (no scripts or links)`];
+  hash.update(rel).update(svg);
+  p.figure.svg = svg.replace(/^\s*<\?xml[^>]*>\s*/, '').trim();
+  return [];
+}
+
+/** Parse a JSON file against a schema; null (with errors) when missing, invalid or wrong. */
+async function readJson<S extends z.ZodType>(
+  file: string,
+  rel: string,
+  schema: S,
+  errors: string[],
+  hash: ReturnType<typeof createHash>,
+): Promise<z.infer<S> | undefined> {
+  let raw: string;
+  try {
+    raw = await readFile(file, 'utf8');
+  } catch {
+    return undefined;
+  }
+  hash.update(rel).update(raw);
+  let json: unknown;
+  try {
+    json = JSON.parse(raw);
+  } catch (e) {
+    errors.push(`${rel}: invalid JSON (${e instanceof Error ? e.message : String(e)})`);
+    return undefined;
+  }
+  const parsed = schema.safeParse(json);
+  if (!parsed.success) {
+    errors.push(...formatIssues(rel, parsed.error));
+    return undefined;
+  }
+  return parsed.data;
+}
+
+/**
+ * The Math-wide content (math-design.md §3): content/math/skills.json (required once there are
+ * Math units), stages.json, tests/<key>.json (with figures in tests/figures/) and each unit's
+ * facts.json, cross-checked against the Math units.
+ */
+async function loadMathExtras(
+  root: string,
+  units: LoadedUnit[],
+): Promise<{ math: NonNullable<LoadResult['math']>; errors: string[] }> {
+  const dir = path.join(root, 'math');
+  const errors: string[] = [];
+  const hash = createHash('sha256');
+  const mathUnits = units.filter((u) => u.track === 'MATH');
+
+  const skills = await readJson(
+    path.join(dir, 'skills.json'),
+    'math/skills.json',
+    MathSkillsFile,
+    errors,
+    hash,
+  );
+  if (!skills && !errors.some((e) => e.startsWith('math/skills.json')))
+    errors.push('math/skills.json: missing (the Math track names its skills there)');
+  const stages = await readJson(
+    path.join(dir, 'stages.json'),
+    'math/stages.json',
+    MathStagesFile,
+    errors,
+    hash,
+  );
+
+  const tests = [];
+  const testDir = path.join(dir, 'tests');
+  const testFiles = await readdir(testDir).catch(() => [] as string[]);
+  for (const file of testFiles.filter((f) => f.endsWith('.json')).toSorted()) {
+    const rel = `math/tests/${file}`;
+    const test = await readJson(path.join(testDir, file), rel, MathTestFile, errors, hash);
+    if (!test) continue;
+    if (file !== `${test.key}.json`) errors.push(`${rel}: the file must be named ${test.key}.json`);
+    for (const p of test.problems) {
+      errors.push(...problemTexErrors(`${rel}/${p.id}`, p));
+      errors.push(...(await inlineFigure(testDir, `${rel}/${p.id}`, p, hash)));
+    }
+    tests.push(test);
+  }
+
+  const facts: Record<number, MathFactsFile> = {};
+  for (const u of mathUnits) {
+    const rel = `math/${path.basename(u.dir)}/facts.json`;
+    const sheet = await readJson(path.join(u.dir, 'facts.json'), rel, MathFactsFile, errors, hash);
+    if (!sheet) continue;
+    for (const s of sheet.sections)
+      for (const t of [s.title, ...s.facts]) errors.push(...texErrors(rel, t));
+    facts[u.unit.number] = sheet;
+  }
+
+  const bundle: MathContentBundle = { skills: skills ?? [], stages, tests, facts };
+  if (skills)
+    errors.push(
+      ...validateMathContent(
+        bundle,
+        mathUnits.map((u) => ({
+          number: u.unit.number,
+          lessonCount: u.lessons.length,
+          problems: problemsOf(u.activities).map(({ p }) => p),
+          focusSkills: u.lessons.flatMap((l) => l.focusSkills),
+        })),
+      ),
+    );
+  return { math: { ...bundle, contentHash: hash.digest('hex') }, errors };
+}
+
 /**
  * Read and validate every unit under `<root>/units/unit-XX/` (Story Writing),
  * `<root>/essay/unit-XX/` (Essay Writing) and `<root>/math/unit-XX/` (Math):
@@ -95,7 +258,9 @@ export async function loadContent(root = defaultContentDir()): Promise<LoadResul
   }
   const slugs = units.map((u) => u.unit.slug);
   if (new Set(slugs).size !== slugs.length) errors.push('Two units share the same slug');
-  return { units, errors };
+  if (!units.some((u) => u.track === 'MATH')) return { units, errors };
+  const extras = await loadMathExtras(root, units);
+  return { units, errors: [...errors, ...extras.errors], math: extras.math };
 }
 
 /** One track's folder; null when the folder doesn't exist. */
@@ -167,28 +332,13 @@ async function loadTrack(root: string, folder: string, track: Track): Promise<Lo
 
     if (track === 'MATH') {
       for (const lesson of lessons)
-        for (const card of lesson.steps[1].cards)
-          for (const value of Object.values(card))
-            if (typeof value === 'string')
-              errors.push(...texErrors(`${folder}/${dirName}: lesson "${lesson.slug}"`, value));
+        for (const value of stringsIn(lesson.steps[1].cards))
+          errors.push(...texErrors(`${folder}/${dirName}: lesson "${lesson.slug}"`, value));
     }
     for (const { a, p } of problemsOf(activities)) {
       const where = `${folder}/${dirName}: ${a.key}/${p.id}`;
-      const texts = [p.prompt, p.solution, ...p.hints];
-      if (p.answer.kind === 'choice') texts.push(...p.answer.choices);
-      for (const t of texts) errors.push(...texErrors(where, t));
-      if (!p.figure) continue;
-      const rel = `figures/${p.figure.file}`;
-      const svg = await readFile(path.join(dir, rel), 'utf8').catch(() => null);
-      if (svg === null) errors.push(`${where}: figure ${rel} is missing`);
-      else if (Buffer.byteLength(svg) > MAX_FIGURE_BYTES)
-        errors.push(`${where}: figure ${rel} is over 60 KB`);
-      else if (!/^\s*(<\?xml[^>]*>\s*)?<svg[\s>]/.test(svg) || UNSAFE_SVG.test(svg))
-        errors.push(`${where}: figure ${rel} must be a plain drawn SVG (no scripts or links)`);
-      else {
-        hash.update(rel).update(svg);
-        p.figure.svg = svg.replace(/^\s*<\?xml[^>]*>\s*/, '').trim();
-      }
+      errors.push(...problemTexErrors(where, p));
+      errors.push(...(await inlineFigure(dir, where, p, hash)));
     }
 
     const bundle = { track, unit, lessons, activities };

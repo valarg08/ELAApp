@@ -1,0 +1,40 @@
+{
+  "sections": [
+    {
+      "skill": "amc-scoring",
+      "title": "The AMC 10 at a glance",
+      "facts": [
+        "$25$ questions in $75$ minutes: about $3$ minutes each.",
+        "Right: $6$ points. Blank: $1.5$ points. Wrong: $0$ points.",
+        "All blank scores $25 \\times 1.5 = 37.5$; a perfect paper scores $150$.",
+        "Score $= 6R + 1.5B$, where $R$ is right answers and $B$ is blanks."
+      ]
+    },
+    {
+      "skill": "guessing",
+      "title": "To guess or to leave it blank",
+      "facts": [
+        "A random guess among $5$ choices is worth $\\frac{1}{5} \\times 6 = 1.2$ points on average: less than a blank's $1.5$.",
+        "Rule out $2$ choices and a guess among $3$ is worth $\\frac{1}{3} \\times 6 = 2$ points: more than a blank.",
+        "Rule out $1$ choice and a guess among $4$ is worth $1.5$: the same as a blank."
+      ]
+    },
+    {
+      "skill": "pacing",
+      "title": "Pacing",
+      "facts": [
+        "Questions $1$–$10$ are usually quickest: aim to bank them in about $20$ minutes.",
+        "The 2-minute rule: stuck for $2$ minutes with no plan? Mark it, skip it, come back.",
+        "Leave $5$ minutes at the end to check the questions you flagged."
+      ]
+    },
+    {
+      "skill": "test-choices",
+      "title": "Using the answer choices",
+      "facts": [
+        "Plug a choice back into the problem: start with (C), the middle value, then go up or down.",
+        "Check the choices' units digits, parity or size to rule some out quickly."
+      ]
+    }
+  ]
+}

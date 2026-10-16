@@ -3,7 +3,7 @@
   "order": 1,
   "title": "The AMC 10: Format, Scoring & Timing",
   "estMinutes": 30,
-  "focusSkills": ["amc-scoring", "pacing"],
+  "focusSkills": ["amc-scoring", "pacing", "guessing"],
   "steps": [
     {
       "id": "hook",
@@ -27,10 +27,30 @@
           "body": "A right answer earns $6$ points, a blank earns $1.5$ and a wrong answer earns $0$. The top score is $25 \\times 6 = 150$. Leaving everything blank still gives $25 \\times 1.5 = 37.5$."
         },
         {
-          "kind": "example",
+          "kind": "worked-example",
           "title": "Worked example: a score",
-          "text": "Leo answers $18$ right, leaves $4$ blank and gets $3$ wrong. His score is $18 \\times 6 + 4 \\times 1.5 + 3 \\times 0 = 108 + 6 = 114$.",
-          "note": "Wrong answers don't take points away, but they earn less than a blank would have."
+          "problem": "Leo answers $18$ right, leaves $4$ blank and gets $3$ wrong. What is his score?",
+          "steps": [
+            {
+              "text": "Right answers: $18 \\times 6 = 108$ points."
+            },
+            {
+              "text": "Blanks: $4 \\times 1.5 = 6$ points.",
+              "try": {
+                "prompt": "How many points do the $4$ blanks earn?",
+                "accepted": ["6"],
+                "compute": "4*1.5"
+              }
+            },
+            {
+              "text": "Wrong answers add $0$, so the score is $108 + 6 = 114$. Wrong answers don't take points away, but they earn less than a blank would have.",
+              "try": {
+                "prompt": "What is his score?",
+                "accepted": ["114"],
+                "compute": "18*6 + 4*1.5"
+              }
+            }
+          ]
         },
         {
           "kind": "definition",
@@ -44,15 +64,17 @@
       "type": "guided_practice",
       "activityKeys": ["m01.scoring-practice"]
     },
-    { "id": "challenge", "type": "challenge", "activityKey": "m01.amc-rules-set" },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m01.amc-rules-set"
+    },
     {
       "id": "reflect",
       "type": "reflection",
-      "prompts": [
-        "When will you leave a question blank, and when will you guess?",
-        "How will you pace yourself through the 75 minutes?"
-      ],
-      "confidenceCheck": true
+      "prompts": ["How will you pace yourself through the 75 minutes?"],
+      "confidenceCheck": true,
+      "trapPicker": true
     }
   ]
 }

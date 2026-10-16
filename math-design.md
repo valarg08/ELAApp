@@ -84,7 +84,7 @@ Geometry basics come in Stage 3 because the unit order is kept; the diagnostic s
 - **New activity types:**
   - `PROBLEMS`: practice; instant check, hints, solution after a correct answer or after "Show me".
   - `PROBLEM_SET`: the challenge and unit checks. It is marked on the server like `QUIZ` (an attempt, answers hidden until it's handed in, a review with solutions). The unit check passes at the track's pass mark; a lesson challenge completes once handed in.
-  - `MOCK_TEST` (built in M0.5 Part D, used by the diagnostic, the checkpoints and the Unit 15 mocks): 25 problems, a server-side 75-minute timer (handed in automatically when time runs out), AMC scoring, then a review by question, by strand and by difficulty.
+  - `MOCK_TEST` (an activity type added in M15 for the Unit 15 mocks; it runs on the timed test engine built in M0.5 Part D, which the diagnostic and the checkpoints use directly): 25 problems, a server-side 75-minute timer (handed in automatically when time runs out), AMC scoring, then a review by question, by strand and by difficulty.
 - **Error log:** every wrong or "Show me" problem goes to *My error log* by skill. Students redo them later (a problem leaves the log after two correct redos on different days). Unit 15 has a lesson on using it.
 - **Quill for math** (packages/ai; fake gateway in tests):
   - `math-explain` ("Explain it another way"): explains the given solution differently, step by step.
@@ -198,7 +198,7 @@ Geometry basics come in Stage 3 because the unit order is kept; the diagnostic s
   - `/ai/math/explain` is student-only, and a marked set is not explained before a submitted try.
 - Playwright: a Math lesson end to end with `expectAccessible`.
 
-## 3. M0.5 Math practice upgrade (plan)
+## 3. M0.5 Math practice upgrade (built 2026-10-16)
 
 M0 reused the writing app's shapes: units in a straight line, text-only Learn cards, free-text reflections, AI as the main source of feedback, and a lessons × students heatmap. These suit writing, not contest math. M0.5 adds the habits that AMC preparation needs, **before** unit content is written, because parts A and B change the problem format.
 
@@ -220,11 +220,12 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 - A problem may carry `template`:
   ```json
   "template": {
-    "vars": { "a": { "from": 3, "to": 12 }, "b": { "choose": [2, 3, 5] } },
+    "vars": { "a": { "from": 3, "to": 12 }, "b": { "choose": [2, 3, 5] }, "c": { "let": "a*b" } },
     "where": ["a != b", "gcd(a, b) == 1"]
   }
   ```
-- `{expr}` placeholders in the prompt, hints, solution, choices and accepted answers are filled per variant: `"A rectangle is {a} by {b}…"`, `"accepted": ["{a*b}"]`.
+- A variable is a range (`from`, `to`, optional `step`), a list (`choose`) or a value worked out from the others (`let`). A template has 1–6 variables and at most 20,000 combinations.
+- `[[expr]]` placeholders in the prompt, hints, solution, choices, accepted answers and notes are filled per variant: `"A rectangle is $[[a]]$ by $[[b]]$…"`, `"accepted": ["[[a*b]]"]`. Inside `$…$` a value is written as TeX (a fraction becomes `\frac{…}{…}`); `[[expr|decimal]]` writes a terminating decimal such as `7.5`. (Double brackets, because single braces are TeX.)
 - math-check gains variables, comparisons (`== != < <= > >=`) and `and`/`or` for `where`. Content only: students' answers still have no variables.
 - **content:check** builds every variant when there are at most 500, otherwise a fixed sample of 500. For each variant it runs the M0 problem checks:
   - `compute` = the answer;
@@ -235,12 +236,13 @@ M0.5 has four parts, built in order. Each part is usable on its own.
   - Practice picks a new seed per showing.
   - Marked attempts store `id#seed` in `questionIds`, so the review shows the same numbers.
   - Error-log redos use a new seed each time, so students can't memorise the answer. The original seed is kept for "the one you missed".
-- **"Try a similar one"** (practice and the error log) shows the same template with a new seed. A problem without a template falls back to another problem of the same skill and difficulty that the student hasn't seen yet.
+- **"Try a similar one"** (practice) shows the same template with a new seed. A problem without a template falls back to another practice problem of the same skill and about the same difficulty, from a finished lesson, that the student hasn't answered yet (`GET /math/similar`). Error-log redos already get new numbers each time, and the entry shows "The one you missed".
 
 **A3. Why each wrong answer is wrong (no AI needed)**
 - Choice problems: `answer.why: { "B": "You counted the blanks as 1 point each, not 1.5." }`, written for the plausible wrong choices.
-- Typed problems: `mistakes: [{ "value": "90", "why": "That's only the points from right answers." }]`. A wrong answer equal (by math-check) to a listed value gets that note.
-- Both may use `{expr}` placeholders in templates.
+- Typed problems: `answer.mistakes: [{ "value": "90", "why": "That's only the points from right answers." }]`. A wrong answer equal (by math-check) to a listed value gets that note.
+- Both may use `[[expr]]` placeholders in templates.
+- The note shows in practice, in the review after a marked set, in error-log redos and in tests.
 - content:check fails when:
   - a `why` key is the right letter;
   - a `mistakes` value equals the right answer;
@@ -272,7 +274,7 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 ### 3.2 Part B: how students practise
 
 **B1. The answer record** (the base for B2–B5 and C4)
-- A new table, `MathAnswerLog`: `studentId`, `source` (practice | set | review | sprint | redo), `lessonId?`, `activityKey?`, `problemId`, `seed?`, `skill`, `difficulty`, `verdict`, `seconds?`, `confidence?`, `createdAt`.
+- A new table, `MathAnswerLog`: `studentId`, `source` (practice | set | review | sprint | test | redo), `lessonId?`, `activityKey?`, `problemId`, `seed?`, `skill`, `difficulty`, `verdict`, `hintsUsed`, `seconds?`, `confidence?`, `createdAt`. A practice answer that was right only after hints, or shown, counts for less in mastery.
 - **Practice** (checked in the browser) posts one row per problem when it is solved or shown: `POST /math/answers` with a batch of up to 20.
   - Each row is validated with Zod.
   - The server re-marks the given answer with math-check when the answer is sent, so a row can't claim "correct" falsely.
@@ -288,7 +290,7 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 - `/math/progress` gains a skills view: skills grouped by strand, with level and accuracy, and "Practise this" for weak ones.
 - The next problem in review and sprint is chosen at about one difficulty step above the student's level in that skill.
 
-**B3. Daily mixed review** (`/math/review`)
+**B3. Daily mixed review** (`/math/tests/review`)
 - About 6 problems a day:
   - error-log redos that are due come first;
   - then skills that are due, from finished units only.
@@ -298,11 +300,11 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 
 **B4. Speed: timers and sprints**
 - **Practice timer:** an optional per-problem stopwatch, off by default; the setting is kept in the browser (`localStorage`). Seconds per problem go into the answer record whether or not the stopwatch is shown.
-- **Sprint** (`/math/sprint`):
-  - 10 choice problems in 20 minutes, from finished units, rising in difficulty;
+- **Sprint** (`/math/tests/sprint`):
+  - 10 choice problems in 20 minutes, from finished lessons, one per skill where possible, rising in difficulty;
   - AMC scoring (6 / 1.5 / 0) and a countdown that hands in at zero;
   - afterwards, time per problem against the AMC pace (about 3 minutes);
-  - an `attempt` row per sprint (reusing `QuizAttempt` with `activityKey` `sprint:<date>`), problems chosen on the server.
+  - a `MathTestAttempt` row per sprint (kind `sprint`), problems chosen on the server; it needs at least 3 choice problems from finished lessons.
 - This is the practice ground for the M15 mocks.
 
 **B5. Confidence and when to guess**
@@ -325,12 +327,12 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 - Not available in marked sets, sprints or the daily review's first try.
 
 **C2. A math tutor for Learn cards**
-- A new analyzer, `math-card`, replaces the hidden writing tutor on Math Learn cards. It runs "Explain it another way" for definition and example cards, with the M0 math guard: steps stating a different result than the card are dropped.
+- A new analyzer, `math-card`, replaces the hidden writing tutor on Math Learn cards (`POST /ai/math/card`). It runs "Explain it another way" for every Math card (worked examples included), with the M0 math guard: steps stating a different result than the card are dropped.
 - The writing tutor (`explain-card`) is unchanged and is still used for Story and Essay cards.
 
 **C3. A math Reflect step**
 - Math lessons' Reflect steps may set `trapPicker: true`:
-  - "Which problem tricked you?" lists the problems the student missed in this lesson, or all of them if none were missed.
+  - "Which problem tricked you?" lists the lesson's practice and set problems, the ones the student missed first (`GET /math/lessons/:lessonId/trap-problems`, from `MathAnswerLog`).
   - Then one line: "What's the trap?"
   - The answer is stored with the step response, as now.
 - The confidence check stays. Free-text `prompts` become optional for Math (at least a prompt or the trap picker).
@@ -348,32 +350,33 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 
 **D1. The timed test engine (`MOCK_TEST`)**, moved forward from M15 because the diagnostic and the checkpoints need it:
 - 25 choice problems, a server-side timer (75 minutes; none for the diagnostic), handed in automatically at zero, AMC scoring (6 / 1.5 / 0).
-- Attempts reuse `QuizAttempt` (`activityKey` such as `diagnostic`, `checkpoint-1`, `m15.mock-a`), with answers, seconds and confidence per question; answers stay on the server until hand-in.
+- Attempts live in a new table, `MathTestAttempt` (`kind`: diagnostic, checkpoint, sprint, review or light-review; `testKey`; the items with their seeds; answers with seconds, confidence and flags per question), shared by tests, sprints and reviews. Answers are saved as they change and marked on the server at hand-in (reviews check each answer as it is given). A started test is continued, not restarted; past the time limit (plus 30 seconds' grace) it is handed in on the server.
+- The test player (`/math/tests/[key]` to start, `/math/attempts/[id]` to play or review) is the same for every kind.
 - **Skip and come back:** every question has "Skip" and "Come back later" (flag); a question map shows answered, blank and flagged ones, and a review list appears before handing in.
 - **The 2-minute rule:** after 2 minutes on one question a polite prompt asks "2 minutes: skip and come back?" It is on by default, can be turned off (a browser setting) and never moves the student on its own. Sprints use it too.
 - **Mistake analysis** after hand-in: points by question, strand and difficulty band (1–10, 11–20, 21–25); **time sinks** (questions that took over 4 minutes, and the points they cost); "your score if you had left your guesses blank" (B5); a button to add each miss to the error log.
 
-**D2. Diagnostic test** (`/math/diagnostic`)
-- 25 original problems (`content/math/diagnostic.json`, the problem format with skills, verified by content:check), covering all five strands at mixed difficulty. Untimed; offered on `/math` before Unit 1 and retakable any time.
-- The report: accuracy by strand and skill, the suggested focus units, and the change since the last diagnostic.
-- Answers go to `MathAnswerLog` (`source: diagnostic`), so they set each skill's starting mastery level (B2). They don't unlock units.
+**D2. Diagnostic test** (`/math/tests/diagnostic`)
+- 25 original choice problems (`content/math/tests/diagnostic.json`: `key`, `title`, `instructions`, `timeLimitMinutes` (null), `afterUnit` (null), `problems`; verified by content:check), covering all five strands at rising difficulty. Untimed; offered on `/math` in Stage 1 and retakable any time.
+- The report: AMC points, accuracy by strand and question position, the suggested focus units, and the change since the last diagnostic.
+- Answers go to `MathAnswerLog` (`source: test`), so they set each skill's starting mastery level (B2). They don't unlock units.
 
 **D3. Checkpoint mocks**
-- `content/math/checkpoints/checkpoint-1.json` (after Unit 8: algebra and number theory) and `checkpoint-2.json` (after Unit 13: everything so far), each 25 original problems in rising difficulty, verified by content:check.
+- `content/math/tests/checkpoint-1.json` (after Unit 8: algebra and number theory) and `checkpoint-2.json` (after Unit 13: everything so far), each 25 original problems in rising difficulty, verified by content:check. Figures go in `content/math/tests/figures/`.
 - The engine is built in D1; the problems are written in phases M8 and M13. Each unlocks when the unit before it is passed and doesn't block the next unit.
 
 **D4. Danger-zone report** (on `/math/progress`)
 - One section that combines: the weakest skills (mastery), accuracy by question position from the diagnostic, checkpoints and mocks (1–10, 11–20, 21–25), slow skills (median seconds well above the AMC pace), and overconfident skills (often "Sure" but wrong).
-- It ends with **"Your top 3 danger zones"**, each with a "Practise this" button into a review set for that skill.
+- It ends with **"Your top 3 danger zones"**, each with "Practise this", which opens the unit that teaches the skill (a review set per skill can come later).
 - From M15 the past-paper log feeds it too (positions and topics only).
 
 **D5. Fact sheets**
 - Each unit may have `facts.json`: a one-page summary of formulas, identities, shortcuts and patterns, written in TeX, grouped by skill (content:check: the TeX parses and the skill ids exist).
-- `/math/units/[slug]/facts` shows it, printable (print styles: no navigation, one page where possible).
+- `/math/facts/[unit]` shows it (by unit number), printable (print styles: no navigation, one page where possible). `/math` lists the units that have one.
 - The fact sheets are written with each unit (M1–M14); the Unit 15 refresh lessons link to them.
 
 **D6. Light review mode**
-- `/math/review` gains "Light review": 4 easy problems from Strong and Mastered skills (no new or weak skills, no timer), plus 3 fact-sheet cards. It is meant for the last days before the test and builds confidence without fatigue.
+- "Light review" (`/math/tests/light-review`): 4 easy problems from Strong and Mastered skills (no new or weak skills, no timer), plus 3 fact-sheet cards. It is meant for the last days before the test and builds confidence without fatigue.
 - The Unit 15 "Light review & confidence" lesson introduces it.
 
 **D7. Stage labels**
@@ -386,13 +389,13 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | New | What |
 |---|---|
 | `content/math/skills.json` | Skill list (A1) |
-| `content/math/diagnostic.json`, `checkpoints/`, `stages.json`, `unit-XX/facts.json` | Diagnostic (D2), checkpoint mocks (D3), stages (D7), fact sheets (D5) |
-| Problem fields | `template`, `answer.why`, `mistakes`, `figure.scale` (A2, A3, A5) |
+| `content/math/tests/<key>.json` (`diagnostic`, later `checkpoint-1`, `checkpoint-2`), `stages.json`, `unit-XX/facts.json` | Diagnostic (D2), checkpoint mocks (D3), stages (D7), fact sheets (D5). content:sync stores them in `MathContent` (`skills`, `stages`, `test:<key>`, `facts:<n>`) |
+| Problem fields | `template`, `answer.why`, `answer.mistakes`, `figure.scale` (A2, A3, A5) |
 | Learn card | `worked-example` (Math only, A4) |
 | Reflect | `trapPicker` (Math only, C3) |
-| Tables | `MathAnswerLog` (B1), `MathSkillState` (B3) |
-| Endpoints | `POST /math/answers`, `GET /math/skills` (mastery), `GET /math/review`, `POST /math/review/answer`, `POST /math/sprints`, `POST /math/sprints/:id/submit`, `POST /ai/math/nudge`, `POST /ai/math/card`, `GET /teacher/classes/:classId/math-skills`, `POST /math/tests/:key/start`, `PUT /math/tests/attempts/:id/answer`, `POST /math/tests/attempts/:id/submit`, `GET /math/tests/attempts/:id/review`, `GET /math/danger-zones` |
-| Pages | `/math/review` (with light review), `/math/sprint`, `/math/diagnostic`, the test player and its review, `/math/units/[slug]/facts`, the skills, calibration and danger-zone sections of `/math/progress`, the stage headings on `/math`, the teacher skills view |
+| Tables | `MathAnswerLog` (B1), `MathSkillState` (B3), `MathTestAttempt` (B3, B4, D1), `MathContent`; `MathErrorLog.seed` |
+| Endpoints | `POST /math/answers`, `GET /math/home`, `GET /math/skills` (mastery, calibration, positions, danger zones), `GET /math/facts/:unitNumber`, `GET /math/similar`, `GET /math/lessons/:lessonId/trap-problems`, `POST /math/tests/:key/start` (`diagnostic`, `checkpoint-1`, `checkpoint-2`, `sprint`, `review`, `light-review`), `GET /math/tests/attempts/:id`, `PUT /math/tests/attempts/:id/answer`, `POST /math/tests/attempts/:id/submit`, `GET /math/tests/attempts/:id/review`, `POST /ai/math/nudge`, `POST /ai/math/card`, `GET /teacher/classes/:classId/math-skills`. `POST /ai/math/explain` moved to the Math module (same route) and takes a problem locator with the seed and optional working |
+| Pages | `/math` (stages, today's review, tests), `/math/tests/[key]` (start), `/math/attempts/[id]` (the test player and its review), `/math/facts/[unit]`, the skills, calibration and danger-zone sections of `/math/progress`, the teacher skills view (`?track=math&view=skills`) |
 
 ### 3.6 M0.5 acceptance
 
@@ -429,7 +432,8 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 - `POST /math/answers` re-marking;
 - mastery levels and review spacing (pure functions, unit-testable);
 - AMC scoring, time sinks and the danger-zone ranking (pure functions);
-- authorisation for every new endpoint, including that a student can't read another student's test attempt;
+- authorisation for every new endpoint (answers, home, skills, facts, similar, trap-problems, the tests and attempts, nudge, card, the teacher skills grid), including that a student can't read another student's test attempt;
+- content-loader specs: temp content roots with a `math` folder now need `skills.json`;
 - a Playwright run of the daily review, a sprint and the diagnostic with `expectAccessible`.
 
 ## 4. Phases
@@ -437,6 +441,6 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | Phase | Scope | Acceptance |
 |---|---|---|
 | **M0 Math track foundation** ✅ | Track `MATH`, `/math`, KaTeX, SVG figures, `packages/math-check`, the problem format, `PROBLEMS` and `PROBLEM_SET`, the error log, Quill explanations (§2) | A sample problem set renders, checks typed answers exactly and is marked on the server; content:check rejects a `compute` that disagrees with the answer; axe passes |
-| **M0.5 Math practice upgrade** | Part A (skills, templates, wrong-answer notes, worked examples, figure flags), Part B (answer record, mastery, daily review, sprints, confidence, scratchpad), Part C (Quill nudges, the math card tutor, the trap picker, tone, teacher skills view), Part D (the `MOCK_TEST` engine with skip, flag and the 2-minute rule, the diagnostic test with its 25 problems, checkpoint slots, the danger-zone report, fact sheets, light review, stage labels) (§3) | §3.6 |
+| **M0.5 Math practice upgrade** ✅ | Part A (skills, templates, wrong-answer notes, worked examples, figure flags), Part B (answer record, mastery, daily review, sprints, confidence, scratchpad), Part C (Quill nudges, the math card tutor, the trap picker, tone, teacher skills view), Part D (the `MOCK_TEST` engine with skip, flag and the 2-minute rule, the diagnostic test with its 25 problems, checkpoint slots, the danger-zone report, fact sheets, light review, stage labels) (§3) | §3.6 |
 | **M1–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
 | **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |

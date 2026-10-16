@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-16 (M0.5 Part D: diagnostic, checkpoint mocks, the 2-minute rule, danger zones, fact sheets, light review, stage labels; on branch phase-m0-5).
+Last updated: 2026-10-16 (M0.5 built: practice upgrade, tests and stages; on branch phase-m0-5).
 
 ## Done so far
 
@@ -36,7 +36,7 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
   - `PROBLEMS` practice and the `PROBLEM_SET` marked challenge and unit check;
   - the error log;
   - Quill `math-explain` in explain and mistake modes (verdict never changed by AI).
-- [ ] **M0.5 Math practice upgrade** (math-design.md §3; Math only):
+- [x] **M0.5 Math practice upgrade** (done; math-design.md §3; Math only; tests owed listed in §3.6):
   - Part A, content format: skill list (`skills.json`), problem templates with verified variants and "Try a similar one", wrong-answer notes (`answer.why`, `mistakes`), worked-example cards with faded steps, figure scale flag and zoom;
   - Part B, practice: the answer record (`MathAnswerLog`), skill mastery and difficulty, the daily mixed review with spacing, sprints with AMC scoring, confidence and calibration, scratchpad and typed working;
   - Part C: Quill nudges, the math Learn-card tutor, the trap picker in Reflect, plainer tone for 14–16, the teacher skills view;

@@ -306,7 +306,10 @@ export class CurriculumService {
       const answer = STEP_RESPONSE_SCHEMAS.reflect.parse(body);
       if (
         answer.answers.length !== reflect.prompts.length ||
-        (reflect.confidenceCheck && answer.confidence === undefined)
+        (reflect.confidenceCheck && answer.confidence === undefined) ||
+        Boolean(reflect.trapPicker) !== Boolean(answer.trap) ||
+        (answer.trap &&
+          ![...practice.activityKeys, challenge.activityKey].includes(answer.trap.activityKey))
       ) {
         throw new AppError(
           HttpStatus.BAD_REQUEST,
@@ -505,6 +508,16 @@ export class CurriculumService {
     return unit.published
       ? { available: true, lockReason: null, dueAt: null }
       : { available: false, lockReason: 'COMING_SOON', dueAt: null };
+  }
+
+  /** The student's first active class id, or null (for help outside a lesson, like Math tests). */
+  async studentClassId(user: AuthUser): Promise<string | null> {
+    return (await this.studentClass(user))?.id ?? null;
+  }
+
+  /** Lessons the student has finished. */
+  completedLessons(user: AuthUser): Promise<Set<string>> {
+    return this.completedLessonIds(user);
   }
 
   private async completedLessonIds(user: AuthUser): Promise<Set<string>> {
