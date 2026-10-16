@@ -1,0 +1,1139 @@
+[
+  {
+    "key": "e12.cfo-sort",
+    "type": "SORT",
+    "title": "Claim, fact or opinion?",
+    "instructions": "Sort each statement.",
+    "buckets": [
+      { "id": "claim", "label": "Claim (arguable)" },
+      { "id": "fact", "label": "Fact (can be checked)" },
+      { "id": "opinion", "label": "Opinion (personal taste)" }
+    ],
+    "items": [
+      { "id": "c1", "text": "Our town should build a skate park.", "bucketId": "claim" },
+      { "id": "c2", "text": "Homework on weekends does more harm than good.", "bucketId": "claim" },
+      { "id": "c3", "text": "Every student needs to learn first aid.", "bucketId": "claim" },
+      {
+        "id": "f1",
+        "text": "Water boils at 100 degrees Celsius at sea level.",
+        "bucketId": "fact"
+      },
+      { "id": "f2", "text": "Our school day starts at 8:15.", "bucketId": "fact" },
+      { "id": "f3", "text": "Canada has ten provinces.", "bucketId": "fact" },
+      { "id": "o1", "text": "Pizza is the tastiest food.", "bucketId": "opinion" },
+      { "id": "o2", "text": "I love rainy days.", "bucketId": "opinion" },
+      { "id": "o3", "text": "Purple is the prettiest colour.", "bucketId": "opinion" }
+    ]
+  },
+  {
+    "key": "e12.claim-blank",
+    "type": "FILL_BLANK",
+    "title": "Make it a claim",
+    "instructions": "Choose the word that turns each sentence into a claim someone could argue about.",
+    "items": [
+      {
+        "id": "should",
+        "sentence": "Schools ___ start later in the morning.",
+        "choices": ["should", "do", "sometimes"],
+        "answers": ["should", "must", "need to"],
+        "hint": "Which word says what ought to happen?",
+        "explanation": "“Should” makes it a position you have to prove."
+      },
+      {
+        "id": "ban",
+        "sentence": "Our city should ___ plastic straws.",
+        "choices": ["ban", "count", "see"],
+        "answers": ["ban"],
+        "hint": "Which word asks for a change?",
+        "explanation": "Calling for a ban takes a side."
+      },
+      {
+        "id": "better",
+        "sentence": "Learning outdoors is ___ than learning in a classroom for science.",
+        "choices": ["better", "different", "outside"],
+        "answers": ["better", "more effective"],
+        "hint": "Which word judges one thing against another?",
+        "explanation": "“Better” is a judgement someone could argue with."
+      },
+      {
+        "id": "must",
+        "sentence": "Every school ___ teach students how to cook.",
+        "choices": ["must", "can", "did"],
+        "answers": ["must", "should"],
+        "hint": "Which word makes a strong demand?",
+        "explanation": "“Must” makes a strong claim."
+      }
+    ]
+  },
+  {
+    "key": "e12.cfo-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Claims, facts and opinions",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Why can’t a fact be a thesis?",
+        "options": [
+          { "id": "a", "text": "There is nothing to prove: anyone can check it" },
+          { "id": "b", "text": "Facts are too short" },
+          { "id": "c", "text": "Facts are always wrong" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A thesis needs to be something you prove or explain."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is a claim?",
+        "options": [
+          { "id": "a", "text": "Students should have a say in the school menu." },
+          { "id": "b", "text": "The menu changes every Monday." },
+          { "id": "c", "text": "I like Mondays." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A takes a side someone could disagree with."
+      },
+      {
+        "id": "q3",
+        "prompt": "How do you turn “I hate long car rides” into a claim?",
+        "options": [
+          { "id": "a", "text": "Families should take breaks every hour on long car rides." },
+          { "id": "b", "text": "I really, really hate long car rides." },
+          { "id": "c", "text": "Car rides can be long." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A says what should happen, and could be proved with reasons."
+      }
+    ]
+  },
+  {
+    "key": "e12.claims-set",
+    "type": "SENTENCE_SET",
+    "title": "Opinions into claims",
+    "prompt": "Turn each opinion into a claim someone could disagree with. Write one claim for each task listed above the writing box.",
+    "tips": [
+      "Use should, must, need to, better or ban.",
+      "Add “because …” to show you could prove it."
+    ],
+    "constraints": { "minWords": 25, "maxWords": 120, "minSentences": 3 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["thesis-statement"],
+    "sentenceSet": {
+      "label": "Your three claims",
+      "sentences": [
+        {
+          "ask": "Opinion: “I love dogs.” Write a claim about dogs (… should … because …).",
+          "needs": ["thesis-statement"]
+        },
+        {
+          "ask": "Opinion: “Summer is the best season.” Write a claim about summer holidays.",
+          "needs": ["thesis-statement"]
+        },
+        {
+          "ask": "Opinion: “Video games are awesome.” Write a claim about video games.",
+          "needs": ["thesis-statement"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e12.thesis-sort",
+    "type": "SORT",
+    "title": "Strong thesis?",
+    "instructions": "Sort each sentence: is it a strong argumentative thesis, too vague, or not a thesis at all?",
+    "buckets": [
+      { "id": "strong", "label": "Strong thesis" },
+      { "id": "vague", "label": "Too vague" },
+      { "id": "not", "label": "Not a thesis" }
+    ],
+    "items": [
+      {
+        "id": "s1",
+        "text": "Schools should ban junk food because it harms health, focus and behaviour.",
+        "bucketId": "strong"
+      },
+      {
+        "id": "s2",
+        "text": "Our library should open on Sundays because families are free, students need study space and books get used more.",
+        "bucketId": "strong"
+      },
+      {
+        "id": "s3",
+        "text": "Every student should learn to swim because it saves lives, builds fitness and opens up new sports.",
+        "bucketId": "strong"
+      },
+      { "id": "v1", "text": "Junk food is a big issue.", "bucketId": "vague" },
+      { "id": "v2", "text": "Libraries are good for many reasons.", "bucketId": "vague" },
+      {
+        "id": "v3",
+        "text": "Swimming is something people have opinions about.",
+        "bucketId": "vague"
+      },
+      { "id": "n1", "text": "In this essay I will talk about junk food.", "bucketId": "not" },
+      { "id": "n2", "text": "Our library has 12,000 books.", "bucketId": "not" }
+    ]
+  },
+  {
+    "key": "e12.reasons-blank",
+    "type": "FILL_BLANK",
+    "title": "Complete the thesis",
+    "instructions": "Choose the reason that best completes each thesis.",
+    "items": [
+      {
+        "id": "garden",
+        "sentence": "Schools should have gardens because they teach science, ___ and bring students together.",
+        "choices": ["encourage healthy eating", "are green", "I said so"],
+        "answers": ["encourage healthy eating"],
+        "hint": "Which reason could be its own body paragraph?",
+        "explanation": "It is specific and provable, like the other two reasons."
+      },
+      {
+        "id": "walk",
+        "sentence": "Students should walk to school because it builds fitness, ___ and gives them time to wake up.",
+        "choices": ["reduces traffic", "is a thing", "walking is walking"],
+        "answers": ["reduces traffic", "cuts traffic"],
+        "hint": "Which one is a real benefit you could prove?",
+        "explanation": "Fewer cars at the gate is a benefit you can show with evidence."
+      },
+      {
+        "id": "music",
+        "sentence": "Every school should teach music because it ___, builds teamwork and gives students a creative outlet.",
+        "choices": ["improves memory", "is loud", "has notes"],
+        "answers": ["improves memory", "boosts memory"],
+        "hint": "Which reason is a benefit for students?",
+        "explanation": "Studies link music lessons to memory; that’s provable."
+      }
+    ]
+  },
+  {
+    "key": "e12.thesis-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Argumentative theses",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which thesis maps out three body paragraphs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Cities should plant more trees because trees cool streets, clean the air and calm people."
+          },
+          { "id": "b", "text": "Cities should plant more trees." },
+          { "id": "c", "text": "Trees are nice to have in cities." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Three reasons, three body paragraphs: cool, clean, calm."
+      },
+      {
+        "id": "q2",
+        "prompt": "What is wrong with “Phones are a big issue in schools.”?",
+        "options": [
+          { "id": "a", "text": "It doesn’t take a side or say what should happen" },
+          { "id": "b", "text": "It is too long" },
+          { "id": "c", "text": "It uses a capital letter" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A thesis takes a clear position."
+      },
+      {
+        "id": "q3",
+        "prompt": "How many sentences should a thesis usually be?",
+        "options": [
+          { "id": "a", "text": "One" },
+          { "id": "b", "text": "Three" },
+          { "id": "c", "text": "A whole paragraph" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One clear sentence that the whole essay proves."
+      }
+    ]
+  },
+  {
+    "key": "e12.arg-theses",
+    "type": "SENTENCE_SET",
+    "title": "Three argumentative theses",
+    "prompt": "Write one argumentative thesis for each question listed above the writing box. Each takes a side and gives reasons with “because”.",
+    "tips": [
+      "Pattern: … should … because …, … and ….",
+      "Choose the side you could prove best.",
+      "Make each reason specific enough for its own body paragraph."
+    ],
+    "constraints": { "minWords": 40, "maxWords": 150, "minSentences": 3 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["thesis-statement", "subordinating-conjunction"],
+    "sentenceSet": {
+      "label": "Your three theses",
+      "sentences": [
+        {
+          "ask": "Should students wear school uniforms?",
+          "needs": ["thesis-statement", "subordinating-conjunction"]
+        },
+        {
+          "ask": "Should kids get a weekly allowance?",
+          "needs": ["thesis-statement", "subordinating-conjunction"]
+        },
+        { "ask": "Should zoos exist?", "needs": ["thesis-statement", "subordinating-conjunction"] }
+      ]
+    }
+  },
+  {
+    "key": "e12.focus-sort",
+    "type": "SORT",
+    "title": "Argue, explain or tell?",
+    "instructions": "Sort each thesis by the kind of essay it belongs to.",
+    "buckets": [
+      { "id": "arg", "label": "Argumentative claim" },
+      { "id": "inf", "label": "Informative thesis" },
+      { "id": "nar", "label": "Narrative focus" }
+    ],
+    "items": [
+      {
+        "id": "a1",
+        "text": "Our school should start a recycling club because it would cut waste and teach good habits.",
+        "bucketId": "arg"
+      },
+      {
+        "id": "a2",
+        "text": "Video games deserve a place in classrooms because they teach problem-solving.",
+        "bucketId": "arg"
+      },
+      {
+        "id": "i1",
+        "text": "Recycling works in four steps: collecting, sorting, cleaning and remaking.",
+        "bucketId": "inf"
+      },
+      { "id": "i2", "text": "Earthquakes have three main causes.", "bucketId": "inf" },
+      { "id": "i3", "text": "Social media affects teenagers in several ways.", "bucketId": "inf" },
+      {
+        "id": "n1",
+        "text": "The day I forgot my lines in the school play taught me to laugh at myself.",
+        "bucketId": "nar"
+      },
+      {
+        "id": "n2",
+        "text": "When my brother was born, I learned what it means to be patient.",
+        "bucketId": "nar"
+      },
+      {
+        "id": "n3",
+        "text": "Losing my first football match changed how I think about winning.",
+        "bucketId": "nar"
+      }
+    ]
+  },
+  {
+    "key": "e12.focus-transform",
+    "type": "TRANSFORM",
+    "title": "From topic to thesis",
+    "instructions": "Each sentence just names a topic. Rewrite it as an informative thesis that names the parts.",
+    "items": [
+      {
+        "id": "volcano",
+        "task": "Use the parts given: “three stages”.",
+        "source": "This essay is about volcanoes.",
+        "answers": ["Volcanoes form in three stages."],
+        "hints": ["Volcanoes form in…"],
+        "explanation": "Volcanoes form in three stages. Now the reader knows what the body paragraphs will cover."
+      },
+      {
+        "id": "bees",
+        "task": "Use the parts given: “in three ways”.",
+        "source": "My topic is how bees help farms.",
+        "answers": ["Bees help farms in three ways."],
+        "hints": ["Bees help farms…"],
+        "explanation": "Bees help farms in three ways."
+      },
+      {
+        "id": "sleep",
+        "task": "Use the parts given: “in several ways”.",
+        "source": "I am going to explain sleep and learning.",
+        "answers": ["Sleep affects learning in several ways."],
+        "hints": ["Sleep affects learning…"],
+        "explanation": "Sleep affects learning in several ways."
+      }
+    ]
+  },
+  {
+    "key": "e12.focus-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Informative and narrative",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which is an informative thesis?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Bicycles work through three simple machines: wheels, levers and gears."
+          },
+          { "id": "b", "text": "Everyone should ride a bike to school." },
+          { "id": "c", "text": "I got my first bike when I was six." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It explains a topic and names the parts. B argues; C is just an event."
+      },
+      {
+        "id": "q2",
+        "prompt": "What makes a narrative focus different from just telling an event?",
+        "options": [
+          { "id": "a", "text": "It says what the event meant or taught you" },
+          { "id": "b", "text": "It is longer" },
+          { "id": "c", "text": "It uses more adjectives" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“I moved house” is an event. “Moving house taught me to make friends fast” is a focus."
+      },
+      {
+        "id": "q3",
+        "prompt": "Should an informative thesis take a side?",
+        "options": [
+          { "id": "a", "text": "No: it explains, it doesn’t argue" },
+          { "id": "b", "text": "Yes, always" },
+          { "id": "c", "text": "Only if the topic is sport" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Informative essays teach the reader; argumentative essays take sides."
+      }
+    ]
+  },
+  {
+    "key": "e12.focus-set",
+    "type": "SENTENCE_SET",
+    "title": "Explain and tell",
+    "prompt": "Write three theses, one for each task listed above the writing box: two informative theses and one narrative focus.",
+    "tips": [
+      "Informative: … in three ways. / … has three main causes. / … works in four steps.",
+      "Narrative: The day I … taught me … / When I …, I learned …"
+    ],
+    "constraints": { "minWords": 25, "maxWords": 120, "minSentences": 3 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["thesis-statement"],
+    "sentenceSet": {
+      "label": "Your three theses",
+      "sentences": [
+        {
+          "ask": "Informative: how exercise helps the body (name the parts or say how many ways).",
+          "needs": ["thesis-statement"]
+        },
+        {
+          "ask": "Informative: how a topic you know well works (a game, a recipe, a machine).",
+          "needs": ["thesis-statement"]
+        },
+        {
+          "ask": "Narrative focus: a true moment from your life and what it taught you.",
+          "needs": ["thesis-statement"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e12.hooks-sort",
+    "type": "SORT",
+    "title": "Name the hook",
+    "instructions": "Sort each hook by its kind.",
+    "buckets": [
+      { "id": "question", "label": "Question or what-if" },
+      { "id": "fact", "label": "Surprising fact" },
+      { "id": "quote", "label": "Quote" },
+      { "id": "story", "label": "Short story" }
+    ],
+    "items": [
+      {
+        "id": "q1",
+        "text": "Have you ever wondered where your rubbish goes?",
+        "bucketId": "question"
+      },
+      { "id": "q2", "text": "Imagine a school with no bells.", "bucketId": "question" },
+      {
+        "id": "f1",
+        "text": "Every minute, a truckload of plastic enters the ocean.",
+        "bucketId": "fact"
+      },
+      { "id": "f2", "text": "Nearly half of all food grown is never eaten.", "bucketId": "fact" },
+      {
+        "id": "u1",
+        "text": "“Education is the most powerful weapon you can use to change the world,” said Nelson Mandela.",
+        "bucketId": "quote"
+      },
+      {
+        "id": "u2",
+        "text": "“Play is the work of childhood,” wrote the teacher Maria Montessori.",
+        "bucketId": "quote"
+      },
+      { "id": "s1", "text": "When I was seven, I lost my dog at the beach.", "bucketId": "story" },
+      { "id": "s2", "text": "One morning last spring, our classroom flooded.", "bucketId": "story" }
+    ]
+  },
+  {
+    "key": "e12.hook-blank",
+    "type": "FILL_BLANK",
+    "title": "Finish the hook",
+    "instructions": "Choose the words that make each hook grab the reader.",
+    "items": [
+      {
+        "id": "question",
+        "sentence": "___ tried to study with a phone buzzing beside you?",
+        "choices": ["Have you ever", "In this essay I", "Phones are"],
+        "answers": ["Have you ever"],
+        "hint": "Start a question that pulls the reader in.",
+        "explanation": "“Have you ever…?” makes the reader picture it."
+      },
+      {
+        "id": "fact",
+        "sentence": "Every year, ___ of school lunches end up in the bin.",
+        "choices": ["one third", "some", "a few things"],
+        "answers": ["one third", "a third"],
+        "hint": "Which one is surprising and specific?",
+        "explanation": "A number surprises; “some” doesn’t."
+      },
+      {
+        "id": "story",
+        "sentence": "___, I stood at the edge of the pool, too scared to jump.",
+        "choices": ["When I was eight", "My essay is about pools", "Swimming"],
+        "answers": ["When I was eight"],
+        "hint": "Start a tiny true moment.",
+        "explanation": "A short-story hook drops the reader into a moment."
+      },
+      {
+        "id": "imagine",
+        "sentence": "___ a city where every roof is a garden.",
+        "choices": ["Imagine", "Hello,", "This is about"],
+        "answers": ["Imagine", "Picture"],
+        "hint": "Ask the reader to see something.",
+        "explanation": "“Imagine…” invites the reader into the idea."
+      }
+    ]
+  },
+  {
+    "key": "e12.hooks-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Choosing hooks",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which is NOT a hook?",
+        "options": [
+          { "id": "a", "text": "Hello! My essay is about bees." },
+          { "id": "b", "text": "Without bees, there would be no apples." },
+          { "id": "c", "text": "What would breakfast look like without bees?" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "An announcement tells the reader what you’ll do. B and C make them curious."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which hook is a bold statement?",
+        "options": [
+          { "id": "a", "text": "Homework is broken." },
+          { "id": "b", "text": "Have you ever had too much homework?" },
+          { "id": "c", "text": "When I was ten, I cried over homework." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Short and strong. B is a question; C is a short story."
+      },
+      {
+        "id": "q3",
+        "prompt": "An essay argues for longer lunch breaks. Which hook fits best?",
+        "options": [
+          { "id": "a", "text": "Have you ever had to swallow your sandwich in five minutes flat?" },
+          { "id": "b", "text": "Sharks have rows of teeth." },
+          { "id": "c", "text": "This essay is about lunch." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A leads straight to the topic. B is off topic; C is an announcement."
+      }
+    ]
+  },
+  {
+    "key": "e12.hooks-set",
+    "type": "SENTENCE_SET",
+    "title": "Three hooks, one topic",
+    "prompt": "Topic: should schools have a four-day week? Write three different hooks for an essay on this topic, one for each task listed above the writing box.",
+    "tips": [
+      "Question: Have you ever…? / What if…? / Imagine…",
+      "Surprising fact: use a number (you may invent a realistic one for practice).",
+      "Short story: When I…, / One Friday…, / Last year…"
+    ],
+    "constraints": { "minWords": 25, "maxWords": 120, "minSentences": 3 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["hook-question", "hook-fact", "hook-story"],
+    "sentenceSet": {
+      "label": "Your three hooks",
+      "sentences": [
+        { "ask": "A question or what-if hook.", "needs": ["hook-question"] },
+        { "ask": "A surprising-fact hook with a number.", "needs": ["hook-fact"] },
+        { "ask": "A short-story hook: a tiny true (or realistic) moment.", "needs": ["hook-story"] }
+      ]
+    }
+  },
+  {
+    "key": "e12.intro-sequence",
+    "type": "SEQUENCE",
+    "title": "Build the funnel",
+    "instructions": "Put these sentences in order to make an introduction: hook, background, thesis.",
+    "items": [
+      { "id": "hook", "text": "Have you ever seen a turtle tangled in a plastic bag?" },
+      {
+        "id": "bg1",
+        "text": "Turtles often mistake floating bags for jellyfish, their favourite food."
+      },
+      {
+        "id": "bg2",
+        "text": "Every year, millions of bags blow from streets into rivers and the sea."
+      },
+      {
+        "id": "thesis",
+        "text": "Our city should ban plastic bags because they harm wildlife, clog drains and are easy to replace."
+      }
+    ],
+    "labels": ["Hook", "Background", "Background", "Thesis"],
+    "explanation": "The question hooks; the two background sentences explain the problem; the thesis comes last and takes a side."
+  },
+  {
+    "key": "e12.background-sort",
+    "type": "SORT",
+    "title": "Good background?",
+    "instructions": "An introduction argues: “Our school should have a longer lunch break because students need time to eat, rest and play.” Sort each sentence.",
+    "buckets": [
+      { "id": "good", "label": "Good background" },
+      { "id": "body", "label": "Save it for a body paragraph" },
+      { "id": "off", "label": "Off topic" }
+    ],
+    "items": [
+      { "id": "g1", "text": "At our school, lunch lasts just twenty minutes.", "bucketId": "good" },
+      {
+        "id": "g2",
+        "text": "By the time students get through the lunch line, half of that time is gone.",
+        "bucketId": "good"
+      },
+      {
+        "id": "b1",
+        "text": "For example, my friend Leo never finishes his sandwich.",
+        "bucketId": "body"
+      },
+      {
+        "id": "b2",
+        "text": "A study found that students who play at lunch focus better in the afternoon.",
+        "bucketId": "body"
+      },
+      { "id": "o1", "text": "My favourite food is spaghetti.", "bucketId": "off" },
+      { "id": "o2", "text": "The school gym was painted blue last year.", "bucketId": "off" }
+    ]
+  },
+  {
+    "key": "e12.background-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Background",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Where does background go?",
+        "options": [
+          { "id": "a", "text": "Between the hook and the thesis" },
+          { "id": "b", "text": "After the thesis" },
+          { "id": "c", "text": "In the conclusion" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Background is the bridge from hook to thesis."
+      },
+      {
+        "id": "q2",
+        "prompt": "What does background give the reader?",
+        "options": [
+          { "id": "a", "text": "What they need to know to understand the thesis" },
+          { "id": "b", "text": "All your evidence" },
+          { "id": "c", "text": "A second hook" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The situation, the problem or a key fact; save the evidence for the body."
+      },
+      {
+        "id": "q3",
+        "prompt": "How long should background usually be?",
+        "options": [
+          { "id": "a", "text": "One to three sentences" },
+          { "id": "b", "text": "Two paragraphs" },
+          { "id": "c", "text": "One word" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Enough to set the scene, then get to the thesis."
+      }
+    ]
+  },
+  {
+    "key": "e12.background-set",
+    "type": "SENTENCE_SET",
+    "title": "Hook, bridge, thesis",
+    "prompt": "Topic: should students be allowed to bring pets to school one day a year? Write a four-sentence introduction, one sentence for each task listed above the writing box.",
+    "tips": [
+      "Hook: a question, a surprising fact, a quote, a short story or a bold statement.",
+      "Background: what is the situation now? What does the reader need to know?",
+      "Thesis last: … should … because …, … and …."
+    ],
+    "constraints": { "minWords": 40, "maxWords": 160, "minSentences": 4 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["hook", "thesis-statement"],
+    "sentenceSet": {
+      "label": "Your four sentences",
+      "sentences": [
+        { "ask": "A hook that grabs the reader.", "needs": ["hook"] },
+        {
+          "ask": "Background: the situation now (for example, what the school rules say).",
+          "needs": []
+        },
+        { "ask": "More background: why this matters to students or families.", "needs": [] },
+        { "ask": "Your thesis: your side and your reasons.", "needs": ["thesis-statement"] }
+      ]
+    }
+  },
+  {
+    "key": "e12.intro-parts-sort",
+    "type": "SORT",
+    "title": "Label the introduction",
+    "instructions": "These sentences come from two introductions, one about reading and one about volcanoes. Sort each into its part.",
+    "buckets": [
+      { "id": "hook", "label": "Hook" },
+      { "id": "background", "label": "Background" },
+      { "id": "thesis", "label": "Thesis" }
+    ],
+    "items": [
+      {
+        "id": "h1",
+        "text": "What if twenty minutes a day could make you a better student in every subject?",
+        "bucketId": "hook"
+      },
+      {
+        "id": "b1",
+        "text": "Many students stop reading for fun when they start middle school.",
+        "bucketId": "background"
+      },
+      {
+        "id": "t1",
+        "text": "Every school should set aside time for free reading because it builds vocabulary, focus and imagination.",
+        "bucketId": "thesis"
+      },
+      {
+        "id": "h2",
+        "text": "In 1980, Mount St. Helens blew off the top 400 metres of its peak.",
+        "bucketId": "hook"
+      },
+      {
+        "id": "b2",
+        "text": "Volcanoes form where hot, melted rock from deep underground pushes up through the Earth’s crust.",
+        "bucketId": "background"
+      },
+      {
+        "id": "b3",
+        "text": "There are about 1,350 active volcanoes in the world today.",
+        "bucketId": "background"
+      },
+      {
+        "id": "t2",
+        "text": "Volcanoes form in three stages: melting, rising and erupting.",
+        "bucketId": "thesis"
+      }
+    ]
+  },
+  {
+    "key": "e12.narrative-sequence",
+    "type": "SEQUENCE",
+    "title": "Order a narrative introduction",
+    "instructions": "Put these sentences in order to make the introduction to a narrative essay.",
+    "items": [
+      {
+        "id": "hook",
+        "text": "I still remember the smell of chlorine on the morning of my first swim race."
+      },
+      { "id": "bg1", "text": "I was nine, and I had only learned to swim that summer." },
+      {
+        "id": "bg2",
+        "text": "My whole family had come to watch, and my legs would not stop shaking."
+      },
+      {
+        "id": "focus",
+        "text": "That race taught me that being scared is not the same as being stuck."
+      }
+    ],
+    "labels": ["Hook", "Background", "Background", "Focus"],
+    "explanation": "A short-story hook, background that sets the scene, then the focus: what the story meant."
+  },
+  {
+    "key": "e12.intro-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Introductions",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What is the right order for an introduction?",
+        "options": [
+          { "id": "a", "text": "Hook → background → thesis" },
+          { "id": "b", "text": "Thesis → hook → background" },
+          { "id": "c", "text": "Background → thesis → hook" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Wide to narrow, like a funnel: the thesis comes last."
+      },
+      {
+        "id": "q2",
+        "prompt": "Why put the thesis at the end of the introduction?",
+        "options": [
+          { "id": "a", "text": "It leads straight into the body paragraphs that prove it" },
+          { "id": "b", "text": "So the reader forgets it" },
+          { "id": "c", "text": "Because it is the least important sentence" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The last thing the reader reads before the body is your main point."
+      },
+      {
+        "id": "q3",
+        "prompt": "An introduction has a great hook and a thesis but nothing between them. What should you add?",
+        "options": [
+          { "id": "a", "text": "A sentence or two of background" },
+          { "id": "b", "text": "A second thesis" },
+          { "id": "c", "text": "Your conclusion" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Background bridges the hook and the thesis."
+      }
+    ]
+  },
+  {
+    "key": "e12.phone-intro",
+    "type": "ESSAY_PART",
+    "title": "Write an introduction",
+    "prompt": "Should students be allowed to use phones at lunch? Write the introduction to an argumentative essay on this question: a hook, one to three sentences of background, and your thesis last. One paragraph. Then check your essay map.",
+    "tips": [
+      "Pick a hook that fits: a question, a surprising fact, a quote, a short story or a bold statement.",
+      "Background: what are the rules now? Why are people talking about it?",
+      "Thesis: … should … because …, … and …."
+    ],
+    "constraints": { "minWords": 50, "maxWords": 160, "minSentences": 3, "maxParagraphs": 1 },
+    "analyzers": ["essay", "structure", "punctuation"],
+    "essay": { "type": "argumentative", "part": "introduction" },
+    "grammarFocus": ["hook", "thesis-statement"]
+  },
+  {
+    "key": "e12.unit-check",
+    "type": "QUIZ",
+    "title": "Thesis & Introduction check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "c1",
+        "prompt": "Which is a claim?",
+        "options": [
+          { "id": "a", "text": "Our town should plant a tree for every new house." },
+          { "id": "b", "text": "Our town has 4,000 houses." },
+          { "id": "c", "text": "Oak trees are my favourite." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A takes a side. B is a fact; C is an opinion.",
+        "skill": "claims"
+      },
+      {
+        "id": "c2",
+        "prompt": "Which is a fact?",
+        "options": [
+          { "id": "a", "text": "The Pacific is the largest ocean." },
+          { "id": "b", "text": "Everyone should visit the ocean." },
+          { "id": "c", "text": "The ocean is beautiful." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It can be checked.",
+        "skill": "claims"
+      },
+      {
+        "id": "c3",
+        "prompt": "Which is an opinion (personal taste)?",
+        "options": [
+          { "id": "a", "text": "Strawberry is the best flavour." },
+          { "id": "b", "text": "Schools should serve more fruit." },
+          { "id": "c", "text": "Strawberries are red." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Nobody can prove what tastes best.",
+        "skill": "claims"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which word often signals a claim?",
+        "options": [
+          { "id": "a", "text": "should" },
+          { "id": "b", "text": "yesterday" },
+          { "id": "c", "text": "blue" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Should, must, need to, better and ban all take a position.",
+        "skill": "claims"
+      },
+      {
+        "id": "c5",
+        "prompt": "Which is the strongest argumentative thesis?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Students should learn first aid because it saves lives, builds confidence and helps families."
+          },
+          { "id": "b", "text": "First aid is a big topic." },
+          { "id": "c", "text": "I am going to write about first aid." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A claim plus three reasons.",
+        "skill": "argumentative thesis"
+      },
+      {
+        "id": "c6",
+        "prompt": "In an argumentative thesis, what usually comes after “because”?",
+        "options": [
+          { "id": "a", "text": "The reasons" },
+          { "id": "b", "text": "The hook" },
+          { "id": "c", "text": "The conclusion" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Claim + because + reasons.",
+        "skill": "argumentative thesis"
+      },
+      {
+        "id": "c7",
+        "prompt": "A thesis lists three reasons. What will the body paragraphs be about?",
+        "options": [
+          { "id": "a", "text": "One reason each, in the same order" },
+          { "id": "b", "text": "Three new topics" },
+          { "id": "c", "text": "The hook, again and again" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The thesis maps out the essay.",
+        "skill": "argumentative thesis"
+      },
+      {
+        "id": "c8",
+        "prompt": "What makes “Sports are good.” a weak thesis?",
+        "options": [
+          { "id": "a", "text": "It is too vague: good how, for whom, so what?" },
+          { "id": "b", "text": "It is too long" },
+          { "id": "c", "text": "Nothing" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A strong thesis is specific and says what should happen.",
+        "skill": "argumentative thesis"
+      },
+      {
+        "id": "c9",
+        "prompt": "Which is an informative thesis?",
+        "options": [
+          { "id": "a", "text": "Recycling works in four steps." },
+          { "id": "b", "text": "We should all recycle more." },
+          { "id": "c", "text": "I recycled a can yesterday." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It names the topic and its parts without taking a side.",
+        "skill": "informative and narrative"
+      },
+      {
+        "id": "c10",
+        "prompt": "Which is a narrative focus?",
+        "options": [
+          { "id": "a", "text": "The day I got lost in the city taught me to stay calm." },
+          { "id": "b", "text": "Cities have many streets." },
+          { "id": "c", "text": "Cities should add more signs." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A true moment plus what it meant.",
+        "skill": "informative and narrative"
+      },
+      {
+        "id": "c11",
+        "prompt": "Turn “This essay is about earthquakes” into an informative thesis.",
+        "options": [
+          { "id": "a", "text": "Earthquakes have three main causes." },
+          { "id": "b", "text": "Earthquakes should be banned." },
+          { "id": "c", "text": "I don’t like earthquakes." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Topic + parts.",
+        "skill": "informative and narrative"
+      },
+      {
+        "id": "c12",
+        "prompt": "What does a narrative focus tell the reader?",
+        "options": [
+          { "id": "a", "text": "What the story taught or changed" },
+          { "id": "b", "text": "Three reasons to agree" },
+          { "id": "c", "text": "How many paragraphs there are" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The story shows it; the focus names it.",
+        "skill": "informative and narrative"
+      },
+      {
+        "id": "c13",
+        "prompt": "Which is a question hook?",
+        "options": [
+          { "id": "a", "text": "What would you do with one extra hour every day?" },
+          { "id": "b", "text": "An hour has sixty minutes." },
+          { "id": "c", "text": "In this essay I will discuss time." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It makes the reader think.",
+        "skill": "hooks"
+      },
+      {
+        "id": "c14",
+        "prompt": "Which is a surprising-fact hook?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The average person spends six months of their life waiting at red lights."
+          },
+          { "id": "b", "text": "Traffic lights are red, amber and green." },
+          { "id": "c", "text": "Have you been in a car?" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A number that makes you sit up.",
+        "skill": "hooks"
+      },
+      {
+        "id": "c15",
+        "prompt": "Why is “Hello, my essay is about pets” a poor opening?",
+        "options": [
+          { "id": "a", "text": "It announces instead of grabbing the reader" },
+          { "id": "b", "text": "Pets are a bad topic" },
+          { "id": "c", "text": "It is a question" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Start with something that makes the reader curious.",
+        "skill": "hooks"
+      },
+      {
+        "id": "c16",
+        "prompt": "Which hook best fits a narrative essay about a camping trip?",
+        "options": [
+          { "id": "a", "text": "At midnight, something scratched at our tent." },
+          { "id": "b", "text": "Tents are made of nylon." },
+          { "id": "c", "text": "This essay is about camping." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A short-story hook drops the reader into the moment.",
+        "skill": "hooks"
+      },
+      {
+        "id": "c17",
+        "prompt": "What must a quote hook include?",
+        "options": [
+          { "id": "a", "text": "Quotation marks and who said it" },
+          { "id": "b", "text": "A number" },
+          { "id": "c", "text": "The word “quote”" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Show the exact words and give credit.",
+        "skill": "hooks"
+      },
+      {
+        "id": "c18",
+        "prompt": "Where does background go?",
+        "options": [
+          { "id": "a", "text": "Between the hook and the thesis" },
+          { "id": "b", "text": "Before the hook" },
+          { "id": "c", "text": "After the conclusion" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It bridges the two.",
+        "skill": "background"
+      },
+      {
+        "id": "c19",
+        "prompt": "Which sentence is good background for “Our school should start a recycling club”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Right now, our school has only two recycling bins for 600 students."
+          },
+          { "id": "b", "text": "My cat likes boxes." },
+          { "id": "c", "text": "In conclusion, recycling matters." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It explains the situation that makes the thesis needed.",
+        "skill": "background"
+      },
+      {
+        "id": "c20",
+        "prompt": "Which belongs in a body paragraph, not the background?",
+        "options": [
+          {
+            "id": "a",
+            "text": "For example, the club at Hill School collected 2,000 cans in a month."
+          },
+          { "id": "b", "text": "Many schools throw away tons of paper." },
+          { "id": "c", "text": "Recycling has become a hot topic." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Specific evidence proves a reason, so save it for the body.",
+        "skill": "background"
+      },
+      {
+        "id": "c21",
+        "prompt": "What is the right order for an introduction?",
+        "options": [
+          { "id": "a", "text": "Hook, background, thesis" },
+          { "id": "b", "text": "Thesis, background, hook" },
+          { "id": "c", "text": "Background, hook, thesis" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A funnel: wide to narrow.",
+        "skill": "introductions"
+      },
+      {
+        "id": "c22",
+        "prompt": "Where should the thesis be?",
+        "options": [
+          { "id": "a", "text": "The last sentence of the introduction" },
+          { "id": "b", "text": "The first sentence of the introduction" },
+          { "id": "c", "text": "Hidden in the middle" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It leads into the body.",
+        "skill": "introductions"
+      },
+      {
+        "id": "c23",
+        "prompt": "Your essay map shows “! No background yet”. What should you do?",
+        "options": [
+          { "id": "a", "text": "Add a sentence or two of context between the hook and the thesis" },
+          { "id": "b", "text": "Delete the hook" },
+          { "id": "c", "text": "Write a second thesis" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Background is the bridge.",
+        "skill": "introductions"
+      },
+      {
+        "id": "c24",
+        "prompt": "How long is a typical introduction?",
+        "options": [
+          { "id": "a", "text": "One paragraph of about three to five sentences" },
+          { "id": "b", "text": "Three paragraphs" },
+          { "id": "c", "text": "One word" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Hook, background, thesis: one paragraph.",
+        "skill": "introductions"
+      }
+    ]
+  },
+  {
+    "key": "e12.check-intro",
+    "type": "ESSAY_PART",
+    "title": "Write an informative introduction",
+    "prompt": "Write the introduction to an informative essay explaining how sleep affects students’ learning: a hook (a surprising fact works well), one to three sentences of background, and a thesis last that names the parts you would explain. One paragraph. Then check your essay map.",
+    "tips": [
+      "Informative: explain, don’t argue. Your thesis can say “… in three ways” or name the three parts.",
+      "Ideas for parts: memory, focus, mood, energy, health.",
+      "Background: how much sleep do students need? How much do many get?"
+    ],
+    "constraints": { "minWords": 50, "maxWords": 160, "minSentences": 3, "maxParagraphs": 1 },
+    "analyzers": ["essay", "structure", "punctuation"],
+    "essay": { "type": "informative", "part": "introduction" },
+    "grammarFocus": ["hook", "thesis-statement"]
+  }
+]

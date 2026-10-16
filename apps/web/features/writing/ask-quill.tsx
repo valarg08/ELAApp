@@ -82,7 +82,9 @@ export function AskQuill({
             label:
               activity.type === 'ESSAY_OUTLINE'
                 ? 'Is my outline ready to write from?'
-                : 'Is my essay structured well?',
+                : activity.essay?.part === 'introduction'
+                  ? 'Is my introduction ready?'
+                  : 'Is my essay structured well?',
           },
         ]
       : []),

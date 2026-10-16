@@ -10,8 +10,8 @@ import type { AnalyzerDef, WritingContext } from '../types.js';
  */
 export interface EssayStructureInput extends WritingContext {
   essayType: EssayType;
-  /** An outline (labelled lines) or a full essay. */
-  mode: 'essay' | 'outline';
+  /** An outline (labelled lines), a full essay, or one part of an essay (Unit 12 introductions). */
+  mode: 'essay' | 'outline' | 'introduction';
   /** The task asks for a counterclaim and rebuttal. */
   counterclaim: boolean;
 }
@@ -34,6 +34,8 @@ export const EssayStructureResult = z.object({
     note: z.string(),
   }),
   hook: z.object({ quote: z.string().nullable(), works: z.boolean(), note: z.string() }),
+  /** The introduction's sentences between the hook and the thesis. */
+  background: z.object({ present: z.boolean(), quote: z.string().nullable(), note: z.string() }),
   /** Each body paragraph (or body point), in order: does it support the thesis? */
   bodies: z.array(z.object({ quote: z.string(), supportsThesis: z.boolean(), note: z.string() })),
   counterclaim: z.object({
@@ -59,15 +61,17 @@ const SYSTEM = `${QUILL_RULES}
 Task: check how the student's ESSAY (or essay OUTLINE) is structured, like a kind English teacher. You are told the kind of essay (argumentative, informative or narrative), whether it is an outline (labelled lines like "Thesis: …", "Body 1: …") or a full essay, and whether the task asks for a counterclaim.
 - thesis: the one sentence the essay proves (argumentative: a claim someone could disagree with, with reasons), explains (informative: the topic and its parts) or shows (narrative: the focus, what the experience taught or changed). kind = claim, focus, opinion (personal taste only), fact (nothing to prove), announcement ("In this essay I will…"), question, or none. present = it is a real claim or focus. quote = exact words or null. note = one sentence.
 - hook: the first sentence. works = it grabs the reader (a question, a surprising fact, a quote, a short story, a bold statement), not an announcement or a plain fact. quote = exact words or null. note = one sentence.
+- background: the introduction's sentences between the hook and the thesis that tell the reader what they need to know (the situation, a definition, the problem). present = there is at least one; quote = the first, exact words, or null; note = one sentence. Outlines have no background: present = false, note says it comes when writing.
 - bodies: each body paragraph (or "Body n" line) in order, up to 4. quote = its topic sentence, exact words. supportsThesis = it proves or explains part of the thesis (narrative: it moves the story toward the focus). note = one short sentence.
 - counterclaim: present = the essay gives the other side; rebutted = it then answers it. quote = the counterclaim's exact words or null. note = one sentence (if the task asks for one and it is missing, say how to add it; if not asked for, say it is optional).
 - conclusion: present = there is a conclusion; restates = it restates the thesis in new words (not copied); finalThought = it ends with a call to act, a look ahead, a question or (narrative) a reflection. quote = exact words of its first sentence or null. note = one sentence.
 - nextIdea: one idea to make the structure stronger, starting "You could try", or null.
+If this is just an INTRODUCTION, judge the hook, background and thesis only (a strong introduction ends with its thesis): bodies = [], counterclaim and conclusion present = false with the note "Not part of this task.".
 Judge structure only, not grammar or spelling. Outlines are notes: do not expect full paragraphs or a final thought there.`;
 
 export const essayStructureAnalyzer: AnalyzerDef<EssayStructureInput, EssayStructureResult> = {
   id: 'essay-structure',
-  version: 'essay-structure-1',
+  version: 'essay-structure-2',
   effort: 'medium',
   maxTokens: 1800,
   system: SYSTEM,
@@ -75,17 +79,25 @@ export const essayStructureAnalyzer: AnalyzerDef<EssayStructureInput, EssayStruc
   buildUser: (input) =>
     [
       `Kind of essay: ${input.essayType}`,
-      `This is: ${input.mode === 'outline' ? 'an outline' : 'a full essay'}`,
+      `This is: ${input.mode === 'outline' ? 'an outline' : input.mode === 'introduction' ? 'just an introduction' : 'a full essay'}`,
       `Counterclaim asked for: ${input.counterclaim ? 'yes' : 'no'}`,
       writingBlock(input),
     ].join('\n'),
   fake(input) {
-    const options = { type: input.essayType, counterclaim: input.counterclaim };
+    const options = {
+      type: input.essayType,
+      counterclaim: input.counterclaim,
+      ...(input.mode === 'introduction' ? { part: 'introduction' as const } : {}),
+    };
+    const introOnly = input.mode === 'introduction';
     const e = essayStructure(input.text, options);
     const notes = essayNotes(input.text, options);
     const narrative = input.essayType === 'narrative';
     const intro = e.paragraphs.find((p) => p.part === 'introduction');
-    const bodies = e.paragraphs.filter((p) => p.part === 'body' && !p.counterclaim);
+    const background = intro?.background?.[0];
+    const bodies = introOnly
+      ? []
+      : e.paragraphs.filter((p) => p.part === 'body' && !p.counterclaim);
     const counter = e.paragraphs.find((p) => p.counterclaim);
     const conclusion = e.paragraphs.find((p) => p.part === 'conclusion');
     const thesisOk = e.thesis && (e.thesis.kind === 'claim' || e.thesis.kind === 'focus');
@@ -109,6 +121,19 @@ export const essayStructureAnalyzer: AnalyzerDef<EssayStructureInput, EssayStruc
           ? 'Your opening makes the reader want to keep going.'
           : 'Open with a question, a surprising fact, a quote or a short story.',
       },
+      background: background
+        ? {
+            present: true,
+            quote: background.text,
+            note: 'Your background gives the reader what they need before your thesis.',
+          }
+        : {
+            present: false,
+            quote: null,
+            note: e.outline
+              ? 'Background comes when you write the introduction.'
+              : 'Add a sentence or two between your hook and thesis that tells the reader what they need to know.',
+          },
       bodies: bodies.slice(0, 4).map((p) => ({
         quote: p.topic?.span.text ?? p.span.text,
         supportsThesis: p.topic?.linked !== false || narrative,
@@ -117,42 +142,48 @@ export const essayStructureAnalyzer: AnalyzerDef<EssayStructureInput, EssayStruc
             ? 'Use a key word from your thesis so the reader sees how this point proves it.'
             : 'This point supports your thesis.',
       })),
-      counterclaim: counter
-        ? {
-            present: true,
-            rebutted: counter.rebuttal !== undefined,
-            quote: counter.counterclaim?.text ?? null,
-            note: counter.rebuttal
-              ? 'You give the other side and answer it.'
-              : 'Answer the other side with a rebuttal that starts “However, …”.',
-          }
-        : {
-            present: false,
-            rebutted: false,
-            quote: null,
-            note: input.counterclaim
-              ? 'Add what the other side says (Some people argue…) and your answer (However, …).'
-              : 'A counterclaim is optional here.',
-          },
-      conclusion: conclusion
-        ? {
-            present: true,
-            restates: conclusion.echoesThesis === true && !conclusion.copiesThesis,
-            finalThought: e.outline || conclusion.finalThought !== undefined,
-            quote: conclusion.span.text.split(/(?<=[.!?])\s/)[0] ?? null,
-            note: conclusion.copiesThesis
-              ? 'Restate your thesis in new words instead of copying it.'
-              : 'Your conclusion brings the reader back to your main point.',
-          }
-        : {
-            present: false,
-            restates: false,
-            finalThought: false,
-            quote: null,
-            note: 'Add a conclusion that restates your thesis and leaves a final thought.',
-          },
+      counterclaim:
+        counter && !introOnly
+          ? {
+              present: true,
+              rebutted: counter.rebuttal !== undefined,
+              quote: counter.counterclaim?.text ?? null,
+              note: counter.rebuttal
+                ? 'You give the other side and answer it.'
+                : 'Answer the other side with a rebuttal that starts “However, …”.',
+            }
+          : {
+              present: false,
+              rebutted: false,
+              quote: null,
+              note: introOnly
+                ? 'Not part of this task.'
+                : input.counterclaim
+                  ? 'Add what the other side says (Some people argue…) and your answer (However, …).'
+                  : 'A counterclaim is optional here.',
+            },
+      conclusion:
+        conclusion && !introOnly
+          ? {
+              present: true,
+              restates: conclusion.echoesThesis === true && !conclusion.copiesThesis,
+              finalThought: e.outline || conclusion.finalThought !== undefined,
+              quote: conclusion.span.text.split(/(?<=[.!?])\s/)[0] ?? null,
+              note: conclusion.copiesThesis
+                ? 'Restate your thesis in new words instead of copying it.'
+                : 'Your conclusion brings the reader back to your main point.',
+            }
+          : {
+              present: false,
+              restates: false,
+              finalThought: false,
+              quote: null,
+              note: introOnly
+                ? 'Not part of this task.'
+                : 'Add a conclusion that restates your thesis and leaves a final thought.',
+            },
       nextIdea:
-        bodies.length < 3 && !narrative
+        !introOnly && bodies.length < 3 && !narrative
           ? 'You could try adding another body point with its own evidence.'
           : null,
     };

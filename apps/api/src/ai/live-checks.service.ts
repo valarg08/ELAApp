@@ -239,7 +239,7 @@ export class LiveChecksService {
           this.ai.run(LIVE_ANALYZERS['essay-structure'], { ...ctx, ...essayInput(content) }, meta),
         );
         if (outcome.status === 'declined') return this.declined(after);
-        points = essayPoints(req.text, outcome.result);
+        points = essayPoints(req.text, outcome.result, essayInput(content).mode);
       } else if (req.analyzer === 'figurative-language') {
         const goals = content.figurativeHelper?.devices ?? [];
         const outcome: AnalyzerOutcome<FigurativeLanguageResult> = await withTimeout(

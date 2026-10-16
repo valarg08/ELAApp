@@ -156,6 +156,7 @@ export interface CoachReport {
 
 export type EssayMapItemKind =
   | 'hook'
+  | 'background'
   | 'thesis'
   | 'topic'
   | 'evidence'
@@ -1268,6 +1269,9 @@ const ESSAY_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
   'no-counterclaim': 'Add a counterclaim',
   'no-conclusion': 'Plan your conclusion',
   'no-evidence': 'Add evidence',
+  'no-hook': 'Open with a hook',
+  'no-background': 'Add background',
+  'thesis-not-last': 'End with your thesis',
   'copied-thesis': 'Restate, don’t copy',
   'no-restatement': 'Restate your thesis',
   'no-final-thought': 'End with a final thought',
@@ -1289,6 +1293,19 @@ function essayMap(e: EssayStructure, options: EssayOptions): EssayMap {
           ok,
           span: p.hook.span,
         });
+      }
+      if (p.hook && p.background && !narrative) {
+        const n = p.background.length;
+        items.push(
+          n > 0
+            ? {
+                kind: 'background',
+                label: `Background: ${n} sentence${n === 1 ? '' : 's'}`,
+                ok: true,
+                span: p.background[0],
+              }
+            : { kind: 'background', label: 'No background yet', ok: false },
+        );
       }
       if (p.thesis) {
         const ok =

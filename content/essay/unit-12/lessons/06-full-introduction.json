@@ -1,0 +1,53 @@
+{
+  "slug": "essay-full-introduction",
+  "order": 6,
+  "title": "The Full Introduction",
+  "estMinutes": 45,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of the start of a film you love. What happens in the first minute that makes you keep watching?",
+      "placeholder": "In the first minute…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The funnel",
+          "body": "An introduction is a funnel: wide at the top, narrow at the bottom. Hook (catch the reader) → background (one to three sentences of context) → thesis (your exact point, last). Four or five sentences, one paragraph."
+        },
+        {
+          "kind": "example",
+          "title": "A full introduction",
+          "text": "“The greatest danger to our future is apathy,” said the scientist Jane Goodall. Every year, our school throws away enough paper to fill the gym. Most of it could have been recycled, but our school has only two recycling bins. Our school should put a recycling bin in every classroom because it would cut waste, save money and teach students good habits.",
+          "note": "Quote hook → two sentences of background (the problem) → thesis with three reasons, last."
+        },
+        {
+          "kind": "definition",
+          "title": "Your introduction map",
+          "body": "When you check your writing, the Coach’s essay map marks the hook, the background and the thesis. A ✓ means the part is in place; a ! means it needs work. Make sure your thesis is the last sentence."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e12.intro-parts-sort", "e12.narrative-sequence", "e12.intro-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e12.phone-intro" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Look at your essay map. Are the hook, background and thesis all in place?",
+        "Read your introduction to someone. Do they want to read the rest?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

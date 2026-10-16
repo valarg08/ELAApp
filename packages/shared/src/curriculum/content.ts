@@ -345,6 +345,7 @@ export const WRITING_ACTIVITY_TYPES = [
   'GRAMMAR_PARAGRAPH',
   'PARAGRAPH',
   'ESSAY_OUTLINE',
+  'ESSAY_PART',
 ] as const;
 
 /**
@@ -632,7 +633,13 @@ export const GRAMMAR_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
 export const PARAGRAPH_ACTIVITY_TYPES: readonly WritingActivity['type'][] = ['PARAGRAPH'];
 
 /** Essays and outlines (Unit 11 on): the essay Coach check, "Is my essay structured well?" and the essay rubrics. */
-export const ESSAY_ACTIVITY_TYPES: readonly WritingActivity['type'][] = ['ESSAY_OUTLINE'];
+export const ESSAY_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
+  'ESSAY_OUTLINE',
+  'ESSAY_PART',
+];
+
+/** Activities with an outline builder: outlines (and, from Unit 14, whole essays). */
+export const OUTLINE_BUILDER_TYPES: readonly WritingActivity['type'][] = ['ESSAY_OUTLINE'];
 
 export const MAX_SYLLABLE_OVERRIDES = 60;
 
@@ -981,8 +988,10 @@ export function validateUnitBundle({
       errors.push(`${a.key}: starterInEditor needs a starter`);
     if (isWritingActivity(a) && a.paragraphBuilder && a.type !== 'PARAGRAPH')
       errors.push(`${a.key}: paragraphBuilder is for PARAGRAPH activities`);
-    if (isWritingActivity(a) && a.outlineBuilder && !ESSAY_ACTIVITY_TYPES.includes(a.type))
+    if (isWritingActivity(a) && a.outlineBuilder && !OUTLINE_BUILDER_TYPES.includes(a.type))
       errors.push(`${a.key}: outlineBuilder is for essay and outline activities`);
+    if (isWritingActivity(a) && (a.type === 'ESSAY_PART') !== (a.essay?.part !== undefined))
+      errors.push(`${a.key}: essay.part is for ESSAY_PART activities, which need it`);
     if (isWritingActivity(a) && ESSAY_ACTIVITY_TYPES.includes(a.type) && !a.essay)
       errors.push(`${a.key}: essay activities need essay: { type }`);
     if (

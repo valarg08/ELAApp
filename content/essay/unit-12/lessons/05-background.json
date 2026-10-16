@@ -1,0 +1,58 @@
+{
+  "slug": "essay-background",
+  "order": 5,
+  "title": "Building Background",
+  "estMinutes": 35,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "The missing bridge",
+      "paragraphs": [
+        "Sam’s introduction went: “Have you ever seen a turtle eat a plastic bag? Cities should ban plastic bags.”",
+        "His friend read it and frowned. “Wait, why are turtles eating bags? How many bags are there?”",
+        "Sam added two sentences in the middle: “Turtles mistake floating bags for jellyfish, their favourite food. Every year, millions of bags blow from streets into rivers and the sea.”",
+        "Now the jump from turtles to the ban made sense. The middle sentences were a bridge from the hook to the thesis."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What background does",
+          "body": "Background is one to three sentences between the hook and the thesis. It gives the reader what they need to understand your thesis: the situation, the problem, a key fact or a word to define. It moves from the hook (wide) to your thesis (narrow)."
+        },
+        {
+          "kind": "example",
+          "title": "Hook → background → thesis",
+          "text": "Hook: Have you ever fallen asleep in first period?\nBackground: Most teenagers need about nine hours of sleep. But their body clocks make it hard to fall asleep before eleven, and many schools start before eight.\nThesis: Schools should start later because teens need more sleep, focus better when rested and are safer on the roads.",
+          "note": "The background explains the problem, so the thesis feels like the obvious answer."
+        },
+        {
+          "kind": "definition",
+          "title": "Not too much",
+          "body": "Background sets the scene; it doesn’t give your evidence away. Save your reasons, examples and quotes for the body paragraphs."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e12.intro-sequence", "e12.background-sort", "e12.background-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e12.background-set" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Read your hook and thesis without the background, then with it. What changes?",
+        "What does a reader need to know before your thesis makes sense?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

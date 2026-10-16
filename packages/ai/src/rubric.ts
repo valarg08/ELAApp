@@ -268,6 +268,65 @@ export const OUTLINE_RUBRIC: Rubric = {
   ],
 };
 
+/** `introduction.essay`: essay introductions (Essay Unit 12 on, DESIGN.md §9.12). */
+export const INTRODUCTION_RUBRIC: Rubric = {
+  key: 'introduction.essay',
+  name: 'Essay introduction',
+  maxScore: 100,
+  criteria: [
+    {
+      key: 'hook',
+      label: 'Hook',
+      description:
+        'The opening grabs the reader: a question, a surprising fact, a quote, a short story or a bold statement.',
+      weight: 0.3,
+      levels: levels(
+        'No hook, or an announcement (“In this essay…”).',
+        'A hook is there, but it is plain or does not fit the topic.',
+        'A hook that grabs the reader and fits the topic.',
+        'A vivid, well-chosen hook that leads naturally into the topic.',
+      ),
+    },
+    {
+      key: 'background',
+      label: 'Background',
+      description: 'One or two sentences give the reader what they need to know before the thesis.',
+      weight: 0.2,
+      levels: levels(
+        'No background: the hook jumps straight to the thesis.',
+        'Some background, but it is vague or off the topic.',
+        'Clear background that bridges the hook and the thesis.',
+        'Smooth, specific background that makes the thesis feel inevitable.',
+      ),
+    },
+    {
+      key: 'thesis',
+      label: 'Thesis or focus',
+      description:
+        'The introduction ends with one clear sentence the essay will prove, explain or show.',
+      weight: 0.35,
+      levels: levels(
+        'No thesis, or a fact, a taste or an announcement.',
+        'A thesis is there, but it is vague or not at the end.',
+        'A clear thesis that fits the kind of essay, at the end of the introduction.',
+        'A sharp, specific thesis that maps out the essay.',
+      ),
+    },
+    {
+      key: 'conventions',
+      label: 'Grammar and conventions',
+      description: 'Complete sentences, capitals, punctuation and spelling help the reader.',
+      weight: 0.15,
+      levels: levels(
+        'Errors often get in the way of meaning.',
+        'Some errors that sometimes distract.',
+        'Mostly correct; errors rarely distract.',
+        'Correct throughout, with varied sentences.',
+      ),
+    },
+  ],
+};
+
 /** total = Σ level × weight, scaled to maxScore (level 4 everywhere = maxScore). */
 export function totalScore(rubric: Rubric, levelsByKey: Record<string, number>): number {
   const weighted = rubric.criteria.reduce(

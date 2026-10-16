@@ -173,8 +173,8 @@ export class FeedbackPipeline {
     const variety = sentenceVariety(text);
     const typed = sentenceTypes(text);
     const roles = paragraphRoles(text);
-    const essayOptions = isWritingActivity(content) ? essayInput(content) : null;
-    const essay = essayStructure(text, { type: essayOptions?.essayType });
+    const essayOptions = { ...content.essay, counterclaim: essayInput(content).counterclaim };
+    const essay = essayStructure(text, essayOptions);
     const evidence = [
       `${stats.words} words, ${stats.sentences} sentences, ${stats.paragraphs} paragraphs`,
       `sentence lengths: ${variety.short} short, ${variety.medium} medium, ${variety.long} long`,
@@ -188,7 +188,7 @@ export class FeedbackPipeline {
       `quotes: ${quotes(text).length}, reported speech: ${reportedClauses(text).length}`,
       `sentence types: ${SENTENCE_TYPES.map((t) => `${typed.filter((s) => s.type === t).length} ${t}`).join(', ')}; variety notes (stringy, choppy, too long, same opener): ${varietyNotes(text).length}`,
       `paragraph parts: ${['topic', 'evidence', 'explanation', 'closing'].map((r) => `${roles.filter((s) => s.role === r).length} ${r}`).join(', ')}; transitions: ${roles.filter((s) => s.transition).length}; paragraph notes (no topic sentence, no evidence, unexplained evidence, no closing, no transitions): ${paragraphNotes(text).length}`,
-      `essay parts: ${essay.outline ? 'outline' : 'essay'}; ${essay.paragraphs.filter((p) => p.part === 'body').length} body; thesis ${essay.thesis?.kind ?? 'none'}; counterclaims ${essay.paragraphs.filter((p) => p.counterclaim).length}; essay notes (thesis, hook, body links, counterclaim, conclusion): ${essayNotes(text, { type: essayOptions?.essayType, counterclaim: essayOptions?.counterclaim }).length}`,
+      `essay parts: ${essay.outline ? 'outline' : 'essay'}; ${essay.paragraphs.filter((p) => p.part === 'body').length} body; thesis ${essay.thesis?.kind ?? 'none'}; counterclaims ${essay.paragraphs.filter((p) => p.counterclaim).length}; essay notes (thesis, hook, body links, counterclaim, conclusion): ${essayNotes(text, essayOptions).length}`,
     ];
 
     // 3. LLM analyzers for this activity type.
@@ -343,7 +343,7 @@ export class FeedbackPipeline {
         notes.push(
           `essay: thesis ${r.thesis.kind}; hook ${r.hook.works ? 'works' : 'weak'}; bodies ${r.bodies.length} (${r.bodies.filter((b) => b.supportsThesis).length} support the thesis); counterclaim ${r.counterclaim.present ? (r.counterclaim.rebutted ? 'answered' : 'unanswered') : 'none'}; conclusion ${r.conclusion.present ? `${r.conclusion.restates ? 'restates' : 'no restatement'}, ${r.conclusion.finalThought ? 'final thought' : 'no final thought'}` : 'missing'}`,
         );
-        const p = essayPoints(text, r);
+        const p = essayPoints(text, r, extra.mode);
         focusStrengths.push(...p.strengths);
         focusNextSteps.push(...p.nextSteps);
       } else if (id === 'figurative-language') {
@@ -431,7 +431,7 @@ export class FeedbackPipeline {
     }
 
     // 4–5. Rubric score + composition.
-    const rubric = rubricForActivity(content.type);
+    const rubric = rubricForActivity(content.type, content.essay?.part);
     versions.push(rubricScoreAnalyzer.version);
     if (POETRY_ACTIVITY_TYPES.includes(content.type)) {
       notes.push(

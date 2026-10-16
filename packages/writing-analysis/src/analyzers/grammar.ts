@@ -520,7 +520,10 @@ export interface GrammarIssue {
     | 'no-conclusion'
     | 'copied-thesis'
     | 'no-restatement'
-    | 'no-final-thought';
+    | 'no-final-thought'
+    | 'no-hook'
+    | 'no-background'
+    | 'thesis-not-last';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -772,6 +775,7 @@ export type { ParagraphRole, ParagraphSentence } from './paragraphs.js';
 export const essayNotes = (text: string, options?: EssayOptions): GrammarIssue[] =>
   findEssayNotes(text, options);
 export {
+  ESSAY_PART_TASKS,
   ESSAY_TYPES,
   ESSAY_TYPE_LABELS,
   HOOK_KINDS,
@@ -790,6 +794,7 @@ export type {
   EssayOptions,
   EssayParagraph,
   EssayPart,
+  EssayPartTask,
   EssayStructure,
   EssayType,
   HookKind,

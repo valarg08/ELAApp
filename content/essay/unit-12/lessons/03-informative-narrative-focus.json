@@ -1,0 +1,55 @@
+{
+  "slug": "essay-informative-narrative-focus",
+  "order": 3,
+  "title": "Informative Thesis & Narrative Focus",
+  "estMinutes": 35,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "If you wrote an essay explaining how to look after a dog, what three parts would you explain? If you wrote a true story about a dog, what would the story be about underneath?",
+      "placeholder": "Three parts: … The story underneath: …"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Informative thesis: topic + parts",
+          "body": "An informative thesis doesn’t take a side. It names the topic and the parts you will explain: “Volcanoes form in three stages.” “Honeybees help farms by pollinating crops, making honey and supporting other wildlife.” Each part becomes a body paragraph."
+        },
+        {
+          "kind": "definition",
+          "title": "Narrative focus: what it meant",
+          "body": "A narrative essay’s focus tells the reader what the true story is really about: what it taught you, how it changed you. “The summer I broke my arm taught me to ask for help.” The story shows it; the focus names it."
+        },
+        {
+          "kind": "compare",
+          "title": "Same topic, three theses",
+          "telling": "Cities should build more parks because parks cool streets and bring neighbours together. (argumentative)",
+          "showing": "City parks help people in three ways: shade, exercise and community. (informative) · The day our street got a park, I met my best friend. It taught me that places shape people. (narrative)",
+          "labels": ["Argue", "Explain · Tell"],
+          "note": "Argue: should + because. Explain: the parts. Tell: what it meant."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e12.focus-sort", "e12.focus-transform", "e12.focus-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e12.focus-set" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What is the difference between arguing and explaining?",
+        "Think of a true moment from your life. What did it teach you?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "slug": "essay-claim-fact-opinion",
+  "order": 1,
+  "title": "Claim, Fact or Opinion?",
+  "estMinutes": 35,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Which of these could you write a whole essay to prove?",
+      "a": "Chocolate ice cream is the best flavour.",
+      "b": "Schools should serve fewer sugary desserts at lunch.",
+      "reveal": "A is a personal taste: nobody can prove what tastes best. B is a claim: people could disagree, and you could prove it with reasons and evidence about health, focus and cost."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Three kinds of statement",
+          "body": "A fact is true or false and can be checked: “Our school has 600 students.” An opinion is a personal taste: “Blue is the nicest colour.” A claim is a position someone could disagree with, that you can support with reasons and evidence: “Our school should add a second lunch period.”"
+        },
+        {
+          "kind": "definition",
+          "title": "Words that make a claim",
+          "body": "Claims often use should, must, need to, better, worse, more important, ban or allow. A fact has nothing to argue about. An opinion has nothing to prove. A thesis is always a claim (or, in an informative essay, a focus)."
+        },
+        {
+          "kind": "compare",
+          "title": "From opinion to claim",
+          "telling": "I love recess.",
+          "showing": "Recess should be at least thirty minutes long because children need to move to focus.",
+          "labels": ["Opinion", "Claim"],
+          "note": "The claim says what should change, and why. Now there is something to prove."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e12.cfo-sort", "e12.claim-blank", "e12.cfo-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e12.claims-set" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How can you tell a claim from an opinion?",
+        "Which of your claims would make the best essay? Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

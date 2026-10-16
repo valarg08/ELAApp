@@ -1,4 +1,4 @@
-import { ESSAY_TYPES, type EssayType } from '@storyforge/writing-analysis';
+import { ESSAY_PART_TASKS, ESSAY_TYPES, type EssayType } from '@storyforge/writing-analysis';
 import { z } from 'zod/v4';
 
 /**
@@ -13,6 +13,8 @@ import { z } from 'zod/v4';
 export const EssayConfig = z.object({
   type: z.enum(ESSAY_TYPES),
   counterclaim: z.boolean().default(false),
+  /** `ESSAY_PART` activities: the one part of an essay the student writes. */
+  part: z.enum(ESSAY_PART_TASKS).optional(),
 });
 export type EssayConfig = z.infer<typeof EssayConfig>;
 

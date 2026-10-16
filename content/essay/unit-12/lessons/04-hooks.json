@@ -1,0 +1,57 @@
+{
+  "slug": "essay-hooks",
+  "order": 4,
+  "title": "Hooks That Grab",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Two essays about food waste. Which first sentence makes you want to read on?",
+      "a": "In this essay I am going to write about food waste.",
+      "b": "Nearly a third of all the food grown in the world is never eaten.",
+      "reveal": "B is a hook: a surprising fact that makes the reader sit up. A is an announcement: it tells the reader what you’ll do instead of making them care."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Five kinds of hook",
+          "body": "1. A question: “Have you ever…?”, “What if…?”, “Imagine…”. 2. A surprising fact or number: “Every minute…”. 3. A quote: someone’s words, with who said them. 4. A short story: a tiny true moment, “When I was seven…”. 5. A bold statement: a short, strong claim, “Homework is broken.”"
+        },
+        {
+          "kind": "definition",
+          "title": "Choose a hook that fits",
+          "body": "Narrative essays love short-story hooks. Informative essays love surprising facts. Argumentative essays love questions and bold statements. Whatever you choose, it must lead to your topic: a hook about sharks doesn’t fit an essay about school lunches."
+        },
+        {
+          "kind": "compare",
+          "title": "Announce or hook?",
+          "telling": "Hello! My essay is about why we should have pets in class.",
+          "showing": "Imagine starting every school day by feeding a hungry hamster.",
+          "labels": ["Announcement", "Hook"],
+          "note": "Never “Hello”, “In this essay” or “I am going to tell you”. Start with something that makes the reader curious."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e12.hooks-sort", "e12.hook-blank", "e12.hooks-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e12.hooks-set" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which of your three hooks is strongest? Why?",
+        "Which kind of hook do you like best when you read?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

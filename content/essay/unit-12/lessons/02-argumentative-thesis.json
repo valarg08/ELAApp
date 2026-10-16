@@ -1,0 +1,60 @@
+{
+  "slug": "essay-argumentative-thesis",
+  "order": 2,
+  "title": "Writing an Argumentative Thesis",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "The promise",
+      "paragraphs": [
+        "Ms Okafor holds up two essays. The first begins: “Uniforms are a topic many people talk about.”",
+        "The second begins: “Our school should drop uniforms because they cost families money, ignore the weather and stop students expressing themselves.”",
+        "“Which essay knows where it’s going?” she asks. Everyone points at the second.",
+        "“A thesis is a promise,” she says. “It tells me what you will prove, and the three reasons tell me what each body paragraph will be about.”"
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Claim + because + reasons",
+          "body": "A strong argumentative thesis has a claim (what should happen) and the reasons that prove it: “[Topic] should [action] because [reason 1], [reason 2] and [reason 3].” Each reason becomes one body paragraph."
+        },
+        {
+          "kind": "compare",
+          "title": "Vague or specific?",
+          "telling": "Phones are a big issue in schools.",
+          "showing": "Schools should ban phones in class because they distract students, encourage cheating and cause conflict.",
+          "labels": ["Too vague", "Strong thesis"],
+          "note": "“A big issue” promises nothing. The strong thesis takes a side and maps the essay."
+        },
+        {
+          "kind": "definition",
+          "title": "Check your thesis",
+          "body": "Could someone disagree? Is it one sentence? Does it name your reasons? Is it specific (not “good”, “bad” or “a big issue”)? Could you prove it with evidence?"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e12.thesis-sort", "e12.reasons-blank", "e12.thesis-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e12.arg-theses" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Read one of your theses aloud. Could someone disagree with it?",
+        "Which reason in your thesis would make the strongest body paragraph?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

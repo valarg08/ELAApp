@@ -44,13 +44,13 @@ const ANNOUNCE =
   /^(?:in this (?:essay|paper|report)|this (?:essay|paper|report) (?:is|will)|i (?:am|'m) going to (?:tell|write|explain|talk|show)|i will (?:tell|write|explain|talk|show)|my essay|today i (?:will|am going to)|hi|hello)\b/;
 /** Personal taste, with nothing to argue: "I love pizza.", "Summer is the best." */
 const TASTE =
-  /^(?:i (?:think|believe|feel) (?:that )?)?(?:i (?:like|love|hate|enjoy|prefer)|my favou?rite)\b|\b(?:is|are|was) (?:so |really |very )?(?:cool|awesome|boring|fun|great|nice|amazing|the best|the worst|terrible|gross|yummy|delicious)[.!]?$/;
+  /\b(?:tastiest|yummiest|prettiest|nicest|coolest|cutest|funniest|loveliest|most beautiful|most delicious)\b|^(?:i (?:think|believe|feel) (?:that )?)?(?:i (?:like|love|hate|enjoy|prefer)|my favou?rite)\b|\b(?:is|are|was) (?:so |really |very )?(?:cool|awesome|boring|fun|great|nice|amazing|the best|the worst|terrible|gross|yummy|delicious)[.!]?$/;
 /** Words that make a sentence arguable. */
 const CLAIM =
-  /\b(?:should|must|ought|need to|needs to|have to|has to|deserve|deserves|better|worse|best|worst|more important|most important|essential|necessary|unfair|harmful|dangerous|valuable|beneficial|benefit|benefits|improve|improves|ban|banned|allow|allowed|require|required|outweigh|outweighs|waste|worth|more harm|more good|than good|than harm|too much|too many|too little)\b/;
+  /\b(?:should|must|ought|need|needs|need to|needs to|have to|has to|deserve|deserves|better|worse|best|worst|more important|most important|essential|necessary|unfair|harmful|dangerous|valuable|beneficial|benefit|benefits|improve|improves|ban|banned|allow|allowed|require|required|outweigh|outweighs|waste|worth|more harm|more good|than good|than harm|too much|too many|too little)\b/;
 /** Words that set up an informative essay: ways, causes, effects, steps, how, why… */
 const FOCUS =
-  /\b(?:(?:several|three|two|four|many|important|key|main|different) (?:ways|reasons|causes|effects|steps|types|kinds|benefits|parts|stages|factors|problems|changes|lessons)|affects?|causes?|leads? to|changed|changes|works by|how|why|because|helps?|plays? an? (?:important|key|big) role|is important)\b/;
+  /\b(?:(?:several|three|two|four|five|many|important|key|main|different)(?: [a-z]+)? (?:ways|reasons|causes|effects|steps|types|kinds|benefits|parts|stages|factors|problems|changes|lessons|machines|skills|jobs)|affects?|causes?|leads? to|changed|changes|works (?:by|through|in)|how|why|because|helps?|plays? an? (?:important|key|big) role|is important)\b/;
 /** A narrative focus hints at what the story means: "the day I learned…". */
 const NARRATIVE_FOCUS =
   /\b(?:taught me|learned|learnt|realized|realised|changed (?:my|the way|how)|never forget|would change|that was (?:when|the day)|the day (?:i|we|my)|showed me|discovered|understood)\b/;
@@ -92,7 +92,7 @@ export const HOOK_KINDS = [
 export type HookKind = (typeof HOOK_KINDS)[number];
 
 export const HOOK_KIND_LABELS: Record<HookKind, string> = {
-  question: 'Question',
+  question: 'Question or what-if',
   statistic: 'Surprising fact',
   quote: 'Quote',
   anecdote: 'Short story',
@@ -102,16 +102,16 @@ export const HOOK_KIND_LABELS: Record<HookKind, string> = {
 };
 
 const ANECDOTE =
-  /^(?:when i|when my|one (?:day|morning|afternoon|evening|night|summer|winter|spring|autumn|fall)|last (?:year|summer|winter|week|month|spring|autumn|fall)|i (?:remember|still remember|will never forget|'ll never forget)|it was (?:a|the|late|early)|the (?:day|night|morning) (?:i|we|my))\b/;
+  /^(?:when i|when my|one (?:day|morning|afternoon|evening|night|summer|winter|spring|autumn|fall)|last (?:year|summer|winter|week|month|spring|autumn|fall|night|[a-z]+day)|yesterday|this (?:morning|afternoon|summer|year)|i (?:remember|still remember|will never forget|'ll never forget)|it was (?:a|the|late|early)|the (?:day|night|morning) (?:i|we|my))\b/;
 const STATISTIC =
-  /\d|%|\b(?:percent|per cent|half of|one in (?:two|three|four|five|ten)|millions?|billions?|thousands?|every (?:year|day|minute|second))\b/;
+  /\d|%|\b(?:(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|twenty|thirty|forty|fifty|hundred|thousand) (?:hours|minutes|days|years|times|out of|in every|of every)|half|a third|a quarter|percent|per cent|half of|one in (?:two|three|four|five|ten)|millions?|billions?|thousands?|every (?:year|day|minute|second))\b/;
 
 /** What kind of hook a first sentence is. */
 export function hookKind(sentence: string): HookKind {
   const t = sentence.trim();
   const s = lowerOf(t);
   if (ANNOUNCE.test(s)) return 'announcement';
-  if (s.endsWith('?')) return 'question';
+  if (s.endsWith('?') || /^(?:imagine|picture (?:this|yourself|a|an))\b/.test(s)) return 'question';
   if (/^[“"]/.test(t) || /[”"]\s*(?:said|wrote|says|writes)\b/.test(t)) return 'quote';
   if (ANECDOTE.test(s)) return 'anecdote';
   if (STATISTIC.test(s)) return 'statistic';
@@ -120,7 +120,9 @@ export function hookKind(sentence: string): HookKind {
     n <= 12 &&
     (t.endsWith('!') ||
       CLAIM.test(s) ||
-      /\b(?:never|always|everyone|nobody|no one|every)\b/.test(s))
+      /\b(?:never|always|everyone|nobody|no one|every|broken|wrong|overrated|a myth|a lie|matters|everything|nothing)\b/.test(
+        s,
+      ))
   )
     return 'bold';
   return 'plain';
@@ -252,6 +254,10 @@ export interface EssayParagraph {
   hook?: { span: Span; kind: HookKind };
   /** Introduction: the thesis sentence. */
   thesis?: { span: Span; kind: ThesisKind };
+  /** Introduction: the sentences between the hook and the thesis. */
+  background?: Span[];
+  /** Introduction: sentences after the thesis. */
+  afterThesis?: Span[];
   /** Body: the first sentence, and whether it shares a key word with the thesis. */
   topic?: { span: Span; linked: boolean | null };
   counterclaim?: Span;
@@ -266,7 +272,12 @@ export interface EssayOptions {
   type?: EssayType;
   /** Argumentative essays that must answer the other side (Unit 13 on). */
   counterclaim?: boolean;
+  /** Just one part of an essay (Unit 12 introductions, Unit 14 conclusions). */
+  part?: EssayPartTask;
 }
+
+export const ESSAY_PART_TASKS = ['introduction', 'conclusion'] as const;
+export type EssayPartTask = (typeof ESSAY_PART_TASKS)[number];
 
 export interface EssayStructure {
   outline: boolean;
@@ -282,16 +293,28 @@ const trimSpan = (s: Span): Span => {
   return { start, end: start + text.length, text };
 };
 
-/** Pick the thesis among the introduction's sentences: the last claim or focus, else the last sentence. */
+/** How well a sentence fits as the thesis of this kind of essay (0: not a thesis). */
+function thesisFit(kind: ThesisKind, type?: EssayType): number {
+  if (!isThesisKind(kind)) return 0;
+  if (type === 'argumentative') return kind === 'claim' ? 2 : 1;
+  if (type === 'informative' || type === 'narrative') return kind === 'focus' ? 2 : 1;
+  return 2;
+}
+
+/**
+ * Pick the thesis among the introduction's sentences: the best-fitting claim or focus, the last
+ * one when several fit as well. The first sentence is usually the hook, so it is the thesis only
+ * when nothing after it fits as well (then the sentences after it are out of place).
+ */
 function findThesis(list: Span[], type?: EssayType): { span: Span; kind: ThesisKind } | undefined {
   if (list.length === 0) return undefined;
   const kinds = list.map((s) => thesisKind(s.text, type));
-  for (let i = list.length - 1; i >= 0; i--) {
-    // A one-sentence introduction's sentence is the thesis; otherwise the first is usually the hook.
-    if (isThesisKind(kinds[i]!) && (i > 0 || list.length === 1))
-      return { span: list[i]!, kind: kinds[i]! };
+  const fits = kinds.map((k) => thesisFit(k, type));
+  const best = Math.max(...fits);
+  if (best > 0) {
+    const i = fits.findLastIndex((f) => f === best);
+    return { span: list[i]!, kind: kinds[i]! };
   }
-  if (isThesisKind(kinds[0]!) && list.length <= 2) return { span: list[0]!, kind: kinds[0] };
   const last = list.length - 1;
   return { span: list[last]!, kind: kinds[last]! };
 }
@@ -305,15 +328,19 @@ export function essayStructure(text: string, options: EssayOptions = {}): EssayS
   const all = sentences(text).map(trimSpan);
   const result: EssayParagraph[] = paras.map((p, i) => ({
     part:
-      n >= 3
+      options.part === 'introduction'
         ? i === 0
           ? 'introduction'
-          : i === n - 1
-            ? 'conclusion'
-            : 'body'
-        : i === 0 && n === 2
-          ? 'introduction'
-          : 'body',
+          : 'body'
+        : n >= 3
+          ? i === 0
+            ? 'introduction'
+            : i === n - 1
+              ? 'conclusion'
+              : 'body'
+          : i === 0 && n === 2
+            ? 'introduction'
+            : 'body',
     span: trimSpan(p),
   }));
   const inPara = (p: EssayParagraph) =>
@@ -327,6 +354,10 @@ export function essayStructure(text: string, options: EssayOptions = {}): EssayS
     const first = list[0];
     if (first && first.start !== thesis?.span.start)
       intro.hook = { span: first, kind: hookKind(first.text) };
+    if (thesis) {
+      intro.background = list.filter((s) => s.start > first!.start && s.start < thesis!.span.start);
+      intro.afterThesis = list.filter((s) => s.start > thesis!.span.start);
+    }
   }
   const thesisStems = thesis ? contentStems(thesis.span.text) : new Set<string>();
   for (const p of result) {
@@ -431,6 +462,11 @@ export const ESSAY_FEATURES = [
   'counterclaim',
   'rebuttal',
   'final-thought',
+  'hook-question',
+  'hook-fact',
+  'hook-quote',
+  'hook-story',
+  'hook-bold',
 ] as const;
 export type EssayFeature = (typeof ESSAY_FEATURES)[number];
 
@@ -440,6 +476,11 @@ export const ESSAY_FEATURE_LABELS: Record<EssayFeature, string> = {
   counterclaim: 'a counterclaim',
   rebuttal: 'a rebuttal',
   'final-thought': 'a final thought',
+  'hook-question': 'a question hook',
+  'hook-fact': 'a surprising-fact hook',
+  'hook-quote': 'a quote hook',
+  'hook-story': 'a short-story hook',
+  'hook-bold': 'a bold-statement hook',
 };
 
 export const ESSAY_FEATURE_EXAMPLES: Record<EssayFeature, string> = {
@@ -452,6 +493,21 @@ export const ESSAY_FEATURE_EXAMPLES: Record<EssayFeature, string> = {
     'your answer to the other side, like “However, a chore chart teaches responsibility without the stress.”',
   'final-thought':
     'a last idea to leave the reader with: a call to act, a look ahead or a question, like “Next time you…”',
+  'hook-question': 'a question that makes the reader think, like “Have you ever…?” or “What if…?”',
+  'hook-fact':
+    'a surprising number or fact, like “Every year, millions of tons of plastic end up in the ocean.”',
+  'hook-quote': 'someone’s words in quotation marks, with who said them',
+  'hook-story':
+    'a tiny true moment, like “When I was seven, I…”, “One morning…” or “I still remember…”',
+  'hook-bold': 'a short, strong claim, like “Homework is broken.” or “Every minute counts!”',
+};
+
+const HOOK_FEATURE: Record<Exclude<HookKind, 'plain' | 'announcement'>, EssayFeature> = {
+  question: 'hook-question',
+  statistic: 'hook-fact',
+  quote: 'hook-quote',
+  anecdote: 'hook-story',
+  bold: 'hook-bold',
 };
 
 export interface EssayHit {
@@ -470,7 +526,10 @@ export function essayHits(text: string): EssayHit[] {
     if ((isThesisKind(kind) || NARRATIVE_FOCUS.test(lower)) && words(s.text).length >= 6)
       hits.push({ feature: 'thesis-statement', span: s });
     const hook = hookKind(s.text);
-    if (hook !== 'plain' && hook !== 'announcement') hits.push({ feature: 'hook', span: s });
+    if (hook !== 'plain' && hook !== 'announcement') {
+      hits.push({ feature: 'hook', span: s });
+      hits.push({ feature: HOOK_FEATURE[hook], span: s });
+    }
     if (COUNTER.test(lower)) hits.push({ feature: 'counterclaim', span: s });
     if (
       REBUTTAL.test(lower) ||
@@ -533,7 +592,7 @@ export function essayNotes(text: string, options: EssayOptions = {}): GrammarIss
       });
   } else {
     const n = e.paragraphs.length;
-    if (n > 0 && n < 3) {
+    if (n > 0 && n < 3 && !options.part) {
       notes.push({
         kind: 'few-paragraphs',
         span: at(e.paragraphs.at(-1)?.span),
@@ -551,6 +610,33 @@ export function essayNotes(text: string, options: EssayOptions = {}): GrammarIss
       message:
         'End your introduction with a thesis: the one sentence your essay will prove or explain.',
     });
+  }
+  // Introductions: hook first, background next, thesis last.
+  if (intro && e.thesis && !e.outline) {
+    if (!intro.hook && options.part === 'introduction') {
+      notes.push({
+        kind: 'no-hook',
+        span: e.thesis.span,
+        message:
+          'Open with a hook before your thesis: a question, a surprising fact, a quote, a short story or a bold statement.',
+      });
+    } else if (intro.hook && intro.background?.length === 0 && !narrative) {
+      notes.push({
+        kind: 'no-background',
+        span: e.thesis.span,
+        message:
+          'Add one or two sentences of background between your hook and your thesis: what the reader needs to know about the topic.',
+      });
+    }
+    const after = intro.afterThesis?.[0];
+    if (after && isThesisKind(e.thesis.kind) && !narrative) {
+      notes.push({
+        kind: 'thesis-not-last',
+        span: after,
+        message:
+          'End your introduction with your thesis, so it leads straight into your body paragraphs. Move this sentence before it, or into a body paragraph.',
+      });
+    }
   }
   if (intro?.hook?.kind === 'announcement') {
     notes.push({

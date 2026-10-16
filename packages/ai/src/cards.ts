@@ -10,7 +10,7 @@ import type { FigurativeLanguageResult } from './analyzers/figurative-language.j
 import type { PoetryCraftResult } from './analyzers/poetry-craft.js';
 import type { GrammarCheckResult } from './analyzers/grammar-check.js';
 import type { ParagraphStructureResult } from './analyzers/paragraph-structure.js';
-import type { EssayStructureResult } from './analyzers/essay-structure.js';
+import type { EssayStructureInput, EssayStructureResult } from './analyzers/essay-structure.js';
 import { isToneStep, toneStepLabel } from '@storyforge/writing-analysis';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
@@ -498,7 +498,12 @@ export function paragraphPoints(text: string, r: ParagraphStructureResult) {
 }
 
 /** "Is my essay structured well?": a working thesis, hook, rebuttal and conclusion as strengths; a weak thesis, an off-topic body point, a missing rebuttal or restatement as next steps. */
-export function essayPoints(text: string, r: EssayStructureResult) {
+export function essayPoints(
+  text: string,
+  r: EssayStructureResult,
+  mode: EssayStructureInput['mode'] = 'essay',
+) {
+  const introOnly = mode === 'introduction';
   const strengths: (FeedbackPoint | null)[] = [];
   const nextSteps: (FeedbackPoint | null)[] = [];
   if (r.thesis.present) {
@@ -518,6 +523,17 @@ export function essayPoints(text: string, r: EssayStructureResult) {
     nextSteps.push(
       anchored(text, { title: 'Start with a hook', message: r.hook.note }, r.hook.quote),
     );
+  }
+  if (introOnly && r.background.present) {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'Background that sets it up', message: r.background.note },
+        r.background.quote,
+      ),
+    );
+  } else if (introOnly) {
+    nextSteps.push({ title: 'Add background', message: r.background.note });
   }
   const off = r.bodies.find((b) => !b.supportsThesis);
   if (off) {
@@ -542,7 +558,9 @@ export function essayPoints(text: string, r: EssayStructureResult) {
       ),
     );
   }
-  if (!r.conclusion.present) {
+  if (introOnly) {
+    // An introduction on its own has no conclusion to check.
+  } else if (!r.conclusion.present) {
     nextSteps.push({ title: 'Add a conclusion', message: r.conclusion.note });
   } else if (!r.conclusion.restates || !r.conclusion.finalThought) {
     nextSteps.push(

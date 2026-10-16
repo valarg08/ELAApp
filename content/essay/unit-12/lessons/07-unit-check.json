@@ -1,0 +1,52 @@
+{
+  "slug": "essay-introduction-check",
+  "order": 7,
+  "title": "⭐ Unit Check: Thesis & Introduction",
+  "estMinutes": 45,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: write one hook and one thesis about any topic you like.",
+      "placeholder": "Hook: … Thesis: …"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Thesis & introduction: quick review",
+          "body": "Claim (arguable) vs fact (checkable) vs opinion (taste). Argumentative thesis: claim + because + reasons. Informative thesis: topic + parts. Narrative focus: what the story meant. Hooks: question, surprising fact, quote, short story, bold statement; never an announcement. Background bridges hook and thesis. The thesis comes last."
+        },
+        {
+          "kind": "definition",
+          "title": "An informative introduction",
+          "body": "No side to take: the thesis names the topic and the parts you will explain (“… in three ways”). A surprising fact makes a great hook for an informative essay."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll write the introduction to an informative essay. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e12.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e12.check-intro" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which part of an introduction do you now find easiest? Which is still hard?",
+        "How will you choose your hook next time?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

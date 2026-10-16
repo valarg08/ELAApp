@@ -75,6 +75,23 @@ function paragraphLevels(text: string): Record<string, number> {
   };
 }
 
+/** Offline levels for the introduction rubric, from the introduction's parts. */
+function introductionLevels(text: string): Record<string, number> {
+  const e = essayStructure(text, { part: 'introduction' });
+  const intro = e.paragraphs[0];
+  const notes = essayNotes(text, { part: 'introduction' }).map((n) => n.kind);
+  const hook = intro?.hook?.kind;
+  return {
+    hook: !hook || hook === 'announcement' ? 1 : hook === 'plain' ? 2 : 3,
+    background: notes.includes('no-background') || !intro?.background?.length ? 2 : 3,
+    thesis: !e.thesis
+      ? 1
+      : notes.includes('weak-thesis') || notes.includes('thesis-not-last')
+        ? 2
+        : 3,
+  };
+}
+
 /** Offline levels for the outline rubric, from the outline parts found. */
 function outlineLevels(text: string): Record<string, number> {
   const e = essayStructure(text);
@@ -116,26 +133,28 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
     // Grammar practice is coached on grammar, essay paragraphs on their parts, not on story craft.
     const coach = buildCoachReport(
       input.text,
-      input.rubric.key === 'outline.essay'
-        ? { analyzers: ['essay'] }
-        : input.rubric.key === 'paragraph.essay'
-          ? { analyzers: ['paragraphs', 'structure', 'punctuation'] }
-          : input.rubric.key === 'grammar.practice'
-            ? {
-                analyzers: [
-                  'nouns',
-                  'pronouns',
-                  'verbs',
-                  'modifiers',
-                  'connectors',
-                  'voice',
-                  'speech',
-                  'structure',
-                  'punctuation',
-                  'sentenceTypes',
-                ],
-              }
-            : {},
+      input.rubric.key === 'introduction.essay'
+        ? { analyzers: ['essay', 'structure', 'punctuation'], essay: { part: 'introduction' } }
+        : input.rubric.key === 'outline.essay'
+          ? { analyzers: ['essay'] }
+          : input.rubric.key === 'paragraph.essay'
+            ? { analyzers: ['paragraphs', 'structure', 'punctuation'] }
+            : input.rubric.key === 'grammar.practice'
+              ? {
+                  analyzers: [
+                    'nouns',
+                    'pronouns',
+                    'verbs',
+                    'modifiers',
+                    'connectors',
+                    'voice',
+                    'speech',
+                    'structure',
+                    'punctuation',
+                    'sentenceTypes',
+                  ],
+                }
+              : {},
     );
     const levels: Record<string, number> = {
       creativity: 3,
@@ -148,6 +167,7 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
       wordChoice: veryPhrases(input.text).length > 2 ? 2 : 3,
       ...paragraphLevels(input.text),
       ...(input.rubric.key === 'outline.essay' ? outlineLevels(input.text) : {}),
+      ...(input.rubric.key === 'introduction.essay' ? introductionLevels(input.text) : {}),
     };
     const first = coach.strengths[0];
     return {
