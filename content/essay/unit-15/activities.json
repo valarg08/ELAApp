@@ -1,0 +1,2004 @@
+[
+  {
+    "key": "e15.error-sort",
+    "type": "SORT",
+    "title": "Name the mistake",
+    "instructions": "Sort each sentence by the mistake it makes.",
+    "buckets": [
+      {
+        "id": "agreement",
+        "label": "Subject and verb don’t agree"
+      },
+      {
+        "id": "splice",
+        "label": "Comma splice or fragment"
+      },
+      {
+        "id": "word",
+        "label": "Wrong word (there/their, its/it’s)"
+      }
+    ],
+    "items": [
+      {
+        "id": "a1",
+        "text": "Every student in our class know the rules.",
+        "bucketId": "agreement"
+      },
+      {
+        "id": "a2",
+        "text": "The students is ready for the test.",
+        "bucketId": "agreement"
+      },
+      {
+        "id": "s1",
+        "text": "We were tired, we went home early.",
+        "bucketId": "splice"
+      },
+      {
+        "id": "s2",
+        "text": "Because the bus was late.",
+        "bucketId": "splice"
+      },
+      {
+        "id": "w1",
+        "text": "The students forgot there books.",
+        "bucketId": "word"
+      },
+      {
+        "id": "w2",
+        "text": "The school changed it’s rules.",
+        "bucketId": "word"
+      }
+    ]
+  },
+  {
+    "key": "e15.edit-blank",
+    "type": "FILL_BLANK",
+    "title": "Choose the correct form",
+    "instructions": "Choose the word that makes each sentence correct.",
+    "items": [
+      {
+        "id": "knows",
+        "sentence": "Every student ___ how to use a library card.",
+        "choices": ["knows", "know", "knowing"],
+        "answers": ["knows"],
+        "hint": "“Every student” is one person.",
+        "explanation": "A singular subject takes a singular verb: every student knows."
+      },
+      {
+        "id": "their",
+        "sentence": "The players packed ___ bags after practice.",
+        "choices": ["their", "there", "they’re"],
+        "answers": ["their"],
+        "hint": "Which word shows belonging?",
+        "explanation": "“Their” means belonging to them."
+      },
+      {
+        "id": "its",
+        "sentence": "The team won ___ first game.",
+        "choices": ["its", "it’s", "its’"],
+        "answers": ["its"],
+        "hint": "Could you say “it is” here?",
+        "explanation": "“Its” shows belonging; “it’s” means “it is”."
+      },
+      {
+        "id": "i",
+        "sentence": "My sister and ___ walked to school.",
+        "choices": ["I", "me", "myself"],
+        "answers": ["I"],
+        "hint": "Try the sentence without “My sister and”.",
+        "explanation": "“I walked”, so “My sister and I walked”."
+      }
+    ]
+  },
+  {
+    "key": "e15.edit-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Editing for grammar",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tired students make more mistakes, so they need rest."
+          },
+          {
+            "id": "b",
+            "text": "Tired students make more mistakes, they need rest."
+          },
+          {
+            "id": "c",
+            "text": "Tired students make more mistakes they need rest."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A comma and “so” join two sentences; a comma alone does not."
+      },
+      {
+        "id": "q2",
+        "prompt": "How do you fix the fragment “Because sleep helps the brain.”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Join it to the sentence before it"
+          },
+          {
+            "id": "b",
+            "text": "Add an exclamation mark"
+          },
+          {
+            "id": "c",
+            "text": "Make it a question"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A “because” clause needs a main clause."
+      },
+      {
+        "id": "q3",
+        "prompt": "What is the best way to edit for grammar?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Read slowly, one kind of mistake at a time"
+          },
+          {
+            "id": "b",
+            "text": "Read once, quickly"
+          },
+          {
+            "id": "c",
+            "text": "Only check the first paragraph"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Edit in passes: verbs, then pronouns, then punctuation."
+      }
+    ]
+  },
+  {
+    "key": "e15.grammar-clinic",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "The grammar clinic: 15 mistakes",
+    "prompt": "Sam wrote this short essay about a four-day school week but didn’t edit it. It has 15 grammar mistakes: verbs that don’t agree, wrong tenses, pronouns, there/their and its/it’s, comma splices, a fragment, capitals and a missing comma. Fix all 15 right in the writing box. The checklist counts each fix and explains it.",
+    "starter": "Every student in our school know how tiring a five-day week can be. Some schools in the United States has already switched to a four-day week, and many families like it. A four-day week would give students more rest, more family time and more time for there hobbies.\n\nFirst, a longer weekend gives students time to rest. Tired students cannot focus, they make more mistakes in class. When students is rested, they learn faster. Because sleep helps the brain store new ideas.\n\nIn addition families would have more time together. My cousin and me visit our grandparents every saturday, but we always have to leave early. With a three-day weekend, families could take short trips or relax at home, the school would also save money on buses and electricity. Last year, the bus company raises its prices twice.\n\nSome people argue that a four-day week would leave younger children without care. However, schools could offer a club day on fridays for families who needs it. Each school would choose it’s own plan.\n\nA four-day week would help students rest, learn and enjoy there families. Our school board should try it for one year and see the results.",
+    "starterInEditor": true,
+    "tips": [
+      "Edit in passes: verbs first, then pronouns and word choice, then sentences, then capitals and commas.",
+      "Read each sentence alone: does it make sense by itself?",
+      "Stuck? Use the hint button in the checklist."
+    ],
+    "constraints": {
+      "minWords": 150,
+      "maxWords": 320,
+      "minSentences": 12
+    },
+    "analyzers": ["verbs", "pronouns", "structure", "punctuation"],
+    "grammarFocus": ["complete-sentence"],
+    "proofread": {
+      "label": "Grammar clinic",
+      "errors": [
+        {
+          "wrong": "in our school know how",
+          "fixes": ["in our school knows how"],
+          "explanation": "“Every student” is singular, so the verb is “knows”.",
+          "hint": "First sentence: does the verb match “every student”?"
+        },
+        {
+          "wrong": "United States has already",
+          "fixes": ["United States have already"],
+          "explanation": "The subject is “Some schools” (plural), so the verb is “have”.",
+          "hint": "Second sentence: who has switched?"
+        },
+        {
+          "wrong": "time for there hobbies",
+          "fixes": ["time for their hobbies"],
+          "explanation": "“Their” shows belonging; “there” is a place.",
+          "hint": "First paragraph: whose hobbies?"
+        },
+        {
+          "wrong": "cannot focus, they make",
+          "fixes": [
+            "cannot focus, and they make",
+            "cannot focus, so they make",
+            "cannot focus; they make",
+            "cannot focus. They make"
+          ],
+          "explanation": "Two sentences joined by only a comma make a comma splice. Add “and” or “so”, or use a full stop.",
+          "hint": "Second paragraph: two sentences joined by a comma."
+        },
+        {
+          "wrong": "When students is rested",
+          "fixes": ["When students are rested"],
+          "explanation": "“Students” is plural, so the verb is “are”.",
+          "hint": "Second paragraph: is or are?"
+        },
+        {
+          "wrong": "learn faster. Because sleep",
+          "fixes": ["learn faster because sleep", "learn faster, because sleep"],
+          "explanation": "“Because sleep helps…” can’t stand alone: join it to the sentence before.",
+          "hint": "Second paragraph: a sentence that starts with “Because”."
+        },
+        {
+          "wrong": "In addition families",
+          "fixes": ["In addition, families"],
+          "explanation": "Put a comma after an introductory phrase like “In addition”.",
+          "hint": "Third paragraph: the first two words."
+        },
+        {
+          "wrong": "My cousin and me visit",
+          "fixes": ["My cousin and I visit"],
+          "explanation": "Take away “My cousin and”: “I visit”, not “me visit”.",
+          "hint": "Third paragraph: who visits?"
+        },
+        {
+          "wrong": "every saturday",
+          "fixes": ["every Saturday"],
+          "explanation": "Days of the week take capitals.",
+          "hint": "Third paragraph: a day of the week."
+        },
+        {
+          "wrong": "at home, the school would",
+          "fixes": [
+            "at home. The school would",
+            "at home; the school would",
+            "at home, and the school would"
+          ],
+          "explanation": "Another comma splice: split it into two sentences or add “and”.",
+          "hint": "Third paragraph: “relax at home…”"
+        },
+        {
+          "wrong": "company raises its prices",
+          "fixes": ["company raised its prices"],
+          "explanation": "“Last year” is the past, so the verb is past tense: “raised”.",
+          "hint": "Third paragraph: last year…"
+        },
+        {
+          "wrong": "club day on fridays",
+          "fixes": ["club day on Fridays"],
+          "explanation": "Days of the week take capitals.",
+          "hint": "Fourth paragraph: another day."
+        },
+        {
+          "wrong": "families who needs it",
+          "fixes": ["families who need it"],
+          "explanation": "“Families” is plural, so the verb is “need”.",
+          "hint": "Fourth paragraph: who needs it?"
+        },
+        {
+          "wrong": "choose it’s own plan",
+          "fixes": ["choose its own plan"],
+          "explanation": "“Its” shows belonging; “it’s” means “it is”.",
+          "hint": "Fourth paragraph: its or it’s?"
+        },
+        {
+          "wrong": "enjoy there families",
+          "fixes": ["enjoy their families"],
+          "explanation": "“Their” shows belonging.",
+          "hint": "Last paragraph: whose families?"
+        }
+      ]
+    }
+  },
+  {
+    "key": "e15.wordy-sort",
+    "type": "SORT",
+    "title": "Wordy or concise?",
+    "instructions": "Sort each sentence.",
+    "buckets": [
+      {
+        "id": "wordy",
+        "label": "Wordy: cut it down"
+      },
+      {
+        "id": "concise",
+        "label": "Concise: clear and short"
+      }
+    ],
+    "items": [
+      {
+        "id": "w1",
+        "text": "Due to the fact that it rained, the game was cancelled.",
+        "bucketId": "wordy"
+      },
+      {
+        "id": "w2",
+        "text": "In order to win, the team has the ability to practise every day.",
+        "bucketId": "wordy"
+      },
+      {
+        "id": "w3",
+        "text": "At this point in time, each and every student owns a tablet.",
+        "bucketId": "wordy"
+      },
+      {
+        "id": "c1",
+        "text": "Because it rained, the game was cancelled.",
+        "bucketId": "concise"
+      },
+      {
+        "id": "c2",
+        "text": "To win, the team can practise every day.",
+        "bucketId": "concise"
+      },
+      {
+        "id": "c3",
+        "text": "Today, every student owns a tablet.",
+        "bucketId": "concise"
+      }
+    ]
+  },
+  {
+    "key": "e15.concise-blank",
+    "type": "FILL_BLANK",
+    "title": "Say it in fewer words",
+    "instructions": "Choose the shortest phrase that keeps the meaning.",
+    "items": [
+      {
+        "id": "because",
+        "sentence": "___ the bus was late, we missed the first lesson.",
+        "choices": ["Because", "Due to the fact that", "Owing to the fact that"],
+        "answers": ["Because", "Since"],
+        "hint": "Which one word does the job?",
+        "explanation": "“Because” replaces “due to the fact that”."
+      },
+      {
+        "id": "to",
+        "sentence": "We trained hard ___ win the final.",
+        "choices": ["to", "in order to", "for the purpose of being able to"],
+        "answers": ["to"],
+        "hint": "Which is shortest?",
+        "explanation": "“To” is enough."
+      },
+      {
+        "id": "can",
+        "sentence": "Every student ___ join a club.",
+        "choices": ["can", "has the ability to", "is able to be able to"],
+        "answers": ["can"],
+        "hint": "Which says it in one word?",
+        "explanation": "“Can” replaces “has the ability to”."
+      },
+      {
+        "id": "now",
+        "sentence": "___, the library opens at eight.",
+        "choices": ["Now", "At this point in time", "At the present moment in time"],
+        "answers": ["Now", "Today"],
+        "hint": "Which is shortest?",
+        "explanation": "“Now” replaces a whole phrase."
+      }
+    ]
+  },
+  {
+    "key": "e15.concise-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Clarity and conciseness",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Why cut extra words?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Clear, short sentences keep the reader focused on your point"
+          },
+          {
+            "id": "b",
+            "text": "Short essays always get higher scores"
+          },
+          {
+            "id": "c",
+            "text": "Long words are wrong"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Every word should do a job."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which sentence is most concise?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Recycling saves energy."
+          },
+          {
+            "id": "b",
+            "text": "The reason why is because recycling saves energy."
+          },
+          {
+            "id": "c",
+            "text": "It is important to note that recycling saves energy."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Start with your point."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which phrase is redundant?",
+        "options": [
+          {
+            "id": "a",
+            "text": "true fact"
+          },
+          {
+            "id": "b",
+            "text": "clear fact"
+          },
+          {
+            "id": "c",
+            "text": "surprising fact"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A fact is already true."
+      }
+    ]
+  },
+  {
+    "key": "e15.concise-revise",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Cut the extra words",
+    "prompt": "This paragraph about recycling says too much with too many words. Find the 11 wordy phrases and replace each with a shorter one right in the writing box. The checklist counts each fix. Keep the meaning the same.",
+    "starter": "In order to understand why recycling matters, it is important to note that most garbage ends up in landfills. Due to the fact that landfills are filling up, each and every town has the ability to make a difference. At this point in time, a large number of families already recycle on a daily basis. The reason why is because recycling saves energy and materials. In spite of the fact that sorting takes time, the end result is worth it.",
+    "starterInEditor": true,
+    "tips": [
+      "Look for phrases the Coach underlines as wordy.",
+      "Ask: can one word do the same job?",
+      "Stuck? Use the hint button in the checklist."
+    ],
+    "constraints": {
+      "minWords": 40,
+      "maxWords": 120,
+      "minSentences": 4
+    },
+    "analyzers": ["style", "punctuation"],
+    "grammarFocus": ["formal-sentence"],
+    "proofread": {
+      "label": "Wordy phrases",
+      "errors": [
+        {
+          "wrong": "In order to understand",
+          "fixes": ["To understand"],
+          "explanation": "“To” says the same as “in order to”.",
+          "hint": "The very first words."
+        },
+        {
+          "wrong": "matters, it is important to note that most",
+          "fixes": ["matters, most"],
+          "explanation": "“It is important to note that” adds nothing: start with the point.",
+          "hint": "First sentence, after the comma."
+        },
+        {
+          "wrong": "Due to the fact that landfills",
+          "fixes": ["Because landfills", "Since landfills"],
+          "explanation": "“Because” replaces “due to the fact that”.",
+          "hint": "Second sentence."
+        },
+        {
+          "wrong": "up, each and every town",
+          "fixes": ["up, every town", "up, each town"],
+          "explanation": "“Each and every” says the same thing twice.",
+          "hint": "Second sentence: which towns?"
+        },
+        {
+          "wrong": "has the ability to make",
+          "fixes": ["can make"],
+          "explanation": "“Can” replaces “has the ability to”.",
+          "hint": "Second sentence: has the ability…"
+        },
+        {
+          "wrong": "At this point in time,",
+          "fixes": ["Now,", "Today,"],
+          "explanation": "“Now” or “Today” replaces “at this point in time”.",
+          "hint": "Third sentence: the first words."
+        },
+        {
+          "wrong": "a large number of families",
+          "fixes": ["many families"],
+          "explanation": "“Many” replaces “a large number of”.",
+          "hint": "Third sentence: how many families?"
+        },
+        {
+          "wrong": "recycle on a daily basis",
+          "fixes": ["recycle daily", "recycle every day"],
+          "explanation": "“Daily” replaces “on a daily basis”.",
+          "hint": "Third sentence: how often?"
+        },
+        {
+          "wrong": "The reason why is because recycling",
+          "fixes": [
+            "This is because recycling",
+            "That is because recycling",
+            "Recycling matters because it"
+          ],
+          "explanation": "“The reason why is because” says “because” three times.",
+          "hint": "Fourth sentence."
+        },
+        {
+          "wrong": "In spite of the fact that sorting",
+          "fixes": ["Although sorting", "Though sorting", "Even though sorting"],
+          "explanation": "“Although” replaces “in spite of the fact that”.",
+          "hint": "Last sentence: the first words."
+        },
+        {
+          "wrong": "the end result is",
+          "fixes": ["the result is"],
+          "explanation": "A result is already the end.",
+          "hint": "Last sentence: end result."
+        }
+      ]
+    }
+  },
+  {
+    "key": "e15.formal-sort",
+    "type": "SORT",
+    "title": "Formal or informal?",
+    "instructions": "Sort each sentence for an essay.",
+    "buckets": [
+      {
+        "id": "formal",
+        "label": "Formal: ready for an essay"
+      },
+      {
+        "id": "informal",
+        "label": "Informal: sounds like a chat"
+      }
+    ],
+    "items": [
+      {
+        "id": "f1",
+        "text": "Many children do not get enough sleep on school nights.",
+        "bucketId": "formal"
+      },
+      {
+        "id": "f2",
+        "text": "Exercise improves both mood and memory.",
+        "bucketId": "formal"
+      },
+      {
+        "id": "f3",
+        "text": "Schools should offer healthier lunches.",
+        "bucketId": "formal"
+      },
+      {
+        "id": "i1",
+        "text": "Kids don’t get enough sleep, like, ever.",
+        "bucketId": "informal"
+      },
+      {
+        "id": "i2",
+        "text": "Exercise is super awesome for your brain.",
+        "bucketId": "informal"
+      },
+      {
+        "id": "i3",
+        "text": "School lunches are kinda gross, to be honest.",
+        "bucketId": "informal"
+      }
+    ]
+  },
+  {
+    "key": "e15.formal-blank",
+    "type": "FILL_BLANK",
+    "title": "Choose the formal word",
+    "instructions": "Choose the word that fits a formal essay.",
+    "items": [
+      {
+        "id": "children",
+        "sentence": "Many ___ walk to school every day.",
+        "choices": ["children", "kids", "little guys"],
+        "answers": ["children", "students"],
+        "hint": "Which word would a newspaper use?",
+        "explanation": "“Children” is formal; “kids” is chatty."
+      },
+      {
+        "id": "many",
+        "sentence": "The library has ___ books about space.",
+        "choices": ["many", "a lot of", "tons of"],
+        "answers": ["many", "numerous"],
+        "hint": "Which is formal?",
+        "explanation": "“Many” is formal; “a lot of” is chatty."
+      },
+      {
+        "id": "excellent",
+        "sentence": "The museum is an ___ place to learn.",
+        "choices": ["excellent", "awesome", "super cool"],
+        "answers": ["excellent"],
+        "hint": "Which word fits an essay?",
+        "explanation": "“Excellent” sounds formal."
+      },
+      {
+        "id": "not",
+        "sentence": "Students do ___ have enough time for lunch.",
+        "choices": ["not", "n’t really", "like, not"],
+        "answers": ["not"],
+        "hint": "Formal essays write contractions out in full.",
+        "explanation": "“Do not”, not “don’t”."
+      }
+    ]
+  },
+  {
+    "key": "e15.formal-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Formal tone",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which sentence is formal?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Students should have more time to eat lunch."
+          },
+          {
+            "id": "b",
+            "text": "We totally need more time for lunch, guys."
+          },
+          {
+            "id": "c",
+            "text": "Lunch is way too short, ya know?"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "No slang, no chat, no contractions."
+      },
+      {
+        "id": "q2",
+        "prompt": "Why leave out “I think” in an argumentative essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The whole essay is your opinion, so state your point directly"
+          },
+          {
+            "id": "b",
+            "text": "“I” is a grammar mistake"
+          },
+          {
+            "id": "c",
+            "text": "Readers dislike opinions"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "State the claim with confidence."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which is the formal version of “It’s gonna rain”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It is going to rain."
+          },
+          {
+            "id": "b",
+            "text": "It’s going to rain."
+          },
+          {
+            "id": "c",
+            "text": "It is gonna rain."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Write out contractions and replace slang."
+      }
+    ]
+  },
+  {
+    "key": "e15.formal-set",
+    "type": "SENTENCE_SET",
+    "title": "Make it formal",
+    "prompt": "Rewrite each informal sentence so it sounds like a formal essay. Keep the meaning. Write one sentence for each task listed above the writing box.",
+    "tips": [
+      "Write contractions out in full: do not, it is, cannot.",
+      "Replace slang: kids → children, a lot of → many, awesome → excellent.",
+      "Leave out “I think”."
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 120,
+      "minSentences": 3
+    },
+    "analyzers": ["style", "punctuation"],
+    "grammarFocus": ["formal-sentence"],
+    "sentenceSet": {
+      "label": "Your three formal sentences",
+      "sentences": [
+        {
+          "ask": "Informal: “Kids don’t get enough sleep ’cause they’re on their phones a lot.”",
+          "needs": ["formal-sentence"]
+        },
+        {
+          "ask": "Informal: “I think homework is kinda pointless on weekends.”",
+          "needs": ["formal-sentence"]
+        },
+        {
+          "ask": "Informal: “Field trips are awesome and teach you tons of stuff.”",
+          "needs": ["formal-sentence"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e15.precise-sort",
+    "type": "SORT",
+    "title": "Vague or precise?",
+    "instructions": "Sort each sentence.",
+    "buckets": [
+      {
+        "id": "vague",
+        "label": "Vague"
+      },
+      {
+        "id": "precise",
+        "label": "Precise"
+      }
+    ],
+    "items": [
+      {
+        "id": "v1",
+        "text": "Exercise is good for you.",
+        "bucketId": "vague"
+      },
+      {
+        "id": "v2",
+        "text": "Pollution does bad things to rivers.",
+        "bucketId": "vague"
+      },
+      {
+        "id": "v3",
+        "text": "The new park is nice.",
+        "bucketId": "vague"
+      },
+      {
+        "id": "p1",
+        "text": "Exercise strengthens the heart and improves sleep.",
+        "bucketId": "precise"
+      },
+      {
+        "id": "p2",
+        "text": "Pollution poisons fish and makes river water unsafe to drink.",
+        "bucketId": "precise"
+      },
+      {
+        "id": "p3",
+        "text": "The new park offers shade, benches and a playground.",
+        "bucketId": "precise"
+      }
+    ]
+  },
+  {
+    "key": "e15.academic-blank",
+    "type": "FILL_BLANK",
+    "title": "Academic verbs",
+    "instructions": "Choose the precise verb an essay would use.",
+    "items": [
+      {
+        "id": "shows",
+        "sentence": "The study ___ that students who read daily write better.",
+        "choices": ["demonstrates", "says stuff", "kind of shows"],
+        "answers": ["demonstrates", "shows", "reveals"],
+        "hint": "Which verb sounds precise and formal?",
+        "explanation": "“Demonstrates” is a precise academic verb."
+      },
+      {
+        "id": "suggests",
+        "sentence": "This evidence ___ that recess improves focus.",
+        "choices": ["suggests", "thinks", "feels"],
+        "answers": ["suggests", "indicates"],
+        "hint": "Evidence can’t think or feel.",
+        "explanation": "“Suggests” is how evidence points to an idea."
+      },
+      {
+        "id": "affects",
+        "sentence": "Sleep ___ how well students remember new words.",
+        "choices": ["affects", "does stuff to", "messes with"],
+        "answers": ["affects", "influences"],
+        "hint": "Which verb is precise?",
+        "explanation": "“Affects” names the link exactly."
+      },
+      {
+        "id": "improve",
+        "sentence": "Healthy meals ___ concentration in the afternoon.",
+        "choices": ["improve", "make better-ish", "do good to"],
+        "answers": ["improve", "boost"],
+        "hint": "Which single verb works?",
+        "explanation": "“Improve” is precise."
+      }
+    ]
+  },
+  {
+    "key": "e15.precise-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Precise words",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which word is most precise?",
+        "options": [
+          {
+            "id": "a",
+            "text": "devastated"
+          },
+          {
+            "id": "b",
+            "text": "bad"
+          },
+          {
+            "id": "c",
+            "text": "not good"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Devastated” paints an exact picture."
+      },
+      {
+        "id": "q2",
+        "prompt": "What should replace “things” in “Bees do many things for farms”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A precise noun: Bees pollinate crops and make honey"
+          },
+          {
+            "id": "b",
+            "text": "Another vague word: stuff"
+          },
+          {
+            "id": "c",
+            "text": "Nothing: “things” is fine"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Name exactly what you mean."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence uses academic language?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The evidence indicates that recess improves focus."
+          },
+          {
+            "id": "b",
+            "text": "Recess is good, I guess."
+          },
+          {
+            "id": "c",
+            "text": "Recess is a nice thing."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“The evidence indicates” is precise and formal."
+      }
+    ]
+  },
+  {
+    "key": "e15.precise-set",
+    "type": "SENTENCE_SET",
+    "title": "Choose precise words",
+    "prompt": "Rewrite each vague sentence with precise words: name exactly what, how or why. Write one sentence for each task listed above the writing box.",
+    "tips": [
+      "Replace good, bad, nice and things with exact words.",
+      "Use a precise verb: improves, protects, demonstrates, reduces.",
+      "Add a detail that shows exactly what you mean."
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 120,
+      "minSentences": 3
+    },
+    "analyzers": ["style", "punctuation"],
+    "grammarFocus": ["formal-sentence"],
+    "sentenceSet": {
+      "label": "Your three precise sentences",
+      "sentences": [
+        {
+          "ask": "Vague: “Reading is good for you.”",
+          "needs": ["formal-sentence"]
+        },
+        {
+          "ask": "Vague: “Plastic does bad things to the ocean.”",
+          "needs": ["formal-sentence"]
+        },
+        {
+          "ask": "Vague: “The museum has a lot of nice things.”",
+          "needs": ["formal-sentence"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e15.prompt-sort",
+    "type": "SORT",
+    "title": "Argue, explain or tell?",
+    "instructions": "Sort each essay prompt by the kind of essay it asks for.",
+    "buckets": [
+      {
+        "id": "argue",
+        "label": "Argumentative"
+      },
+      {
+        "id": "explain",
+        "label": "Informative"
+      },
+      {
+        "id": "tell",
+        "label": "Narrative"
+      }
+    ],
+    "items": [
+      {
+        "id": "a1",
+        "text": "Should students wear uniforms? Take a side.",
+        "bucketId": "argue"
+      },
+      {
+        "id": "a2",
+        "text": "Convince your town to build a skate park.",
+        "bucketId": "argue"
+      },
+      {
+        "id": "e1",
+        "text": "Explain how a bill becomes a law.",
+        "bucketId": "explain"
+      },
+      {
+        "id": "e2",
+        "text": "Describe the three stages of the water cycle.",
+        "bucketId": "explain"
+      },
+      {
+        "id": "t1",
+        "text": "Tell about a time you were proud of yourself.",
+        "bucketId": "tell"
+      },
+      {
+        "id": "t2",
+        "text": "Write about a day that changed your mind.",
+        "bucketId": "tell"
+      }
+    ]
+  },
+  {
+    "key": "e15.process-sequence",
+    "type": "SEQUENCE",
+    "title": "The writing process",
+    "instructions": "Put the steps of writing an essay in order.",
+    "items": [
+      {
+        "id": "choose",
+        "text": "Choose a prompt and decide your position or focus."
+      },
+      {
+        "id": "plan",
+        "text": "Plan with an outline: thesis, body points, evidence, conclusion."
+      },
+      {
+        "id": "draft",
+        "text": "Draft every paragraph without stopping to fix small things."
+      },
+      {
+        "id": "revise",
+        "text": "Revise: fix the structure, evidence and explanations."
+      },
+      {
+        "id": "edit",
+        "text": "Edit: grammar, punctuation, formal words."
+      },
+      {
+        "id": "publish",
+        "text": "Read it aloud one last time, then submit."
+      }
+    ],
+    "labels": ["Choose", "Plan", "Draft", "Revise", "Edit", "Publish"],
+    "explanation": "Big changes first (revise), small changes last (edit)."
+  },
+  {
+    "key": "e15.draft-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Drafting",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What matters most in a first draft?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Getting every part down in order"
+          },
+          {
+            "id": "b",
+            "text": "Perfect spelling"
+          },
+          {
+            "id": "c",
+            "text": "A long title"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Draft first, polish later."
+      },
+      {
+        "id": "q2",
+        "prompt": "How do you choose between prompts?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Pick the one you know enough about to explain or prove"
+          },
+          {
+            "id": "b",
+            "text": "Pick the shortest prompt"
+          },
+          {
+            "id": "c",
+            "text": "Pick at random"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Knowledge makes strong evidence."
+      },
+      {
+        "id": "q3",
+        "prompt": "When should you fix commas and spelling?",
+        "options": [
+          {
+            "id": "a",
+            "text": "After the whole draft is written"
+          },
+          {
+            "id": "b",
+            "text": "Before writing the first sentence"
+          },
+          {
+            "id": "c",
+            "text": "Never"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Editing comes after drafting."
+      }
+    ]
+  },
+  {
+    "key": "e15.final-draft",
+    "type": "ESSAY",
+    "title": "Draft your final essay",
+    "prompt": "Choose one of the three prompts below and draft your final essay. Plan with the outline builder, press “Start my essay from the outline”, then write every paragraph: introduction, body paragraphs and conclusion. Don’t polish yet: in the last lesson you will revise and edit this draft into your final essay.",
+    "tips": [
+      "Choose the prompt you know the most about.",
+      "Watch the essay map as you write: fix the !s at the end.",
+      "Aim for 300–600 words."
+    ],
+    "constraints": {
+      "minWords": 250,
+      "maxWords": 900,
+      "minParagraphs": 4,
+      "maxParagraphs": 8
+    },
+    "analyzers": ["essay", "structure", "punctuation", "style"],
+    "essay": {
+      "type": "argumentative",
+      "counterclaim": true
+    },
+    "essayPrompts": [
+      {
+        "type": "argumentative",
+        "title": "Argue: a four-day school week",
+        "prompt": "Should schools switch to a four-day week? Take a side and prove it with two reasons and evidence, answer the other side, and end with a call to act.",
+        "tips": [
+          "Thesis: Schools should (or should not)… because… and….",
+          "Counterclaim: Some people argue… However,…"
+        ]
+      },
+      {
+        "type": "informative",
+        "title": "Explain: how a skill is learned",
+        "prompt": "Explain how someone learns a skill you know well (a sport, an instrument, a language, cooking). Name three stages or parts in your thesis and explain each with facts and examples.",
+        "tips": [
+          "Thesis: Learning to… happens in three stages:…, … and….",
+          "Explain, don’t argue: no “should”."
+        ]
+      },
+      {
+        "type": "narrative",
+        "title": "Tell: a moment that changed you",
+        "prompt": "Tell the true story of a moment that changed how you see something. Tell the events in order with details, and reflect on what it taught you.",
+        "tips": ["Focus: The day… taught me….", "End with a reflection: I learned…, Ever since…."]
+      }
+    ],
+    "outlineBuilder": {
+      "label": "Outline builder",
+      "bodies": 2,
+      "counterclaim": true
+    },
+    "grammarFocus": ["thesis-statement", "topic-sentence", "final-thought"]
+  },
+  {
+    "key": "e15.revise-sort",
+    "type": "SORT",
+    "title": "Revise or edit?",
+    "instructions": "Sort each change: a big revision or a small edit.",
+    "buckets": [
+      {
+        "id": "revise",
+        "label": "Revise (big changes)"
+      },
+      {
+        "id": "edit",
+        "label": "Edit (small changes)"
+      }
+    ],
+    "items": [
+      {
+        "id": "r1",
+        "text": "Add evidence to a body paragraph that has none.",
+        "bucketId": "revise"
+      },
+      {
+        "id": "r2",
+        "text": "Rewrite a thesis that is only a fact.",
+        "bucketId": "revise"
+      },
+      {
+        "id": "r3",
+        "text": "Answer a counterclaim you left unanswered.",
+        "bucketId": "revise"
+      },
+      {
+        "id": "e1",
+        "text": "Change “dont” to “do not”.",
+        "bucketId": "edit"
+      },
+      {
+        "id": "e2",
+        "text": "Capitalize “saturday”.",
+        "bucketId": "edit"
+      },
+      {
+        "id": "e3",
+        "text": "Replace “a lot of” with “many”.",
+        "bucketId": "edit"
+      }
+    ]
+  },
+  {
+    "key": "e15.review-sequence",
+    "type": "SEQUENCE",
+    "title": "Review in passes",
+    "instructions": "Put the self-review passes in order, from biggest to smallest.",
+    "items": [
+      {
+        "id": "structure",
+        "text": "Structure: hook, thesis, body paragraphs, conclusion."
+      },
+      {
+        "id": "support",
+        "text": "Support: evidence and explanations in every body paragraph."
+      },
+      {
+        "id": "style",
+        "text": "Style: formal, precise and concise words."
+      },
+      {
+        "id": "conventions",
+        "text": "Conventions: grammar, spelling, capitals and punctuation."
+      },
+      {
+        "id": "aloud",
+        "text": "Read it aloud one last time."
+      }
+    ],
+    "labels": ["Pass 1", "Pass 2", "Pass 3", "Pass 4", "Pass 5"],
+    "explanation": "Fix the big things before the small things: no point polishing a sentence you will cut."
+  },
+  {
+    "key": "e15.review-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Self-review",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Why revise structure before fixing commas?",
+        "options": [
+          {
+            "id": "a",
+            "text": "You might cut or rewrite sentences anyway"
+          },
+          {
+            "id": "b",
+            "text": "Commas don’t matter"
+          },
+          {
+            "id": "c",
+            "text": "Structure is easier"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Big changes first."
+      },
+      {
+        "id": "q2",
+        "prompt": "What does a self-review checklist do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reminds you of everything a strong essay needs"
+          },
+          {
+            "id": "b",
+            "text": "Writes the essay for you"
+          },
+          {
+            "id": "c",
+            "text": "Counts your words"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Use it to check each part."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which is the best way to catch missing words?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Read the essay aloud slowly"
+          },
+          {
+            "id": "b",
+            "text": "Read it silently, fast"
+          },
+          {
+            "id": "c",
+            "text": "Count the paragraphs"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Your ear catches what your eyes skip."
+      }
+    ]
+  },
+  {
+    "key": "e15.review-practice",
+    "type": "GRAMMAR_PARAGRAPH",
+    "title": "Review Jordan’s essay",
+    "prompt": "Practise self-review on someone else’s writing first. Jordan’s introduction and first body paragraph have 12 problems: informal words, contractions, wordy phrases, vague words, “I think” and grammar. Fix all 12 right in the writing box. The checklist counts each fix.",
+    "starter": "Have you ever tried to learn something hard? I think that learning to swim is a really good thing for kids. Swimming is a life skill that keep people safe in the water. Every child should learn to swim because it builds confidence, keeps them healthy and could save a life.\n\nFirst, swimming builds confidence. When kids learns to float, they stop being scared of the water. My little brother was terrified of pools, but after ten lessons on saturdays he jumped off the diving board. Due to the fact that he could swim, he felt brave enough to try a lot of new stuff. Now he doesn’t want to leave the pool, he asks to go every weekend. It’s clear that a skill like swimming has the ability to make children believe in themselves. In my opinion, every school should offer lessons.",
+    "starterInEditor": true,
+    "tips": [
+      "Use the Coach: it marks informal, wordy and vague words.",
+      "Write contractions out in full.",
+      "Stuck? Use the hint button in the checklist."
+    ],
+    "constraints": {
+      "minWords": 80,
+      "maxWords": 220,
+      "minSentences": 8
+    },
+    "analyzers": ["style", "verbs", "punctuation"],
+    "grammarFocus": ["formal-sentence"],
+    "proofread": {
+      "label": "Self-review",
+      "errors": [
+        {
+          "wrong": "I think that learning to swim",
+          "fixes": ["Learning to swim"],
+          "explanation": "The essay is already your opinion: drop “I think that”.",
+          "hint": "Introduction, second sentence: the first words."
+        },
+        {
+          "wrong": "is a really good thing for kids",
+          "fixes": [
+            "is a valuable skill for children",
+            "is an essential skill for children",
+            "is a vital skill for children",
+            "is an important skill for children"
+          ],
+          "explanation": "“Really good thing” is vague and “kids” is informal: name it exactly.",
+          "hint": "Introduction, second sentence: the end."
+        },
+        {
+          "wrong": "When kids learns to float",
+          "fixes": ["When children learn to float"],
+          "explanation": "“Kids” is informal, and “children” (plural) takes “learn”.",
+          "hint": "Body paragraph, second sentence."
+        },
+        {
+          "wrong": "Due to the fact that he could swim",
+          "fixes": ["Because he could swim", "Since he could swim"],
+          "explanation": "“Because” replaces “due to the fact that”.",
+          "hint": "Body paragraph: a wordy start."
+        },
+        {
+          "wrong": "try a lot of new stuff",
+          "fixes": ["try many new activities", "try many new things", "try many new sports"],
+          "explanation": "“A lot of” and “stuff” are informal and vague.",
+          "hint": "Body paragraph: what did he try?"
+        },
+        {
+          "wrong": "It’s clear that",
+          "fixes": ["It is clear that"],
+          "explanation": "Write contractions out in full.",
+          "hint": "Body paragraph: a contraction."
+        },
+        {
+          "wrong": "In my opinion, every school",
+          "fixes": ["Every school"],
+          "explanation": "Drop “In my opinion”: state the point directly.",
+          "hint": "Body paragraph: the last sentence."
+        },
+        {
+          "wrong": "skill that keep people",
+          "fixes": ["skill that keeps people"],
+          "explanation": "“A life skill that…” is singular, so the verb is “keeps”.",
+          "hint": "Introduction, third sentence: keep or keeps?"
+        },
+        {
+          "wrong": "on saturdays",
+          "fixes": ["on Saturdays"],
+          "explanation": "Days of the week take capitals.",
+          "hint": "Body paragraph: a day of the week."
+        },
+        {
+          "wrong": "Now he doesn’t want",
+          "fixes": ["Now he does not want"],
+          "explanation": "Write contractions out in full.",
+          "hint": "Body paragraph: another contraction."
+        },
+        {
+          "wrong": "the pool, he asks",
+          "fixes": ["the pool. He asks", "the pool; he asks", "the pool, and he asks"],
+          "explanation": "Two sentences joined by only a comma make a comma splice.",
+          "hint": "Body paragraph: “leave the pool…”"
+        },
+        {
+          "wrong": "has the ability to make",
+          "fixes": ["can make", "can help", "helps"],
+          "explanation": "“Can” replaces “has the ability to”.",
+          "hint": "Body paragraph: a wordy verb."
+        }
+      ]
+    }
+  },
+  {
+    "key": "e15.unit-check",
+    "type": "QUIZ",
+    "title": "Style & Revision check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "g1",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Every student needs a quiet place to study."
+          },
+          {
+            "id": "b",
+            "text": "Every student need a quiet place to study."
+          },
+          {
+            "id": "c",
+            "text": "Every students needs a quiet place to study."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Every student” takes “needs”.",
+        "skill": "grammar editing"
+      },
+      {
+        "id": "g2",
+        "prompt": "Which fixes the comma splice “We studied hard, we passed”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "We studied hard, so we passed."
+          },
+          {
+            "id": "b",
+            "text": "We studied hard, we passed!"
+          },
+          {
+            "id": "c",
+            "text": "We studied, hard we passed."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Add a joining word or split the sentence.",
+        "skill": "grammar editing"
+      },
+      {
+        "id": "g3",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The team lost its first match."
+          },
+          {
+            "id": "b",
+            "text": "The team lost it’s first match."
+          },
+          {
+            "id": "c",
+            "text": "The team lost its’ first match."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Its” shows belonging.",
+        "skill": "grammar editing"
+      },
+      {
+        "id": "g4",
+        "prompt": "Which is correct?",
+        "options": [
+          {
+            "id": "a",
+            "text": "My friend and I joined the club."
+          },
+          {
+            "id": "b",
+            "text": "My friend and me joined the club."
+          },
+          {
+            "id": "c",
+            "text": "Me and my friend joined the club."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“I joined”, so “My friend and I joined”.",
+        "skill": "grammar editing"
+      },
+      {
+        "id": "g5",
+        "prompt": "Which sentence is a fragment?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Because the library was closed."
+          },
+          {
+            "id": "b",
+            "text": "The library was closed."
+          },
+          {
+            "id": "c",
+            "text": "We went home because the library was closed."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A “because” clause can’t stand alone.",
+        "skill": "grammar editing"
+      },
+      {
+        "id": "c1",
+        "prompt": "Which is the concise version of “due to the fact that”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "because"
+          },
+          {
+            "id": "b",
+            "text": "owing to the fact that"
+          },
+          {
+            "id": "c",
+            "text": "for the reason that"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One word does the job.",
+        "skill": "conciseness"
+      },
+      {
+        "id": "c2",
+        "prompt": "Which sentence is most concise?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Today, many families recycle."
+          },
+          {
+            "id": "b",
+            "text": "At this point in time, a large number of families recycle."
+          },
+          {
+            "id": "c",
+            "text": "At the present time, a great number of families recycle."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Fewer words, same meaning.",
+        "skill": "conciseness"
+      },
+      {
+        "id": "c3",
+        "prompt": "What is wrong with “The reason why is because…”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It says “because” three times"
+          },
+          {
+            "id": "b",
+            "text": "It is too short"
+          },
+          {
+            "id": "c",
+            "text": "Nothing"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Just say “because”.",
+        "skill": "conciseness"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which phrase repeats itself?",
+        "options": [
+          {
+            "id": "a",
+            "text": "each and every"
+          },
+          {
+            "id": "b",
+            "text": "every"
+          },
+          {
+            "id": "c",
+            "text": "each"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Each and every” says the same thing twice.",
+        "skill": "conciseness"
+      },
+      {
+        "id": "c5",
+        "prompt": "What should you do with “It is important to note that”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Cut it and start with the point"
+          },
+          {
+            "id": "b",
+            "text": "Use it in every paragraph"
+          },
+          {
+            "id": "c",
+            "text": "Move it to the conclusion"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It adds words but no meaning.",
+        "skill": "conciseness"
+      },
+      {
+        "id": "f1",
+        "prompt": "Which is formal?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Many children do not eat breakfast."
+          },
+          {
+            "id": "b",
+            "text": "Lots of kids don’t eat breakfast."
+          },
+          {
+            "id": "c",
+            "text": "Tons of kids skip brekkie."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "No slang, no contractions.",
+        "skill": "formal tone"
+      },
+      {
+        "id": "f2",
+        "prompt": "Which word should replace “awesome” in an essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "excellent"
+          },
+          {
+            "id": "b",
+            "text": "super cool"
+          },
+          {
+            "id": "c",
+            "text": "sick"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Excellent” is formal.",
+        "skill": "formal tone"
+      },
+      {
+        "id": "f3",
+        "prompt": "How should “can’t” appear in a formal essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "cannot"
+          },
+          {
+            "id": "b",
+            "text": "cant"
+          },
+          {
+            "id": "c",
+            "text": "can not’"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Write contractions out in full.",
+        "skill": "formal tone"
+      },
+      {
+        "id": "f4",
+        "prompt": "Why cut “I think” from an argumentative essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The essay is already your opinion"
+          },
+          {
+            "id": "b",
+            "text": "It is spelled wrong"
+          },
+          {
+            "id": "c",
+            "text": "Teachers dislike the letter I"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "State the claim directly.",
+        "skill": "formal tone"
+      },
+      {
+        "id": "f5",
+        "prompt": "Where is “I” fine to use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "In a narrative essay about your own experience"
+          },
+          {
+            "id": "b",
+            "text": "Never, in any essay"
+          },
+          {
+            "id": "c",
+            "text": "Only in the title"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Narratives tell your own story.",
+        "skill": "formal tone"
+      },
+      {
+        "id": "p1",
+        "prompt": "Which is the most precise?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Pollution poisons fish."
+          },
+          {
+            "id": "b",
+            "text": "Pollution is bad."
+          },
+          {
+            "id": "c",
+            "text": "Pollution does things."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Name exactly what happens.",
+        "skill": "precise words"
+      },
+      {
+        "id": "p2",
+        "prompt": "Which academic verb means “shows”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "demonstrates"
+          },
+          {
+            "id": "b",
+            "text": "says stuff"
+          },
+          {
+            "id": "c",
+            "text": "does"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Demonstrates” is precise and formal.",
+        "skill": "precise words"
+      },
+      {
+        "id": "p3",
+        "prompt": "What is wrong with “Exercise is good”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "“Good” is vague: say how it helps"
+          },
+          {
+            "id": "b",
+            "text": "It is too long"
+          },
+          {
+            "id": "c",
+            "text": "It is a fragment"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Replace vague words with exact ones.",
+        "skill": "precise words"
+      },
+      {
+        "id": "p4",
+        "prompt": "Which replaces “things” in “Bees do many things”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "pollinate crops and make honey"
+          },
+          {
+            "id": "b",
+            "text": "stuff"
+          },
+          {
+            "id": "c",
+            "text": "a lot"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Name the exact actions.",
+        "skill": "precise words"
+      },
+      {
+        "id": "r1",
+        "prompt": "What is the difference between revising and editing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Revising changes ideas and structure; editing fixes small errors"
+          },
+          {
+            "id": "b",
+            "text": "They are the same"
+          },
+          {
+            "id": "c",
+            "text": "Editing comes first"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Big changes first, then small ones.",
+        "skill": "revision"
+      },
+      {
+        "id": "r2",
+        "prompt": "Which is a revision?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Adding evidence to a body paragraph"
+          },
+          {
+            "id": "b",
+            "text": "Fixing a capital letter"
+          },
+          {
+            "id": "c",
+            "text": "Adding a comma"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Revision changes the content.",
+        "skill": "revision"
+      },
+      {
+        "id": "r3",
+        "prompt": "What is the last step before submitting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Read the essay aloud one last time"
+          },
+          {
+            "id": "b",
+            "text": "Write a new introduction"
+          },
+          {
+            "id": "c",
+            "text": "Delete the conclusion"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Your ear catches what your eyes skip.",
+        "skill": "revision"
+      },
+      {
+        "id": "r4",
+        "prompt": "In which order should you review?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Structure, support, style, conventions"
+          },
+          {
+            "id": "b",
+            "text": "Conventions, style, support, structure"
+          },
+          {
+            "id": "c",
+            "text": "Any order"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "From biggest to smallest.",
+        "skill": "revision"
+      },
+      {
+        "id": "r5",
+        "prompt": "What does the final checklist help you do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Check every part of your essay before you submit"
+          },
+          {
+            "id": "b",
+            "text": "Choose a prompt"
+          },
+          {
+            "id": "c",
+            "text": "Count syllables"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Edit until every item is done.",
+        "skill": "revision"
+      }
+    ]
+  },
+  {
+    "key": "e15.final-essay",
+    "type": "ESSAY",
+    "title": "Your final polished essay",
+    "prompt": "This is your final essay. It starts from your draft from Lesson 5 (or choose a prompt and start fresh). Revise it in passes: structure, support, style, then grammar and punctuation. Give it a title on the first line. Work through the final essay checklist until every item is done, read it aloud one last time, then submit it.",
+    "tips": [
+      "Revise first (structure and evidence), then edit (words, grammar, punctuation).",
+      "Fix every ! on the essay map and every Coach note.",
+      "Ask Quill “Does my essay sound formal?” before you submit."
+    ],
+    "constraints": {
+      "minWords": 300,
+      "maxWords": 1000,
+      "minParagraphs": 4,
+      "maxParagraphs": 9
+    },
+    "analyzers": ["essay", "structure", "punctuation", "style"],
+    "essay": {
+      "type": "argumentative",
+      "counterclaim": true
+    },
+    "essayPrompts": [
+      {
+        "type": "argumentative",
+        "title": "Argue: a four-day school week",
+        "prompt": "Should schools switch to a four-day week? Take a side and prove it with two reasons and evidence, answer the other side, and end with a call to act.",
+        "tips": [
+          "Thesis: Schools should (or should not)… because… and….",
+          "Counterclaim: Some people argue… However,…"
+        ]
+      },
+      {
+        "type": "informative",
+        "title": "Explain: how a skill is learned",
+        "prompt": "Explain how someone learns a skill you know well (a sport, an instrument, a language, cooking). Name three stages or parts in your thesis and explain each with facts and examples.",
+        "tips": [
+          "Thesis: Learning to… happens in three stages:…, … and….",
+          "Explain, don’t argue: no “should”."
+        ]
+      },
+      {
+        "type": "narrative",
+        "title": "Tell: a moment that changed you",
+        "prompt": "Tell the true story of a moment that changed how you see something. Tell the events in order with details, and reflect on what it taught you.",
+        "tips": ["Focus: The day… taught me….", "End with a reflection: I learned…, Ever since…."]
+      }
+    ],
+    "continuesFrom": "e15.final-draft",
+    "checklist": {
+      "label": "Final essay checklist",
+      "items": [
+        {
+          "id": "paragraphs",
+          "text": "Each part has its own paragraph.",
+          "auto": "paragraphs"
+        },
+        {
+          "id": "hook",
+          "text": "My introduction opens with a hook.",
+          "auto": "hook"
+        },
+        {
+          "id": "thesis",
+          "text": "My introduction ends with a clear thesis (or focus).",
+          "auto": "thesis"
+        },
+        {
+          "id": "topic-links",
+          "text": "Every body paragraph links back to my thesis.",
+          "auto": "topic-links"
+        },
+        {
+          "id": "evidence",
+          "text": "Every body paragraph has evidence (or, in a story, time words).",
+          "auto": "evidence"
+        },
+        {
+          "id": "counterclaim",
+          "text": "I give the other side and answer it.",
+          "auto": "counterclaim"
+        },
+        {
+          "id": "restates",
+          "text": "My conclusion restates my thesis in new words.",
+          "auto": "restates"
+        },
+        {
+          "id": "final-thought",
+          "text": "My conclusion ends with a final thought or reflection.",
+          "auto": "final-thought"
+        },
+        {
+          "id": "conventions",
+          "text": "The Coach finds no grammar or punctuation mistakes.",
+          "auto": "conventions"
+        },
+        {
+          "id": "formal",
+          "text": "No contractions, slang, wordy phrases or vague words.",
+          "auto": "formal"
+        },
+        {
+          "id": "explained",
+          "text": "I explained my evidence, or showed what each event meant."
+        },
+        {
+          "id": "varied",
+          "text": "My sentences vary in length and type."
+        },
+        {
+          "id": "title",
+          "text": "My essay has a title that fits it."
+        },
+        {
+          "id": "aloud",
+          "text": "I read my essay aloud one last time and fixed anything that sounded wrong."
+        }
+      ]
+    },
+    "grammarFocus": ["thesis-statement", "topic-sentence", "final-thought", "formal-sentence"]
+  }
+]

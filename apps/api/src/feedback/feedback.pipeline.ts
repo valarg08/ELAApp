@@ -25,6 +25,7 @@ import {
 } from '@storyforge/ai';
 import {
   ActivityContent,
+  chosenEssay,
   type CriterionScore,
   classSettings,
   FeedbackPoint as FeedbackPointSchema,
@@ -122,8 +123,11 @@ export class FeedbackPipeline {
     if (!feedback || feedback.status !== 'QUEUED') return;
     const { submission } = feedback;
     const { activity } = submission;
-    const content = ActivityContent.parse(activity.config);
-    if (!isWritingActivity(content)) throw new Error(`Activity ${activity.key} is not writing`);
+    const parsed = ActivityContent.parse(activity.config);
+    if (!isWritingActivity(parsed)) throw new Error(`Activity ${activity.key} is not writing`);
+    // An essay with a choice of prompts is judged as the kind of essay the student chose.
+    const chosen = chosenEssay(parsed, submissionChoices(submission.choices).essayType);
+    const content = chosen ? { ...parsed, essay: chosen } : parsed;
     const klass = await this.db.client.class.findUniqueOrThrow({
       where: { id: submission.classId },
     });
@@ -201,7 +205,11 @@ export class FeedbackPipeline {
     const focusNextSteps: FeedbackPoint[] = [];
     let declined = false;
     const versions: string[] = [];
-    const runMeta = { ...meta, cacheScope: activity.key, text };
+    // A chosen essay type changes what is judged, so it is part of the cache key.
+    const cacheScope = content.essayPrompts
+      ? `${activity.key}|${content.essay?.type}`
+      : activity.key;
+    const runMeta = { ...meta, cacheScope, text };
     const {
       traits,
       mood: moods,
@@ -408,6 +416,9 @@ export class FeedbackPipeline {
         const p = settingMoodPoints(text, r);
         focusStrengths.push(...p.strengths);
         focusNextSteps.push(...p.nextSteps);
+      } else if (id === 'formal-tone') {
+        // Only asked for from the Coach's style check ("Ask Quill"), never part of feedback.
+        continue;
       } else {
         const outcome = await this.ai.run(
           LIVE_ANALYZERS[id],

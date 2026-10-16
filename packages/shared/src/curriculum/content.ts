@@ -18,7 +18,7 @@ import { WritingConstraints } from './constraints.js';
 import { CONFLICT_TYPE_IDS, type ConflictTypeId, PlotPlan } from './plot.js';
 import { ParagraphBuilder, ParagraphPlan } from './paragraph.js';
 import { Checklist } from './checklist.js';
-import { EssayConfig, OutlineBuilder, OutlinePlan } from './outline.js';
+import { EssayConfig, EssayPrompt, OutlineBuilder, OutlinePlan } from './outline.js';
 
 /**
  * Curriculum content format (DESIGN.md §9). Units, lessons and activities live as JSON files in
@@ -494,6 +494,10 @@ export const WritingActivity = z.object({
   outlineBuilder: OutlineBuilder.optional(),
   /** Essay Writing (Unit 14 on): a checklist to edit a whole essay against (see `Checklist`). */
   checklist: Checklist.optional(),
+  /** Essay Writing (Unit 15): prompts of different kinds the student chooses between (see `chosenEssay`). */
+  essayPrompts: z.array(EssayPrompt).min(2).max(3).optional(),
+  /** Essay Writing (Unit 15): the first time it opens, start from the student's writing (and choices) for this earlier activity. */
+  continuesFrom: ActivityKey.optional(),
   /** Essay Writing: the grammar this activity practises; the Coach and Quill look for it. */
   grammarFocus: z.array(z.enum(GRAMMAR_FEATURES)).min(1).max(4).optional(),
 });
@@ -1006,6 +1010,14 @@ export function validateUnitBundle({
       errors.push(
         `${a.key}: body paragraph and conclusion tasks need essay.thesis to link back to`,
       );
+    if (isWritingActivity(a) && a.essayPrompts) {
+      const types = a.essayPrompts.map((p) => p.type);
+      if (a.type !== 'ESSAY') errors.push(`${a.key}: essayPrompts are for ESSAY activities`);
+      if (new Set(types).size !== types.length)
+        errors.push(`${a.key}: two essay prompts of the same kind`);
+      if (a.essay && !types.includes(a.essay.type))
+        errors.push(`${a.key}: essay.type must be one of the essay prompts' kinds`);
+    }
     if (isWritingActivity(a) && a.checklist && a.type !== 'ESSAY')
       errors.push(`${a.key}: checklist is for ESSAY activities`);
     if (isWritingActivity(a) && a.checklist) {
@@ -1142,6 +1154,15 @@ export function validateUnitBundle({
     else if (!isWritingActivity(c))
       errors.push(
         `${where}: challenge activity "${challenge.activityKey}" must be a writing activity`,
+      );
+  }
+
+  for (const a of activities) {
+    if (!isWritingActivity(a) || !a.continuesFrom) continue;
+    const from = byKey.get(a.continuesFrom);
+    if (!from || !isWritingActivity(from) || from.key === a.key)
+      errors.push(
+        `${a.key}: continuesFrom "${a.continuesFrom}" is not another writing activity in this unit`,
       );
   }
 

@@ -1,0 +1,56 @@
+{
+  "slug": "essay-final-polished-essay",
+  "order": 7,
+  "title": "🏆 Your Final Polished Essay",
+  "estMinutes": 90,
+  "focusSkills": ["essay", "grammar"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Look back at your first essay unit. What can you do now that you couldn’t then?",
+      "placeholder": "Now I can…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Everything you have learned",
+          "body": "Grammar that agrees. Paragraphs with topic sentences, evidence and explanations. An introduction that hooks and ends with a thesis. Body paragraphs that prove it. A conclusion that restates and leaves a final thought. Formal, precise, concise words."
+        },
+        {
+          "kind": "definition",
+          "title": "From draft to final",
+          "body": "Your final essay starts from your Lesson 5 draft. Give it a title on the first line, then revise in passes and work through the final essay checklist until every item is done."
+        },
+        {
+          "kind": "definition",
+          "title": "How the final works",
+          "body": "First, a 10-question style and revision quiz: you need 8 right (80%) to pass. Then polish and submit your final essay. Quill gives it a score with its strengths and next steps. Well done for getting here!"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e15.unit-check"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e15.final-essay"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What are you proudest of in your final essay?",
+        "What will you do the same way next time you write an essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

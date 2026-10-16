@@ -6,6 +6,7 @@ import {
   SubmitResponse,
   type VersionSummary,
   checkConstraints,
+  chosenEssay,
   FIGURATIVE_ACTIVITY_TYPES,
   SENSORY_ACTIVITY_TYPES,
   trackOfActivityKey,
@@ -35,6 +36,7 @@ import { PerspectiveGuide } from './perspective-guide';
 import { SenseTracker } from './sense-tracker';
 import { ProofreadPanel } from './proofread-panel';
 import { ChecklistPanel } from './checklist-panel';
+import { EssayPicker } from './essay-picker';
 import { SentenceSetPanel } from './sentence-set-panel';
 import { WordBankPanel } from './word-bank-panel';
 import { useWordBank } from './use-word-bank';
@@ -70,7 +72,21 @@ export function WritingWorkspace({
 }) {
   const editorRef = useRef<HTMLTextAreaElement>(null);
   const path = `/submissions/${encodeURIComponent(submission.id)}`;
-  const activity = submission.activity.content;
+  const rawActivity = submission.activity.content;
+  // An essay with a choice of prompts is coached as the kind of essay the student chose.
+  const [essayType, setEssayType] = useState(submission.essayType);
+  const chosen = chosenEssay(rawActivity, essayType);
+  // Only an argumentative essay plans a counterclaim.
+  const activity = chosen
+    ? {
+        ...rawActivity,
+        essay: chosen,
+        outlineBuilder: rawActivity.outlineBuilder && {
+          ...rawActivity.outlineBuilder,
+          counterclaim: rawActivity.outlineBuilder.counterclaim && chosen.counterclaim,
+        },
+      }
+    : rawActivity;
   const picker = activity.traitPicker;
   const [traits, setTraits] = useState(submission.traits);
   const constraints = constraintsWithTraits(activity, traits);
@@ -299,6 +315,15 @@ export function WritingWorkspace({
             controller.setText(next);
             showInText({ start: next.length, end: next.length, text: '' });
           }}
+        />
+      )}
+
+      {activity.essayPrompts && (
+        <EssayPicker
+          submissionId={submission.id}
+          prompts={activity.essayPrompts}
+          value={essayType ?? rawActivity.essay?.type ?? null}
+          onChange={setEssayType}
         />
       )}
 

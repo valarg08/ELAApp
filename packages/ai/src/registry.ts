@@ -10,6 +10,7 @@ import { poetryCraftAnalyzer } from './analyzers/poetry-craft.js';
 import { grammarCheckAnalyzer } from './analyzers/grammar-check.js';
 import { paragraphStructureAnalyzer } from './analyzers/paragraph-structure.js';
 import { essayStructureAnalyzer } from './analyzers/essay-structure.js';
+import { formalToneAnalyzer } from './analyzers/formal-tone.js';
 import {
   DEFAULT_RUBRIC,
   GRAMMAR_RUBRIC,
@@ -38,6 +39,7 @@ export const LIVE_ANALYZERS = {
   'grammar-check': grammarCheckAnalyzer,
   'paragraph-structure': paragraphStructureAnalyzer,
   'essay-structure': essayStructureAnalyzer,
+  'formal-tone': formalToneAnalyzer,
 } as const;
 export type LiveAnalyzerId = keyof typeof LIVE_ANALYZERS;
 
@@ -45,6 +47,7 @@ export type LiveAnalyzerId = keyof typeof LIVE_ANALYZERS;
 export const LIVE_FOR_COACH: Record<string, LiveAnalyzerId> = {
   telling: 'show-vs-tell',
   senses: 'sensory-analysis',
+  style: 'formal-tone',
 };
 
 /**

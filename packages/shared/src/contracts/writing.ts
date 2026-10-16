@@ -4,6 +4,7 @@ import { PlotPlan } from '../curriculum/plot.js';
 import { ParagraphPlan } from '../curriculum/paragraph.js';
 import { ChecklistTicks } from '../curriculum/checklist.js';
 import { OutlinePlan } from '../curriculum/outline.js';
+import { ESSAY_TYPES } from '@storyforge/writing-analysis';
 import { LessonProgressView } from './curriculum.js';
 
 /** Writing workspace contracts (DESIGN.md §5.4). Drafts are plain text. */
@@ -63,6 +64,8 @@ export const SubmissionDetail = z.object({
   outline: OutlinePlan.default(OutlinePlan.parse({})),
   /** The checklist items the student ticked. */
   checklist: ChecklistTicks.default([]),
+  /** The kind of essay chosen from the activity's essay prompts. */
+  essayType: z.enum(ESSAY_TYPES).nullable().default(null),
 });
 export type SubmissionDetail = z.infer<typeof SubmissionDetail>;
 
@@ -77,6 +80,7 @@ export const SubmissionChoices = z.object({
   paragraph: ParagraphPlan.default(ParagraphPlan.parse({})),
   outline: OutlinePlan.default(OutlinePlan.parse({})),
   checklist: ChecklistTicks.default([]),
+  essayType: z.enum(ESSAY_TYPES).nullable().default(null),
 });
 export type SubmissionChoices = z.infer<typeof SubmissionChoices>;
 
@@ -115,6 +119,9 @@ export type SetParagraphRequest = z.infer<typeof SetParagraphRequest>;
 
 export const SetOutlineRequest = z.object({ outline: OutlinePlan });
 export type SetOutlineRequest = z.infer<typeof SetOutlineRequest>;
+
+export const SetEssayTypeRequest = z.object({ essayType: z.enum(ESSAY_TYPES) });
+export type SetEssayTypeRequest = z.infer<typeof SetEssayTypeRequest>;
 
 export const SetChecklistRequest = z.object({ ticked: ChecklistTicks });
 export type SetChecklistRequest = z.infer<typeof SetChecklistRequest>;

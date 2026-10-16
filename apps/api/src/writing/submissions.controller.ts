@@ -8,6 +8,7 @@ import {
   SetConflictRequest,
   SetMoodRequest,
   SetChecklistRequest,
+  SetEssayTypeRequest,
   SetOutlineRequest,
   SetParagraphRequest,
   SetPlotRequest,
@@ -126,6 +127,17 @@ export class SubmissionsController {
     @Body({ schema: SetOutlineRequest }) body: SetOutlineRequest,
   ): Promise<SubmissionDetail> {
     return this.submissions.setOutline(user, id, body.outline);
+  }
+
+  /** Which essay prompt the student chose (Essay Unit 15). */
+  @Roles('STUDENT')
+  @Put(':id/essay-type')
+  setEssayType(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetEssayTypeRequest }) body: SetEssayTypeRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setEssayType(user, id, body.essayType);
   }
 
   /** The checklist items the student ticked (Essay Unit 14 on). */

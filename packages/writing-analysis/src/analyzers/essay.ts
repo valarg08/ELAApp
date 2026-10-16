@@ -1,4 +1,4 @@
-import { type Span, paragraphs, sentences, words } from '../text.js';
+import { type Span, countWords, paragraphs, sentences, words } from '../text.js';
 import type { GrammarIssue } from './grammar.js';
 
 /**
@@ -357,11 +357,22 @@ function findThesis(list: Span[], type?: EssayType): { span: Span; kind: ThesisK
   return { span: list[last]!, kind: kinds[last]! };
 }
 
+/** A short first line with no end mark is the essay's title, not its introduction. */
+function withoutTitle(paras: Span[]): Span[] {
+  const first = paras[0];
+  const titled =
+    paras.length >= 2 &&
+    first !== undefined &&
+    countWords(first.text) <= 12 &&
+    !/[.!?…:]["'”’)\]]*\s*$/u.test(first.text);
+  return titled ? paras.slice(1) : paras;
+}
+
 /** The parts of an essay (or an outline). */
 export function essayStructure(text: string, options: EssayOptions = {}): EssayStructure {
   const lines = outlineLines(text);
   if (lines.length >= 2) return outlineStructure(lines, options);
-  const paras = paragraphs(text);
+  const paras = withoutTitle(paragraphs(text));
   const n = paras.length;
   const all = sentences(text).map(trimSpan);
   const result: EssayParagraph[] = paras.map((p, i) => ({

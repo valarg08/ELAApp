@@ -26,13 +26,13 @@ export function ChecklistPanel({
   ticked: string[];
   onChange: (ticked: string[]) => void;
 }) {
+  // The counterclaim item only applies to an argumentative essay that asks for one.
+  const items = checklist.items.filter((i) => i.auto !== 'counterclaim' || essay.counterclaim);
   const deferred = useDeferredValue(text);
   const auto = essayChecks(deferred, essay);
   const [error, setError] = useState<string | null>(null);
-  const done = checklist.items.filter((i) =>
-    i.auto ? auto[i.auto] : ticked.includes(i.id),
-  ).length;
-  const total = checklist.items.length;
+  const done = items.filter((i) => (i.auto ? auto[i.auto] : ticked.includes(i.id))).length;
+  const total = items.length;
 
   async function toggle(id: string, on: boolean) {
     const next = checklist.items
@@ -70,7 +70,7 @@ export function ChecklistPanel({
         you write; tick the others when you have checked them yourself.
       </p>
       <ul className="mt-3 flex flex-col gap-2">
-        {checklist.items.map((item) =>
+        {items.map((item) =>
           item.auto ? (
             <li key={item.id} className="flex gap-3">
               <span

@@ -33,6 +33,7 @@ import {
   type ParagraphPlan,
   type PlotPlan,
   type SetSyllablesRequest,
+  type SetEssayTypeRequest,
   type SetToneRequest,
   planComplete,
   toneComplete,
@@ -103,6 +104,27 @@ export class SubmissionsService {
     }
     const resolvedClassId = await this.curriculum.studentClassForUnit(user, activity.unit, classId);
     const key = { activityId, studentId: user.id, classId: resolvedClassId };
+    // A final essay starts from the student's draft (and the prompt they chose) the first time.
+    const earlier = content.continuesFrom
+      ? await this.db.client.submission.findFirst({
+          where: {
+            studentId: user.id,
+            classId: resolvedClassId,
+            activity: { key: content.continuesFrom },
+          },
+        })
+      : null;
+    const essayType = earlier ? choicesOf(earlier).essayType : null;
+    // Only used when the submission is created (the upsert leaves an existing one alone).
+    const carried = earlier
+      ? {
+          text: earlier.contentText,
+          choices: SubmissionChoices.parse({
+            essayType: content.essayPrompts?.some((p) => p.type === essayType) ? essayType : null,
+            outline: validOutline(content, choicesOf(earlier).outline),
+          }),
+        }
+      : null;
     const include = { activity: { include: { lesson: true } } } as const;
     try {
       const submission = await this.db.client.submission.upsert({
@@ -110,8 +132,9 @@ export class SubmissionsService {
         create: {
           ...key,
           status: 'DRAFT',
-          contentText: startText,
-          wordCount: countWords(startText),
+          contentText: carried?.text ?? startText,
+          wordCount: countWords(carried?.text ?? startText),
+          ...(carried ? { choices: carried.choices } : {}),
         },
         update: {},
         include,
@@ -285,6 +308,25 @@ export class SubmissionsService {
       );
     }
     return this.saveChoices(current, { outline: validOutline(activity, plan) });
+  }
+
+  /** Save which of the activity's essay prompts the student chose (Essay Unit 15). */
+  async setEssayType(
+    user: AuthUser,
+    id: string,
+    essayType: SetEssayTypeRequest['essayType'],
+  ): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    if (!activity.essayPrompts?.some((p) => p.type === essayType)) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'Not a choice here',
+        'Choose one of the essay prompts for this activity.',
+      );
+    }
+    return this.saveChoices(current, { essayType });
   }
 
   /** Save the checklist items the student ticked (Essay Unit 14 on; automatic items are never stored). */
@@ -652,6 +694,7 @@ export class SubmissionsService {
       paragraph: choicesOf(s).paragraph,
       outline: choicesOf(s).outline,
       checklist: choicesOf(s).checklist,
+      essayType: choicesOf(s).essayType,
     };
   }
 }

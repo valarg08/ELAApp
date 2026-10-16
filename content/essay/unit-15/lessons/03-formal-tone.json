@@ -1,0 +1,56 @@
+{
+  "slug": "essay-formal-tone",
+  "order": 3,
+  "title": "Formal Tone",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "grammar"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "How would you tell a friend that school lunches are too short? How would you say it in a letter to the principal?",
+      "placeholder": "To a friend… To the principal…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Essays sound formal",
+          "body": "A formal essay sounds like a newspaper, not a text message. Write contractions out in full (do not, it is), replace slang (kids → children, a lot of → many, awesome → excellent) and leave out chatty words (like, totally, basically)."
+        },
+        {
+          "kind": "definition",
+          "title": "Drop “I think”",
+          "body": "In an argumentative or informative essay, the whole essay is your view, so “I think” and “In my opinion” only weaken it. State the point: “Schools should…”. A narrative essay is your story, so “I” is fine there."
+        },
+        {
+          "kind": "definition",
+          "title": "The style check",
+          "body": "The Coach’s style check marks contractions, informal words, wordy phrases and vague words. Ask Quill “Does my essay sound formal?” for a deeper read."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e15.formal-sort", "e15.formal-blank", "e15.formal-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e15.formal-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which informal word was hardest to replace?",
+        "Read one of your sentences aloud. Does it sound like an essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

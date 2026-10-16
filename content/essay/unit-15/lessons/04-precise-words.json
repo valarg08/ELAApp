@@ -1,0 +1,57 @@
+{
+  "slug": "essay-precise-words",
+  "order": 4,
+  "title": "Precise & Academic Words",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "grammar"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Your friend says a film was “good”. What questions would you ask to find out what they really mean?",
+      "placeholder": "I would ask…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Vague words hide your meaning",
+          "body": "Good, bad, nice, things and stuff could mean almost anything. Replace them with words that say exactly what you mean: “Exercise is good” → “Exercise strengthens the heart and improves sleep.”"
+        },
+        {
+          "kind": "definition",
+          "title": "Academic verbs",
+          "body": "Essays use precise verbs to talk about evidence and ideas: demonstrates, suggests, indicates, reveals, affects, influences, improves, reduces. “The study demonstrates…” sounds more exact than “The study says…”."
+        },
+        {
+          "kind": "example",
+          "title": "Vague → precise",
+          "text": "Vague: Plastic does bad things to the ocean.\nPrecise: Plastic bags choke sea turtles and break into tiny pieces that fish swallow.",
+          "note": "Exact nouns and verbs give the reader a picture."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e15.precise-sort", "e15.academic-blank", "e15.precise-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e15.precise-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which precise word are you proudest of?",
+        "Which vague word will you watch for in your final essay?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

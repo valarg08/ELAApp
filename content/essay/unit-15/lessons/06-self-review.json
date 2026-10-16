@@ -1,0 +1,56 @@
+{
+  "slug": "essay-self-review",
+  "order": 6,
+  "title": "The Self-Review Checklist",
+  "estMinutes": 45,
+  "focusSkills": ["essay", "grammar"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "When you finish a piece of writing, what do you check before you hand it in?",
+      "placeholder": "I check…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Revise, then edit",
+          "body": "Revising changes the big things: the thesis, the order, the evidence, the explanations. Editing fixes the small things: words, grammar, punctuation. Revise first; there is no point polishing a sentence you will cut."
+        },
+        {
+          "kind": "definition",
+          "title": "Review in passes",
+          "body": "Pass 1: structure (hook, thesis, body paragraphs, conclusion). Pass 2: support (evidence and explanations). Pass 3: style (formal, precise, concise). Pass 4: conventions (grammar, spelling, punctuation). Pass 5: read it aloud."
+        },
+        {
+          "kind": "definition",
+          "title": "The final essay checklist",
+          "body": "Your final essay comes with a checklist. Some items tick themselves as you write (“checked for you”); you tick the others after checking them yourself. Today, practise on Jordan’s essay."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e15.revise-sort", "e15.review-sequence", "e15.review-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e15.review-practice"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which kind of problem was easiest to spot in Jordan’s essay? Which was hardest?",
+        "Which pass will help your own essay most?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

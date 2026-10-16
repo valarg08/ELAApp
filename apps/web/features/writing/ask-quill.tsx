@@ -27,6 +27,7 @@ import { Points } from './feedback-panel';
 const AI_CHECKS: Partial<Record<AnalyzerId, { id: LiveAnalyzerId; label: string }>> = {
   telling: { id: 'show-vs-tell', label: 'Ask Quill about showing' },
   senses: { id: 'sensory-analysis', label: 'Ask Quill about senses' },
+  style: { id: 'formal-tone', label: 'Does my essay sound formal?' },
 };
 
 /**
@@ -117,6 +118,7 @@ export function AskQuill({
     setError(null);
     try {
       const response = await apiJson('/ai/check', LiveCheckResponse, 'POST', {
+        essayType: activity.essayPrompts ? (activity.essay?.type ?? null) : null,
         activityId,
         analyzer,
         text,

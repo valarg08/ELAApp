@@ -20,6 +20,33 @@ export const EssayConfig = z.object({
 });
 export type EssayConfig = z.infer<typeof EssayConfig>;
 
+/** One of the prompts a student chooses between for a whole essay (Essay Unit 15's final essay). */
+export const EssayPrompt = z.object({
+  type: z.enum(ESSAY_TYPES),
+  title: z.string().trim().min(1).max(60),
+  prompt: z.string().trim().min(1).max(600),
+  tips: z.array(z.string().trim().min(1).max(200)).max(3).default([]),
+});
+export type EssayPrompt = z.infer<typeof EssayPrompt>;
+
+/**
+ * The essay settings for what the student chose: with `essayPrompts`, the chosen prompt's kind of
+ * essay (a counterclaim only for an argumentative one); otherwise the activity's own.
+ */
+export function chosenEssay(
+  activity: { essay?: EssayConfig; essayPrompts?: EssayPrompt[] },
+  essayType: EssayType | null | undefined,
+): EssayConfig | undefined {
+  const essay = activity.essay;
+  if (!essay || !essayType || !activity.essayPrompts?.some((p) => p.type === essayType))
+    return essay;
+  return {
+    ...essay,
+    type: essayType,
+    counterclaim: essayType === 'argumentative' && essay.counterclaim,
+  };
+}
+
 export const OUTLINE_FIELDS = [
   'hook',
   'thesis',

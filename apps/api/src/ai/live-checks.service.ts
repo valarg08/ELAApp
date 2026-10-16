@@ -29,12 +29,15 @@ import {
   paragraphPoints,
   type ParagraphStructureResult,
   essayPoints,
+  formalTonePoints,
+  type FormalToneResult,
   type EssayStructureResult,
   sensoryPoints,
   showVsTellPoints,
 } from '@storyforge/ai';
 import {
   ActivityContent,
+  chosenEssay,
   ErrorCode,
   LIVE_CHECK_LIMITS,
   type LiveCheckRequest,
@@ -95,13 +98,17 @@ export class LiveChecksService {
       where: { id: req.activityId },
       include: { unit: true },
     });
-    const content = activity ? ActivityContent.parse(activity.config) : null;
-    if (!activity || !content || !isWritingActivity(content) || !activity.unit.published) {
+    const parsed = activity ? ActivityContent.parse(activity.config) : null;
+    if (!activity || !parsed || !isWritingActivity(parsed) || !activity.unit.published) {
       throw notFound(ErrorCode.ACTIVITY_NOT_FOUND, 'Writing activity not found.');
     }
+    // An essay with a choice of prompts is checked as the kind of essay the student chose.
+    const chosen = chosenEssay(parsed, req.essayType);
+    const content = chosen ? { ...parsed, essay: chosen } : parsed;
     if (
       req.analyzer !== 'show-vs-tell' &&
       req.analyzer !== 'sensory-analysis' &&
+      !(req.analyzer === 'formal-tone' && content.analyzers?.includes('style')) &&
       !analyzersForActivity(content.type, content.essay?.part).includes(req.analyzer)
     ) {
       throw new AppError(
@@ -156,7 +163,8 @@ export class LiveChecksService {
       kind: 'live' as const,
       userId: user.id,
       classId,
-      cacheScope: activity.key,
+      // A chosen essay type changes what is judged, so it is part of the cache key.
+      cacheScope: content.essayPrompts ? `${activity.key}|${content.essay?.type}` : activity.key,
       text: req.text,
     };
 
@@ -240,6 +248,16 @@ export class LiveChecksService {
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = essayPoints(req.text, outcome.result, essayInput(content).mode);
+      } else if (req.analyzer === 'formal-tone') {
+        const outcome: AnalyzerOutcome<FormalToneResult> = await withTimeout(
+          this.ai.run(
+            LIVE_ANALYZERS['formal-tone'],
+            { ...ctx, essayType: content.essay?.type ?? null },
+            meta,
+          ),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = formalTonePoints(req.text, outcome.result);
       } else if (req.analyzer === 'figurative-language') {
         const goals = content.figurativeHelper?.devices ?? [];
         const outcome: AnalyzerOutcome<FigurativeLanguageResult> = await withTimeout(

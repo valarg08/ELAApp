@@ -85,6 +85,12 @@ import {
   essayHits,
   essayNotes as findEssayNotes,
 } from './essay.js';
+import {
+  STYLE_FEATURES,
+  STYLE_FEATURE_EXAMPLES,
+  STYLE_FEATURE_LABELS,
+  styleHits,
+} from './style.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -112,6 +118,7 @@ export const GRAMMAR_FEATURES = [
   ...SENTENCE_TYPE_FEATURES,
   ...PARAGRAPH_FEATURES,
   ...ESSAY_FEATURES,
+  ...STYLE_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -135,6 +142,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   ...SENTENCE_TYPE_FEATURE_LABELS,
   ...PARAGRAPH_FEATURE_LABELS,
   ...ESSAY_FEATURE_LABELS,
+  ...STYLE_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -158,6 +166,7 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   ...SENTENCE_TYPE_FEATURE_EXAMPLES,
   ...PARAGRAPH_FEATURE_EXAMPLES,
   ...ESSAY_FEATURE_EXAMPLES,
+  ...STYLE_FEATURE_EXAMPLES,
 };
 
 /** The Coach skill a grammar feature belongs to. */
@@ -175,7 +184,8 @@ export function grammarSkillOf(
   | 'punctuation'
   | 'sentenceTypes'
   | 'paragraphs'
-  | 'essay' {
+  | 'essay'
+  | 'style' {
   if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
   if ((MODIFIER_FEATURES as readonly string[]).includes(feature)) return 'modifiers';
   if ((CONNECTOR_FEATURES as readonly string[]).includes(feature)) return 'connectors';
@@ -186,6 +196,7 @@ export function grammarSkillOf(
   if ((SENTENCE_TYPE_FEATURES as readonly string[]).includes(feature)) return 'sentenceTypes';
   if ((PARAGRAPH_FEATURES as readonly string[]).includes(feature)) return 'paragraphs';
   if ((ESSAY_FEATURES as readonly string[]).includes(feature)) return 'essay';
+  if ((STYLE_FEATURES as readonly string[]).includes(feature)) return 'style';
   return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
 }
 
@@ -409,6 +420,8 @@ export function grammarFeatures(text: string): FeatureHit[] {
   for (const hit of paragraphHits(text)) hits.push(hit);
   // Essay moves (thesis, hook, counterclaim…) read whole sentences.
   for (const hit of essayHits(text)) hits.push(hit);
+  // Formal sentences: whole sentences with no style notes.
+  for (const hit of styleHits(text)) hits.push(hit);
   return hits;
 }
 
@@ -525,7 +538,12 @@ export interface GrammarIssue {
     | 'no-background'
     | 'thesis-not-last'
     | 'no-time-words'
-    | 'no-summary';
+    | 'no-summary'
+    | 'contraction'
+    | 'informal-word'
+    | 'wordy-phrase'
+    | 'vague-word'
+    | 'personal-opinion';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -772,6 +790,9 @@ export type { SentenceType, TypedSentence } from './sentence-types.js';
 export const paragraphNotes = (text: string): GrammarIssue[] => findParagraphNotes(text);
 export { PARAGRAPH_ROLES, PARAGRAPH_ROLE_LABELS, paragraphRoles } from './paragraphs.js';
 export type { ParagraphRole, ParagraphSentence } from './paragraphs.js';
+
+export { STYLE_FEATURES, styleIssues } from './style.js';
+export type { StyleFeature, StyleOptions } from './style.js';
 
 /** Essay structure notes (thesis, hook, body links, counterclaim, conclusion): not counted as mistakes. */
 export const essayNotes = (text: string, options?: EssayOptions): GrammarIssue[] =>

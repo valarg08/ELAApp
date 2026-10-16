@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ESSAY_TYPES } from '@storyforge/writing-analysis';
 
 /** AI feedback, live AI checks and safety flags (DESIGN.md §5.5, §8). */
 
@@ -99,6 +100,7 @@ export const LiveAnalyzerId = z.enum([
   'grammar-check',
   'paragraph-structure',
   'essay-structure',
+  'formal-tone',
 ]);
 export type LiveAnalyzerId = z.infer<typeof LiveAnalyzerId>;
 
@@ -117,6 +119,8 @@ export const LiveCheckRequest = z.object({
   syllables: z.record(z.string(), z.number()).optional(),
   /** For "What tone will my reader hear?": the tone aimed for, per scale. */
   tone: z.record(z.string(), z.number()).optional(),
+  /** For essays with a choice of prompts: the kind of essay the student chose. */
+  essayType: z.enum(ESSAY_TYPES).nullable().default(null),
 });
 export type LiveCheckRequest = z.infer<typeof LiveCheckRequest>;
 

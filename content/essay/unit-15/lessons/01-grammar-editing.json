@@ -1,0 +1,57 @@
+{
+  "slug": "essay-grammar-editing",
+  "order": 1,
+  "title": "Editing for Grammar",
+  "estMinutes": 45,
+  "focusSkills": ["essay", "grammar"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Which grammar mistake do you make most often? How do you usually catch it?",
+      "placeholder": "I usually…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Edit in passes",
+          "body": "Don’t try to catch everything at once. Read once for verbs (does each verb agree with its subject? is the tense right?), once for pronouns and tricky words (I/me, their/there, its/it’s), once for sentences (comma splices, fragments), once for capitals and commas."
+        },
+        {
+          "kind": "example",
+          "title": "Common essay mistakes",
+          "text": "Every student know → Every student knows\nTired students cannot focus, they make mistakes → …focus, so they make mistakes\nBecause sleep helps the brain. → …faster because sleep helps the brain.",
+          "note": "Agreement, a comma splice and a fragment: three mistakes that hide in essays."
+        },
+        {
+          "kind": "definition",
+          "title": "Use the Coach",
+          "body": "The Coach underlines verbs, pronouns, sentences and punctuation it is unsure about. It is a guide, not a rule: decide for yourself, then fix."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e15.error-sort", "e15.edit-blank", "e15.edit-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e15.grammar-clinic"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which kind of mistake was hardest to spot?",
+        "Which pass will you always do from now on?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

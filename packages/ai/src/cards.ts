@@ -11,6 +11,7 @@ import type { PoetryCraftResult } from './analyzers/poetry-craft.js';
 import type { GrammarCheckResult } from './analyzers/grammar-check.js';
 import type { ParagraphStructureResult } from './analyzers/paragraph-structure.js';
 import type { EssayStructureInput, EssayStructureResult } from './analyzers/essay-structure.js';
+import type { FormalToneResult } from './analyzers/formal-tone.js';
 import { isToneStep, toneStepLabel } from '@storyforge/writing-analysis';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
@@ -598,6 +599,38 @@ export function essayPoints(
       ),
     );
   }
+  if (r.nextIdea) nextSteps.push({ title: 'One idea', message: r.nextIdea });
+  return {
+    strengths: strengths.filter(isPoint).slice(0, 3),
+    nextSteps: nextSteps.filter(isPoint).slice(0, 3),
+  };
+}
+
+/** "Does my essay sound formal?": the overall tone and the best sentence as strengths; up to three changes as next steps. */
+export function formalTonePoints(text: string, r: FormalToneResult) {
+  const strengths: (FeedbackPoint | null)[] = [];
+  const nextSteps: (FeedbackPoint | null)[] = [];
+  if (r.formal) strengths.push({ title: 'It sounds like an essay', message: r.note });
+  if (r.bestSentence) {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'Your most polished sentence', message: r.bestSentence.why },
+        r.bestSentence.quote,
+      ),
+    );
+  }
+  for (const c of r.changes.slice(0, 3)) {
+    nextSteps.push(
+      anchored(
+        text,
+        { title: c.better ? `Try “${c.better}”` : `Cut “${c.quote}”`, message: c.why },
+        c.quote,
+      ),
+    );
+  }
+  if (!r.formal && r.changes.length === 0)
+    nextSteps.push({ title: 'Make it formal', message: r.note });
   if (r.nextIdea) nextSteps.push({ title: 'One idea', message: r.nextIdea });
   return {
     strengths: strengths.filter(isPoint).slice(0, 3),

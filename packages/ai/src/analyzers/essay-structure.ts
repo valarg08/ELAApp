@@ -75,7 +75,7 @@ Judge structure only, not grammar or spelling. Outlines are notes: do not expect
 
 export const essayStructureAnalyzer: AnalyzerDef<EssayStructureInput, EssayStructureResult> = {
   id: 'essay-structure',
-  version: 'essay-structure-4',
+  version: 'essay-structure-5',
   effort: 'medium',
   maxTokens: 1800,
   system: SYSTEM,

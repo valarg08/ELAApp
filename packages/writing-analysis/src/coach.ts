@@ -59,6 +59,7 @@ import {
   essayNotes,
   essayStructure,
   grammarIssues,
+  styleIssues,
   grammarSkillOf,
   modifierIssues,
   nounIssues,
@@ -110,6 +111,7 @@ export const ANALYZER_IDS = [
   'sentenceTypes',
   'paragraphs',
   'essay',
+  'style',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -297,6 +299,7 @@ export const ESSAY_CHECKS = [
   'restates',
   'final-thought',
   'conventions',
+  'formal',
 ] as const;
 export type EssayCheck = (typeof ESSAY_CHECKS)[number];
 
@@ -329,6 +332,7 @@ export function essayChecks(text: string, options: EssayOptions = {}): Record<Es
     // Tense shifts are hints to reread, not mistakes the checklist can count.
     conventions:
       text.trim().length > 0 && grammarIssues(text).every((i) => i.kind === 'tense-shift'),
+    formal: text.trim().length > 0 && styleIssues(text, { type: options.type }).length === 0,
   };
 }
 
@@ -1101,6 +1105,22 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
   }
 
+  if (enabled.has('style')) {
+    const issues = styleIssues(text, { type: options.essay?.type });
+    const first = issues[0];
+    if (first)
+      nextSteps.push(issueCard('style', STYLE_TITLES[first.kind] ?? 'Make it formal', issues));
+    else if (wordCount >= 40) {
+      strengths.push({
+        id: 'style',
+        analyzer: 'style',
+        title: 'Formal and clear',
+        message:
+          'No contractions, slang, wordy phrases or vague words: your writing sounds like a polished essay.',
+      });
+    }
+  }
+
   if (enabled.has('modifiers')) {
     const issues = modifierIssues(text);
     if (issues[0]) nextSteps.push(issueCard('modifiers', 'Check this describing word', issues));
@@ -1308,6 +1328,14 @@ const VARIETY_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
   'long-sentence': 'Split this long sentence',
   'choppy-sentences': 'Smooth out choppy sentences',
   'repeated-opener': 'Vary how your sentences start',
+};
+
+const STYLE_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
+  contraction: 'Write it out in full',
+  'informal-word': 'Make it formal',
+  'wordy-phrase': 'Cut extra words',
+  'vague-word': 'Choose a precise word',
+  'personal-opinion': 'Drop “I think”',
 };
 
 const ESSAY_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
@@ -1523,7 +1551,8 @@ function issueCard(
     | 'punctuation'
     | 'sentenceTypes'
     | 'paragraphs'
-    | 'essay',
+    | 'essay'
+    | 'style',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

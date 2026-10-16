@@ -8,7 +8,10 @@ export function essayInput(
   return {
     essayType: activity.essay?.type ?? 'argumentative',
     mode: activity.type === 'ESSAY_OUTLINE' ? 'outline' : (activity.essay?.part ?? 'essay'),
-    counterclaim: Boolean(activity.essay?.counterclaim || activity.outlineBuilder?.counterclaim),
+    // Only an argumentative essay answers a counterclaim (a chosen informative or narrative essay doesn't).
+    counterclaim:
+      (activity.essay?.type ?? 'argumentative') === 'argumentative' &&
+      Boolean(activity.essay?.counterclaim || activity.outlineBuilder?.counterclaim),
     thesis: activity.essay?.thesis ?? null,
   };
 }

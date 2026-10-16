@@ -1,0 +1,56 @@
+{
+  "slug": "essay-final-draft",
+  "order": 5,
+  "title": "The Final Essay Draft",
+  "estMinutes": 70,
+  "focusSkills": ["essay", "grammar"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You can argue, explain or tell a story. Which kind of essay do you enjoy writing most? Why?",
+      "placeholder": "I enjoy…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Choose your prompt",
+          "body": "Your final essay can be argumentative, informative or narrative: choose the prompt you know the most about. The Coach, the essay map and Quill check your essay as the kind you choose."
+        },
+        {
+          "kind": "definition",
+          "title": "Plan, then draft",
+          "body": "Use the outline builder to plan every part, then press “Start my essay from the outline” and draft every paragraph. Don’t stop to polish: getting it all down is the goal today."
+        },
+        {
+          "kind": "definition",
+          "title": "Your draft carries on",
+          "body": "In the last lesson, your final essay starts from this draft, so you can revise it instead of starting again."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e15.prompt-sort", "e15.process-sequence", "e15.draft-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e15.final-draft"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Why did you choose this prompt?",
+        "Which part of your draft needs the most work?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

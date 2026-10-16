@@ -1,0 +1,57 @@
+{
+  "slug": "essay-clarity-conciseness",
+  "order": 2,
+  "title": "Clarity & Conciseness",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "grammar"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Say this in five words or fewer: “At this point in time, due to the fact that it is raining, we are unable to go outside.”",
+      "placeholder": "In five words:"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Every word does a job",
+          "body": "Concise writing uses the fewest words that keep the meaning. Wordy phrases slow the reader down: in order to → to, due to the fact that → because, has the ability to → can, at this point in time → now."
+        },
+        {
+          "kind": "definition",
+          "title": "Start with your point",
+          "body": "Cut throat-clearing phrases: “It is important to note that…”, “The reason why is because…”, “Needless to say…”. Begin with what matters."
+        },
+        {
+          "kind": "example",
+          "title": "Before and after",
+          "text": "Before: Due to the fact that landfills are filling up, each and every town has the ability to make a difference.\nAfter: Because landfills are filling up, every town can make a difference.",
+          "note": "20 words → 12 words, same meaning."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e15.wordy-sort", "e15.concise-blank", "e15.concise-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e15.concise-revise"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which wordy phrase do you use most?",
+        "How did cutting words change how the paragraph sounds?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}
