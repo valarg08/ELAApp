@@ -287,6 +287,9 @@ export interface EssayParagraph {
   echoesThesis?: boolean;
   copiesThesis?: boolean;
   finalThought?: Span;
+  /** Conclusion: the first sentence that restates the thesis, and the sentences between it and the final thought. */
+  restatement?: Span;
+  summary?: Span[];
   /** Body: the first piece of evidence and its kind (not narratives). */
   evidence?: { span: Span; kind: EvidenceKind };
   /** Body (narratives): time words that show the order of events. */
@@ -363,8 +366,8 @@ export function essayStructure(text: string, options: EssayOptions = {}): EssayS
   const all = sentences(text).map(trimSpan);
   const result: EssayParagraph[] = paras.map((p, i) => ({
     part:
-      options.part === 'body'
-        ? 'body'
+      options.part === 'body' || options.part === 'conclusion'
+        ? options.part
         : options.part === 'introduction'
           ? i === 0
             ? 'introduction'
@@ -439,12 +442,23 @@ export function essayStructure(text: string, options: EssayOptions = {}): EssayS
       const stems = contentStems(p.span.text);
       p.echoesThesis = overlap(stems, thesisStems) >= Math.min(2, thesisStems.size);
       p.copiesThesis = list.some((s) => normal(s.text) === normal(linkText));
+      p.restatement = list.find(
+        (s) => overlap(contentStems(s.text), thesisStems) >= Math.min(2, thesisStems.size),
+      );
     }
     if (p.part === 'conclusion') {
       const last = list.at(-1);
       const pattern = options.type === 'narrative' ? REFLECTION : FINAL_THOUGHT;
       const thought = list.toReversed().find((s) => pattern.test(lowerOf(s.text)));
       if (thought && last && list.indexOf(thought) >= list.length - 2) p.finalThought = thought;
+      const from = p.restatement ?? list[0];
+      p.summary = list.filter(
+        (s) =>
+          from &&
+          s.start > from.start &&
+          s.start !== p.finalThought?.start &&
+          !(p.finalThought && s.start > p.finalThought.start),
+      );
     }
   }
   return { outline: false, paragraphs: result, lines: [], ...(thesis ? { thesis } : {}) };
@@ -782,7 +796,7 @@ export function essayNotes(text: string, options: EssayOptions = {}): GrammarIss
         : 'Add a counterclaim and a rebuttal: what the other side says (“Some people argue…”), then why you still disagree (“However, …”).',
     });
   }
-  if (conclusion && e.thesis) {
+  if (conclusion && (e.thesis || options.thesis)) {
     if (conclusion.copiesThesis) {
       notes.push({
         kind: 'copied-thesis',
@@ -797,6 +811,20 @@ export function essayNotes(text: string, options: EssayOptions = {}): GrammarIss
           'Start your conclusion by restating your thesis in new words, so the reader remembers your main point.',
       });
     }
+  }
+  if (
+    options.part === 'conclusion' &&
+    !narrative &&
+    conclusion?.echoesThesis &&
+    !conclusion.copiesThesis &&
+    conclusion.summary?.length === 0
+  ) {
+    notes.push({
+      kind: 'no-summary',
+      span: conclusion.span,
+      message:
+        'After restating your thesis, sum up your main points in a sentence or two before your final thought.',
+    });
   }
   if (conclusion && !e.outline && !conclusion.finalThought) {
     notes.push({

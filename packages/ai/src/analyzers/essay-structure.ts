@@ -11,8 +11,8 @@ import type { AnalyzerDef, WritingContext } from '../types.js';
 export interface EssayStructureInput extends WritingContext {
   essayType: EssayType;
   /** An outline (labelled lines), a full essay, or one part of an essay (Unit 12 introductions, Unit 13 body paragraphs). */
-  mode: 'essay' | 'outline' | 'introduction' | 'body';
-  /** Body paragraph tasks: the essay's thesis, given by the task. */
+  mode: 'essay' | 'outline' | 'introduction' | 'body' | 'conclusion';
+  /** Body paragraph and conclusion tasks: the essay's thesis, given by the task. */
   thesis?: string | null;
   /** The task asks for a counterclaim and rebuttal. */
   counterclaim: boolean;
@@ -70,11 +70,12 @@ Task: check how the student's ESSAY (or essay OUTLINE) is structured, like a kin
 - nextIdea: one idea to make the structure stronger, starting "You could try", or null.
 If this is just an INTRODUCTION, judge the hook, background and thesis only (a strong introduction ends with its thesis): bodies = [], counterclaim and conclusion present = false with the note "Not part of this task.".
 If these are just BODY PARAGRAPHS, you are given the essay's thesis: thesis present = true with that thesis as quote; hook and background "Not part of this task." (works and present = false); conclusion present = false with the note "Not part of this task."; judge each body paragraph's topic sentence, evidence (a fact, example or quote; narrative: details and time words that show the order of events) and how it explains the evidence, in its note; and the counterclaim and rebuttal.
+If this is just a CONCLUSION, you are given the essay's thesis: thesis present = true with that thesis as quote; hook, background, bodies and counterclaim are not part of the task (works and present = false, bodies = [], notes "Not part of this task."); judge the conclusion: restates (the thesis in new words, not copied), finalThought (narrative: a reflection), and in its note whether it sums up the main points.
 Judge structure only, not grammar or spelling. Outlines are notes: do not expect full paragraphs or a final thought there.`;
 
 export const essayStructureAnalyzer: AnalyzerDef<EssayStructureInput, EssayStructureResult> = {
   id: 'essay-structure',
-  version: 'essay-structure-3',
+  version: 'essay-structure-4',
   effort: 'medium',
   maxTokens: 1800,
   system: SYSTEM,
@@ -82,8 +83,10 @@ export const essayStructureAnalyzer: AnalyzerDef<EssayStructureInput, EssayStruc
   buildUser: (input) =>
     [
       `Kind of essay: ${input.essayType}`,
-      `This is: ${input.mode === 'outline' ? 'an outline' : input.mode === 'introduction' ? 'just an introduction' : input.mode === 'body' ? 'just body paragraphs' : 'a full essay'}`,
-      ...(input.mode === 'body' && input.thesis ? [`The essay's thesis: ${input.thesis}`] : []),
+      `This is: ${input.mode === 'outline' ? 'an outline' : input.mode === 'introduction' ? 'just an introduction' : input.mode === 'body' ? 'just body paragraphs' : input.mode === 'conclusion' ? 'just a conclusion' : 'a full essay'}`,
+      ...((input.mode === 'body' || input.mode === 'conclusion') && input.thesis
+        ? [`The essay's thesis: ${input.thesis}`]
+        : []),
       `Counterclaim asked for: ${input.counterclaim ? 'yes' : 'no'}`,
       writingBlock(input),
     ].join('\n'),
@@ -91,7 +94,9 @@ export const essayStructureAnalyzer: AnalyzerDef<EssayStructureInput, EssayStruc
     const options = {
       type: input.essayType,
       counterclaim: input.counterclaim,
-      ...(input.mode === 'introduction' || input.mode === 'body' ? { part: input.mode } : {}),
+      ...(input.mode === 'introduction' || input.mode === 'body' || input.mode === 'conclusion'
+        ? { part: input.mode }
+        : {}),
       ...(input.thesis ? { thesis: input.thesis } : {}),
     };
     const introOnly = input.mode === 'introduction';
@@ -110,6 +115,32 @@ export const essayStructureAnalyzer: AnalyzerDef<EssayStructureInput, EssayStruc
     const weak = notes.find((n) => n.kind === 'weak-thesis');
     const hookOk = intro?.hook && intro.hook.kind !== 'plain' && intro.hook.kind !== 'announcement';
     const notPart = 'Not part of this task.';
+    if (input.mode === 'conclusion') {
+      const c = e.paragraphs[0];
+      return {
+        thesis: { present: true, kind: 'claim', quote: input.thesis ?? null, note: notPart },
+        hook: { quote: null, works: false, note: notPart },
+        background: { present: false, quote: null, note: notPart },
+        bodies: [],
+        counterclaim: { present: false, rebutted: false, quote: null, note: notPart },
+        conclusion: {
+          present: c !== undefined,
+          restates: c?.echoesThesis === true && !c.copiesThesis,
+          finalThought: c?.finalThought !== undefined,
+          quote: c?.span.text.split(/(?<=[.!?])\s/)[0] ?? null,
+          note: c?.copiesThesis
+            ? 'Restate your thesis in new words instead of copying it.'
+            : c?.summary?.length || narrative
+              ? 'Your conclusion brings the reader back to your main point.'
+              : 'Sum up your main points in a sentence or two before your final thought.',
+        },
+        nextIdea: c?.finalThought
+          ? null
+          : narrative
+            ? 'You could try ending with what the experience taught you.'
+            : 'You could try ending with a call to act or a question for the reader.',
+      };
+    }
     if (bodyOnly) {
       return {
         thesis: { present: true, kind: 'claim', quote: input.thesis ?? null, note: notPart },

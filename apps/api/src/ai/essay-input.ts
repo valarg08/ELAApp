@@ -7,12 +7,7 @@ export function essayInput(
 ): Pick<EssayStructureInput, 'essayType' | 'mode' | 'counterclaim' | 'thesis'> {
   return {
     essayType: activity.essay?.type ?? 'argumentative',
-    mode:
-      activity.type === 'ESSAY_OUTLINE'
-        ? 'outline'
-        : activity.essay?.part === 'introduction' || activity.essay?.part === 'body'
-          ? activity.essay.part
-          : 'essay',
+    mode: activity.type === 'ESSAY_OUTLINE' ? 'outline' : (activity.essay?.part ?? 'essay'),
     counterclaim: Boolean(activity.essay?.counterclaim || activity.outlineBuilder?.counterclaim),
     thesis: activity.essay?.thesis ?? null,
   };

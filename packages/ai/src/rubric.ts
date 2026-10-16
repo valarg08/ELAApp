@@ -385,6 +385,221 @@ export const BODY_RUBRIC: Rubric = {
   ],
 };
 
+/** `conclusion.essay`: essay conclusions (Essay Unit 14 on, DESIGN.md §9.12). */
+export const CONCLUSION_RUBRIC: Rubric = {
+  key: 'conclusion.essay',
+  name: 'Essay conclusion',
+  maxScore: 100,
+  criteria: [
+    {
+      key: 'restatement',
+      label: 'Restated thesis',
+      description: 'The conclusion opens by restating the thesis (or focus) in new words.',
+      weight: 0.35,
+      levels: levels(
+        'No restatement, or the thesis copied word for word.',
+        'The thesis is there, but almost copied or only hinted at.',
+        'The thesis restated clearly in new words.',
+        'A fresh, confident restatement that shows how the essay proved it.',
+      ),
+    },
+    {
+      key: 'summary',
+      label: 'Summary of main points',
+      description: 'A sentence or two sum up the main points (narratives: what happened).',
+      weight: 0.2,
+      levels: levels(
+        'No summary: the conclusion jumps straight to the end.',
+        'A summary that lists too much or misses a main point.',
+        'A short summary of the main points.',
+        'A smooth summary that ties the points together.',
+      ),
+    },
+    {
+      key: 'finalThought',
+      label: 'Final thought',
+      description:
+        'The conclusion ends with a call to act, a look ahead, a question or (narratives) a reflection.',
+      weight: 0.3,
+      levels: levels(
+        'No final thought: the essay just stops.',
+        'A final thought that is vague or repeats the thesis.',
+        'A clear final thought that leaves the reader thinking.',
+        'A memorable final thought that fits the essay perfectly.',
+      ),
+    },
+    {
+      key: 'conventions',
+      label: 'Grammar and conventions',
+      description: 'Complete sentences, capitals, punctuation and spelling help the reader.',
+      weight: 0.15,
+      levels: levels(
+        'Errors often get in the way of meaning.',
+        'Some errors that sometimes distract.',
+        'Mostly correct; errors rarely distract.',
+        'Correct throughout, with varied sentences.',
+      ),
+    },
+  ],
+};
+
+/** The criteria every full-essay rubric shares (Essay Unit 14 on). */
+const essayShared = (organization: number, language: number, conventions: number) => [
+  {
+    key: 'organization',
+    label: 'Organization',
+    description:
+      'Introduction, body paragraphs and conclusion in a logical order, linked with transitions.',
+    weight: organization,
+    levels: levels(
+      'Parts are missing or out of order.',
+      'All the parts are there, but the order or links are weak.',
+      'A clear introduction, body and conclusion, linked with transitions.',
+      'Smooth, purposeful order; every paragraph leads to the next.',
+    ),
+  },
+  {
+    key: 'language',
+    label: 'Language and style',
+    description: 'Precise words, varied sentences and a tone that fits the essay.',
+    weight: language,
+    levels: levels(
+      'Vague words and repeated sentence patterns.',
+      'Some precise words; sentences are often alike.',
+      'Precise words and varied sentences in a fitting tone.',
+      'Vivid, exact language and a confident, consistent voice.',
+    ),
+  },
+  {
+    key: 'conventions',
+    label: 'Grammar and conventions',
+    description: 'Complete sentences, capitals, punctuation and spelling help the reader.',
+    weight: conventions,
+    levels: levels(
+      'Errors often get in the way of meaning.',
+      'Some errors that sometimes distract.',
+      'Mostly correct; errors rarely distract.',
+      'Correct throughout, with varied sentences.',
+    ),
+  },
+];
+
+/** `argumentative.essay`: a whole argumentative essay. */
+export const ARGUMENTATIVE_ESSAY_RUBRIC: Rubric = {
+  key: 'argumentative.essay',
+  name: 'Argumentative essay',
+  maxScore: 100,
+  criteria: [
+    {
+      key: 'thesis',
+      label: 'Claim and thesis',
+      description: 'A hook leads to a clear, arguable thesis with reasons.',
+      weight: 0.2,
+      levels: levels(
+        'No clear claim.',
+        'A claim, but vague or without reasons.',
+        'A clear claim with reasons, at the end of the introduction.',
+        'A sharp claim that maps out the whole essay.',
+      ),
+    },
+    {
+      key: 'evidence',
+      label: 'Evidence and reasoning',
+      description: 'Each reason is backed by facts, examples or quotes and explained.',
+      weight: 0.25,
+      levels: levels(
+        'Opinions with no evidence.',
+        'Some evidence, but thin or unexplained.',
+        'Relevant evidence for each reason, explained.',
+        'Strong, varied evidence with explanations that build the argument.',
+      ),
+    },
+    {
+      key: 'counterclaim',
+      label: 'Counterclaim and rebuttal',
+      description: 'The other side is stated fairly and answered with evidence.',
+      weight: 0.15,
+      levels: levels(
+        'No counterclaim.',
+        'A counterclaim with a weak or missing rebuttal.',
+        'A fair counterclaim answered with a reason.',
+        'A strong counterclaim answered convincingly with evidence.',
+      ),
+    },
+    ...essayShared(0.2, 0.1, 0.1),
+  ],
+};
+
+/** `informative.essay`: a whole informative essay. */
+export const INFORMATIVE_ESSAY_RUBRIC: Rubric = {
+  key: 'informative.essay',
+  name: 'Informative essay',
+  maxScore: 100,
+  criteria: [
+    {
+      key: 'thesis',
+      label: 'Thesis and focus',
+      description: 'The thesis names the topic and the parts the essay explains.',
+      weight: 0.2,
+      levels: levels(
+        'No clear topic or thesis.',
+        'A topic, but the parts are unclear.',
+        'A clear thesis that names the topic and its parts.',
+        'A precise thesis that previews every body paragraph.',
+      ),
+    },
+    {
+      key: 'evidence',
+      label: 'Explanation and evidence',
+      description: 'Each part is explained with accurate facts, examples and details.',
+      weight: 0.3,
+      levels: levels(
+        'Little explanation or few facts.',
+        'Some facts, but thin or not explained.',
+        'Each part explained with accurate facts and examples.',
+        'Rich, well-chosen facts and examples, clearly explained.',
+      ),
+    },
+    ...essayShared(0.25, 0.15, 0.1),
+  ],
+};
+
+/** `narrative.essay`: a whole narrative (personal) essay. */
+export const NARRATIVE_ESSAY_RUBRIC: Rubric = {
+  key: 'narrative.essay',
+  name: 'Narrative essay',
+  maxScore: 100,
+  criteria: [
+    {
+      key: 'thesis',
+      label: 'Focus and meaning',
+      description:
+        'The essay shows what the experience taught or changed, and reflects on it at the end.',
+      weight: 0.2,
+      levels: levels(
+        'No clear focus: just a list of events.',
+        'A focus, but the story drifts from it.',
+        'A clear focus the events lead toward, with a reflection.',
+        'A thoughtful focus and a reflection that gives the story real meaning.',
+      ),
+    },
+    {
+      key: 'evidence',
+      label: 'Events and details',
+      description:
+        'Events in order with time words, and details of what the writer saw, heard and felt.',
+      weight: 0.3,
+      levels: levels(
+        'Events are confusing or have no details.',
+        'Events in order, but few details.',
+        'Clear events in order with sensory details and time words.',
+        'Vivid, well-paced events that pull the reader in.',
+      ),
+    },
+    ...essayShared(0.25, 0.15, 0.1),
+  ],
+};
+
 /** total = Σ level × weight, scaled to maxScore (level 4 everywhere = maxScore). */
 export function totalScore(rubric: Rubric, levelsByKey: Record<string, number>): number {
   const weighted = rubric.criteria.reduce(

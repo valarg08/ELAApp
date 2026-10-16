@@ -1,0 +1,56 @@
+{
+  "slug": "essay-informative-essay",
+  "order": 3,
+  "title": "The Informative Essay",
+  "estMinutes": 60,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "What is something you know so well you could teach it to a younger student?",
+      "placeholder": "I could teach…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Five paragraphs that explain",
+          "body": "Introduction (hook, background, a thesis naming three parts) → three body paragraphs, one per part, with facts and examples → a conclusion that restates and leaves a final thought."
+        },
+        {
+          "kind": "definition",
+          "title": "Plan, then write",
+          "body": "Use the outline builder to plan each part, then press “Start my essay from the outline” to turn your plan into paragraphs. Build each paragraph out into full sentences."
+        },
+        {
+          "kind": "definition",
+          "title": "Watch the essay map",
+          "body": "The essay map marks your hook, thesis, topic sentences, evidence and conclusion as you write. Fix every ! before you submit."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e14.inf-parts-sort", "e14.inf-mc", "e14.inf-sequence"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e14.inf-essay"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which body paragraph was easiest to write? Which was hardest?",
+        "What did you change after checking the essay map?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

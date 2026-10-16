@@ -17,6 +17,7 @@ import { Proofread, normaliseForProofread, occurrences } from './proofread.js';
 import { WritingConstraints } from './constraints.js';
 import { CONFLICT_TYPE_IDS, type ConflictTypeId, PlotPlan } from './plot.js';
 import { ParagraphBuilder, ParagraphPlan } from './paragraph.js';
+import { Checklist } from './checklist.js';
 import { EssayConfig, OutlineBuilder, OutlinePlan } from './outline.js';
 
 /**
@@ -346,6 +347,7 @@ export const WRITING_ACTIVITY_TYPES = [
   'PARAGRAPH',
   'ESSAY_OUTLINE',
   'ESSAY_PART',
+  'ESSAY',
 ] as const;
 
 /**
@@ -490,6 +492,8 @@ export const WritingActivity = z.object({
   essay: EssayConfig.optional(),
   /** Essay Writing: the outline builder (see `OutlineBuilder`). */
   outlineBuilder: OutlineBuilder.optional(),
+  /** Essay Writing (Unit 14 on): a checklist to edit a whole essay against (see `Checklist`). */
+  checklist: Checklist.optional(),
   /** Essay Writing: the grammar this activity practises; the Coach and Quill look for it. */
   grammarFocus: z.array(z.enum(GRAMMAR_FEATURES)).min(1).max(4).optional(),
 });
@@ -636,10 +640,11 @@ export const PARAGRAPH_ACTIVITY_TYPES: readonly WritingActivity['type'][] = ['PA
 export const ESSAY_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
   'ESSAY_OUTLINE',
   'ESSAY_PART',
+  'ESSAY',
 ];
 
 /** Activities with an outline builder: outlines (and, from Unit 14, whole essays). */
-export const OUTLINE_BUILDER_TYPES: readonly WritingActivity['type'][] = ['ESSAY_OUTLINE'];
+export const OUTLINE_BUILDER_TYPES: readonly WritingActivity['type'][] = ['ESSAY_OUTLINE', 'ESSAY'];
 
 export const MAX_SYLLABLE_OVERRIDES = 60;
 
@@ -993,8 +998,22 @@ export function validateUnitBundle({
       !(a.type === 'ESSAY_PART' && a.essay?.part === 'body')
     )
       errors.push(`${a.key}: paragraphBuilder is for PARAGRAPH and body paragraph activities`);
-    if (isWritingActivity(a) && a.essay?.part === 'body' && !a.essay.thesis)
-      errors.push(`${a.key}: body paragraph tasks need essay.thesis to link back to`);
+    if (
+      isWritingActivity(a) &&
+      (a.essay?.part === 'body' || a.essay?.part === 'conclusion') &&
+      !a.essay.thesis
+    )
+      errors.push(
+        `${a.key}: body paragraph and conclusion tasks need essay.thesis to link back to`,
+      );
+    if (isWritingActivity(a) && a.checklist && a.type !== 'ESSAY')
+      errors.push(`${a.key}: checklist is for ESSAY activities`);
+    if (isWritingActivity(a) && a.checklist) {
+      const ids = a.checklist.items.map((i) => i.id);
+      if (new Set(ids).size !== ids.length) errors.push(`${a.key}: duplicate checklist item ids`);
+      if (a.checklist.items.some((i) => i.auto === 'counterclaim') && !a.essay?.counterclaim)
+        errors.push(`${a.key}: the counterclaim check needs essay.counterclaim`);
+    }
     if (isWritingActivity(a) && a.outlineBuilder && !OUTLINE_BUILDER_TYPES.includes(a.type))
       errors.push(`${a.key}: outlineBuilder is for essay and outline activities`);
     if (isWritingActivity(a) && (a.type === 'ESSAY_PART') !== (a.essay?.part !== undefined))

@@ -524,7 +524,8 @@ export interface GrammarIssue {
     | 'no-hook'
     | 'no-background'
     | 'thesis-not-last'
-    | 'no-time-words';
+    | 'no-time-words'
+    | 'no-summary';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;

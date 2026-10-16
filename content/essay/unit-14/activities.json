@@ -1,0 +1,1722 @@
+[
+  {
+    "key": "e14.restate-sort",
+    "type": "SORT",
+    "title": "Restated, copied or off topic?",
+    "instructions": "Thesis: “Our school should start a community garden because it teaches science, improves meals and brings students together.” Sort each possible first sentence of the conclusion.",
+    "buckets": [
+      {
+        "id": "restates",
+        "label": "Restates it in new words"
+      },
+      {
+        "id": "copies",
+        "label": "Copies it"
+      },
+      {
+        "id": "off",
+        "label": "Off the thesis"
+      }
+    ],
+    "items": [
+      {
+        "id": "r1",
+        "text": "A school garden would turn our lessons, our lunches and our friendships into something better.",
+        "bucketId": "restates"
+      },
+      {
+        "id": "r2",
+        "text": "Growing a garden would help students learn science, eat well and work together.",
+        "bucketId": "restates"
+      },
+      {
+        "id": "c1",
+        "text": "Our school should start a community garden because it teaches science, improves meals and brings students together.",
+        "bucketId": "copies"
+      },
+      {
+        "id": "c2",
+        "text": "Our school should start a community garden because it teaches science, improves meals and brings students together!",
+        "bucketId": "copies"
+      },
+      {
+        "id": "o1",
+        "text": "Our school also needs a bigger library.",
+        "bucketId": "off"
+      },
+      {
+        "id": "o2",
+        "text": "In conclusion, that is the end of my essay.",
+        "bucketId": "off"
+      }
+    ]
+  },
+  {
+    "key": "e14.restate-blank",
+    "type": "FILL_BLANK",
+    "title": "Say it again, differently",
+    "instructions": "Choose the words that restate each thesis without copying it.",
+    "items": [
+      {
+        "id": "garden",
+        "sentence": "Thesis: “Our school should start a garden.” Restated: A garden is a ___ our school should make.",
+        "choices": ["smart change", "garden", "thesis"],
+        "answers": ["smart change", "good investment"],
+        "hint": "Which words say the same idea in a new way?",
+        "explanation": "New words, same claim."
+      },
+      {
+        "id": "sleep",
+        "sentence": "Thesis: “Sleep affects learning in three ways.” Restated: Sleep shapes ___ students learn.",
+        "choices": ["how well", "sleep", "three"],
+        "answers": ["how well"],
+        "hint": "Which words keep the meaning?",
+        "explanation": "“Sleep shapes how well students learn” keeps the focus in new words."
+      },
+      {
+        "id": "clothes",
+        "sentence": "Thesis: “Students should choose their own clothes.” Restated: Students deserve the ___ to decide what they wear.",
+        "choices": ["freedom", "clothes", "uniform"],
+        "answers": ["freedom", "right"],
+        "hint": "Which word turns “choose” into a new phrase?",
+        "explanation": "“The freedom to decide” restates “choose” without copying."
+      }
+    ]
+  },
+  {
+    "key": "e14.restate-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Restating the thesis",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What is the first job of a conclusion?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Restate the thesis in new words"
+          },
+          {
+            "id": "b",
+            "text": "Add a brand-new reason"
+          },
+          {
+            "id": "c",
+            "text": "Tell a new story"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The conclusion reminds the reader of the main point."
+      },
+      {
+        "id": "q2",
+        "prompt": "Why not copy the thesis word for word?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It sounds repetitive and shows nothing new"
+          },
+          {
+            "id": "b",
+            "text": "It is against the law"
+          },
+          {
+            "id": "c",
+            "text": "It makes the essay too long"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "New words show you understand your own point."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which is the weakest way to start a conclusion?",
+        "options": [
+          {
+            "id": "a",
+            "text": "In conclusion, this was my essay about gardens."
+          },
+          {
+            "id": "b",
+            "text": "A garden would make our school healthier and happier."
+          },
+          {
+            "id": "c",
+            "text": "Growing food together would change our school for the better."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Announcing the end says nothing about the thesis."
+      }
+    ]
+  },
+  {
+    "key": "e14.restate-set",
+    "type": "SENTENCE_SET",
+    "title": "Three restatements",
+    "prompt": "Restate each thesis in new words, the way you would at the start of a conclusion.",
+    "tips": [
+      "Keep the same claim or focus, with a claim word like should, deserve, need or better.",
+      "Change the words: swap synonyms, change the order, combine the reasons."
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 120,
+      "minSentences": 3
+    },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["thesis-statement"],
+    "sentenceSet": {
+      "label": "Your three restatements",
+      "sentences": [
+        {
+          "ask": "Thesis: “Our school should start a community garden because it teaches science, improves meals and brings students together.”",
+          "needs": ["thesis-statement"]
+        },
+        {
+          "ask": "Thesis: “Students should be allowed to choose their own clothes because it saves families money, lets students stay comfortable and encourages self-expression.”",
+          "needs": ["thesis-statement"]
+        },
+        {
+          "ask": "Thesis: “Every student should learn to swim because it builds confidence and saves lives.”",
+          "needs": ["thesis-statement"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e14.final-sort",
+    "type": "SORT",
+    "title": "A strong ending?",
+    "instructions": "Sort each last sentence of a conclusion.",
+    "buckets": [
+      {
+        "id": "strong",
+        "label": "Strong final thought"
+      },
+      {
+        "id": "weak",
+        "label": "Weak ending"
+      }
+    ],
+    "items": [
+      {
+        "id": "s1",
+        "text": "Let’s ask the principal for a small plot of land this spring.",
+        "bucketId": "strong"
+      },
+      {
+        "id": "s2",
+        "text": "Imagine a lunch line full of food we grew ourselves.",
+        "bucketId": "strong"
+      },
+      {
+        "id": "s3",
+        "text": "If we start today, next year’s students will thank us.",
+        "bucketId": "strong"
+      },
+      {
+        "id": "w1",
+        "text": "That is all I have to say.",
+        "bucketId": "weak"
+      },
+      {
+        "id": "w2",
+        "text": "Thank you for reading my essay.",
+        "bucketId": "weak"
+      },
+      {
+        "id": "w3",
+        "text": "Also, gardens need water.",
+        "bucketId": "weak"
+      }
+    ]
+  },
+  {
+    "key": "e14.ending-sequence",
+    "type": "SEQUENCE",
+    "title": "Build a conclusion",
+    "instructions": "Put the sentences in order: restated thesis, summary, final thought.",
+    "items": [
+      {
+        "id": "restate",
+        "text": "A community garden would make our school a better place to learn and eat."
+      },
+      {
+        "id": "summary1",
+        "text": "It would turn science lessons into real experiments and put fresh food on our plates."
+      },
+      {
+        "id": "summary2",
+        "text": "Most of all, it would give students a reason to work together."
+      },
+      {
+        "id": "final",
+        "text": "Let’s ask the principal for a small plot of land this spring."
+      }
+    ],
+    "labels": ["Restated thesis", "Summary", "Summary", "Final thought"],
+    "explanation": "Restate → sum up the main points → leave the reader with a final thought."
+  },
+  {
+    "key": "e14.final-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Summary and final thought",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What does the summary in a conclusion do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reminds the reader of the main points in a sentence or two"
+          },
+          {
+            "id": "b",
+            "text": "Adds new evidence"
+          },
+          {
+            "id": "c",
+            "text": "Copies every topic sentence"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Short and complete: just the main points."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which is a call to action?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Write to the school board this week and ask for a garden."
+          },
+          {
+            "id": "b",
+            "text": "Gardens are green."
+          },
+          {
+            "id": "c",
+            "text": "I wrote about gardens."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A call to action asks the reader to do something."
+      },
+      {
+        "id": "q3",
+        "prompt": "What should a conclusion NOT do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Bring in a brand-new reason"
+          },
+          {
+            "id": "b",
+            "text": "Restate the thesis"
+          },
+          {
+            "id": "c",
+            "text": "End with a final thought"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "New reasons belong in body paragraphs."
+      }
+    ]
+  },
+  {
+    "key": "e14.conclusion",
+    "type": "ESSAY_PART",
+    "title": "Write a conclusion",
+    "prompt": "Thesis: “Students should be allowed to choose their own clothes because it saves families money, lets students stay comfortable and encourages self-expression.” Write the conclusion of this argumentative essay: restate the thesis in new words, sum up the three reasons in a sentence or two, and end with a final thought (a call to act, a look ahead or a question). One paragraph.",
+    "tips": [
+      "Restate: say the claim again in new words. Don’t copy the thesis.",
+      "Summary: money, comfort, self-expression.",
+      "Final thought: “Let’s…”, “Imagine…”, “If we…, then…”."
+    ],
+    "constraints": {
+      "minWords": 40,
+      "maxWords": 150,
+      "minSentences": 3,
+      "maxParagraphs": 1
+    },
+    "analyzers": ["essay", "structure", "punctuation"],
+    "essay": {
+      "type": "argumentative",
+      "part": "conclusion",
+      "thesis": "Students should be allowed to choose their own clothes because it saves families money, lets students stay comfortable and encourages self-expression."
+    },
+    "grammarFocus": ["thesis-statement", "final-thought"]
+  },
+  {
+    "key": "e14.inf-parts-sort",
+    "type": "SORT",
+    "title": "Where does it go?",
+    "instructions": "An informative essay explains how honeybees help farms. Sort each sentence into the part of the essay it belongs in.",
+    "buckets": [
+      {
+        "id": "intro",
+        "label": "Introduction"
+      },
+      {
+        "id": "body",
+        "label": "Body paragraph"
+      },
+      {
+        "id": "conclusion",
+        "label": "Conclusion"
+      }
+    ],
+    "items": [
+      {
+        "id": "i1",
+        "text": "Did you know that one in three bites of food depends on pollinators?",
+        "bucketId": "intro"
+      },
+      {
+        "id": "i2",
+        "text": "Honeybees help farms in three ways: they pollinate crops, make honey and support wildlife.",
+        "bucketId": "intro"
+      },
+      {
+        "id": "b1",
+        "text": "As bees feed, they carry pollen from flower to flower on their legs.",
+        "bucketId": "body"
+      },
+      {
+        "id": "b2",
+        "text": "A strong hive can make more than 25 kilograms of honey in a year.",
+        "bucketId": "body"
+      },
+      {
+        "id": "c1",
+        "text": "Without honeybees, farms would grow less food, earn less money and host less wildlife.",
+        "bucketId": "conclusion"
+      },
+      {
+        "id": "c2",
+        "text": "Next time you eat an apple, thank a bee.",
+        "bucketId": "conclusion"
+      }
+    ]
+  },
+  {
+    "key": "e14.inf-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "The informative essay",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "How many body paragraphs does an informative essay with a three-part thesis need?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Three: one for each part"
+          },
+          {
+            "id": "b",
+            "text": "One"
+          },
+          {
+            "id": "c",
+            "text": "Ten"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One body paragraph per part."
+      },
+      {
+        "id": "q2",
+        "prompt": "What does an informative conclusion leave the reader with?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Why the topic matters, or something to look out for"
+          },
+          {
+            "id": "b",
+            "text": "A new part to learn about"
+          },
+          {
+            "id": "c",
+            "text": "An argument with the reader"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Explain, then leave a final thought."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which hook suits an informative essay about volcanoes?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Every day, about 20 volcanoes are erupting somewhere on Earth."
+          },
+          {
+            "id": "b",
+            "text": "In this essay I will talk about volcanoes."
+          },
+          {
+            "id": "c",
+            "text": "Volcanoes are my favourite."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A surprising fact suits an informative essay."
+      }
+    ]
+  },
+  {
+    "key": "e14.inf-sequence",
+    "type": "SEQUENCE",
+    "title": "Order the essay",
+    "instructions": "Put the first sentences of each paragraph in order to build an informative essay.",
+    "items": [
+      {
+        "id": "intro",
+        "text": "Volcanoes form in three stages: magma rises, pressure builds and the volcano erupts."
+      },
+      {
+        "id": "b1",
+        "text": "First, hot magma rises from deep inside the Earth."
+      },
+      {
+        "id": "b2",
+        "text": "Next, pressure builds as gas gets trapped in the magma."
+      },
+      {
+        "id": "b3",
+        "text": "Finally, the pressure bursts out in an eruption."
+      },
+      {
+        "id": "conclusion",
+        "text": "From rising magma to a roaring eruption, a volcano grows in three powerful steps."
+      }
+    ],
+    "labels": ["Introduction", "Body 1", "Body 2", "Body 3", "Conclusion"],
+    "explanation": "The body paragraphs follow the order of the thesis; the conclusion restates it in new words."
+  },
+  {
+    "key": "e14.inf-essay",
+    "type": "ESSAY",
+    "title": "Write an informative essay",
+    "prompt": "Write an informative essay that explains how a pet changes a family’s daily life (or choose another topic you know well: a sport, a hobby, a place). Use the outline builder to plan, press “Start my essay from the outline”, then write: an introduction (hook, background, thesis naming three parts), three body paragraphs with facts and examples, and a conclusion that restates and ends with a final thought. Check your essay map as you go.",
+    "tips": [
+      "Thesis: “… in three ways: …, … and ….”",
+      "Each body paragraph explains one part, with a fact or an example.",
+      "Explain, don’t argue: no “should”."
+    ],
+    "constraints": {
+      "minWords": 220,
+      "maxWords": 700,
+      "minParagraphs": 5,
+      "maxParagraphs": 7
+    },
+    "analyzers": ["essay", "structure", "punctuation"],
+    "essay": {
+      "type": "informative"
+    },
+    "outlineBuilder": {
+      "label": "Outline builder",
+      "bodies": 3
+    },
+    "grammarFocus": ["thesis-statement", "topic-sentence", "fact-evidence", "final-thought"]
+  },
+  {
+    "key": "e14.reflect-blank",
+    "type": "FILL_BLANK",
+    "title": "Reflection words",
+    "instructions": "Choose the words that turn the last sentence into a reflection.",
+    "items": [
+      {
+        "id": "learned",
+        "sentence": "That day, I ___ that being brave doesn’t mean not being scared.",
+        "choices": ["learned", "walked", "ate"],
+        "answers": ["learned", "realized"],
+        "hint": "Which word shows what the writer understood?",
+        "explanation": "“I learned” names the lesson."
+      },
+      {
+        "id": "ever",
+        "sentence": "___ that summer, I have never been afraid to ask for help.",
+        "choices": ["Ever since", "Because", "For example"],
+        "answers": ["Ever since"],
+        "hint": "Which words show a lasting change?",
+        "explanation": "“Ever since” shows how the writer changed."
+      },
+      {
+        "id": "now",
+        "sentence": "___ I understand why my grandmother kept every letter.",
+        "choices": ["Now", "First", "However"],
+        "answers": ["Now"],
+        "hint": "Which word looks back from today?",
+        "explanation": "“Now I understand” reflects on the past."
+      }
+    ]
+  },
+  {
+    "key": "e14.narr-sequence",
+    "type": "SEQUENCE",
+    "title": "A narrative essay",
+    "instructions": "Put the first sentences of each paragraph in order to build a narrative essay.",
+    "items": [
+      {
+        "id": "intro",
+        "text": "The day I forgot my lines in the school play taught me to laugh at myself."
+      },
+      {
+        "id": "b1",
+        "text": "At first, everything went perfectly in the first scene."
+      },
+      {
+        "id": "b2",
+        "text": "Then, in the middle of my big speech, my mind went completely blank."
+      },
+      {
+        "id": "b3",
+        "text": "Suddenly, I started laughing, and the audience laughed with me."
+      },
+      {
+        "id": "conclusion",
+        "text": "Ever since that night, I have known that a mistake is not the end of the world."
+      }
+    ],
+    "labels": ["Introduction (focus)", "Event 1", "Event 2", "Event 3", "Conclusion (reflection)"],
+    "explanation": "A narrative essay tells the events in order, then reflects on what they meant."
+  },
+  {
+    "key": "e14.narr-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "The narrative essay",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What does a narrative essay’s conclusion do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reflects on what the experience taught or changed"
+          },
+          {
+            "id": "b",
+            "text": "Argues with the reader"
+          },
+          {
+            "id": "c",
+            "text": "Lists facts and numbers"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A reflection gives the story its meaning."
+      },
+      {
+        "id": "q2",
+        "prompt": "How is a narrative essay different from a short story?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It is true, and it says what the experience meant"
+          },
+          {
+            "id": "b",
+            "text": "It has no events"
+          },
+          {
+            "id": "c",
+            "text": "It must have dragons"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A narrative essay is a true story with a focus."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which is the strongest focus for a narrative essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Losing the final match taught me that effort matters more than winning."
+          },
+          {
+            "id": "b",
+            "text": "I played football once."
+          },
+          {
+            "id": "c",
+            "text": "Football is a sport."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A focus names what the experience meant."
+      }
+    ]
+  },
+  {
+    "key": "e14.narr-essay",
+    "type": "ESSAY",
+    "title": "Write a narrative essay",
+    "prompt": "Write a narrative essay about a time something didn’t go as planned, and what it taught you. Use the outline builder to plan, press “Start my essay from the outline”, then write: an introduction that ends with your focus, two or three body paragraphs that tell the events in order with time words and details, and a conclusion that reflects on what you learned.",
+    "tips": [
+      "Focus: “The day … taught me …”.",
+      "Time words: At first, Then, Suddenly, After that, Finally.",
+      "Reflection: “I learned…”, “Ever since…”, “Now I understand…”."
+    ],
+    "constraints": {
+      "minWords": 200,
+      "maxWords": 700,
+      "minParagraphs": 4,
+      "maxParagraphs": 6
+    },
+    "analyzers": ["essay", "punctuation"],
+    "essay": {
+      "type": "narrative"
+    },
+    "outlineBuilder": {
+      "label": "Outline builder",
+      "bodies": 2
+    },
+    "grammarFocus": ["thesis-statement", "time-order", "final-thought"]
+  },
+  {
+    "key": "e14.plan-sort",
+    "type": "SORT",
+    "title": "Plan the argument",
+    "instructions": "Thesis: “Students should be allowed to choose their own clothes because it saves families money, lets students stay comfortable and encourages self-expression.” Sort each note into the part of the plan it belongs in.",
+    "buckets": [
+      {
+        "id": "reason",
+        "label": "Reason"
+      },
+      {
+        "id": "evidence",
+        "label": "Evidence"
+      },
+      {
+        "id": "counter",
+        "label": "The other side"
+      }
+    ],
+    "items": [
+      {
+        "id": "r1",
+        "text": "Choosing clothes saves families money.",
+        "bucketId": "reason"
+      },
+      {
+        "id": "r2",
+        "text": "Students stay comfortable in any weather.",
+        "bucketId": "reason"
+      },
+      {
+        "id": "e1",
+        "text": "A full uniform can cost more than $200 a year.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "e2",
+        "text": "For example, students could wear shorts on hot days.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "c1",
+        "text": "Some people argue that uniforms stop bullying about clothes.",
+        "bucketId": "counter"
+      },
+      {
+        "id": "c2",
+        "text": "However, students are teased about shoes and bags even with uniforms.",
+        "bucketId": "counter"
+      }
+    ]
+  },
+  {
+    "key": "e14.plan-sequence",
+    "type": "SEQUENCE",
+    "title": "Order the outline",
+    "instructions": "Put the lines of this argumentative essay outline in order.",
+    "items": [
+      {
+        "id": "hook",
+        "text": "Hook: Imagine shivering through a winter day in a thin uniform skirt."
+      },
+      {
+        "id": "thesis",
+        "text": "Thesis: Students should be allowed to choose their own clothes because it saves families money, lets students stay comfortable and encourages self-expression."
+      },
+      {
+        "id": "body1",
+        "text": "Body 1: Choosing clothes saves families money."
+      },
+      {
+        "id": "body2",
+        "text": "Body 2: Students stay comfortable in any weather."
+      },
+      {
+        "id": "counter",
+        "text": "Counterclaim: Some people argue that uniforms stop bullying."
+      },
+      {
+        "id": "rebuttal",
+        "text": "Rebuttal: However, students are teased about shoes and bags anyway."
+      },
+      {
+        "id": "conclusion",
+        "text": "Conclusion: Let students choose, and let the school focus on learning."
+      }
+    ],
+    "labels": ["Hook", "Thesis", "Body 1", "Body 2", "Counterclaim", "Rebuttal", "Conclusion"],
+    "explanation": "Hook and thesis → reasons with evidence → the other side and your answer → conclusion."
+  },
+  {
+    "key": "e14.plan-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Planning an argument",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Why plan an essay before writing it?",
+        "options": [
+          {
+            "id": "a",
+            "text": "So every paragraph has a job and the order makes sense"
+          },
+          {
+            "id": "b",
+            "text": "Because planning is faster than writing"
+          },
+          {
+            "id": "c",
+            "text": "So you can skip the conclusion"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A plan keeps the essay focused."
+      },
+      {
+        "id": "q2",
+        "prompt": "Where does the counterclaim usually go?",
+        "options": [
+          {
+            "id": "a",
+            "text": "After the reasons, before the conclusion"
+          },
+          {
+            "id": "b",
+            "text": "In the hook"
+          },
+          {
+            "id": "c",
+            "text": "After the conclusion"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Prove your side, then answer the other side."
+      },
+      {
+        "id": "q3",
+        "prompt": "What should each body point in an outline have?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Its own evidence"
+          },
+          {
+            "id": "b",
+            "text": "A different thesis"
+          },
+          {
+            "id": "c",
+            "text": "A question"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Every reason needs evidence."
+      }
+    ]
+  },
+  {
+    "key": "e14.arg-outline",
+    "type": "ESSAY_OUTLINE",
+    "title": "Plan an argumentative essay",
+    "prompt": "Should students be allowed to choose their own clothes for school? Plan an argumentative essay on this question with the outline builder: a hook, your thesis, two reasons each with evidence, a counterclaim with your rebuttal, and your conclusion. Then press “Put it in my writing” and check your essay map.",
+    "tips": [
+      "Pick your side first; your thesis can agree or disagree.",
+      "Evidence ideas: cost, comfort, weather, self-expression, school spirit.",
+      "The counterclaim is the strongest argument for the other side."
+    ],
+    "constraints": {
+      "minWords": 50,
+      "maxWords": 300,
+      "minSentences": 6
+    },
+    "analyzers": ["essay"],
+    "essay": {
+      "type": "argumentative",
+      "counterclaim": true
+    },
+    "outlineBuilder": {
+      "label": "Outline builder",
+      "bodies": 2,
+      "counterclaim": true
+    }
+  },
+  {
+    "key": "e14.transition-blank",
+    "type": "FILL_BLANK",
+    "title": "Link the paragraphs",
+    "instructions": "Choose the transition that starts each paragraph of an argumentative essay.",
+    "items": [
+      {
+        "id": "first",
+        "sentence": "___, choosing clothes saves families money.",
+        "choices": ["First", "In conclusion", "However"],
+        "answers": ["First", "To begin with"],
+        "hint": "Which word starts the first reason?",
+        "explanation": "“First” opens the first body paragraph."
+      },
+      {
+        "id": "also",
+        "sentence": "___, students stay comfortable in any weather.",
+        "choices": ["In addition", "For example", "In conclusion"],
+        "answers": ["In addition", "Also", "Second"],
+        "hint": "Which words add another reason?",
+        "explanation": "“In addition” adds the next reason."
+      },
+      {
+        "id": "some",
+        "sentence": "___ argue that uniforms stop bullying.",
+        "choices": ["Some people", "Finally", "For instance"],
+        "answers": ["Some people", "Critics"],
+        "hint": "Which words bring in the other side?",
+        "explanation": "“Some people argue” starts the counterclaim."
+      },
+      {
+        "id": "end",
+        "sentence": "___, letting students choose would make school fairer and happier.",
+        "choices": ["In the end", "For example", "First"],
+        "answers": ["In the end", "In conclusion", "Overall"],
+        "hint": "Which words begin the conclusion?",
+        "explanation": "“In the end” signals the conclusion."
+      }
+    ]
+  },
+  {
+    "key": "e14.arg-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "The argumentative essay",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What makes an argumentative essay convincing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reasons backed by evidence, and an answer to the other side"
+          },
+          {
+            "id": "b",
+            "text": "Using capital letters for important words"
+          },
+          {
+            "id": "c",
+            "text": "Being as long as possible"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Evidence and a rebuttal win readers over."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which tone suits an argumentative essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Confident and respectful"
+          },
+          {
+            "id": "b",
+            "text": "Rude to people who disagree"
+          },
+          {
+            "id": "c",
+            "text": "Unsure: “maybe, I guess”"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Respect the other side while you answer it."
+      },
+      {
+        "id": "q3",
+        "prompt": "How do you use the essay checklist?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Edit until every item is done, then read it aloud"
+          },
+          {
+            "id": "b",
+            "text": "Tick every box before writing"
+          },
+          {
+            "id": "c",
+            "text": "Ignore it until the end of the year"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The checklist guides your editing."
+      }
+    ]
+  },
+  {
+    "key": "e14.edit-sort",
+    "type": "SORT",
+    "title": "Fix it or keep it?",
+    "instructions": "While editing an argumentative essay, sort each sentence: keep it, or fix it.",
+    "buckets": [
+      {
+        "id": "keep",
+        "label": "Keep it"
+      },
+      {
+        "id": "fix",
+        "label": "Fix it"
+      }
+    ],
+    "items": [
+      {
+        "id": "k1",
+        "text": "According to a parent survey, uniforms cost families $200 a year.",
+        "bucketId": "keep"
+      },
+      {
+        "id": "k2",
+        "text": "This shows that choosing clothes would save families money.",
+        "bucketId": "keep"
+      },
+      {
+        "id": "k3",
+        "text": "However, students are teased about shoes and bags even with uniforms.",
+        "bucketId": "keep"
+      },
+      {
+        "id": "f1",
+        "text": "In this essay I will talk about uniforms.",
+        "bucketId": "fix"
+      },
+      {
+        "id": "f2",
+        "text": "Uniforms are bad and stuff.",
+        "bucketId": "fix"
+      },
+      {
+        "id": "f3",
+        "text": "Some people say uniforms stop bullying.",
+        "bucketId": "fix"
+      }
+    ]
+  },
+  {
+    "key": "e14.arg-essay",
+    "type": "ESSAY",
+    "title": "Write an argumentative essay",
+    "prompt": "Should students be allowed to choose their own clothes for school? Write your argumentative essay: use the outline builder (or your plan from the last lesson), press “Start my essay from the outline”, then write five paragraphs: introduction, two body paragraphs with evidence, a counterclaim paragraph with your rebuttal, and a conclusion. Edit with the essay checklist until every item is done.",
+    "tips": [
+      "Each body paragraph: topic sentence → evidence → explanation.",
+      "Counterclaim: Some people argue… However, …",
+      "Conclusion: restate, sum up, final thought."
+    ],
+    "constraints": {
+      "minWords": 250,
+      "maxWords": 800,
+      "minParagraphs": 5,
+      "maxParagraphs": 7
+    },
+    "analyzers": ["essay", "structure", "punctuation"],
+    "essay": {
+      "type": "argumentative",
+      "counterclaim": true
+    },
+    "outlineBuilder": {
+      "label": "Outline builder",
+      "bodies": 2,
+      "counterclaim": true
+    },
+    "checklist": {
+      "label": "Essay checklist",
+      "items": [
+        {
+          "id": "paragraphs",
+          "text": "Each part has its own paragraph: introduction, body paragraphs, conclusion.",
+          "auto": "paragraphs"
+        },
+        {
+          "id": "hook",
+          "text": "My introduction opens with a hook.",
+          "auto": "hook"
+        },
+        {
+          "id": "thesis",
+          "text": "My introduction ends with a clear thesis.",
+          "auto": "thesis"
+        },
+        {
+          "id": "topic-links",
+          "text": "Every body paragraph starts with a topic sentence that links to my thesis.",
+          "auto": "topic-links"
+        },
+        {
+          "id": "evidence",
+          "text": "Every body paragraph has evidence: a fact, an example or a quote.",
+          "auto": "evidence"
+        },
+        {
+          "id": "counterclaim",
+          "text": "I give the other side and answer it.",
+          "auto": "counterclaim"
+        },
+        {
+          "id": "restates",
+          "text": "My conclusion restates my thesis in new words.",
+          "auto": "restates"
+        },
+        {
+          "id": "final-thought",
+          "text": "My conclusion ends with a final thought.",
+          "auto": "final-thought"
+        },
+        {
+          "id": "conventions",
+          "text": "The Coach finds no grammar or punctuation mistakes.",
+          "auto": "conventions"
+        },
+        {
+          "id": "explained",
+          "text": "I explained every piece of evidence (This shows that…)."
+        },
+        {
+          "id": "transitions",
+          "text": "I used transitions to move between paragraphs."
+        },
+        {
+          "id": "precise",
+          "text": "I replaced vague words like good, bad, things and stuff."
+        },
+        {
+          "id": "aloud",
+          "text": "I read my essay aloud and fixed anything that sounded wrong."
+        }
+      ]
+    },
+    "grammarFocus": ["thesis-statement", "counterclaim", "rebuttal", "final-thought"]
+  },
+  {
+    "key": "e14.unit-check",
+    "type": "QUIZ",
+    "title": "Conclusions & Full Essays check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "r1",
+        "prompt": "What does a conclusion start with?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The thesis restated in new words"
+          },
+          {
+            "id": "b",
+            "text": "A brand-new reason"
+          },
+          {
+            "id": "c",
+            "text": "A hook question"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Remind the reader of the main point first.",
+        "skill": "restating"
+      },
+      {
+        "id": "r2",
+        "prompt": "Thesis: “Schools should have longer lunch breaks because students need rest and time to eat.” Which restates it?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A longer lunch would give students the rest and food they need."
+          },
+          {
+            "id": "b",
+            "text": "Schools should have longer lunch breaks because students need rest and time to eat."
+          },
+          {
+            "id": "c",
+            "text": "Lunch is at noon."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Same claim, new words.",
+        "skill": "restating"
+      },
+      {
+        "id": "r3",
+        "prompt": "What is wrong with “In conclusion, I have told you about lunch”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It announces instead of restating the thesis"
+          },
+          {
+            "id": "b",
+            "text": "It is too long"
+          },
+          {
+            "id": "c",
+            "text": "Nothing"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Restate the claim; don’t announce the end.",
+        "skill": "restating"
+      },
+      {
+        "id": "r4",
+        "prompt": "Why restate the thesis instead of copying it?",
+        "options": [
+          {
+            "id": "a",
+            "text": "New words sound fresh and show you understand your point"
+          },
+          {
+            "id": "b",
+            "text": "Copying is too short"
+          },
+          {
+            "id": "c",
+            "text": "Teachers like long words"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Copying sounds repetitive.",
+        "skill": "restating"
+      },
+      {
+        "id": "s1",
+        "prompt": "What comes after the restated thesis?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A short summary of the main points"
+          },
+          {
+            "id": "b",
+            "text": "A new piece of evidence"
+          },
+          {
+            "id": "c",
+            "text": "The hook"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Restate → summary → final thought.",
+        "skill": "summary and final thought"
+      },
+      {
+        "id": "s2",
+        "prompt": "Which is a strong final thought?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Imagine a school where every student has time to eat and rest."
+          },
+          {
+            "id": "b",
+            "text": "Thank you for reading."
+          },
+          {
+            "id": "c",
+            "text": "That is the end."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Imagine…” leaves the reader thinking.",
+        "skill": "summary and final thought"
+      },
+      {
+        "id": "s3",
+        "prompt": "Which is a call to action?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ask your principal for a longer lunch break this week."
+          },
+          {
+            "id": "b",
+            "text": "Lunch is important."
+          },
+          {
+            "id": "c",
+            "text": "Some people disagree."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A call to action asks the reader to do something.",
+        "skill": "summary and final thought"
+      },
+      {
+        "id": "s4",
+        "prompt": "What should a conclusion never add?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A new reason that wasn’t in the essay"
+          },
+          {
+            "id": "b",
+            "text": "A final thought"
+          },
+          {
+            "id": "c",
+            "text": "A restated thesis"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "New reasons belong in body paragraphs.",
+        "skill": "summary and final thought"
+      },
+      {
+        "id": "i1",
+        "prompt": "How many body paragraphs for a thesis with three parts?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Three"
+          },
+          {
+            "id": "b",
+            "text": "One"
+          },
+          {
+            "id": "c",
+            "text": "Five"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One body paragraph per part.",
+        "skill": "informative essays"
+      },
+      {
+        "id": "i2",
+        "prompt": "Which thesis suits an informative essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Recycling works in three steps: collecting, sorting and remaking."
+          },
+          {
+            "id": "b",
+            "text": "Everyone should recycle."
+          },
+          {
+            "id": "c",
+            "text": "Recycling is the best."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Informative theses name the parts; they don’t argue.",
+        "skill": "informative essays"
+      },
+      {
+        "id": "i3",
+        "prompt": "What do informative body paragraphs use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Facts, examples and explanations"
+          },
+          {
+            "id": "b",
+            "text": "Counterclaims"
+          },
+          {
+            "id": "c",
+            "text": "Only opinions"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Explain with accurate information.",
+        "skill": "informative essays"
+      },
+      {
+        "id": "i4",
+        "prompt": "Which is a good final thought for an informative essay about recycling?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Next time you toss a bottle, picture its journey to a new life."
+          },
+          {
+            "id": "b",
+            "text": "Recycling has three steps."
+          },
+          {
+            "id": "c",
+            "text": "In this essay I explained recycling."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A look ahead leaves the reader thinking.",
+        "skill": "informative essays"
+      },
+      {
+        "id": "n1",
+        "prompt": "What ends a narrative essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A reflection on what the experience taught or changed"
+          },
+          {
+            "id": "b",
+            "text": "A counterclaim"
+          },
+          {
+            "id": "c",
+            "text": "A statistic"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Reflect on the meaning.",
+        "skill": "narrative essays"
+      },
+      {
+        "id": "n2",
+        "prompt": "What keeps a narrative essay’s events clear?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Time words like First, Then, Finally"
+          },
+          {
+            "id": "b",
+            "text": "Quotes from experts"
+          },
+          {
+            "id": "c",
+            "text": "A rebuttal"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Time words show the order.",
+        "skill": "narrative essays"
+      },
+      {
+        "id": "n3",
+        "prompt": "Which is a reflection?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ever since that day, I check the weather before every hike."
+          },
+          {
+            "id": "b",
+            "text": "The hike was ten kilometres."
+          },
+          {
+            "id": "c",
+            "text": "Some people argue hiking is dangerous."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Ever since” shows a lasting change.",
+        "skill": "narrative essays"
+      },
+      {
+        "id": "n4",
+        "prompt": "Where does a narrative essay’s focus go?",
+        "options": [
+          {
+            "id": "a",
+            "text": "At the end of the introduction"
+          },
+          {
+            "id": "b",
+            "text": "In the middle of the last body paragraph"
+          },
+          {
+            "id": "c",
+            "text": "Nowhere"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Like a thesis, the focus ends the introduction.",
+        "skill": "narrative essays"
+      },
+      {
+        "id": "p1",
+        "prompt": "What is the first step in writing an argumentative essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Choose your side and plan your reasons"
+          },
+          {
+            "id": "b",
+            "text": "Write the conclusion"
+          },
+          {
+            "id": "c",
+            "text": "Check the spelling"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Plan, draft, then check.",
+        "skill": "planning"
+      },
+      {
+        "id": "p2",
+        "prompt": "In an outline, what goes under each body point?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Its evidence"
+          },
+          {
+            "id": "b",
+            "text": "A new thesis"
+          },
+          {
+            "id": "c",
+            "text": "The hook"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Every reason needs evidence.",
+        "skill": "planning"
+      },
+      {
+        "id": "p3",
+        "prompt": "Where does the counterclaim go in a five-paragraph argumentative essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The fourth paragraph, after the two reasons"
+          },
+          {
+            "id": "b",
+            "text": "The first paragraph"
+          },
+          {
+            "id": "c",
+            "text": "After the conclusion"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Reasons first, then the other side, then the conclusion.",
+        "skill": "planning"
+      },
+      {
+        "id": "a1",
+        "prompt": "What does the essay checklist help you do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Edit your essay part by part"
+          },
+          {
+            "id": "b",
+            "text": "Write faster"
+          },
+          {
+            "id": "c",
+            "text": "Skip the conclusion"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Use it to check each part.",
+        "skill": "argumentative essays"
+      },
+      {
+        "id": "a2",
+        "prompt": "Which sentence should be fixed while editing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "In this essay I will talk about lunch."
+          },
+          {
+            "id": "b",
+            "text": "A longer lunch would help students focus in the afternoon."
+          },
+          {
+            "id": "c",
+            "text": "However, a longer break would not shorten lessons much."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Replace announcements with a hook or a thesis.",
+        "skill": "argumentative essays"
+      },
+      {
+        "id": "a3",
+        "prompt": "What makes a counterclaim paragraph strong?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A fair counterclaim and a rebuttal with evidence"
+          },
+          {
+            "id": "b",
+            "text": "Insulting the other side"
+          },
+          {
+            "id": "c",
+            "text": "Agreeing with the other side"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Answer the other side with evidence.",
+        "skill": "argumentative essays"
+      },
+      {
+        "id": "a4",
+        "prompt": "Which transition starts the conclusion?",
+        "options": [
+          {
+            "id": "a",
+            "text": "In the end"
+          },
+          {
+            "id": "b",
+            "text": "For example"
+          },
+          {
+            "id": "c",
+            "text": "First"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“In the end” signals the conclusion.",
+        "skill": "argumentative essays"
+      },
+      {
+        "id": "a5",
+        "prompt": "Why read your essay aloud when editing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "You hear missing words and sentences that don’t flow"
+          },
+          {
+            "id": "b",
+            "text": "It makes the essay longer"
+          },
+          {
+            "id": "c",
+            "text": "Teachers require it"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Your ear catches what your eyes skip.",
+        "skill": "argumentative essays"
+      }
+    ]
+  },
+  {
+    "key": "e14.check-essay",
+    "type": "ESSAY",
+    "title": "Write and edit an argumentative essay",
+    "prompt": "Should students have a longer lunch break? Write an argumentative essay of five paragraphs: an introduction (hook, background, thesis), two body paragraphs with evidence and explanations, a counterclaim paragraph with your rebuttal, and a conclusion (restate, sum up, final thought). Plan with the outline builder if it helps. Then edit with the essay checklist until every item is done, and submit.",
+    "tips": [
+      "Ideas: time to eat slowly, rest before afternoon lessons, time to play and make friends, clubs at lunch.",
+      "Counterclaim ideas: a longer day, less learning time.",
+      "Use the checklist: it ticks the parts it can check as you write."
+    ],
+    "constraints": {
+      "minWords": 250,
+      "maxWords": 800,
+      "minParagraphs": 5,
+      "maxParagraphs": 7
+    },
+    "analyzers": ["essay", "structure", "punctuation"],
+    "essay": {
+      "type": "argumentative",
+      "counterclaim": true
+    },
+    "outlineBuilder": {
+      "label": "Outline builder",
+      "bodies": 2,
+      "counterclaim": true
+    },
+    "checklist": {
+      "label": "Essay checklist",
+      "items": [
+        {
+          "id": "paragraphs",
+          "text": "Each part has its own paragraph: introduction, body paragraphs, conclusion.",
+          "auto": "paragraphs"
+        },
+        {
+          "id": "hook",
+          "text": "My introduction opens with a hook.",
+          "auto": "hook"
+        },
+        {
+          "id": "thesis",
+          "text": "My introduction ends with a clear thesis.",
+          "auto": "thesis"
+        },
+        {
+          "id": "topic-links",
+          "text": "Every body paragraph starts with a topic sentence that links to my thesis.",
+          "auto": "topic-links"
+        },
+        {
+          "id": "evidence",
+          "text": "Every body paragraph has evidence: a fact, an example or a quote.",
+          "auto": "evidence"
+        },
+        {
+          "id": "counterclaim",
+          "text": "I give the other side and answer it.",
+          "auto": "counterclaim"
+        },
+        {
+          "id": "restates",
+          "text": "My conclusion restates my thesis in new words.",
+          "auto": "restates"
+        },
+        {
+          "id": "final-thought",
+          "text": "My conclusion ends with a final thought.",
+          "auto": "final-thought"
+        },
+        {
+          "id": "conventions",
+          "text": "The Coach finds no grammar or punctuation mistakes.",
+          "auto": "conventions"
+        },
+        {
+          "id": "explained",
+          "text": "I explained every piece of evidence (This shows that…)."
+        },
+        {
+          "id": "transitions",
+          "text": "I used transitions to move between paragraphs."
+        },
+        {
+          "id": "precise",
+          "text": "I replaced vague words like good, bad, things and stuff."
+        },
+        {
+          "id": "aloud",
+          "text": "I read my essay aloud and fixed anything that sounded wrong."
+        }
+      ]
+    },
+    "grammarFocus": ["thesis-statement", "counterclaim", "rebuttal", "final-thought"]
+  }
+]

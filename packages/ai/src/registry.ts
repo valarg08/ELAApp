@@ -13,8 +13,12 @@ import { essayStructureAnalyzer } from './analyzers/essay-structure.js';
 import {
   DEFAULT_RUBRIC,
   GRAMMAR_RUBRIC,
+  ARGUMENTATIVE_ESSAY_RUBRIC,
   BODY_RUBRIC,
+  CONCLUSION_RUBRIC,
+  INFORMATIVE_ESSAY_RUBRIC,
   INTRODUCTION_RUBRIC,
+  NARRATIVE_ESSAY_RUBRIC,
   OUTLINE_RUBRIC,
   PARAGRAPH_RUBRIC,
   type Rubric,
@@ -82,22 +86,32 @@ const BY_ACTIVITY_TYPE: Record<string, LiveAnalyzerId[]> = {
   PARAGRAPH: ['paragraph-structure'],
   ESSAY_OUTLINE: ['essay-structure'],
   ESSAY_PART: ['essay-structure'],
+  ESSAY: ['essay-structure'],
 };
 
 /** Grammar activities use the grammar rubric, essay paragraphs and outlines their own, everything else the narrative one. */
 const GRAMMAR_TYPES: readonly string[] = ['SENTENCE_SET', 'GRAMMAR_PARAGRAPH'];
-export const rubricForActivity = (type: string, part?: string): Rubric =>
-  type === 'ESSAY_PART' && part === 'introduction'
-    ? INTRODUCTION_RUBRIC
-    : type === 'ESSAY_PART' && part === 'body'
-      ? BODY_RUBRIC
-      : type === 'PARAGRAPH'
-        ? PARAGRAPH_RUBRIC
-        : type === 'ESSAY_OUTLINE'
-          ? OUTLINE_RUBRIC
-          : GRAMMAR_TYPES.includes(type)
-            ? GRAMMAR_RUBRIC
-            : DEFAULT_RUBRIC;
+const ESSAY_RUBRICS: Record<string, Rubric> = {
+  argumentative: ARGUMENTATIVE_ESSAY_RUBRIC,
+  informative: INFORMATIVE_ESSAY_RUBRIC,
+  narrative: NARRATIVE_ESSAY_RUBRIC,
+};
+export const rubricForActivity = (type: string, part?: string, essayType?: string): Rubric =>
+  type === 'ESSAY'
+    ? (ESSAY_RUBRICS[essayType ?? 'argumentative'] ?? ARGUMENTATIVE_ESSAY_RUBRIC)
+    : type === 'ESSAY_PART' && part === 'introduction'
+      ? INTRODUCTION_RUBRIC
+      : type === 'ESSAY_PART' && part === 'body'
+        ? BODY_RUBRIC
+        : type === 'ESSAY_PART' && part === 'conclusion'
+          ? CONCLUSION_RUBRIC
+          : type === 'PARAGRAPH'
+            ? PARAGRAPH_RUBRIC
+            : type === 'ESSAY_OUTLINE'
+              ? OUTLINE_RUBRIC
+              : GRAMMAR_TYPES.includes(type)
+                ? GRAMMAR_RUBRIC
+                : DEFAULT_RUBRIC;
 
 /** Activity types where "Can your reader tell?" also checks the character's want and fear. */
 export const WANT_FEAR_TYPES: readonly string[] = ['CHARACTER_SKETCH', 'FLAW_SCENE'];

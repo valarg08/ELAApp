@@ -7,6 +7,7 @@ import {
   SaveDraftRequest,
   SetConflictRequest,
   SetMoodRequest,
+  SetChecklistRequest,
   SetOutlineRequest,
   SetParagraphRequest,
   SetPlotRequest,
@@ -125,6 +126,17 @@ export class SubmissionsController {
     @Body({ schema: SetOutlineRequest }) body: SetOutlineRequest,
   ): Promise<SubmissionDetail> {
     return this.submissions.setOutline(user, id, body.outline);
+  }
+
+  /** The checklist items the student ticked (Essay Unit 14 on). */
+  @Roles('STUDENT')
+  @Put(':id/checklist')
+  setChecklist(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetChecklistRequest }) body: SetChecklistRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setChecklist(user, id, body.ticked);
   }
 
   /** The student's own syllable counts for words in their poem (Unit 7). */

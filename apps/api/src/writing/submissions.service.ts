@@ -40,6 +40,7 @@ import {
   validConflict,
   validMoods,
   validOutline,
+  validTicks,
   validParagraph,
   validPlot,
   validSyllables,
@@ -284,6 +285,21 @@ export class SubmissionsService {
       );
     }
     return this.saveChoices(current, { outline: validOutline(activity, plan) });
+  }
+
+  /** Save the checklist items the student ticked (Essay Unit 14 on; automatic items are never stored). */
+  async setChecklist(user: AuthUser, id: string, ticked: string[]): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    if (!activity.checklist) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'No checklist here',
+        'This activity doesn’t have a checklist.',
+      );
+    }
+    return this.saveChoices(current, { checklist: validTicks(activity.checklist, ticked) });
   }
 
   /** Save the tone aimed for on the activity's tone sliders (Unit 5; other scales are dropped). */
@@ -635,6 +651,7 @@ export class SubmissionsService {
       syllables: choicesOf(s).syllables,
       paragraph: choicesOf(s).paragraph,
       outline: choicesOf(s).outline,
+      checklist: choicesOf(s).checklist,
     };
   }
 }

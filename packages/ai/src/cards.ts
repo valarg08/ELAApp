@@ -505,9 +505,13 @@ export function essayPoints(
 ) {
   const introOnly = mode === 'introduction';
   const bodyOnly = mode === 'body';
+  // A conclusion task gives the thesis: judge the conclusion only.
+  const conclusionOnly = mode === 'conclusion';
   const strengths: (FeedbackPoint | null)[] = [];
   const nextSteps: (FeedbackPoint | null)[] = [];
-  if (bodyOnly) {
+  if (conclusionOnly) {
+    // The hook, thesis and bodies aren't part of the task.
+  } else if (bodyOnly) {
     // Body paragraph tasks give the thesis: judge the bodies and the counterclaim only.
     const linked = r.bodies.find((b) => b.supportsThesis);
     if (linked) {
@@ -528,8 +532,8 @@ export function essayPoints(
       anchored(text, { title: 'Sharpen your thesis', message: r.thesis.note }, r.thesis.quote),
     );
   }
-  if (bodyOnly) {
-    // No hook in a body paragraph.
+  if (bodyOnly || conclusionOnly) {
+    // No hook in a body paragraph or a conclusion.
   } else if (r.hook.works) {
     strengths.push(
       anchored(text, { title: 'A hook that grabs', message: r.hook.note }, r.hook.quote),

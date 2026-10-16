@@ -1,0 +1,57 @@
+{
+  "slug": "essay-planning-argument",
+  "order": 5,
+  "title": "Planning the Argumentative Essay",
+  "estMinutes": 45,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "If you had to convince your family to get a pet, what three reasons would you give? What would they say back?",
+      "placeholder": "My reasons… They would say…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Pick a side, then plan",
+          "body": "Choose your position, then plan before you write: hook, thesis, two reasons each with evidence, the other side and your answer, and the conclusion."
+        },
+        {
+          "kind": "example",
+          "title": "An argumentative outline",
+          "text": "Hook: Imagine shivering through a winter day in a thin uniform skirt.\nThesis: Students should be allowed to choose their own clothes because it saves families money, lets students stay comfortable and encourages self-expression.\nBody 1: … Evidence: …\nBody 2: … Evidence: …\nCounterclaim: … Rebuttal: …\nConclusion: …",
+          "note": "Each line becomes a paragraph (or part of one)."
+        },
+        {
+          "kind": "definition",
+          "title": "Plan the other side",
+          "body": "The strongest essays answer the strongest counterclaim. Ask yourself: what would someone who disagrees say first?"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e14.plan-sort", "e14.plan-sequence", "e14.plan-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e14.arg-outline"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which reason is your strongest? Should it go first or last?",
+        "How will you answer the other side?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

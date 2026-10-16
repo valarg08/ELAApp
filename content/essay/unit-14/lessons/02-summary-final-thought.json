@@ -1,0 +1,57 @@
+{
+  "slug": "essay-summary-final-thought",
+  "order": 2,
+  "title": "Summary & Final Thought",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "What is the last line of a speech, song or film that stayed with you? Why did it stick?",
+      "placeholder": "It stuck because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Sum up",
+          "body": "After the restated thesis, a sentence or two sum up the main points. Keep it short; no new reasons or evidence."
+        },
+        {
+          "kind": "definition",
+          "title": "Leave a final thought",
+          "body": "End with something that stays with the reader: a call to act (“Let’s…”), a look ahead (“If we…, next year…”), a question, or an image (“Imagine…”). Never “Thank you for reading.”"
+        },
+        {
+          "kind": "example",
+          "title": "A full conclusion",
+          "text": "A community garden would make our school a better place to learn and eat. It would turn science lessons into real experiments and put fresh food on our plates. Let’s ask the principal for a small plot of land this spring.",
+          "note": "Restated thesis → summary → call to action. The essay map marks all three."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e14.final-sort", "e14.ending-sequence", "e14.final-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e14.conclusion"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which kind of final thought did you choose? Why does it fit?",
+        "Read your conclusion aloud. Does it feel finished?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

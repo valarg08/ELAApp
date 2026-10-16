@@ -10,6 +10,7 @@ export * from './curriculum/content.js';
 export * from './curriculum/plot.js';
 export * from './curriculum/paragraph.js';
 export * from './curriculum/outline.js';
+export * from './curriculum/checklist.js';
 export * from './curriculum/proofread.js';
 export * from './curriculum/figurative.js';
 export * from './contracts/curriculum.js';

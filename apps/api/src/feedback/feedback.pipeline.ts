@@ -431,14 +431,20 @@ export class FeedbackPipeline {
     }
 
     // 4–5. Rubric score + composition.
-    const rubric = rubricForActivity(content.type, content.essay?.part);
+    const rubric = rubricForActivity(content.type, content.essay?.part, content.essay?.type);
     versions.push(rubricScoreAnalyzer.version);
     if (POETRY_ACTIVITY_TYPES.includes(content.type)) {
       notes.push(
         'this is a poem: line breaks are deliberate; judge rhythm and line breaks instead of sentences',
       );
     }
-    const rubricInput = { ...ctx, rubric, evidence, analyzerNotes: notes };
+    const rubricInput = {
+      ...ctx,
+      rubric,
+      evidence,
+      analyzerNotes: notes,
+      ...(content.essay ? { essay: essayOptions } : {}),
+    };
     const scored = await this.ai.run(rubricScoreAnalyzer, rubricInput, {
       ...meta,
       cacheScope: `${activity.key}|${rubric.key}`,

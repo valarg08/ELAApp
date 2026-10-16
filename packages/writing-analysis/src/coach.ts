@@ -58,6 +58,7 @@ import {
   THESIS_KIND_LABELS,
   essayNotes,
   essayStructure,
+  grammarIssues,
   grammarSkillOf,
   modifierIssues,
   nounIssues,
@@ -165,6 +166,7 @@ export type EssayMapItemKind =
   | 'counterclaim'
   | 'rebuttal'
   | 'restatement'
+  | 'summary'
   | 'final-thought';
 
 export interface EssayMapItem {
@@ -284,6 +286,52 @@ const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
  * Turn the deterministic checks into a few kid-friendly cards (DESIGN.md §8.1 tone: warm, specific,
  * "you could try…"). Pure and fast enough to run on every click in the browser.
  */
+/** What the essay checklist's automatic items check (Essay Unit 14 on, DESIGN.md §9.12). */
+export const ESSAY_CHECKS = [
+  'paragraphs',
+  'hook',
+  'thesis',
+  'topic-links',
+  'evidence',
+  'counterclaim',
+  'restates',
+  'final-thought',
+  'conventions',
+] as const;
+export type EssayCheck = (typeof ESSAY_CHECKS)[number];
+
+/** For a full essay, whether each automatic checklist item is done. */
+export function essayChecks(text: string, options: EssayOptions = {}): Record<EssayCheck, boolean> {
+  const e = essayStructure(text, options);
+  const notes = essayNotes(text, options).map((n) => n.kind);
+  const narrative = options.type === 'narrative';
+  const intro = e.paragraphs.find((p) => p.part === 'introduction');
+  const bodies = e.paragraphs.filter((p) => p.part === 'body' && !p.counterclaim);
+  const conclusion = e.paragraphs.find((p) => p.part === 'conclusion');
+  const hook = intro?.hook?.kind;
+  return {
+    paragraphs: !e.outline && e.paragraphs.length >= 4,
+    hook: hook !== undefined && hook !== 'plain' && hook !== 'announcement',
+    thesis: e.thesis !== undefined && !notes.includes('weak-thesis'),
+    'topic-links':
+      e.thesis !== undefined &&
+      bodies.length > 0 &&
+      (narrative || bodies.every((p) => p.topic?.linked !== false)),
+    evidence:
+      bodies.length > 0 &&
+      bodies.every((p) => (narrative ? (p.timeWords?.length ?? 0) > 0 : p.evidence !== undefined)),
+    counterclaim: e.paragraphs.some((p) => p.counterclaim && p.rebuttal),
+    restates:
+      conclusion !== undefined &&
+      !conclusion.copiesThesis &&
+      (narrative || conclusion.echoesThesis === true),
+    'final-thought': conclusion?.finalThought !== undefined,
+    // Tense shifts are hints to reread, not mistakes the checklist can count.
+    conventions:
+      text.trim().length > 0 && grammarIssues(text).every((i) => i.kind === 'tense-shift'),
+  };
+}
+
 export function buildCoachReport(text: string, options: CoachOptions = {}): CoachReport {
   const enabled = new Set(options.analyzers ?? DEFAULT_ANALYZERS);
   if (options.povLock) enabled.add('pov');
@@ -1276,6 +1324,7 @@ const ESSAY_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
   'no-background': 'Add background',
   'thesis-not-last': 'End with your thesis',
   'no-time-words': 'Show the order of events',
+  'no-summary': 'Sum up your main points',
   'copied-thesis': 'Restate, don’t copy',
   'no-restatement': 'Restate your thesis',
   'no-final-thought': 'End with a final thought',
@@ -1401,6 +1450,19 @@ function essayMap(e: EssayStructure, options: EssayOptions): EssayMap {
                 : `Doesn’t restate the ${narrative ? 'focus' : 'thesis'}`,
             ok: !p.copiesThesis && (p.echoesThesis || narrative),
           });
+        }
+        if (options.part === 'conclusion' && !narrative && p.echoesThesis && !p.copiesThesis) {
+          const n = p.summary?.length ?? 0;
+          items.push(
+            n > 0
+              ? {
+                  kind: 'summary',
+                  label: `Summary: ${n} sentence${n === 1 ? '' : 's'}`,
+                  ok: true,
+                  span: p.summary![0],
+                }
+              : { kind: 'summary', label: 'No summary yet', ok: false },
+          );
         }
         if (!e.outline) {
           items.push(

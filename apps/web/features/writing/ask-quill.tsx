@@ -86,7 +86,9 @@ export function AskQuill({
                   ? 'Is my introduction ready?'
                   : activity.essay?.part === 'body'
                     ? 'Do my body paragraphs prove the thesis?'
-                    : 'Is my essay structured well?',
+                    : activity.essay?.part === 'conclusion'
+                      ? 'Does my conclusion land?'
+                      : 'Is my essay structured well?',
           },
         ]
       : []),

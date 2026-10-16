@@ -34,6 +34,7 @@ import { SyllableMeter } from './syllable-meter';
 import { PerspectiveGuide } from './perspective-guide';
 import { SenseTracker } from './sense-tracker';
 import { ProofreadPanel } from './proofread-panel';
+import { ChecklistPanel } from './checklist-panel';
 import { SentenceSetPanel } from './sentence-set-panel';
 import { WordBankPanel } from './word-bank-panel';
 import { useWordBank } from './use-word-bank';
@@ -87,6 +88,7 @@ export function WritingWorkspace({
   const [paragraph, setParagraph] = useState(submission.paragraph);
   const outlineBuilder = activity.outlineBuilder;
   const [outline, setOutline] = useState(submission.outline);
+  const [checklist, setChecklist] = useState(submission.checklist);
   const tonePicker = activity.tonePicker;
   const [tone, setTone] = useState(submission.tone);
   const needsTone = tonePicker !== undefined && !toneComplete(activity, validTone(activity, tone));
@@ -357,6 +359,16 @@ export function WritingWorkspace({
 
       {activity.sentenceSet && <SentenceSetPanel set={activity.sentenceSet} text={state.text} />}
       {activity.proofread && <ProofreadPanel proofread={activity.proofread} text={state.text} />}
+      {activity.checklist && activity.essay && (
+        <ChecklistPanel
+          submissionId={submission.id}
+          checklist={activity.checklist}
+          essay={activity.essay}
+          text={state.text}
+          ticked={checklist}
+          onChange={setChecklist}
+        />
+      )}
 
       <ConstraintsBar
         text={state.text}

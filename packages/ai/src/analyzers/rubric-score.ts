@@ -1,5 +1,7 @@
 import {
+  type EssayOptions,
   buildCoachReport,
+  essayChecks,
   dialogue,
   essayNotes,
   essayStructure,
@@ -25,6 +27,8 @@ export interface RubricScoreInput extends WritingContext {
   evidence: readonly string[];
   /** Short summaries of the other AI analyzers' findings. */
   analyzerNotes: readonly string[];
+  /** Essay activities: the kind of essay, the part and the given thesis (from the activity, not the student). */
+  essay?: EssayOptions;
 }
 
 export const RubricScoreResult = z.object({
@@ -106,6 +110,30 @@ function bodyLevels(text: string): Record<string, number> {
   };
 }
 
+/** Offline levels for the conclusion rubric: restatement, summary and final thought. */
+function conclusionLevels(text: string, essay: EssayOptions = {}): Record<string, number> {
+  const options = { ...essay, part: 'conclusion' as const };
+  const c = essayStructure(text, options).paragraphs[0];
+  const notes = essayNotes(text, options).map((n) => n.kind);
+  return {
+    restatement: notes.includes('copied-thesis') || notes.includes('no-restatement') ? 1 : 3,
+    summary: c?.summary?.length ? 3 : 2,
+    finalThought: c?.finalThought ? 3 : 1,
+  };
+}
+
+/** Offline levels for the full-essay rubrics, from the essay checklist's automatic checks. */
+function essayLevels(text: string, essay: EssayOptions = {}): Record<string, number> {
+  const checks = essayChecks(text, essay);
+  return {
+    thesis: checks.thesis ? (checks.hook ? 3 : 2) : 1,
+    evidence: checks.evidence ? (checks['topic-links'] ? 3 : 2) : 2,
+    counterclaim: checks.counterclaim ? 3 : 1,
+    organization: checks.paragraphs ? (checks.restates && checks['final-thought'] ? 3 : 2) : 1,
+    language: veryPhrases(text).length > 2 ? 2 : 3,
+  };
+}
+
 /** Offline levels for the outline rubric, from the outline parts found. */
 function outlineLevels(text: string): Record<string, number> {
   const e = essayStructure(text);
@@ -149,26 +177,28 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
       input.text,
       input.rubric.key === 'introduction.essay'
         ? { analyzers: ['essay', 'structure', 'punctuation'], essay: { part: 'introduction' } }
-        : input.rubric.key === 'outline.essay'
-          ? { analyzers: ['essay'] }
-          : input.rubric.key === 'paragraph.essay'
-            ? { analyzers: ['paragraphs', 'structure', 'punctuation'] }
-            : input.rubric.key === 'grammar.practice'
-              ? {
-                  analyzers: [
-                    'nouns',
-                    'pronouns',
-                    'verbs',
-                    'modifiers',
-                    'connectors',
-                    'voice',
-                    'speech',
-                    'structure',
-                    'punctuation',
-                    'sentenceTypes',
-                  ],
-                }
-              : {},
+        : input.rubric.key.endsWith('.essay') && input.essay
+          ? { analyzers: ['essay', 'structure', 'punctuation'], essay: input.essay }
+          : input.rubric.key === 'outline.essay'
+            ? { analyzers: ['essay'] }
+            : input.rubric.key === 'paragraph.essay'
+              ? { analyzers: ['paragraphs', 'structure', 'punctuation'] }
+              : input.rubric.key === 'grammar.practice'
+                ? {
+                    analyzers: [
+                      'nouns',
+                      'pronouns',
+                      'verbs',
+                      'modifiers',
+                      'connectors',
+                      'voice',
+                      'speech',
+                      'structure',
+                      'punctuation',
+                      'sentenceTypes',
+                    ],
+                  }
+                : {},
     );
     const levels: Record<string, number> = {
       creativity: 3,
@@ -183,6 +213,10 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
       ...(input.rubric.key === 'outline.essay' ? outlineLevels(input.text) : {}),
       ...(input.rubric.key === 'introduction.essay' ? introductionLevels(input.text) : {}),
       ...(input.rubric.key === 'body.essay' ? bodyLevels(input.text) : {}),
+      ...(input.rubric.key === 'conclusion.essay' ? conclusionLevels(input.text, input.essay) : {}),
+      ...(['argumentative.essay', 'informative.essay', 'narrative.essay'].includes(input.rubric.key)
+        ? essayLevels(input.text, input.essay)
+        : {}),
     };
     const first = coach.strengths[0];
     return {

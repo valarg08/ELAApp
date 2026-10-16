@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { ToneChoice, WritingActivity } from '../curriculum/content.js';
 import { PlotPlan } from '../curriculum/plot.js';
 import { ParagraphPlan } from '../curriculum/paragraph.js';
+import { ChecklistTicks } from '../curriculum/checklist.js';
 import { OutlinePlan } from '../curriculum/outline.js';
 import { LessonProgressView } from './curriculum.js';
 
@@ -60,6 +61,8 @@ export const SubmissionDetail = z.object({
   paragraph: ParagraphPlan.default(ParagraphPlan.parse({})),
   /** The outline builder's boxes. */
   outline: OutlinePlan.default(OutlinePlan.parse({})),
+  /** The checklist items the student ticked. */
+  checklist: ChecklistTicks.default([]),
 });
 export type SubmissionDetail = z.infer<typeof SubmissionDetail>;
 
@@ -73,6 +76,7 @@ export const SubmissionChoices = z.object({
   syllables: z.record(z.string().max(30), z.number().int().min(1).max(9)).default({}),
   paragraph: ParagraphPlan.default(ParagraphPlan.parse({})),
   outline: OutlinePlan.default(OutlinePlan.parse({})),
+  checklist: ChecklistTicks.default([]),
 });
 export type SubmissionChoices = z.infer<typeof SubmissionChoices>;
 
@@ -111,6 +115,9 @@ export type SetParagraphRequest = z.infer<typeof SetParagraphRequest>;
 
 export const SetOutlineRequest = z.object({ outline: OutlinePlan });
 export type SetOutlineRequest = z.infer<typeof SetOutlineRequest>;
+
+export const SetChecklistRequest = z.object({ ticked: ChecklistTicks });
+export type SetChecklistRequest = z.infer<typeof SetChecklistRequest>;
 
 export const SaveDraftRequest = z.object({ text: DraftText, baseRevision: Revision });
 export type SaveDraftRequest = z.infer<typeof SaveDraftRequest>;

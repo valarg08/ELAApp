@@ -1,0 +1,57 @@
+{
+  "slug": "essay-restating-thesis",
+  "order": 1,
+  "title": "Restating the Thesis",
+  "estMinutes": 35,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of the last film you told a friend about. How did you sum it up in one sentence at the end?",
+      "placeholder": "I said…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Back to the main point",
+          "body": "A conclusion opens by restating the thesis: the same claim or focus, in new words. It reminds the reader what the whole essay proved."
+        },
+        {
+          "kind": "example",
+          "title": "Restate, don’t copy",
+          "text": "Thesis: Our school should start a community garden because it teaches science, improves meals and brings students together.\nRestated: A school garden would turn our lessons, our lunches and our friendships into something better.",
+          "note": "Same three reasons, new words and a new order."
+        },
+        {
+          "kind": "definition",
+          "title": "Avoid announcements",
+          "body": "“In conclusion, I have told you about gardens” says nothing. Skip the announcement and restate the claim itself. The essay map marks a copied thesis with a !."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e14.restate-sort", "e14.restate-blank", "e14.restate-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e14.restate-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which restatement are you proudest of? Why?",
+        "What is the difference between restating and copying?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

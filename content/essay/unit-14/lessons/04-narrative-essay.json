@@ -1,0 +1,56 @@
+{
+  "slug": "essay-narrative-essay",
+  "order": 4,
+  "title": "The Narrative Essay",
+  "estMinutes": 60,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of a time something didn’t go as planned. What did it teach you?",
+      "placeholder": "It taught me…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "A true story with a point",
+          "body": "A narrative essay tells a true experience and shows what it meant. The introduction ends with the focus; the body paragraphs tell the events in order; the conclusion reflects."
+        },
+        {
+          "kind": "definition",
+          "title": "Events and details",
+          "body": "Use time words (At first, Then, Suddenly, Finally) and details of what you saw, heard and felt. Each event moves toward the lesson."
+        },
+        {
+          "kind": "definition",
+          "title": "Reflect at the end",
+          "body": "The conclusion looks back: “I learned…”, “Ever since…”, “Now I understand…”. The essay map marks it as your reflection."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e14.reflect-blank", "e14.narr-sequence", "e14.narr-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e14.narr-essay"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which detail brings your story most to life?",
+        "Does your reflection match your focus?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}
