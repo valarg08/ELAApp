@@ -2,7 +2,7 @@
   "number": 1,
   "slug": "math-problem-solving",
   "title": "Problem Solving & the AMC 10",
-  "summary": "Learn how the AMC 10 works and the habits that solve contest problems: read carefully, draw it, work backwards, test the choices, estimate and decide when to leave a blank.",
+  "summary": "Learn how the AMC 10 works and the habits that solve contest problems: read carefully, draw it, work backwards, test the choices, estimate, decide when to leave a blank and when to skip (the 2-minute rule).",
   "bigIdeas": [
     "Read the question twice, then draw it.",
     "A blank is worth 1.5 points; a wrong answer is worth 0."

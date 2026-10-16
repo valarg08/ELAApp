@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-16 (M0.5 Math practice upgrade planned in math-design.md, on branch phase-m0-5).
+Last updated: 2026-10-16 (M0.5 Part D: diagnostic, checkpoint mocks, the 2-minute rule, danger zones, fact sheets, light review, stage labels; on branch phase-m0-5).
 
 ## Done so far
 
@@ -39,8 +39,9 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
 - [ ] **M0.5 Math practice upgrade** (math-design.md §3; Math only):
   - Part A, content format: skill list (`skills.json`), problem templates with verified variants and "Try a similar one", wrong-answer notes (`answer.why`, `mistakes`), worked-example cards with faded steps, figure scale flag and zoom;
   - Part B, practice: the answer record (`MathAnswerLog`), skill mastery and difficulty, the daily mixed review with spacing, sprints with AMC scoring, confidence and calibration, scratchpad and typed working;
-  - Part C: Quill nudges, the math Learn-card tutor, the trap picker in Reflect, plainer tone for 14–16, the teacher skills view.
-- [ ] **M1** Unit 1 Problem Solving & the AMC 10: finish the lessons after the sample lesson, the ⭐ check (70%), publish the unit, in the M0.5 format
+  - Part C: Quill nudges, the math Learn-card tutor, the trap picker in Reflect, plainer tone for 14–16, the teacher skills view;
+  - Part D, tests and final prep: the `MOCK_TEST` engine (moved from M15: skip, flag, the 2-minute rule, mistake analysis, time sinks), the diagnostic test (25 problems, report, starting skill levels), checkpoint slots, the danger-zone report, fact sheets (`facts.json`), light review, the four stage labels on `/math` (unit order unchanged).
+- [ ] **M1** Unit 1 Problem Solving & the AMC 10: finish the lessons after the sample lesson (incl. smart guessing & the 2-minute rule), the ⭐ check (70%), publish the unit, in the M0.5 format
 - [ ] Math extras noted in M0: `$$…$$` display math
 - [ ] **M2** Unit 2 Arithmetic & Number Sense
 - [ ] **M3** Unit 3 Linear Equations & Word Problems
@@ -48,14 +49,15 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
 - [ ] **M5** Unit 5 Functions & Inequalities
 - [ ] **M6** Unit 6 Sequences & Patterns
 - [ ] **M7** Unit 7 Number Theory I
-- [ ] **M8** Unit 8 Number Theory II
+- [ ] **M8** Unit 8 Number Theory II, plus checkpoint mock 1 (25 problems: algebra and number theory)
 - [ ] **M9** Unit 9 Counting I
 - [ ] **M10** Unit 10 Counting II & Probability
-- [ ] **M11** Unit 11 Geometry I: Triangles & Polygons
+- [ ] **M11** Unit 11 Geometry I: Triangles & Polygons (incl. angle chasing)
 - [ ] **M12** Unit 12 Geometry II: Circles
-- [ ] **M13** Unit 13 Geometry III: Coordinates & Solids
+- [ ] **M13** Unit 13 Geometry III: Coordinates & Solids, plus checkpoint mock 2 (25 problems: everything so far)
 - [ ] **M14** Unit 14 Logic & Mixed Strategies
-- [ ] **M15** Unit 15 Mock Exams & Final Review: `MOCK_TEST` (25 problems, 75-minute timer, AMC scoring 6 / 1.5 / 0), mocks A–C and the final, the AMC-score estimate, error-log review
+- [ ] **M15** Unit 15 Mock Exams & Final Review (10 lessons): pacing & the 2-minute rule, mocks A–C with mistake analysis, algebra / geometry / counting & number theory refreshes, danger zones, light review & confidence, the final mock & test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text)
+- [ ] Every unit M1–M14 ships its fact sheet (`facts.json`)
 
 ## 2. Teacher dashboard: rest of P5 (§11)
 

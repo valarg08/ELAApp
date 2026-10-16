@@ -2,7 +2,7 @@
   "number": 11,
   "slug": "math-geometry-1",
   "title": "Geometry I: Triangles & Polygons",
-  "summary": "Angles and parallel lines, Pythagoras and special right triangles, similar triangles, area and polygon angle sums.",
+  "summary": "Angles, parallel lines and angle chasing, Pythagoras and special right triangles, similar triangles, area and polygon angle sums.",
   "bigIdeas": ["Draw the figure and mark everything you know."],
   "published": false
 }

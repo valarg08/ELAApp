@@ -15,11 +15,11 @@ A third learning track beside Story Writing and Essay Writing: problem solving f
 
 **Content rule: original problems only.** AMC problems are © the Mathematical Association of America. The track uses **original AMC-style problems written for StoryForge**: never copied, reworded or renumbered past contest problems. Pages say "AMC 10 practice" (descriptive use only), with no MAA logos or claims of endorsement. Students who own official past papers practise those outside the platform.
 
-**Plan: 15 units, about 90 lessons.** Every unit ends with a ⭐ unit check: a marked set of AMC-style problems (pass mark below).
+**Plan: 15 units, about 94 lessons, a diagnostic test and two checkpoint mocks.** Every unit ends with a ⭐ unit check: a marked set of AMC-style problems (pass mark below).
 
 | Unit | Lessons |
 |---|---|
-| 1 Problem Solving & the AMC 10 | The AMC 10 (format, scoring, timing) · Read carefully & draw it · Work backwards & test the choices · Estimate & eliminate · Smart guessing (the value of a blank vs a guess) · ⭐ check |
+| 1 Problem Solving & the AMC 10 | The AMC 10 (format, scoring, timing) · Read carefully & draw it · Work backwards & test the choices · Estimate & eliminate · Smart guessing & the 2-minute rule (the value of a blank vs a guess; skip and come back) · ⭐ check |
 | 2 Arithmetic & Number Sense | Fractions, decimals & percents · Ratios, rates & proportions · Averages & weighted averages · Exponents & roots · Clever arithmetic (factoring, difference of squares) · ⭐ check |
 | 3 Linear Equations & Word Problems | Linear equations · Systems of equations · Distance, rate & time · Work & mixtures · Ages, coins & money · ⭐ check |
 | 4 Quadratics & Polynomials | Factoring · Quadratic formula & discriminant · Vieta's formulas · Completing the square & the vertex · Polynomial remainders · ⭐ check |
@@ -29,13 +29,32 @@ A third learning track beside Story Writing and Essay Writing: problem solving f
 | 8 Number Theory II | Remainders & modular arithmetic · Units digits & cycles · Number bases · Digit problems · Integer equations · ⭐ check |
 | 9 Counting I | Multiplication principle · Permutations · Combinations · Casework · Complementary counting · ⭐ check |
 | 10 Counting II & Probability | Stars & bars · Inclusion–exclusion · Probability · Geometric probability · Expected value · ⭐ check |
-| 11 Geometry I: Triangles & Polygons | Angles & parallel lines · Pythagoras & special right triangles · Similar triangles · Area (including Heron's formula) · Polygons & angle sums · ⭐ check |
+| 11 Geometry I: Triangles & Polygons | Angles, parallel lines & angle chasing · Pythagoras & special right triangles · Similar triangles · Area (including Heron's formula) · Polygons & angle sums · ⭐ check |
 | 12 Geometry II: Circles | Arcs, chords & inscribed angles · Tangents · Power of a point · Inscribed & circumscribed circles · Areas with circles · ⭐ check |
 | 13 Geometry III: Coordinates & Solids | Coordinate geometry · Areas on the grid (shoelace, Pick's theorem) · Transformations & symmetry · 3D solids · Nets & space diagonals · ⭐ check |
 | 14 Logic & Mixed Strategies | Logic puzzles · Invariants & parity · Games & strategy · Clocks, calendars & time · Mixed sets by difficulty · ⭐ check |
-| 15 Mock Exams & Final Review | A pacing plan · Mock AMC 10 A · Learning from the error log · Mock AMC 10 B · Mock AMC 10 C · 🏆 Final mock & test-day plan |
+| 15 Mock Exams & Final Review | A pacing plan & the 2-minute rule · Mock AMC 10 A + mistake analysis · Algebra refresh (identities sheet, mixed set) · Geometry refresh (facts sheet, mixed set) · Mock AMC 10 B + mistake analysis · Counting & number theory refresh (counting shortcuts, modular-arithmetic patterns) · Danger zones: targeted fixes · Mock AMC 10 C + mistake analysis · Light review & confidence (short sets of mastered skills, test-day routines) · 🏆 Final mock & test-day plan |
+
+Each mock lesson includes its mistake analysis: the review by question, strand and difficulty, time sinks, and adding misses to the error log.
 
 Strands (progress badges): **Strategy** (1, 14, 15), **Algebra** (2–6), **Number Theory** (7–8), **Counting & Probability** (9–10), **Geometry** (11–13).
+
+**Tests outside the units** (all original problems, the `MOCK_TEST` engine from M0.5 Part D):
+- **Diagnostic test:** 25 mixed problems, untimed, on `/math` before Unit 1, and retakable any time to show growth. Its report (by strand, skill and difficulty) sets each skill's starting level and suggests the units to focus on. Units still unlock in order.
+- **Checkpoint mock 1** after Unit 8 (algebra and number theory) and **checkpoint mock 2** after Unit 13 (everything so far): full 25-problem, 75-minute timed tests with mistake analysis, so full timed tests start well before Unit 15. They unlock with the unit before them and don't block the next unit.
+
+**Stages** (labels only; the unit order stays as above). `/math` groups the units and tests under four stage headings, so students see where they are in the preparation:
+
+| Stage | What's in it | Focus |
+|---|---|---|
+| 1 Core Skills + Diagnostics | Diagnostic test, Units 1–5 | Strategy habits; algebra fundamentals (systems, quadratics, factoring, inequalities) |
+| 2 AMC Thinking + Speed | Units 6–10, checkpoint mock 1, sprints | Sequences, number theory (modular arithmetic), counting (casework, complementary counting), probability; timed mini-tests |
+| 3 Strategy + Score Optimization | Units 11–14, checkpoint mock 2, Unit 15 lessons 1–7 | Geometry (similar triangles, angle chasing, power of a point, coordinates); timed performance, the 2-minute rule, refreshes, danger zones |
+| 4 Final Prep + Confidence | Unit 15 lessons 8–10, light review, fact sheets | Light review, facts, identities, shortcuts and patterns; stability and confidence |
+
+Geometry basics come in Stage 3 because the unit order is kept; the diagnostic shows students how they stand in geometry from the start.
+
+**Past AMC problems:** never on the platform (© MAA). Students who work an official paper on their own can record it in the **past-paper log** (M15): only their answer letter or blank per question, the official answer letter and a topic tag, never the problem text. The app scores it with AMC scoring, feeds the danger-zone report, and lets misses go to the error log as "outside problem" (topic and skill only).
 
 **How lessons work:**
 - **Hook:** a short puzzle or a question ("How many handshakes…?").
@@ -65,7 +84,7 @@ Strands (progress badges): **Strategy** (1, 14, 15), **Algebra** (2–6), **Numb
 - **New activity types:**
   - `PROBLEMS`: practice; instant check, hints, solution after a correct answer or after "Show me".
   - `PROBLEM_SET`: the challenge and unit checks. It is marked on the server like `QUIZ` (an attempt, answers hidden until it's handed in, a review with solutions). The unit check passes at the track's pass mark; a lesson challenge completes once handed in.
-  - `MOCK_TEST` (built in M15): 25 problems, a server-side 75-minute timer (handed in automatically when time runs out), AMC scoring, then a review by question, by strand and by difficulty.
+  - `MOCK_TEST` (built in M0.5 Part D, used by the diagnostic, the checkpoints and the Unit 15 mocks): 25 problems, a server-side 75-minute timer (handed in automatically when time runs out), AMC scoring, then a review by question, by strand and by difficulty.
 - **Error log:** every wrong or "Show me" problem goes to *My error log* by skill. Students redo them later (a problem leaves the log after two correct redos on different days). Unit 15 has a lesson on using it.
 - **Quill for math** (packages/ai; fake gateway in tests):
   - `math-explain` ("Explain it another way"): explains the given solution differently, step by step.
@@ -79,6 +98,7 @@ Strands (progress badges): **Strategy** (1, 14, 15), **Algebra** (2–6), **Numb
 2. **Hints: authored hints on practice problems** (none during unit checks and mocks). The Story track chose "no practice hints", but stepped hints are standard in math practice.
 3. **Answer format in practice: mostly typed answers**, so guessing doesn't count. Choices (A)–(E) appear in unit checks and mocks, as on the AMC.
 4. **Mocks: three full original mocks** (A, B, C) plus the final.
+5. **Added 2026-10-16:** a diagnostic test, two checkpoint mocks (after Units 8 and 13), the 2-minute rule, refresh lessons and a light-review lesson in Unit 15 (10 lessons), fact sheets, the danger-zone report, the past-paper log, and four stage labels **with the unit order unchanged**.
 
 ## 2. M0 as built
 
@@ -187,7 +207,7 @@ M0 reused the writing app's shapes: units in a straight line, text-only Learn ca
 - Shared components get a Math branch only behind `track === 'MATH'`. Story and Essay content, UI copy, AI prompts, rubrics, routes and progress views stay exactly as they are.
 - New tables, endpoints and pages live under the Math module and `/math`.
 
-M0.5 has three parts, built in order. Each part is usable on its own.
+M0.5 has four parts, built in order. Each part is usable on its own.
 
 ### 3.1 Part A: the content format (before any unit content)
 
@@ -324,19 +344,57 @@ M0.5 has three parts, built in order. Each part is usable on its own.
 - `GET /teacher/classes/:classId/math-skills` is teacher-only and enforces class ownership (another teacher's class answers 404).
 - The Story and Essay views are unchanged.
 
-### 3.4 M0.5 data and endpoints (summary)
+### 3.4 Part D: tests, strategy and final prep
+
+**D1. The timed test engine (`MOCK_TEST`)**, moved forward from M15 because the diagnostic and the checkpoints need it:
+- 25 choice problems, a server-side timer (75 minutes; none for the diagnostic), handed in automatically at zero, AMC scoring (6 / 1.5 / 0).
+- Attempts reuse `QuizAttempt` (`activityKey` such as `diagnostic`, `checkpoint-1`, `m15.mock-a`), with answers, seconds and confidence per question; answers stay on the server until hand-in.
+- **Skip and come back:** every question has "Skip" and "Come back later" (flag); a question map shows answered, blank and flagged ones, and a review list appears before handing in.
+- **The 2-minute rule:** after 2 minutes on one question a polite prompt asks "2 minutes: skip and come back?" It is on by default, can be turned off (a browser setting) and never moves the student on its own. Sprints use it too.
+- **Mistake analysis** after hand-in: points by question, strand and difficulty band (1–10, 11–20, 21–25); **time sinks** (questions that took over 4 minutes, and the points they cost); "your score if you had left your guesses blank" (B5); a button to add each miss to the error log.
+
+**D2. Diagnostic test** (`/math/diagnostic`)
+- 25 original problems (`content/math/diagnostic.json`, the problem format with skills, verified by content:check), covering all five strands at mixed difficulty. Untimed; offered on `/math` before Unit 1 and retakable any time.
+- The report: accuracy by strand and skill, the suggested focus units, and the change since the last diagnostic.
+- Answers go to `MathAnswerLog` (`source: diagnostic`), so they set each skill's starting mastery level (B2). They don't unlock units.
+
+**D3. Checkpoint mocks**
+- `content/math/checkpoints/checkpoint-1.json` (after Unit 8: algebra and number theory) and `checkpoint-2.json` (after Unit 13: everything so far), each 25 original problems in rising difficulty, verified by content:check.
+- The engine is built in D1; the problems are written in phases M8 and M13. Each unlocks when the unit before it is passed and doesn't block the next unit.
+
+**D4. Danger-zone report** (on `/math/progress`)
+- One section that combines: the weakest skills (mastery), accuracy by question position from the diagnostic, checkpoints and mocks (1–10, 11–20, 21–25), slow skills (median seconds well above the AMC pace), and overconfident skills (often "Sure" but wrong).
+- It ends with **"Your top 3 danger zones"**, each with a "Practise this" button into a review set for that skill.
+- From M15 the past-paper log feeds it too (positions and topics only).
+
+**D5. Fact sheets**
+- Each unit may have `facts.json`: a one-page summary of formulas, identities, shortcuts and patterns, written in TeX, grouped by skill (content:check: the TeX parses and the skill ids exist).
+- `/math/units/[slug]/facts` shows it, printable (print styles: no navigation, one page where possible).
+- The fact sheets are written with each unit (M1–M14); the Unit 15 refresh lessons link to them.
+
+**D6. Light review mode**
+- `/math/review` gains "Light review": 4 easy problems from Strong and Mastered skills (no new or weak skills, no timer), plus 3 fact-sheet cards. It is meant for the last days before the test and builds confidence without fatigue.
+- The Unit 15 "Light review & confidence" lesson introduces it.
+
+**D7. Stage labels**
+- `content/math/stages.json` lists the four stages (§1) and what each holds: units, the diagnostic, the checkpoints, and Unit 15's lessons by number (lessons 1–7 in Stage 3, 8–10 in Stage 4).
+- `/math` shows the units and tests under the stage headings, with "You are in Stage 2" from the student's progress. The unit order and unlocking don't change.
+- content:check: every Math unit and test belongs to exactly one stage (Unit 15 by lesson).
+
+### 3.5 M0.5 data and endpoints (summary)
 
 | New | What |
 |---|---|
 | `content/math/skills.json` | Skill list (A1) |
+| `content/math/diagnostic.json`, `checkpoints/`, `stages.json`, `unit-XX/facts.json` | Diagnostic (D2), checkpoint mocks (D3), stages (D7), fact sheets (D5) |
 | Problem fields | `template`, `answer.why`, `mistakes`, `figure.scale` (A2, A3, A5) |
 | Learn card | `worked-example` (Math only, A4) |
 | Reflect | `trapPicker` (Math only, C3) |
 | Tables | `MathAnswerLog` (B1), `MathSkillState` (B3) |
-| Endpoints | `POST /math/answers`, `GET /math/skills` (mastery), `GET /math/review`, `POST /math/review/answer`, `POST /math/sprints`, `POST /math/sprints/:id/submit`, `POST /ai/math/nudge`, `POST /ai/math/card`, `GET /teacher/classes/:classId/math-skills` |
-| Pages | `/math/review`, `/math/sprint`, the skills and calibration sections of `/math/progress`, the teacher skills view |
+| Endpoints | `POST /math/answers`, `GET /math/skills` (mastery), `GET /math/review`, `POST /math/review/answer`, `POST /math/sprints`, `POST /math/sprints/:id/submit`, `POST /ai/math/nudge`, `POST /ai/math/card`, `GET /teacher/classes/:classId/math-skills`, `POST /math/tests/:key/start`, `PUT /math/tests/attempts/:id/answer`, `POST /math/tests/attempts/:id/submit`, `GET /math/tests/attempts/:id/review`, `GET /math/danger-zones` |
+| Pages | `/math/review` (with light review), `/math/sprint`, `/math/diagnostic`, the test player and its review, `/math/units/[slug]/facts`, the skills, calibration and danger-zone sections of `/math/progress`, the stage headings on `/math`, the teacher skills view |
 
-### 3.5 M0.5 acceptance
+### 3.6 M0.5 acceptance
 
 - **Part A:**
   - content:check verifies every template variant;
@@ -355,6 +413,14 @@ M0.5 has three parts, built in order. Each part is usable on its own.
   - Math Learn cards have a math tutor;
   - the trap picker lists the missed problems;
   - the teacher skills grid shows a student's levels and another teacher gets 404.
+- **Part D:**
+  - a timed test hands itself in at zero, scores match AMC scoring, and skipped and flagged questions show on the question map;
+  - the 2-minute prompt appears and can be turned off;
+  - the diagnostic report sets starting skill levels;
+  - the danger-zone report lists the top 3 with "Practise this";
+  - a fact sheet renders and prints;
+  - light review only picks Strong and Mastered skills;
+  - `/math` shows the four stage headings with the units in the current order.
 - **Everywhere:** axe passes on every new page; the Story and Essay tracks look and behave exactly as before.
 
 **Tests owed (M0.5):**
@@ -362,14 +428,15 @@ M0.5 has three parts, built in order. Each part is usable on its own.
 - template, `why` and `mistakes` checks in `problemErrors`;
 - `POST /math/answers` re-marking;
 - mastery levels and review spacing (pure functions, unit-testable);
-- authorisation for every new endpoint;
-- a Playwright run of the daily review and a sprint with `expectAccessible`.
+- AMC scoring, time sinks and the danger-zone ranking (pure functions);
+- authorisation for every new endpoint, including that a student can't read another student's test attempt;
+- a Playwright run of the daily review, a sprint and the diagnostic with `expectAccessible`.
 
 ## 4. Phases
 
 | Phase | Scope | Acceptance |
 |---|---|---|
 | **M0 Math track foundation** ✅ | Track `MATH`, `/math`, KaTeX, SVG figures, `packages/math-check`, the problem format, `PROBLEMS` and `PROBLEM_SET`, the error log, Quill explanations (§2) | A sample problem set renders, checks typed answers exactly and is marked on the server; content:check rejects a `compute` that disagrees with the answer; axe passes |
-| **M0.5 Math practice upgrade** | Part A (skills, templates, wrong-answer notes, worked examples, figure flags), Part B (answer record, mastery, daily review, sprints, confidence, scratchpad), Part C (Quill nudges, the math card tutor, the trap picker, tone, teacher skills view) (§3) | §3.5 |
-| **M1–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with the tools each unit needs (for example a counting tree builder or a number line) | Each unit playable end to end; every computable answer and every template variant verified by content:check |
-| **M15 Mock exams** | `MOCK_TEST` (25 problems, 75-minute server timer, AMC scoring 6 / 1.5 / 0), three mocks and the final, strand and difficulty breakdown, AMC-score estimate, error-log review | A mock hands itself in when time runs out; scores match AMC scoring |
+| **M0.5 Math practice upgrade** | Part A (skills, templates, wrong-answer notes, worked examples, figure flags), Part B (answer record, mastery, daily review, sprints, confidence, scratchpad), Part C (Quill nudges, the math card tutor, the trap picker, tone, teacher skills view), Part D (the `MOCK_TEST` engine with skip, flag and the 2-minute rule, the diagnostic test with its 25 problems, checkpoint slots, the danger-zone report, fact sheets, light review, stage labels) (§3) | §3.6 |
+| **M1–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
+| **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
