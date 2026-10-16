@@ -1,0 +1,63 @@
+{
+  "slug": "math-problem-solving-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Problem Solving & the AMC 10",
+  "estMinutes": 40,
+  "focusSkills": [
+    "amc-scoring",
+    "read-and-draw",
+    "work-backwards",
+    "estimate-eliminate",
+    "guessing"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which habit from this unit do you use most, and which do you want to practise more?",
+      "placeholder": "I use… most. I want to practise…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Scoring and guessing: quick review",
+          "body": "Right $6$, blank $1.5$, wrong $0$. A guess among $n$ choices is worth $\\frac{6}{n}$ on average: guess only after ruling out at least $2$ choices. Stuck for $2$ minutes with no plan? Mark it, skip it, come back."
+        },
+        {
+          "kind": "definition",
+          "title": "Habits: quick review",
+          "body": "Read the question twice and draw it. Count carefully: $n$ posts make $n - 1$ gaps, and $a$ to $b$ with both ends has $b - a + 1$ numbers. Work backwards by undoing the last step first. Test the choices starting with (C). Estimate, then rule out by size, last digit, and odd or even."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m01.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m01.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

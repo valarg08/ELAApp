@@ -1,0 +1,91 @@
+{
+  "slug": "math-read-and-draw",
+  "order": 2,
+  "title": "Read Carefully & Draw It",
+  "estMinutes": 35,
+  "focusSkills": ["read-and-draw"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A fence is $12$ metres long with a post every $3$ metres, including both ends. How many posts? Answer fast, then draw it and check.",
+      "placeholder": "My fast answer… After drawing…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Read it twice",
+          "body": "First read: what is the situation? Second read: what exactly is asked? Look hard at the last line for words like \"how many more\", \"not\", \"at least\", \"in total\" and \"including\". Many wrong answers on the AMC are right answers to a different question."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: fence posts",
+          "problem": "A straight fence is $20$ metres long, with a post at each end and a post every $4$ metres. How many posts are there?",
+          "steps": [
+            {
+              "text": "Draw it: posts at $0$, $4$, $8$, $12$, $16$ and $20$ metres."
+            },
+            {
+              "text": "There are $\\frac{20}{4} = 5$ gaps between posts."
+            },
+            {
+              "text": "Every gap has a post at its right end, and there is one more post at the start: $5 + 1 = 6$ posts. The fast answer $5$ counts the gaps, not the posts."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: draw the walk",
+          "problem": "Mia walks $6$ blocks north, $3$ blocks east, then $2$ blocks south. How far is she from her start, in a straight line?",
+          "steps": [
+            {
+              "text": "Draw it on a grid. North $6$ then south $2$ leaves her $4$ blocks north of the start.",
+              "try": {
+                "prompt": "How many blocks north of the start does she end?",
+                "accepted": ["4"],
+                "compute": "6-2"
+              }
+            },
+            {
+              "text": "She is also $3$ blocks east. Her start, her end and the corner below her end make a right triangle with legs $3$ and $4$."
+            },
+            {
+              "text": "By Pythagoras the distance is $\\sqrt{3^2 + 4^2} = \\sqrt{25} = 5$ blocks. She walked $11$ blocks, but the question asks how far she ends up.",
+              "try": {
+                "prompt": "How far is she from her start?",
+                "accepted": ["5"],
+                "compute": "sqrt(3^2+4^2)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: answering a different question",
+          "body": "Read the last line again before you choose. If the question asks for the perimeter, the area you just worked out is probably one of the wrong choices: contest writers put it there on purpose. Counting from $a$ to $b$ with both ends included gives $b - a + 1$, not $b - a$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m01.read-draw-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m01.read-draw-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which word in a question will you now read twice, and why?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

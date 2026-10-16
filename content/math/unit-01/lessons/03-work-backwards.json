@@ -1,0 +1,91 @@
+{
+  "slug": "math-work-backwards",
+  "order": 3,
+  "title": "Work Backwards & Test the Choices",
+  "estMinutes": 35,
+  "focusSkills": ["work-backwards", "test-choices"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "I think of a number, double it and add $5$. I get $31$. What was my number, and how did you find it?",
+      "placeholder": "My number is… I found it by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Work backwards",
+          "body": "When a problem gives you the end and asks for the start, begin at the end and undo each step in reverse order. Undo adding by subtracting, multiplying by dividing, squaring by taking the square root."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: undo the steps",
+          "problem": "Ravi thinks of a number, doubles it, adds $7$, then divides by $3$. He gets $9$. What was his number?",
+          "steps": [
+            {
+              "text": "Start at the end: $9$. The last step was dividing by $3$, so undo it first: $9 \\times 3 = 27$."
+            },
+            {
+              "text": "Before that he added $7$. Undo it: $27 - 7 = 20$."
+            },
+            {
+              "text": "First he doubled. Undo it: $\\frac{20}{2} = 10$. Check: $10 \\to 20 \\to 27 \\to 9$. ✓"
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Test the choices",
+          "body": "On a multiple-choice question, the answer is one of five numbers, so you can plug a choice in and check it. Start with (C): the choices are usually in order, so if (C) is too small, only (D) or (E) can work, and if it is too big, only (A) or (B)."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: test the choices",
+          "problem": "Three consecutive even numbers add up to $84$. What is the largest of them? (A) $24$ (B) $26$ (C) $28$ (D) $30$ (E) $32$",
+          "steps": [
+            {
+              "text": "Try (C), $28$: the numbers are $24$, $26$ and $28$, which add up to $78$. Too small, so the answer is (D) or (E)."
+            },
+            {
+              "text": "Try (D), $30$: the numbers are $26$, $28$ and $30$.",
+              "try": {
+                "prompt": "What do $26$, $28$ and $30$ add up to?",
+                "accepted": ["84"],
+                "compute": "26+28+30"
+              }
+            },
+            {
+              "text": "$26 + 28 + 30 = 84$ ✓, so the answer is (D). Two tries, and no equation needed."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: undoing in the wrong order",
+          "body": "Undo the last step first, like taking off shoes before socks. If a number was doubled and then $4$ was added, subtract $4$ first and halve second. Halving first gives a different, wrong answer."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m01.backwards-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m01.backwards-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When would you test the choices instead of solving the problem directly?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

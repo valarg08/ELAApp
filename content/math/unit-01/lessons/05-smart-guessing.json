@@ -1,0 +1,98 @@
+{
+  "slug": "math-smart-guessing",
+  "order": 5,
+  "title": "Smart Guessing & the 2-Minute Rule",
+  "estMinutes": 35,
+  "focusSkills": ["guessing", "pacing"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You have spent $6$ minutes on question $12$ and you're still stuck. What do you do next, and why?",
+      "placeholder": "I would… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What a guess is worth",
+          "body": "A guess among $n$ choices is right with chance $\\frac{1}{n}$, so on average it is worth $\\frac{6}{n}$ points. A blank is worth $1.5$. Guess when $\\frac{6}{n} > 1.5$, which means $n < 4$: rule out at least $2$ choices first. With $1$ ruled out, guessing and a blank are worth the same."
+        },
+        {
+          "kind": "definition",
+          "title": "The 2-minute rule",
+          "body": "If you have spent about $2$ minutes on a question and still have no plan, mark it and move on. A hard question is worth the same $6$ points as an easy one, and there are easier points further along. Come back to the marked questions at the end with fresh eyes."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: guess or blank?",
+          "problem": "On $4$ questions you can rule out $2$ choices each. On $3$ more you can't rule out any. If you guess on the $4$ and leave the $3$ blank, how many points do you expect from these $7$ questions?",
+          "steps": [
+            {
+              "text": "A guess among $3$ choices is worth $\\frac{6}{3} = 2$ points on average, so the $4$ guesses are worth $4 \\times 2 = 8$."
+            },
+            {
+              "text": "The $3$ blanks are worth $3 \\times 1.5 = 4.5$."
+            },
+            {
+              "text": "In total you expect $8 + 4.5 = 12.5$ points. Guessing on all $7$ would give $8 + 3 \\times 1.2 = 11.6$: less, because blind guesses are worth only $1.2$ each."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: your own guessing record",
+          "problem": "When you mark an answer \"Guessing\", you have been right $20\\%$ of the time. Should you answer those questions or leave them blank?",
+          "steps": [
+            {
+              "text": "Each of those answers earns $6$ points $20\\%$ of the time.",
+              "try": {
+                "prompt": "On average, how many points is one of those answers worth?",
+                "accepted": ["1.2", "6/5"],
+                "compute": "6*20/100"
+              }
+            },
+            {
+              "text": "$0.2 \\times 6 = 1.2$ points: less than a blank's $1.5$. Leave those blank.",
+              "try": {
+                "prompt": "What fraction of the time would you need to be right for answering to equal a blank?",
+                "accepted": ["1/4", "0.25"],
+                "compute": "1.5/6"
+              }
+            },
+            {
+              "text": "Break even is $\\frac{1.5}{6} = \\frac{1}{4}$, or $25\\%$. Your progress page shows how often each of your confidence levels is right."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: \"I've already spent so long on it\"",
+          "body": "The minutes you have spent are gone whether you finish the question or not. Ask only what the next minutes are worth: one stuck question, or two fresh ones further along."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m01.guessing-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m01.guessing-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Write your own rule for when you will guess, leave a blank, or skip and come back."
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-16 (M0.5 built: practice upgrade, tests and stages; on branch phase-m0-5).
+Last updated: 2026-10-16 (M1 built: Math Unit 1 published, unit checks pass at 100%; on branch phase-m1).
 
 ## Done so far
 
@@ -12,6 +12,7 @@ Last updated: 2026-10-16 (M0.5 built: practice upgrade, tests and stages; on bra
 - [x] E0–E15: the whole Essay Writing track (§9.12)
 - [x] P5a: teacher progress views: the class heatmap and the student profile (§11.3)
 - [x] M0: the Math track engine (math-design.md §2)
+- [x] M0.5 and M1: the Math practice upgrade and Math Unit 1 (math-design.md §3, §4.1)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -27,7 +28,7 @@ One unit per phase, in the 5-step lesson format, each with the tools and AI chec
 
 A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are checked in code; Quill only explains. **Original AMC-style problems only**: never copy past AMC problems (© MAA). Math work never changes the Story or Essay tracks.
 
-- [x] **Decisions confirmed** (math-design.md): 70% unit check pass mark, authored hints on practice problems, typed answers in practice, three mocks plus the final.
+- [x] **Decisions confirmed** (math-design.md): 100% unit check pass mark (was 70%), authored hints on practice problems, typed answers in practice, three mocks plus the final.
 - [x] **M0 Foundation** (done; see math-design.md §2):
   - track `MATH` (`content/math`, `m01.` keys, `/math`, third track tab, strand badges);
   - KaTeX rendering and the answer box with helper buttons and a live preview;
@@ -41,7 +42,7 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
   - Part B, practice: the answer record (`MathAnswerLog`), skill mastery and difficulty, the daily mixed review with spacing, sprints with AMC scoring, confidence and calibration, scratchpad and typed working;
   - Part C: Quill nudges, the math Learn-card tutor, the trap picker in Reflect, plainer tone for 14–16, the teacher skills view;
   - Part D, tests and final prep: the `MOCK_TEST` engine (moved from M15: skip, flag, the 2-minute rule, mistake analysis, time sinks), the diagnostic test (25 problems, report, starting skill levels), checkpoint slots, the danger-zone report, fact sheets (`facts.json`), light review, the four stage labels on `/math` (unit order unchanged).
-- [ ] **M1** Unit 1 Problem Solving & the AMC 10: finish the lessons after the sample lesson (incl. smart guessing & the 2-minute rule), the ⭐ check (70%), publish the unit, in the M0.5 format
+- [x] **M1** Unit 1 Problem Solving & the AMC 10: finish the lessons after the sample lesson (incl. smart guessing & the 2-minute rule), the ⭐ check (100%), publish the unit, in the M0.5 format
 - [ ] Math extras noted in M0: `$$…$$` display math
 - [ ] **M2** Unit 2 Arithmetic & Number Sense
 - [ ] **M3** Unit 3 Linear Equations & Word Problems

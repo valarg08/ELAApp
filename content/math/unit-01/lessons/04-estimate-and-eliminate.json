@@ -1,0 +1,98 @@
+{
+  "slug": "math-estimate-and-eliminate",
+  "order": 4,
+  "title": "Estimate & Eliminate",
+  "estMinutes": 35,
+  "focusSkills": ["estimate-eliminate"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Without working it out: is $1234 \\times 5678$ odd or even, and what is its last digit? How could that help on a multiple-choice question?",
+      "placeholder": "It is… Its last digit is… It helps because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Estimate first",
+          "body": "Round the numbers and work out roughly what the answer must be. Choices far from your estimate are out. Often only one choice survives, and you never needed the exact value."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: round and compare",
+          "problem": "Which is closest to $\\frac{398 \\times 51}{19.8}$? (A) $100$ (B) $500$ (C) $1000$ (D) $2000$ (E) $5000$",
+          "steps": [
+            {
+              "text": "Round each number: $398 \\approx 400$, $51 \\approx 50$, $19.8 \\approx 20$."
+            },
+            {
+              "text": "Then $\\frac{400 \\times 50}{20} = \\frac{20000}{20} = 1000$."
+            },
+            {
+              "text": "Only (C) is near $1000$. The nearest other choices are twice as big or half as big, so the rounding can't change the answer."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Eliminate with quick checks",
+          "body": "You can rule out choices without solving: check the last digit, odd or even, the sign, and the size. If the answer must be a multiple of $3$, cross out the choices that aren't. Each choice you rule out also makes a guess worth more."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the last digit",
+          "problem": "What is $27 \\times 43 + 15 \\times 12$? (A) $1259$ (B) $1341$ (C) $1346$ (D) $1351$ (E) $1611$",
+          "steps": [
+            {
+              "text": "Last digits: $7 \\times 3 = 21$ ends in $1$ and $5 \\times 2 = 10$ ends in $0$, so the answer ends in $1$. That rules out (A) and (C)."
+            },
+            {
+              "text": "Size: $27 \\times 43$ is about $30 \\times 40 = 1200$ and $15 \\times 12 = 180$, so the answer is near $1300$–$1400$. That rules out (E).",
+              "try": {
+                "prompt": "Work out $27 \\times 43$ exactly.",
+                "accepted": ["1161"],
+                "compute": "27*43"
+              }
+            },
+            {
+              "text": "Now split (B) and (D) exactly: $1161 + 180 = 1341$, choice (B).",
+              "try": {
+                "prompt": "What is $1161 + 180$?",
+                "accepted": ["1341"],
+                "compute": "27*43 + 15*12"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: estimating close choices",
+          "body": "An estimate can't split two choices that are close together. When two choices are both near your estimate, stop rounding: work it out exactly, or use a check like the last digit to split them."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m01.estimate-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m01.estimate-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which quick check (size, last digit, odd or even) will you try first on a test, and why?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

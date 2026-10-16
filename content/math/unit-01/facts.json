@@ -29,11 +29,40 @@
       ]
     },
     {
+      "skill": "read-and-draw",
+      "title": "Read it twice, draw it",
+      "facts": [
+        "Read the last line twice: watch for \"how many more\", \"not\", \"at least\", \"in total\" and \"including\".",
+        "$n$ posts in a row make $n - 1$ gaps; $k$ cuts make $k + 1$ pieces.",
+        "Counting from $a$ to $b$ with both ends included gives $b - a + 1$ numbers.",
+        "Draw walks on a grid and lines with every point marked: overlapping lengths count twice."
+      ]
+    },
+    {
+      "skill": "work-backwards",
+      "title": "Work backwards",
+      "facts": [
+        "Start from the end and undo each step, last step first.",
+        "Undo adding by subtracting, multiplying by dividing, squaring by a square root.",
+        "Check by running your answer forwards through the steps."
+      ]
+    },
+    {
       "skill": "test-choices",
       "title": "Using the answer choices",
       "facts": [
         "Plug a choice back into the problem: start with (C), the middle value, then go up or down.",
         "Check the choices' units digits, parity or size to rule some out quickly."
+      ]
+    },
+    {
+      "skill": "estimate-eliminate",
+      "title": "Estimate and eliminate",
+      "facts": [
+        "Round the numbers first: choices far from your estimate are out.",
+        "Only last digits affect the last digit of a sum or product.",
+        "An odd sum of two whole numbers means one is even, so their product is even.",
+        "Compare powers by giving them matching exponents: $2^{40} = 16^{10}$ and $3^{30} = 27^{10}$."
       ]
     }
   ]

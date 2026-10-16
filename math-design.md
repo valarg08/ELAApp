@@ -94,7 +94,7 @@ Geometry basics come in Stage 3 because the unit order is kept; the diagnostic s
 - **Progress & teacher views:** the Math tracker shows lessons, unit checks, accuracy per strand and, after M15, mock scores with an AMC-score estimate. The P5a heatmap works unchanged (`?track=math`).
 
 **Decisions (accepted by the project owner with "start M0", 2026-10-16):**
-1. **Unit check pass mark: 70%**, since AMC-style problems are harder than the essay quizzes (Essay uses 80%).
+1. **Unit check pass mark: 100%** (changed from 70% by the project owner on 2026-10-16, during M1): every problem in the try must be right. A try is 8 problems, and each new try draws different problems and new template numbers. Essay keeps its 80%.
 2. **Hints: authored hints on practice problems** (none during unit checks and mocks). The Story track chose "no practice hints", but stepped hints are standard in math practice.
 3. **Answer format in practice: mostly typed answers**, so guessing doesn't count. Choices (A)–(E) appear in unit checks and mocks, as on the AMC.
 4. **Mocks: three full original mocks** (A, B, C) plus the final.
@@ -442,5 +442,21 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 |---|---|---|
 | **M0 Math track foundation** ✅ | Track `MATH`, `/math`, KaTeX, SVG figures, `packages/math-check`, the problem format, `PROBLEMS` and `PROBLEM_SET`, the error log, Quill explanations (§2) | A sample problem set renders, checks typed answers exactly and is marked on the server; content:check rejects a `compute` that disagrees with the answer; axe passes |
 | **M0.5 Math practice upgrade** ✅ | Part A (skills, templates, wrong-answer notes, worked examples, figure flags), Part B (answer record, mastery, daily review, sprints, confidence, scratchpad), Part C (Quill nudges, the math card tutor, the trap picker, tone, teacher skills view), Part D (the `MOCK_TEST` engine with skip, flag and the 2-minute rule, the diagnostic test with its 25 problems, checkpoint slots, the danger-zone report, fact sheets, light review, stage labels) (§3) | §3.6 |
-| **M1–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
+| **M1 Unit 1 Problem Solving & the AMC 10** ✅ | 6 lessons (§4.1), published | Played end to end; content:check verifies every answer and variant |
+| **M2–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
 | **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
+
+### 4.1 M1 as built (2026-10-16)
+
+Unit 1 Problem Solving & the AMC 10 is published, with 6 lessons. Every lesson has a hook, Learn cards (worked examples fade: the first has no try steps, later ones ask for the last steps), typed practice with hints and wrong-answer notes, a 5-problem choice challenge with `why` notes, and a Reflect step with the trap picker.
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | The AMC 10: Format, Scoring & Timing (from M0) | `m01.scoring-practice` | `m01.amc-rules-set` |
+| 2 | Read Carefully & Draw It | `m01.read-draw-practice` (fence posts, inclusive counting, a walk, "how many more", the garden path figure) | `m01.read-draw-set` |
+| 3 | Work Backwards & Test the Choices | `m01.backwards-practice` | `m01.backwards-set` |
+| 4 | Estimate & Eliminate | `m01.estimate-practice` (squares, last digits, rounding, decimal size) | `m01.estimate-set` |
+| 5 | Smart Guessing & the 2-Minute Rule | `m01.guessing-practice` (expected points, the guessing record, pacing, goal scores) | `m01.guessing-set` |
+| 6 | ⭐ Unit Check | `m01.review-practice` (4-problem warm-up) | `m01.unit-check`: 8 of 17 problems per try, pass at 100% |
+
+The fact sheet (`facts.json`) covers scoring, guessing, pacing, reading and drawing, working backwards, using the choices, and estimating and eliminating. "Closest to" answers use `compute` with `floor(x + 0.5)` rounding so content:check still verifies them.
