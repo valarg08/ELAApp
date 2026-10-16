@@ -6,8 +6,17 @@ const TABS: { track: Track; label: string; emoji: string }[] = [
   { track: 'ESSAY', label: 'Essay Writing', emoji: '📝' },
 ];
 
-/** The two learning tracks (DESIGN.md §9.12), as tabs at the top of the journey pages. */
-export function TrackTabs({ current }: { current: Track }) {
+/**
+ * The two learning tracks (DESIGN.md §9.12), as tabs at the top of the journey pages. Teacher
+ * pages pass `hrefFor` to switch the track of their own view.
+ */
+export function TrackTabs({
+  current,
+  hrefFor = (track) => TRACK_HOME[track],
+}: {
+  current: Track;
+  hrefFor?: (track: Track) => string;
+}) {
   return (
     <nav aria-label="Learning tracks">
       <ul className="flex gap-2 border-b border-border">
@@ -16,7 +25,7 @@ export function TrackTabs({ current }: { current: Track }) {
           return (
             <li key={t.track}>
               <Link
-                href={TRACK_HOME[t.track]}
+                href={hrefFor(t.track)}
                 aria-current={active ? 'page' : undefined}
                 className={`-mb-px inline-flex min-h-11 items-center gap-2 rounded-t-xl border border-b-0 px-4 py-2 font-semibold focus-visible:outline-3 focus-visible:outline-brand ${
                   active

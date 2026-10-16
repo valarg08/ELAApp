@@ -22,8 +22,9 @@ export class ProgressService {
     private readonly curriculum: CurriculumService,
   ) {}
 
-  async trackProgress(user: AuthUser, track: Track): Promise<TrackProgress> {
-    const summaries = await this.curriculum.listUnits(user, undefined, track);
+  /** `classId`: the class whose pacing decides availability (a teacher viewing a student). */
+  async trackProgress(user: AuthUser, track: Track, classId?: string): Promise<TrackProgress> {
+    const summaries = await this.curriculum.listUnits(user, classId, track);
     const units = await this.db.client.unit.findMany({
       where: { track },
       orderBy: { number: 'asc' },

@@ -19,4 +19,5 @@ export * from './contracts/feedback.js';
 export * from './contracts/tutor.js';
 export * from './contracts/word-bank.js';
 export * from './contracts/essay.js';
+export * from './contracts/teacher-progress.js';
 export * from './writing/diff.js';

@@ -8,6 +8,7 @@ import {
   type StudentSummary,
   decodePictureSecret,
 } from '@storyforge/shared';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { type FormEvent, useState } from 'react';
 import { Button, Card, ErrorMessage } from '@/components/ui';
@@ -84,7 +85,12 @@ export function Roster({ classId, students }: { classId: string; students: Stude
                 {students.map((s) => (
                   <tr key={s.id} className="border-t border-border">
                     <td className="py-3 pr-4 font-medium">
-                      {s.displayName}
+                      <Link
+                        href={`/classes/${classId}/students/${s.id}`}
+                        className="text-brand underline"
+                      >
+                        {s.displayName}
+                      </Link>
                       {s.locked && (
                         <span className="ml-2 rounded-full border border-bad px-2 py-0.5 text-xs text-bad">
                           Locked

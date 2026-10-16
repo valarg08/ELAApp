@@ -14,7 +14,7 @@
     "typescript/no-explicit-any": "warn",
     "typescript/no-extraneous-class": ["warn", { "allowWithDecorator": true }],
     "import/no-unassigned-import": ["warn", { "allow": ["**/*.css", "server-only"] }],
-    "eslint/no-underscore-dangle": ["warn", { "allow": ["_count"] }],
+    "eslint/no-underscore-dangle": ["warn", { "allow": ["_count", "_max", "_sum"] }],
     "react/react-in-jsx-scope": "off"
   },
   "ignorePatterns": [

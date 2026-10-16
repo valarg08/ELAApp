@@ -31,6 +31,7 @@ export default async function ClassPage({ params }: PageProps<'/classes/[classId
               <p className="mt-1 text-muted">Grade {klass.gradeLevel}</p>
             </div>
             <div className="flex flex-wrap gap-2">
+              <ButtonLink href={`/classes/${klass.id}/progress`}>📊 Progress</ButtonLink>
               <ButtonLink
                 href={`/classes/${klass.id}/flags`}
                 variant={openFlags && openFlags.length > 0 ? 'danger' : 'secondary'}
