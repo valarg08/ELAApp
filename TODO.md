@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-15 (after E15 and P5a were merged to main).
+Last updated: 2026-10-16 (after M0, the Math track engine, on branch phase-m0).
 
 ## Done so far
 
@@ -11,6 +11,7 @@ Last updated: 2026-10-15 (after E15 and P5a were merged to main).
 - [x] SL1–SL7: self-paced learning with the AI tutor, Story Writing Units 1–7 (§9.5–§9.11)
 - [x] E0–E15: the whole Essay Writing track (§9.12)
 - [x] P5a: teacher progress views: the class heatmap and the student profile (§11.3)
+- [x] M0: the Math track engine (§9.13 "M0 as built")
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -26,16 +27,17 @@ One unit per phase, in the 5-step lesson format, each with the tools and AI chec
 
 A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are checked in code; Quill only explains. **Original AMC-style problems only**: never copy past AMC problems (© MAA).
 
-- [ ] **Confirm the open decisions** in §9.13: unit check pass mark (default 70%), authored hints on practice problems, typed answers in practice, three mocks plus the final.
-- [ ] **M0 Foundation:**
+- [x] **Decisions confirmed** (§9.13): 70% unit check pass mark, authored hints on practice problems, typed answers in practice, three mocks plus the final.
+- [x] **M0 Foundation** (done; see §9.13 "M0 as built"):
   - track `MATH` (`content/math`, `m01.` keys, `/math`, third track tab, strand badges);
   - KaTeX rendering and the answer box with helper buttons and a live preview;
   - SVG figures with alt text;
-  - `packages/math-check` (`parseAnswer`, exact `answersEqual`, safe `compute` evaluator) and content:check answer verification;
+  - `packages/math-check` (`readAnswer`, exact `checkAnswer` with answer forms, safe `evaluate` for `compute`) and content:check answer verification;
   - `PROBLEMS` practice and the `PROBLEM_SET` marked challenge and unit check;
   - the error log;
-  - Quill `math-explain` and `math-mistake` (verdict never changed by AI).
-- [ ] **M1** Unit 1 Problem Solving & the AMC 10
+  - Quill `math-explain` in explain and mistake modes (verdict never changed by AI).
+- [ ] **M1** Unit 1 Problem Solving & the AMC 10: finish the lessons after the sample lesson, the ⭐ check (70%), publish the unit, and "Try a similar one" from the problem bank
+- [ ] Math extras noted in M0: `$$…$$` display math; a math version of the Learn-card tutor ("Explain it another way" is hidden on Math cards, since it is a writing tutor)
 - [ ] **M2** Unit 2 Arithmetic & Number Sense
 - [ ] **M3** Unit 3 Linear Equations & Word Problems
 - [ ] **M4** Unit 4 Quadratics & Polynomials
@@ -82,7 +84,9 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
   - `PUT /submissions/:id/outline`, `/checklist`, `/essay-type` and the other choice endpoints
   - the marked quiz endpoints (`/lessons/:id/quiz/...`)
   - `GET /teacher/classes/:classId/progress` and `GET /teacher/classes/:classId/students/:studentId/progress` (students 403; another teacher's class or a student outside the class 404)
+  - the Math endpoints: `/lessons/:id/problem-sets/:key` (start/submit student-only; another student's attempt 404), `/math/error-log` (student-only; another student's entry 404), `/ai/math/explain` (student-only; a marked set not explained before a submitted try)
 - [ ] The analyzer, Coach and rubric unit tests listed under each E-phase (E1–E15) and SL-phase.
+- [ ] math-check unit tests (values, parsing, answer forms, TeX choices) and `problemErrors` / figure-sanitiser tests (M0).
 - [ ] Playwright happy paths with `expectAccessible(page)` for the essay workspace tools and the teacher progress pages.
 
 ## Known issues to revisit

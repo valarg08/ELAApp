@@ -1,0 +1,11 @@
+{
+  "number": 5,
+  "slug": "math-functions",
+  "title": "Functions & Inequalities",
+  "summary": "Function notation, graphs and transformations, absolute value, inequalities and AM–GM, floor, ceiling and piecewise functions.",
+  "bigIdeas": [
+    "A function is a rule: feed it, then read it.",
+    "Inequalities find the best and worst cases."
+  ],
+  "published": false
+}

@@ -1,0 +1,148 @@
+[
+  {
+    "key": "m01.scoring-practice",
+    "type": "PROBLEMS",
+    "title": "Scoring and timing",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. Every problem here is about the AMC 10's rules: 25 questions, 75 minutes, 6 points for a right answer, 1.5 for a blank and 0 for a wrong answer.",
+    "problems": [
+      {
+        "id": "priya-score",
+        "prompt": "Priya answers $15$ questions correctly, leaves $7$ blank and gets $3$ wrong. What is her score?",
+        "answer": { "kind": "value", "accepted": ["100.5"], "form": "any" },
+        "hints": [
+          "Work out the points from each kind of answer separately.",
+          "Right answers give $15 \\times 6$ points. Blanks give $7 \\times 1.5$ points.",
+          "$90 + 10.5 = ?$ (wrong answers add nothing)"
+        ],
+        "solution": "Right answers: $15 \\times 6 = 90$. Blanks: $7 \\times 1.5 = 10.5$. Wrong answers: $0$. Her score is $90 + 10.5 = 100.5$.",
+        "skill": "AMC scoring",
+        "difficulty": 1,
+        "compute": "15*6 + 7*1.5"
+      },
+      {
+        "id": "all-blank",
+        "prompt": "What score would you get if you left all $25$ questions blank?",
+        "answer": { "kind": "value", "accepted": ["37.5"], "form": "any" },
+        "hints": ["Each blank is worth $1.5$ points.", "$25 \\times 1.5 = ?$"],
+        "solution": "Each of the $25$ blanks earns $1.5$ points, so the score is $25 \\times 1.5 = 37.5$.",
+        "skill": "AMC scoring",
+        "difficulty": 1,
+        "compute": "25*1.5"
+      },
+      {
+        "id": "random-guess",
+        "prompt": "You guess at random on a question with five choices. On average, how many points is the guess worth? Give your answer as a common fraction.",
+        "answer": { "kind": "value", "accepted": ["6/5"], "form": "fraction" },
+        "hints": [
+          "A random guess is right $1$ time in $5$.",
+          "On average you earn $6$ points $\\frac{1}{5}$ of the time and $0$ the rest of the time.",
+          "$\\frac{1}{5} \\times 6 = ?$"
+        ],
+        "solution": "The guess is right with probability $\\frac{1}{5}$ and then earns $6$ points; otherwise it earns $0$. On average it is worth $\\frac{1}{5} \\times 6 = \\frac{6}{5}$ points. That is less than the $\\frac{3}{2}$ points of a blank, so a blind guess is a bad deal.",
+        "skill": "Guessing vs blanks",
+        "difficulty": 2,
+        "compute": "6/5"
+      },
+      {
+        "id": "two-left",
+        "prompt": "You rule out $3$ of the $5$ choices and guess between the other $2$. On average, how many points is that guess worth?",
+        "answer": { "kind": "value", "accepted": ["3"], "form": "any" },
+        "hints": ["Now the guess is right $1$ time in $2$.", "$\\frac{1}{2} \\times 6 = ?$"],
+        "solution": "The guess is right half the time, so it is worth $\\frac{1}{2} \\times 6 = 3$ points on average: double the $1.5$ points of a blank. Once you can rule out choices, guessing pays.",
+        "skill": "Guessing vs blanks",
+        "difficulty": 2,
+        "compute": "6/2"
+      },
+      {
+        "id": "minutes-each",
+        "prompt": "You have $75$ minutes for $25$ questions. You want to keep the last $15$ minutes to check your work. On average, how many minutes can you spend on each question?",
+        "answer": { "kind": "value", "accepted": ["12/5", "2.4"], "form": "any" },
+        "hints": [
+          "How many minutes are left for answering once you keep $15$ for checking?",
+          "Share $60$ minutes between $25$ questions."
+        ],
+        "solution": "You have $75 - 15 = 60$ minutes for answering, so each question gets $\\frac{60}{25} = 2.4$ minutes on average: about $2$ minutes and $24$ seconds.",
+        "skill": "Pacing",
+        "difficulty": 2,
+        "compute": "(75-15)/25"
+      }
+    ]
+  },
+  {
+    "key": "m01.amc-rules-set",
+    "type": "PROBLEM_SET",
+    "title": "AMC rules challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "sam-score",
+        "prompt": "Sam answers $20$ questions correctly and leaves the other $5$ blank. What is Sam's score?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$120$", "$125$", "$127.5$", "$130$", "$150$"],
+          "correct": "C"
+        },
+        "solution": "Right answers: $20 \\times 6 = 120$. Blanks: $5 \\times 1.5 = 7.5$. The score is $120 + 7.5 = 127.5$, choice (C).",
+        "skill": "AMC scoring",
+        "difficulty": 1,
+        "compute": "20*6 + 5*1.5"
+      },
+      {
+        "id": "beat-one-hundred",
+        "prompt": "A student answers some questions correctly and leaves every other question blank (no wrong answers). What is the least number of correct answers that gives a score greater than $100$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$11$", "$12$", "$13$", "$14$", "$15$"],
+          "correct": "D"
+        },
+        "solution": "With $r$ right and $25 - r$ blank, the score is $6r + 1.5(25 - r) = 37.5 + 4.5r$. We need $37.5 + 4.5r > 100$, so $4.5r > 62.5$ and $r > 13.\\overline{8}$. The least whole number is $14$, choice (D). Check: $14$ right gives $84 + 16.5 = 100.5$, while $13$ right gives $78 + 18 = 96$.",
+        "skill": "AMC scoring",
+        "difficulty": 2,
+        "compute": "floor(62.5/4.5) + 1"
+      },
+      {
+        "id": "square-triangle",
+        "prompt": "A square has side length $6$. Point $M$ is the midpoint of the top side. What is the area of the shaded triangle, whose corners are the two bottom corners of the square and $M$?",
+        "figure": {
+          "file": "square-triangle.svg",
+          "alt": "A square with side length 6. A shaded triangle joins the bottom-left corner, the bottom-right corner and point M, the midpoint of the top side."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$18$", "$24$", "$27$", "$36$"],
+          "correct": "B"
+        },
+        "solution": "The triangle's base is the bottom side, length $6$, and its height is the side of the square, $6$, because $M$ is on the top side. Its area is $\\frac{1}{2} \\times 6 \\times 6 = 18$, choice (B): half of the square, wherever $M$ is on the top side.",
+        "skill": "Draw it",
+        "difficulty": 2,
+        "compute": "6*6/2"
+      },
+      {
+        "id": "pacing-check",
+        "prompt": "Ana plans to spend $15$ minutes on the last $5$ (hardest) questions and $10$ minutes checking. If she shares the rest of the $75$ minutes equally among the first $20$ questions, how many minutes does each of those get?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1.75$", "$2$", "$2.25$", "$2.5$", "$3$"],
+          "correct": "D"
+        },
+        "solution": "The first $20$ questions get $75 - 15 - 10 = 50$ minutes, so each gets $\\frac{50}{20} = 2.5$ minutes, choice (D).",
+        "skill": "Pacing",
+        "difficulty": 2,
+        "compute": "(75-15-10)/20"
+      },
+      {
+        "id": "guess-or-blank",
+        "prompt": "On one question you can rule out exactly $k$ of the five choices, then guess at random among the rest. What is the least $k$ for which the guess is worth more points on average than a blank?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "C"
+        },
+        "solution": "Guessing among $5 - k$ choices is worth $\\frac{6}{5-k}$ points on average. A blank is worth $1.5 = \\frac{3}{2}$. With $k = 1$: $\\frac{6}{4} = 1.5$, only equal. With $k = 2$: $\\frac{6}{3} = 2 > 1.5$. So the least $k$ is $2$, choice (C).",
+        "skill": "Guessing vs blanks",
+        "difficulty": 3,
+        "compute": "2"
+      }
+    ]
+  }
+]

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <rect x="30" y="30" width="180" height="180" fill="none" stroke="currentColor" stroke-width="2"/>
+  <polygon points="30,210 210,210 120,30" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="2"/>
+  <circle cx="120" cy="30" r="3" fill="currentColor"/>
+  <text x="120" y="232" text-anchor="middle" font-size="16" fill="currentColor">6</text>
+  <text x="14" y="125" text-anchor="middle" font-size="16" fill="currentColor">6</text>
+  <text x="120" y="22" text-anchor="middle" font-size="14" fill="currentColor">M</text>
+</svg>

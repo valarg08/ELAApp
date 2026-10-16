@@ -1,4 +1,4 @@
-import { TRACK_HOME, UnitDetail, unitLabel } from '@storyforge/shared';
+import { TRACK_HOME, TRACK_NAMES, UnitDetail, unitLabel } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ProgressBar } from '@/components/progress-bar';
@@ -17,7 +17,7 @@ export default async function UnitPage({ params }: PageProps<'/units/[unitSlug]'
       <div className="flex flex-col gap-8">
         <div>
           <Link href={TRACK_HOME[unit.track]} className="text-brand underline">
-            {unit.track === 'ESSAY' ? '← Essay Writing' : '← My journey'}
+            {unit.track === 'STORY' ? '← My journey' : `← ${TRACK_NAMES[unit.track]}`}
           </Link>
           <p className="mt-4 text-sm font-semibold tracking-widest text-muted uppercase">
             {unitLabel(unit.track, unit.number)}

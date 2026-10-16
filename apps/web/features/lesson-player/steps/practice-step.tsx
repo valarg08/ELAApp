@@ -8,6 +8,8 @@ import { ErrorHunt } from '../activities/error-hunt';
 import { FillBlank } from '../activities/fill-blank';
 import { Highlight } from '../activities/highlight';
 import { MultipleChoice } from '../activities/multiple-choice';
+import { ProblemSet } from '../activities/problem-set';
+import { Problems } from '../activities/problems';
 import { Quiz } from '../activities/quiz';
 import { ReflectionActivity } from '../activities/reflection-activity';
 import { Sequence } from '../activities/sequence';
@@ -19,6 +21,17 @@ import { ExtraPractice } from '../tutor/extra-practice';
 import type { StepProps } from './step-props';
 
 type Practice = LessonSteps[2];
+
+/**
+ * No Quill extra practice: marked quizzes and problem sets are tests, and Math problems come from
+ * the problem bank, never from AI (DESIGN.md §9.13).
+ */
+const NO_EXTRA_PRACTICE: readonly LessonActivity['type'][] = [
+  'REFLECTION',
+  'QUIZ',
+  'PROBLEMS',
+  'PROBLEM_SET',
+];
 
 /** Practice activities one after another; the step is saved when all are done. */
 export function PracticeStep({
@@ -45,8 +58,7 @@ export function PracticeStep({
 
   const practiceKeys = step.activityKeys.filter((k) => {
     const a = activities[k];
-    // Marked quizzes have no extra practice (their questions are a test).
-    return a && a.type !== 'REFLECTION' && a.type !== 'QUIZ';
+    return a && !NO_EXTRA_PRACTICE.includes(a.type);
   });
 
   if (extra) {
@@ -139,11 +151,7 @@ export function PracticeStep({
                 : activity.type === 'ERROR_HUNT'
                   ? activity.errors.length
                   : 1;
-          if (
-            activity.type !== 'REFLECTION' &&
-            activity.type !== 'QUIZ' &&
-            result.attempts > baseline
-          ) {
+          if (!NO_EXTRA_PRACTICE.includes(activity.type) && result.attempts > baseline) {
             setOffer({ key, advance });
           } else {
             advance();
@@ -195,6 +203,10 @@ function ActivityView({
       return <ErrorHunt activity={activity} onDone={onDone} />;
     case 'REFLECTION':
       return <ReflectionActivity activity={activity} onDone={onDone} />;
+    case 'PROBLEMS':
+      return <Problems lessonId={lessonId} activity={activity} onDone={onDone} />;
+    case 'PROBLEM_SET':
+      return <ProblemSet lessonId={lessonId} activity={activity} onDone={onDone} />;
     default:
       return <ErrorMessage message="This activity type can't be practised here." />;
   }

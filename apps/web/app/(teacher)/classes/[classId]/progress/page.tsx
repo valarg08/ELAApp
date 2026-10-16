@@ -5,6 +5,7 @@ import {
   type LessonCell,
   type StudentProgressRow,
   Track,
+  UNIT_WORD,
 } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -57,7 +58,7 @@ export default async function ClassProgressPage({
     if (s !== 'all') next.set('show', s);
     return `${base}?${next.toString()}`;
   };
-  const unitName = track === 'ESSAY' ? 'Essay Unit' : 'Unit';
+  const unitName = UNIT_WORD[track];
   const students = progress.students.filter((s) =>
     filter === 'inactive' ? s.inactive : filter === 'help' ? s.needsHelp : true,
   );
@@ -159,7 +160,7 @@ export default async function ClassProgressPage({
               </ul>
             </nav>
 
-            <Legend />
+            <Legend math={track === 'MATH'} />
 
             {students.length === 0 ? (
               <p className="text-muted">
@@ -232,7 +233,7 @@ function Stat({ value, label }: { value: string | number; label: string }) {
   );
 }
 
-function Legend() {
+function Legend({ math }: { math: boolean }) {
   return (
     <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted" aria-label="Key">
       <li className="flex items-center gap-2">
@@ -244,8 +245,8 @@ function Legend() {
       <li className="flex items-center gap-2">
         <Square state="not_started" /> Not started
       </li>
-      <li>✍ writing handed in (feedback score)</li>
-      <li>Q quiz best score</li>
+      {!math && <li>✍ writing handed in (feedback score)</li>}
+      <li>Q {math ? 'problem set' : 'quiz'} best score</li>
       <li>😟 low confidence</li>
     </ul>
   );
@@ -268,7 +269,7 @@ function Square({ state, label }: { state: LessonCell['state']; label?: string }
   );
 }
 
-function describe(cell: LessonCell, title: string) {
+function describe(cell: LessonCell, title: string, marked = 'quiz') {
   const parts = [
     cell.state === 'done'
       ? 'done'
@@ -277,7 +278,9 @@ function describe(cell: LessonCell, title: string) {
         : 'not started',
   ];
   if (cell.quizPercent !== null)
-    parts.push(`quiz ${cell.quizPercent}%${cell.quizPassed ? ', passed' : ', not passed yet'}`);
+    parts.push(
+      `${marked} ${cell.quizPercent}%${cell.quizPassed ? ', passed' : ', not passed yet'}`,
+    );
   if (cell.submitted)
     parts.push(
       cell.scorePercent === null
@@ -325,7 +328,13 @@ function StudentRow({
       </th>
       {s.cells.map((c, i) => (
         <td key={c.lessonId} className="p-2 text-center">
-          <span className="sr-only">{describe(c, `Lesson ${lessons[i]?.order ?? i + 1}`)}</span>
+          <span className="sr-only">
+            {describe(
+              c,
+              `Lesson ${lessons[i]?.order ?? i + 1}`,
+              track === 'MATH' ? 'problem set' : 'quiz',
+            )}
+          </span>
           <span aria-hidden="true" className="flex flex-col items-center gap-0.5">
             <Square
               state={c.state}

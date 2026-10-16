@@ -20,7 +20,7 @@ import { PacingService } from './pacing.service.js';
 import { ProgressService } from './progress.service.js';
 import { QuizService } from './quiz.service.js';
 
-/** `?track=ESSAY` picks Essay Writing; anything else is Story Writing. */
+/** `?track=ESSAY` picks Essay Writing, `?track=MATH` Math; anything else is Story Writing. */
 const trackOf = (value?: string): Track => Track.catch('STORY').parse(value?.toUpperCase());
 
 @Controller()

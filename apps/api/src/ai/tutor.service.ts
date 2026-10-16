@@ -3,7 +3,16 @@ import {
   type ExtraPracticeResult,
   explainCardAnalyzer,
   extraPracticeAnalyzer,
+  mathExplainAnalyzer,
 } from '@storyforge/ai';
+import {
+  CHOICE_LETTERS,
+  choiceValue,
+  contentValue,
+  equal,
+  readAnswer,
+  texToExpression,
+} from '@storyforge/math-check';
 import {
   ActivityContent,
   ErrorCode,
@@ -13,6 +22,11 @@ import {
   type ExtraPracticeResponse,
   type LessonCard,
   LessonSteps,
+  type MathExplainRequest,
+  type MathExplainResponse,
+  type MathProblem,
+  answerLabel,
+  markAnswer,
   MultipleChoiceActivity,
   POV_VERSION_LABELS,
   type PracticeActivity,
@@ -275,12 +289,47 @@ function describeActivity(
       };
     }
     // Unit-check quizzes are marked tests: no extra practice from their question bank.
+    // Math problems get "Try a similar one" from the problem bank instead (DESIGN.md §9.13).
     case 'QUIZ':
+    case 'PROBLEMS':
+    case 'PROBLEM_SET':
     case 'REFLECTION':
       return { text: '', fallback: [] };
   }
   const unreachable: never = activity;
   return unreachable;
+}
+
+/** The value the right answer stands for, or null when it isn't a number. */
+function valueOfAnswer(problem: MathProblem) {
+  try {
+    if (problem.answer.kind === 'choice')
+      return choiceValue(problem.answer.choices[CHOICE_LETTERS.indexOf(problem.answer.correct)]!);
+    return contentValue(problem.answer.accepted[0]!);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * True when a step states a final answer that isn't the right one ("the answer is $12$",
+ * "the answer is (B)"), or, in mistake mode, calls the student's answer right. Such steps are
+ * dropped (DESIGN.md §9.13).
+ */
+function contradicts(step: string, problem: MathProblem, mode: 'explain' | 'mistake'): boolean {
+  if (
+    mode === 'mistake' &&
+    /\b(you were|you're|you are|your answer is) (right|correct)\b/i.test(step)
+  )
+    return true;
+  const letter = /answer is\s*\(([A-E])\)/i.exec(step)?.[1];
+  if (letter && problem.answer.kind === 'choice')
+    return letter.toUpperCase() !== problem.answer.correct;
+  const stated = /answer is\s*(\$[^$]+\$|[-\d./√π ]+\d)/i.exec(step)?.[1];
+  if (!stated) return false;
+  const read = readAnswer(texToExpression(stated));
+  const right = valueOfAnswer(problem);
+  return read.ok && right !== null && !equal(read.value, right);
 }
 
 /**
@@ -337,7 +386,9 @@ export class TutorService {
       !activity ||
       isWritingActivity(activity) ||
       activity.type === 'REFLECTION' ||
-      activity.type === 'QUIZ'
+      activity.type === 'QUIZ' ||
+      activity.type === 'PROBLEMS' ||
+      activity.type === 'PROBLEM_SET'
     ) {
       throw notFound(ErrorCode.ACTIVITY_NOT_FOUND, 'There’s no extra practice for this activity.');
     }
@@ -397,6 +448,95 @@ export class TutorService {
         title: clip(`More practice: ${activity.title}`, 120),
         questions,
       }),
+      remaining,
+    };
+  }
+
+  /**
+   * Quill on a Math problem (DESIGN.md §9.13). The verdict and the right answer come from
+   * math-check; steps that state a different final answer are dropped, so Quill can never change
+   * the verdict.
+   */
+  async mathExplain(user: AuthUser, req: MathExplainRequest): Promise<MathExplainResponse> {
+    const { lesson, unit, classId } = await this.curriculum.openLesson(user, req.lessonId);
+    const [, , practice, challenge] = LessonSteps.parse(lesson.steps);
+    const used =
+      practice.activityKeys.includes(req.activityKey) || challenge.activityKey === req.activityKey;
+    const row = used
+      ? await this.db.client.activity.findUnique({ where: { key: req.activityKey } })
+      : null;
+    const activity = row ? ActivityContent.safeParse(row.config).data : undefined;
+    const problem =
+      activity?.type === 'PROBLEMS' || activity?.type === 'PROBLEM_SET'
+        ? activity.problems.find((p) => p.id === req.problemId)
+        : undefined;
+    if (!problem) throw notFound(ErrorCode.NOT_FOUND, 'Problem not found.');
+    // A marked set's problems are explained only after the student has submitted an attempt.
+    if (activity?.type === 'PROBLEM_SET') {
+      const submitted = await this.db.client.quizAttempt.count({
+        where: {
+          studentId: user.id,
+          lessonId: lesson.id,
+          activityKey: activity.key,
+          submittedAt: { not: null },
+        },
+      });
+      if (submitted === 0) throw notFound(ErrorCode.NOT_FOUND, 'Finish the set first.');
+    }
+    const studentAnswer = req.mode === 'mistake' ? (req.answer ?? '').trim() : '';
+    if (req.mode === 'mistake') {
+      const mark = markAnswer(problem, studentAnswer);
+      // Only real wrong answers get a "why": a right one, a blank or unreadable text does not.
+      if (mark.verdict !== 'wrong' || !mark.readable)
+        throw new AppError(
+          HttpStatus.BAD_REQUEST,
+          ErrorCode.VALIDATION_FAILED,
+          'Nothing to explain',
+          'Quill explains wrong answers only.',
+        );
+    }
+    const remaining = await this.checkLimit(user.id, classId);
+
+    const answerKey = studentAnswer.toLowerCase().replace(/s+/g, '');
+    const outcome = await this.ai
+      .run(
+        mathExplainAnalyzer,
+        {
+          unitTitle: unit.title,
+          skill: problem.skill,
+          problem: problem.prompt,
+          choices: problem.answer.kind === 'choice' ? [...problem.answer.choices] : [],
+          rightAnswer: answerLabel(problem),
+          solution: problem.solution,
+          mode: req.mode,
+          studentAnswer: req.mode === 'mistake' ? studentAnswer : null,
+          attempt: req.attempt,
+        },
+        {
+          kind: 'tutor',
+          userId: user.id,
+          classId,
+          cacheScope: `${req.activityKey}|${problem.id}|${req.mode}|${answerKey}|try${req.attempt}`,
+          text: '',
+        },
+      )
+      .catch(() => {
+        throw unavailable();
+      });
+    if (outcome.status === 'declined') throw unavailable();
+
+    const steps = outcome.result.steps
+      .filter((step) => !contradicts(step, problem, req.mode))
+      .map((step) => clip(step, 600))
+      .slice(0, 8);
+    if (steps.length === 0) throw unavailable();
+    return {
+      steps,
+      keyIdea: clip(outcome.result.keyIdea, 300),
+      likelyMistake:
+        req.mode === 'mistake' && outcome.result.likelyMistake
+          ? clip(outcome.result.likelyMistake, 500)
+          : null,
       remaining,
     };
   }

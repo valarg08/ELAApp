@@ -1,0 +1,8 @@
+{
+  "number": 6,
+  "slug": "math-sequences",
+  "title": "Sequences & Patterns",
+  "summary": "Arithmetic and geometric sequences and series, recursion, telescoping sums and finding the pattern.",
+  "bigIdeas": ["Write out the first few terms.", "Pair terms to make sums easy."],
+  "published": false
+}

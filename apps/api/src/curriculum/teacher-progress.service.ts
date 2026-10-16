@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
-  ActivityContent,
+  MARKED_ACTIVITY_TYPES,
   type ClassProgress,
   ErrorCode,
   INACTIVE_DAYS,
@@ -184,7 +184,7 @@ export class TeacherProgressService {
     const activities = await this.db.client.activity.findMany({ where: { unitId: unit.id } });
     const quizKeys = new Set(
       activities
-        .filter((a) => ActivityContent.safeParse(a.config).data?.type === 'QUIZ')
+        .filter((a) => (MARKED_ACTIVITY_TYPES as readonly string[]).includes(a.type))
         .map((a) => a.key),
     );
     const idByKey = new Map(activities.map((a) => [a.key, a.id]));
@@ -194,7 +194,9 @@ export class TeacherProgressService {
         return [
           l.id,
           {
-            quiz: practice.activityKeys.find((k) => quizKeys.has(k)) ?? null,
+            quiz:
+              practice.activityKeys.find((k) => quizKeys.has(k)) ??
+              (quizKeys.has(challenge.activityKey) ? challenge.activityKey : null),
             challengeId: idByKey.get(challenge.activityKey) ?? null,
           },
         ];

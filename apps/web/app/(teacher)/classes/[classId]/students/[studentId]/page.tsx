@@ -4,6 +4,7 @@ import {
   LOW_CONFIDENCE,
   StudentProgressDetail,
   Track,
+  UNIT_WORD,
 } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -40,7 +41,7 @@ export default async function StudentProgressPage({
   ]);
   if (!klass || !detail) notFound();
   const { student, recent, confidence } = detail;
-  const unitName = track === 'ESSAY' ? 'Essay Unit' : 'Unit';
+  const unitName = UNIT_WORD[track];
   const low = confidence.filter((c) => c.confidence <= LOW_CONFIDENCE);
 
   return (

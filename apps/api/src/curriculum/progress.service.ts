@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
-  ActivityContent,
+  MARKED_ACTIVITY_TYPES,
   LessonSteps,
   STEP_IDS,
   StepId,
@@ -53,7 +53,7 @@ export class ProgressService {
     });
     const quizKeys = new Set(
       activities
-        .filter((a) => ActivityContent.safeParse(a.config).data?.type === 'QUIZ')
+        .filter((a) => (MARKED_ACTIVITY_TYPES as readonly string[]).includes(a.type))
         .map((a) => a.key),
     );
     const activityIdByKey = new Map(activities.map((a) => [a.key, a.id]));
@@ -85,7 +85,10 @@ export class ProgressService {
         ? unit.lessons.map((lesson, i) => {
             const p = progress.get(lesson.id);
             const keys = keysOf.get(lesson.id);
-            const quizKey = keys?.practice.find((k) => quizKeys.has(k));
+            // The marked check: a practice quiz or problem set, else a Math problem-set challenge.
+            const quizKey =
+              keys?.practice.find((k) => quizKeys.has(k)) ??
+              (keys && quizKeys.has(keys.challenge) ? keys.challenge : undefined);
             const tries = quizKey
               ? attempts.filter((a) => a.lessonId === lesson.id && a.activityKey === quizKey)
               : [];

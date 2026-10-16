@@ -1731,16 +1731,114 @@ Strands (progress badges): **Strategy** (1, 14, 15), **Algebra** (2–6), **Numb
   - "Try a similar one" comes from the bank (same skill and difficulty, not seen yet), not from AI-generated problems, because generated problems can't be guaranteed correct.
 - **Progress & teacher views:** the Math tracker shows lessons, unit checks, accuracy per strand and, after M15, mock scores with an AMC-score estimate. The P5a heatmap works unchanged (`?track=math`).
 
-**Open decisions (confirm before M0):**
-1. **Unit check pass mark:** default **70%**, since AMC-style problems are harder than the essay quizzes (Essay uses 80%).
-2. **Hints:** default **authored hints on practice problems** (none during unit checks and mocks). The Story track chose "no practice hints", but stepped hints are standard in math practice.
-3. **Answer format in practice:** default **mostly typed answers**, so guessing doesn't count. Choices (A)–(E) appear in unit checks and mocks, as on the AMC.
-4. **Mocks:** default **three full original mocks** (A, B, C) plus the final.
+**Decisions (accepted by the project owner with "start M0", 2026-10-16):**
+1. **Unit check pass mark: 70%**, since AMC-style problems are harder than the essay quizzes (Essay uses 80%).
+2. **Hints: authored hints on practice problems** (none during unit checks and mocks). The Story track chose "no practice hints", but stepped hints are standard in math practice.
+3. **Answer format in practice: mostly typed answers**, so guessing doesn't count. Choices (A)–(E) appear in unit checks and mocks, as on the AMC.
+4. **Mocks: three full original mocks** (A, B, C) plus the final.
 
 **Phases:**
 - **M0:** the engine, as above.
 - **M1–M14:** one unit each, with any tools a unit needs (for example a geometry figure viewer with zoom, a counting tree builder, a number line) built in that unit.
 - **M15:** mocks, the timed test, scoring, the AMC estimate and the error-log review.
+
+#### M0 as built
+
+**packages/math-check** (no dependencies):
+- **Exact values:** sums of rational multiples of √r·πᵖ, with r square-free. Anything else (a root of a sum, a non-integer power) falls back to a float compared with a relative tolerance of 1e-9.
+- **Arithmetic:**
+  - integer powers are exact up to |e| ≤ 4096 (square-and-multiply, so `2^100` stays exact);
+  - half powers go through √;
+  - `1/(a ± b√r)` is rationalised.
+- **`evaluate(input, { functions })`:** a recursive-descent reader with no variables and no `eval`. It handles numbers as exact decimals, `+ − × ÷ ^`, implicit products (`2π`, `3√5`, `2(x+1)`), `!`, √/`sqrt()`, π/`pi`, and the aliases − × · ÷ [ ] { }. With `functions` (content only) it also has `binom gcd lcm floor ceil abs min max mod fact`.
+- **`readAnswer`** reads a student's answer, including mixed numbers ("2 1/3") and grouped thousands ("1,024").
+- **`texToExpression`** converts answer choices (`\frac`, `\sqrt`, `\pi`, `\cdot`, `%`). `choiceValue` gives a choice's value, or null for "none of these".
+- **`checkAnswer(input, accepted, form)`** returns correct / form / wrong / invalid. The value decides. A right value in the wrong form is "form", with "Right value! Now write it as …". The forms are any, integer, fraction (lowest terms), mixed, decimal, radical (square-free, no root in a denominator) and pi.
+
+**Shared** (`curriculum/math.ts`, `contracts/math.ts`):
+- **Problem schema:** `MathProblem` = `id`, `prompt`, optional `figure {file, alt}`, `answer` (`choice` with five `choices` and `correct` A–E, or `value` with `accepted[]` and `form`), `hints` (0–3), `solution`, `skill`, `difficulty` 1–5, optional `compute`.
+  - The planned `strand` field was dropped: strands come from the unit number (`MATH_STRANDS`).
+- **Helpers:**
+  - `splitMath` splits text into plain and `$…$` pieces; `\$` is a dollar sign.
+  - `markAnswer(problem, given)` is used by browser practice, marked sets and redos.
+  - `publicProblem` strips the answer, hints and solution.
+  - `answerLabel` gives "(D) $2.5$" for a choice, or the first accepted value.
+- **`problemErrors`** (run by content:check) fails when:
+  - accepted answers disagree, or none has the asked-for form;
+  - two choices are the same, or the right value appears in more than one choice;
+  - `compute` ≠ the answer ("compute gives 5/2, but the answer is 3").
+- **Track:** `TRACKS` has `MATH`. Keys are `m01.`, `MAX_UNITS.MATH` is 15, and the track has `UNIT_WORD` "Math Unit", `TRACK_NAMES` and `TRACK_HOME` `/math`.
+- **Activities:**
+  - `PROBLEMS` (practice; up to 12 problems, sent whole to the browser);
+  - `PROBLEM_SET` (3–60 problems; optional `passPercent`, `problemsPerAttempt`, `timeLimitMinutes`; the lesson payload is `ProblemSetActivityPublic` without its problems).
+  - `MARKED_ACTIVITY_TYPES` = QUIZ and PROBLEM_SET.
+- **Bundle rules:**
+  - problems belong to the Math track;
+  - a Math lesson's challenge must be a PROBLEM_SET;
+  - other tracks still need a writing challenge.
+
+**Database:** enums `Track.MATH` and `ActivityType.PROBLEMS/PROBLEM_SET`, plus a new `MathErrorLog` table (unique student + activity + problem; `wrongTimes`, `correctRedos`, `lastRedoAt`, `resolvedAt`). Problem-set attempts reuse `QuizAttempt` (`questionIds` holds problem ids; `answers` maps id → letter or typed text).
+
+**content:check** (`content/math/unit-XX`):
+- the `problemErrors` above;
+- KaTeX parses every `$…$` in problems (prompt, solution, hints, choices) and in Math lesson cards; an unclosed `$` fails.
+- Figures are read from `figures/<file>.svg` and inlined. They must be at most 60 KB, start with `<svg`, and contain no script, foreignObject, iframe, image, use, `on…=` handlers, `href`, `url(` or DOCTYPE/ENTITY.
+
+**API:**
+- **MathModule:**
+  - `GET /lessons/:id/problem-sets/:key` returns the status.
+  - `POST …/attempts` starts a try (students): unseen problems first, then sorted easiest first.
+  - `POST …/attempts/:attemptId/submit` marks the try with `markAnswer`. Blanks are allowed. "Form" counts as not right. `passed` means done: at the pass mark, or on handing in when the set has none. Every miss goes to the error log.
+  - `GET /math/error-log`, `POST /math/error-log` (add from practice) and `POST /math/error-log/:id/redo` (students). One right redo counts per UTC day; two resolve the problem; a wrong redo resets the count.
+- **Curriculum:**
+  - Essay and Math are always self-paced (`isSelfPaced`: track ≠ STORY).
+  - A PROBLEM_SET challenge needs a passed attempt.
+  - Practice checks marked attempts for both quizzes and problem sets.
+  - The student tracker and the teacher heatmap use a practice quiz, else a problem-set challenge, as the "quiz" column.
+- **Quill:**
+  - `POST /ai/math/explain` takes `mode` (`explain` or `mistake`) and runs the analyzer `math-explain` (one analyzer for both of the planned `math-explain` and `math-mistake`).
+  - The correct answer and solution are given as facts.
+  - Mistake mode only answers for a readable wrong answer (400 otherwise).
+  - A marked set's problems are explained only after the student has submitted a try.
+  - Steps that state a different final answer ("the answer is …", "(B)"), or that call a wrong answer right, are dropped.
+  - Results are cached per problem, mode, normalised answer and attempt.
+  - Uses the tutor rate limits.
+  - Math activities never get AI extra practice.
+
+**Web:**
+- **Rendering:**
+  - `MathText` uses KaTeX with MathML output (`math-style: normal` makes inline fractions readable).
+  - `TrackText` makes Learn cards math-aware only in the Math track.
+  - The card tutor ("Explain it another way" on Learn cards) is hidden in Math, because it is a writing tutor; Quill works per problem instead.
+- **Answer box:** helper buttons √ π a/b xⁿ ( ) and a live "We read: …" from math-check.
+- **`ProblemView`** shows the prompt, the figure and either the choices (radios, "Clear my choice" in marked sets) or the answer box.
+  - Figures render as an `<img>` with a data: URI and the alt text on a white card, so an SVG can never run script and stays visible in dark mode.
+- **`Problems` practice:** check, hints one at a time, and "Show me the solution" after a try or a hint. "Why was mine wrong?" appears after a readable wrong answer, "Explain it another way" after it is solved, and "Add to my error log" after a miss or after "Show me".
+- **`ProblemSet`:**
+  - status, start, all problems on one page and hand in;
+  - a countdown that hands in at zero when there is a time limit;
+  - the review shows each verdict, the right answer, the worked solution and both Quill buttons.
+- **Challenge and pages:**
+  - `ChallengeStep` renders a ProblemSet for Math challenges.
+  - `TrackTabs` has the third tab "Math (AMC 10)".
+  - New pages: `/math`, `/math/progress` (strand badges; problem-set column, no writing column) and `/math/error-log`.
+  - The teacher heatmap with `?track=math` says "problem set".
+
+**Content:** `content/math/unit-01…15/unit.json` (slugs `math-…`) are all unpublished. Unit 1 has a sample lesson, "The AMC 10: Format, Scoring & Timing": 5 typed practice problems and a 5-problem choice set with one figure. It was played end to end with the unit published temporarily. M1 finishes Unit 1 and publishes it.
+
+**Not yet (later phases):**
+- "Try a similar one" from the bank (M1, once units have more problems per skill);
+- `$$…$$` display math;
+- the server-side timer and AMC scoring (M15).
+
+**Tests owed:**
+- math-check: the value/parse/answer cases from the M0 scratch run (form vs wrong, rationalised denominators, `mod(2^100, 7)`, TeX choices).
+- `problemErrors` and the figure sanitiser.
+- Authorisation for every new endpoint:
+  - problem sets: start and submit are student-only; another student's attempt answers 404;
+  - the error log is student-only, and another student's entry answers 404;
+  - `/ai/math/explain` is student-only, and a marked set is not explained before a submitted try.
+- Playwright: a Math lesson end to end with `expectAccessible`.
 
 ## 10. Unit-by-unit interactive tool designs (Deliverable 8)
 
@@ -2014,7 +2112,7 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | **E13 Essay Unit 13: Body Paragraphs & Evidence** ✅ | 7 lessons; body paragraph tasks (`essay.part: 'body'`, `essay.thesis`, the paragraph builder) and the `body.essay` rubric, evidence kinds and time words, the essay map's evidence rows, the AI body mode and the two-body-paragraph unit check (see §9.12) | Unit playable end to end; essay map marks topic sentences, evidence, counterclaim and rebuttal; `pnpm content:check` passes |
 | **E14 Essay Unit 14: Conclusions & Full Essays** ✅ | 7 lessons; the `ESSAY` activity type and three essay rubrics, conclusion tasks and the `conclusion.essay` rubric, restatement and summary, the essay checklist (`essayChecks`, `PUT /submissions/:id/checklist`), the AI conclusion mode and the edited argumentative essay unit check (see §9.12) | Unit playable end to end; the checklist ticks itself as the essay improves; `pnpm content:check` passes |
 | **E15 Essay Unit 15: Style, Revision & Final Essay** ✅ | 7 lessons; the `style` Coach check (`styleIssues`, `formal-sentence`), the AI `formal-tone` check, choosing the essay type (`essayPrompts`, `PUT /submissions/:id/essay-type`), continuing from a draft (`continuesFrom`), essay titles, three proofreads and the polished final essay with the final checklist (see §9.12) | Unit playable end to end; the final essay starts from the draft and is judged as the chosen kind; `pnpm content:check` passes |
-| **M0 Math track foundation** | Track `MATH` (`content/math`, `m01.` keys, `/math`, a third track tab), KaTeX rendering, SVG figures with alt text, `packages/math-check` (parse and compare exact answers, safe `compute` evaluator), problem format, `PROBLEMS` and `PROBLEM_SET` activities, the error log, Quill `math-explain`/`math-mistake` (§9.13) | A sample problem set renders, checks typed answers exactly and is marked on the server; `content:check` rejects a `compute` that disagrees with the answer; axe passes |
+| **M0 Math track foundation** ✅ | Track `MATH` (`content/math`, `m01.` keys, `/math`, a third track tab), KaTeX rendering, SVG figures with alt text, `packages/math-check` (parse and compare exact answers, safe `compute` evaluator), problem format, `PROBLEMS` and `PROBLEM_SET` activities, the error log, Quill `math-explain`/`math-mistake` (§9.13) | A sample problem set renders, checks typed answers exactly and is marked on the server; `content:check` rejects a `compute` that disagrees with the answer; axe passes |
 | **M1–M14 Math units** | One AMC 10 unit per phase (§9.13 plan), original problems only, with the tools each unit needs | Each unit playable end to end; every computable answer verified by `content:check` |
 | **M15 Mock exams** | `MOCK_TEST` (25 problems, 75-minute server timer, AMC scoring 6/1.5/0), three mocks and the final, strand and difficulty breakdown, AMC-score estimate, error-log review | A mock submits itself when time runs out; scores match AMC scoring |
 | **P5 Teacher dashboard** (P5a progress views ✅, the rest deferred; §11.3) | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |

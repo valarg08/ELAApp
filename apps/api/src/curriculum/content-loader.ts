@@ -9,8 +9,10 @@ import {
   type Track,
   type UnitBundle,
   UnitContent,
+  splitMath,
   validateUnitBundle,
 } from '@storyforge/shared';
+import { renderToString } from 'katex';
 import type { z } from 'zod';
 
 /** /content at the repo root (src/curriculum and dist/curriculum are both four levels down). */
@@ -35,12 +37,42 @@ const formatIssues = (file: string, error: z.ZodError) =>
 const TRACK_FOLDERS: { folder: string; track: Track; required: boolean }[] = [
   { folder: 'units', track: 'STORY', required: true },
   { folder: 'essay', track: 'ESSAY', required: false },
+  { folder: 'math', track: 'MATH', required: false },
 ];
 
+/** Figures are drawn SVG only: no scripts, event handlers, links, embedded HTML or outside files. */
+const UNSAFE_SVG =
+  /<script|<foreignObject|<iframe|<image|<use|\son[a-z]+\s*=|href\s*=|url\s*\(|<!ENTITY|<!DOCTYPE/i;
+const MAX_FIGURE_BYTES = 60_000;
+
+/** Problems in a unit's activities (Math track). */
+const problemsOf = (activities: ActivityContent[]) =>
+  activities.flatMap((a) =>
+    a.type === 'PROBLEMS' || a.type === 'PROBLEM_SET' ? a.problems.map((p) => ({ a, p })) : [],
+  );
+
+/** Every $…$ piece of math in a text, to check KaTeX can render it. */
+function texErrors(where: string, value: string): string[] {
+  const errors: string[] = [];
+  const { segments, ok } = splitMath(value);
+  if (!ok) errors.push(`${where}: a "$" is not closed (write \\$ for a dollar sign)`);
+  for (const { math, text } of segments) {
+    if (!math) continue;
+    try {
+      renderToString(text, { throwOnError: true, output: 'mathml' });
+    } catch (e) {
+      const why = e instanceof Error ? e.message : String(e);
+      errors.push(`${where}: KaTeX can't read "${text}" (${why})`);
+    }
+  }
+  return errors;
+}
+
 /**
- * Read and validate every unit under `<root>/units/unit-XX/` (Story Writing) and
- * `<root>/essay/unit-XX/` (Essay Writing):
- *   unit.json (required), activities.json (optional), lessons/*.json (optional).
+ * Read and validate every unit under `<root>/units/unit-XX/` (Story Writing),
+ * `<root>/essay/unit-XX/` (Essay Writing) and `<root>/math/unit-XX/` (Math):
+ *   unit.json (required), activities.json (optional), lessons/*.json (optional),
+ *   figures/*.svg (Math problem figures, inlined into the problem).
  * Never throws for bad content; problems are returned as readable messages.
  */
 export async function loadContent(root = defaultContentDir()): Promise<LoadResult> {
@@ -131,6 +163,32 @@ async function loadTrack(root: string, folder: string, track: Track): Promise<Lo
     for (const file of lessonFiles.filter((f) => f.endsWith('.json')).toSorted()) {
       const lesson = await read(`lessons/${file}`, LessonContent);
       if (lesson) lessons.push(lesson);
+    }
+
+    if (track === 'MATH') {
+      for (const lesson of lessons)
+        for (const card of lesson.steps[1].cards)
+          for (const value of Object.values(card))
+            if (typeof value === 'string')
+              errors.push(...texErrors(`${folder}/${dirName}: lesson "${lesson.slug}"`, value));
+    }
+    for (const { a, p } of problemsOf(activities)) {
+      const where = `${folder}/${dirName}: ${a.key}/${p.id}`;
+      const texts = [p.prompt, p.solution, ...p.hints];
+      if (p.answer.kind === 'choice') texts.push(...p.answer.choices);
+      for (const t of texts) errors.push(...texErrors(where, t));
+      if (!p.figure) continue;
+      const rel = `figures/${p.figure.file}`;
+      const svg = await readFile(path.join(dir, rel), 'utf8').catch(() => null);
+      if (svg === null) errors.push(`${where}: figure ${rel} is missing`);
+      else if (Buffer.byteLength(svg) > MAX_FIGURE_BYTES)
+        errors.push(`${where}: figure ${rel} is over 60 KB`);
+      else if (!/^\s*(<\?xml[^>]*>\s*)?<svg[\s>]/.test(svg) || UNSAFE_SVG.test(svg))
+        errors.push(`${where}: figure ${rel} must be a plain drawn SVG (no scripts or links)`);
+      else {
+        hash.update(rel).update(svg);
+        p.figure.svg = svg.replace(/^\s*<\?xml[^>]*>\s*/, '').trim();
+      }
     }
 
     const bundle = { track, unit, lessons, activities };

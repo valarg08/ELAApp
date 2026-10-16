@@ -98,7 +98,8 @@ export async function syncContent(db: PrismaClient, units: LoadedUnit[]): Promis
       });
       report.orphans.push(
         ...staleLessons.map(
-          (l) => `${track === 'ESSAY' ? 'essay ' : ''}unit ${unit.number} lesson "${l.slug}"`,
+          (l) =>
+            `${track === 'STORY' ? '' : `${track.toLowerCase()} `}unit ${unit.number} lesson "${l.slug}"`,
         ),
         ...staleActivities.map((a) => `activity "${a.key}"`),
       );

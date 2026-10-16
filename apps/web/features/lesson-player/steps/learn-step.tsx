@@ -2,6 +2,7 @@
 
 import type { LessonCard, LessonSteps } from '@storyforge/shared';
 import { useRef, useState } from 'react';
+import { TrackText } from '@/components/math-text';
 import { Button } from '@/components/ui';
 import { splitWords } from '@/lib/tokens';
 import { ExplainAnother } from '../tutor/explain-another';
@@ -12,7 +13,7 @@ type Learn = LessonSteps[1];
 
 /**
  * Mini-lesson cards, one at a time. Clue-hunt cards need every clue found (or "Show me"); the POV
- * simulator needs every version read.
+ * simulator needs every version read. In the Math track, $…$ in the cards is typeset (KaTeX).
  */
 export function LearnStep({
   step,
@@ -20,7 +21,8 @@ export function LearnStep({
   busy,
   onComplete,
   lessonId,
-}: StepProps<Learn> & { lessonId: string }) {
+  math = false,
+}: StepProps<Learn> & { lessonId: string; math?: boolean }) {
   const [index, setIndex] = useState(0);
   const [cardDone, setCardDone] = useState<boolean[]>(
     step.cards.map((c) => done || (c.kind !== 'clue-hunt' && c.kind !== 'pov-simulator')),
@@ -37,9 +39,11 @@ export function LearnStep({
       <CardView
         key={index}
         card={card}
+        math={math}
         onSolved={() => setCardDone(cardDone.map((d, i) => (i === index ? true : d)))}
       />
-      <ExplainAnother key={`explain-${index}`} lessonId={lessonId} cardIndex={index} />
+      {/* The card tutor is a writing tutor; Math gets Quill on each problem instead. */}
+      {!math && <ExplainAnother key={`explain-${index}`} lessonId={lessonId} cardIndex={index} />}
       <div className="flex gap-3">
         <Button variant="secondary" disabled={index === 0} onClick={() => setIndex(index - 1)}>
           ← Back
@@ -61,14 +65,23 @@ export function LearnStep({
   );
 }
 
-function CardView({ card, onSolved }: { card: LessonCard; onSolved: () => void }) {
+function CardView({
+  card,
+  math,
+  onSolved,
+}: {
+  card: LessonCard;
+  math: boolean;
+  onSolved: () => void;
+}) {
+  const t = (text: string) => <TrackText text={text} math={math} />;
   const frame = 'rounded-2xl border border-border bg-card p-6 shadow-sm';
   switch (card.kind) {
     case 'definition':
       return (
         <div className={frame}>
-          <h2 className="text-2xl font-bold">{card.title}</h2>
-          <p className="mt-3 text-lg leading-relaxed">{card.body}</p>
+          <h2 className="text-2xl font-bold">{t(card.title)}</h2>
+          <p className="mt-3 text-lg leading-relaxed">{t(card.body)}</p>
         </div>
       );
     case 'example':
@@ -76,9 +89,9 @@ function CardView({ card, onSolved }: { card: LessonCard; onSolved: () => void }
         <div className={frame}>
           <h2 className="text-2xl font-bold">{card.title}</h2>
           <blockquote className="mt-3 border-l-4 border-brand pl-4 text-xl whitespace-pre-line italic">
-            {card.text}
+            {t(card.text)}
           </blockquote>
-          {card.note && <p className="mt-3 text-muted">{card.note}</p>}
+          {card.note && <p className="mt-3 text-muted">{t(card.note)}</p>}
         </div>
       );
     case 'compare':
@@ -90,16 +103,16 @@ function CardView({ card, onSolved }: { card: LessonCard; onSolved: () => void }
               <p className="text-sm font-semibold tracking-wide text-muted uppercase">
                 {card.labels?.[0] ?? 'Telling'}
               </p>
-              <p className="mt-1 text-lg whitespace-pre-line">{card.telling}</p>
+              <p className="mt-1 text-lg whitespace-pre-line">{t(card.telling)}</p>
             </div>
             <div className="rounded-xl border-2 border-brand p-4">
               <p className="text-sm font-semibold tracking-wide text-brand uppercase">
                 {card.labels?.[1] ?? 'Showing'}
               </p>
-              <p className="mt-1 text-lg whitespace-pre-line">{card.showing}</p>
+              <p className="mt-1 text-lg whitespace-pre-line">{t(card.showing)}</p>
             </div>
           </div>
-          {card.note && <p className="mt-3 text-muted">{card.note}</p>}
+          {card.note && <p className="mt-3 text-muted">{t(card.note)}</p>}
         </div>
       );
     case 'clue-hunt':

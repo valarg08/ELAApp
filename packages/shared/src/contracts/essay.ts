@@ -130,9 +130,25 @@ export const ESSAY_STRANDS = [
   { id: 'editing', label: 'Editing & style', emoji: '✨', units: [15] },
 ] as const;
 
-/** "Unit 3" in Story Writing, "Essay Unit 3" in Essay Writing. */
-export const unitLabel = (track: Track, number: number) =>
-  `${track === 'ESSAY' ? 'Essay Unit' : 'Unit'} ${number}`;
+export const UNIT_WORD: Record<Track, string> = {
+  STORY: 'Unit',
+  ESSAY: 'Essay Unit',
+  MATH: 'Math Unit',
+};
+
+/** "Unit 3" in Story Writing, "Essay Unit 3" in Essay Writing, "Math Unit 3" in Math. */
+export const unitLabel = (track: Track, number: number) => `${UNIT_WORD[track]} ${number}`;
 
 /** Where a track's journey page lives. */
-export const TRACK_HOME: Record<Track, string> = { STORY: '/home', ESSAY: '/essays' };
+export const TRACK_HOME: Record<Track, string> = {
+  STORY: '/home',
+  ESSAY: '/essays',
+  MATH: '/math',
+};
+
+/** Each track's name, as on its tab. */
+export const TRACK_NAMES: Record<Track, string> = {
+  STORY: 'Story Writing',
+  ESSAY: 'Essay Writing',
+  MATH: 'Math (AMC 10)',
+};

@@ -1,0 +1,58 @@
+{
+  "slug": "math-the-amc-10",
+  "order": 1,
+  "title": "The AMC 10: Format, Scoring & Timing",
+  "estMinutes": 30,
+  "focusSkills": ["amc-scoring", "pacing"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You have 75 minutes for 25 questions. Is it better to answer all 25, or to leave some blank? Make a guess before the lesson.",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The test at a glance",
+          "body": "The AMC 10 has $25$ multiple-choice questions, each with five choices (A) to (E). You get $75$ minutes and no calculator. The questions get harder as you go: about $1$–$10$ are easier, $11$–$20$ medium and $21$–$25$ hard."
+        },
+        {
+          "kind": "definition",
+          "title": "How scoring works",
+          "body": "A right answer earns $6$ points, a blank earns $1.5$ and a wrong answer earns $0$. The top score is $25 \\times 6 = 150$. Leaving everything blank still gives $25 \\times 1.5 = 37.5$."
+        },
+        {
+          "kind": "example",
+          "title": "Worked example: a score",
+          "text": "Leo answers $18$ right, leaves $4$ blank and gets $3$ wrong. His score is $18 \\times 6 + 4 \\times 1.5 + 3 \\times 0 = 108 + 6 = 114$.",
+          "note": "Wrong answers don't take points away, but they earn less than a blank would have."
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: blind guessing",
+          "body": "A blind guess is right $1$ time in $5$, so on average it is worth $\\frac{6}{5} = 1.2$ points: less than a blank's $1.5$. But if you can rule out even two choices, the guess is worth $\\frac{6}{3} = 2$ points. Rule out first, then decide."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m01.scoring-practice"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "m01.amc-rules-set" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "When will you leave a question blank, and when will you guess?",
+        "How will you pace yourself through the 75 minutes?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

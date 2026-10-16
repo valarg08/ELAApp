@@ -4,6 +4,8 @@ import {
   type ExplainResponse,
   ExtraPracticeRequest,
   type ExtraPracticeResponse,
+  MathExplainRequest,
+  type MathExplainResponse,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { CurrentUser, Roles } from '../auth/decorators.js';
@@ -33,5 +35,15 @@ export class TutorController {
     @Body({ schema: ExtraPracticeRequest }) body: ExtraPracticeRequest,
   ): Promise<ExtraPracticeResponse> {
     return this.tutor.practice(user, body);
+  }
+
+  /** Math: "Explain the solution" or "Why was my answer wrong?" (never changes the verdict). */
+  @Post('math/explain')
+  @HttpCode(200)
+  mathExplain(
+    @CurrentUser() user: AuthUser,
+    @Body({ schema: MathExplainRequest }) body: MathExplainRequest,
+  ): Promise<MathExplainResponse> {
+    return this.tutor.mathExplain(user, body);
   }
 }

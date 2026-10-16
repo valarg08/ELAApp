@@ -1,0 +1,8 @@
+{
+  "number": 14,
+  "slug": "math-logic",
+  "title": "Logic & Mixed Strategies",
+  "summary": "Logic puzzles, invariants and parity, games and strategy, clocks and calendars, and mixed sets in rising difficulty.",
+  "bigIdeas": ["Find what never changes."],
+  "published": false
+}

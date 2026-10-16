@@ -122,6 +122,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
         {view === 1 && (
           <LearnStep
             lessonId={lesson.id}
+            math={lesson.unit.track === 'MATH'}
             step={learn}
             done={done('learn')}
             busy={busy}
@@ -140,10 +141,12 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
         )}
         {view === 3 && (
           <ChallengeStep
+            lessonId={lesson.id}
             step={challenge}
             activities={lesson.activities}
             activityId={lesson.challengeActivityId}
             done={done('challenge')}
+            onComplete={(b) => complete('challenge', b)}
             onSubmitted={({ lessonProgress }) => {
               // Stay on the challenge: Quill's feedback appears below, and the student may revise.
               if (lessonProgress) setCompleted(lessonProgress.completedSteps);

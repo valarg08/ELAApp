@@ -107,6 +107,8 @@ enum ActivityType {
   ESSAY_OUTLINE
   ESSAY_PART
   ESSAY
+  PROBLEMS
+  PROBLEM_SET
   MEMORY_TIMELINE
   GENRE_STORY
   REVISION_CHECKLIST
@@ -115,10 +117,11 @@ enum ActivityType {
   REFLECTION
 }
 
-// Two separate learning tracks (DESIGN.md §9.12): creative writing and essay writing.
+// The learning tracks (DESIGN.md §9.12, §9.13): creative writing, essay writing and math (AMC 10).
 enum Track {
   STORY
   ESSAY
+  MATH
 }
 
 enum ArtifactType {
@@ -185,28 +188,29 @@ model Organization {
 }
 
 model User {
-  id                String        @id @default(cuid())
+  id                String         @id @default(cuid())
   role              Role
   orgId             String?
-  org               Organization? @relation(fields: [orgId], references: [id])
+  org               Organization?  @relation(fields: [orgId], references: [id])
   displayName       String // first name or nickname only for students
-  username          String        @unique // students: generated; teachers: email local-part
-  email             String?       @unique // null for students
+  username          String         @unique // students: generated; teachers: email local-part
+  email             String?        @unique // null for students
   passwordHash      String? // teachers/admins
   studentSecretHash String? // students: picture sequence or word code
   studentSecretKind String? // students: "PICTURE" | "WORD"
   avatar            Json? // unlocked cosmetic choices
   preferences       Json? // a11y: font, textSize, readAloud, reducedMotion, theme
-  failedLogins      Int           @default(0) // consecutive failures, reset on success
+  failedLogins      Int            @default(0) // consecutive failures, reset on success
   lockedUntil       DateTime?
   lastLoginAt       DateTime?
   enrollments       Enrollment[]
-  taughtClasses     Class[]       @relation("ClassTeacher")
+  taughtClasses     Class[]        @relation("ClassTeacher")
   submissions       Submission[]
   sensoryWords      SensoryWord[]
   quizAttempts      QuizAttempt[]
+  mathErrors        MathErrorLog[]
   stats             StudentStats?
-  createdAt         DateTime      @default(now())
+  createdAt         DateTime       @default(now())
   deletedAt         DateTime? // soft delete, hard purge after retention window
 }
 
@@ -345,6 +349,26 @@ model QuizAttempt {
   submittedAt DateTime?
 
   @@index([studentId, lessonId, activityKey])
+}
+
+// Math error log (DESIGN.md §9.13): missed problems to redo; resolved after 2 right redos on different days.
+model MathErrorLog {
+  id           String    @id @default(cuid())
+  studentId    String
+  student      User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  lessonId     String
+  activityKey  String
+  problemId    String
+  skill        String
+  wrongTimes   Int       @default(1)
+  correctRedos Int       @default(0)
+  lastRedoAt   DateTime?
+  resolvedAt   DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@unique([studentId, activityKey, problemId])
+  @@index([studentId, resolvedAt])
 }
 
 // Personal sensory word bank (Unit 6): words collected in the sensory lab, shown in every workspace.

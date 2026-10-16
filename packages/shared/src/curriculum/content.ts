@@ -19,6 +19,7 @@ import { CONFLICT_TYPE_IDS, type ConflictTypeId, PlotPlan } from './plot.js';
 import { ParagraphBuilder, ParagraphPlan } from './paragraph.js';
 import { Checklist } from './checklist.js';
 import { EssayConfig, EssayPrompt, OutlineBuilder, OutlinePlan } from './outline.js';
+import { MathProblem, problemErrors } from './math.js';
 
 /**
  * Curriculum content format (DESIGN.md §9). Units, lessons and activities live as JSON files in
@@ -31,25 +32,28 @@ const id = z.string().regex(/^[a-z0-9][a-z0-9-]*$/, 'Use lowercase letters, numb
 
 // ───────── Activities ─────────
 
-/** The two learning tracks (DESIGN.md §9.12). */
-export const TRACKS = ['STORY', 'ESSAY'] as const;
+/** The learning tracks (DESIGN.md §9.12, §9.13). */
+export const TRACKS = ['STORY', 'ESSAY', 'MATH'] as const;
 export const Track = z.enum(TRACKS);
 export type Track = z.infer<typeof Track>;
 
-/** Activity keys start with the unit: "u01." in Story Writing, "e01." in Essay Writing. */
+/** Activity keys start with the unit: "u01." in Story Writing, "e01." in Essay Writing, "m01." in Math. */
 export const ActivityKey = z
   .string()
   .regex(
-    /^[ue]\d{2}\.[a-z0-9][a-z0-9-]*$/,
-    'Activity keys look like "u01.sort-show-tell" (or "e01.…" in Essay Writing)',
+    /^[uem]\d{2}\.[a-z0-9][a-z0-9-]*$/,
+    'Activity keys look like "u01.sort-show-tell" (or "e01.…" in Essay Writing, "m01.…" in Math)',
   );
 
-/** The track an activity belongs to, from its key ("e01." is Essay Writing). */
-export const trackOfActivityKey = (key: string): Track => (key.startsWith('e') ? 'ESSAY' : 'STORY');
+const KEY_LETTER: Record<Track, string> = { STORY: 'u', ESSAY: 'e', MATH: 'm' };
+
+/** The track an activity belongs to, from its key ("e01." is Essay Writing, "m01." Math). */
+export const trackOfActivityKey = (key: string): Track =>
+  key.startsWith('e') ? 'ESSAY' : key.startsWith('m') ? 'MATH' : 'STORY';
 
 /** The prefix every activity key of a unit starts with. */
 export const activityKeyPrefix = (track: Track, unitNumber: number) =>
-  `${track === 'ESSAY' ? 'e' : 'u'}${String(unitNumber).padStart(2, '0')}.`;
+  `${KEY_LETTER[track]}${String(unitNumber).padStart(2, '0')}.`;
 
 const activityBase = {
   key: ActivityKey,
@@ -172,6 +176,34 @@ export const QuizActivity = z.object({
   questions: z.array(quizQuestion).min(3).max(60),
 });
 export type QuizActivity = z.infer<typeof QuizActivity>;
+
+/**
+ * Math practice (DESIGN.md §9.13): problems checked in the browser with math-check, with hints one
+ * at a time, the worked solution and "Add to my error log". Done when every problem is solved.
+ */
+export const ProblemsActivity = z.object({
+  ...activityBase,
+  type: z.literal('PROBLEMS'),
+  instructions: text(500),
+  problems: z.array(MathProblem).min(1).max(12),
+});
+export type ProblemsActivity = z.infer<typeof ProblemsActivity>;
+
+/**
+ * A marked problem set (Math challenges and unit checks, DESIGN.md §9.13): like a marked quiz, the
+ * server picks the problems, marks them with math-check and keeps every attempt; no hints. With
+ * `passPercent` it is done when passed, otherwise when submitted. Blanks are allowed (as on the AMC).
+ */
+export const ProblemSetActivity = z.object({
+  ...activityBase,
+  type: z.literal('PROBLEM_SET'),
+  instructions: text(500),
+  passPercent: z.number().int().min(50).max(100).optional(),
+  problemsPerAttempt: z.number().int().min(3).max(25).optional(),
+  timeLimitMinutes: z.number().int().min(5).max(90).optional(),
+  problems: z.array(MathProblem).min(3).max(60),
+});
+export type ProblemSetActivity = z.infer<typeof ProblemSetActivity>;
 
 /**
  * The transformer (DESIGN.md §9.12): rewrite a sentence by a rule — change its tense, make it
@@ -513,6 +545,8 @@ export const ActivityContent = z.discriminatedUnion('type', [
   FillBlankActivity,
   ErrorHuntActivity,
   ReflectionActivity,
+  ProblemsActivity,
+  ProblemSetActivity,
   WritingActivity,
 ]);
 export type ActivityContent = z.infer<typeof ActivityContent>;
@@ -533,6 +567,18 @@ export const QuizActivityPublic = QuizActivity.pick({
 }).extend({ questionCount: z.number().int().min(1) });
 export type QuizActivityPublic = z.infer<typeof QuizActivityPublic>;
 
+/** A problem set as a lesson sends it: no problems (the server hands them out per attempt). */
+export const ProblemSetActivityPublic = ProblemSetActivity.pick({
+  key: true,
+  title: true,
+  xpReward: true,
+  type: true,
+  instructions: true,
+  passPercent: true,
+  timeLimitMinutes: true,
+}).extend({ problemCount: z.number().int().min(1) });
+export type ProblemSetActivityPublic = z.infer<typeof ProblemSetActivityPublic>;
+
 /** An activity as the lesson payload carries it (quizzes without their answers). */
 export const LessonActivity = z.discriminatedUnion('type', [
   MultipleChoiceActivity,
@@ -545,12 +591,25 @@ export const LessonActivity = z.discriminatedUnion('type', [
   FillBlankActivity,
   ErrorHuntActivity,
   ReflectionActivity,
+  ProblemsActivity,
+  ProblemSetActivityPublic,
   WritingActivity,
 ]);
 export type LessonActivity = z.infer<typeof LessonActivity>;
 
-/** The lesson payload form of an activity: a quiz loses its questions. */
+/** The lesson payload form of an activity: a quiz loses its questions, a problem set its problems. */
 export function publicActivity(a: ActivityContent): LessonActivity {
+  if (a.type === 'PROBLEM_SET')
+    return {
+      key: a.key,
+      title: a.title,
+      xpReward: a.xpReward,
+      type: a.type,
+      instructions: a.instructions,
+      passPercent: a.passPercent,
+      timeLimitMinutes: a.timeLimitMinutes,
+      problemCount: a.problemsPerAttempt ?? a.problems.length,
+    };
   if (a.type !== 'QUIZ') return a;
   return {
     key: a.key,
@@ -574,7 +633,12 @@ export const PRACTICE_ACTIVITY_TYPES = [
   'FILL_BLANK',
   'ERROR_HUNT',
   'REFLECTION',
+  'PROBLEMS',
+  'PROBLEM_SET',
 ] as const;
+
+/** Activities marked on the server, with attempts in QuizAttempt: quizzes and problem sets. */
+export const MARKED_ACTIVITY_TYPES = ['QUIZ', 'PROBLEM_SET'] as const;
 
 export const isWritingActivity = (a: ActivityContent | LessonActivity): a is WritingActivity =>
   (WRITING_ACTIVITY_TYPES as readonly string[]).includes(a.type);
@@ -889,8 +953,8 @@ export type LessonContent = z.infer<typeof LessonContent>;
 
 // ───────── Units ─────────
 
-/** Story Writing has 12 units, Essay Writing 15. */
-export const MAX_UNITS: Record<Track, number> = { STORY: 12, ESSAY: 15 };
+/** Story Writing has 12 units, Essay Writing and Math 15. */
+export const MAX_UNITS: Record<Track, number> = { STORY: 12, ESSAY: 15, MATH: 15 };
 
 export const UnitContent = z.object({
   number: z.number().int().min(1).max(15),
@@ -911,7 +975,7 @@ export const UnitContent = z.object({
 export type UnitContent = z.infer<typeof UnitContent>;
 
 export interface UnitBundle {
-  /** From the folder: content/units → STORY, content/essay → ESSAY. */
+  /** From the folder: content/units → STORY, content/essay → ESSAY, content/math → MATH. */
   track?: Track;
   unit: UnitContent;
   lessons: LessonContent[];
@@ -961,6 +1025,18 @@ export function validateUnitBundle({
       }
       if (a.questionsPerAttempt && a.questionsPerAttempt > a.questions.length)
         errors.push(`${a.key}: questionsPerAttempt is more than the number of questions`);
+    }
+    if (a.type === 'PROBLEMS' || a.type === 'PROBLEM_SET') {
+      if (track !== 'MATH') errors.push(`${a.key}: problems belong to the Math track`);
+      const ids = a.problems.map((p) => p.id);
+      if (new Set(ids).size !== ids.length) errors.push(`${a.key}: duplicate problem ids`);
+      for (const p of a.problems) errors.push(...problemErrors(a.key, p));
+      if (
+        a.type === 'PROBLEM_SET' &&
+        a.problemsPerAttempt &&
+        a.problemsPerAttempt > a.problems.length
+      )
+        errors.push(`${a.key}: problemsPerAttempt is more than the number of problems`);
     }
     if (a.type === 'TRANSFORM') {
       const ids = a.items.map((i) => i.id);
@@ -1151,9 +1227,9 @@ export function validateUnitBundle({
     }
     const c = byKey.get(challenge.activityKey);
     if (!c) errors.push(`${where}: challenge activity "${challenge.activityKey}" does not exist`);
-    else if (!isWritingActivity(c))
+    else if (track === 'MATH' ? c.type !== 'PROBLEM_SET' : !isWritingActivity(c))
       errors.push(
-        `${where}: challenge activity "${challenge.activityKey}" must be a writing activity`,
+        `${where}: challenge activity "${challenge.activityKey}" must be a ${track === 'MATH' ? 'problem set' : 'writing activity'}`,
       );
   }
 

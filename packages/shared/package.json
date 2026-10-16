@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "@storyforge/writing-analysis": "workspace:*",
-    "zod": "^4.6.5"
+    "zod": "^4.6.5",
+    "@storyforge/math-check": "workspace:*"
   },
   "devDependencies": {
     "@storyforge/config": "workspace:*",

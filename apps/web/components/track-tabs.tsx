@@ -4,10 +4,11 @@ import Link from 'next/link';
 const TABS: { track: Track; label: string; emoji: string }[] = [
   { track: 'STORY', label: 'Story Writing', emoji: '✍️' },
   { track: 'ESSAY', label: 'Essay Writing', emoji: '📝' },
+  { track: 'MATH', label: 'Math (AMC 10)', emoji: '📐' },
 ];
 
 /**
- * The two learning tracks (DESIGN.md §9.12), as tabs at the top of the journey pages. Teacher
+ * The learning tracks (DESIGN.md §9.12, §9.13), as tabs at the top of the journey pages. Teacher
  * pages pass `hrefFor` to switch the track of their own view.
  */
 export function TrackTabs({

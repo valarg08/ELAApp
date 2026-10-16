@@ -49,3 +49,9 @@ body {
     Roboto,
     sans-serif;
 }
+
+/* Math track (KaTeX MathML): readable fractions inline, a touch larger than the text. */
+.math math {
+  math-style: normal;
+  font-size: 1.1em;
+}

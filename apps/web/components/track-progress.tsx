@@ -1,10 +1,16 @@
-import { ESSAY_STRANDS, type LessonProgressRow, type TrackProgress } from '@storyforge/shared';
+import {
+  ESSAY_STRANDS,
+  type LessonProgressRow,
+  MATH_STRANDS,
+  type TrackProgress,
+  UNIT_WORD,
+} from '@storyforge/shared';
 import Link from 'next/link';
 import { ProgressBar } from '@/components/progress-bar';
 import { Card } from '@/components/ui';
 
 /**
- * A track's progress: totals, the Essay skill badges, and every unit with its lessons' status,
+ * A track's progress: totals, the Essay or Math skill badges, and every unit with its lessons' status,
  * quiz and writing. Students see their own (`/essays/progress`); teachers see a student's
  * (`linkUnits` off, since the unit pages are the student's).
  */
@@ -16,8 +22,9 @@ export function TrackProgressView({
   linkUnits?: boolean;
 }) {
   const { totals, units } = progress;
-  const essay = progress.track === 'ESSAY';
-  const unitName = essay ? 'Essay Unit' : 'Unit';
+  const math = progress.track === 'MATH';
+  const strands = progress.track === 'ESSAY' ? ESSAY_STRANDS : math ? MATH_STRANDS : null;
+  const unitName = UNIT_WORD[progress.track];
   const doneUnits = new Set(
     units
       .filter((u) => u.lessonCount > 0 && u.completedLessons === u.lessonCount)
@@ -31,18 +38,22 @@ export function TrackProgressView({
         </h2>
         <Stat label="Lessons finished" value={totals.completedLessons} of={totals.lessons} />
         {totals.quizzes > 0 && (
-          <Stat label="Unit quizzes passed" value={totals.quizzesPassed} of={totals.quizzes} />
+          <Stat
+            label={math ? 'Problem sets done' : 'Unit quizzes passed'}
+            value={totals.quizzesPassed}
+            of={totals.quizzes}
+          />
         )}
-        <Stat label="Writing tasks handed in" value={totals.writingSubmitted} />
+        {!math && <Stat label="Writing tasks handed in" value={totals.writingSubmitted} />}
       </section>
 
-      {essay && (
+      {strands && (
         <section aria-labelledby="skills">
           <h2 id="skills" className="mb-3 text-2xl font-semibold">
             Skill badges
           </h2>
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-            {ESSAY_STRANDS.map((s) => {
+            {strands.map((s) => {
               const earned = s.units.every((n) => doneUnits.has(n));
               const finished = s.units.filter((n) => doneUnits.has(n)).length;
               return (
@@ -118,16 +129,18 @@ export function TrackProgressView({
                           Status
                         </th>
                         <th scope="col" className="py-1 pr-2 font-semibold">
-                          Quiz
+                          {math ? 'Problem set' : 'Quiz'}
                         </th>
-                        <th scope="col" className="py-1 font-semibold">
-                          Writing
-                        </th>
+                        {!math && (
+                          <th scope="col" className="py-1 font-semibold">
+                            Writing
+                          </th>
+                        )}
                       </tr>
                     </thead>
                     <tbody>
                       {u.lessons.map((l) => (
-                        <LessonRow key={l.id} lesson={l} />
+                        <LessonRow key={l.id} lesson={l} writing={!math} />
                       ))}
                     </tbody>
                   </table>
@@ -164,7 +177,7 @@ function Stat({ label, value, of }: { label: string; value: number; of?: number 
   );
 }
 
-function LessonRow({ lesson: l }: { lesson: LessonProgressRow }) {
+function LessonRow({ lesson: l, writing }: { lesson: LessonProgressRow; writing: boolean }) {
   return (
     <tr className="border-t border-border">
       <td className="py-2 pr-2">
@@ -192,17 +205,19 @@ function LessonRow({ lesson: l }: { lesson: LessonProgressRow }) {
           </span>
         )}
       </td>
-      <td className="py-2">
-        {!l.writing.submitted ? (
-          <span className="text-muted">Not yet</span>
-        ) : l.writing.score !== null && l.writing.maxScore ? (
-          <span>
-            {Math.round(l.writing.score)}/{l.writing.maxScore}
-          </span>
-        ) : (
-          <span>Handed in ✓</span>
-        )}
-      </td>
+      {writing && (
+        <td className="py-2">
+          {!l.writing.submitted ? (
+            <span className="text-muted">Not yet</span>
+          ) : l.writing.score !== null && l.writing.maxScore ? (
+            <span>
+              {Math.round(l.writing.score)}/{l.writing.maxScore}
+            </span>
+          ) : (
+            <span>Handed in ✓</span>
+          )}
+        </td>
+      )}
     </tr>
   );
 }

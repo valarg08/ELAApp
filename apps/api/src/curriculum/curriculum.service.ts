@@ -6,6 +6,7 @@ import {
   type LessonDetail,
   type LessonProgressView,
   LessonSteps,
+  MARKED_ACTIVITY_TYPES,
   STEP_IDS,
   STEP_RESPONSE_SCHEMAS,
   StepId,
@@ -57,9 +58,9 @@ export function unitAvailability(
     : { available: false, lockReason: 'LOCKED', dueAt };
 }
 
-/** Essay Writing is always self-paced, whatever the class setting (DESIGN.md §9.12). */
+/** Essay Writing and Math are always self-paced, whatever the class setting (DESIGN.md §9.12, §9.13). */
 export const isSelfPaced = (track: Track, classSelfPaced: boolean) =>
-  track === 'ESSAY' || classSelfPaced;
+  track !== 'STORY' || classSelfPaced;
 
 /**
  * Availability of every unit for one class and student, walking each track's units in order.
@@ -276,7 +277,7 @@ export class CurriculumService {
 
     if (stepId.data === 'practice') {
       const results = STEP_RESPONSE_SCHEMAS.practice.parse(body).results;
-      // Quizzes are marked on the server, so a passed attempt must be on record.
+      // Quizzes and problem sets are marked on the server, so a passed attempt must be on record.
       const quizKeys = await this.quizKeys(practice.activityKeys);
       const passed = new Set(
         (
@@ -316,7 +317,22 @@ export class CurriculumService {
       }
     }
 
-    if (stepId.data === 'challenge') {
+    if (stepId.data === 'challenge' && (await this.quizKeys([challenge.activityKey])).length > 0) {
+      // A Math challenge is a marked problem set: a finished (and, with a pass mark, passed) try.
+      const attempt = await this.db.client.quizAttempt.findFirst({
+        where: { studentId: user.id, lessonId, activityKey: challenge.activityKey, passed: true },
+        orderBy: { submittedAt: 'desc' },
+      });
+      if (!attempt) {
+        throw new AppError(
+          HttpStatus.UNPROCESSABLE_ENTITY,
+          ErrorCode.PRACTICE_INCOMPLETE,
+          'Not yet!',
+          'Finish the problem set first (and reach the pass mark if it has one).',
+        );
+      }
+      stored = { score: attempt.score, total: attempt.total };
+    } else if (stepId.data === 'challenge') {
       // The writing itself is checked and stored by the submissions module (writing workspace).
       const submission = await this.db.client.submission.findFirst({
         where: {
@@ -361,10 +377,10 @@ export class CurriculumService {
 
   // ───────── helpers ─────────
 
-  /** The keys among these that are marked quizzes. */
+  /** The keys among these that are marked on the server (quizzes and problem sets). */
   private async quizKeys(keys: readonly string[]): Promise<string[]> {
     const rows = await this.db.client.activity.findMany({
-      where: { key: { in: [...keys] }, type: 'QUIZ' },
+      where: { key: { in: [...keys] }, type: { in: [...MARKED_ACTIVITY_TYPES] } },
       select: { key: true },
     });
     return rows.map((r) => r.key);

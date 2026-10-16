@@ -1,0 +1,11 @@
+{
+  "number": 2,
+  "slug": "math-arithmetic",
+  "title": "Arithmetic & Number Sense",
+  "summary": "Fractions, percents, ratios, rates, averages, exponents and roots, plus clever arithmetic that turns long sums into one line.",
+  "bigIdeas": [
+    "Look for structure before you calculate.",
+    "Ratios and averages hide simple equations."
+  ],
+  "published": false
+}
