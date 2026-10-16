@@ -1664,6 +1664,84 @@ Later tools (built in the first unit that needs them): fill-the-blank and error-
 - **Tests owed:** `styleIssues` (each kind, quoted speech, narratives keep "I think"), `formal-sentence`, the style Coach branch and `formal` check, title lines in `essayStructure`, the `essayPrompts` and `continuesFrom` content checks, `chosenEssay`, **`PUT /submissions/:id/essay-type` authorisation** (students only, own submission, 400 for a type not offered), the `continuesFrom` carry-over in `open()` (text, type, outline; existing submission untouched), the essay-type cache scope (and `essay-structure-5`, bumped for titles), the `formal-tone` live check and fake, the essay picker (choosing, saving, reverting, axe).
 ---
 
+### 9.13 Math track: AMC 10 preparation (plan)
+
+A third learning track beside Story Writing and Essay Writing: problem solving for the **AMC 10** (grades 9–10 level). It uses the same structure (units → lessons → Hook, Learn, Practice, Challenge, Reflect), lesson player, progress tracker, Quill tutor and teacher heatmap. Decisions (project owner, 2026-10-15): **a track inside StoryForge** (not a separate app); **grades 9–10, aimed at the AMC 10**; **answers are checked deterministically in code; Quill (AI) only explains** and never decides whether an answer is right.
+
+**About the AMC 10** (what the track prepares for): 25 multiple-choice questions, five choices (A)–(E), 75 minutes, no calculator. Scoring: 6 points for a correct answer, 1.5 for a blank, 0 for a wrong answer (150 maximum). Topics: algebra, geometry, number theory, counting and probability, and logic. No trigonometry or calculus. Questions get harder through the paper: roughly 1–10 easier, 11–20 medium, 21–25 hard.
+
+**Content rule: original problems only.** AMC problems are © the Mathematical Association of America. The track uses **original AMC-style problems written for StoryForge**: never copied, reworded or renumbered past contest problems. Pages say "AMC 10 practice" (descriptive use only), with no MAA logos or claims of endorsement. Students who own official past papers practise those outside the platform.
+
+**Plan: 15 units, about 90 lessons.** Every unit ends with a ⭐ unit check: a marked set of AMC-style problems (pass mark below).
+
+| Unit | Lessons |
+|---|---|
+| 1 Problem Solving & the AMC 10 | The AMC 10 (format, scoring, timing) · Read carefully & draw it · Work backwards & test the choices · Estimate & eliminate · Smart guessing (the value of a blank vs a guess) · ⭐ check |
+| 2 Arithmetic & Number Sense | Fractions, decimals & percents · Ratios, rates & proportions · Averages & weighted averages · Exponents & roots · Clever arithmetic (factoring, difference of squares) · ⭐ check |
+| 3 Linear Equations & Word Problems | Linear equations · Systems of equations · Distance, rate & time · Work & mixtures · Ages, coins & money · ⭐ check |
+| 4 Quadratics & Polynomials | Factoring · Quadratic formula & discriminant · Vieta's formulas · Completing the square & the vertex · Polynomial remainders · ⭐ check |
+| 5 Functions & Inequalities | Functions & notation · Graphs & transformations · Absolute value · Inequalities & AM–GM · Floor, ceiling & piecewise · ⭐ check |
+| 6 Sequences & Patterns | Arithmetic sequences · Geometric sequences & series · Recursion · Telescoping & clever sums · Finding the pattern · ⭐ check |
+| 7 Number Theory I | Divisibility rules · Primes & factorization · GCD & LCM · Counting divisors · Factorials & trailing zeros · ⭐ check |
+| 8 Number Theory II | Remainders & modular arithmetic · Units digits & cycles · Number bases · Digit problems · Integer equations · ⭐ check |
+| 9 Counting I | Multiplication principle · Permutations · Combinations · Casework · Complementary counting · ⭐ check |
+| 10 Counting II & Probability | Stars & bars · Inclusion–exclusion · Probability · Geometric probability · Expected value · ⭐ check |
+| 11 Geometry I: Triangles & Polygons | Angles & parallel lines · Pythagoras & special right triangles · Similar triangles · Area (including Heron's formula) · Polygons & angle sums · ⭐ check |
+| 12 Geometry II: Circles | Arcs, chords & inscribed angles · Tangents · Power of a point · Inscribed & circumscribed circles · Areas with circles · ⭐ check |
+| 13 Geometry III: Coordinates & Solids | Coordinate geometry · Areas on the grid (shoelace, Pick's theorem) · Transformations & symmetry · 3D solids · Nets & space diagonals · ⭐ check |
+| 14 Logic & Mixed Strategies | Logic puzzles · Invariants & parity · Games & strategy · Clocks, calendars & time · Mixed sets by difficulty · ⭐ check |
+| 15 Mock Exams & Final Review | A pacing plan · Mock AMC 10 A · Learning from the error log · Mock AMC 10 B · Mock AMC 10 C · 🏆 Final mock & test-day plan |
+
+Strands (progress badges): **Strategy** (1, 14, 15), **Algebra** (2–6), **Number Theory** (7–8), **Counting & Probability** (9–10), **Geometry** (11–13).
+
+**How lessons work:**
+- **Hook:** a short puzzle or a question ("How many handshakes…?").
+- **Learn:** cards with the idea, worked examples and the common trap (math typeset with TeX).
+- **Practice:** a problem set checked instantly in the browser. Each problem has up to 3 authored hints (nudge → method → nearly there), a worked solution, and "Try a similar one".
+- **Challenge:** a marked problem set (answers stay on the server) of 6–10 problems in rising difficulty.
+- **Reflect:** what you learned, a confidence check, and "add a problem to your error log".
+
+**The engine (M0, built before the first unit):**
+- **Track `MATH`:**
+  - content in `content/math/unit-XX`, activity keys `m01.`, slugs starting `math-`;
+  - always self-paced, like Essay;
+  - a third tab, "Math (AMC 10)", in `TrackTabs`;
+  - `/math` (Keep going, the 15 unit cards, My progress) and the progress tracker with the five strand badges.
+- **Math rendering:** content and solutions use TeX between `$…$` / `$$…$$`, rendered with **KaTeX** (MathML output for screen readers; content:check rejects TeX that doesn't parse). Answers are typed in a plain box with helper buttons (√, π, fraction bar, ^) and a live typeset preview.
+- **Figures:** geometry problems carry `figure: { file, alt }`, an SVG in `content/math/unit-XX/figures/`. Alt text is required. content:check rejects scripts, event handlers and external links in the SVG. Figures are drawn to scale only when the problem says so ("not drawn to scale" otherwise, as on the AMC).
+- **Answer checking: new package `packages/math-check`** (no dependencies, like writing-analysis):
+  - `parseAnswer` reads integers, decimals, fractions, mixed numbers, signs, `√` / `sqrt()`, `π` / `pi`, `^`, simple sums like `2+3√5`, and choices `A`–`E`.
+  - `answersEqual(input, accepted)` compares exactly: rationals plus integer multiples of square roots and of π, in a normal form. Exact decimals equal their fraction. A numeric fallback with tolerance applies only when the problem allows it.
+  - Problems state the form they want ("as a common fraction", "in simplest radical form"). A correct value in the wrong form gets "Right value; write it as …", not wrong.
+- **Problem format** (one shape for practice, challenge, unit checks and mocks):
+  - `id`, `prompt` (TeX), optional `figure`;
+  - `answer`: either `{ kind: 'choice', choices: [5], correct }` or `{ kind: 'value', accepted: [...], form? }`;
+  - `hints` (0–3), `solution` (TeX, required), `skill`, `difficulty` (1–5, from AMC questions 1–5 up to 21–25), `strand`;
+  - optional `compute`.
+- **Answer verification:** `compute` is an expression in math-check's safe evaluator (`binom(8,3) - binom(5,3)`, `gcd(84, 126)`, `(3/7)*(2/6)`, `sqrt(5^2+12^2)`; no variables, no loops). **`pnpm content:check` fails when `compute` doesn't equal the answer**, or when a choice problem's correct value is missing from its choices or appears twice. Every problem whose answer can be computed this way must carry `compute`. For proof-like problems the worked solution is reviewed by hand.
+- **New activity types:**
+  - `PROBLEMS`: practice; instant check, hints, solution after a correct answer or after "Show me".
+  - `PROBLEM_SET`: the challenge and unit checks. It is marked on the server like `QUIZ` (an attempt, answers hidden until it's handed in, a review with solutions). The unit check passes at the track's pass mark; a lesson challenge completes once handed in.
+  - `MOCK_TEST` (built in M15): 25 problems, a server-side 75-minute timer (handed in automatically when time runs out), AMC scoring, then a review by question, by strand and by difficulty.
+- **Error log:** every wrong or "Show me" problem goes to *My error log* by skill. Students redo them later (a problem leaves the log after two correct redos on different days). Unit 15 has a lesson on using it.
+- **Quill for math** (packages/ai; fake gateway in tests):
+  - `math-explain` ("Explain it another way"): explains the given solution differently, step by step.
+  - `math-mistake` ("Why was mine wrong?"): suggests the likely mistake from the student's answer and, optionally, their typed working.
+  - Both receive the problem, the authored solution and the answer. They are told never to change the verdict or reveal a different answer, and their output is checked: a number in Quill's text that contradicts the authored answer is dropped.
+  - "Try a similar one" comes from the bank (same skill and difficulty, not seen yet), not from AI-generated problems, because generated problems can't be guaranteed correct.
+- **Progress & teacher views:** the Math tracker shows lessons, unit checks, accuracy per strand and, after M15, mock scores with an AMC-score estimate. The P5a heatmap works unchanged (`?track=math`).
+
+**Open decisions (confirm before M0):**
+1. **Unit check pass mark:** default **70%**, since AMC-style problems are harder than the essay quizzes (Essay uses 80%).
+2. **Hints:** default **authored hints on practice problems** (none during unit checks and mocks). The Story track chose "no practice hints", but stepped hints are standard in math practice.
+3. **Answer format in practice:** default **mostly typed answers**, so guessing doesn't count. Choices (A)–(E) appear in unit checks and mocks, as on the AMC.
+4. **Mocks:** default **three full original mocks** (A, B, C) plus the final.
+
+**Phases:**
+- **M0:** the engine, as above.
+- **M1–M14:** one unit each, with any tools a unit needs (for example a geometry figure viewer with zoom, a counting tree builder, a number line) built in that unit.
+- **M15:** mocks, the timed test, scoring, the AMC estimate and the error-log review.
+
 ## 10. Unit-by-unit interactive tool designs (Deliverable 8)
 
 Every tool follows the same pattern: a React feature folder under `apps/web/features/tools/<tool>`, optional `Artifact` persistence with autosave, deterministic checks in the browser, and optional LLM analyzers through `/ai/*`. Every tool MUST be usable by keyboard only and by screen readers.
@@ -1936,6 +2014,9 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | **E13 Essay Unit 13: Body Paragraphs & Evidence** ✅ | 7 lessons; body paragraph tasks (`essay.part: 'body'`, `essay.thesis`, the paragraph builder) and the `body.essay` rubric, evidence kinds and time words, the essay map's evidence rows, the AI body mode and the two-body-paragraph unit check (see §9.12) | Unit playable end to end; essay map marks topic sentences, evidence, counterclaim and rebuttal; `pnpm content:check` passes |
 | **E14 Essay Unit 14: Conclusions & Full Essays** ✅ | 7 lessons; the `ESSAY` activity type and three essay rubrics, conclusion tasks and the `conclusion.essay` rubric, restatement and summary, the essay checklist (`essayChecks`, `PUT /submissions/:id/checklist`), the AI conclusion mode and the edited argumentative essay unit check (see §9.12) | Unit playable end to end; the checklist ticks itself as the essay improves; `pnpm content:check` passes |
 | **E15 Essay Unit 15: Style, Revision & Final Essay** ✅ | 7 lessons; the `style` Coach check (`styleIssues`, `formal-sentence`), the AI `formal-tone` check, choosing the essay type (`essayPrompts`, `PUT /submissions/:id/essay-type`), continuing from a draft (`continuesFrom`), essay titles, three proofreads and the polished final essay with the final checklist (see §9.12) | Unit playable end to end; the final essay starts from the draft and is judged as the chosen kind; `pnpm content:check` passes |
+| **M0 Math track foundation** | Track `MATH` (`content/math`, `m01.` keys, `/math`, a third track tab), KaTeX rendering, SVG figures with alt text, `packages/math-check` (parse and compare exact answers, safe `compute` evaluator), problem format, `PROBLEMS` and `PROBLEM_SET` activities, the error log, Quill `math-explain`/`math-mistake` (§9.13) | A sample problem set renders, checks typed answers exactly and is marked on the server; `content:check` rejects a `compute` that disagrees with the answer; axe passes |
+| **M1–M14 Math units** | One AMC 10 unit per phase (§9.13 plan), original problems only, with the tools each unit needs | Each unit playable end to end; every computable answer verified by `content:check` |
+| **M15 Mock exams** | `MOCK_TEST` (25 problems, 75-minute server timer, AMC scoring 6/1.5/0), three mocks and the final, strand and difficulty breakdown, AMC-score estimate, error-log review | A mock submits itself when time runs out; scores match AMC scoring |
 | **P5 Teacher dashboard** (P5a progress views ✅, the rest deferred; §11.3) | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |
 | **P6 Gamification** | XP events, levels, streaks with freezes, badge engine + seed catalogue, missions, unlocks, dashboard widgets, optional leaderboard | Unit tests for XP caps, idempotency, streak edge cases (timezones, weekends, freezes); badge unlock modal appears in E2E |
 | **P7 Unit tools 1–6** | All tools in §10 for Units 1–6 + remaining LLM analyzers they need | Each tool has a component test and one E2E happy path; keyboard-only walkthrough passes |

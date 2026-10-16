@@ -22,6 +22,35 @@ One unit per phase, in the 5-step lesson format, each with the tools and AI chec
 - [ ] **SL11: Unit 11 Revision.** Revision checklist engine, grammar and sentence-variety analyzer, before/after diff viewer, peer review (Glow / Grow / Question).
 - [ ] **SL12: Unit 12 Portfolio & Showcase.** The final unit; it leads into the portfolio (P9).
 
+## 1b. Math track: AMC 10 preparation (§9.13)
+
+A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are checked in code; Quill only explains. **Original AMC-style problems only**: never copy past AMC problems (© MAA).
+
+- [ ] **Confirm the open decisions** in §9.13: unit check pass mark (default 70%), authored hints on practice problems, typed answers in practice, three mocks plus the final.
+- [ ] **M0 Foundation:**
+  - track `MATH` (`content/math`, `m01.` keys, `/math`, third track tab, strand badges);
+  - KaTeX rendering and the answer box with helper buttons and a live preview;
+  - SVG figures with alt text;
+  - `packages/math-check` (`parseAnswer`, exact `answersEqual`, safe `compute` evaluator) and content:check answer verification;
+  - `PROBLEMS` practice and the `PROBLEM_SET` marked challenge and unit check;
+  - the error log;
+  - Quill `math-explain` and `math-mistake` (verdict never changed by AI).
+- [ ] **M1** Unit 1 Problem Solving & the AMC 10
+- [ ] **M2** Unit 2 Arithmetic & Number Sense
+- [ ] **M3** Unit 3 Linear Equations & Word Problems
+- [ ] **M4** Unit 4 Quadratics & Polynomials
+- [ ] **M5** Unit 5 Functions & Inequalities
+- [ ] **M6** Unit 6 Sequences & Patterns
+- [ ] **M7** Unit 7 Number Theory I
+- [ ] **M8** Unit 8 Number Theory II
+- [ ] **M9** Unit 9 Counting I
+- [ ] **M10** Unit 10 Counting II & Probability
+- [ ] **M11** Unit 11 Geometry I: Triangles & Polygons
+- [ ] **M12** Unit 12 Geometry II: Circles
+- [ ] **M13** Unit 13 Geometry III: Coordinates & Solids
+- [ ] **M14** Unit 14 Logic & Mixed Strategies
+- [ ] **M15** Unit 15 Mock Exams & Final Review: `MOCK_TEST` (25 problems, 75-minute timer, AMC scoring 6 / 1.5 / 0), mocks A–C and the final, the AMC-score estimate, error-log review
+
 ## 2. Teacher dashboard: rest of P5 (§11)
 
 - [ ] **Review queue** (§11.4): tabs for AI drafts to approve, projects to grade, returned for revision, and peer reviews to moderate; flagged items first.
