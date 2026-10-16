@@ -92,6 +92,20 @@ function introductionLevels(text: string): Record<string, number> {
   };
 }
 
+/** Offline levels for the body paragraph rubric: topic sentences, evidence and what follows it. */
+function bodyLevels(text: string): Record<string, number> {
+  const bodies = essayStructure(text, { part: 'body' }).paragraphs.filter(
+    (p) => p.part === 'body' && !p.counterclaim,
+  );
+  const withEvidence = bodies.filter((p) => p.evidence);
+  const explained = withEvidence.filter((p) => p.evidence && p.evidence.span.end < p.span.end - 20);
+  return {
+    topic: bodies.every((p) => p.topic) ? 3 : 2,
+    evidence: bodies.length && withEvidence.length === bodies.length ? 3 : 2,
+    explanation: withEvidence.length && explained.length === withEvidence.length ? 3 : 2,
+  };
+}
+
 /** Offline levels for the outline rubric, from the outline parts found. */
 function outlineLevels(text: string): Record<string, number> {
   const e = essayStructure(text);
@@ -168,6 +182,7 @@ export const rubricScoreAnalyzer: AnalyzerDef<RubricScoreInput, RubricScoreResul
       ...paragraphLevels(input.text),
       ...(input.rubric.key === 'outline.essay' ? outlineLevels(input.text) : {}),
       ...(input.rubric.key === 'introduction.essay' ? introductionLevels(input.text) : {}),
+      ...(input.rubric.key === 'body.essay' ? bodyLevels(input.text) : {}),
     };
     const first = coach.strengths[0];
     return {

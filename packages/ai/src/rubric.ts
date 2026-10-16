@@ -327,6 +327,64 @@ export const INTRODUCTION_RUBRIC: Rubric = {
   ],
 };
 
+/** `body.essay`: essay body paragraphs (Essay Unit 13 on, DESIGN.md §9.12). */
+export const BODY_RUBRIC: Rubric = {
+  key: 'body.essay',
+  name: 'Essay body paragraph',
+  maxScore: 100,
+  criteria: [
+    {
+      key: 'topic',
+      label: 'Topic sentence and link',
+      description: 'Each paragraph opens with a topic sentence that links back to the thesis.',
+      weight: 0.25,
+      levels: levels(
+        'No topic sentence, or it has nothing to do with the thesis.',
+        'A topic sentence, but its link to the thesis is unclear.',
+        'A clear topic sentence that uses a key idea from the thesis.',
+        'A sharp topic sentence that names exactly which part of the thesis it proves.',
+      ),
+    },
+    {
+      key: 'evidence',
+      label: 'Evidence',
+      description:
+        'A fact or number, an example or a quote backs up the topic sentence (narratives: details in time order).',
+      weight: 0.3,
+      levels: levels(
+        'No evidence: just opinions or repeats of the topic sentence.',
+        'Some evidence, but it is vague or does not fit the point.',
+        'Specific evidence that fits the point.',
+        'Strong, well-chosen evidence, introduced smoothly (with its source for a quote).',
+      ),
+    },
+    {
+      key: 'explanation',
+      label: 'Explanation',
+      description: 'The writer explains how the evidence proves the point, not just drops it in.',
+      weight: 0.25,
+      levels: levels(
+        'No explanation after the evidence.',
+        'Some explanation, but it repeats the evidence.',
+        'Explains what the evidence shows and why it matters.',
+        'Explains clearly and ties the point back to the thesis.',
+      ),
+    },
+    {
+      key: 'conventions',
+      label: 'Grammar and conventions',
+      description: 'Complete sentences, capitals, punctuation and spelling help the reader.',
+      weight: 0.2,
+      levels: levels(
+        'Errors often get in the way of meaning.',
+        'Some errors that sometimes distract.',
+        'Mostly correct; errors rarely distract.',
+        'Correct throughout, with varied sentences.',
+      ),
+    },
+  ],
+};
+
 /** total = Σ level × weight, scaled to maxScore (level 4 everywhere = maxScore). */
 export function totalScore(rubric: Rubric, levelsByKey: Record<string, number>): number {
   const weighted = rubric.criteria.reduce(

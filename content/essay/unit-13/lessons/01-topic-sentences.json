@@ -1,0 +1,57 @@
+{
+  "slug": "essay-topic-sentences",
+  "order": 1,
+  "title": "Topic Sentences That Link",
+  "estMinutes": 35,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Your thesis makes three promises. How will the reader know which promise each body paragraph keeps?",
+      "placeholder": "The reader will know because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "One paragraph, one part of the thesis",
+          "body": "Each body paragraph proves (or explains) one part of the thesis. Its first sentence, the topic sentence, names that part, so the reader always knows where they are."
+        },
+        {
+          "kind": "example",
+          "title": "Linked topic sentences",
+          "text": "Thesis: Our school should start a community garden because it teaches science, improves meals and brings students together.\nBody 1: A school garden turns science lessons into real experiments.\nBody 2: Fresh vegetables from the garden would make school meals healthier.\nBody 3: Working in the garden brings students from different classes together.",
+          "note": "Each topic sentence uses a key word from the thesis (science, meals, together), in the same order."
+        },
+        {
+          "kind": "definition",
+          "title": "Your essay map",
+          "body": "When you check a body paragraph, the essay map marks its topic sentence: “links to the thesis” ✓ when it shares a key word with the thesis."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e13.topic-sort", "e13.topic-blank", "e13.topic-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e13.topic-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which key word did you use to link each topic sentence?",
+        "What would happen if a body paragraph didn’t link to the thesis?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

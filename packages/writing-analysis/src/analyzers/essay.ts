@@ -137,6 +137,27 @@ const REBUTTAL =
 /** "Although some people say…, …" answers itself in one sentence. */
 const SELF_ANSWERED = /^(?:although|while|even though|though) /;
 
+// ───────── Evidence and time order ─────────
+
+const EXAMPLE =
+  /^(?:for example|for instance|one example|another example|take)\b|\b(?:such as|for example|for instance|like when)\b/;
+const SOURCE =
+  /\b(?:according to|said|says|wrote|writes|explains|reported|found that|shows that|a study|research|survey|scientists|experts|doctors)\b/;
+/** Time words that order a narrative's events. */
+const TIME_WORD =
+  /^(?:first|at first|then|next|after(?: that)?|afterwards|later|soon|suddenly|finally|in the end|at last|meanwhile|the next (?:day|morning|week)|that (?:morning|night|afternoon|evening|day)|when|before|as soon as|by the time|minutes later|hours later|the moment)\b/i;
+
+/** What kind of evidence a sentence gives: a quote (with its source), a fact or number, or an example. */
+export function evidenceKind(sentence: string): EvidenceKind | null {
+  const t = sentence.trim();
+  const s = lowerOf(t);
+  if (/[“"][^”"]{8,}[”"]/.test(t) && SOURCE.test(s)) return 'quote';
+  if (STATISTIC.test(s) || /^(?:according to|a study|one study|research|a survey)\b/.test(s))
+    return 'fact';
+  if (EXAMPLE.test(s)) return 'example';
+  return null;
+}
+
 // ───────── Conclusion ─────────
 
 const FINAL_THOUGHT =
@@ -266,7 +287,19 @@ export interface EssayParagraph {
   echoesThesis?: boolean;
   copiesThesis?: boolean;
   finalThought?: Span;
+  /** Body: the first piece of evidence and its kind (not narratives). */
+  evidence?: { span: Span; kind: EvidenceKind };
+  /** Body (narratives): time words that show the order of events. */
+  timeWords?: Span[];
 }
+
+export const EVIDENCE_KINDS = ['quote', 'fact', 'example'] as const;
+export type EvidenceKind = (typeof EVIDENCE_KINDS)[number];
+export const EVIDENCE_KIND_LABELS: Record<EvidenceKind, string> = {
+  quote: 'Quote',
+  fact: 'Fact or number',
+  example: 'Example',
+};
 
 export interface EssayOptions {
   type?: EssayType;
@@ -274,9 +307,11 @@ export interface EssayOptions {
   counterclaim?: boolean;
   /** Just one part of an essay (Unit 12 introductions, Unit 14 conclusions). */
   part?: EssayPartTask;
+  /** The essay's thesis, given by a part task (body paragraphs and conclusions link back to it). */
+  thesis?: string;
 }
 
-export const ESSAY_PART_TASKS = ['introduction', 'conclusion'] as const;
+export const ESSAY_PART_TASKS = ['introduction', 'body', 'conclusion'] as const;
 export type EssayPartTask = (typeof ESSAY_PART_TASKS)[number];
 
 export interface EssayStructure {
@@ -328,19 +363,21 @@ export function essayStructure(text: string, options: EssayOptions = {}): EssayS
   const all = sentences(text).map(trimSpan);
   const result: EssayParagraph[] = paras.map((p, i) => ({
     part:
-      options.part === 'introduction'
-        ? i === 0
-          ? 'introduction'
-          : 'body'
-        : n >= 3
+      options.part === 'body'
+        ? 'body'
+        : options.part === 'introduction'
           ? i === 0
             ? 'introduction'
-            : i === n - 1
-              ? 'conclusion'
-              : 'body'
-          : i === 0 && n === 2
-            ? 'introduction'
-            : 'body',
+            : 'body'
+          : n >= 3
+            ? i === 0
+              ? 'introduction'
+              : i === n - 1
+                ? 'conclusion'
+                : 'body'
+            : i === 0 && n === 2
+              ? 'introduction'
+              : 'body',
     span: trimSpan(p),
   }));
   const inPara = (p: EssayParagraph) =>
@@ -359,7 +396,10 @@ export function essayStructure(text: string, options: EssayOptions = {}): EssayS
       intro.afterThesis = list.filter((s) => s.start > thesis!.span.start);
     }
   }
-  const thesisStems = thesis ? contentStems(thesis.span.text) : new Set<string>();
+  // Part tasks give the thesis; body paragraphs and conclusions link back to it.
+  const linkText = thesis?.span.text ?? options.thesis;
+  const thesisStems = linkText ? contentStems(linkText) : new Set<string>();
+  const narrative = options.type === 'narrative';
   for (const p of result) {
     const list = inPara(p);
     if (p.part === 'body') {
@@ -367,8 +407,21 @@ export function essayStructure(text: string, options: EssayOptions = {}): EssayS
       if (first) {
         p.topic = {
           span: first,
-          linked: thesis ? overlap(contentStems(first.text), thesisStems) > 0 : null,
+          linked: linkText ? overlap(contentStems(first.text), thesisStems) > 0 : null,
         };
+      }
+      if (narrative) {
+        p.timeWords = list.flatMap((x) => {
+          const m = TIME_WORD.exec(x.text);
+          return m
+            ? [{ start: x.start + m.index, end: x.start + m.index + m[0].length, text: m[0] }]
+            : [];
+        });
+      } else {
+        const found = list
+          .map((x) => ({ span: x, kind: evidenceKind(x.text) }))
+          .find((x) => x.kind);
+        if (found?.kind) p.evidence = { span: found.span, kind: found.kind };
       }
       list.forEach((s, i) => {
         const lower = lowerOf(s.text);
@@ -382,10 +435,10 @@ export function essayStructure(text: string, options: EssayOptions = {}): EssayS
         }
       });
     }
-    if (p.part === 'conclusion' && thesis) {
+    if (p.part === 'conclusion' && linkText) {
       const stems = contentStems(p.span.text);
       p.echoesThesis = overlap(stems, thesisStems) >= Math.min(2, thesisStems.size);
-      p.copiesThesis = list.some((s) => normal(s.text) === normal(thesis.span.text));
+      p.copiesThesis = list.some((s) => normal(s.text) === normal(linkText));
     }
     if (p.part === 'conclusion') {
       const last = list.at(-1);
@@ -467,6 +520,9 @@ export const ESSAY_FEATURES = [
   'hook-quote',
   'hook-story',
   'hook-bold',
+  'fact-evidence',
+  'example-evidence',
+  'time-order',
 ] as const;
 export type EssayFeature = (typeof ESSAY_FEATURES)[number];
 
@@ -481,6 +537,9 @@ export const ESSAY_FEATURE_LABELS: Record<EssayFeature, string> = {
   'hook-quote': 'a quote hook',
   'hook-story': 'a short-story hook',
   'hook-bold': 'a bold-statement hook',
+  'fact-evidence': 'a fact or number as evidence',
+  'example-evidence': 'an example as evidence',
+  'time-order': 'a time word',
 };
 
 export const ESSAY_FEATURE_EXAMPLES: Record<EssayFeature, string> = {
@@ -500,6 +559,11 @@ export const ESSAY_FEATURE_EXAMPLES: Record<EssayFeature, string> = {
   'hook-story':
     'a tiny true moment, like “When I was seven, I…”, “One morning…” or “I still remember…”',
   'hook-bold': 'a short, strong claim, like “Homework is broken.” or “Every minute counts!”',
+  'fact-evidence':
+    'a fact you could check, with a number or a source, like “According to the CDC, teens need 8 to 10 hours of sleep.”',
+  'example-evidence':
+    'a specific example, like “For example, our school’s garden club grew 40 kilos of vegetables last year.”',
+  'time-order': 'a word that shows when, like First, Then, Suddenly, After that or Finally',
 };
 
 const HOOK_FEATURE: Record<Exclude<HookKind, 'plain' | 'announcement'>, EssayFeature> = {
@@ -538,6 +602,10 @@ export function essayHits(text: string): EssayHit[] {
       hits.push({ feature: 'rebuttal', span: s });
     if (FINAL_THOUGHT.test(lower) || REFLECTION.test(lower))
       hits.push({ feature: 'final-thought', span: s });
+    const evidence = evidenceKind(s.text);
+    if (evidence === 'fact') hits.push({ feature: 'fact-evidence', span: s });
+    if (evidence === 'example') hits.push({ feature: 'example-evidence', span: s });
+    if (TIME_WORD.test(s.text.trim())) hits.push({ feature: 'time-order', span: s });
   }
   return hits;
 }
@@ -667,6 +735,17 @@ export function essayNotes(text: string, options: EssayOptions = {}): GrammarIss
         });
       }
     });
+  } else if (options.part === 'body' && !narrative) {
+    for (const p of bodies) {
+      if (!p.evidence) {
+        notes.push({
+          kind: 'no-evidence',
+          span: p.span,
+          message:
+            'Back up your topic sentence with evidence: a fact or number, an example (“For example, …”) or a quote with its source.',
+        });
+      }
+    }
   }
   for (const p of e.paragraphs) {
     if (p.counterclaim && !p.rebuttal) {
@@ -678,10 +757,22 @@ export function essayNotes(text: string, options: EssayOptions = {}): GrammarIss
       });
     }
   }
+  if (narrative && !e.outline) {
+    for (const p of bodies) {
+      if (p.timeWords?.length === 0 && sentences(p.span.text).length >= 3) {
+        notes.push({
+          kind: 'no-time-words',
+          span: p.span,
+          message:
+            'Show the order of events with time words: First, Then, Suddenly, After that, Finally, That morning….',
+        });
+      }
+    }
+  }
   if (
     options.counterclaim &&
     !e.paragraphs.some((p) => p.counterclaim) &&
-    (e.outline || e.paragraphs.length >= 3)
+    (e.outline || e.paragraphs.length >= 3 || options.part === 'body')
   ) {
     notes.push({
       kind: 'no-counterclaim',

@@ -1,0 +1,57 @@
+{
+  "slug": "essay-counterclaim-rebuttal",
+  "order": 6,
+  "title": "Counterclaims & Rebuttals",
+  "estMinutes": 45,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Your class wants a longer recess. What would the principal say against it?",
+      "placeholder": "The principal would say…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Give the other side",
+          "body": "A counterclaim is what someone who disagrees would say: “Some people argue that…”, “Critics say…”, “It is true that…”. Including it shows you’ve thought about both sides."
+        },
+        {
+          "kind": "definition",
+          "title": "Then answer it",
+          "body": "A rebuttal answers the counterclaim: “However, …”, “Even so, …”, “In fact, …”. Back it up with evidence and explain it, just like a reason. Never leave a counterclaim unanswered."
+        },
+        {
+          "kind": "example",
+          "title": "A counterclaim paragraph",
+          "text": "Some people argue that a school garden costs too much. However, seeds and tools cost less than one class trip, and local stores often donate supplies. This shows that a garden is one of the cheapest ways to improve our school.",
+          "note": "Counterclaim → rebuttal with a fact → explanation."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e13.counter-sort", "e13.rebut-blank", "e13.counter-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e13.counter-body"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Was your counterclaim fair to the other side?",
+        "What evidence made your rebuttal convincing?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

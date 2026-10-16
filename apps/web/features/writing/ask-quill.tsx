@@ -72,7 +72,7 @@ export function AskQuill({
     ...(GRAMMAR_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'grammar-check' as const, label: 'Is my grammar right?' }]
       : []),
-    ...(PARAGRAPH_ACTIVITY_TYPES.includes(activity.type)
+    ...(PARAGRAPH_ACTIVITY_TYPES.includes(activity.type) || activity.essay?.part === 'body'
       ? [{ id: 'paragraph-structure' as const, label: 'Is my paragraph built well?' }]
       : []),
     ...(ESSAY_ACTIVITY_TYPES.includes(activity.type)
@@ -84,7 +84,9 @@ export function AskQuill({
                 ? 'Is my outline ready to write from?'
                 : activity.essay?.part === 'introduction'
                   ? 'Is my introduction ready?'
-                  : 'Is my essay structured well?',
+                  : activity.essay?.part === 'body'
+                    ? 'Do my body paragraphs prove the thesis?'
+                    : 'Is my essay structured well?',
           },
         ]
       : []),

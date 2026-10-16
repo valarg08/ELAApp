@@ -1,0 +1,57 @@
+{
+  "slug": "essay-explaining-evidence",
+  "order": 3,
+  "title": "Explaining Your Evidence",
+  "estMinutes": 45,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A friend shows you a photo of a broken window and says, “See?” What else do you need them to tell you?",
+      "placeholder": "I need them to tell me…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Evidence never speaks for itself",
+          "body": "After every piece of evidence, explain what it shows and why it matters: “This shows that…”, “This means…”, “That matters because…”. Repeating the evidence is not an explanation."
+        },
+        {
+          "kind": "example",
+          "title": "Topic, evidence, explanation, link",
+          "text": "Phones keep families in touch during the school day. For example, a parent can text when pick-up plans change. This means students aren’t left waiting outside with no ride. Being able to reach family is one reason phones belong at lunch.",
+          "note": "Topic sentence → example → explanation → a link back to the thesis."
+        },
+        {
+          "kind": "definition",
+          "title": "The body paragraph builder",
+          "body": "Use the builder to plan: a topic sentence, two pieces of evidence each with its explanation, and a closing sentence. Then put it in your writing and polish it. The essay map marks the topic sentence and the kind of evidence."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e13.explain-sort", "e13.explain-sequence", "e13.explain-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e13.arg-body"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Read your explanations. Do they say something new, or repeat the evidence?",
+        "Which piece of evidence was strongest? Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

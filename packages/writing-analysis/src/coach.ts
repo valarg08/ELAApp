@@ -53,6 +53,7 @@ import {
   type EssayPart,
   type EssayStructure,
   type EssayType,
+  EVIDENCE_KIND_LABELS,
   HOOK_KIND_LABELS,
   THESIS_KIND_LABELS,
   essayNotes,
@@ -160,6 +161,7 @@ export type EssayMapItemKind =
   | 'thesis'
   | 'topic'
   | 'evidence'
+  | 'time-order'
   | 'counterclaim'
   | 'rebuttal'
   | 'restatement'
@@ -874,6 +876,7 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     const thesis = structure.thesis;
     if (
       thesis &&
+      essayOptions.part !== 'body' &&
       (thesis.kind === 'claim' || thesis.kind === 'focus') &&
       notes.every((n) => n.kind !== 'weak-thesis')
     ) {
@@ -1272,6 +1275,7 @@ const ESSAY_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
   'no-hook': 'Open with a hook',
   'no-background': 'Add background',
   'thesis-not-last': 'End with your thesis',
+  'no-time-words': 'Show the order of events',
   'copied-thesis': 'Restate, don’t copy',
   'no-restatement': 'Restate your thesis',
   'no-final-thought': 'End with a final thought',
@@ -1351,6 +1355,32 @@ function essayMap(e: EssayStructure, options: EssayOptions): EssayMap {
             ? { kind: 'evidence', label: 'Evidence', ok: true, span: evidence.span }
             : { kind: 'evidence', label: 'No evidence yet', ok: false },
         );
+      }
+      if (!e.outline && p.part === 'body' && !p.counterclaim) {
+        if (narrative) {
+          const time = p.timeWords ?? [];
+          items.push(
+            time.length > 0
+              ? {
+                  kind: 'time-order',
+                  label: `Time words: ${time.map((t) => t.text).join(', ')}`,
+                  ok: true,
+                  span: time[0],
+                }
+              : { kind: 'time-order', label: 'No time words yet', ok: false },
+          );
+        } else {
+          items.push(
+            p.evidence
+              ? {
+                  kind: 'evidence',
+                  label: `Evidence: ${EVIDENCE_KIND_LABELS[p.evidence.kind].toLowerCase()}`,
+                  ok: true,
+                  span: p.evidence.span,
+                }
+              : { kind: 'evidence', label: 'No evidence yet', ok: false },
+          );
+        }
       }
       if (p.counterclaim) {
         items.push({ kind: 'counterclaim', label: 'Counterclaim', ok: true, span: p.counterclaim });

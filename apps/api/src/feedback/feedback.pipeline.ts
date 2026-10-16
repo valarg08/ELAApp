@@ -215,7 +215,7 @@ export class FeedbackPipeline {
       extraStrengths.push(...p.strengths);
       extraNextSteps.push(...p.nextSteps);
     };
-    for (const id of analyzersForActivity(content.type)) {
+    for (const id of analyzersForActivity(content.type, content.essay?.part)) {
       versions.push(LIVE_ANALYZERS[id].version);
       if (id === 'show-vs-tell') {
         const outcome = await this.ai.run(LIVE_ANALYZERS[id], ctx, runMeta);

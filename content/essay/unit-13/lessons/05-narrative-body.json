@@ -1,0 +1,57 @@
+{
+  "slug": "essay-narrative-body",
+  "order": 5,
+  "title": "Narrative Body Paragraphs",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of a time something went wrong. What happened first, next and last?",
+      "placeholder": "First… then… finally…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Events instead of evidence",
+          "body": "In a narrative essay, the body paragraphs tell the true story: events in order, with details of what you saw, heard and felt. The events lead toward the focus (what the story taught or changed)."
+        },
+        {
+          "kind": "definition",
+          "title": "Time words",
+          "body": "Time words carry the reader through the events: At first, Then, Next, Suddenly, After that, Later, The next morning, Finally. The essay map lists the time words it finds."
+        },
+        {
+          "kind": "example",
+          "title": "A narrative body",
+          "text": "At first, I was having fun watching the pig races alone. Then I turned around and my family was gone. My heart pounded, and the crowd seemed to grow louder. After a deep breath, I walked to a booth and asked for help.",
+          "note": "Time words in order; a feeling shown with details; an action that leads toward the lesson."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e13.time-blank", "e13.narr-sequence", "e13.narr-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e13.narr-body"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which time words did you use? Could the reader follow the order?",
+        "Which detail shows a feeling best?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

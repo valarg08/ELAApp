@@ -1,0 +1,57 @@
+{
+  "slug": "essay-quotes-facts-examples",
+  "order": 2,
+  "title": "Quotes, Facts & Examples",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Your friend says, “Trust me, cats are smarter than dogs.” What would make you actually believe them?",
+      "placeholder": "I would believe them if…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Three kinds of evidence",
+          "body": "Evidence proves your topic sentence. A fact or number (“A 2022 survey found 7 out of 10 students…”). An example (“For example, our class grew 30 tomatoes”). A quote from someone who knows (“The nurse explains, “…””). Opinions are not evidence."
+        },
+        {
+          "kind": "definition",
+          "title": "Introduce it",
+          "body": "Lead into evidence so the reader knows where it comes from: According to…, For example…, For instance…, such as…, The scientist writes, “…”. Always name who said a quote."
+        },
+        {
+          "kind": "example",
+          "title": "Evidence in a paragraph",
+          "text": "Pets make people healthier. According to one study, dog owners walk about 20 minutes more each day than people without dogs. For example, my neighbour lost weight after adopting a puppy.",
+          "note": "A fact with its source, then an example."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e13.evidence-sort", "e13.evidence-blank", "e13.evidence-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e13.evidence-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which kind of evidence was easiest to write? Which was hardest?",
+        "Why should you always name the source of a quote?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

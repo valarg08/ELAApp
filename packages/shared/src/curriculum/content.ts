@@ -986,8 +986,15 @@ export function validateUnitBundle({
     }
     if (isWritingActivity(a) && a.starterInEditor && !a.starter)
       errors.push(`${a.key}: starterInEditor needs a starter`);
-    if (isWritingActivity(a) && a.paragraphBuilder && a.type !== 'PARAGRAPH')
-      errors.push(`${a.key}: paragraphBuilder is for PARAGRAPH activities`);
+    if (
+      isWritingActivity(a) &&
+      a.paragraphBuilder &&
+      a.type !== 'PARAGRAPH' &&
+      !(a.type === 'ESSAY_PART' && a.essay?.part === 'body')
+    )
+      errors.push(`${a.key}: paragraphBuilder is for PARAGRAPH and body paragraph activities`);
+    if (isWritingActivity(a) && a.essay?.part === 'body' && !a.essay.thesis)
+      errors.push(`${a.key}: body paragraph tasks need essay.thesis to link back to`);
     if (isWritingActivity(a) && a.outlineBuilder && !OUTLINE_BUILDER_TYPES.includes(a.type))
       errors.push(`${a.key}: outlineBuilder is for essay and outline activities`);
     if (isWritingActivity(a) && (a.type === 'ESSAY_PART') !== (a.essay?.part !== undefined))

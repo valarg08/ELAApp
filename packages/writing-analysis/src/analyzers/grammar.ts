@@ -523,7 +523,8 @@ export interface GrammarIssue {
     | 'no-final-thought'
     | 'no-hook'
     | 'no-background'
-    | 'thesis-not-last';
+    | 'thesis-not-last'
+    | 'no-time-words';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -778,6 +779,8 @@ export {
   ESSAY_PART_TASKS,
   ESSAY_TYPES,
   ESSAY_TYPE_LABELS,
+  EVIDENCE_KINDS,
+  EVIDENCE_KIND_LABELS,
   HOOK_KINDS,
   HOOK_KIND_LABELS,
   OUTLINE_PARTS,
@@ -785,6 +788,7 @@ export {
   THESIS_KINDS,
   THESIS_KIND_LABELS,
   essayStructure,
+  evidenceKind,
   hookKind,
   isOutline,
   outlineLines,
@@ -797,6 +801,7 @@ export type {
   EssayPartTask,
   EssayStructure,
   EssayType,
+  EvidenceKind,
   HookKind,
   OutlineLine,
   OutlinePart,

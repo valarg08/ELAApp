@@ -504,9 +504,22 @@ export function essayPoints(
   mode: EssayStructureInput['mode'] = 'essay',
 ) {
   const introOnly = mode === 'introduction';
+  const bodyOnly = mode === 'body';
   const strengths: (FeedbackPoint | null)[] = [];
   const nextSteps: (FeedbackPoint | null)[] = [];
-  if (r.thesis.present) {
+  if (bodyOnly) {
+    // Body paragraph tasks give the thesis: judge the bodies and the counterclaim only.
+    const linked = r.bodies.find((b) => b.supportsThesis);
+    if (linked) {
+      strengths.push(
+        anchored(
+          text,
+          { title: 'A topic sentence that links back', message: linked.note },
+          linked.quote,
+        ),
+      );
+    }
+  } else if (r.thesis.present) {
     strengths.push(
       anchored(text, { title: 'A clear thesis', message: r.thesis.note }, r.thesis.quote),
     );
@@ -515,7 +528,9 @@ export function essayPoints(
       anchored(text, { title: 'Sharpen your thesis', message: r.thesis.note }, r.thesis.quote),
     );
   }
-  if (r.hook.works) {
+  if (bodyOnly) {
+    // No hook in a body paragraph.
+  } else if (r.hook.works) {
     strengths.push(
       anchored(text, { title: 'A hook that grabs', message: r.hook.note }, r.hook.quote),
     );
@@ -558,8 +573,8 @@ export function essayPoints(
       ),
     );
   }
-  if (introOnly) {
-    // An introduction on its own has no conclusion to check.
+  if (introOnly || bodyOnly) {
+    // An introduction or body paragraphs on their own have no conclusion to check.
   } else if (!r.conclusion.present) {
     nextSteps.push({ title: 'Add a conclusion', message: r.conclusion.note });
   } else if (!r.conclusion.restates || !r.conclusion.finalThought) {

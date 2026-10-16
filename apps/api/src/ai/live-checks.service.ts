@@ -102,7 +102,7 @@ export class LiveChecksService {
     if (
       req.analyzer !== 'show-vs-tell' &&
       req.analyzer !== 'sensory-analysis' &&
-      !analyzersForActivity(content.type).includes(req.analyzer)
+      !analyzersForActivity(content.type, content.essay?.part).includes(req.analyzer)
     ) {
       throw new AppError(
         HttpStatus.BAD_REQUEST,

@@ -13,6 +13,7 @@ import { essayStructureAnalyzer } from './analyzers/essay-structure.js';
 import {
   DEFAULT_RUBRIC,
   GRAMMAR_RUBRIC,
+  BODY_RUBRIC,
   INTRODUCTION_RUBRIC,
   OUTLINE_RUBRIC,
   PARAGRAPH_RUBRIC,
@@ -88,17 +89,20 @@ const GRAMMAR_TYPES: readonly string[] = ['SENTENCE_SET', 'GRAMMAR_PARAGRAPH'];
 export const rubricForActivity = (type: string, part?: string): Rubric =>
   type === 'ESSAY_PART' && part === 'introduction'
     ? INTRODUCTION_RUBRIC
-    : type === 'PARAGRAPH'
-      ? PARAGRAPH_RUBRIC
-      : type === 'ESSAY_OUTLINE'
-        ? OUTLINE_RUBRIC
-        : GRAMMAR_TYPES.includes(type)
-          ? GRAMMAR_RUBRIC
-          : DEFAULT_RUBRIC;
+    : type === 'ESSAY_PART' && part === 'body'
+      ? BODY_RUBRIC
+      : type === 'PARAGRAPH'
+        ? PARAGRAPH_RUBRIC
+        : type === 'ESSAY_OUTLINE'
+          ? OUTLINE_RUBRIC
+          : GRAMMAR_TYPES.includes(type)
+            ? GRAMMAR_RUBRIC
+            : DEFAULT_RUBRIC;
 
 /** Activity types where "Can your reader tell?" also checks the character's want and fear. */
 export const WANT_FEAR_TYPES: readonly string[] = ['CHARACTER_SKETCH', 'FLAW_SCENE'];
 
-export function analyzersForActivity(type: string): LiveAnalyzerId[] {
+export function analyzersForActivity(type: string, part?: string): LiveAnalyzerId[] {
+  if (type === 'ESSAY_PART' && part === 'body') return ['essay-structure', 'paragraph-structure'];
   return BY_ACTIVITY_TYPE[type] ?? ['show-vs-tell'];
 }

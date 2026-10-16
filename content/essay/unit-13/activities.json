@@ -1,0 +1,1604 @@
+[
+  {
+    "key": "e13.topic-sort",
+    "type": "SORT",
+    "title": "Linked or off topic?",
+    "instructions": "Thesis: “Our school should start a community garden because it teaches science, improves meals and brings students together.” Which topic sentences link back to it?",
+    "buckets": [
+      {
+        "id": "linked",
+        "label": "Links to the thesis"
+      },
+      {
+        "id": "off",
+        "label": "Off the thesis"
+      }
+    ],
+    "items": [
+      {
+        "id": "l1",
+        "text": "A school garden turns science lessons into hands-on experiments.",
+        "bucketId": "linked"
+      },
+      {
+        "id": "l2",
+        "text": "Fresh vegetables from a garden would make school meals healthier.",
+        "bucketId": "linked"
+      },
+      {
+        "id": "l3",
+        "text": "Working in a garden brings students from different classes together.",
+        "bucketId": "linked"
+      },
+      {
+        "id": "o1",
+        "text": "Our school also needs a new gym floor.",
+        "bucketId": "off"
+      },
+      {
+        "id": "o2",
+        "text": "My favourite vegetable is the carrot.",
+        "bucketId": "off"
+      },
+      {
+        "id": "o3",
+        "text": "Many students walk to school every day.",
+        "bucketId": "off"
+      }
+    ]
+  },
+  {
+    "key": "e13.topic-blank",
+    "type": "FILL_BLANK",
+    "title": "Finish the topic sentence",
+    "instructions": "Thesis: “Honeybees help farms in three ways: they pollinate crops, make honey and support other wildlife.” Choose the words that link each topic sentence back to the thesis.",
+    "items": [
+      {
+        "id": "pollinate",
+        "sentence": "First, honeybees ___ the crops that farmers grow.",
+        "choices": ["pollinate", "chase", "ignore"],
+        "answers": ["pollinate"],
+        "hint": "Which word comes from the thesis?",
+        "explanation": "“Pollinate” is the first part the thesis promised."
+      },
+      {
+        "id": "honey",
+        "sentence": "Honeybees also make ___, which farmers can sell.",
+        "choices": ["honey", "noise", "nests"],
+        "answers": ["honey"],
+        "hint": "What is the second part of the thesis?",
+        "explanation": "Honey is the second part, so this paragraph explains it."
+      },
+      {
+        "id": "wildlife",
+        "sentence": "Finally, honeybees support other ___ around the farm.",
+        "choices": ["wildlife", "machines", "farmers"],
+        "answers": ["wildlife"],
+        "hint": "What is the third part?",
+        "explanation": "The third paragraph explains how bees support wildlife."
+      }
+    ]
+  },
+  {
+    "key": "e13.topic-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Topic sentences",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What does a body paragraph’s topic sentence do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Names the part of the thesis the paragraph proves"
+          },
+          {
+            "id": "b",
+            "text": "Tells a joke to hook the reader"
+          },
+          {
+            "id": "c",
+            "text": "Repeats the thesis word for word"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Each body paragraph proves one part of the thesis, and the topic sentence names it."
+      },
+      {
+        "id": "q2",
+        "prompt": "How can a topic sentence show it links to the thesis?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Use a key word or idea from the thesis"
+          },
+          {
+            "id": "b",
+            "text": "Start with “In conclusion”"
+          },
+          {
+            "id": "c",
+            "text": "Ask the reader a question"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A shared key word lets the reader see the link."
+      },
+      {
+        "id": "q3",
+        "prompt": "Thesis: “Our school should start a community garden because it teaches science, improves meals and brings students together.” Which body paragraph comes first?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The one about science lessons"
+          },
+          {
+            "id": "b",
+            "text": "The one about the gym floor"
+          },
+          {
+            "id": "c",
+            "text": "The one about the conclusion"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Follow the order of the reasons in the thesis."
+      }
+    ]
+  },
+  {
+    "key": "e13.topic-set",
+    "type": "SENTENCE_SET",
+    "title": "Three topic sentences",
+    "prompt": "Thesis: “Our school should start a community garden because it teaches science, improves meals and brings students together.” Write one topic sentence for each body paragraph, in the order of the reasons.",
+    "tips": [
+      "Use a key word from the thesis in each one.",
+      "Start with First, Also or Finally if it helps."
+    ],
+    "constraints": {
+      "minWords": 25,
+      "maxWords": 120,
+      "minSentences": 3
+    },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["topic-sentence"],
+    "sentenceSet": {
+      "label": "Your three topic sentences",
+      "sentences": [
+        {
+          "ask": "Body 1: how a garden teaches science.",
+          "needs": ["topic-sentence"]
+        },
+        {
+          "ask": "Body 2: how a garden improves school meals.",
+          "needs": ["topic-sentence"]
+        },
+        {
+          "ask": "Body 3: how a garden brings students together.",
+          "needs": ["topic-sentence"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e13.evidence-sort",
+    "type": "SORT",
+    "title": "Quote, fact or example?",
+    "instructions": "Sort each piece of evidence by its kind.",
+    "buckets": [
+      {
+        "id": "quote",
+        "label": "Quote"
+      },
+      {
+        "id": "fact",
+        "label": "Fact or number"
+      },
+      {
+        "id": "example",
+        "label": "Example"
+      }
+    ],
+    "items": [
+      {
+        "id": "q1",
+        "text": "According to the school nurse, “Students who eat vegetables at lunch have more energy in the afternoon.”",
+        "bucketId": "quote"
+      },
+      {
+        "id": "q2",
+        "text": "The gardener Monty Don writes, “A garden teaches patience better than any lesson.”",
+        "bucketId": "quote"
+      },
+      {
+        "id": "f1",
+        "text": "A single tomato plant can grow more than 10 kilograms of fruit in one summer.",
+        "bucketId": "fact"
+      },
+      {
+        "id": "f2",
+        "text": "According to a 2022 survey, 7 out of 10 students want more time outdoors.",
+        "bucketId": "fact"
+      },
+      {
+        "id": "e1",
+        "text": "For example, students could measure how fast bean plants grow in sun and shade.",
+        "bucketId": "example"
+      },
+      {
+        "id": "e2",
+        "text": "For instance, the cafeteria could serve salad made from garden lettuce.",
+        "bucketId": "example"
+      }
+    ]
+  },
+  {
+    "key": "e13.evidence-blank",
+    "type": "FILL_BLANK",
+    "title": "Introduce your evidence",
+    "instructions": "Choose the words that introduce each piece of evidence.",
+    "items": [
+      {
+        "id": "according",
+        "sentence": "___ the National Sleep Foundation, teenagers need eight to ten hours of sleep.",
+        "choices": ["According to", "Because", "Finally"],
+        "answers": ["According to"],
+        "hint": "Which words name a source?",
+        "explanation": "“According to” tells the reader where the fact comes from."
+      },
+      {
+        "id": "example",
+        "sentence": "___, a student who sleeps nine hours remembers more spelling words.",
+        "choices": ["For example", "However", "In conclusion"],
+        "answers": ["For example", "For instance"],
+        "hint": "Which words introduce an example?",
+        "explanation": "“For example” signals a specific case."
+      },
+      {
+        "id": "such",
+        "sentence": "Gardens grow vegetables ___ beans, carrots and lettuce.",
+        "choices": ["such as", "because", "although"],
+        "answers": ["such as", "like"],
+        "hint": "Which words lead into examples inside a sentence?",
+        "explanation": "“Such as” lists examples."
+      },
+      {
+        "id": "writes",
+        "sentence": "The scientist Rachel Carson ___, “In nature, nothing exists alone.”",
+        "choices": ["writes", "eats", "forgets"],
+        "answers": ["writes", "wrote", "explains"],
+        "hint": "Which verb introduces a quote?",
+        "explanation": "Name the speaker and use a verb like writes, says or explains."
+      }
+    ]
+  },
+  {
+    "key": "e13.evidence-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Strong evidence",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which is the strongest evidence that recess helps students focus?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A 2019 study found students focused 20% better after recess."
+          },
+          {
+            "id": "b",
+            "text": "I think recess is fun."
+          },
+          {
+            "id": "c",
+            "text": "Recess happens every day."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A specific fact from a study proves the point; an opinion doesn’t."
+      },
+      {
+        "id": "q2",
+        "prompt": "What must a quote always have?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The name of who said or wrote it"
+          },
+          {
+            "id": "b",
+            "text": "An exclamation mark"
+          },
+          {
+            "id": "c",
+            "text": "At least twenty words"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Name the source so the reader can trust the quote."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence gives an example?",
+        "options": [
+          {
+            "id": "a",
+            "text": "For instance, our class saved 200 bottles in one month."
+          },
+          {
+            "id": "b",
+            "text": "Recycling is important."
+          },
+          {
+            "id": "c",
+            "text": "However, some people disagree."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“For instance” introduces a specific case."
+      }
+    ]
+  },
+  {
+    "key": "e13.evidence-set",
+    "type": "SENTENCE_SET",
+    "title": "Three kinds of evidence",
+    "prompt": "Topic sentence: “Pets make people healthier.” Write three pieces of evidence that support it: a fact or number, an example and a quote.",
+    "tips": [
+      "Fact: use a number or “According to a study, …”.",
+      "Example: start with “For example, …” or “For instance, …”.",
+      "Quote: name the speaker, then writes, says or explains, then the words in quotation marks."
+    ],
+    "constraints": {
+      "minWords": 30,
+      "maxWords": 140,
+      "minSentences": 3
+    },
+    "analyzers": ["speech", "punctuation"],
+    "grammarFocus": ["fact-evidence", "example-evidence", "quoted-evidence"],
+    "sentenceSet": {
+      "label": "Your three pieces of evidence",
+      "sentences": [
+        {
+          "ask": "A fact or number about pets and health.",
+          "needs": ["fact-evidence"]
+        },
+        {
+          "ask": "An example: “For example, …”",
+          "needs": ["example-evidence"]
+        },
+        {
+          "ask": "A quote with its source (The vet explains, “…”).",
+          "needs": ["quoted-evidence"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e13.explain-sort",
+    "type": "SORT",
+    "title": "Evidence or explanation?",
+    "instructions": "Sort each sentence from a body paragraph about school gardens.",
+    "buckets": [
+      {
+        "id": "evidence",
+        "label": "Evidence"
+      },
+      {
+        "id": "explanation",
+        "label": "Explanation"
+      }
+    ],
+    "items": [
+      {
+        "id": "e1",
+        "text": "For example, students could measure how fast bean plants grow.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "e2",
+        "text": "According to one study, students who garden eat more vegetables.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "e3",
+        "text": "Our class grew 30 tomatoes last spring.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "x1",
+        "text": "This shows that a garden turns facts from a textbook into real experiments.",
+        "bucketId": "explanation"
+      },
+      {
+        "id": "x2",
+        "text": "This means students would choose healthier food on their own.",
+        "bucketId": "explanation"
+      },
+      {
+        "id": "x3",
+        "text": "That matters because students remember what they do better than what they read.",
+        "bucketId": "explanation"
+      }
+    ]
+  },
+  {
+    "key": "e13.explain-sequence",
+    "type": "SEQUENCE",
+    "title": "Build a body paragraph",
+    "instructions": "Put the sentences in order: topic sentence, evidence, explanation, and a sentence that links back to the thesis.",
+    "items": [
+      {
+        "id": "topic",
+        "text": "A school garden would make our lunches healthier."
+      },
+      {
+        "id": "evidence",
+        "text": "According to the school nurse, students who grow vegetables are twice as likely to eat them."
+      },
+      {
+        "id": "explain",
+        "text": "This shows that students try food they have grown themselves."
+      },
+      {
+        "id": "link",
+        "text": "A garden would help every student eat better, which is one reason our school should start one."
+      }
+    ],
+    "labels": ["Topic sentence", "Evidence", "Explanation", "Link back"],
+    "explanation": "Topic sentence → evidence → explanation (“This shows…”) → a link back to the thesis."
+  },
+  {
+    "key": "e13.explain-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Explaining evidence",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Why does evidence need an explanation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It shows the reader how the evidence proves the point"
+          },
+          {
+            "id": "b",
+            "text": "It makes the paragraph shorter"
+          },
+          {
+            "id": "c",
+            "text": "It replaces the topic sentence"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Evidence can’t speak for itself: tell the reader what it shows."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which words often start an explanation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "This shows that…"
+          },
+          {
+            "id": "b",
+            "text": "For example…"
+          },
+          {
+            "id": "c",
+            "text": "Once upon a time…"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“This shows”, “This means”, “That matters because” all explain."
+      },
+      {
+        "id": "q3",
+        "prompt": "What is the weakest explanation of “Students who garden eat more vegetables”?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Students who garden eat more vegetables."
+          },
+          {
+            "id": "b",
+            "text": "This means a garden can change what students choose to eat."
+          },
+          {
+            "id": "c",
+            "text": "This shows that growing food makes students curious to taste it."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Repeating the evidence explains nothing."
+      }
+    ]
+  },
+  {
+    "key": "e13.arg-body",
+    "type": "ESSAY_PART",
+    "title": "Write an argumentative body paragraph",
+    "prompt": "Thesis: “Students should be allowed to use phones at lunch because phones keep families in touch and teach responsible use.” Write the first body paragraph, about keeping families in touch. Use the paragraph builder: a topic sentence that links to the thesis, two pieces of evidence (a fact, an example or a quote) each with an explanation, and a closing sentence that links back. Then press “Put it in my writing”, polish it and check your essay map.",
+    "tips": [
+      "Topic sentence: use a key word from the thesis (families, in touch).",
+      "Evidence: “For example, …”, “According to …”, or a number.",
+      "Explain each piece: “This shows that …”, “This means …”."
+    ],
+    "constraints": {
+      "minWords": 60,
+      "maxWords": 200,
+      "minSentences": 4,
+      "maxParagraphs": 1
+    },
+    "analyzers": ["essay", "paragraphs", "punctuation"],
+    "essay": {
+      "type": "argumentative",
+      "part": "body",
+      "thesis": "Students should be allowed to use phones at lunch because phones keep families in touch and teach responsible use."
+    },
+    "grammarFocus": ["topic-sentence", "fact-evidence", "example-evidence", "explanation-sentence"],
+    "paragraphBuilder": {
+      "label": "Body paragraph builder",
+      "points": 2
+    }
+  },
+  {
+    "key": "e13.inf-sort",
+    "type": "SORT",
+    "title": "Which paragraph does it belong in?",
+    "instructions": "Thesis: “Honeybees help farms in three ways: they pollinate crops, make honey and support other wildlife.” Sort each sentence into the body paragraph it belongs in.",
+    "buckets": [
+      {
+        "id": "pollinate",
+        "label": "Body 1: pollinating crops"
+      },
+      {
+        "id": "honey",
+        "label": "Body 2: making honey"
+      },
+      {
+        "id": "wildlife",
+        "label": "Body 3: supporting wildlife"
+      }
+    ],
+    "items": [
+      {
+        "id": "p1",
+        "text": "Bees carry pollen from flower to flower as they feed.",
+        "bucketId": "pollinate"
+      },
+      {
+        "id": "p2",
+        "text": "About one in three bites of our food depends on pollinators.",
+        "bucketId": "pollinate"
+      },
+      {
+        "id": "h1",
+        "text": "A single hive can make more than 25 kilograms of honey in a year.",
+        "bucketId": "honey"
+      },
+      {
+        "id": "h2",
+        "text": "Farmers sell honey at markets for extra income.",
+        "bucketId": "honey"
+      },
+      {
+        "id": "w1",
+        "text": "Birds and small animals eat the berries that bees help to grow.",
+        "bucketId": "wildlife"
+      },
+      {
+        "id": "w2",
+        "text": "Wildflowers spread across fields when bees pollinate them.",
+        "bucketId": "wildlife"
+      }
+    ]
+  },
+  {
+    "key": "e13.inf-sequence",
+    "type": "SEQUENCE",
+    "title": "An informative body paragraph",
+    "instructions": "Put the sentences in order to explain one part of the topic.",
+    "items": [
+      {
+        "id": "topic",
+        "text": "Honeybees also make honey, which farmers can sell."
+      },
+      {
+        "id": "fact",
+        "text": "A strong hive can make more than 25 kilograms of honey in one year."
+      },
+      {
+        "id": "explain",
+        "text": "This means a few hives can add real money to a small farm’s income."
+      },
+      {
+        "id": "example",
+        "text": "For example, the Patel family farm sells its honey at the town market every Saturday."
+      },
+      {
+        "id": "close",
+        "text": "Honey is a sweet second reason bees matter to farms."
+      }
+    ],
+    "labels": ["Topic sentence", "Fact", "Explanation", "Example", "Closing"],
+    "explanation": "An informative body explains one part of the thesis: topic sentence, facts and examples, explanations, and a closing link."
+  },
+  {
+    "key": "e13.inf-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Informative body paragraphs",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "How is an informative body paragraph different from an argumentative one?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It explains a part of the topic instead of proving a side"
+          },
+          {
+            "id": "b",
+            "text": "It has no topic sentence"
+          },
+          {
+            "id": "c",
+            "text": "It tells a story"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Informative essays explain; they don’t take a side."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which sentence fits an informative body paragraph about how volcanoes form?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Magma rises through cracks in the Earth’s crust."
+          },
+          {
+            "id": "b",
+            "text": "Volcanoes are the coolest thing in nature."
+          },
+          {
+            "id": "c",
+            "text": "Everyone should visit a volcano."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Facts and explanations fit; opinions and claims don’t."
+      },
+      {
+        "id": "q3",
+        "prompt": "How many parts of the thesis should one body paragraph explain?",
+        "options": [
+          {
+            "id": "a",
+            "text": "One"
+          },
+          {
+            "id": "b",
+            "text": "All of them"
+          },
+          {
+            "id": "c",
+            "text": "None"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One part per paragraph keeps each paragraph focused."
+      }
+    ]
+  },
+  {
+    "key": "e13.inf-body",
+    "type": "ESSAY_PART",
+    "title": "Write an informative body paragraph",
+    "prompt": "Thesis: “Honeybees help farms in three ways: they pollinate crops, make honey and support other wildlife.” Write the body paragraph that explains the first part: how honeybees pollinate crops. Start with a topic sentence, give at least one fact or example, explain it, and close by linking back. One paragraph.",
+    "tips": [
+      "Facts you could use: bees carry pollen on their hairy legs; about a third of our food depends on pollinators; apples, almonds and blueberries need bees.",
+      "Explain, don’t argue: no “should”.",
+      "Close with a sentence that links back to the thesis."
+    ],
+    "constraints": {
+      "minWords": 50,
+      "maxWords": 180,
+      "minSentences": 4,
+      "maxParagraphs": 1
+    },
+    "analyzers": ["essay", "paragraphs", "punctuation"],
+    "essay": {
+      "type": "informative",
+      "part": "body",
+      "thesis": "Honeybees help farms in three ways: they pollinate crops, make honey and support other wildlife."
+    },
+    "grammarFocus": ["topic-sentence", "fact-evidence", "explanation-sentence"]
+  },
+  {
+    "key": "e13.time-blank",
+    "type": "FILL_BLANK",
+    "title": "Time words",
+    "instructions": "Choose the time word that shows the order of events.",
+    "items": [
+      {
+        "id": "first",
+        "sentence": "___, I noticed that my family was gone.",
+        "choices": ["At first", "However", "Because"],
+        "answers": ["At first", "First"],
+        "hint": "Which word starts the events?",
+        "explanation": "“At first” begins the sequence."
+      },
+      {
+        "id": "then",
+        "sentence": "___ I walked toward the Ferris wheel, hoping to spot them.",
+        "choices": ["Then", "Although", "For example"],
+        "answers": ["Then", "Next"],
+        "hint": "Which word moves the story on?",
+        "explanation": "“Then” shows the next event."
+      },
+      {
+        "id": "suddenly",
+        "sentence": "___, a voice called my name over the loudspeaker.",
+        "choices": ["Suddenly", "In conclusion", "Such as"],
+        "answers": ["Suddenly"],
+        "hint": "Which word shows something unexpected happened?",
+        "explanation": "“Suddenly” marks a surprise."
+      },
+      {
+        "id": "finally",
+        "sentence": "___, I saw my mum waving by the ticket booth.",
+        "choices": ["Finally", "Some people argue", "For instance"],
+        "answers": ["Finally", "At last"],
+        "hint": "Which word shows the end?",
+        "explanation": "“Finally” closes the sequence."
+      }
+    ]
+  },
+  {
+    "key": "e13.narr-sequence",
+    "type": "SEQUENCE",
+    "title": "Put the moment in order",
+    "instructions": "Focus: “The day I got lost at the county fair taught me to stay calm and ask for help.” Put the body paragraph’s sentences in time order.",
+    "items": [
+      {
+        "id": "start",
+        "text": "At first, I was having fun watching the pig races alone."
+      },
+      {
+        "id": "problem",
+        "text": "Then I turned around and my family was gone."
+      },
+      {
+        "id": "feeling",
+        "text": "My heart pounded, and the crowd seemed to grow louder and taller."
+      },
+      {
+        "id": "action",
+        "text": "After a deep breath, I walked to a booth and asked a worker for help."
+      },
+      {
+        "id": "end",
+        "text": "Ten minutes later, my dad was hugging me by the lemonade stand."
+      }
+    ],
+    "labels": ["Beginning", "Problem", "Feeling", "Action", "Ending"],
+    "explanation": "Time words (At first, Then, After, Ten minutes later) carry the reader through the events."
+  },
+  {
+    "key": "e13.narr-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Narrative body paragraphs",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What do a narrative essay’s body paragraphs give instead of facts?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Events and details from the true story, in order"
+          },
+          {
+            "id": "b",
+            "text": "Statistics and quotes from experts"
+          },
+          {
+            "id": "c",
+            "text": "Reasons why the reader should agree"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A narrative shows its focus through what happened."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which sentence uses a time word?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The next morning, I went back to the fair."
+          },
+          {
+            "id": "b",
+            "text": "The fair was very crowded."
+          },
+          {
+            "id": "c",
+            "text": "I like fairs."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“The next morning” shows when it happened."
+      },
+      {
+        "id": "q3",
+        "prompt": "How does a narrative body paragraph link to the focus?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Its events lead toward what the story taught or changed"
+          },
+          {
+            "id": "b",
+            "text": "It repeats the focus in every sentence"
+          },
+          {
+            "id": "c",
+            "text": "It argues with the reader"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Each moment moves the story toward its meaning."
+      }
+    ]
+  },
+  {
+    "key": "e13.narr-body",
+    "type": "ESSAY_PART",
+    "title": "Write a narrative body paragraph",
+    "prompt": "Focus: “The day I got lost at the county fair taught me to stay calm and ask for help.” Write one body paragraph of this true-story essay (you can change the details to fit a time you were lost or scared). Tell the events in order with time words, and include what you saw, heard and felt. One paragraph.",
+    "tips": [
+      "Time words: At first, Then, Suddenly, After that, Finally, Ten minutes later.",
+      "Show feelings with details: a pounding heart, a shaky voice.",
+      "End with a moment that leads toward the lesson."
+    ],
+    "constraints": {
+      "minWords": 60,
+      "maxWords": 200,
+      "minSentences": 4,
+      "maxParagraphs": 1
+    },
+    "analyzers": ["essay", "punctuation"],
+    "essay": {
+      "type": "narrative",
+      "part": "body",
+      "thesis": "The day I got lost at the county fair taught me to stay calm and ask for help."
+    },
+    "grammarFocus": ["time-order"]
+  },
+  {
+    "key": "e13.counter-sort",
+    "type": "SORT",
+    "title": "Reason, counterclaim or rebuttal?",
+    "instructions": "Thesis: “Students should be allowed to use phones at lunch because phones keep families in touch and teach responsible use.” Sort each sentence.",
+    "buckets": [
+      {
+        "id": "reason",
+        "label": "Reason for the thesis"
+      },
+      {
+        "id": "counter",
+        "label": "Counterclaim (the other side)"
+      },
+      {
+        "id": "rebuttal",
+        "label": "Rebuttal (the answer)"
+      }
+    ],
+    "items": [
+      {
+        "id": "r1",
+        "text": "Phones let parents reach their children when plans change.",
+        "bucketId": "reason"
+      },
+      {
+        "id": "r2",
+        "text": "Using phones at lunch teaches students to manage screen time.",
+        "bucketId": "reason"
+      },
+      {
+        "id": "c1",
+        "text": "Some people argue that phones distract students from making friends.",
+        "bucketId": "counter"
+      },
+      {
+        "id": "c2",
+        "text": "Critics say that phones lead to cyberbullying.",
+        "bucketId": "counter"
+      },
+      {
+        "id": "b1",
+        "text": "However, lunch is a break, and many students use phones to share photos with friends.",
+        "bucketId": "rebuttal"
+      },
+      {
+        "id": "b2",
+        "text": "Even so, clear rules and teachers on duty can stop bullying at lunch.",
+        "bucketId": "rebuttal"
+      }
+    ]
+  },
+  {
+    "key": "e13.rebut-blank",
+    "type": "FILL_BLANK",
+    "title": "Counterclaim and rebuttal words",
+    "instructions": "Choose the words that introduce the other side or answer it.",
+    "items": [
+      {
+        "id": "some",
+        "sentence": "___ that a garden costs too much money.",
+        "choices": ["Some people argue", "For example", "First"],
+        "answers": ["Some people argue", "Critics say"],
+        "hint": "Which words give the other side?",
+        "explanation": "“Some people argue” introduces a counterclaim."
+      },
+      {
+        "id": "however",
+        "sentence": "___, seeds and tools cost less than one class trip.",
+        "choices": ["However", "Because", "Such as"],
+        "answers": ["However", "Even so", "In fact"],
+        "hint": "Which word answers the other side?",
+        "explanation": "“However” turns to your rebuttal."
+      },
+      {
+        "id": "true",
+        "sentence": "It is ___ that gardens need care over the summer.",
+        "choices": ["true", "false", "tasty"],
+        "answers": ["true"],
+        "hint": "Which word admits the other side has a point?",
+        "explanation": "“It is true that…” admits a point before you answer it."
+      },
+      {
+        "id": "still",
+        "sentence": "Even so, families could take turns, so the garden would ___ thrive.",
+        "choices": ["still", "never", "barely"],
+        "answers": ["still"],
+        "hint": "Which word keeps your side strong?",
+        "explanation": "“Still” shows your side holds."
+      }
+    ]
+  },
+  {
+    "key": "e13.counter-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Counterclaims",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Why include a counterclaim in an argumentative essay?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It shows you understand the other side, which makes your argument stronger"
+          },
+          {
+            "id": "b",
+            "text": "It changes your thesis"
+          },
+          {
+            "id": "c",
+            "text": "It makes the essay longer"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Answering the other side shows your claim holds up."
+      },
+      {
+        "id": "q2",
+        "prompt": "What must come right after a counterclaim?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A rebuttal that answers it"
+          },
+          {
+            "id": "b",
+            "text": "The conclusion"
+          },
+          {
+            "id": "c",
+            "text": "A new hook"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Never leave the other side unanswered."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which is a rebuttal?",
+        "options": [
+          {
+            "id": "a",
+            "text": "However, most students finish their lunch work in five minutes."
+          },
+          {
+            "id": "b",
+            "text": "Some people think lunch is too short."
+          },
+          {
+            "id": "c",
+            "text": "Lunch starts at noon."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A rebuttal answers the other side."
+      }
+    ]
+  },
+  {
+    "key": "e13.counter-body",
+    "type": "ESSAY_PART",
+    "title": "Write a counterclaim paragraph",
+    "prompt": "Thesis: “Our school should start a community garden because it teaches science, improves meals and brings students together.” Write the body paragraph that answers the other side: what someone who disagrees would say (Some people argue…), then your rebuttal (However, …) with evidence and an explanation. One paragraph.",
+    "tips": [
+      "Counterclaim ideas: it costs money; no one will look after it in summer; it takes time from lessons.",
+      "Rebuttal: However, … / Even so, … plus a fact or an example.",
+      "Finish by linking back to your thesis."
+    ],
+    "constraints": {
+      "minWords": 50,
+      "maxWords": 180,
+      "minSentences": 3,
+      "maxParagraphs": 1
+    },
+    "analyzers": ["essay", "paragraphs", "punctuation"],
+    "essay": {
+      "type": "argumentative",
+      "counterclaim": true,
+      "part": "body",
+      "thesis": "Our school should start a community garden because it teaches science, improves meals and brings students together."
+    },
+    "grammarFocus": ["counterclaim", "rebuttal"]
+  },
+  {
+    "key": "e13.unit-check",
+    "type": "QUIZ",
+    "title": "Body Paragraphs & Evidence check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "t1",
+        "prompt": "What should a body paragraph start with?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A topic sentence that links to the thesis"
+          },
+          {
+            "id": "b",
+            "text": "A quote with no explanation"
+          },
+          {
+            "id": "c",
+            "text": "The conclusion"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The topic sentence names the part of the thesis the paragraph proves.",
+        "skill": "topic sentences"
+      },
+      {
+        "id": "t2",
+        "prompt": "Thesis: “Schools should serve breakfast because it improves focus and attendance.” Which topic sentence links to it?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A good breakfast helps students focus in class."
+          },
+          {
+            "id": "b",
+            "text": "Lunch is my favourite meal."
+          },
+          {
+            "id": "c",
+            "text": "Some schools are very old."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It uses “focus”, a key idea from the thesis.",
+        "skill": "topic sentences"
+      },
+      {
+        "id": "t3",
+        "prompt": "How many main points should one body paragraph prove?",
+        "options": [
+          {
+            "id": "a",
+            "text": "One"
+          },
+          {
+            "id": "b",
+            "text": "Three"
+          },
+          {
+            "id": "c",
+            "text": "As many as possible"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One point per paragraph keeps it focused.",
+        "skill": "topic sentences"
+      },
+      {
+        "id": "t4",
+        "prompt": "In what order should body paragraphs come?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The order the thesis lists its reasons"
+          },
+          {
+            "id": "b",
+            "text": "Shortest to longest"
+          },
+          {
+            "id": "c",
+            "text": "Any order at all"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Following the thesis keeps its promise to the reader.",
+        "skill": "topic sentences"
+      },
+      {
+        "id": "e1",
+        "prompt": "Which sentence is a fact used as evidence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A 2020 study found that 60% of students skip breakfast."
+          },
+          {
+            "id": "b",
+            "text": "Breakfast is delicious."
+          },
+          {
+            "id": "c",
+            "text": "Everyone should eat breakfast."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It gives a number from a source.",
+        "skill": "evidence"
+      },
+      {
+        "id": "e2",
+        "prompt": "Which sentence gives an example?",
+        "options": [
+          {
+            "id": "a",
+            "text": "For example, my cousin’s school serves fruit and toast before class."
+          },
+          {
+            "id": "b",
+            "text": "Breakfast matters."
+          },
+          {
+            "id": "c",
+            "text": "In conclusion, eat breakfast."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“For example” introduces a specific case.",
+        "skill": "evidence"
+      },
+      {
+        "id": "e3",
+        "prompt": "Which quote is introduced correctly?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Dr. Lee explains, “Hungry students cannot concentrate.”"
+          },
+          {
+            "id": "b",
+            "text": "“Hungry students cannot concentrate.”"
+          },
+          {
+            "id": "c",
+            "text": "Hungry students cannot concentrate, says someone."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Name the speaker, use a verb, then the words in quotation marks.",
+        "skill": "evidence"
+      },
+      {
+        "id": "e4",
+        "prompt": "Which is the strongest evidence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Attendance rose 8% after the school started serving breakfast."
+          },
+          {
+            "id": "b",
+            "text": "I think more students come to school now."
+          },
+          {
+            "id": "c",
+            "text": "Breakfast is a meal."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A specific number proves the point.",
+        "skill": "evidence"
+      },
+      {
+        "id": "x1",
+        "prompt": "What should come right after a piece of evidence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An explanation of what it shows"
+          },
+          {
+            "id": "b",
+            "text": "A new topic sentence"
+          },
+          {
+            "id": "c",
+            "text": "Another hook"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Explain how the evidence proves the point.",
+        "skill": "explanation"
+      },
+      {
+        "id": "x2",
+        "prompt": "Which sentence explains evidence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "This shows that students learn better when they are not hungry."
+          },
+          {
+            "id": "b",
+            "text": "For example, students eat toast."
+          },
+          {
+            "id": "c",
+            "text": "Some people disagree."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“This shows that…” explains.",
+        "skill": "explanation"
+      },
+      {
+        "id": "x3",
+        "prompt": "What is wrong with an explanation that repeats the evidence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It adds nothing: the reader still doesn’t know why it matters"
+          },
+          {
+            "id": "b",
+            "text": "It is too short"
+          },
+          {
+            "id": "c",
+            "text": "Nothing is wrong with it"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Explain the meaning, don’t repeat the words.",
+        "skill": "explanation"
+      },
+      {
+        "id": "x4",
+        "prompt": "What does the last sentence of a body paragraph often do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Links the point back to the thesis"
+          },
+          {
+            "id": "b",
+            "text": "Introduces a new reason"
+          },
+          {
+            "id": "c",
+            "text": "Asks a hook question"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A closing link reminds the reader why the point matters.",
+        "skill": "explanation"
+      },
+      {
+        "id": "i1",
+        "prompt": "Which sentence fits an informative body paragraph?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Bees carry pollen from flower to flower on their legs."
+          },
+          {
+            "id": "b",
+            "text": "Everyone should keep bees."
+          },
+          {
+            "id": "c",
+            "text": "Bees are the best insects."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Informative paragraphs explain with facts.",
+        "skill": "informative and narrative bodies"
+      },
+      {
+        "id": "i2",
+        "prompt": "What does an informative body paragraph NOT do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Argue that the reader should agree"
+          },
+          {
+            "id": "b",
+            "text": "Explain one part of the topic"
+          },
+          {
+            "id": "c",
+            "text": "Use facts and examples"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Informative essays explain; they don’t take sides.",
+        "skill": "informative and narrative bodies"
+      },
+      {
+        "id": "i3",
+        "prompt": "What gives order to a narrative body paragraph?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Time words like First, Then, Finally"
+          },
+          {
+            "id": "b",
+            "text": "Statistics"
+          },
+          {
+            "id": "c",
+            "text": "Counterclaims"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Time words show the order of events.",
+        "skill": "informative and narrative bodies"
+      },
+      {
+        "id": "i4",
+        "prompt": "Which sentence belongs in a narrative body paragraph?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Suddenly, the lights went out and the room went silent."
+          },
+          {
+            "id": "b",
+            "text": "According to a study, lights use energy."
+          },
+          {
+            "id": "c",
+            "text": "Schools should save energy."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Narratives tell events with details.",
+        "skill": "informative and narrative bodies"
+      },
+      {
+        "id": "c1",
+        "prompt": "What is a counterclaim?",
+        "options": [
+          {
+            "id": "a",
+            "text": "What someone on the other side would say"
+          },
+          {
+            "id": "b",
+            "text": "Your strongest reason"
+          },
+          {
+            "id": "c",
+            "text": "The final sentence of the essay"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It gives the other side’s view.",
+        "skill": "counterclaims"
+      },
+      {
+        "id": "c2",
+        "prompt": "Which sentence is a counterclaim?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Some people argue that breakfast programs cost too much."
+          },
+          {
+            "id": "b",
+            "text": "Breakfast helps students focus."
+          },
+          {
+            "id": "c",
+            "text": "However, the cost is small."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Some people argue” gives the other side.",
+        "skill": "counterclaims"
+      },
+      {
+        "id": "c3",
+        "prompt": "Which sentence is a rebuttal?",
+        "options": [
+          {
+            "id": "a",
+            "text": "However, the program costs less than one dollar per student."
+          },
+          {
+            "id": "b",
+            "text": "Critics say it is expensive."
+          },
+          {
+            "id": "c",
+            "text": "Breakfast is the first meal."
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A rebuttal answers the counterclaim.",
+        "skill": "counterclaims"
+      },
+      {
+        "id": "c4",
+        "prompt": "What makes a rebuttal convincing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Evidence and an explanation, like any body point"
+          },
+          {
+            "id": "b",
+            "text": "Saying the other side is silly"
+          },
+          {
+            "id": "c",
+            "text": "Repeating the thesis"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Back up the rebuttal just as you back up your reasons.",
+        "skill": "counterclaims"
+      },
+      {
+        "id": "c5",
+        "prompt": "Where does a counterclaim paragraph usually go?",
+        "options": [
+          {
+            "id": "a",
+            "text": "After the reasons, before the conclusion"
+          },
+          {
+            "id": "b",
+            "text": "Before the hook"
+          },
+          {
+            "id": "c",
+            "text": "Inside the thesis"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Prove your side, answer the other side, then conclude.",
+        "skill": "counterclaims"
+      },
+      {
+        "id": "c6",
+        "prompt": "What happens if a counterclaim has no rebuttal?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It weakens your argument"
+          },
+          {
+            "id": "b",
+            "text": "It makes the essay stronger"
+          },
+          {
+            "id": "c",
+            "text": "Nothing"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "An unanswered counterclaim argues for the other side.",
+        "skill": "counterclaims"
+      },
+      {
+        "id": "t5",
+        "prompt": "Why use a key word from the thesis in a topic sentence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "So the reader sees which part of the thesis the paragraph proves"
+          },
+          {
+            "id": "b",
+            "text": "To make the sentence longer"
+          },
+          {
+            "id": "c",
+            "text": "Because the rules say so"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The shared word is the link.",
+        "skill": "topic sentences"
+      },
+      {
+        "id": "e5",
+        "prompt": "Which words introduce evidence from a source?",
+        "options": [
+          {
+            "id": "a",
+            "text": "According to"
+          },
+          {
+            "id": "b",
+            "text": "Once upon a time"
+          },
+          {
+            "id": "c",
+            "text": "In my opinion"
+          }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“According to” names the source.",
+        "skill": "evidence"
+      }
+    ]
+  },
+  {
+    "key": "e13.check-body",
+    "type": "ESSAY_PART",
+    "title": "Write two body paragraphs",
+    "prompt": "Thesis: “Schools should serve free breakfast because it improves focus and helps students get to school on time.” Write two body paragraphs for this argumentative essay. Paragraph 1: prove one reason with a topic sentence, evidence (a fact, an example or a quote) and an explanation. Paragraph 2: give a counterclaim (Some people argue…) and answer it with a rebuttal (However, …), evidence and an explanation. Then check your essay map.",
+    "tips": [
+      "Ideas for evidence: hungry students lose focus by mid-morning; schools with breakfast programs often see better attendance; a quote from a teacher or nurse.",
+      "Counterclaim ideas: it costs too much; families should feed their children at home.",
+      "Explain every piece of evidence: “This shows that …”."
+    ],
+    "constraints": {
+      "minWords": 100,
+      "maxWords": 300,
+      "minSentences": 6,
+      "minParagraphs": 2,
+      "maxParagraphs": 2
+    },
+    "analyzers": ["essay", "paragraphs", "punctuation"],
+    "essay": {
+      "type": "argumentative",
+      "counterclaim": true,
+      "part": "body",
+      "thesis": "Schools should serve free breakfast because it improves focus and helps students get to school on time."
+    },
+    "grammarFocus": ["topic-sentence", "fact-evidence", "counterclaim", "rebuttal"]
+  }
+]

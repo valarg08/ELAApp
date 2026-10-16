@@ -15,6 +15,8 @@ export const EssayConfig = z.object({
   counterclaim: z.boolean().default(false),
   /** `ESSAY_PART` activities: the one part of an essay the student writes. */
   part: z.enum(ESSAY_PART_TASKS).optional(),
+  /** Body paragraph and conclusion tasks: the essay's thesis, which the paragraph links back to. */
+  thesis: z.string().min(10).max(300).optional(),
 });
 export type EssayConfig = z.infer<typeof EssayConfig>;
 

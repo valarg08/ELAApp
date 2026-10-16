@@ -1,0 +1,57 @@
+{
+  "slug": "essay-informative-body",
+  "order": 4,
+  "title": "Informative Body Paragraphs",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "If you had to explain how your favourite game works to someone who has never played it, what would you explain first?",
+      "placeholder": "First I would explain…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Explain one part",
+          "body": "An informative body paragraph explains one part of the topic named in the thesis. No side to take: use facts, examples and explanations, and keep opinions out."
+        },
+        {
+          "kind": "example",
+          "title": "An informative body",
+          "text": "Honeybees also make honey, which farmers can sell. A strong hive can make more than 25 kilograms of honey in one year. This means a few hives can add real money to a small farm’s income.",
+          "note": "Topic sentence (the second part of the thesis) → fact → explanation."
+        },
+        {
+          "kind": "definition",
+          "title": "Check the parts",
+          "body": "Does every sentence belong to this paragraph’s part? A fact about a different part belongs in a different paragraph."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e13.inf-sort", "e13.inf-sequence", "e13.inf-mc"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "e13.inf-body"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How did you keep your paragraph explaining instead of arguing?",
+        "Which fact best explained the part?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

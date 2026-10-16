@@ -31,8 +31,12 @@ export function words(text: string, from = 0, to = text.length): WordToken[] {
   }));
 }
 
-/** Sentences end at . ! ? … (plus any closing quotes or brackets) or at a line break. */
-const SENTENCE = /[^\s][^.!?…\n]*(?:[.!?…]+["'”’)\]]*|(?=\n)|$)/gu;
+/**
+ * Sentences end at . ! ? … (plus any closing quotes or brackets) or at a line break; a title
+ * like “Dr.” or “Mrs.” before a name doesn't end one.
+ */
+const SENTENCE =
+  /(?:(?:Mr|Mrs|Ms|Dr|Prof)\.(?=\s)|[^\s])(?:\b(?:Mr|Mrs|Ms|Dr|Prof)\.(?=\s)|[^.!?…\n])*(?:[.!?…]+["'”’)\]]*|(?=\n)|$)/gu;
 
 export function sentences(text: string): Span[] {
   return [...text.matchAll(SENTENCE)]
