@@ -1,0 +1,52 @@
+{
+  "slug": "essay-foundations-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Essay Foundations",
+  "estMinutes": 50,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: what are the five parts of a five-paragraph essay? Write them from memory.",
+      "placeholder": "Introduction, …"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Essay foundations: quick review",
+          "body": "Introduction (hook + thesis), three body paragraphs (one point each, with evidence), conclusion (thesis in new words + a final thought). Argumentative essays convince, informative essays explain, narrative essays tell a true story with a point. Brainstorm both sides, choose what you can prove, then outline."
+        },
+        {
+          "kind": "definition",
+          "title": "An informative outline",
+          "body": "An informative thesis names the topic and its parts (“… in three ways”). Each body point explains one part, and the evidence is a fact or example about it. No side to take, so no counterclaim."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First, a 10-question quiz: you need 8 right (80%) to pass. If you don’t pass, you’ll see which skills to review, and you’ll get new questions next time. Then you’ll outline an informative essay. Quill gives it a score."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e11.unit-check"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e11.check-outline" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Look at your outline map. Is every part in place?",
+        "Which kind of essay (argumentative, informative or narrative) do you want to write first? Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "essay-brainstorming",
+  "order": 3,
+  "title": "Brainstorming & Choosing a Side",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "story",
+      "title": "Two columns",
+      "paragraphs": [
+        "Jordan had to write an essay: “Should our school have a four-day week?” Jordan’s first thought was “Yes! Longer weekends!” and nothing else.",
+        "So Jordan drew a line down a page. On the left, reasons FOR. On the right, reasons AGAINST.",
+        "For: more rest, fewer bus trips, time for family. Against: longer school days, parents need childcare, less time with friends.",
+        "Jordan looked at both columns and picked the side with the strongest reasons, not the side that sounded most fun. The against column even gave Jordan a counterclaim to answer."
+      ]
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Brainstorm before you choose",
+          "body": "Write the question at the top. List every reason you can think of on BOTH sides, fast, without judging. Then circle the three strongest reasons on one side: the ones you can back up with a fact or an example."
+        },
+        {
+          "kind": "definition",
+          "title": "Choose the side you can prove",
+          "body": "Pick the side with the best evidence, even if it isn’t your first feeling. A strong reason is specific and can be checked: “Walking to school adds 20 minutes of exercise” beats “walking is good.”"
+        },
+        {
+          "kind": "example",
+          "title": "From brainstorm to thesis",
+          "text": "Question: Should students have a longer lunch?\nFor: time to eat properly ✓, time to play and rest ✓, shorter lines ✓, more time to chat\nAgainst: school ends later, less class time\nThesis: Schools should give students a longer lunch because they need time to eat properly, rest and avoid long lines.\nCounterclaim to answer: Some people say a longer lunch means less class time.",
+          "note": "The three circled reasons become the three body paragraphs. The best against reason becomes the counterclaim."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e11.reasons-sort", "e11.strong-blank", "e11.side-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e11.brainstorm-set" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Did brainstorming both sides change what you thought? How?",
+        "Which of your three reasons is the strongest? What evidence could prove it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

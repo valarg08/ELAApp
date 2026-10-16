@@ -209,6 +209,65 @@ export const PARAGRAPH_RUBRIC: Rubric = {
   ],
 };
 
+/** `outline.essay`: essay outlines (Essay Unit 11 on, DESIGN.md §9.12). */
+export const OUTLINE_RUBRIC: Rubric = {
+  key: 'outline.essay',
+  name: 'Essay outline',
+  maxScore: 100,
+  criteria: [
+    {
+      key: 'thesis',
+      label: 'Thesis or focus',
+      description:
+        'One clear sentence the essay will prove (a claim), explain (a focus) or show (a narrative focus).',
+      weight: 0.3,
+      levels: levels(
+        'No thesis, or a fact, a taste or an announcement.',
+        'A thesis is there, but it is vague or hard to prove.',
+        'A clear thesis that fits the kind of essay.',
+        'A sharp, specific thesis that maps out the body points.',
+      ),
+    },
+    {
+      key: 'points',
+      label: 'Body points and evidence',
+      description: 'Each body point supports the thesis and has its own evidence or details.',
+      weight: 0.35,
+      levels: levels(
+        'Points are missing or off the topic.',
+        'Some points fit, but evidence is thin or missing.',
+        'Each point fits the thesis and has evidence.',
+        'Distinct, well-chosen points, each with strong, specific evidence.',
+      ),
+    },
+    {
+      key: 'order',
+      label: 'Order and completeness',
+      description:
+        'Hook, thesis, body points, any counterclaim and rebuttal, and a conclusion, in a sensible order.',
+      weight: 0.2,
+      levels: levels(
+        'Several parts are missing.',
+        'Most parts are there, but one is missing or out of order.',
+        'Every part is there in a sensible order.',
+        'Every part is there, in an order that builds to the strongest point.',
+      ),
+    },
+    {
+      key: 'clarity',
+      label: 'Clear notes',
+      description: 'Each line is clear and specific enough to write a paragraph from.',
+      weight: 0.15,
+      levels: levels(
+        'Lines are too short or unclear to use.',
+        'Some lines are clear; others are vague.',
+        'Lines are clear and specific.',
+        'Every line is precise and ready to write from.',
+      ),
+    },
+  ],
+};
+
 /** total = Σ level × weight, scaled to maxScore (level 4 everywhere = maxScore). */
 export function totalScore(rubric: Rubric, levelsByKey: Record<string, number>): number {
   const weighted = rubric.criteria.reduce(

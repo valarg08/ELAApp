@@ -1,0 +1,65 @@
+{
+  "slug": "essay-three-types",
+  "order": 2,
+  "title": "Argumentative, Informative, Narrative",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of a time you tried to convince someone, a time you explained how something works, and a time you told a story about yourself. Which was easiest? Why?",
+      "placeholder": "The easiest was… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Argumentative: convince",
+          "body": "An argumentative essay takes a side and proves it with reasons and evidence. Its thesis is a claim someone could disagree with: “Schools should ban junk food because…”. Key words: should, must, better, because."
+        },
+        {
+          "kind": "definition",
+          "title": "Informative: explain",
+          "body": "An informative essay teaches the reader about a topic without taking a side. Its thesis names the topic and the parts you will explain: “Plastic harms the ocean in three main ways.” Key words: how, why, ways, causes, effects, steps."
+        },
+        {
+          "kind": "definition",
+          "title": "Narrative: tell a true story with a point",
+          "body": "A narrative essay tells a real experience in order: beginning, turning point, end. Its focus says what the experience meant: “The day I got lost at the fair taught me to stay calm.” Key words: taught me, learned, realized, changed."
+        },
+        {
+          "kind": "compare",
+          "title": "Same topic, two purposes",
+          "telling": "Students should learn to cook because it keeps them healthy, saves money and builds independence.",
+          "showing": "Learning to cook takes three skills: planning a meal, using a knife safely and following a recipe.",
+          "labels": ["Argumentative", "Informative"],
+          "note": "The first argues (should… because). The second explains (three skills)."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": [
+        "e11.types-sort",
+        "e11.purpose-blank",
+        "e11.announce-transform",
+        "e11.types-mc"
+      ]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e11.three-theses" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which kind of essay do you most like to read? Which do you most like to write?",
+        "How can you tell an argumentative thesis from an informative one?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

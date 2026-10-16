@@ -29,6 +29,7 @@ import {
   diffStats,
   diffWords,
   isWritingActivity,
+  type OutlinePlan,
   type ParagraphPlan,
   type PlotPlan,
   type SetSyllablesRequest,
@@ -38,6 +39,7 @@ import {
   submissionChoices,
   validConflict,
   validMoods,
+  validOutline,
   validParagraph,
   validPlot,
   validSyllables,
@@ -267,6 +269,21 @@ export class SubmissionsService {
       );
     }
     return this.saveChoices(current, { paragraph: validParagraph(activity, plan) });
+  }
+
+  /** Save the outline builder's boxes (Essay Unit 11 on). */
+  async setOutline(user: AuthUser, id: string, plan: OutlinePlan): Promise<SubmissionDetail> {
+    const current = await this.editable(user, id);
+    const activity = writingActivity(current.activity);
+    if (!activity.outlineBuilder) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        ErrorCode.VALIDATION_FAILED,
+        'No builder here',
+        'This activity doesn’t have an outline builder.',
+      );
+    }
+    return this.saveChoices(current, { outline: validOutline(activity, plan) });
   }
 
   /** Save the tone aimed for on the activity's tone sliders (Unit 5; other scales are dropped). */
@@ -617,6 +634,7 @@ export class SubmissionsService {
       tone: choicesOf(s).tone,
       syllables: choicesOf(s).syllables,
       paragraph: choicesOf(s).paragraph,
+      outline: choicesOf(s).outline,
     };
   }
 }

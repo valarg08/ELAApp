@@ -21,6 +21,7 @@ export * from './analyzers/figurative-language.js';
 export * from './analyzers/poetry-craft.js';
 export * from './analyzers/grammar-check.js';
 export * from './analyzers/paragraph-structure.js';
+export * from './analyzers/essay-structure.js';
 export * from './analyzers/rubric-score.js';
 export * from './analyzers/explain-card.js';
 export * from './analyzers/extra-practice.js';

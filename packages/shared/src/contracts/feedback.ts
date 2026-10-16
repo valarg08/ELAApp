@@ -98,6 +98,7 @@ export const LiveAnalyzerId = z.enum([
   'poetry-craft',
   'grammar-check',
   'paragraph-structure',
+  'essay-structure',
 ]);
 export type LiveAnalyzerId = z.infer<typeof LiveAnalyzerId>;
 

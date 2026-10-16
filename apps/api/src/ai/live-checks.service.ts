@@ -28,6 +28,8 @@ import {
   grammarPoints,
   paragraphPoints,
   type ParagraphStructureResult,
+  essayPoints,
+  type EssayStructureResult,
   sensoryPoints,
   showVsTellPoints,
 } from '@storyforge/ai';
@@ -53,6 +55,7 @@ import { povInput, toneInput, toneScope } from './voice-input.js';
 import { poemInput, poemScope } from './poem-input.js';
 import { grammarInput } from './grammar-input.js';
 import { paragraphInput } from './paragraph-input.js';
+import { essayInput } from './essay-input.js';
 
 /** Live checks give up after 20 s (DESIGN.md §8.6) and ask the student to try again. */
 const LIVE_TIMEOUT_MS = 20_000;
@@ -231,6 +234,12 @@ export class LiveChecksService {
         );
         if (outcome.status === 'declined') return this.declined(after);
         points = paragraphPoints(req.text, outcome.result);
+      } else if (req.analyzer === 'essay-structure') {
+        const outcome: AnalyzerOutcome<EssayStructureResult> = await withTimeout(
+          this.ai.run(LIVE_ANALYZERS['essay-structure'], { ...ctx, ...essayInput(content) }, meta),
+        );
+        if (outcome.status === 'declined') return this.declined(after);
+        points = essayPoints(req.text, outcome.result);
       } else if (req.analyzer === 'figurative-language') {
         const goals = content.figurativeHelper?.devices ?? [];
         const outcome: AnalyzerOutcome<FigurativeLanguageResult> = await withTimeout(

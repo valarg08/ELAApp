@@ -81,6 +81,7 @@ export function CoachPanel({
         syllablePattern: activity.constraints.syllablePattern,
         syllableOverrides: syllables,
         grammarFocus: activity.grammarFocus,
+        essay: activity.essay,
       }),
     });
   }
@@ -161,6 +162,9 @@ export function CoachPanel({
                 canShow={canShow}
                 onShow={onShow}
               />
+            )}
+            {checked.report.essay && checked.report.essay.paragraphs.length > 0 && (
+              <EssayMap essay={checked.report.essay} canShow={canShow} onShow={onShow} />
             )}
             {checked.report.paragraphs && checked.report.paragraphs.length > 0 && (
               <ParagraphMap
@@ -502,6 +506,69 @@ const ROLE_STYLES: Record<ParagraphRole, { badge: string; className: string }> =
   closing: { badge: 'C', className: 'border-brand bg-card border-2' },
   detail: { badge: 'D', className: 'border-border bg-card' },
 };
+
+const PART_NAMES = {
+  introduction: 'Introduction',
+  body: 'Body paragraph',
+  conclusion: 'Conclusion',
+};
+
+/** The essay map (Essay Units 11–15): each paragraph (or outline part) with what it has and what it still needs. */
+function EssayMap({
+  essay,
+  canShow,
+  onShow,
+}: {
+  essay: NonNullable<CoachReport['essay']>;
+  canShow: (span: Span | undefined) => span is Span;
+  onShow: (span: Span) => void;
+}) {
+  let body = 0;
+  const named = essay.paragraphs.map((p) => {
+    if (p.counterclaim) return { ...p, name: 'Counterclaim' };
+    if (p.part === 'body') {
+      body++;
+      return { ...p, name: `${PART_NAMES.body} ${body}` };
+    }
+    return { ...p, name: PART_NAMES[p.part] };
+  });
+  const what = essay.outline ? 'outline' : 'essay';
+  return (
+    <div className="flex flex-col gap-2">
+      <h3 className="font-semibold">Your {what} map</h3>
+      <ol className="flex flex-col gap-2" aria-label={`The parts of your ${what}`}>
+        {named.map((p) => (
+          <li key={`${p.span.start}-${p.name}`} className="flex flex-col gap-1">
+            <h4 className="text-sm font-medium text-muted">{p.name}</h4>
+            <ul className="flex flex-col gap-1">
+              {p.items.map((item) => {
+                const span = item.span;
+                const label = `${p.name}: ${item.label}${item.ok ? '' : ' (to work on)'}`;
+                return (
+                  <li key={item.kind}>
+                    <button
+                      type="button"
+                      disabled={!canShow(span)}
+                      onClick={() => span && onShow(span)}
+                      aria-label={canShow(span) ? `${label}. Show it in my writing` : label}
+                      className={`flex min-h-11 w-full items-center gap-2 rounded-lg border bg-card px-2 py-1 text-left text-sm focus-visible:outline-3 focus-visible:outline-brand ${item.ok ? 'border-ok' : 'border-warn'}`}
+                    >
+                      <span aria-hidden="true" className="w-5 shrink-0 font-semibold">
+                        {item.ok ? '✓' : '!'}
+                      </span>
+                      <span>{item.label}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </li>
+        ))}
+      </ol>
+      <p className="text-xs text-muted">✓ in place · ! to work on</p>
+    </div>
+  );
+}
 
 /** The paragraph map (Essay Unit 10): every sentence with its part of the paragraph, and its transition. */
 function ParagraphMap({

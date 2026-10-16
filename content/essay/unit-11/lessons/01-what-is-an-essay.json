@@ -1,0 +1,55 @@
+{
+  "slug": "essay-what-is-an-essay",
+  "order": 1,
+  "title": "What Is an Essay?",
+  "estMinutes": 40,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Both of these are about phones at lunch. Which one would convince a principal?",
+      "a": "Phones are good. My friend has a phone. You can call people. Some kids play games. Phones have cameras. Lunch is at twelve. I think we should have them.",
+      "b": "Should students be allowed to use phones at lunch? They should, because phones keep students in touch with family and teach them to manage their own time. … (three paragraphs of reasons and evidence) … Trusting students with phones at lunch is a small step toward trusting them to make good choices.",
+      "reveal": "B is shaped like an essay: it opens with a question (a hook) and a clear point (a thesis), gives its reasons one paragraph at a time, and ends by bringing the reader back to the point. A is a pile of thoughts in no order."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "An essay is a plan made visible",
+          "body": "An essay is a group of paragraphs that all work for one main point, the thesis. The classic shape has five paragraphs: an introduction, three body paragraphs and a conclusion."
+        },
+        {
+          "kind": "definition",
+          "title": "Each part has a job",
+          "body": "Introduction: grab the reader with a hook, then state the thesis. Body paragraphs: one reason or part each, with a topic sentence, evidence and explanation (just like Unit 10). Conclusion: restate the thesis in new words and leave a final thought."
+        },
+        {
+          "kind": "example",
+          "title": "The five paragraphs at a glance",
+          "text": "1. Introduction: Have you ever fallen asleep in first period? Schools should start later because teens need more sleep, focus better and are safer on the roads.\n2. Body 1: Teens need more sleep than adults…\n3. Body 2: Rested students focus better…\n4. Body 3: Later starts make the roads safer…\n5. Conclusion: A later start would give teens the sleep, focus and safety they need. Next time your school sets its timetable, ask for one more hour.",
+          "note": "Every body paragraph proves one part of the thesis: sleep, focus, safety."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e11.parts-sort", "e11.essay-sequence", "e11.essay-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e11.essay-moves" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How is an essay like a paragraph, only bigger?",
+        "Which part of an essay do you think will be hardest to write? Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

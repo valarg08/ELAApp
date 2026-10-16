@@ -76,6 +76,15 @@ import {
   paragraphHits,
   paragraphNotes as findParagraphNotes,
 } from './paragraphs.js';
+import {
+  ESSAY_FEATURES,
+  ESSAY_FEATURE_EXAMPLES,
+  ESSAY_FEATURE_LABELS,
+  type EssayFeature,
+  type EssayOptions,
+  essayHits,
+  essayNotes as findEssayNotes,
+} from './essay.js';
 
 /**
  * Grammar checks for the Essay Writing track (DESIGN.md §9.12): find grammar features in a
@@ -102,6 +111,7 @@ export const GRAMMAR_FEATURES = [
   ...PUNCTUATION_FEATURES,
   ...SENTENCE_TYPE_FEATURES,
   ...PARAGRAPH_FEATURES,
+  ...ESSAY_FEATURES,
 ] as const;
 export type GrammarFeature = (typeof GRAMMAR_FEATURES)[number];
 
@@ -124,6 +134,7 @@ export const GRAMMAR_FEATURE_LABELS: Record<GrammarFeature, string> = {
   ...PUNCTUATION_FEATURE_LABELS,
   ...SENTENCE_TYPE_FEATURE_LABELS,
   ...PARAGRAPH_FEATURE_LABELS,
+  ...ESSAY_FEATURE_LABELS,
 };
 
 /** Examples shown when a feature is missing. */
@@ -146,6 +157,7 @@ export const GRAMMAR_FEATURE_EXAMPLES: Record<GrammarFeature, string> = {
   ...PUNCTUATION_FEATURE_EXAMPLES,
   ...SENTENCE_TYPE_FEATURE_EXAMPLES,
   ...PARAGRAPH_FEATURE_EXAMPLES,
+  ...ESSAY_FEATURE_EXAMPLES,
 };
 
 /** The Coach skill a grammar feature belongs to. */
@@ -162,7 +174,8 @@ export function grammarSkillOf(
   | 'structure'
   | 'punctuation'
   | 'sentenceTypes'
-  | 'paragraphs' {
+  | 'paragraphs'
+  | 'essay' {
   if ((VERB_FEATURES as readonly string[]).includes(feature)) return 'verbs';
   if ((MODIFIER_FEATURES as readonly string[]).includes(feature)) return 'modifiers';
   if ((CONNECTOR_FEATURES as readonly string[]).includes(feature)) return 'connectors';
@@ -172,11 +185,13 @@ export function grammarSkillOf(
   if ((PUNCTUATION_FEATURES as readonly string[]).includes(feature)) return 'punctuation';
   if ((SENTENCE_TYPE_FEATURES as readonly string[]).includes(feature)) return 'sentenceTypes';
   if ((PARAGRAPH_FEATURES as readonly string[]).includes(feature)) return 'paragraphs';
+  if ((ESSAY_FEATURES as readonly string[]).includes(feature)) return 'essay';
   return feature.endsWith('pronoun') ? 'pronouns' : 'nouns';
 }
 
 export type {
   ConnectorFeature,
+  EssayFeature,
   ModifierFeature,
   ParagraphFeature,
   PunctuationFeature,
@@ -392,6 +407,8 @@ export function grammarFeatures(text: string): FeatureHit[] {
   for (const hit of speechHits(text)) hits.push(hit);
   // Paragraph parts depend on where a sentence sits in its paragraph.
   for (const hit of paragraphHits(text)) hits.push(hit);
+  // Essay moves (thesis, hook, counterclaim…) read whole sentences.
+  for (const hit of essayHits(text)) hits.push(hit);
   return hits;
 }
 
@@ -492,7 +509,18 @@ export interface GrammarIssue {
     | 'no-evidence'
     | 'unexplained-evidence'
     | 'no-closing'
-    | 'no-transitions';
+    | 'no-transitions'
+    | 'few-paragraphs'
+    | 'no-thesis'
+    | 'weak-thesis'
+    | 'plain-hook'
+    | 'body-off-thesis'
+    | 'unanswered-counterclaim'
+    | 'no-counterclaim'
+    | 'no-conclusion'
+    | 'copied-thesis'
+    | 'no-restatement'
+    | 'no-final-thought';
   span: Span;
   /** A suggested fix for the words in `span`, when there is one. */
   fix?: string;
@@ -739,6 +767,36 @@ export type { SentenceType, TypedSentence } from './sentence-types.js';
 export const paragraphNotes = (text: string): GrammarIssue[] => findParagraphNotes(text);
 export { PARAGRAPH_ROLES, PARAGRAPH_ROLE_LABELS, paragraphRoles } from './paragraphs.js';
 export type { ParagraphRole, ParagraphSentence } from './paragraphs.js';
+
+/** Essay structure notes (thesis, hook, body links, counterclaim, conclusion): not counted as mistakes. */
+export const essayNotes = (text: string, options?: EssayOptions): GrammarIssue[] =>
+  findEssayNotes(text, options);
+export {
+  ESSAY_TYPES,
+  ESSAY_TYPE_LABELS,
+  HOOK_KINDS,
+  HOOK_KIND_LABELS,
+  OUTLINE_PARTS,
+  OUTLINE_PART_LABELS,
+  THESIS_KINDS,
+  THESIS_KIND_LABELS,
+  essayStructure,
+  hookKind,
+  isOutline,
+  outlineLines,
+  thesisKind,
+} from './essay.js';
+export type {
+  EssayOptions,
+  EssayParagraph,
+  EssayPart,
+  EssayStructure,
+  EssayType,
+  HookKind,
+  OutlineLine,
+  OutlinePart,
+  ThesisKind,
+} from './essay.js';
 
 /** Every grammar mistake the checks know about, in the order they appear (one per stretch of text). */
 export const grammarIssues = (text: string): GrammarIssue[] =>

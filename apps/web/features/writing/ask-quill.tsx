@@ -6,6 +6,7 @@ import {
   FIGURATIVE_ACTIVITY_TYPES,
   GRAMMAR_ACTIVITY_TYPES,
   PARAGRAPH_ACTIVITY_TYPES,
+  ESSAY_ACTIVITY_TYPES,
   type LiveAnalyzerId,
   PLOT_ACTIVITY_TYPES,
   POETRY_ACTIVITY_TYPES,
@@ -73,6 +74,17 @@ export function AskQuill({
       : []),
     ...(PARAGRAPH_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'paragraph-structure' as const, label: 'Is my paragraph built well?' }]
+      : []),
+    ...(ESSAY_ACTIVITY_TYPES.includes(activity.type)
+      ? [
+          {
+            id: 'essay-structure' as const,
+            label:
+              activity.type === 'ESSAY_OUTLINE'
+                ? 'Is my outline ready to write from?'
+                : 'Is my essay structured well?',
+          },
+        ]
       : []),
     ...(FIGURATIVE_ACTIVITY_TYPES.includes(activity.type)
       ? [{ id: 'figurative-language' as const, label: 'Did my comparisons work?' }]

@@ -17,6 +17,7 @@ import { Proofread, normaliseForProofread, occurrences } from './proofread.js';
 import { WritingConstraints } from './constraints.js';
 import { CONFLICT_TYPE_IDS, type ConflictTypeId, PlotPlan } from './plot.js';
 import { ParagraphBuilder, ParagraphPlan } from './paragraph.js';
+import { EssayConfig, OutlineBuilder, OutlinePlan } from './outline.js';
 
 /**
  * Curriculum content format (DESIGN.md §9). Units, lessons and activities live as JSON files in
@@ -343,6 +344,7 @@ export const WRITING_ACTIVITY_TYPES = [
   'SENTENCE_SET',
   'GRAMMAR_PARAGRAPH',
   'PARAGRAPH',
+  'ESSAY_OUTLINE',
 ] as const;
 
 /**
@@ -483,6 +485,10 @@ export const WritingActivity = z.object({
   proofread: Proofread.optional(),
   /** Essay Writing: the paragraph builder (see `ParagraphBuilder`). */
   paragraphBuilder: ParagraphBuilder.optional(),
+  /** Essay Writing (Unit 11 on): the kind of essay; the essay Coach check and Quill read it. */
+  essay: EssayConfig.optional(),
+  /** Essay Writing: the outline builder (see `OutlineBuilder`). */
+  outlineBuilder: OutlineBuilder.optional(),
   /** Essay Writing: the grammar this activity practises; the Coach and Quill look for it. */
   grammarFocus: z.array(z.enum(GRAMMAR_FEATURES)).min(1).max(4).optional(),
 });
@@ -625,6 +631,9 @@ export const GRAMMAR_ACTIVITY_TYPES: readonly WritingActivity['type'][] = [
 /** Essay paragraphs (Unit 10 on): the paragraph Coach check, "Is my paragraph built well?" and the paragraph rubric. */
 export const PARAGRAPH_ACTIVITY_TYPES: readonly WritingActivity['type'][] = ['PARAGRAPH'];
 
+/** Essays and outlines (Unit 11 on): the essay Coach check, "Is my essay structured well?" and the essay rubrics. */
+export const ESSAY_ACTIVITY_TYPES: readonly WritingActivity['type'][] = ['ESSAY_OUTLINE'];
+
 export const MAX_SYLLABLE_OVERRIDES = 60;
 
 /** The student's syllable counts, cleaned: known words as keys ("fire"), whole counts 1–9. */
@@ -668,13 +677,19 @@ export function validConflict(
   return options.find((o) => o === conflict) ?? null;
 }
 
-/** The plan, cleaned (empty when the activity has no planner). */
 /** The paragraph builder's boxes, or empty boxes when the activity has no builder. */
 export function validParagraph(activity: WritingActivity, plan: unknown): ParagraphPlan {
   const parsed = ParagraphPlan.safeParse(activity.paragraphBuilder ? (plan ?? {}) : {});
   return parsed.success ? parsed.data : ParagraphPlan.parse({});
 }
 
+/** The outline builder's boxes, or empty boxes when the activity has no builder. */
+export function validOutline(activity: WritingActivity, plan: unknown): OutlinePlan {
+  const parsed = OutlinePlan.safeParse(activity.outlineBuilder ? (plan ?? {}) : {});
+  return parsed.success ? parsed.data : OutlinePlan.parse({});
+}
+
+/** The plan, cleaned (empty when the activity has no planner). */
 export function validPlot(activity: WritingActivity, plot: unknown): PlotPlan {
   const parsed = PlotPlan.safeParse(activity.plotPlanner ? (plot ?? {}) : {});
   return parsed.success ? parsed.data : PlotPlan.parse({});
@@ -966,6 +981,16 @@ export function validateUnitBundle({
       errors.push(`${a.key}: starterInEditor needs a starter`);
     if (isWritingActivity(a) && a.paragraphBuilder && a.type !== 'PARAGRAPH')
       errors.push(`${a.key}: paragraphBuilder is for PARAGRAPH activities`);
+    if (isWritingActivity(a) && a.outlineBuilder && !ESSAY_ACTIVITY_TYPES.includes(a.type))
+      errors.push(`${a.key}: outlineBuilder is for essay and outline activities`);
+    if (isWritingActivity(a) && ESSAY_ACTIVITY_TYPES.includes(a.type) && !a.essay)
+      errors.push(`${a.key}: essay activities need essay: { type }`);
+    if (
+      isWritingActivity(a) &&
+      a.essay?.type !== 'argumentative' &&
+      (a.essay?.counterclaim || a.outlineBuilder?.counterclaim)
+    )
+      errors.push(`${a.key}: counterclaims are for argumentative essays`);
     if (isWritingActivity(a)) {
       const c = a.constraints;
       if (c.minStanzas && c.maxStanzas && c.minStanzas > c.maxStanzas)

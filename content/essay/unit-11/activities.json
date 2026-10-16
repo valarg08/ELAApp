@@ -1,0 +1,920 @@
+[
+  {
+    "key": "e11.parts-sort",
+    "type": "SORT",
+    "title": "Which part of the essay?",
+    "instructions": "These sentences come from one essay about school gardens. Sort each into the part of the essay it belongs in.",
+    "buckets": [
+      { "id": "intro", "label": "Introduction" },
+      { "id": "body", "label": "Body paragraph" },
+      { "id": "conclusion", "label": "Conclusion" }
+    ],
+    "items": [
+      {
+        "id": "hook",
+        "text": "What if your science lesson grew in the ground outside your classroom?",
+        "bucketId": "intro"
+      },
+      {
+        "id": "thesis",
+        "text": "Every school should have a garden because gardens teach science, encourage healthy eating and bring students together.",
+        "bucketId": "intro"
+      },
+      {
+        "id": "topic1",
+        "text": "First, a garden is a science lab you can walk into.",
+        "bucketId": "body"
+      },
+      {
+        "id": "evidence1",
+        "text": "For example, students can measure how fast bean plants grow in sun and in shade.",
+        "bucketId": "body"
+      },
+      {
+        "id": "topic2",
+        "text": "Gardens also encourage students to eat more vegetables.",
+        "bucketId": "body"
+      },
+      {
+        "id": "explain",
+        "text": "This shows that children try new foods when they grew them themselves.",
+        "bucketId": "body"
+      },
+      {
+        "id": "restate",
+        "text": "A garden teaches, feeds and connects students like no classroom can.",
+        "bucketId": "conclusion"
+      },
+      {
+        "id": "final",
+        "text": "Next time your school plans a project, ask for a packet of seeds.",
+        "bucketId": "conclusion"
+      }
+    ]
+  },
+  {
+    "key": "e11.essay-sequence",
+    "type": "SEQUENCE",
+    "title": "Build the essay",
+    "instructions": "These are the five paragraphs of an essay, shortened to their first sentences. Put them in order.",
+    "items": [
+      {
+        "id": "intro",
+        "text": "Have you ever fallen asleep in first period? Schools should start later because teens need more sleep, focus better and are safer on the roads."
+      },
+      { "id": "b1", "text": "First, teenagers need more sleep than adults." },
+      { "id": "b2", "text": "In addition, rested students focus better in class." },
+      { "id": "b3", "text": "Finally, later start times make the roads safer for teen drivers." },
+      {
+        "id": "conclusion",
+        "text": "In conclusion, a later start would give teens the sleep, focus and safety they need."
+      }
+    ],
+    "labels": [
+      "Introduction",
+      "Body paragraph 1",
+      "Body paragraph 2",
+      "Body paragraph 3",
+      "Conclusion"
+    ],
+    "explanation": "The introduction hooks the reader and states the thesis; each body paragraph proves one reason in the order the thesis lists them (sleep, focus, safety); the conclusion restates the thesis."
+  },
+  {
+    "key": "e11.essay-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "The parts of an essay",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Where does the thesis usually go?",
+        "options": [
+          { "id": "a", "text": "At the end of the introduction" },
+          { "id": "b", "text": "In the middle of the second body paragraph" },
+          { "id": "c", "text": "Only in the conclusion" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "The hook comes first to grab the reader; the thesis ends the introduction and tells the reader what the essay will prove."
+      },
+      {
+        "id": "q2",
+        "prompt": "What is the job of a body paragraph?",
+        "options": [
+          { "id": "a", "text": "To prove or explain one part of the thesis" },
+          { "id": "b", "text": "To introduce a brand-new topic" },
+          { "id": "c", "text": "To repeat the hook" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "One body paragraph, one point, with its own evidence and explanation."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which sentence belongs in a conclusion?",
+        "options": [
+          { "id": "a", "text": "For example, our class grew forty tomatoes." },
+          { "id": "b", "text": "Clearly, a school garden is worth every seed." },
+          { "id": "c", "text": "Have you ever planted a seed?" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "B sums up the thesis. A is evidence (body) and C is a hook (introduction)."
+      }
+    ]
+  },
+  {
+    "key": "e11.essay-moves",
+    "type": "SENTENCE_SET",
+    "title": "Three essay moves",
+    "prompt": "Topic: should students get a longer lunch break? Write three sentences, one for each essay move listed above the writing box: a hook, a thesis and a final thought for the conclusion.",
+    "tips": [
+      "Hook: a question (Have you ever…?), a surprising fact, or a bold statement.",
+      "Thesis: … should … because …, …, and ….",
+      "Final thought: Next time you… / Imagine… / It’s time to…"
+    ],
+    "constraints": { "minWords": 25, "maxWords": 120, "minSentences": 3 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["hook", "thesis-statement", "final-thought"],
+    "sentenceSet": {
+      "label": "Your three essay moves",
+      "sentences": [
+        {
+          "ask": "A hook that grabs the reader: a question, a surprising fact or a bold statement.",
+          "needs": ["hook"]
+        },
+        {
+          "ask": "A thesis: your claim and your reasons (… should … because …).",
+          "needs": ["thesis-statement"]
+        },
+        {
+          "ask": "A final thought for the conclusion: start “Next time…”, “Imagine…” or “It’s time…”.",
+          "needs": ["final-thought"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e11.types-sort",
+    "type": "SORT",
+    "title": "Which kind of essay?",
+    "instructions": "Sort each thesis by the kind of essay it starts.",
+    "buckets": [
+      { "id": "arg", "label": "Argumentative (convince)" },
+      { "id": "inf", "label": "Informative (explain)" },
+      { "id": "nar", "label": "Narrative (true story)" }
+    ],
+    "items": [
+      {
+        "id": "a1",
+        "text": "Schools should ban junk food from vending machines.",
+        "bucketId": "arg"
+      },
+      {
+        "id": "a2",
+        "text": "Every student should learn a second language because it opens doors.",
+        "bucketId": "arg"
+      },
+      { "id": "a3", "text": "Homework on weekends does more harm than good.", "bucketId": "arg" },
+      { "id": "i1", "text": "Volcanoes form in three main stages.", "bucketId": "inf" },
+      { "id": "i2", "text": "Honeybees help farms in several important ways.", "bucketId": "inf" },
+      {
+        "id": "i3",
+        "text": "A bill becomes a law by passing through four steps.",
+        "bucketId": "inf"
+      },
+      {
+        "id": "n1",
+        "text": "The day I got lost at the fair taught me to stay calm.",
+        "bucketId": "nar"
+      },
+      {
+        "id": "n2",
+        "text": "Moving to a new school was the hardest thing I have done, and it changed how I make friends.",
+        "bucketId": "nar"
+      },
+      {
+        "id": "n3",
+        "text": "When my grandmother taught me to bake, I learned that patience is a recipe too.",
+        "bucketId": "nar"
+      }
+    ]
+  },
+  {
+    "key": "e11.purpose-blank",
+    "type": "FILL_BLANK",
+    "title": "Name the purpose",
+    "instructions": "Choose the word that completes each sentence.",
+    "items": [
+      {
+        "id": "arg",
+        "sentence": "An argumentative essay tries to ___ the reader to agree.",
+        "choices": ["convince", "teach", "entertain"],
+        "answers": ["convince", "persuade"],
+        "hint": "It takes a side.",
+        "explanation": "Argumentative essays convince with reasons and evidence."
+      },
+      {
+        "id": "inf",
+        "sentence": "An informative essay ___ a topic without taking a side.",
+        "choices": ["explains", "argues", "invents"],
+        "answers": ["explains", "teaches"],
+        "hint": "Think of a science report.",
+        "explanation": "Informative essays explain how or why something works."
+      },
+      {
+        "id": "nar",
+        "sentence": "A narrative essay tells a ___ story from the writer’s life.",
+        "choices": ["true", "made-up", "short"],
+        "answers": ["true", "real"],
+        "hint": "It really happened.",
+        "explanation": "Narrative essays tell a real experience and what it meant."
+      },
+      {
+        "id": "claim",
+        "sentence": "An argumentative thesis is a ___ that someone could disagree with.",
+        "choices": ["claim", "fact", "question"],
+        "answers": ["claim"],
+        "hint": "Facts can’t be argued with.",
+        "explanation": "A claim can be argued; a fact just is."
+      }
+    ]
+  },
+  {
+    "key": "e11.announce-transform",
+    "type": "TRANSFORM",
+    "title": "Don’t announce, state",
+    "instructions": "Each thesis announces the essay. Rewrite it so it just states the point.",
+    "items": [
+      {
+        "id": "gardens",
+        "task": "State the claim without “In this essay I will argue that”.",
+        "source": "In this essay I will argue that every school should have a garden.",
+        "answers": ["Every school should have a garden."],
+        "hints": ["Start with the topic: Every school should…"],
+        "explanation": "Every school should have a garden. The reader already knows it’s an essay."
+      },
+      {
+        "id": "volcanoes",
+        "task": "State the focus without “I am going to explain”.",
+        "source": "I am going to explain how volcanoes form in three stages.",
+        "answers": ["Volcanoes form in three stages."],
+        "hints": ["Volcanoes form…"],
+        "explanation": "Volcanoes form in three stages."
+      },
+      {
+        "id": "bikes",
+        "task": "State the claim without “My essay is about why”.",
+        "source": "My essay is about why our town needs more bike lanes.",
+        "answers": ["Our town needs more bike lanes."],
+        "hints": ["Our town needs…"],
+        "explanation": "Our town needs more bike lanes."
+      }
+    ]
+  },
+  {
+    "key": "e11.types-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Three kinds of essay",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Prompt: “Explain how recycling works in your town.” Which kind of essay is this?",
+        "options": [
+          { "id": "a", "text": "Informative" },
+          { "id": "b", "text": "Argumentative" },
+          { "id": "c", "text": "Narrative" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Explain how” asks you to teach, not to take a side."
+      },
+      {
+        "id": "q2",
+        "prompt": "Prompt: “Should cities ban plastic bags? Take a position.” Which kind of essay is this?",
+        "options": [
+          { "id": "a", "text": "Narrative" },
+          { "id": "b", "text": "Argumentative" },
+          { "id": "c", "text": "Informative" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "“Should” and “take a position” ask you to argue."
+      },
+      {
+        "id": "q3",
+        "prompt": "Which is a narrative focus?",
+        "options": [
+          { "id": "a", "text": "Losing the final match taught me how to be a good teammate." },
+          { "id": "b", "text": "Football has eleven players on each team." },
+          { "id": "c", "text": "Schools should fund more sports teams." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A tells a real experience and what it meant. B is a fact; C is a claim."
+      }
+    ]
+  },
+  {
+    "key": "e11.three-theses",
+    "type": "SENTENCE_SET",
+    "title": "One topic, three theses",
+    "prompt": "Topic: pets. Write three thesis statements about pets, one for each kind of essay, as listed above the writing box.",
+    "tips": [
+      "Argumentative: Every family should… because… / Schools should allow…",
+      "Informative: Pets help people in three ways. / Dogs are trained in four steps.",
+      "Narrative: The day my cat went missing taught me…"
+    ],
+    "constraints": { "minWords": 25, "maxWords": 120, "minSentences": 3 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["thesis-statement"],
+    "sentenceSet": {
+      "label": "Your three theses",
+      "sentences": [
+        {
+          "ask": "Argumentative: a claim about pets someone could disagree with (… should … because …).",
+          "needs": ["thesis-statement"]
+        },
+        {
+          "ask": "Informative: the topic and the parts you would explain (… in three ways).",
+          "needs": ["thesis-statement"]
+        },
+        {
+          "ask": "Narrative: a true moment with a pet and what it taught you (… taught me …).",
+          "needs": ["thesis-statement"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e11.reasons-sort",
+    "type": "SORT",
+    "title": "Strong reason, weak reason",
+    "instructions": "Claim: “Our school should have a longer lunch break.” Sort each brainstormed idea.",
+    "buckets": [
+      { "id": "strong", "label": "Strong reason (you can prove it)" },
+      { "id": "weak", "label": "Weak reason (vague or just a feeling)" },
+      { "id": "against", "label": "The other side" }
+    ],
+    "items": [
+      {
+        "id": "s1",
+        "text": "Students in a 20-minute lunch often don’t finish eating.",
+        "bucketId": "strong"
+      },
+      { "id": "s2", "text": "Lunch lines take ten minutes on busy days.", "bucketId": "strong" },
+      {
+        "id": "s3",
+        "text": "Time to play outside helps students focus in the afternoon.",
+        "bucketId": "strong"
+      },
+      { "id": "w1", "text": "Lunch is fun.", "bucketId": "weak" },
+      { "id": "w2", "text": "Everyone wants it.", "bucketId": "weak" },
+      { "id": "w3", "text": "Short lunches are bad.", "bucketId": "weak" },
+      {
+        "id": "a1",
+        "text": "A longer lunch could make the school day end later.",
+        "bucketId": "against"
+      },
+      {
+        "id": "a2",
+        "text": "Some teachers worry about less time for lessons.",
+        "bucketId": "against"
+      }
+    ]
+  },
+  {
+    "key": "e11.strong-blank",
+    "type": "FILL_BLANK",
+    "title": "Pick the strongest reason",
+    "instructions": "Complete each claim with the reason you could prove best.",
+    "items": [
+      {
+        "id": "garden",
+        "sentence": "Schools should have gardens because ___.",
+        "choices": ["students learn where food comes from", "gardens are nice", "I like flowers"],
+        "answers": ["students learn where food comes from"],
+        "hint": "Which one could you back up with an example?",
+        "explanation": "It is specific and can be shown with evidence. The others are feelings."
+      },
+      {
+        "id": "walk",
+        "sentence": "Students should walk to school when they can because ___.",
+        "choices": ["walking is good", "it adds 20 minutes of daily exercise", "cars are boring"],
+        "answers": ["it adds 20 minutes of daily exercise"],
+        "hint": "Look for a fact you could check.",
+        "explanation": "It gives a number and a clear benefit."
+      },
+      {
+        "id": "library",
+        "sentence": "Our town should keep the library open on Sundays because ___.",
+        "choices": [
+          "libraries are cool",
+          "everyone says so",
+          "many families only visit on weekends"
+        ],
+        "answers": ["many families only visit on weekends"],
+        "hint": "Which reason explains who it helps?",
+        "explanation": "It names who benefits and why. “Everyone says so” isn’t evidence."
+      }
+    ]
+  },
+  {
+    "key": "e11.side-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Choosing a side",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What should you do first when brainstorming?",
+        "options": [
+          { "id": "a", "text": "List reasons on both sides, without judging" },
+          { "id": "b", "text": "Write the conclusion" },
+          { "id": "c", "text": "Pick the side your friend picked" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Seeing both sides shows you which has the strongest reasons, and gives you a counterclaim."
+      },
+      {
+        "id": "q2",
+        "prompt": "How should you choose your side?",
+        "options": [
+          { "id": "a", "text": "The side with reasons you can prove" },
+          { "id": "b", "text": "The side with the most exciting words" },
+          { "id": "c", "text": "Always the side you felt first" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "An essay is only as strong as its evidence."
+      },
+      {
+        "id": "q3",
+        "prompt": "What can you do with the best reason from the other side?",
+        "options": [
+          { "id": "a", "text": "Answer it in your essay as a counterclaim" },
+          { "id": "b", "text": "Hide it" },
+          { "id": "c", "text": "Make it your thesis" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Answering the other side fairly makes your argument stronger. You’ll practise this in Unit 13."
+      }
+    ]
+  },
+  {
+    "key": "e11.brainstorm-set",
+    "type": "SENTENCE_SET",
+    "title": "From brainstorm to plan",
+    "prompt": "Question: should students be allowed to listen to music while they work in class? Brainstorm both sides on paper or in your head, choose the side you can prove, then write five sentences, one for each task listed above the writing box.",
+    "tips": [
+      "Thesis: Students should / should not … because …",
+      "Reasons: start with First, … / Second, … / Finally, …",
+      "The other side: Some people argue that … / Others say …"
+    ],
+    "constraints": { "minWords": 45, "maxWords": 180, "minSentences": 5 },
+    "analyzers": ["structure", "punctuation"],
+    "grammarFocus": ["thesis-statement", "transition", "counterclaim"],
+    "sentenceSet": {
+      "label": "Your plan in five sentences",
+      "sentences": [
+        {
+          "ask": "Your thesis: your side and your reasons (… should … because …).",
+          "needs": ["thesis-statement"]
+        },
+        { "ask": "Your first reason: start with “First,”.", "needs": ["transition"] },
+        {
+          "ask": "Your second reason: start with “Second,” or “In addition,”.",
+          "needs": ["transition"]
+        },
+        { "ask": "Your third reason: start with “Finally,”.", "needs": ["transition"] },
+        {
+          "ask": "The other side: start with “Some people argue that…” or “Others say…”.",
+          "needs": ["counterclaim"]
+        }
+      ]
+    }
+  },
+  {
+    "key": "e11.outline-sequence",
+    "type": "SEQUENCE",
+    "title": "Order the outline",
+    "instructions": "These lines make one essay outline about bike lanes, but they’re jumbled. Put them in order.",
+    "items": [
+      { "id": "hook", "text": "Hook: How did you get to school today?" },
+      {
+        "id": "thesis",
+        "text": "Thesis: Our town needs more bike lanes because they keep riders safe, cut traffic and improve health."
+      },
+      { "id": "b1", "text": "Body 1: Bike lanes keep riders safe." },
+      { "id": "e1", "text": "Evidence: Cities with bike lanes report fewer crashes." },
+      { "id": "b2", "text": "Body 2: Bike lanes cut traffic." },
+      { "id": "e2", "text": "Evidence: Every bike on the road is one less car." },
+      {
+        "id": "conclusion",
+        "text": "Conclusion: Safer, calmer and healthier: bike lanes are worth building."
+      }
+    ],
+    "labels": ["Hook", "Thesis", "Body 1", "Evidence", "Body 2", "Evidence", "Conclusion"],
+    "explanation": "Hook, then thesis; each body point is followed by its own evidence; the conclusion comes last."
+  },
+  {
+    "key": "e11.outline-sort",
+    "type": "SORT",
+    "title": "Label the outline lines",
+    "instructions": "These notes are for an essay on why students should learn to cook. Sort each into its part of the outline.",
+    "buckets": [
+      { "id": "hook", "label": "Hook" },
+      { "id": "thesis", "label": "Thesis" },
+      { "id": "body", "label": "Body point" },
+      { "id": "evidence", "label": "Evidence" }
+    ],
+    "items": [
+      { "id": "h", "text": "Imagine making your own dinner tonight.", "bucketId": "hook" },
+      {
+        "id": "t",
+        "text": "Every student should learn to cook because it builds health, saves money and creates independence.",
+        "bucketId": "thesis"
+      },
+      { "id": "b1", "text": "Cooking builds healthy habits.", "bucketId": "body" },
+      { "id": "b2", "text": "Cooking saves money.", "bucketId": "body" },
+      { "id": "b3", "text": "Cooking makes you independent.", "bucketId": "body" },
+      {
+        "id": "e1",
+        "text": "Home-cooked meals have less salt and sugar than fast food.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "e2",
+        "text": "A pot of pasta costs less than one takeaway meal.",
+        "bucketId": "evidence"
+      },
+      {
+        "id": "e3",
+        "text": "My cousin cooked for herself in her first year away and loved it.",
+        "bucketId": "evidence"
+      }
+    ]
+  },
+  {
+    "key": "e11.outline-mc",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Outlines",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Why write an outline before an essay?",
+        "options": [
+          { "id": "a", "text": "To plan where every point and piece of evidence goes" },
+          { "id": "b", "text": "To make the essay longer" },
+          { "id": "c", "text": "Because the conclusion goes first" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "An outline is a plan: it saves rewriting later."
+      },
+      {
+        "id": "q2",
+        "prompt": "Thesis: “Schools should have gardens because they teach science, encourage healthy eating and bring students together.” What should Body 2 be about?",
+        "options": [
+          { "id": "a", "text": "Healthy eating" },
+          { "id": "b", "text": "School buses" },
+          { "id": "c", "text": "Why gardens are pretty" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Body points follow the reasons in the thesis, in order."
+      },
+      {
+        "id": "q3",
+        "prompt": "Should an outline line be a full paragraph?",
+        "options": [
+          { "id": "a", "text": "No: short notes, just enough to write from" },
+          { "id": "b", "text": "Yes, every line is a full paragraph" },
+          { "id": "c", "text": "Only the hook" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Outlines are notes. The full sentences come when you write the essay."
+      }
+    ]
+  },
+  {
+    "key": "e11.uniform-outline",
+    "type": "ESSAY_OUTLINE",
+    "title": "Outline an argument",
+    "prompt": "Should students have to wear school uniforms? Choose your side and outline an argumentative essay: a hook, a thesis with three reasons, a body point and a piece of evidence for each reason, and a conclusion. Use the outline builder, press “Put it in my writing”, then check your outline map.",
+    "tips": [
+      "Your thesis lists your three reasons; Body 1, 2 and 3 take them in the same order.",
+      "Evidence can be a fact, a number, an expert, or a true example from your school.",
+      "Short notes are fine: you’re planning, not writing the essay yet."
+    ],
+    "constraints": { "minWords": 60, "maxWords": 320 },
+    "analyzers": ["essay"],
+    "essay": { "type": "argumentative" },
+    "outlineBuilder": { "label": "Outline builder", "bodies": 3 }
+  },
+  {
+    "key": "e11.unit-check",
+    "type": "QUIZ",
+    "title": "Essay Foundations check",
+    "instructions": "Ten questions on everything in this unit. You need 8 or more right (80%) to pass. If you don’t pass, you’ll see what to review and get new questions to try again.",
+    "passPercent": 80,
+    "questionsPerAttempt": 10,
+    "questions": [
+      {
+        "id": "c1",
+        "prompt": "How many paragraphs does a classic five-paragraph essay have in its body?",
+        "options": [
+          { "id": "a", "text": "Three" },
+          { "id": "b", "text": "Five" },
+          { "id": "c", "text": "One" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Introduction + three body paragraphs + conclusion = five.",
+        "skill": "essay parts"
+      },
+      {
+        "id": "c2",
+        "prompt": "What two things does an introduction usually contain?",
+        "options": [
+          { "id": "a", "text": "A hook and a thesis" },
+          { "id": "b", "text": "Evidence and a final thought" },
+          { "id": "c", "text": "Three counterclaims" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Grab the reader, then state the main point.",
+        "skill": "essay parts"
+      },
+      {
+        "id": "c3",
+        "prompt": "What does a conclusion do?",
+        "options": [
+          { "id": "a", "text": "Restates the thesis in new words and leaves a final thought" },
+          { "id": "b", "text": "Adds a brand-new reason" },
+          { "id": "c", "text": "Copies the introduction" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It brings the reader back to the main point and ends strongly.",
+        "skill": "essay parts"
+      },
+      {
+        "id": "c4",
+        "prompt": "Which sentence is a body paragraph’s topic sentence?",
+        "options": [
+          { "id": "a", "text": "Second, school gardens encourage healthy eating." },
+          { "id": "b", "text": "Have you ever grown a tomato?" },
+          { "id": "c", "text": "In conclusion, every school needs a garden." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It states one point that proves part of the thesis.",
+        "skill": "essay parts"
+      },
+      {
+        "id": "c5",
+        "prompt": "Which is the best hook?",
+        "options": [
+          { "id": "a", "text": "In this essay I will talk about sleep." },
+          { "id": "b", "text": "Most teenagers get two hours less sleep than they need." },
+          { "id": "c", "text": "Sleep is a thing people do." }
+        ],
+        "correctOptionId": "b",
+        "explanation": "A surprising fact grabs the reader. A announces; C is flat.",
+        "skill": "essay parts"
+      },
+      {
+        "id": "c6",
+        "prompt": "What is a thesis?",
+        "options": [
+          { "id": "a", "text": "The one sentence the whole essay proves or explains" },
+          { "id": "b", "text": "The title of the essay" },
+          { "id": "c", "text": "The last sentence of every paragraph" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Every paragraph works for the thesis.",
+        "skill": "thesis"
+      },
+      {
+        "id": "c7",
+        "prompt": "Which is an argumentative thesis?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Cities should plant more trees because trees cool streets and clean the air."
+          },
+          { "id": "b", "text": "Trees have leaves." },
+          { "id": "c", "text": "I love trees." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A is a claim with reasons. B is a fact; C is a personal taste.",
+        "skill": "thesis"
+      },
+      {
+        "id": "c8",
+        "prompt": "What’s wrong with this thesis? “Dogs are mammals.”",
+        "options": [
+          { "id": "a", "text": "It’s a fact, so there’s nothing to prove or explain" },
+          { "id": "b", "text": "It’s too long" },
+          { "id": "c", "text": "Nothing" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A thesis needs a point: a claim or a focus with parts.",
+        "skill": "thesis"
+      },
+      {
+        "id": "c9",
+        "prompt": "Which thesis announces instead of stating?",
+        "options": [
+          { "id": "a", "text": "In this essay, I will tell you why recess matters." },
+          { "id": "b", "text": "Recess helps students focus, exercise and make friends." },
+          { "id": "c", "text": "Schools should never cut recess." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Don’t announce: just state your point.",
+        "skill": "thesis"
+      },
+      {
+        "id": "c10",
+        "prompt": "Which prompt asks for an informative essay?",
+        "options": [
+          { "id": "a", "text": "Explain how the water cycle works." },
+          { "id": "b", "text": "Should schools ban phones? Take a side." },
+          { "id": "c", "text": "Tell about a time you were brave." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "“Explain how” asks you to teach.",
+        "skill": "essay types"
+      },
+      {
+        "id": "c11",
+        "prompt": "Which prompt asks for a narrative essay?",
+        "options": [
+          { "id": "a", "text": "Describe a time you changed your mind, and what you learned." },
+          { "id": "b", "text": "Explain three causes of pollution." },
+          { "id": "c", "text": "Argue for or against school uniforms." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A true experience and what it meant: narrative.",
+        "skill": "essay types"
+      },
+      {
+        "id": "c12",
+        "prompt": "What is the purpose of an argumentative essay?",
+        "options": [
+          { "id": "a", "text": "To convince the reader with reasons and evidence" },
+          { "id": "b", "text": "To tell a made-up story" },
+          { "id": "c", "text": "To list facts without a point" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Argumentative essays take a side and prove it.",
+        "skill": "essay types"
+      },
+      {
+        "id": "c13",
+        "prompt": "Which is an informative thesis?",
+        "options": [
+          { "id": "a", "text": "Honeybees help farms in three important ways." },
+          { "id": "b", "text": "Everyone should keep bees." },
+          { "id": "c", "text": "The day a bee stung me taught me to stay still." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A names the topic and its parts without taking a side.",
+        "skill": "essay types"
+      },
+      {
+        "id": "c14",
+        "prompt": "What does a narrative essay’s focus tell the reader?",
+        "options": [
+          { "id": "a", "text": "What the experience meant or taught the writer" },
+          { "id": "b", "text": "Three reasons to agree" },
+          { "id": "c", "text": "The steps of a process" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A narrative essay tells a true story with a point.",
+        "skill": "essay types"
+      },
+      {
+        "id": "c15",
+        "prompt": "When you brainstorm, you should list reasons…",
+        "options": [
+          { "id": "a", "text": "on both sides, before choosing" },
+          { "id": "b", "text": "only for the side you like" },
+          { "id": "c", "text": "after writing the essay" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Seeing both sides helps you choose the stronger one.",
+        "skill": "brainstorming"
+      },
+      {
+        "id": "c16",
+        "prompt": "Which reason is strongest for “Students should walk to school”?",
+        "options": [
+          { "id": "a", "text": "A 20-minute walk counts toward daily exercise." },
+          { "id": "b", "text": "Walking is nice." },
+          { "id": "c", "text": "Everyone should do it." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "It is specific and can be checked.",
+        "skill": "brainstorming"
+      },
+      {
+        "id": "c17",
+        "prompt": "How should you choose which side to argue?",
+        "options": [
+          { "id": "a", "text": "Pick the side you can prove best" },
+          { "id": "b", "text": "Pick the side with fewer reasons" },
+          { "id": "c", "text": "Flip a coin" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Strong evidence makes a strong essay.",
+        "skill": "brainstorming"
+      },
+      {
+        "id": "c18",
+        "prompt": "A brainstorm has three strong reasons. Where do they go in the essay?",
+        "options": [
+          { "id": "a", "text": "One in each body paragraph" },
+          { "id": "b", "text": "All in the hook" },
+          { "id": "c", "text": "Only in the conclusion" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Each reason becomes a body paragraph.",
+        "skill": "brainstorming"
+      },
+      {
+        "id": "c19",
+        "prompt": "What is an outline?",
+        "options": [
+          { "id": "a", "text": "A plan of the essay’s parts in short notes" },
+          { "id": "b", "text": "The finished essay" },
+          { "id": "c", "text": "A list of spelling words" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Hook, thesis, body points with evidence, conclusion: in notes.",
+        "skill": "outlining"
+      },
+      {
+        "id": "c20",
+        "prompt": "In an outline, what comes right after each body point?",
+        "options": [
+          { "id": "a", "text": "Its evidence" },
+          { "id": "b", "text": "The hook" },
+          { "id": "c", "text": "The thesis again" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Each point needs its own proof.",
+        "skill": "outlining"
+      },
+      {
+        "id": "c21",
+        "prompt": "Thesis: “Bike lanes keep riders safe, cut traffic and improve health.” What should Body 3 be about?",
+        "options": [
+          { "id": "a", "text": "Improving health" },
+          { "id": "b", "text": "Keeping riders safe" },
+          { "id": "c", "text": "The price of bikes" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Body points follow the thesis’s reasons in order.",
+        "skill": "outlining"
+      },
+      {
+        "id": "c22",
+        "prompt": "An outline line says “Body 2: Pools.” What’s the problem?",
+        "options": [
+          { "id": "a", "text": "It’s too vague to write a paragraph from" },
+          { "id": "b", "text": "It’s too long" },
+          { "id": "c", "text": "Nothing" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "A body point should be a clear topic sentence: “Pools help families cool down safely.”",
+        "skill": "outlining"
+      },
+      {
+        "id": "c23",
+        "prompt": "Which outline is in the right order?",
+        "options": [
+          { "id": "a", "text": "Hook, thesis, body points with evidence, conclusion" },
+          { "id": "b", "text": "Conclusion, hook, evidence, thesis" },
+          { "id": "c", "text": "Thesis, conclusion, hook, body points" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Introduction first, body in the middle, conclusion last.",
+        "skill": "outlining"
+      },
+      {
+        "id": "c24",
+        "prompt": "Your outline map shows “! No evidence yet” under Body 2. What should you do?",
+        "options": [
+          { "id": "a", "text": "Add a fact, example or quote that proves Body 2" },
+          { "id": "b", "text": "Delete Body 2" },
+          { "id": "c", "text": "Write a second hook" }
+        ],
+        "correctOptionId": "a",
+        "explanation": "Every body point needs proof.",
+        "skill": "outlining"
+      }
+    ]
+  },
+  {
+    "key": "e11.check-outline",
+    "type": "ESSAY_OUTLINE",
+    "title": "Outline an informative essay",
+    "prompt": "Explain three ways students can cut waste at school. Outline an informative essay: a hook, a thesis that names the topic and its three parts, a body point and a piece of evidence (a fact or example) for each part, and a conclusion. Use the outline builder, press “Put it in my writing”, then check your outline map.",
+    "tips": [
+      "Informative: explain, don’t argue. Your thesis can say “… in three ways.”",
+      "Each body point is one way; its evidence is a fact or an example of that way.",
+      "Ideas: reusable bottles, recycling bins, food waste, paper, lost property…"
+    ],
+    "constraints": { "minWords": 60, "maxWords": 320 },
+    "analyzers": ["essay"],
+    "essay": { "type": "informative" },
+    "outlineBuilder": { "label": "Outline builder", "bodies": 3 }
+  }
+]

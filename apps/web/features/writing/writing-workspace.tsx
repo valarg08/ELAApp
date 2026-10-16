@@ -39,6 +39,7 @@ import { WordBankPanel } from './word-bank-panel';
 import { useWordBank } from './use-word-bank';
 import { PlotPlanner } from './plot-planner';
 import { ParagraphBuilder } from './paragraph-builder';
+import { OutlineBuilder } from './outline-builder';
 import { TonePicker } from './tone-picker';
 import { TraitPicker } from './trait-picker';
 import { useAutosave } from './use-autosave';
@@ -84,6 +85,8 @@ export function WritingWorkspace({
   const needsPlot = plotPlanner !== undefined && !planComplete(plot);
   const paragraphBuilder = activity.paragraphBuilder;
   const [paragraph, setParagraph] = useState(submission.paragraph);
+  const outlineBuilder = activity.outlineBuilder;
+  const [outline, setOutline] = useState(submission.outline);
   const tonePicker = activity.tonePicker;
   const [tone, setTone] = useState(submission.tone);
   const needsTone = tonePicker !== undefined && !toneComplete(activity, validTone(activity, tone));
@@ -288,6 +291,23 @@ export function WritingWorkspace({
           builder={paragraphBuilder}
           plan={paragraph}
           onChange={setParagraph}
+          draft={state.text}
+          onUse={(next) => {
+            setStarted(true);
+            controller.setText(next);
+            showInText({ start: next.length, end: next.length, text: '' });
+          }}
+        />
+      )}
+
+      {outlineBuilder && activity.essay && (
+        <OutlineBuilder
+          submissionId={submission.id}
+          builder={outlineBuilder}
+          essay={activity.essay}
+          mode={activity.type === 'ESSAY_OUTLINE' ? 'outline' : 'essay'}
+          plan={outline}
+          onChange={setOutline}
           draft={state.text}
           onUse={(next) => {
             setStarted(true);

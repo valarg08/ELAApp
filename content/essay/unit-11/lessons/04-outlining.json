@@ -1,0 +1,55 @@
+{
+  "slug": "essay-outlining",
+  "order": 4,
+  "title": "Outlining Your Essay",
+  "estMinutes": 45,
+  "focusSkills": ["essay", "essay-structure"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "compare",
+      "prompt": "Two builders are making a treehouse. Who finishes first?",
+      "a": "Builder A starts nailing boards right away. Halfway up, the boards don’t reach, the door is on the wrong side, and half the wood is used up.",
+      "b": "Builder B spends ten minutes drawing a plan: floor, walls, door, roof, how many boards each. Then B builds it in one go.",
+      "reveal": "An outline is your essay’s plan. Ten minutes of planning saves an hour of rewriting, and every paragraph ends up where it belongs."
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What goes in an outline",
+          "body": "One short line for each part: Hook, Thesis, then for each body paragraph its point (Body 1, Body 2, Body 3) and its Evidence, then the Conclusion. Notes, not full paragraphs: just enough to write from."
+        },
+        {
+          "kind": "example",
+          "title": "An outline",
+          "text": "Hook: What if every school had a garden?\nThesis: Every school should have a garden because gardens teach science, encourage healthy eating and bring students together.\nBody 1: Gardens teach science.\nEvidence: Students measure plant growth and test soil.\nBody 2: Gardens encourage healthy eating.\nEvidence: Kids are more likely to eat vegetables they grew themselves.\nBody 3: Gardens bring students together.\nEvidence: Our garden club has members from every grade.\nConclusion: A garden teaches, feeds and connects, so every school should plant one.",
+          "note": "Each body point matches one reason in the thesis: science, healthy eating, together."
+        },
+        {
+          "kind": "definition",
+          "title": "Your outline builder",
+          "body": "In the challenge, the outline builder gives you a box for each part, with sentence starters. Press “Put it in my writing” to turn the boxes into an outline, then check the Coach’s outline map: a ✓ for each part in place, a ! for each part to work on."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["e11.outline-sequence", "e11.outline-sort", "e11.outline-mc"]
+    },
+    { "id": "challenge", "type": "challenge", "activityKey": "e11.uniform-outline" },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Look at your outline map. Does every body point link to your thesis?",
+        "Which body point has the strongest evidence? Which needs more?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

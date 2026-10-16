@@ -7,6 +7,7 @@ import {
   SaveDraftRequest,
   SetConflictRequest,
   SetMoodRequest,
+  SetOutlineRequest,
   SetParagraphRequest,
   SetPlotRequest,
   SetSyllablesRequest,
@@ -113,6 +114,17 @@ export class SubmissionsController {
     @Body({ schema: SetParagraphRequest }) body: SetParagraphRequest,
   ): Promise<SubmissionDetail> {
     return this.submissions.setParagraph(user, id, body.paragraph);
+  }
+
+  /** The outline builder's boxes (Essay Unit 11 on). */
+  @Roles('STUDENT')
+  @Put(':id/outline')
+  setOutline(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: SetOutlineRequest }) body: SetOutlineRequest,
+  ): Promise<SubmissionDetail> {
+    return this.submissions.setOutline(user, id, body.outline);
   }
 
   /** The student's own syllable counts for words in their poem (Unit 7). */

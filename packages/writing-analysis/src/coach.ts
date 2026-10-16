@@ -49,6 +49,14 @@ import {
   type GrammarIssue,
   grammarFeatures,
   connectorIssues,
+  type EssayOptions,
+  type EssayPart,
+  type EssayStructure,
+  type EssayType,
+  HOOK_KIND_LABELS,
+  THESIS_KIND_LABELS,
+  essayNotes,
+  essayStructure,
   grammarSkillOf,
   modifierIssues,
   nounIssues,
@@ -99,6 +107,7 @@ export const ANALYZER_IDS = [
   'punctuation',
   'sentenceTypes',
   'paragraphs',
+  'essay',
 ] as const;
 export type AnalyzerId = (typeof ANALYZER_IDS)[number];
 
@@ -141,6 +150,33 @@ export interface CoachReport {
   sentenceTypes?: (Span & { type?: SentenceType })[];
   /** Each sentence with its part of the paragraph, when the paragraph check ran (Essay Unit 10 paragraph map). */
   paragraphs?: (Span & { role: ParagraphRole; paragraph: number; transition?: string })[];
+  /** The parts of an essay or outline, when the essay check ran (Essay Units 11–15 essay map). */
+  essay?: EssayMap;
+}
+
+export type EssayMapItemKind =
+  | 'hook'
+  | 'thesis'
+  | 'topic'
+  | 'evidence'
+  | 'counterclaim'
+  | 'rebuttal'
+  | 'restatement'
+  | 'final-thought';
+
+export interface EssayMapItem {
+  kind: EssayMapItemKind;
+  /** Short words for the badge row, like "Thesis: claim" or "Topic sentence: links to the thesis". */
+  label: string;
+  /** Done well (true), needs work (false). */
+  ok: boolean;
+  span?: Span;
+}
+
+export interface EssayMap {
+  outline: boolean;
+  type?: EssayType;
+  paragraphs: { part: EssayPart; counterclaim: boolean; span: Span; items: EssayMapItem[] }[];
 }
 
 export interface Perspective {
@@ -174,6 +210,8 @@ export interface CoachOptions {
   tone?: Partial<Record<ToneAxis, ToneStep>>;
   /** Grammar the activity practises (Essay Writing): the Coach looks for each. */
   grammarFocus?: readonly GrammarFeature[];
+  /** The kind of essay and whether it must answer the other side (Essay Units 11–15). */
+  essay?: EssayOptions;
 }
 
 const MAX_STRENGTHS = 2;
@@ -816,6 +854,67 @@ export function buildCoachReport(text: string, options: CoachOptions = {}): Coac
     }
   }
 
+  if (enabled.has('essay')) {
+    const essayOptions = options.essay ?? {};
+    const structure = essayStructure(text, essayOptions);
+    report.essay = essayMap(structure, essayOptions);
+    const notes = essayNotes(text, essayOptions);
+    const note = notes[0];
+    if (note) {
+      const more = notes.length > 1 ? ` (${plural(notes.length - 1, 'more spot')} to check.)` : '';
+      nextSteps.push({
+        id: 'essay',
+        analyzer: 'essay',
+        title: ESSAY_TITLES[note.kind] ?? 'Check your essay',
+        message: `${note.message}${more}`,
+        span: note.span,
+      });
+    }
+    const thesis = structure.thesis;
+    if (
+      thesis &&
+      (thesis.kind === 'claim' || thesis.kind === 'focus') &&
+      notes.every((n) => n.kind !== 'weak-thesis')
+    ) {
+      strengths.push({
+        id: 'essay',
+        analyzer: 'essay',
+        title: essayOptions.type === 'narrative' ? 'A clear focus' : 'A clear thesis',
+        message: `Your ${essayOptions.type === 'narrative' ? 'focus' : 'thesis'} tells the reader exactly what your essay ${essayOptions.type === 'informative' || essayOptions.type === 'narrative' ? 'is about' : 'will prove'}: ${inQuotes(thesis.span.text)}`,
+        span: thesis.span,
+      });
+    }
+    const hook = structure.paragraphs.find((p) => p.part === 'introduction')?.hook;
+    if (
+      hook &&
+      hook.kind !== 'plain' &&
+      hook.kind !== 'announcement' &&
+      strengths.length < MAX_STRENGTHS
+    ) {
+      strengths.push({
+        id: 'hook',
+        analyzer: 'essay',
+        title: 'A hook that grabs the reader',
+        message: `You open with ${HOOK_KIND_LABELS[hook.kind].toLowerCase() === 'question' ? 'a question' : `a ${HOOK_KIND_LABELS[hook.kind].toLowerCase()}`}: ${inQuotes(hook.span.text)}`,
+        span: hook.span,
+      });
+    }
+    if (
+      !note &&
+      structure.paragraphs.some((p) => p.counterclaim && p.rebuttal) &&
+      strengths.length < MAX_STRENGTHS
+    ) {
+      const p = structure.paragraphs.find((x) => x.counterclaim && x.rebuttal)!;
+      strengths.push({
+        id: 'counterclaim',
+        analyzer: 'essay',
+        title: 'You answer the other side',
+        message: `You give the other side fairly and then answer it: ${inQuotes(p.rebuttal!.text)}`,
+        span: p.rebuttal,
+      });
+    }
+  }
+
   if (enabled.has('paragraphs')) {
     const roles = paragraphRoles(text);
     report.paragraphs = roles.map((s) => ({
@@ -1159,6 +1258,125 @@ const VARIETY_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
   'repeated-opener': 'Vary how your sentences start',
 };
 
+const ESSAY_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
+  'few-paragraphs': 'Give each part its own paragraph',
+  'no-thesis': 'Add a thesis',
+  'weak-thesis': 'Sharpen your thesis',
+  'plain-hook': 'Start with a hook',
+  'body-off-thesis': 'Link this paragraph to your thesis',
+  'unanswered-counterclaim': 'Answer the other side',
+  'no-counterclaim': 'Add a counterclaim',
+  'no-conclusion': 'Plan your conclusion',
+  'no-evidence': 'Add evidence',
+  'copied-thesis': 'Restate, don’t copy',
+  'no-restatement': 'Restate your thesis',
+  'no-final-thought': 'End with a final thought',
+};
+
+/** The essay map: each paragraph (or outline part) with its badges. */
+function essayMap(e: EssayStructure, options: EssayOptions): EssayMap {
+  const narrative = options.type === 'narrative';
+  return {
+    outline: e.outline,
+    ...(options.type ? { type: options.type } : {}),
+    paragraphs: e.paragraphs.map((p, i) => {
+      const items: EssayMapItem[] = [];
+      if (p.hook) {
+        const ok = p.hook.kind !== 'plain' && p.hook.kind !== 'announcement';
+        items.push({
+          kind: 'hook',
+          label: `Hook: ${HOOK_KIND_LABELS[p.hook.kind].toLowerCase()}`,
+          ok,
+          span: p.hook.span,
+        });
+      }
+      if (p.thesis) {
+        const ok =
+          p.thesis.kind === 'claim' ||
+          p.thesis.kind === 'focus' ||
+          (narrative && p.thesis.kind === 'fact');
+        items.push({
+          kind: 'thesis',
+          label:
+            narrative && ok
+              ? 'Focus'
+              : `${narrative ? 'Focus' : 'Thesis'}: ${THESIS_KIND_LABELS[p.thesis.kind].toLowerCase()}`,
+          ok,
+          span: p.thesis.span,
+        });
+      } else if (p.part === 'introduction') {
+        items.push({
+          kind: 'thesis',
+          label: narrative ? 'No focus yet' : 'No thesis yet',
+          ok: false,
+        });
+      }
+      if (p.topic && !p.counterclaim) {
+        items.push({
+          kind: 'topic',
+          label:
+            p.topic.linked === null || narrative
+              ? 'Topic sentence'
+              : p.topic.linked
+                ? 'Topic sentence: links to the thesis'
+                : 'Topic sentence: no thesis word',
+          ok: p.topic.linked !== false || narrative,
+          span: p.topic.span,
+        });
+      }
+      if (e.outline && p.part === 'body' && !p.counterclaim) {
+        const body = e.paragraphs
+          .slice(0, i + 1)
+          .filter((x) => x.part === 'body' && !x.counterclaim).length;
+        const evidence = e.lines.find((l) => l.part === 'evidence' && l.body === body);
+        items.push(
+          evidence
+            ? { kind: 'evidence', label: 'Evidence', ok: true, span: evidence.span }
+            : { kind: 'evidence', label: 'No evidence yet', ok: false },
+        );
+      }
+      if (p.counterclaim) {
+        items.push({ kind: 'counterclaim', label: 'Counterclaim', ok: true, span: p.counterclaim });
+        items.push(
+          p.rebuttal
+            ? { kind: 'rebuttal', label: 'Rebuttal', ok: true, span: p.rebuttal }
+            : { kind: 'rebuttal', label: 'No rebuttal yet', ok: false },
+        );
+      }
+      if (p.part === 'conclusion') {
+        if (p.echoesThesis !== undefined && !(narrative && !p.echoesThesis && !p.copiesThesis)) {
+          items.push({
+            kind: 'restatement',
+            label: p.copiesThesis
+              ? 'Copies the thesis'
+              : p.echoesThesis
+                ? `Restates the ${narrative ? 'focus' : 'thesis'}`
+                : `Doesn’t restate the ${narrative ? 'focus' : 'thesis'}`,
+            ok: !p.copiesThesis && (p.echoesThesis || narrative),
+          });
+        }
+        if (!e.outline) {
+          items.push(
+            p.finalThought
+              ? {
+                  kind: 'final-thought',
+                  label: narrative ? 'Reflection' : 'Final thought',
+                  ok: true,
+                  span: p.finalThought,
+                }
+              : {
+                  kind: 'final-thought',
+                  label: narrative ? 'No reflection yet' : 'No final thought yet',
+                  ok: false,
+                },
+          );
+        }
+      }
+      return { part: p.part, counterclaim: p.counterclaim !== undefined, span: p.span, items };
+    }),
+  };
+}
+
 const PARAGRAPH_TITLES: Partial<Record<GrammarIssue['kind'], string>> = {
   'no-topic-sentence': 'Start with a topic sentence',
   'no-evidence': 'Add evidence',
@@ -1195,7 +1413,8 @@ function issueCard(
     | 'structure'
     | 'punctuation'
     | 'sentenceTypes'
-    | 'paragraphs',
+    | 'paragraphs'
+    | 'essay',
   title: string,
   issues: GrammarIssue[],
 ): CoachCard {

@@ -10,6 +10,7 @@ import type { FigurativeLanguageResult } from './analyzers/figurative-language.j
 import type { PoetryCraftResult } from './analyzers/poetry-craft.js';
 import type { GrammarCheckResult } from './analyzers/grammar-check.js';
 import type { ParagraphStructureResult } from './analyzers/paragraph-structure.js';
+import type { EssayStructureResult } from './analyzers/essay-structure.js';
 import { isToneStep, toneStepLabel } from '@storyforge/writing-analysis';
 import type { RubricScoreResult } from './analyzers/rubric-score.js';
 
@@ -488,6 +489,77 @@ export function paragraphPoints(text: string, r: ParagraphStructureResult) {
   }
   if (r.transitions.quotes.length === 0) {
     nextSteps.push({ title: 'Link your ideas', message: r.transitions.note });
+  }
+  if (r.nextIdea) nextSteps.push({ title: 'One idea', message: r.nextIdea });
+  return {
+    strengths: strengths.filter(isPoint).slice(0, 3),
+    nextSteps: nextSteps.filter(isPoint).slice(0, 3),
+  };
+}
+
+/** "Is my essay structured well?": a working thesis, hook, rebuttal and conclusion as strengths; a weak thesis, an off-topic body point, a missing rebuttal or restatement as next steps. */
+export function essayPoints(text: string, r: EssayStructureResult) {
+  const strengths: (FeedbackPoint | null)[] = [];
+  const nextSteps: (FeedbackPoint | null)[] = [];
+  if (r.thesis.present) {
+    strengths.push(
+      anchored(text, { title: 'A clear thesis', message: r.thesis.note }, r.thesis.quote),
+    );
+  } else {
+    nextSteps.push(
+      anchored(text, { title: 'Sharpen your thesis', message: r.thesis.note }, r.thesis.quote),
+    );
+  }
+  if (r.hook.works) {
+    strengths.push(
+      anchored(text, { title: 'A hook that grabs', message: r.hook.note }, r.hook.quote),
+    );
+  } else {
+    nextSteps.push(
+      anchored(text, { title: 'Start with a hook', message: r.hook.note }, r.hook.quote),
+    );
+  }
+  const off = r.bodies.find((b) => !b.supportsThesis);
+  if (off) {
+    nextSteps.push(
+      anchored(text, { title: 'Link this point to your thesis', message: off.note }, off.quote),
+    );
+  }
+  if (r.counterclaim.present && r.counterclaim.rebutted) {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'You answer the other side', message: r.counterclaim.note },
+        r.counterclaim.quote,
+      ),
+    );
+  } else if (r.counterclaim.present) {
+    nextSteps.push(
+      anchored(
+        text,
+        { title: 'Answer the other side', message: r.counterclaim.note },
+        r.counterclaim.quote,
+      ),
+    );
+  }
+  if (!r.conclusion.present) {
+    nextSteps.push({ title: 'Add a conclusion', message: r.conclusion.note });
+  } else if (!r.conclusion.restates || !r.conclusion.finalThought) {
+    nextSteps.push(
+      anchored(
+        text,
+        { title: 'Strengthen your conclusion', message: r.conclusion.note },
+        r.conclusion.quote,
+      ),
+    );
+  } else {
+    strengths.push(
+      anchored(
+        text,
+        { title: 'A conclusion that lands', message: r.conclusion.note },
+        r.conclusion.quote,
+      ),
+    );
   }
   if (r.nextIdea) nextSteps.push({ title: 'One idea', message: r.nextIdea });
   return {

@@ -15,6 +15,7 @@ import {
   poetryPoints,
   grammarPoints,
   paragraphPoints,
+  essayPoints,
   rubricForActivity,
   rubricPoints,
   rubricScoreAnalyzer,
@@ -30,6 +31,7 @@ import {
   isWritingActivity,
   GRAMMAR_ACTIVITY_TYPES,
   PARAGRAPH_ACTIVITY_TYPES,
+  ESSAY_ACTIVITY_TYPES,
   POETRY_ACTIVITY_TYPES,
   SENSORY_ACTIVITY_TYPES,
   submissionChoices,
@@ -37,6 +39,8 @@ import {
 import {
   dialogue,
   filterWords,
+  essayNotes,
+  essayStructure,
   grammarIssues,
   paragraphNotes,
   paragraphRoles,
@@ -60,6 +64,7 @@ import { povInput, toneInput, toneScope } from '../ai/voice-input.js';
 import { poemInput, poemScope } from '../ai/poem-input.js';
 import { grammarInput } from '../ai/grammar-input.js';
 import { paragraphInput } from '../ai/paragraph-input.js';
+import { essayInput } from '../ai/essay-input.js';
 
 const toJson = (value: unknown): Prisma.InputJsonValue => JSON.parse(JSON.stringify(value));
 const points = (list: FeedbackPoint[]) => FeedbackPointSchema.array().parse(list);
@@ -91,6 +96,8 @@ const SKILL_NAMES: Record<string, string> = {
   punctuation: 'capitals and punctuation',
   sentenceTypes: 'sentence types and variety',
   paragraphs: 'paragraph structure (topic sentence, evidence, explanation, transitions, closing)',
+  essay:
+    'essay structure (hook, thesis, body paragraphs that support it, counterclaim and rebuttal, conclusion)',
 };
 
 /**
@@ -166,6 +173,8 @@ export class FeedbackPipeline {
     const variety = sentenceVariety(text);
     const typed = sentenceTypes(text);
     const roles = paragraphRoles(text);
+    const essayOptions = isWritingActivity(content) ? essayInput(content) : null;
+    const essay = essayStructure(text, { type: essayOptions?.essayType });
     const evidence = [
       `${stats.words} words, ${stats.sentences} sentences, ${stats.paragraphs} paragraphs`,
       `sentence lengths: ${variety.short} short, ${variety.medium} medium, ${variety.long} long`,
@@ -179,6 +188,7 @@ export class FeedbackPipeline {
       `quotes: ${quotes(text).length}, reported speech: ${reportedClauses(text).length}`,
       `sentence types: ${SENTENCE_TYPES.map((t) => `${typed.filter((s) => s.type === t).length} ${t}`).join(', ')}; variety notes (stringy, choppy, too long, same opener): ${varietyNotes(text).length}`,
       `paragraph parts: ${['topic', 'evidence', 'explanation', 'closing'].map((r) => `${roles.filter((s) => s.role === r).length} ${r}`).join(', ')}; transitions: ${roles.filter((s) => s.transition).length}; paragraph notes (no topic sentence, no evidence, unexplained evidence, no closing, no transitions): ${paragraphNotes(text).length}`,
+      `essay parts: ${essay.outline ? 'outline' : 'essay'}; ${essay.paragraphs.filter((p) => p.part === 'body').length} body; thesis ${essay.thesis?.kind ?? 'none'}; counterclaims ${essay.paragraphs.filter((p) => p.counterclaim).length}; essay notes (thesis, hook, body links, counterclaim, conclusion): ${essayNotes(text, { type: essayOptions?.essayType, counterclaim: essayOptions?.counterclaim }).length}`,
     ];
 
     // 3. LLM analyzers for this activity type.
@@ -319,6 +329,21 @@ export class FeedbackPipeline {
           `paragraph: topic ${r.topic.present ? 'clear' : 'missing'}; evidence ${r.evidence.length} (${r.evidence.filter((e) => e.explained).length} explained); transitions ${r.transitions.quotes.length}; closing ${r.closing.present ? 'present' : 'missing'}; ${r.unity.focused ? 'focused' : 'wanders'}`,
         );
         const p = paragraphPoints(text, r);
+        focusStrengths.push(...p.strengths);
+        focusNextSteps.push(...p.nextSteps);
+      } else if (id === 'essay-structure') {
+        const extra = essayInput(content);
+        const outcome = await this.ai.run(LIVE_ANALYZERS[id], { ...ctx, ...extra }, runMeta);
+        if (outcome.status === 'declined') {
+          declined = true;
+          continue;
+        }
+        const r = outcome.result;
+        analyzerOutputs[id] = r;
+        notes.push(
+          `essay: thesis ${r.thesis.kind}; hook ${r.hook.works ? 'works' : 'weak'}; bodies ${r.bodies.length} (${r.bodies.filter((b) => b.supportsThesis).length} support the thesis); counterclaim ${r.counterclaim.present ? (r.counterclaim.rebutted ? 'answered' : 'unanswered') : 'none'}; conclusion ${r.conclusion.present ? `${r.conclusion.restates ? 'restates' : 'no restatement'}, ${r.conclusion.finalThought ? 'final thought' : 'no final thought'}` : 'missing'}`,
+        );
+        const p = essayPoints(text, r);
         focusStrengths.push(...p.strengths);
         focusNextSteps.push(...p.nextSteps);
       } else if (id === 'figurative-language') {
@@ -471,7 +496,8 @@ export class FeedbackPipeline {
     const ownSteps =
       POETRY_ACTIVITY_TYPES.includes(content.type) ||
       GRAMMAR_ACTIVITY_TYPES.includes(content.type) ||
-      PARAGRAPH_ACTIVITY_TYPES.includes(content.type);
+      PARAGRAPH_ACTIVITY_TYPES.includes(content.type) ||
+      ESSAY_ACTIVITY_TYPES.includes(content.type);
     const strengths = dedupe([
       ...focusStrengths.slice(0, 3),
       ...composed.strengths,
