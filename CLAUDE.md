@@ -1,6 +1,7 @@
 # StoryForge — notes for Claude Code
 
 - Design spec: DESIGN.md (source of truth). Update it when a design decision changes.
+- What is left to build: TODO.md (tick items as phases finish).
 - Stack: pnpm + Turborepo, Node 24, TypeScript 6, Next.js 16 (apps/web), NestJS 12 ESM (apps/api; the AI feedback worker is apps/api/src/worker.ts),
   Prisma 7 + PostgreSQL (packages/db), Zod contracts (packages/shared), shared tsconfigs (packages/config).
   Deterministic analyzers + coach report (packages/writing-analysis, no deps; shared depends on it).
