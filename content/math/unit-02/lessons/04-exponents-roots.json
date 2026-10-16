@@ -1,0 +1,105 @@
+{
+  "slug": "math-exponents-roots",
+  "order": 4,
+  "title": "Exponents & Roots",
+  "estMinutes": 35,
+  "focusSkills": ["exponents-roots"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Is $\\sqrt{9 + 16}$ the same as $\\sqrt{9} + \\sqrt{16}$? Is $2^{10} + 2^{10}$ the same as $2^{20}$? Try both.",
+      "placeholder": "The first… The second…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The exponent rules",
+          "body": "$a^m \\cdot a^n = a^{m+n}$, $\\frac{a^m}{a^n} = a^{m-n}$ and $(a^m)^n = a^{mn}$. Also $a^0 = 1$, $a^{-n} = \\frac{1}{a^n}$ and $a^{\\frac{1}{n}} = \\sqrt[n]{a}$. The rules only work with the SAME base, so rewrite numbers as powers of a common base first: $4 = 2^2$, $8 = 2^3$, $9 = 3^2$, $27 = 3^3$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a common base",
+          "problem": "Solve $4^{x} = 8^{3}$.",
+          "steps": [
+            {
+              "text": "Write both sides as powers of $2$: $4^x = (2^2)^x = 2^{2x}$ and $8^3 = (2^3)^3 = 2^9$."
+            },
+            {
+              "text": "Same base, so the exponents are equal: $2x = 9$."
+            },
+            {
+              "text": "So $x = \\frac{9}{2}$.",
+              "try": {
+                "prompt": "What is $x$?",
+                "accepted": ["9/2", "4.5"],
+                "compute": "9/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Simplest radical form",
+          "body": "Take square factors out of a root: $\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}$. Roots multiply ($\\sqrt{a}\\sqrt{b} = \\sqrt{ab}$), and like roots add like terms ($3\\sqrt{2} + 5\\sqrt{2} = 8\\sqrt{2}$). Type a root as 6√2 or 6sqrt(2)."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: add two roots",
+          "problem": "Simplify $\\sqrt{50} + \\sqrt{18}$.",
+          "steps": [
+            {
+              "text": "$50 = 25 \\cdot 2$, so $\\sqrt{50} = 5\\sqrt{2}$.",
+              "try": {
+                "prompt": "Write $\\sqrt{50}$ in simplest radical form.",
+                "accepted": ["5√2"],
+                "form": "radical",
+                "compute": "sqrt(50)"
+              }
+            },
+            {
+              "text": "$18 = 9 \\cdot 2$, so $\\sqrt{18} = 3\\sqrt{2}$."
+            },
+            {
+              "text": "Like roots add: $5\\sqrt{2} + 3\\sqrt{2} = 8\\sqrt{2}$.",
+              "try": {
+                "prompt": "What is $\\sqrt{50} + \\sqrt{18}$?",
+                "accepted": ["8√2"],
+                "form": "radical",
+                "compute": "sqrt(50) + sqrt(18)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: rules that don't exist",
+          "body": "$\\sqrt{a + b} \\neq \\sqrt{a} + \\sqrt{b}$ (try $\\sqrt{9 + 16} = 5$, not $7$) and $(a + b)^2 \\neq a^2 + b^2$. Adding equal powers doesn't add exponents: $2^{10} + 2^{10} = 2 \\cdot 2^{10} = 2^{11}$. And a negative exponent flips a number; it doesn't make it negative: $2^{-3} = \\frac{1}{8}$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m02.exponents-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m02.exponents-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which \"rule that doesn't exist\" have you used before? How will you catch it next time?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

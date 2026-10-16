@@ -1,0 +1,98 @@
+{
+  "slug": "math-ratios-rates",
+  "order": 2,
+  "title": "Ratios, Rates & Proportions",
+  "estMinutes": 35,
+  "focusSkills": ["ratios-rates"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A recipe for $4$ people uses $6$ eggs. How many eggs do you need for $10$ people? What did you multiply or divide by?",
+      "placeholder": "I need… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "A ratio is a count of parts",
+          "body": "If red and blue are in the ratio $3 : 5$, think of $3$ equal parts of red and $5$ equal parts of blue: $8$ parts in all. Find the size of one part, and everything else follows. A ratio says nothing about the total until you know one real amount."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: share by a ratio",
+          "problem": "A bag has red and blue marbles in the ratio $3 : 5$. There are $48$ marbles. How many are blue?",
+          "steps": [
+            {
+              "text": "There are $3 + 5 = 8$ equal parts."
+            },
+            {
+              "text": "One part is $\\frac{48}{8} = 6$ marbles."
+            },
+            {
+              "text": "Blue is $5$ parts: $5 \\times 6 = 30$ marbles. (Red is $3 \\times 6 = 18$, and $18 + 30 = 48$ checks.)",
+              "try": {
+                "prompt": "How many marbles are blue?",
+                "accepted": ["30"],
+                "compute": "48/8*5"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Rates: find the amount for one",
+          "body": "A rate is an amount per one of something: km per hour, pages per minute, dollars per item. To scale a rate problem, first find the amount for ONE (one worker, one minute), then multiply up. Keep the units with every number, and change minutes to hours (or km to m) before you combine them."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: two things change",
+          "problem": "$3$ printers print $120$ pages in $4$ minutes. At the same rate, how many pages do $5$ printers print in $6$ minutes?",
+          "steps": [
+            {
+              "text": "Find the rate for one printer for one minute: $120$ pages shared by $3$ printers over $4$ minutes.",
+              "try": {
+                "prompt": "How many pages does one printer print in one minute?",
+                "accepted": ["10"],
+                "compute": "120/(3*4)"
+              }
+            },
+            {
+              "text": "Now multiply up: $5$ printers for $6$ minutes is $10 \\times 5 \\times 6 = 300$ pages.",
+              "try": {
+                "prompt": "How many pages do $5$ printers print in $6$ minutes?",
+                "accepted": ["300"],
+                "compute": "120/(3*4)*5*6"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: parts of different sizes",
+          "body": "If cats : dogs $= 2 : 3$ and dogs : rabbits $= 4 : 5$, the $3$ and the $4$ are both dogs but count different-sized parts. Make the dogs match first: $2 : 3 = 8 : 12$ and $4 : 5 = 12 : 15$, so cats : dogs : rabbits $= 8 : 12 : 15$. Never just put $2 : 5$ together."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m02.ratios-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m02.ratios-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["In a ratio or rate problem, what will you work out first, and why?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "slug": "math-fractions-percents",
+  "order": 1,
+  "title": "Fractions, Decimals & Percents",
+  "estMinutes": 35,
+  "focusSkills": ["fractions-percents"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A $\\$50$ price goes up $20\\%$, then the new price goes down $20\\%$. Is it back to $\\$50$? Guess first, then work it out.",
+      "placeholder": "My guess… After working it out…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "One number, three ways",
+          "body": "A fraction, a decimal and a percent can name the same number: $\\frac{3}{8} = 0.375 = 37.5\\%$. Percent means \"out of $100$\", so $p\\%$ of $x$ is $\\frac{p}{100} \\times x$. Know the eighths ($\\frac{1}{8} = 0.125$) by heart. A repeating decimal is a fraction too: $0.\\overline{7} = \\frac{7}{9}$ and $0.\\overline{36} = \\frac{36}{99} = \\frac{4}{11}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: up, then down",
+          "problem": "A $\\$50$ price goes up $20\\%$, then the new price goes down $20\\%$. What is the final price?",
+          "steps": [
+            {
+              "text": "Going up $20\\%$ multiplies by $1.2$: $50 \\times 1.2 = 60$."
+            },
+            {
+              "text": "Going down $20\\%$ multiplies by $0.8$, and the $20\\%$ is now of $60$, not of $50$: $60 \\times 0.8 = 48$."
+            },
+            {
+              "text": "The final price is $\\$48$. Together the two changes multiply by $1.2 \\times 0.8 = 0.96$: $4\\%$ less than at the start."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a fraction of what is left",
+          "problem": "Ali spends $\\frac{1}{3}$ of his money on books, then $\\frac{1}{4}$ of what is left on lunch. What fraction of his money does he have now?",
+          "steps": [
+            {
+              "text": "After the books, $\\frac{2}{3}$ of his money is left."
+            },
+            {
+              "text": "Lunch takes $\\frac{1}{4}$ of that $\\frac{2}{3}$, not $\\frac{1}{4}$ of all his money.",
+              "try": {
+                "prompt": "What fraction of all his money goes on lunch?",
+                "accepted": ["1/6"],
+                "form": "fraction",
+                "compute": "1/4*2/3"
+              }
+            },
+            {
+              "text": "He keeps $\\frac{3}{4}$ of the $\\frac{2}{3}$: $\\frac{2}{3} \\times \\frac{3}{4} = \\frac{1}{2}$ of his money.",
+              "try": {
+                "prompt": "What fraction of his money does he have now?",
+                "accepted": ["1/2", "0.5"],
+                "compute": "2/3*3/4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: a percent of which number?",
+          "body": "Every percent is a percent OF something. Up $20\\%$ then down $20\\%$ is not back to the start, because the second $20\\%$ is of a bigger number. And if A is $25\\%$ more than B, then B is $20\\%$ less than A, not $25\\%$: the difference is the same, but it is compared with a different number."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m02.fractions-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m02.fractions-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Before you work out a percent now, what question will you ask yourself first?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

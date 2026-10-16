@@ -1,0 +1,101 @@
+{
+  "slug": "math-averages",
+  "order": 3,
+  "title": "Averages & Weighted Averages",
+  "estMinutes": 35,
+  "focusSkills": ["averages"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A class of $20$ students averages $70$ on a test, and a class of $30$ averages $80$. Is the average of all $50$ students $75$? Why or why not?",
+      "placeholder": "I think… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Work with the sum",
+          "body": "The average is the sum divided by the count, so the sum is the average times the count. Most average problems get easy once you turn every average into a sum: add or take away numbers from the sum, then divide by the new count."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the next test",
+          "problem": "Your average on $4$ tests is $85$. What score do you need on the $5$th test to make your average $87$?",
+          "steps": [
+            {
+              "text": "The $4$ tests add up to $4 \\times 85 = 340$."
+            },
+            {
+              "text": "For an average of $87$ on $5$ tests, they must add up to $5 \\times 87 = 435$."
+            },
+            {
+              "text": "The $5$th test must make up the difference: $435 - 340 = 95$.",
+              "try": {
+                "prompt": "What score do you need?",
+                "accepted": ["95"],
+                "compute": "5*87 - 4*85"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Weighted averages",
+          "body": "When you combine groups of different sizes, don't average the averages. Add up each group's total, then divide by everyone. The combined average lies between the two group averages, closer to the bigger group's."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: two classes",
+          "problem": "A class of $20$ averages $70$ and a class of $30$ averages $80$. What is the average of all $50$ students?",
+          "steps": [
+            {
+              "text": "Totals: $20 \\times 70 = 1400$ and $30 \\times 80 = 2400$."
+            },
+            {
+              "text": "Add the totals for all $50$ students.",
+              "try": {
+                "prompt": "What do all $50$ scores add up to?",
+                "accepted": ["3800"],
+                "compute": "20*70 + 30*80"
+              }
+            },
+            {
+              "text": "Divide by $50$: $\\frac{3800}{50} = 76$. That is closer to $80$, because more students averaged $80$.",
+              "try": {
+                "prompt": "What is the average of all $50$?",
+                "accepted": ["76"],
+                "compute": "(20*70 + 30*80)/50"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: average speed",
+          "body": "Drive somewhere at $30$ km/h and back at $60$ km/h: the average speed is NOT $45$. You spend twice as long at the slower speed. Use total distance divided by total time: for $60$ km each way, that is $\\frac{120}{2 + 1} = 40$ km/h."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m02.averages-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m02.averages-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When will you turn an average into a sum? Give an example from this lesson."],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

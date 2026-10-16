@@ -443,7 +443,8 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | **M0 Math track foundation** ✅ | Track `MATH`, `/math`, KaTeX, SVG figures, `packages/math-check`, the problem format, `PROBLEMS` and `PROBLEM_SET`, the error log, Quill explanations (§2) | A sample problem set renders, checks typed answers exactly and is marked on the server; content:check rejects a `compute` that disagrees with the answer; axe passes |
 | **M0.5 Math practice upgrade** ✅ | Part A (skills, templates, wrong-answer notes, worked examples, figure flags), Part B (answer record, mastery, daily review, sprints, confidence, scratchpad), Part C (Quill nudges, the math card tutor, the trap picker, tone, teacher skills view), Part D (the `MOCK_TEST` engine with skip, flag and the 2-minute rule, the diagnostic test with its 25 problems, checkpoint slots, the danger-zone report, fact sheets, light review, stage labels) (§3) | §3.6 |
 | **M1 Unit 1 Problem Solving & the AMC 10** ✅ | 6 lessons (§4.1), published | Played end to end; content:check verifies every answer and variant |
-| **M2–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
+| **M2 Unit 2 Arithmetic & Number Sense** ✅ | 6 lessons (§4.2), published | Played end to end; content:check verifies every answer and variant |
+| **M3–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
 | **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
 
 ### 4.1 M1 as built (2026-10-16)
@@ -460,3 +461,18 @@ Unit 1 Problem Solving & the AMC 10 is published, with 6 lessons. Every lesson h
 | 6 | ⭐ Unit Check | `m01.review-practice` (4-problem warm-up) | `m01.unit-check`: 8 of 17 problems per try, pass at 100% |
 
 The fact sheet (`facts.json`) covers scoring, guessing, pacing, reading and drawing, working backwards, using the choices, and estimating and eliminating. "Closest to" answers use `compute` with `floor(x + 0.5)` rounding so content:check still verifies them.
+
+### 4.2 M2 as built (2026-10-16)
+
+Unit 2 Arithmetic & Number Sense is published, with 6 lessons in the same shape as Unit 1. No new tools were needed: typed practice uses the existing answer forms (`fraction` for decimal-to-fraction and ratio answers, `radical` for simplest radical form).
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Fractions, Decimals & Percents | `m02.fractions-practice` (sale prices, decimals to fractions, "what percent", up then down, "more than" vs "less than") | `m02.fractions-set` (two markdowns, a percent of a percent, a telescoping product, the price before a rise, a repeating decimal) |
+| 2 | Ratios, Rates & Proportions | `m02.ratios-practice` (sharing by a ratio, km/h to m/min, machines, map scales, joining two ratios) | `m02.ratios-set` |
+| 3 | Averages & Weighted Averages | `m02.averages-practice` (the next test, removing a number, two groups, average speed, the largest of five) | `m02.averages-set` |
+| 4 | Exponents & Roots | `m02.exponents-practice` (common bases, adding equal powers, simplest radical form, negative and fractional exponents) | `m02.exponents-set` |
+| 5 | Clever Arithmetic | `m02.clever-practice` (common factors, near a round number, difference of squares, $(a - b)^2$, a hidden square) | `m02.clever-set` |
+| 6 | ⭐ Unit Check | `m02.review-practice` (5-problem warm-up, one per lesson) | `m02.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+The fact sheet covers all five skills. Templated choice problems list `where` conditions so no two choices can ever have the same value.

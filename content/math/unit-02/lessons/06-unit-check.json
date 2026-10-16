@@ -1,0 +1,63 @@
+{
+  "slug": "math-arithmetic-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Arithmetic & Number Sense",
+  "estMinutes": 40,
+  "focusSkills": [
+    "fractions-percents",
+    "ratios-rates",
+    "averages",
+    "exponents-roots",
+    "clever-arithmetic"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which idea from this unit feels easiest now, and which one still trips you up?",
+      "placeholder": "Easiest… Still tricky…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Percents, ratios and averages: quick review",
+          "body": "$p\\%$ of $x$ is $\\frac{p}{100} \\times x$, and each percent is of a particular number: up $20\\%$ then down $20\\%$ multiplies by $0.96$. A ratio $a : b$ means $a + b$ equal parts: find one part first. For rates, find the amount for one. For averages, turn every average into a sum; combine groups by their totals, never by averaging averages."
+        },
+        {
+          "kind": "definition",
+          "title": "Powers and shortcuts: quick review",
+          "body": "Use a common base: $a^m a^n = a^{m+n}$, $(a^m)^n = a^{mn}$, $a^{-n} = \\frac{1}{a^n}$. Take square factors out of roots: $\\sqrt{72} = 6\\sqrt{2}$. Look for structure: $a^2 - b^2 = (a - b)(a + b)$, common factors, and numbers near a round number."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m02.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m02.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which shortcut from this unit will you look for first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

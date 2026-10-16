@@ -1,0 +1,59 @@
+{
+  "sections": [
+    {
+      "skill": "fractions-percents",
+      "title": "Fractions, decimals & percents",
+      "facts": [
+        "$p\\%$ of $x$ is $\\frac{p}{100} \\times x$. Up $p\\%$ multiplies by $1 + \\frac{p}{100}$; down $p\\%$ multiplies by $1 - \\frac{p}{100}$.",
+        "Up $20\\%$ then down $20\\%$ multiplies by $1.2 \\times 0.8 = 0.96$: not back to the start.",
+        "If A is $25\\%$ more than B, then B is $20\\%$ less than A: the difference is compared with a different number.",
+        "Eighths: $\\frac{1}{8} = 0.125$, $\\frac{3}{8} = 0.375$, $\\frac{5}{8} = 0.625$, $\\frac{7}{8} = 0.875$.",
+        "Repeating decimals: $0.\\overline{a} = \\frac{a}{9}$ and $0.\\overline{ab} = \\frac{ab}{99}$, so $0.\\overline{36} = \\frac{36}{99} = \\frac{4}{11}$.",
+        "\"A fraction of what is left\": multiply what is left. $\\frac{1}{4}$ of the remaining $\\frac{2}{3}$ is $\\frac{1}{6}$."
+      ]
+    },
+    {
+      "skill": "ratios-rates",
+      "title": "Ratios, rates & proportions",
+      "facts": [
+        "A ratio $a : b$ means $a + b$ equal parts. Find one part first: part $= \\frac{\\text{total}}{a + b}$.",
+        "To join $a : b$ and $b : c$, make the $b$ parts match first: $2 : 3$ and $4 : 5$ become $8 : 12 : 15$.",
+        "Rates: find the amount for ONE (one worker, one minute), then multiply up.",
+        "Units: $1$ km $= 1000$ m and $1$ hour $= 60$ minutes, so $60$ km/h is $1000$ m a minute."
+      ]
+    },
+    {
+      "skill": "averages",
+      "title": "Averages",
+      "facts": [
+        "Sum $=$ average $\\times$ count. Turn every average into a sum.",
+        "Combine groups by their totals: $\\frac{m x + k y}{m + k}$, never by averaging the averages.",
+        "Average speed $=$ total distance $\\div$ total time. Same distance at speeds $u$ and $v$: $\\frac{2uv}{u + v}$.",
+        "Raising the average of $n$ numbers by $d$ with one new number needs that number to be the old average plus $(n + 1)d$."
+      ]
+    },
+    {
+      "skill": "exponents-roots",
+      "title": "Exponents & roots",
+      "facts": [
+        "$a^m a^n = a^{m+n}$, $\\frac{a^m}{a^n} = a^{m-n}$, $(a^m)^n = a^{mn}$, $a^0 = 1$.",
+        "$a^{-n} = \\frac{1}{a^n}$ and $\\left(\\frac{p}{q}\\right)^{-n} = \\left(\\frac{q}{p}\\right)^{n}$: flipped, not negative.",
+        "$a^{\\frac{m}{n}} = \\left(\\sqrt[n]{a}\\right)^m$, so $27^{\\frac{2}{3}} = 3^2 = 9$.",
+        "Use a common base: $4 = 2^2$, $8 = 2^3$, $16 = 2^4$, $9 = 3^2$, $27 = 3^3$, $25 = 5^2$, $125 = 5^3$.",
+        "$\\sqrt{a^2 b} = a\\sqrt{b}$ and $\\sqrt{a}\\sqrt{b} = \\sqrt{ab}$, but $\\sqrt{a + b} \\neq \\sqrt{a} + \\sqrt{b}$.",
+        "$2^{10} = 1024$. $2^n \\cdot 5^n = 10^n$: use it to count digits."
+      ]
+    },
+    {
+      "skill": "clever-arithmetic",
+      "title": "Clever arithmetic",
+      "facts": [
+        "$a^2 - b^2 = (a - b)(a + b)$, so $53^2 - 47^2 = 6 \\times 100$.",
+        "$(a + b)^2 = a^2 + 2ab + b^2$ and $(a - b)^2 = a^2 - 2ab + b^2$: $49^2 = 2500 - 100 + 1$.",
+        "Near a round number: $99 \\times 101 = 100^2 - 1$, and $n(n + 2) = (n + 1)^2 - 1$.",
+        "Take out common factors: $17 \\times 23 + 17 \\times 77 = 17 \\times 100$, and $2^{20} + 2^{19} = 2^{19} \\times 3$.",
+        "$(x - 1)(x + 1)(x^2 + 1)(x^4 + 1) = x^8 - 1$: multiply by $(x - 1)$ to start the chain."
+      ]
+    }
+  ]
+}

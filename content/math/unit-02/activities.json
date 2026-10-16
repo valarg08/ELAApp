@@ -1,0 +1,1894 @@
+[
+  {
+    "key": "m02.fractions-practice",
+    "type": "PROBLEMS",
+    "title": "Fractions, decimals and percents",
+    "instructions": "Type each answer and press Check. Ask yourself what each percent is OF before you work it out. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sale-price",
+        "prompt": "A jacket costs $\\$[[c]]$. It is on sale for $[[p]]\\%$ off. What is the sale price, in dollars?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c*(100-p)/100]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[c*p/100]]",
+              "why": "That is the discount, the amount taken off. Take it away from the price."
+            },
+            {
+              "value": "[[c-p]]",
+              "why": "Taking off $[[p]]\\%$ is not the same as taking off $[[p]]$ dollars. Find $[[p]]\\%$ of $\\$[[c]]$ first."
+            }
+          ]
+        },
+        "hints": [
+          "$[[p]]\\%$ of $[[c]]$ is $\\frac{[[p]]}{100} \\times [[c]]$.",
+          "The discount is $\\$[[c*p/100]]$. What is left?"
+        ],
+        "solution": "The discount is $\\frac{[[p]]}{100} \\times [[c]] = [[c*p/100]]$ dollars, so the sale price is $[[c]] - [[c*p/100]] = [[c*(100-p)/100]]$ dollars. Quicker: paying $[[100-p]]\\%$ means $[[c]] \\times [[(100-p)/100|decimal]] = [[c*(100-p)/100]]$.",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "c*(100-p)/100",
+        "template": {
+          "vars": {
+            "c": { "from": 40, "to": 200, "step": 20 },
+            "p": { "choose": [10, 20, 25, 30, 40] }
+          },
+          "where": ["c != 100"]
+        }
+      },
+      {
+        "id": "decimal-to-fraction",
+        "prompt": "Write $[[k/d|decimal]]$ as a common fraction in lowest terms.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k/d]]"],
+          "form": "fraction"
+        },
+        "hints": [
+          "Put the digits over a power of $10$: $[[k/d|decimal]] = \\frac{[[k*10000/d]]}{10000}$.",
+          "Divide the top and bottom by $2$ or $5$ until you can't any more. Knowing $\\frac{1}{8} = 0.125$ and $\\frac{1}{16} = 0.0625$ helps."
+        ],
+        "solution": "$[[k/d|decimal]] = \\frac{[[k*10000/d]]}{10000}$, which simplifies to $[[k/d]]$. Check: $\\frac{1}{[[d]]} = [[1/d|decimal]]$, and $[[k]] \\times [[1/d|decimal]] = [[k/d|decimal]]$.",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "k/d",
+        "template": {
+          "vars": {
+            "d": { "choose": [8, 16] },
+            "k": { "from": 1, "to": 15, "step": 2 }
+          },
+          "where": ["k < d"]
+        }
+      },
+      {
+        "id": "what-percent",
+        "prompt": "$[[a]]$ is what percent of $[[b]]$? Type just the number (for $35\\%$, type 35).",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*b/a]]",
+              "why": "That is $[[b]]$ as a percent of $[[a]]$. \"What percent of $[[b]]$\" means you divide by $[[b]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Write it as a fraction first: $\\frac{[[a]]}{[[b]]}$.",
+          "Multiply the fraction by $100$ to get a percent."
+        ],
+        "solution": "$\\frac{[[a]]}{[[b]]} = [[a/b|decimal]]$, and $[[a/b|decimal]] \\times 100 = [[100*a/b]]$, so $[[a]]$ is $[[100*a/b]]\\%$ of $[[b]]$.",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "100*a/b",
+        "template": {
+          "vars": {
+            "b": { "choose": [20, 25, 40, 50, 80] },
+            "a": { "from": 1, "to": 79 }
+          },
+          "where": ["a < b", "mod(100*a, b) == 0"]
+        }
+      },
+      {
+        "id": "up-then-down",
+        "prompt": "A price of $\\$[[c]]$ goes up $[[p]]\\%$. Then the new price goes down $[[p]]\\%$. What is the final price, in dollars?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c*(100+p)*(100-p)/10000|decimal]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[c]]",
+              "why": "The second change is $[[p]]\\%$ of a bigger price, so it takes off more than the first change added."
+            }
+          ]
+        },
+        "hints": [
+          "Going up $[[p]]\\%$ multiplies by $[[(100+p)/100|decimal]]$. Going down $[[p]]\\%$ multiplies by $[[(100-p)/100|decimal]]$.",
+          "After the rise the price is $\\$[[c*(100+p)/100|decimal]]$."
+        ],
+        "solution": "After the rise: $[[c]] \\times [[(100+p)/100|decimal]] = [[c*(100+p)/100|decimal]]$. After the fall: $[[c*(100+p)/100|decimal]] \\times [[(100-p)/100|decimal]] = [[c*(100+p)*(100-p)/10000|decimal]]$ dollars: less than the start, because the fall is a percent of the bigger price.",
+        "skill": "fractions-percents",
+        "difficulty": 2,
+        "compute": "c*(100+p)*(100-p)/10000",
+        "template": {
+          "vars": {
+            "c": { "choose": [50, 100, 200, 400, 500, 800] },
+            "p": { "choose": [10, 20, 25, 50] }
+          }
+        }
+      },
+      {
+        "id": "more-than-less-than",
+        "prompt": "Ari has $[[p]]\\%$ more cards than Bo. Bo has what percent fewer cards than Ari? Type just the number.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*p/(100+p)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[p]]",
+              "why": "The difference is the same, but now it is compared with Ari's bigger number, so the percent is smaller. Try it with Bo having $100$ cards."
+            }
+          ]
+        },
+        "hints": [
+          "Say Bo has $100$ cards. How many does Ari have?",
+          "Ari has $[[100+p]]$. Bo has $[[p]]$ fewer, out of Ari's $[[100+p]]$."
+        ],
+        "solution": "Say Bo has $100$ cards, so Ari has $[[100+p]]$. Bo has $[[p]]$ fewer, and as a percent of Ari's $[[100+p]]$ that is $\\frac{[[p]]}{[[100+p]]} \\times 100 = [[100*p/(100+p)]]\\%$.",
+        "skill": "fractions-percents",
+        "difficulty": 3,
+        "compute": "100*p/(100+p)",
+        "template": {
+          "vars": {
+            "p": { "choose": [25, 100, 150, 300, 400] }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m02.fractions-set",
+    "type": "PROBLEM_SET",
+    "title": "Fractions and percents challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "two-markdowns",
+        "prompt": "A store marks an $80$-dollar coat down $25\\%$, then takes another $10\\%$ off the sale price. What is the final price, in dollars?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$52$", "$54$", "$56$", "$60$", "$72$"],
+          "correct": "B",
+          "why": {
+            "A": "That takes $35\\%$ off the original price. The second $10\\%$ comes off the sale price, which is smaller.",
+            "D": "That is the price after the first markdown only.",
+            "E": "That is the price after only the $10\\%$."
+          }
+        },
+        "solution": "After $25\\%$ off: $80 \\times 0.75 = 60$. After another $10\\%$ off: $60 \\times 0.9 = 54$ dollars, choice (B).",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "80*0.75*0.9"
+      },
+      {
+        "id": "percent-of-percent",
+        "prompt": "$20\\%$ of $30\\%$ of a number is $12$. What is the number?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$40$", "$120$", "$200$", "$240$", "$600$"],
+          "correct": "C",
+          "why": {
+            "A": "That undoes only the $30\\%$. $12$ is $20\\%$ of $30\\%$ of the number: $6\\%$ of it.",
+            "E": "$20\\%$ of $30\\%$ is $0.2 \\times 0.3 = 0.06$, which is $6\\%$, not $2\\%$."
+          }
+        },
+        "solution": "$20\\%$ of $30\\%$ is $0.2 \\times 0.3 = 0.06$. So $0.06 \\times n = 12$ and $n = \\frac{12}{0.06} = 200$, choice (C). Check: $30\\%$ of $200$ is $60$, and $20\\%$ of $60$ is $12$.",
+        "skill": "fractions-percents",
+        "difficulty": 2,
+        "compute": "12/(0.2*0.3)"
+      },
+      {
+        "id": "telescoping-product",
+        "prompt": "What is $\\left(1 - \\frac{1}{2}\\right)\\left(1 - \\frac{1}{3}\\right)\\left(1 - \\frac{1}{4}\\right) \\cdots \\left(1 - \\frac{1}{10}\\right)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{10}$",
+            "$\\frac{1}{9}$",
+            "$\\frac{1}{5}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{9}{10}$"
+          ],
+          "correct": "A",
+          "why": {
+            "E": "That is only the last factor. Multiply them all: each top cancels the bottom before it.",
+            "B": "Count the factors: they run from $\\frac{1}{2}$ to $\\frac{9}{10}$, so the last bottom is $10$."
+          }
+        },
+        "solution": "Each factor is $\\frac{k-1}{k}$: $\\frac{1}{2} \\cdot \\frac{2}{3} \\cdot \\frac{3}{4} \\cdots \\frac{9}{10}$. Every top cancels the bottom just before it, leaving $\\frac{1}{10}$, choice (A).",
+        "skill": "fractions-percents",
+        "difficulty": 2,
+        "compute": "1/10"
+      },
+      {
+        "id": "price-before-rise",
+        "prompt": "After a $20\\%$ price rise, a book costs $18$ dollars. What was the price before the rise, in dollars?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$14.4$", "$15$", "$15.6$", "$16$", "$21.6$"],
+          "correct": "B",
+          "why": {
+            "A": "That takes $20\\%$ of the NEW price off. The $20\\%$ rise was $20\\%$ of the old price.",
+            "E": "That raises the price again instead of undoing the rise."
+          }
+        },
+        "solution": "The new price is $120\\%$ of the old: $1.2 \\times \\text{old} = 18$, so the old price is $\\frac{18}{1.2} = 15$ dollars, choice (B). Check: $20\\%$ of $15$ is $3$, and $15 + 3 = 18$.",
+        "skill": "fractions-percents",
+        "difficulty": 3,
+        "compute": "18/1.2"
+      },
+      {
+        "id": "repeating-decimal",
+        "prompt": "Which fraction equals the repeating decimal $0.\\overline{36} = 0.363636\\ldots$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{9}{25}$",
+            "$\\frac{4}{11}$",
+            "$\\frac{11}{30}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{2}{5}$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "$\\frac{9}{25} = 0.36$ exactly: it stops. $0.\\overline{36}$ keeps going.",
+            "C": "$\\frac{11}{30} = 0.3666\\ldots$: only the $6$ repeats."
+          }
+        },
+        "solution": "Let $x = 0.\\overline{36}$. Then $100x = 36.\\overline{36}$, and subtracting gives $99x = 36$, so $x = \\frac{36}{99} = \\frac{4}{11}$, choice (B).",
+        "skill": "fractions-percents",
+        "difficulty": 3,
+        "compute": "36/99"
+      }
+    ]
+  },
+  {
+    "key": "m02.ratios-practice",
+    "type": "PROBLEMS",
+    "title": "Ratios and rates",
+    "instructions": "Type each answer and press Check. For ratios, find one part first. For rates, find the amount for one. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "ratio-share",
+        "prompt": "A bag has red and green sweets in the ratio $[[r]] : [[g]]$. There are $[[(r+g)*k]]$ sweets. How many are green?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[g*k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[r*k]]",
+              "why": "That is the number of red sweets. Green is the second number in the ratio."
+            }
+          ]
+        },
+        "hints": [
+          "How many equal parts are there in all?",
+          "There are $[[r+g]]$ parts, so one part is $\\frac{[[(r+g)*k]]}{[[r+g]]} = [[k]]$ sweets."
+        ],
+        "solution": "There are $[[r]] + [[g]] = [[r+g]]$ parts, so one part is $\\frac{[[(r+g)*k]]}{[[r+g]]} = [[k]]$. Green is $[[g]]$ parts: $[[g]] \\times [[k]] = [[g*k]]$ sweets.",
+        "skill": "ratios-rates",
+        "difficulty": 1,
+        "compute": "g*k",
+        "template": {
+          "vars": {
+            "r": { "from": 1, "to": 5 },
+            "g": { "from": 1, "to": 5 },
+            "k": { "from": 2, "to": 12 }
+          },
+          "where": ["r != g", "gcd(r, g) == 1"]
+        }
+      },
+      {
+        "id": "km-per-hour",
+        "prompt": "A car travels at $[[v]]$ km per hour. How many metres does it travel in one minute?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[v*1000/60]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[v*1000]]",
+              "why": "That is metres per HOUR. An hour has $60$ minutes."
+            },
+            {
+              "value": "[[v/60]]",
+              "why": "That is kilometres per minute. The question asks for metres: $1$ km $= 1000$ m."
+            }
+          ]
+        },
+        "hints": [
+          "In one hour it travels $[[v]]$ km $= [[v*1000]]$ m.",
+          "One minute is $\\frac{1}{60}$ of an hour."
+        ],
+        "solution": "In one hour it goes $[[v]]$ km $= [[v*1000]]$ m. One minute is $\\frac{1}{60}$ of an hour, so in one minute it goes $\\frac{[[v*1000]]}{60} = [[v*1000/60]]$ m.",
+        "skill": "ratios-rates",
+        "difficulty": 1,
+        "compute": "v*1000/60",
+        "template": {
+          "vars": {
+            "v": { "choose": [30, 36, 42, 48, 54, 60, 72, 90, 120] }
+          }
+        }
+      },
+      {
+        "id": "machines-boxes",
+        "prompt": "$[[a]]$ machines fill $[[q*a*t]]$ boxes in $[[t]]$ minutes. At the same rate, how many boxes do $[[b]]$ machines fill in $[[s]]$ minutes?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[q*b*s]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[q*t*b]]",
+              "why": "That changes the number of machines but keeps $[[t]]$ minutes. The time changed too."
+            },
+            {
+              "value": "[[q*a*s]]",
+              "why": "That changes the time but keeps $[[a]]$ machines. The number of machines changed too."
+            }
+          ]
+        },
+        "hints": [
+          "First find how many boxes ONE machine fills in ONE minute.",
+          "One machine fills $\\frac{[[q*a*t]]}{[[a]] \\times [[t]]} = [[q]]$ boxes a minute."
+        ],
+        "solution": "One machine fills $\\frac{[[q*a*t]]}{[[a]] \\times [[t]]} = [[q]]$ boxes a minute. So $[[b]]$ machines for $[[s]]$ minutes fill $[[q]] \\times [[b]] \\times [[s]] = [[q*b*s]]$ boxes.",
+        "skill": "ratios-rates",
+        "difficulty": 2,
+        "compute": "q*b*s",
+        "template": {
+          "vars": {
+            "q": { "from": 1, "to": 5 },
+            "a": { "from": 2, "to": 5 },
+            "t": { "from": 2, "to": 6 },
+            "b": { "from": 2, "to": 8 },
+            "s": { "from": 2, "to": 10 }
+          },
+          "where": ["b != a", "s != t", "t*b != a*s"]
+        }
+      },
+      {
+        "id": "map-scale",
+        "prompt": "On a map, $[[c]]$ cm stands for $[[k]]$ km. Two towns are $[[d]]$ cm apart on the map. How many km apart are they really?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[d*k/c]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[d*k]]",
+              "why": "That treats $1$ cm as $[[k]]$ km. Here $[[c]]$ cm stand for $[[k]]$ km."
+            }
+          ]
+        },
+        "hints": [
+          "How many km does $1$ cm stand for?",
+          "$1$ cm stands for $\\frac{[[k]]}{[[c]]}$ km."
+        ],
+        "solution": "$1$ cm stands for $\\frac{[[k]]}{[[c]]}$ km, so $[[d]]$ cm stand for $[[d]] \\times \\frac{[[k]]}{[[c]]} = [[d*k/c]]$ km.",
+        "skill": "ratios-rates",
+        "difficulty": 2,
+        "compute": "d*k/c",
+        "template": {
+          "vars": {
+            "c": { "choose": [2, 4, 5] },
+            "k": { "choose": [5, 10, 15, 25] },
+            "d": { "from": 3, "to": 20 }
+          },
+          "where": ["mod(d*k, c) == 0"]
+        }
+      },
+      {
+        "id": "combine-ratios",
+        "prompt": "In a pet shelter, the ratio of cats to dogs is $2 : 3$ and the ratio of dogs to rabbits is $4 : 5$. What is the ratio of cats to rabbits? Give it as a common fraction $\\frac{\\text{cats}}{\\text{rabbits}}$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["8/15"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "2/5",
+              "why": "The $3$ and the $4$ both count dogs but are different-sized parts. Make the dogs match first."
+            }
+          ]
+        },
+        "hints": [
+          "Make the dogs the same number in both ratios. What number do $3$ and $4$ both go into?",
+          "$2 : 3 = 8 : 12$ and $4 : 5 = 12 : 15$."
+        ],
+        "solution": "Make the dogs match: $2 : 3 = 8 : 12$ and $4 : 5 = 12 : 15$. So cats : dogs : rabbits $= 8 : 12 : 15$, and cats : rabbits $= 8 : 15$, or $\\frac{8}{15}$.",
+        "skill": "ratios-rates",
+        "difficulty": 3,
+        "compute": "2/3*4/5"
+      }
+    ]
+  },
+  {
+    "key": "m02.ratios-set",
+    "type": "PROBLEM_SET",
+    "title": "Ratios and rates challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set.",
+    "problems": [
+      {
+        "id": "boys-girls",
+        "prompt": "In a class the ratio of boys to girls is $4 : 5$. There are $36$ students. How many more girls than boys are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$9$", "$16$", "$20$"],
+          "correct": "A",
+          "why": {
+            "C": "$9$ is the number of parts. Each part is $4$ students.",
+            "D": "That is the number of boys.",
+            "E": "That is the number of girls. The question asks how many more."
+          }
+        },
+        "solution": "There are $4 + 5 = 9$ parts, so one part is $\\frac{36}{9} = 4$ students: $16$ boys and $20$ girls. There are $20 - 16 = 4$ more girls, choice (A): exactly one part.",
+        "skill": "ratios-rates",
+        "difficulty": 1,
+        "compute": "36/9*(5-4)"
+      },
+      {
+        "id": "paint-mix",
+        "prompt": "Green paint is mixed from blue and yellow paint in the ratio $2 : 3$. Jo has $10$ litres of blue and $12$ litres of yellow. What is the most green paint, in litres, she can make?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$18$", "$20$", "$22$", "$25$", "$30$"],
+          "correct": "B",
+          "why": {
+            "C": "That uses all the paint, but $10 : 12$ is not $2 : 3$.",
+            "D": "Using all $10$ litres of blue needs $15$ litres of yellow, and Jo has only $12$."
+          }
+        },
+        "solution": "All $10$ litres of blue would need $15$ litres of yellow: too much. So yellow runs out first. $12$ litres of yellow is $3$ parts of $4$ litres, so she uses $2 \\times 4 = 8$ litres of blue and makes $8 + 12 = 20$ litres, choice (B).",
+        "skill": "ratios-rates",
+        "difficulty": 2,
+        "compute": "12/3*5"
+      },
+      {
+        "id": "painters-rooms",
+        "prompt": "Four painters paint $3$ rooms in $2$ hours. At the same rate, how many hours do $6$ painters take to paint $9$ rooms?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$4.5$", "$6$", "$9$"],
+          "correct": "B",
+          "why": {
+            "D": "That is how long $4$ painters would take. With $6$ painters it goes faster.",
+            "E": "Three times the rooms takes three times as long, but $6$ painters work faster than $4$."
+          }
+        },
+        "solution": "In $2$ hours, $4$ painters do $3$ rooms, so one painter does $\\frac{3}{8}$ of a room an hour. $6$ painters do $6 \\times \\frac{3}{8} = \\frac{9}{4}$ rooms an hour, so $9$ rooms take $9 \\div \\frac{9}{4} = 4$ hours, choice (B).",
+        "skill": "ratios-rates",
+        "difficulty": 2,
+        "compute": "9/(6*3/(4*2))"
+      },
+      {
+        "id": "chain-ratio",
+        "prompt": "$a : b = 3 : 4$ and $b : c = 6 : 7$. What is $\\frac{a}{c}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{3}{7}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{9}{14}$",
+            "$\\frac{6}{7}$",
+            "$\\frac{7}{9}$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "That puts $3$ with $7$, but the two $b$ parts ($4$ and $6$) are different sizes. Make them match first.",
+            "B": "That pairs $3$ with $6$. Make $b$ the same in both ratios first."
+          }
+        },
+        "solution": "Make $b$ match: $3 : 4 = 9 : 12$ and $6 : 7 = 12 : 14$. So $a : b : c = 9 : 12 : 14$ and $\\frac{a}{c} = \\frac{9}{14}$, choice (C). (Or: $\\frac{a}{c} = \\frac{a}{b} \\cdot \\frac{b}{c} = \\frac{3}{4} \\cdot \\frac{6}{7} = \\frac{9}{14}$.)",
+        "skill": "ratios-rates",
+        "difficulty": 3,
+        "compute": "3/4*6/7"
+      },
+      {
+        "id": "party-ratio",
+        "prompt": "At a party the ratio of girls to boys is $3 : 2$. Then $5$ more boys arrive, and the ratio becomes $1 : 1$. How many people are at the party now?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$25$", "$30$", "$35$", "$40$", "$50$"],
+          "correct": "B",
+          "why": {
+            "A": "That is how many were there before the $5$ boys arrived."
+          }
+        },
+        "solution": "Say there were $3k$ girls and $2k$ boys. After $5$ boys arrive, $3k = 2k + 5$, so $k = 5$: $15$ girls and $10 + 5 = 15$ boys. Now there are $30$ people, choice (B).",
+        "skill": "ratios-rates",
+        "difficulty": 3,
+        "compute": "3*5 + 2*5 + 5"
+      }
+    ]
+  },
+  {
+    "key": "m02.averages-practice",
+    "type": "PROBLEMS",
+    "title": "Averages",
+    "instructions": "Type each answer and press Check. Turn each average into a sum first. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "next-test",
+        "prompt": "Your average on $[[n]]$ tests is $[[a]]$. What score do you need on the next test to make your average $[[a+d]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+(n+1)*d]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+d]]",
+              "why": "Scoring the new average on one test can't lift the other $[[n]]$. Work with the sums."
+            },
+            {
+              "value": "[[a+n*d]]",
+              "why": "Close: that lifts the old $[[n]]$ tests, but the new test needs to be $[[d]]$ above $[[a]]$ too."
+            }
+          ]
+        },
+        "hints": [
+          "The $[[n]]$ tests add up to $[[n]] \\times [[a]] = [[n*a]]$.",
+          "For an average of $[[a+d]]$ on $[[n+1]]$ tests, they must add up to $[[(n+1)*(a+d)]]$."
+        ],
+        "solution": "Now: $[[n]] \\times [[a]] = [[n*a]]$. Needed: $[[n+1]] \\times [[a+d]] = [[(n+1)*(a+d)]]$. The next test must be $[[(n+1)*(a+d)]] - [[n*a]] = [[a+(n+1)*d]]$.",
+        "skill": "averages",
+        "difficulty": 1,
+        "compute": "(n+1)*(a+d) - n*a",
+        "template": {
+          "vars": {
+            "n": { "from": 3, "to": 6 },
+            "a": { "from": 70, "to": 85 },
+            "d": { "from": 1, "to": 3 }
+          },
+          "where": ["a + (n+1)*d <= 100"]
+        }
+      },
+      {
+        "id": "remove-one",
+        "prompt": "The average of $[[n]]$ numbers is $[[a]]$. The number $[[x]]$ is removed from the list. What is the average of the numbers left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(n*a-x)/(n-1)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "Removing a number that isn't equal to the average changes the average. Find the sum first."
+            }
+          ]
+        },
+        "hints": [
+          "The $[[n]]$ numbers add up to $[[n]] \\times [[a]] = [[n*a]]$.",
+          "Without $[[x]]$, $[[n-1]]$ numbers add up to $[[n*a-x]]$."
+        ],
+        "solution": "The sum is $[[n]] \\times [[a]] = [[n*a]]$. Without $[[x]]$ it is $[[n*a-x]]$, shared by $[[n-1]]$ numbers: $\\frac{[[n*a-x]]}{[[n-1]]} = [[(n*a-x)/(n-1)]]$.",
+        "skill": "averages",
+        "difficulty": 1,
+        "compute": "(n*a-x)/(n-1)",
+        "template": {
+          "vars": {
+            "n": { "from": 5, "to": 10 },
+            "a": { "from": 10, "to": 30 },
+            "x": { "from": 1, "to": 60 }
+          },
+          "where": ["x != a", "mod(n*a - x, n - 1) == 0"]
+        }
+      },
+      {
+        "id": "two-groups",
+        "prompt": "In a club, $[[m]]$ adults have an average age of $[[x]]$ and $[[k]]$ children have an average age of $[[y]]$. What is the average age of all $[[m+k]]$ members?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(m*x+k*y)/(m+k)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(x+y)/2]]",
+              "why": "That averages the two averages, as if the groups were the same size. Add up each group's total ages."
+            }
+          ]
+        },
+        "hints": [
+          "The adults' ages add up to $[[m]] \\times [[x]] = [[m*x]]$.",
+          "The children's ages add up to $[[k*y]]$. Add the totals and divide by everyone."
+        ],
+        "solution": "Adults: $[[m]] \\times [[x]] = [[m*x]]$. Children: $[[k]] \\times [[y]] = [[k*y]]$. All together: $\\frac{[[m*x]] + [[k*y]]}{[[m+k]]} = \\frac{[[m*x+k*y]]}{[[m+k]]} = [[(m*x+k*y)/(m+k)]]$.",
+        "skill": "averages",
+        "difficulty": 2,
+        "compute": "(m*x+k*y)/(m+k)",
+        "template": {
+          "vars": {
+            "m": { "from": 2, "to": 10 },
+            "k": { "from": 2, "to": 10 },
+            "x": { "from": 30, "to": 50, "step": 2 },
+            "y": { "from": 8, "to": 14 }
+          },
+          "where": ["m != k", "mod(m*x + k*y, m + k) == 0"]
+        }
+      },
+      {
+        "id": "round-trip",
+        "prompt": "Kim drives $[[d]]$ km to a town at $[[u]]$ km/h and drives back the same way at $[[v]]$ km/h. What is her average speed for the whole trip, in km/h?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*u*v/(u+v)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(u+v)/2]]",
+              "why": "That averages the two speeds. She spends longer at the slower speed, so the average is lower. Use total distance over total time."
+            }
+          ]
+        },
+        "hints": [
+          "Average speed is total distance divided by total time.",
+          "The trip there takes $\\frac{[[d]]}{[[u]]}$ hours and the trip back $\\frac{[[d]]}{[[v]]}$ hours."
+        ],
+        "solution": "Total distance: $[[2*d]]$ km. Total time: $\\frac{[[d]]}{[[u]]} + \\frac{[[d]]}{[[v]]} = [[d/u + d/v]]$ hours. Average speed: $[[2*d]] \\div [[d/u + d/v]] = [[2*u*v/(u+v)]]$ km/h.",
+        "skill": "averages",
+        "difficulty": 2,
+        "compute": "2*u*v/(u+v)",
+        "template": {
+          "vars": {
+            "u": { "choose": [20, 30, 40, 45, 60] },
+            "v": { "choose": [30, 60, 90, 120] },
+            "d": { "choose": [60, 120, 180, 360] }
+          },
+          "where": ["u < v", "mod(2*u*v, u + v) == 0"]
+        }
+      },
+      {
+        "id": "largest-of-five",
+        "prompt": "Five different positive whole numbers have an average of $[[a]]$. What is the largest that any one of them can be?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*a-10]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[5*a]]",
+              "why": "The other four must be different positive whole numbers, so they can't all be $0$. The smallest they can be is $1$, $2$, $3$ and $4$."
+            },
+            {
+              "value": "[[5*a-4]]",
+              "why": "The other four must be DIFFERENT, so they can't all be $1$. The smallest they can be is $1$, $2$, $3$ and $4$."
+            }
+          ]
+        },
+        "hints": [
+          "The five numbers add up to $5 \\times [[a]] = [[5*a]]$.",
+          "To make one number as big as possible, make the other four as small as possible."
+        ],
+        "solution": "The sum is $5 \\times [[a]] = [[5*a]]$. The other four are as small as possible when they are $1$, $2$, $3$ and $4$, which add up to $10$. So the largest can be $[[5*a]] - 10 = [[5*a-10]]$.",
+        "skill": "averages",
+        "difficulty": 3,
+        "compute": "5*a-10",
+        "template": {
+          "vars": {
+            "a": { "from": 6, "to": 20 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m02.averages-set",
+    "type": "PROBLEM_SET",
+    "title": "Averages challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set.",
+    "problems": [
+      {
+        "id": "find-x",
+        "prompt": "The average of $x$, $12$ and $20$ is $15$. What is $x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$11$", "$13$", "$15$", "$16$", "$17$"],
+          "correct": "B",
+          "why": {
+            "C": "$15$ is the average, not $x$. The three numbers add up to $3 \\times 15 = 45$."
+          }
+        },
+        "solution": "The three numbers add up to $3 \\times 15 = 45$, so $x = 45 - 12 - 20 = 13$, choice (B).",
+        "skill": "averages",
+        "difficulty": 1,
+        "compute": "3*15 - 12 - 20"
+      },
+      {
+        "id": "class-average",
+        "prompt": "In a class, the $12$ girls averaged $84$ on a test and the $18$ boys averaged $79$. What was the average for the whole class?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$80$", "$81$", "$81.5$", "$82$", "$83$"],
+          "correct": "B",
+          "why": {
+            "C": "That averages the two averages. There are more boys, so the class average is closer to $79$."
+          }
+        },
+        "solution": "Totals: $12 \\times 84 = 1008$ and $18 \\times 79 = 1422$. The class average is $\\frac{1008 + 1422}{30} = \\frac{2430}{30} = 81$, choice (B).",
+        "skill": "averages",
+        "difficulty": 2,
+        "compute": "(12*84 + 18*79)/30"
+      },
+      {
+        "id": "hill-ride",
+        "prompt": "A cyclist rides up a hill at $10$ km/h and back down the same road at $40$ km/h. What is her average speed for the round trip, in km/h?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$20$", "$25$", "$30$", "$32$"],
+          "correct": "A",
+          "why": {
+            "C": "That averages the two speeds. She spends four times as long going up, so the average is much closer to $10$."
+          }
+        },
+        "solution": "Say the road is $40$ km. Up takes $4$ hours and down takes $1$ hour: $80$ km in $5$ hours, or $16$ km/h, choice (A). Any length of road gives the same answer.",
+        "skill": "averages",
+        "difficulty": 2,
+        "compute": "2*10*40/(10+40)"
+      },
+      {
+        "id": "drop-two",
+        "prompt": "The average of $10$ test scores is $82$. When the highest and lowest scores are removed, the other $8$ average $83$. The highest score is $98$. What is the lowest score?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$56$", "$58$", "$60$", "$64$", "$66$"],
+          "correct": "B"
+        },
+        "solution": "All $10$ add up to $820$ and the middle $8$ add up to $8 \\times 83 = 664$. The highest and lowest add up to $820 - 664 = 156$, so the lowest is $156 - 98 = 58$, choice (B).",
+        "skill": "averages",
+        "difficulty": 3,
+        "compute": "10*82 - 8*83 - 98"
+      },
+      {
+        "id": "add-fifty",
+        "prompt": "The average of a list of numbers is $20$. When the number $50$ is added to the list, the average becomes $25$. How many numbers were in the list at first?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$6$", "$10$", "$25$"],
+          "correct": "B",
+          "why": {
+            "C": "That counts the $50$ too. The question asks how many were there at first."
+          }
+        },
+        "solution": "With $n$ numbers the sum is $20n$. Adding $50$: $20n + 50 = 25(n + 1)$, so $25 = 5n$ and $n = 5$, choice (B). Check: $100 + 50 = 150$ and $\\frac{150}{6} = 25$.",
+        "skill": "averages",
+        "difficulty": 3,
+        "compute": "(50-25)/(25-20)"
+      }
+    ]
+  },
+  {
+    "key": "m02.exponents-practice",
+    "type": "PROBLEMS",
+    "title": "Exponents and roots",
+    "instructions": "Type each answer and press Check. Rewrite numbers with a common base, and take square factors out of roots. Type roots like 3√2 or 3sqrt(2). Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "power-of-square",
+        "prompt": "If $[[b*b]]^{[[m]]} = [[b]]^{x}$, what is $x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*m]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[m+2]]",
+              "why": "A power of a power multiplies the exponents: $([[b]]^2)^{[[m]]} = [[b]]^{2 \\times [[m]]}$."
+            },
+            {
+              "value": "[[m]]",
+              "why": "The bases are different: $[[b*b]] = [[b]]^2$. Rewrite the left side as a power of $[[b]]$ first."
+            }
+          ]
+        },
+        "hints": [
+          "Write $[[b*b]]$ as a power of $[[b]]$.",
+          "$[[b*b]] = [[b]]^2$, so $[[b*b]]^{[[m]]} = ([[b]]^2)^{[[m]]}$."
+        ],
+        "solution": "$[[b*b]]^{[[m]]} = ([[b]]^2)^{[[m]]} = [[b]]^{[[2*m]]}$, so $x = [[2*m]]$.",
+        "skill": "exponents-roots",
+        "difficulty": 1,
+        "compute": "2*m",
+        "template": {
+          "vars": {
+            "b": { "choose": [2, 3, 5, 6, 7] },
+            "m": { "from": 3, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "four-equal-powers",
+        "prompt": "$2^{[[n]]} + 2^{[[n]]} + 2^{[[n]]} + 2^{[[n]]} = 2^{x}$. What is $x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n+2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[4*n]]",
+              "why": "Adding doesn't multiply the exponents. Four equal numbers add up to $4$ times one of them, and $4 = 2^2$."
+            },
+            {
+              "value": "[[n+4]]",
+              "why": "Four of them is $4 \\times 2^{[[n]]}$, and $4 = 2^2$, so the exponent goes up by $2$, not $4$."
+            }
+          ]
+        },
+        "hints": [
+          "Four equal numbers add up to $4$ times one of them.",
+          "$4 \\times 2^{[[n]]} = 2^2 \\times 2^{[[n]]}$."
+        ],
+        "solution": "$2^{[[n]]} + 2^{[[n]]} + 2^{[[n]]} + 2^{[[n]]} = 4 \\times 2^{[[n]]} = 2^2 \\times 2^{[[n]]} = 2^{[[n+2]]}$, so $x = [[n+2]]$.",
+        "skill": "exponents-roots",
+        "difficulty": 1,
+        "compute": "n+2",
+        "template": {
+          "vars": {
+            "n": { "from": 5, "to": 30 }
+          }
+        }
+      },
+      {
+        "id": "simplify-root",
+        "prompt": "Write $\\sqrt{[[a*a*b]]}$ in simplest radical form.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]√[[b]]"],
+          "form": "radical"
+        },
+        "hints": [
+          "Look for the biggest square that divides $[[a*a*b]]$.",
+          "$[[a*a*b]] = [[a*a]] \\times [[b]]$, and $[[a*a]]$ is a square."
+        ],
+        "solution": "$[[a*a*b]] = [[a*a]] \\times [[b]]$, so $\\sqrt{[[a*a*b]]} = \\sqrt{[[a*a]]} \\cdot \\sqrt{[[b]]} = [[a]]\\sqrt{[[b]]}$.",
+        "skill": "exponents-roots",
+        "difficulty": 2,
+        "compute": "sqrt(a*a*b)",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 9 },
+            "b": { "choose": [2, 3, 5, 6, 7] }
+          }
+        }
+      },
+      {
+        "id": "negative-exponent",
+        "prompt": "What is $\\left(\\frac{[[p]]}{[[q]]}\\right)^{-2}$? Give a common fraction.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[q*q/(p*p)]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "[[p*p/(q*q)]]",
+              "why": "That is the fraction squared. The minus sign in the exponent also flips it."
+            },
+            {
+              "value": "[[-q*q/(p*p)]]",
+              "why": "A negative exponent flips the fraction; it doesn't make the answer negative."
+            }
+          ]
+        },
+        "hints": ["$x^{-2} = \\frac{1}{x^2}$: flip the fraction, then square it."],
+        "solution": "A negative exponent flips the fraction: $\\left(\\frac{[[p]]}{[[q]]}\\right)^{-2} = \\left(\\frac{[[q]]}{[[p]]}\\right)^{2} = [[q*q/(p*p)]]$.",
+        "skill": "exponents-roots",
+        "difficulty": 2,
+        "compute": "q^2/p^2",
+        "template": {
+          "vars": {
+            "p": { "from": 2, "to": 6 },
+            "q": { "from": 2, "to": 6 }
+          },
+          "where": ["p != q", "gcd(p, q) == 1"]
+        }
+      },
+      {
+        "id": "two-thirds-power",
+        "prompt": "What is $[[c]]^{\\frac{2}{3}}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k*k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[k]]",
+              "why": "That is the cube root, $[[c]]^{\\frac{1}{3}}$. Now square it."
+            },
+            {
+              "value": "[[2*c/3]]",
+              "why": "A fractional exponent is not multiplication: $[[c]]^{\\frac{2}{3}}$ is the cube root of $[[c]]$, squared."
+            }
+          ]
+        },
+        "hints": ["$x^{\\frac{2}{3}} = \\left(\\sqrt[3]{x}\\right)^2$.", "$[[c]] = [[k]]^3$."],
+        "solution": "$[[c]] = [[k]]^3$, so $[[c]]^{\\frac{2}{3}} = \\left([[k]]^3\\right)^{\\frac{2}{3}} = [[k]]^2 = [[k*k]]$.",
+        "skill": "exponents-roots",
+        "difficulty": 3,
+        "compute": "k^2",
+        "template": {
+          "vars": {
+            "k": { "from": 2, "to": 10 },
+            "c": { "let": "k^3" }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m02.exponents-set",
+    "type": "PROBLEM_SET",
+    "title": "Exponents and roots challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set.",
+    "problems": [
+      {
+        "id": "power-fraction",
+        "prompt": "What is $\\frac{2^{10} \\cdot 2^{5}}{2^{12}}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$4$", "$8$", "$16$", "$64$"],
+          "correct": "C",
+          "why": {
+            "D": "Check the exponent: $10 + 5 - 12 = 3$, and $2^3 = 8$."
+          }
+        },
+        "solution": "$\\frac{2^{10} \\cdot 2^5}{2^{12}} = 2^{10 + 5 - 12} = 2^3 = 8$, choice (C).",
+        "skill": "exponents-roots",
+        "difficulty": 1,
+        "compute": "2^(10+5-12)"
+      },
+      {
+        "id": "nine-and-twenty-seven",
+        "prompt": "If $9^{x} = 27^{4}$, what is $x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$6$", "$8$", "$12$"],
+          "correct": "C",
+          "why": {
+            "E": "$27^4 = 3^{12}$, but the left side is $9^x = 3^{2x}$, so $2x = 12$.",
+            "B": "The bases are different: write both as powers of $3$ first."
+          }
+        },
+        "solution": "$9^x = 3^{2x}$ and $27^4 = 3^{12}$. So $2x = 12$ and $x = 6$, choice (C).",
+        "skill": "exponents-roots",
+        "difficulty": 2,
+        "compute": "6"
+      },
+      {
+        "id": "three-roots",
+        "prompt": "What is $\\sqrt{12} + \\sqrt{27} + \\sqrt{75}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\sqrt{114}$", "$6\\sqrt{3}$", "$10\\sqrt{3}$", "$15\\sqrt{3}$", "$30$"],
+          "correct": "C",
+          "why": {
+            "A": "Roots don't add like that: $\\sqrt{a} + \\sqrt{b} \\neq \\sqrt{a + b}$. Simplify each root first."
+          }
+        },
+        "solution": "$\\sqrt{12} = 2\\sqrt{3}$, $\\sqrt{27} = 3\\sqrt{3}$ and $\\sqrt{75} = 5\\sqrt{3}$. Like roots add: $2\\sqrt{3} + 3\\sqrt{3} + 5\\sqrt{3} = 10\\sqrt{3}$, choice (C).",
+        "skill": "exponents-roots",
+        "difficulty": 2,
+        "compute": "sqrt(12) + sqrt(27) + sqrt(75)"
+      },
+      {
+        "id": "largest-power",
+        "prompt": "Which of these is the largest?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2^{50}$", "$3^{40}$", "$5^{30}$", "$6^{20}$", "$7^{10}$"],
+          "correct": "C",
+          "why": {
+            "B": "Give them all the exponent $10$: $3^{40} = 81^{10}$, but $5^{30} = 125^{10}$.",
+            "A": "The biggest exponent doesn't decide it: $2^{50} = 32^{10}$ is small next to $5^{30} = 125^{10}$."
+          }
+        },
+        "solution": "Give every power the exponent $10$: $2^{50} = 32^{10}$, $3^{40} = 81^{10}$, $5^{30} = 125^{10}$, $6^{20} = 36^{10}$ and $7^{10}$. The biggest base is $125$, so $5^{30}$ is largest, choice (C).",
+        "skill": "exponents-roots",
+        "difficulty": 3,
+        "compute": "5^30"
+      },
+      {
+        "id": "count-digits",
+        "prompt": "How many digits does $4^{8} \\cdot 5^{18}$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$17$", "$18$", "$19$", "$26$"],
+          "correct": "C",
+          "why": {
+            "A": "That counts only the zeros of $10^{16}$. There are two more digits in front: $25$.",
+            "E": "You can't add the exponents of $4$ and $5$: the bases are different."
+          }
+        },
+        "solution": "$4^8 = 2^{16}$, so $4^8 \\cdot 5^{18} = 2^{16} \\cdot 5^{16} \\cdot 5^2 = 10^{16} \\cdot 25$. That is $25$ followed by $16$ zeros: $18$ digits, choice (C).",
+        "skill": "exponents-roots",
+        "difficulty": 3,
+        "compute": "16 + 2"
+      }
+    ]
+  },
+  {
+    "key": "m02.clever-practice",
+    "type": "PROBLEMS",
+    "title": "Clever arithmetic",
+    "instructions": "Type each answer and press Check. Don't multiply it all out: look for a common factor, a round number or a difference of squares. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "factor-out",
+        "prompt": "What is $[[a]] \\times [[b]] + [[a]] \\times [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Both products have the factor $[[a]]$.",
+          "$[[a]] \\times [[b]] + [[a]] \\times [[c]] = [[a]] \\times ([[b]] + [[c]])$."
+        ],
+        "solution": "Take out the common factor: $[[a]] \\times ([[b]] + [[c]]) = [[a]] \\times 100 = [[100*a]]$.",
+        "skill": "clever-arithmetic",
+        "difficulty": 1,
+        "compute": "a*b + a*c",
+        "template": {
+          "vars": {
+            "a": { "from": 11, "to": 49 },
+            "b": { "from": 13, "to": 87 },
+            "c": { "let": "100 - b" }
+          }
+        }
+      },
+      {
+        "id": "near-hundred",
+        "prompt": "What is $[[100-d]] \\times [[100+d]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10000-d*d]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "10000",
+              "why": "That is $100 \\times 100$. The difference of squares takes away $[[d]]^2 = [[d*d]]$."
+            }
+          ]
+        },
+        "hints": [
+          "$[[100-d]] = 100 - [[d]]$ and $[[100+d]] = 100 + [[d]]$.",
+          "$(a - b)(a + b) = a^2 - b^2$."
+        ],
+        "solution": "$(100 - [[d]])(100 + [[d]]) = 100^2 - [[d]]^2 = 10000 - [[d*d]] = [[10000-d*d]]$.",
+        "skill": "clever-arithmetic",
+        "difficulty": 1,
+        "compute": "(100-d)*(100+d)",
+        "template": {
+          "vars": {
+            "d": { "from": 1, "to": 12 }
+          }
+        }
+      },
+      {
+        "id": "difference-of-squares",
+        "prompt": "What is $[[m+d]]^2 - [[m-d]]^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*m*d]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[4*d*d]]",
+              "why": "$a^2 - b^2$ is not $(a - b)^2$. It is $(a - b)(a + b)$."
+            }
+          ]
+        },
+        "hints": ["Use $a^2 - b^2 = (a - b)(a + b)$.", "$a - b = [[2*d]]$ and $a + b = [[2*m]]$."],
+        "solution": "$[[m+d]]^2 - [[m-d]]^2 = ([[m+d]] - [[m-d]])([[m+d]] + [[m-d]]) = [[2*d]] \\times [[2*m]] = [[4*m*d]]$.",
+        "skill": "clever-arithmetic",
+        "difficulty": 2,
+        "compute": "(m+d)^2 - (m-d)^2",
+        "template": {
+          "vars": {
+            "m": { "choose": [50, 60, 70, 80, 100, 150, 200] },
+            "d": { "from": 1, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "square-near-round",
+        "prompt": "Work out $[[r-k]]^2$ in your head by writing it as $([[r]] - [[k]])^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(r-k)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[r*r - k*k]]",
+              "why": "$(a - b)^2 = a^2 - 2ab + b^2$. Don't forget the middle term $-2ab$."
+            },
+            {
+              "value": "[[r*r + k*k]]",
+              "why": "$(a - b)^2 = a^2 - 2ab + b^2$: you need the middle term $-2 \\times [[r]] \\times [[k]]$ too."
+            }
+          ]
+        },
+        "hints": [
+          "$(a - b)^2 = a^2 - 2ab + b^2$.",
+          "$[[r]]^2 = [[r*r]]$ and $2 \\times [[r]] \\times [[k]] = [[2*r*k]]$."
+        ],
+        "solution": "$([[r]] - [[k]])^2 = [[r*r]] - [[2*r*k]] + [[k*k]] = [[(r-k)^2]]$.",
+        "skill": "clever-arithmetic",
+        "difficulty": 2,
+        "compute": "(r-k)^2",
+        "template": {
+          "vars": {
+            "r": { "choose": [50, 100, 200] },
+            "k": { "from": 1, "to": 4 }
+          }
+        }
+      },
+      {
+        "id": "square-hiding",
+        "prompt": "What is $\\frac{[[n]] \\times [[n+2]] + 1}{[[n+1]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n+1]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Write the two numbers on top as $[[n+1]] - 1$ and $[[n+1]] + 1$.",
+          "$([[n+1]] - 1)([[n+1]] + 1) = [[n+1]]^2 - 1$."
+        ],
+        "solution": "$[[n]] \\times [[n+2]] = ([[n+1]] - 1)([[n+1]] + 1) = [[n+1]]^2 - 1$. So the top is $[[n+1]]^2$, and $\\frac{[[n+1]]^2}{[[n+1]]} = [[n+1]]$.",
+        "skill": "clever-arithmetic",
+        "difficulty": 3,
+        "compute": "(n*(n+2) + 1)/(n+1)",
+        "template": {
+          "vars": {
+            "n": { "from": 10, "to": 99 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m02.clever-set",
+    "type": "PROBLEM_SET",
+    "title": "Clever arithmetic challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. Look for the shortcut before you calculate. You can leave a problem blank. Your answers are marked when you hand in the set.",
+    "problems": [
+      {
+        "id": "common-factor",
+        "prompt": "What is $37 \\times 64 + 37 \\times 36$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$370$", "$3600$", "$3700$", "$3737$", "$6400$"],
+          "correct": "C"
+        },
+        "solution": "Take out the $37$: $37 \\times (64 + 36) = 37 \\times 100 = 3700$, choice (C).",
+        "skill": "clever-arithmetic",
+        "difficulty": 1,
+        "compute": "37*64 + 37*36"
+      },
+      {
+        "id": "squares-over-fifty",
+        "prompt": "What is $\\frac{75^2 - 25^2}{50}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$50$", "$75$", "$100$", "$125$", "$150$"],
+          "correct": "C",
+          "why": {
+            "A": "That uses $(75 - 25)^2$. But $a^2 - b^2 = (a - b)(a + b)$, not $(a - b)^2$."
+          }
+        },
+        "solution": "$75^2 - 25^2 = (75 - 25)(75 + 25) = 50 \\times 100$, so the fraction is $\\frac{50 \\times 100}{50} = 100$, choice (C).",
+        "skill": "clever-arithmetic",
+        "difficulty": 2,
+        "compute": "(75^2 - 25^2)/50"
+      },
+      {
+        "id": "almost-square",
+        "prompt": "What is $1001 \\times 999 - 1000^2$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-1000$", "$-1$", "$0$", "$1$", "$1999$"],
+          "correct": "B",
+          "why": {
+            "C": "$1001 \\times 999$ is close to $1000^2$, but not equal: it is $1000^2 - 1$.",
+            "D": "$1001 \\times 999 = 1000^2 - 1$ is a little LESS than $1000^2$."
+          }
+        },
+        "solution": "$1001 \\times 999 = (1000 + 1)(1000 - 1) = 1000^2 - 1$. So the answer is $1000^2 - 1 - 1000^2 = -1$, choice (B).",
+        "skill": "clever-arithmetic",
+        "difficulty": 2,
+        "compute": "1001*999 - 1000^2"
+      },
+      {
+        "id": "factor-powers",
+        "prompt": "What is $\\frac{2^{20} + 2^{19}}{2^{19} - 2^{18}}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$6$", "$8$"],
+          "correct": "D",
+          "why": {
+            "B": "Check the top: $2^{20} + 2^{19} = 2^{18}(4 + 2)$, not $2^{18}(2 + 1)$."
+          }
+        },
+        "solution": "Take out $2^{18}$ from the top and bottom: $\\frac{2^{18}(2^2 + 2)}{2^{18}(2 - 1)} = \\frac{6}{1} = 6$, choice (D).",
+        "skill": "clever-arithmetic",
+        "difficulty": 3,
+        "compute": "(2^20 + 2^19)/(2^19 - 2^18)"
+      },
+      {
+        "id": "doubling-chain",
+        "prompt": "What is $(2 + 1)(2^2 + 1)(2^4 + 1)(2^8 + 1)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$2^{15} - 1$",
+            "$2^{15} + 1$",
+            "$2^{16} - 1$",
+            "$2^{16} + 1$",
+            "$2^{32} - 1$"
+          ],
+          "correct": "C",
+          "why": {
+            "D": "Multiply by $(2 - 1)$ and use $(a - 1)(a + 1) = a^2 - 1$ again and again: the sign is a minus.",
+            "E": "Each step squares the power of $2$: $2^2$, then $2^4$, $2^8$, $2^{16}$. There are only four brackets."
+          }
+        },
+        "solution": "Multiply by $(2 - 1) = 1$, which changes nothing. Then $(2 - 1)(2 + 1) = 2^2 - 1$, $(2^2 - 1)(2^2 + 1) = 2^4 - 1$, $(2^4 - 1)(2^4 + 1) = 2^8 - 1$ and $(2^8 - 1)(2^8 + 1) = 2^{16} - 1$, choice (C).",
+        "skill": "clever-arithmetic",
+        "difficulty": 4,
+        "compute": "(2+1)*(2^2+1)*(2^4+1)*(2^8+1)"
+      }
+    ]
+  },
+  {
+    "key": "m02.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "money-saved",
+        "prompt": "A game costs $\\$[[c]]$ and is $[[p]]\\%$ off. How many dollars do you save?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c*p/100]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[c*(100-p)/100]]",
+              "why": "That is the sale price. The question asks how much you save."
+            }
+          ]
+        },
+        "hints": ["$[[p]]\\%$ of $[[c]]$ is $\\frac{[[p]]}{100} \\times [[c]]$."],
+        "solution": "You save $[[p]]\\%$ of $\\$[[c]]$: $\\frac{[[p]]}{100} \\times [[c]] = [[c*p/100]]$ dollars.",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "c*p/100",
+        "template": {
+          "vars": {
+            "c": { "from": 20, "to": 100, "step": 20 },
+            "p": { "choose": [10, 15, 25, 30, 40, 45, 60, 70] }
+          }
+        }
+      },
+      {
+        "id": "larger-share",
+        "prompt": "Share $[[k*(a+b)]]$ in the ratio $[[a]] : [[b]]$. What is the larger share?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b*k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a*k]]",
+              "why": "That is the smaller share."
+            }
+          ]
+        },
+        "hints": ["There are $[[a+b]]$ equal parts. How big is one part?"],
+        "solution": "There are $[[a+b]]$ parts, so one part is $\\frac{[[k*(a+b)]]}{[[a+b]]} = [[k]]$. The larger share is $[[b]]$ parts: $[[b*k]]$.",
+        "skill": "ratios-rates",
+        "difficulty": 1,
+        "compute": "b*k",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 4 },
+            "b": { "from": 2, "to": 7 },
+            "k": { "from": 2, "to": 10 }
+          },
+          "where": ["a < b", "gcd(a, b) == 1"]
+        }
+      },
+      {
+        "id": "fourth-number",
+        "prompt": "Four numbers have an average of $[[a]]$. Three of them are $[[x]]$, $[[y]]$ and $[[z]]$. What is the fourth?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*a-x-y-z]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "The fourth number is whatever makes the four add up to $4 \\times [[a]] = [[4*a]]$."
+            }
+          ]
+        },
+        "hints": ["The four numbers add up to $4 \\times [[a]] = [[4*a]]$."],
+        "solution": "The four add up to $4 \\times [[a]] = [[4*a]]$, so the fourth is $[[4*a]] - [[x]] - [[y]] - [[z]] = [[4*a-x-y-z]]$.",
+        "skill": "averages",
+        "difficulty": 1,
+        "compute": "4*a - x - y - z",
+        "template": {
+          "vars": {
+            "a": { "from": 12, "to": 25 },
+            "x": { "from": 5, "to": 15 },
+            "y": { "from": 8, "to": 18, "step": 2 },
+            "z": { "choose": [20, 24, 30] }
+          },
+          "where": ["4*a - x - y - z > 0", "3*a != x + y + z"]
+        }
+      },
+      {
+        "id": "eight-to-two",
+        "prompt": "$8^{[[n]]} = 2^{x}$. What is $x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[3*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n+3]]",
+              "why": "A power of a power multiplies the exponents: $8^{[[n]]} = (2^3)^{[[n]]} = 2^{3 \\times [[n]]}$."
+            },
+            {
+              "value": "[[4*n]]",
+              "why": "$8 = 2^3$, not $2^4$."
+            }
+          ]
+        },
+        "hints": ["Write $8$ as a power of $2$."],
+        "solution": "$8 = 2^3$, so $8^{[[n]]} = (2^3)^{[[n]]} = 2^{[[3*n]]}$ and $x = [[3*n]]$.",
+        "skill": "exponents-roots",
+        "difficulty": 1,
+        "compute": "3*n",
+        "template": {
+          "vars": {
+            "n": { "from": 2, "to": 15 }
+          }
+        }
+      },
+      {
+        "id": "next-square",
+        "prompt": "What is $[[m]]^2 - [[m-1]]^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*m-1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "$a^2 - b^2 = (a - b)(a + b)$, not $(a - b)^2$."
+            }
+          ]
+        },
+        "hints": ["Use $a^2 - b^2 = (a - b)(a + b)$."],
+        "solution": "$[[m]]^2 - [[m-1]]^2 = ([[m]] - [[m-1]])([[m]] + [[m-1]]) = 1 \\times [[2*m-1]] = [[2*m-1]]$.",
+        "skill": "clever-arithmetic",
+        "difficulty": 1,
+        "compute": "m^2 - (m-1)^2",
+        "template": {
+          "vars": {
+            "m": { "from": 20, "to": 99 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m02.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 2 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-sale",
+        "prompt": "A bike costs $[[c]]$ dollars and is on sale for $[[p]]\\%$ off. What is the sale price, in dollars?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[c*p/100]]$",
+            "$[[c*(100-p)/100]]$",
+            "$[[c-p]]$",
+            "$[[c*(100+p)/100]]$",
+            "$[[c]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "That is the discount, not the sale price.",
+            "C": "Taking $[[p]]\\%$ off is not the same as taking off $[[p]]$ dollars.",
+            "D": "That adds $[[p]]\\%$ instead of taking it off."
+          }
+        },
+        "solution": "You pay $[[100-p]]\\%$ of the price: $[[c]] \\times \\frac{[[100-p]]}{100} = [[c*(100-p)/100]]$ dollars, choice (B).",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "c*(100-p)/100",
+        "template": {
+          "vars": {
+            "c": { "choose": [120, 160, 180, 240, 300, 360] },
+            "p": { "choose": [10, 20, 25, 30, 40] }
+          }
+        }
+      },
+      {
+        "id": "check-price-before",
+        "prompt": "After a $[[p]]\\%$ discount, a game costs $[[s]]$ dollars. What was the price before the discount, in dollars?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[s*(100+p)/100|decimal]]$",
+            "$[[o]]$",
+            "$[[s+p]]$",
+            "$[[o+10]]$",
+            "$[[o+20]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "The discount was $[[p]]\\%$ of the OLD price. Adding $[[p]]\\%$ of the sale price back is too little.",
+            "C": "A $[[p]]\\%$ discount is not $[[p]]$ dollars off."
+          }
+        },
+        "solution": "The game now costs $[[100-p]]\\%$ of the old price, so the old price is $\\frac{[[s]]}{[[(100-p)/100|decimal]]} = [[o]]$ dollars, choice (B). Check: $[[p]]\\%$ of $[[o]]$ is $[[o*p/100]]$, and $[[o]] - [[o*p/100]] = [[s]]$.",
+        "skill": "fractions-percents",
+        "difficulty": 2,
+        "compute": "s*100/(100-p)",
+        "template": {
+          "vars": {
+            "o": { "choose": [40, 60, 80, 120, 160, 200] },
+            "p": { "choose": [10, 20, 25, 40] },
+            "s": { "let": "o*(100-p)/100" }
+          },
+          "where": ["s + p != o + 10", "s + p != o + 20", "s != 100"]
+        }
+      },
+      {
+        "id": "check-money-left",
+        "prompt": "Eva spends $\\frac{1}{4}$ of her money on a book and then $\\frac{2}{3}$ of what is left on a jacket. She has $12$ dollars left. How many dollars did she start with?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$36$", "$48$", "$60$", "$72$", "$144$"],
+          "correct": "B",
+          "why": {
+            "A": "That is what she had after the book, before the jacket.",
+            "C": "The jacket took $\\frac{2}{3}$ of what was LEFT, not $\\frac{2}{3}$ of all her money."
+          }
+        },
+        "solution": "After the book she has $\\frac{3}{4}$ of her money. The jacket takes $\\frac{2}{3}$ of that, leaving $\\frac{1}{3} \\times \\frac{3}{4} = \\frac{1}{4}$ of her money. So $\\frac{1}{4}$ of it is $12$, and she started with $48$ dollars, choice (B).",
+        "skill": "fractions-percents",
+        "difficulty": 2,
+        "compute": "12*4"
+      },
+      {
+        "id": "check-repeating",
+        "prompt": "What is $0.\\overline{12} + 0.\\overline{3}$, written as a fraction?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{2}{11}$",
+            "$\\frac{5}{11}$",
+            "$\\frac{3}{20}$",
+            "$\\frac{9}{20}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correct": "B",
+          "why": {
+            "D": "$\\frac{9}{20} = 0.45$ exactly, but the sum is $0.4545\\ldots$, which keeps repeating."
+          }
+        },
+        "solution": "$0.\\overline{12} = \\frac{12}{99}$ and $0.\\overline{3} = \\frac{3}{9} = \\frac{33}{99}$. The sum is $\\frac{45}{99} = \\frac{5}{11}$, choice (B).",
+        "skill": "fractions-percents",
+        "difficulty": 3,
+        "compute": "12/99 + 3/9"
+      },
+      {
+        "id": "check-ratio-difference",
+        "prompt": "Red and blue counters are in the ratio $[[r]] : [[b]]$. There are $[[(r+b)*k]]$ counters. How many more blue counters are there than red?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[r*k]]$", "$[[(b-r)*k]]$", "$[[b*k]]$", "$[[b-r]]$", "$[[(r+b)*k]]$"],
+          "correct": "B",
+          "why": {
+            "A": "That is the number of red counters.",
+            "C": "That is the number of blue counters. The question asks how many more.",
+            "D": "That is the difference in parts. Each part is $[[k]]$ counters.",
+            "E": "That is all the counters."
+          }
+        },
+        "solution": "There are $[[r+b]]$ parts, so one part is $\\frac{[[(r+b)*k]]}{[[r+b]]} = [[k]]$. Blue has $[[b-r]]$ more parts than red: $[[b-r]] \\times [[k]] = [[(b-r)*k]]$ more counters, choice (B).",
+        "skill": "ratios-rates",
+        "difficulty": 1,
+        "compute": "(b-r)*k",
+        "template": {
+          "vars": {
+            "r": { "from": 2, "to": 5 },
+            "b": { "from": 3, "to": 9 },
+            "k": { "from": 2, "to": 8 }
+          },
+          "where": ["r < b", "gcd(r, b) == 1", "b != 2*r", "r*k != b - r"]
+        }
+      },
+      {
+        "id": "check-machines",
+        "prompt": "$[[a]]$ machines make $[[q*a*t]]$ parts in $[[t]]$ hours. At the same rate, how many parts do $[[b]]$ machines make in $[[s]]$ hours?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[q*t*b]]$",
+            "$[[q*b*s]]$",
+            "$[[q*a*s]]$",
+            "$[[2*q*b*s]]$",
+            "$[[q*s*(b+1)]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "That changes the number of machines but not the hours.",
+            "C": "That changes the hours but not the number of machines."
+          }
+        },
+        "solution": "One machine makes $\\frac{[[q*a*t]]}{[[a]] \\times [[t]]} = [[q]]$ parts an hour. So $[[b]]$ machines in $[[s]]$ hours make $[[q]] \\times [[b]] \\times [[s]] = [[q*b*s]]$ parts, choice (B).",
+        "skill": "ratios-rates",
+        "difficulty": 2,
+        "compute": "q*b*s",
+        "template": {
+          "vars": {
+            "q": { "from": 2, "to": 6 },
+            "a": { "from": 2, "to": 6 },
+            "t": { "from": 2, "to": 6 },
+            "b": { "from": 2, "to": 9 },
+            "s": { "from": 2, "to": 9 }
+          },
+          "where": [
+            "a != b",
+            "t != s",
+            "t != 2*s",
+            "a != 2*b",
+            "t*b != s*(b+1)",
+            "a != b + 1",
+            "t*b != a*s"
+          ]
+        }
+      },
+      {
+        "id": "check-chain-ratio",
+        "prompt": "$x : y = 2 : 5$ and $y : z = 3 : 4$. What is $\\frac{x}{z}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{3}{10}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{8}{15}$"
+          ],
+          "correct": "A",
+          "why": {
+            "D": "That pairs $2$ with $4$, but the two $y$ parts ($5$ and $3$) are different sizes. Make them match first.",
+            "E": "That multiplies the wrong way: $\\frac{x}{z} = \\frac{x}{y} \\cdot \\frac{y}{z}$."
+          }
+        },
+        "solution": "$\\frac{x}{z} = \\frac{x}{y} \\cdot \\frac{y}{z} = \\frac{2}{5} \\cdot \\frac{3}{4} = \\frac{6}{20} = \\frac{3}{10}$, choice (A). (Or make $y$ match: $6 : 15$ and $15 : 20$, so $x : z = 6 : 20$.)",
+        "skill": "ratios-rates",
+        "difficulty": 2,
+        "compute": "2/5*3/4"
+      },
+      {
+        "id": "check-marbles-out",
+        "prompt": "A jar holds red and green marbles in the ratio $5 : 3$. After $8$ red marbles are taken out, the ratio is $1 : 1$. How many marbles are in the jar now?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$24$", "$32$", "$40$", "$48$"],
+          "correct": "B",
+          "why": {
+            "C": "That is how many there were before the red marbles were taken out."
+          }
+        },
+        "solution": "Say there were $5k$ red and $3k$ green. Then $5k - 8 = 3k$, so $k = 4$: $20$ red and $12$ green. Now there are $12$ red and $12$ green, $24$ in all, choice (B).",
+        "skill": "ratios-rates",
+        "difficulty": 3,
+        "compute": "2*3*4"
+      },
+      {
+        "id": "check-next-test",
+        "prompt": "Ana's average on $[[n]]$ tests is $[[a]]$. What score on the next test makes her average $[[a+d]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[a+d]]$",
+            "$[[a+2*d]]$",
+            "$[[a+n*d]]$",
+            "$[[a+(n+1)*d]]$",
+            "$[[a+(n+2)*d]]$"
+          ],
+          "correct": "D",
+          "why": {
+            "A": "Scoring the new average on one test can't lift the other tests.",
+            "C": "Close: that lifts the old tests, but the new test needs to be $[[d]]$ above $[[a]]$ too."
+          }
+        },
+        "solution": "Now the tests add up to $[[n*a]]$. For an average of $[[a+d]]$ on $[[n+1]]$ tests they must add up to $[[(n+1)*(a+d)]]$. So she needs $[[(n+1)*(a+d)]] - [[n*a]] = [[a+(n+1)*d]]$, choice (D).",
+        "skill": "averages",
+        "difficulty": 1,
+        "compute": "(n+1)*(a+d) - n*a",
+        "template": {
+          "vars": {
+            "n": { "from": 3, "to": 6 },
+            "a": { "from": 70, "to": 86 },
+            "d": { "from": 1, "to": 3 }
+          },
+          "where": ["a + (n+2)*d <= 100"]
+        }
+      },
+      {
+        "id": "check-weighted",
+        "prompt": "$[[m]]$ students in one class average $[[x]]$ on a test, and $[[k]]$ students in another class average $[[y]]$. What is the average of all $[[m+k]]$ students?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[(m*x+k*y)/(m+k)]]$",
+            "$[[(x+y)/2|decimal]]$",
+            "$[[(k*x+m*y)/(m+k)]]$",
+            "$[[x]]$",
+            "$[[y]]$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "That averages the two averages, as if the classes were the same size.",
+            "C": "That gives each average the other class's size.",
+            "D": "That is only the first class's average.",
+            "E": "That is only the second class's average."
+          }
+        },
+        "solution": "Totals: $[[m]] \\times [[x]] = [[m*x]]$ and $[[k]] \\times [[y]] = [[k*y]]$. The average of all $[[m+k]]$ is $\\frac{[[m*x+k*y]]}{[[m+k]]} = [[(m*x+k*y)/(m+k)]]$, choice (A).",
+        "skill": "averages",
+        "difficulty": 2,
+        "compute": "(m*x+k*y)/(m+k)",
+        "template": {
+          "vars": {
+            "m": { "choose": [12, 15, 18, 20, 24] },
+            "k": { "choose": [8, 10, 16, 30] },
+            "x": { "from": 72, "to": 88, "step": 2 },
+            "y": { "from": 70, "to": 90, "step": 5 }
+          },
+          "where": ["x != y", "mod(m*x + k*y, m + k) == 0"]
+        }
+      },
+      {
+        "id": "check-round-trip",
+        "prompt": "A bus goes from town $P$ to town $Q$ at $[[u]]$ km/h and comes back along the same road at $[[v]]$ km/h. What is its average speed for the round trip, in km/h?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[2*u*v/(u+v)]]$",
+            "$[[(u+v)/2|decimal]]$",
+            "$[[u]]$",
+            "$[[v]]$",
+            "$[[u+v]]$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "That averages the speeds. The bus spends longer at the slower speed, so the average is lower.",
+            "E": "Speeds don't add. Use total distance over total time."
+          }
+        },
+        "solution": "Say the road is $d$ km. The trip takes $\\frac{d}{[[u]]} + \\frac{d}{[[v]]}$ hours for $2d$ km, so the average speed is $\\frac{2 \\times [[u]] \\times [[v]]}{[[u]] + [[v]]} = [[2*u*v/(u+v)]]$ km/h, choice (A).",
+        "skill": "averages",
+        "difficulty": 2,
+        "compute": "2*u*v/(u+v)",
+        "template": {
+          "vars": {
+            "u": { "choose": [20, 30, 40, 45, 60] },
+            "v": { "choose": [30, 60, 90, 120] }
+          },
+          "where": ["u < v", "mod(2*u*v, u + v) == 0"]
+        }
+      },
+      {
+        "id": "check-seventh",
+        "prompt": "The average of $6$ numbers is $15$. A seventh number is added, and the average becomes $17$. What is the seventh number?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$17$", "$19$", "$27$", "$29$", "$32$"],
+          "correct": "D",
+          "why": {
+            "A": "That is the new average. The seventh number has to lift all seven numbers' average by $2$."
+          }
+        },
+        "solution": "The six add up to $6 \\times 15 = 90$ and the seven add up to $7 \\times 17 = 119$. The seventh number is $119 - 90 = 29$, choice (D).",
+        "skill": "averages",
+        "difficulty": 2,
+        "compute": "7*17 - 6*15"
+      },
+      {
+        "id": "check-cube-base",
+        "prompt": "If $[[b]]^{x} = [[b*b*b]]^{[[n]]}$, what is $x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[n+3]]$", "$[[2*n]]$", "$[[3*n]]$", "$[[4*n]]$", "$[[n^3]]$"],
+          "correct": "C",
+          "why": {
+            "A": "A power of a power multiplies the exponents, it doesn't add them.",
+            "E": "The exponent $[[n]]$ is multiplied by $3$, not cubed."
+          }
+        },
+        "solution": "$[[b*b*b]] = [[b]]^3$, so $[[b*b*b]]^{[[n]]} = ([[b]]^3)^{[[n]]} = [[b]]^{[[3*n]]}$ and $x = [[3*n]]$, choice (C).",
+        "skill": "exponents-roots",
+        "difficulty": 1,
+        "compute": "3*n",
+        "template": {
+          "vars": {
+            "b": { "choose": [2, 3, 4, 5, 7] },
+            "n": { "from": 4, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "check-add-roots",
+        "prompt": "What is $\\sqrt{[[a*a*c]]} + \\sqrt{[[b*b*c]]}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\sqrt{[[(a*a+b*b)*c]]}$",
+            "$[[a+b]]\\sqrt{[[c]]}$",
+            "$[[a*b]]\\sqrt{[[c]]}$",
+            "$[[a+b+1]]\\sqrt{[[c]]}$",
+            "$[[(a+b)*c]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "Roots don't add like that: $\\sqrt{p} + \\sqrt{q} \\neq \\sqrt{p + q}$. Simplify each root first.",
+            "E": "Like roots add like terms: $[[a]]\\sqrt{[[c]]} + [[b]]\\sqrt{[[c]]}$ keeps the $\\sqrt{[[c]]}$."
+          }
+        },
+        "solution": "$\\sqrt{[[a*a*c]]} = [[a]]\\sqrt{[[c]]}$ and $\\sqrt{[[b*b*c]]} = [[b]]\\sqrt{[[c]]}$. Like roots add: $[[a+b]]\\sqrt{[[c]]}$, choice (B).",
+        "skill": "exponents-roots",
+        "difficulty": 2,
+        "compute": "sqrt(a*a*c) + sqrt(b*b*c)",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 5 },
+            "b": { "from": 2, "to": 6 },
+            "c": { "choose": [2, 3, 5, 6, 7] }
+          },
+          "where": ["a < b", "a*b != a + b + 1"]
+        }
+      },
+      {
+        "id": "check-negative-power",
+        "prompt": "What is $\\left(\\frac{2}{3}\\right)^{-3}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$-\\frac{8}{27}$",
+            "$\\frac{8}{27}$",
+            "$\\frac{9}{4}$",
+            "$\\frac{27}{8}$",
+            "$-\\frac{27}{8}$"
+          ],
+          "correct": "D",
+          "why": {
+            "A": "A negative exponent doesn't make the number negative. It flips the fraction.",
+            "B": "That is $\\left(\\frac{2}{3}\\right)^{3}$. The minus sign in the exponent flips the fraction.",
+            "E": "Flip the fraction, but don't make it negative."
+          }
+        },
+        "solution": "A negative exponent flips the fraction: $\\left(\\frac{2}{3}\\right)^{-3} = \\left(\\frac{3}{2}\\right)^{3} = \\frac{27}{8}$, choice (D).",
+        "skill": "exponents-roots",
+        "difficulty": 2,
+        "compute": "(3/2)^3"
+      },
+      {
+        "id": "check-digits",
+        "prompt": "How many digits does $2^{12} \\cdot 5^{15}$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$13$", "$14$", "$15$", "$27$"],
+          "correct": "D",
+          "why": {
+            "A": "That counts only the zeros of $10^{12}$. The $5^3 = 125$ in front adds $3$ more digits.",
+            "E": "You can't add the exponents of $2$ and $5$: the bases are different."
+          }
+        },
+        "solution": "$2^{12} \\cdot 5^{15} = 2^{12} \\cdot 5^{12} \\cdot 5^3 = 10^{12} \\cdot 125$: $125$ followed by $12$ zeros. That is $15$ digits, choice (D).",
+        "skill": "exponents-roots",
+        "difficulty": 3,
+        "compute": "12 + 3"
+      },
+      {
+        "id": "check-squares",
+        "prompt": "What is $[[m+d]]^2 - [[m-d]]^2$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[(2*d)^2]]$",
+            "$[[2*m*d]]$",
+            "$[[4*m*d]]$",
+            "$[[8*m*d]]$",
+            "$[[2*(m*m+d*d)]]$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "$a^2 - b^2$ is $(a - b)(a + b)$, not $(a - b)^2$.",
+            "E": "That is $a^2 + b^2$. The question subtracts."
+          }
+        },
+        "solution": "$[[m+d]]^2 - [[m-d]]^2 = ([[m+d]] - [[m-d]])([[m+d]] + [[m-d]]) = [[2*d]] \\times [[2*m]] = [[4*m*d]]$, choice (C).",
+        "skill": "clever-arithmetic",
+        "difficulty": 1,
+        "compute": "(m+d)^2 - (m-d)^2",
+        "template": {
+          "vars": {
+            "m": { "choose": [40, 50, 60, 75, 100, 125] },
+            "d": { "from": 1, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "check-factor-powers",
+        "prompt": "What is $\\frac{3^{10} + 3^{9}}{3^{8}}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$9$", "$12$", "$3^{11}$"],
+          "correct": "D",
+          "why": {
+            "E": "$3^{10} + 3^9$ is not $3^{19}$: adding powers doesn't add exponents. Take out $3^8$ instead.",
+            "B": "Check the top: $3^{10} + 3^9 = 3^8(9 + 3)$, not $3^8(3 + 1)$."
+          }
+        },
+        "solution": "Take out $3^8$: $\\frac{3^8(3^2 + 3)}{3^8} = 9 + 3 = 12$, choice (D).",
+        "skill": "clever-arithmetic",
+        "difficulty": 3,
+        "compute": "(3^10 + 3^9)/3^8"
+      },
+      {
+        "id": "check-product-chain",
+        "prompt": "What is $(3 + 1)(3^2 + 1)(3^4 + 1)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$3^7$",
+            "$\\frac{3^8 - 1}{2}$",
+            "$\\frac{3^8 + 1}{2}$",
+            "$3^8 - 1$",
+            "$3^8$"
+          ],
+          "correct": "B",
+          "why": {
+            "D": "Multiplying by $(3 - 1)$ gives $3^8 - 1$, but $3 - 1 = 2$, not $1$: divide by $2$ again."
+          }
+        },
+        "solution": "Multiply and divide by $3 - 1 = 2$: $(3 - 1)(3 + 1) = 3^2 - 1$, then $(3^2 - 1)(3^2 + 1) = 3^4 - 1$, then $(3^4 - 1)(3^4 + 1) = 3^8 - 1$. So the product is $\\frac{3^8 - 1}{2}$, choice (B). (It is $4 \\times 10 \\times 82 = 3280$.)",
+        "skill": "clever-arithmetic",
+        "difficulty": 4,
+        "compute": "(3+1)*(3^2+1)*(3^4+1)"
+      }
+    ]
+  }
+]
