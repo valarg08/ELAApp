@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-16 (after M0, the Math track engine, on branch phase-m0).
+Last updated: 2026-10-16 (M0.5 Math practice upgrade planned in math-design.md, on branch phase-m0-5).
 
 ## Done so far
 
@@ -11,7 +11,7 @@ Last updated: 2026-10-16 (after M0, the Math track engine, on branch phase-m0).
 - [x] SL1–SL7: self-paced learning with the AI tutor, Story Writing Units 1–7 (§9.5–§9.11)
 - [x] E0–E15: the whole Essay Writing track (§9.12)
 - [x] P5a: teacher progress views: the class heatmap and the student profile (§11.3)
-- [x] M0: the Math track engine (§9.13 "M0 as built")
+- [x] M0: the Math track engine (math-design.md §2)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -23,12 +23,12 @@ One unit per phase, in the 5-step lesson format, each with the tools and AI chec
 - [ ] **SL11: Unit 11 Revision.** Revision checklist engine, grammar and sentence-variety analyzer, before/after diff viewer, peer review (Glow / Grow / Question).
 - [ ] **SL12: Unit 12 Portfolio & Showcase.** The final unit; it leads into the portfolio (P9).
 
-## 1b. Math track: AMC 10 preparation (§9.13)
+## 1b. Math track: AMC 10 preparation (math-design.md)
 
-A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are checked in code; Quill only explains. **Original AMC-style problems only**: never copy past AMC problems (© MAA).
+A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are checked in code; Quill only explains. **Original AMC-style problems only**: never copy past AMC problems (© MAA). Math work never changes the Story or Essay tracks.
 
-- [x] **Decisions confirmed** (§9.13): 70% unit check pass mark, authored hints on practice problems, typed answers in practice, three mocks plus the final.
-- [x] **M0 Foundation** (done; see §9.13 "M0 as built"):
+- [x] **Decisions confirmed** (math-design.md): 70% unit check pass mark, authored hints on practice problems, typed answers in practice, three mocks plus the final.
+- [x] **M0 Foundation** (done; see math-design.md §2):
   - track `MATH` (`content/math`, `m01.` keys, `/math`, third track tab, strand badges);
   - KaTeX rendering and the answer box with helper buttons and a live preview;
   - SVG figures with alt text;
@@ -36,8 +36,12 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
   - `PROBLEMS` practice and the `PROBLEM_SET` marked challenge and unit check;
   - the error log;
   - Quill `math-explain` in explain and mistake modes (verdict never changed by AI).
-- [ ] **M1** Unit 1 Problem Solving & the AMC 10: finish the lessons after the sample lesson, the ⭐ check (70%), publish the unit, and "Try a similar one" from the problem bank
-- [ ] Math extras noted in M0: `$$…$$` display math; a math version of the Learn-card tutor ("Explain it another way" is hidden on Math cards, since it is a writing tutor)
+- [ ] **M0.5 Math practice upgrade** (math-design.md §3; Math only):
+  - Part A, content format: skill list (`skills.json`), problem templates with verified variants and "Try a similar one", wrong-answer notes (`answer.why`, `mistakes`), worked-example cards with faded steps, figure scale flag and zoom;
+  - Part B, practice: the answer record (`MathAnswerLog`), skill mastery and difficulty, the daily mixed review with spacing, sprints with AMC scoring, confidence and calibration, scratchpad and typed working;
+  - Part C: Quill nudges, the math Learn-card tutor, the trap picker in Reflect, plainer tone for 14–16, the teacher skills view.
+- [ ] **M1** Unit 1 Problem Solving & the AMC 10: finish the lessons after the sample lesson, the ⭐ check (70%), publish the unit, in the M0.5 format
+- [ ] Math extras noted in M0: `$$…$$` display math
 - [ ] **M2** Unit 2 Arithmetic & Number Sense
 - [ ] **M3** Unit 3 Linear Equations & Word Problems
 - [ ] **M4** Unit 4 Quadratics & Polynomials
