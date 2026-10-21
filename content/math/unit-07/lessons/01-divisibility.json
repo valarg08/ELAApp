@@ -1,0 +1,100 @@
+{
+  "slug": "math-divisibility",
+  "order": 1,
+  "title": "Divisibility Rules",
+  "estMinutes": 35,
+  "focusSkills": ["divisibility"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Without dividing, can you tell whether $123{,}456$ is divisible by $3$? By $4$? By $9$? What do you look at?",
+      "placeholder": "For 3 I look at… for 4 I look at…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The quick tests",
+          "body": "$2$: the last digit is even. $4$: the last two digits make a multiple of $4$. $8$: the last three digits make a multiple of $8$. $5$: the last digit is $0$ or $5$. $3$ and $9$: the digit sum is a multiple of $3$ or $9$. $11$: the alternating sum of the digits ($+ - + - \\ldots$) is a multiple of $11$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a missing digit",
+          "problem": "The four-digit number $5d48$, where $d$ is a digit, is divisible by $9$. What is $d$?",
+          "steps": [
+            {
+              "text": "The known digits add to $5 + 4 + 8 = 17$.",
+              "try": {
+                "prompt": "What is $5 + 4 + 8$?",
+                "accepted": ["17"],
+                "compute": "5 + 4 + 8"
+              }
+            },
+            {
+              "text": "$17 + d$ must be a multiple of $9$, and $d \\leq 9$, so $17 + d = 18$ and $d = 1$.",
+              "try": {
+                "prompt": "What is $d$?",
+                "accepted": ["1"],
+                "compute": "18 - 17"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Combine the tests",
+          "body": "To test a number like $12$ or $6$, split it into parts that share no factor: $12 = 3 \\times 4$ and $6 = 2 \\times 3$. A number is divisible by $12$ exactly when it passes the $3$ test AND the $4$ test. (Testing $2$ and $6$ is NOT enough for $12$: $6$ passes both.)"
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: divisible by 12",
+          "problem": "Is $7{,}392$ divisible by $12$?",
+          "steps": [
+            {
+              "text": "The digit sum is $7 + 3 + 9 + 2 = 21$, a multiple of $3$: it passes the $3$ test.",
+              "try": {
+                "prompt": "What is the digit sum of $7{,}392$?",
+                "accepted": ["21"],
+                "compute": "7 + 3 + 9 + 2"
+              }
+            },
+            {
+              "text": "The last two digits make $92 = 4 \\times 23$: it passes the $4$ test too. So $7{,}392$ is divisible by $12$ (it is $12 \\times 616$).",
+              "try": {
+                "prompt": "What is $92 \\div 4$?",
+                "accepted": ["23"],
+                "compute": "92/4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the wrong pair of tests",
+          "body": "The parts you combine must share no common factor: $12 = 3 \\times 4$ works, $12 = 2 \\times 6$ doesn't. For $11$, start the alternating sum from the left with $+$, and remember that $0$ counts as a multiple of $11$. The digit-sum test only works for $3$ and $9$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m07.divisibility-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m07.divisibility-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which divisibility test do you trust most, and which one do you still mix up?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

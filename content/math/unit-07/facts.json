@@ -1,0 +1,49 @@
+{
+  "sections": [
+    {
+      "skill": "divisibility",
+      "title": "Divisibility rules",
+      "facts": [
+        "$2$, $4$, $8$: the last one, two or three digits. $5$: last digit $0$ or $5$.",
+        "$3$ and $9$: the digit sum. $11$: the alternating sum of the digits.",
+        "Combine tests whose numbers share no factor: $12 = 3 \\times 4$, $18 = 2 \\times 9$."
+      ]
+    },
+    {
+      "skill": "primes-factorization",
+      "title": "Primes & factorization",
+      "facts": [
+        "$1$ is not prime; $2$ is the only even prime.",
+        "Every number above $1$ is a product of primes in exactly one way.",
+        "To test $n$, try primes up to $\\sqrt{n}$. Look-alikes: $91 = 7 \\cdot 13$, $143 = 11 \\cdot 13$, $221 = 13 \\cdot 17$."
+      ]
+    },
+    {
+      "skill": "gcd-lcm",
+      "title": "GCD & LCM",
+      "facts": [
+        "GCD: each shared prime to the smaller power. LCM: every prime to the larger power.",
+        "$\\gcd(a, b) \\times \\text{lcm}(a, b) = a \\times b$.",
+        "\"Together again\" is an LCM; \"largest equal pieces\" is a GCD."
+      ]
+    },
+    {
+      "skill": "counting-divisors",
+      "title": "Counting divisors",
+      "facts": [
+        "$p^a q^b r^c$ has $(a + 1)(b + 1)(c + 1)$ positive divisors.",
+        "Sum of divisors: $(1 + p + \\cdots + p^a)(1 + q + \\cdots + q^b)$.",
+        "Only perfect squares have an odd number of divisors."
+      ]
+    },
+    {
+      "skill": "factorials-zeros",
+      "title": "Factorials & trailing zeros",
+      "facts": [
+        "Zeros of $n!$: $\\left\\lfloor \\frac{n}{5} \\right\\rfloor + \\left\\lfloor \\frac{n}{25} \\right\\rfloor + \\left\\lfloor \\frac{n}{125} \\right\\rfloor + \\cdots$",
+        "Power of a prime $p$ in $n!$: $\\left\\lfloor \\frac{n}{p} \\right\\rfloor + \\left\\lfloor \\frac{n}{p^2} \\right\\rfloor + \\cdots$",
+        "From $5!$ on, every factorial ends in $0$."
+      ]
+    }
+  ]
+}

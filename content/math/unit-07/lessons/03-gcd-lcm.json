@@ -1,0 +1,100 @@
+{
+  "slug": "math-gcd-lcm",
+  "order": 3,
+  "title": "GCD & LCM",
+  "estMinutes": 35,
+  "focusSkills": ["gcd-lcm"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "One bell rings every $12$ minutes and another every $18$ minutes. They ring together at noon. When do they next ring together?",
+      "placeholder": "They ring together again at…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Greatest common divisor, least common multiple",
+          "body": "Write both numbers as primes. The GCD takes each shared prime to the SMALLER power; the LCM takes every prime to the LARGER power. For $84 = 2^2 \\cdot 3 \\cdot 7$ and $120 = 2^3 \\cdot 3 \\cdot 5$: $\\gcd = 2^2 \\cdot 3 = 12$ and $\\text{lcm} = 2^3 \\cdot 3 \\cdot 5 \\cdot 7 = 840$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the bells",
+          "problem": "Bells ring every $12$ and $18$ minutes and ring together at noon. How many minutes until they ring together again?",
+          "steps": [
+            {
+              "text": "$12 = 2^2 \\cdot 3$ and $18 = 2 \\cdot 3^2$. Together again after a common multiple of both.",
+              "try": {
+                "prompt": "What is $\\gcd(12, 18)$?",
+                "accepted": ["6"],
+                "compute": "gcd(12, 18)"
+              }
+            },
+            {
+              "text": "The first time is the LCM: $2^2 \\cdot 3^2 = 36$ minutes, at $12{:}36$.",
+              "try": {
+                "prompt": "What is $\\text{lcm}(12, 18)$?",
+                "accepted": ["36"],
+                "compute": "lcm(12, 18)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The product rule",
+          "body": "For any two positive whole numbers, $\\gcd(a, b) \\times \\text{lcm}(a, b) = a \\times b$. So if you know three of the four numbers, you know the fourth. Numbers with $\\gcd = 1$ are called relatively prime; their LCM is just their product."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the missing number",
+          "problem": "Two numbers have GCD $6$ and LCM $180$. One of them is $36$. What is the other?",
+          "steps": [
+            {
+              "text": "GCD $\\times$ LCM $= 6 \\times 180 = 1080$, which is the product of the two numbers.",
+              "try": {
+                "prompt": "What is $6 \\times 180$?",
+                "accepted": ["1080"],
+                "compute": "6*180"
+              }
+            },
+            {
+              "text": "The other number is $\\frac{1080}{36} = 30$. Check: $\\gcd(36, 30) = 6$.",
+              "try": {
+                "prompt": "What is the other number?",
+                "accepted": ["30"],
+                "compute": "6*180/36"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: multiplying instead of the LCM",
+          "body": "The product $12 \\times 18 = 216$ is A common multiple, but not the LEAST unless the GCD is $1$. Decide which you need: \"together again\" or \"fits into both evenly\" is an LCM; \"largest equal pieces\" or \"largest square tiles\" is a GCD."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m07.gcd-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m07.gcd-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you decide whether a word problem wants the GCD or the LCM?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

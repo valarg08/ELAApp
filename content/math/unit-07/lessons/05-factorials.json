@@ -1,0 +1,108 @@
+{
+  "slug": "math-factorials-zeros",
+  "order": 5,
+  "title": "Factorials & Trailing Zeros",
+  "estMinutes": 35,
+  "focusSkills": ["factorials-zeros"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$10! = 3{,}628{,}800$ ends in two zeros. Where do those zeros come from? How many zeros do you think $100!$ ends in?",
+      "placeholder": "The zeros come from… my guess is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Zeros come from tens",
+          "body": "Each zero at the end is a factor $10 = 2 \\times 5$. A factorial has far more $2$s than $5$s, so count the $5$s: multiples of $5$ give one each, multiples of $25$ give one more, multiples of $125$ one more again. Zeros of $n!$ $= \\left\\lfloor \\frac{n}{5} \\right\\rfloor + \\left\\lfloor \\frac{n}{25} \\right\\rfloor + \\left\\lfloor \\frac{n}{125} \\right\\rfloor + \\cdots$"
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: zeros of 100!",
+          "problem": "How many zeros does $100!$ end with?",
+          "steps": [
+            {
+              "text": "There are $20$ multiples of $5$ up to $100$.",
+              "try": {
+                "prompt": "How many multiples of $5$ are there from $1$ to $100$?",
+                "accepted": ["20"],
+                "compute": "floor(100/5)"
+              }
+            },
+            {
+              "text": "$25, 50, 75, 100$ each have a second $5$: that adds $4$.",
+              "try": {
+                "prompt": "How many multiples of $25$ are there from $1$ to $100$?",
+                "accepted": ["4"],
+                "compute": "floor(100/25)"
+              }
+            },
+            {
+              "text": "So $100!$ ends in $20 + 4 = 24$ zeros.",
+              "try": {
+                "prompt": "How many zeros does $100!$ end with?",
+                "accepted": ["24"],
+                "compute": "floor(100/5) + floor(100/25)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Any prime in a factorial",
+          "body": "The same count works for any prime $p$: the power of $p$ in $n!$ is $\\left\\lfloor \\frac{n}{p} \\right\\rfloor + \\left\\lfloor \\frac{n}{p^2} \\right\\rfloor + \\left\\lfloor \\frac{n}{p^3} \\right\\rfloor + \\cdots$ For $6^k$ or $12^k$, find the power of each prime and see which one runs out first."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: twos in 10!",
+          "problem": "What is the largest $k$ such that $2^k$ divides $10!$?",
+          "steps": [
+            {
+              "text": "Multiples of $2$: $5$. Multiples of $4$: $2$. Multiples of $8$: $1$.",
+              "try": {
+                "prompt": "How many multiples of $4$ are there from $1$ to $10$?",
+                "accepted": ["2"],
+                "compute": "floor(10/4)"
+              }
+            },
+            {
+              "text": "So $k = 5 + 2 + 1 = 8$.",
+              "try": {
+                "prompt": "What is $k$?",
+                "accepted": ["8"],
+                "compute": "floor(10/2) + floor(10/4) + floor(10/8)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: counting 25 only once",
+          "body": "$25 = 5 \\times 5$ gives TWO fives, and $125$ gives three. Stopping at $\\left\\lfloor \\frac{n}{5} \\right\\rfloor$ undercounts. Also, $n!$ never ends in exactly $5$ zeros: going from $24!$ to $25!$ jumps from $4$ zeros to $6$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m07.zeros-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m07.zeros-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why do we count $5$s and not $2$s for the zeros at the end of $n!$?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

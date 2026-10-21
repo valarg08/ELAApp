@@ -4,5 +4,5 @@
   "title": "Number Theory I",
   "summary": "Divisibility, primes and prime factorizations, GCD and LCM, counting divisors, factorials and trailing zeros.",
   "bigIdeas": ["Every whole number is built from primes."],
-  "published": false
+  "published": true
 }

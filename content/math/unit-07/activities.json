@@ -1,0 +1,1764 @@
+[
+  {
+    "key": "m07.divisibility-practice",
+    "type": "PROBLEMS",
+    "title": "Divisibility rules",
+    "instructions": "Type each answer and press Check. Use the digit tests instead of long division. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "missing-nine",
+        "prompt": "The four-digit number $[[a]][[b]]d[[c]]$, where $d$ is a digit, is divisible by $9$. What is $d$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(9 - mod(a + b + c, 9), 9)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[mod(a + b + c, 9)]]",
+              "why": "That is the remainder of the known digits. $d$ must bring the digit sum UP to the next multiple of $9$."
+            }
+          ]
+        },
+        "hints": [
+          "The known digits add to $[[a + b + c]]$.",
+          "Which digit $d$ makes $[[a + b + c]] + d$ a multiple of $9$?"
+        ],
+        "solution": "The known digits add to $[[a + b + c]]$, so $d = [[mod(9 - mod(a + b + c, 9), 9)]]$ makes the digit sum $[[a + b + c + mod(9 - mod(a + b + c, 9), 9)]]$, a multiple of $9$.",
+        "skill": "divisibility",
+        "difficulty": 1,
+        "compute": "mod(9 - mod(a + b + c, 9), 9)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 0,
+              "to": 9
+            },
+            "c": {
+              "from": 0,
+              "to": 9
+            }
+          },
+          "where": ["mod(a + b + c, 9) != 0"]
+        }
+      },
+      {
+        "id": "four-not-eight",
+        "prompt": "How many whole numbers from $1$ to $[[n]]$ are divisible by $4$ but NOT by $8$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(n/4) - floor(n/8)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(n/4)]]",
+              "why": "That counts every multiple of $4$. Take away the multiples of $8$."
+            }
+          ]
+        },
+        "hints": [
+          "There are $[[floor(n/4)]]$ multiples of $4$.",
+          "Every multiple of $8$ is also a multiple of $4$. How many are there?"
+        ],
+        "solution": "$[[floor(n/4)]]$ multiples of $4$, minus $[[floor(n/8)]]$ multiples of $8$, leaves $[[floor(n/4) - floor(n/8)]]$.",
+        "skill": "divisibility",
+        "difficulty": 1,
+        "compute": "floor(n/4) - floor(n/8)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 50,
+              "to": 200,
+              "step": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "eleven-digit",
+        "prompt": "The three-digit number $[[a]]d[[b]]$, where $d$ is a digit, is divisible by $11$. What is $d$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a + b, 11)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "The alternating sum is $[[a]] - d + [[b]]$. It must be a multiple of $11$ (and $0$ counts).",
+          "So $d$ is $[[a + b]]$, or $[[a + b]]$ minus $11$."
+        ],
+        "solution": "$[[a]] - d + [[b]] = [[a + b]] - d$ must be a multiple of $11$, and $d$ is a digit, so $d = [[mod(a + b, 11)]]$.",
+        "skill": "divisibility",
+        "difficulty": 2,
+        "compute": "mod(a + b, 11)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 0,
+              "to": 9
+            }
+          },
+          "where": ["mod(a + b, 11) <= 9"]
+        }
+      },
+      {
+        "id": "both-four-six",
+        "prompt": "How many whole numbers from $1$ to $[[n]]$ are divisible by both $4$ and $6$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(n/12)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(n/24)]]",
+              "why": "Divisible by $4$ and $6$ means divisible by their LCM, $12$, not by $4 \\times 6 = 24$."
+            }
+          ]
+        },
+        "hints": [
+          "A number divisible by both $4$ and $6$ is divisible by their least common multiple."
+        ],
+        "solution": "Divisible by $4$ and $6$ means divisible by $\\text{lcm}(4, 6) = 12$. There are $[[floor(n/12)]]$ multiples of $12$ up to $[[n]]$.",
+        "skill": "divisibility",
+        "difficulty": 2,
+        "compute": "floor(n/12)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 50,
+              "to": 300,
+              "step": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "nine-remainder",
+        "prompt": "What is the remainder when $[[a]][[b]][[c]][[e]]$ is divided by $9$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(1000*a + 100*b + 10*c + e, 9)]]"],
+          "form": "integer"
+        },
+        "hints": ["A number leaves the same remainder as its digit sum when divided by $9$."],
+        "solution": "The digit sum is $[[a + b + c + e]]$, which leaves remainder $[[mod(a + b + c + e, 9)]]$ when divided by $9$, and so does the number.",
+        "skill": "divisibility",
+        "difficulty": 2,
+        "compute": "mod(1000*a + 100*b + 10*c + e, 9)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 0,
+              "to": 9
+            },
+            "c": {
+              "from": 0,
+              "to": 9
+            },
+            "e": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m07.divisibility-set",
+    "type": "PROBLEM_SET",
+    "title": "Divisibility challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "three-digit-45",
+        "prompt": "How many three-digit numbers are divisible by both $5$ and $9$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$18$", "$19$", "$20$", "$21$", "$22$"],
+          "correct": "C",
+          "why": {
+            "B": "From $135$ to $990$ is $19$ steps of $45$: add one for the numbers."
+          }
+        },
+        "solution": "They are the multiples of $45$ from $135$ to $990$: $\\frac{990 - 135}{45} + 1 = 20$, choice (C).",
+        "skill": "divisibility",
+        "difficulty": 1,
+        "compute": "(990 - 135)/45 + 1"
+      },
+      {
+        "id": "twelve-digit",
+        "prompt": "The four-digit number $37d4$, where $d$ is a digit, is divisible by $12$. What is $d$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$4$", "$7$", "$8$"],
+          "correct": "C",
+          "why": {
+            "A": "$3714$ passes the $3$ test, but $14$ is not a multiple of $4$.",
+            "D": "$3774$ passes the $3$ test, but $74$ is not a multiple of $4$."
+          }
+        },
+        "solution": "For $3$: $14 + d$ is a multiple of $3$, so $d$ is $1$, $4$ or $7$. For $4$: $d4$ is a multiple of $4$ only for $d = 4$ ($44$). Choice (C).",
+        "skill": "divisibility",
+        "difficulty": 2,
+        "compute": "4"
+      },
+      {
+        "id": "eleven-test",
+        "prompt": "The five-digit number $4d527$, where $d$ is a digit, is divisible by $11$. What is $d$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$5$", "$7$", "$9$"],
+          "correct": "B"
+        },
+        "solution": "The alternating sum is $4 - d + 5 - 2 + 7 = 14 - d$, which must be a multiple of $11$. So $d = 3$, choice (B).",
+        "skill": "divisibility",
+        "difficulty": 2,
+        "compute": "14 - 11"
+      },
+      {
+        "id": "which-divide",
+        "prompt": "Let $N = 2^4 \\cdot 3^2 \\cdot 5$. How many of the numbers $2, 3, 4, 5, 6, 7, 8, 9, 10$ divide $N$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$7$", "$8$", "$9$"],
+          "correct": "D",
+          "why": {
+            "E": "$7$ is not a factor of $N$: $N$ has no prime $7$."
+          }
+        },
+        "solution": "$N = 720$ has the primes $2$ (four times), $3$ (twice) and $5$. Every number in the list divides it except $7$: that is $8$ numbers, choice (D).",
+        "skill": "divisibility",
+        "difficulty": 2,
+        "compute": "9 - 1"
+      },
+      {
+        "id": "ones-and-zeros",
+        "prompt": "What is the smallest positive multiple of $9$ whose digits are all $0$s and $1$s?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1111$", "$111111$", "$1111111$", "$11111111$", "$111111111$"],
+          "correct": "E",
+          "why": {
+            "B": "Its digit sum is $6$, not a multiple of $9$."
+          }
+        },
+        "solution": "The digit sum must be a multiple of $9$, so it needs at least nine $1$s. The smallest such number is $111{,}111{,}111$, choice (E).",
+        "skill": "divisibility",
+        "difficulty": 3,
+        "compute": "111111111"
+      }
+    ]
+  },
+  {
+    "key": "m07.primes-practice",
+    "type": "PROBLEMS",
+    "title": "Primes & factorization",
+    "instructions": "Type each answer and press Check. Pull out small primes first, and only test primes up to the square root. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "largest-prime",
+        "prompt": "What is the largest prime factor of $[[p*q*r]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[r]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[q]]",
+              "why": "$[[q]]$ is a prime factor, but there is a larger one: $[[p*q*r]] = [[p]] \\times [[q]] \\times [[r]]$."
+            }
+          ]
+        },
+        "hints": ["Divide by $[[p]]$ first, then keep going."],
+        "solution": "$[[p*q*r]] = [[p]] \\times [[q]] \\times [[r]]$, so the largest prime factor is $[[r]]$.",
+        "skill": "primes-factorization",
+        "difficulty": 1,
+        "compute": "r",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [2, 3, 5]
+            },
+            "q": {
+              "choose": [7, 11, 13]
+            },
+            "r": {
+              "choose": [17, 19, 23]
+            }
+          }
+        }
+      },
+      {
+        "id": "exponent-sum",
+        "prompt": "When $[[2^s*3^t]]$ is written as $2^a \\cdot 3^b$, what is $a + b$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s + t]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Halve until the number is odd, counting the halvings. Then divide by $3$ until you reach $1$."
+        ],
+        "solution": "$[[2^s*3^t]] = 2^{[[s]]} \\cdot 3^{[[t]]}$, so $a + b = [[s + t]]$.",
+        "skill": "primes-factorization",
+        "difficulty": 1,
+        "compute": "s + t",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 1,
+              "to": 6
+            },
+            "t": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "smallest-factor",
+        "prompt": "What is the smallest prime factor of $[[p*q]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p]]"],
+          "form": "integer"
+        },
+        "hints": ["It is odd and fails the $3$ and $5$ tests.", "Try $7$, $11$, $13$, … in order."],
+        "solution": "$[[p*q]] = [[p]] \\times [[q]]$, and no smaller prime divides it, so the answer is $[[p]]$.",
+        "skill": "primes-factorization",
+        "difficulty": 2,
+        "compute": "p",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [7, 11, 13]
+            },
+            "q": {
+              "choose": [17, 19, 23, 29, 31]
+            }
+          }
+        }
+      },
+      {
+        "id": "distinct-sum",
+        "prompt": "What is the sum of the DIFFERENT prime factors of $[[p*p*q*r]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p + q + r]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2*p + q + r]]",
+              "why": "$[[p]]$ appears twice in the factorization, but count each different prime once."
+            }
+          ]
+        },
+        "hints": ["Factor completely first: start with $[[p]]$."],
+        "solution": "$[[p*p*q*r]] = [[p]]^2 \\cdot [[q]] \\cdot [[r]]$. The different primes add to $[[p]] + [[q]] + [[r]] = [[p + q + r]]$.",
+        "skill": "primes-factorization",
+        "difficulty": 2,
+        "compute": "p + q + r",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [2, 3]
+            },
+            "q": {
+              "choose": [5, 7]
+            },
+            "r": {
+              "choose": [11, 13, 17]
+            }
+          }
+        }
+      },
+      {
+        "id": "odd-sum-primes",
+        "prompt": "Two primes add up to $[[q + 2]]$. What is their product?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*q]]"],
+          "form": "integer"
+        },
+        "hints": ["The sum is odd, so one prime is even.", "The only even prime is $2$."],
+        "solution": "An odd sum needs one even prime, and the only even prime is $2$. The other is $[[q]]$, so the product is $[[2*q]]$.",
+        "skill": "primes-factorization",
+        "difficulty": 2,
+        "compute": "2*((q + 2) - 2)",
+        "template": {
+          "vars": {
+            "q": {
+              "choose": [11, 17, 29, 41, 59, 71]
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m07.primes-set",
+    "type": "PROBLEM_SET",
+    "title": "Primes & factorization challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "primes-30-50",
+        "prompt": "How many primes are there between $30$ and $50$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$6$", "$7$", "$8$"],
+          "correct": "B",
+          "why": {
+            "C": "Check $39 = 3 \\times 13$ and $49 = 7 \\times 7$: neither is prime."
+          }
+        },
+        "solution": "They are $31, 37, 41, 43, 47$: five primes, choice (B).",
+        "skill": "primes-factorization",
+        "difficulty": 1,
+        "compute": "5"
+      },
+      {
+        "id": "thousand-one",
+        "prompt": "The number $1001$ is the product of three different primes. What is their sum?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$21$", "$27$", "$31$", "$33$", "$37$"],
+          "correct": "C"
+        },
+        "solution": "$1001 = 7 \\times 143 = 7 \\times 11 \\times 13$, and $7 + 11 + 13 = 31$, choice (C).",
+        "skill": "primes-factorization",
+        "difficulty": 1,
+        "compute": "7 + 11 + 13"
+      },
+      {
+        "id": "not-a-factor",
+        "prompt": "Let $N = 2^3 \\cdot 3^2 \\cdot 7$. Which of these is NOT a factor of $N$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$18$", "$28$", "$54$", "$56$"],
+          "correct": "D",
+          "why": {
+            "E": "$56 = 2^3 \\cdot 7$, and $N$ has three $2$s and a $7$."
+          }
+        },
+        "solution": "$54 = 2 \\cdot 3^3$ needs three $3$s, but $N$ has only two. The others all fit. Choice (D).",
+        "skill": "primes-factorization",
+        "difficulty": 2,
+        "compute": "2*3^3"
+      },
+      {
+        "id": "year-primes",
+        "prompt": "$2026 = 2 \\times 1013$, and $1013$ is prime. What is the sum of the prime factors of $2026$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1013$", "$1014$", "$1015$", "$1017$", "$2026$"],
+          "correct": "C"
+        },
+        "solution": "The prime factors are $2$ and $1013$, and $2 + 1013 = 1015$, choice (C).",
+        "skill": "primes-factorization",
+        "difficulty": 2,
+        "compute": "2 + 1013"
+      },
+      {
+        "id": "prime-triple",
+        "prompt": "For how many primes $p$ are $p$, $p + 2$ and $p + 4$ all prime?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "B",
+          "why": {
+            "A": "Try small primes: $p = 3$ gives $3, 5, 7$."
+          }
+        },
+        "solution": "Of $p$, $p + 2$, $p + 4$, one is always a multiple of $3$ (they leave three different remainders). So one of them must equal $3$, which only works for $3, 5, 7$. Exactly one prime, choice (B).",
+        "skill": "primes-factorization",
+        "difficulty": 3,
+        "compute": "1"
+      }
+    ]
+  },
+  {
+    "key": "m07.gcd-practice",
+    "type": "PROBLEMS",
+    "title": "GCD & LCM",
+    "instructions": "Type each answer and press Check. GCD takes the smaller powers, LCM the larger, and $\\gcd \\times \\text{lcm} = ab$. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "find-gcd",
+        "prompt": "What is the greatest common divisor of $[[a*g]]$ and $[[b*g]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[g]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Write $[[a*g]] = [[a]] \\times [[g]]$ and $[[b*g]] = [[b]] \\times [[g]]$. Do $[[a]]$ and $[[b]]$ share a factor?"
+        ],
+        "solution": "$[[a*g]] = [[a]] \\times [[g]]$ and $[[b*g]] = [[b]] \\times [[g]]$, and $[[a]]$ and $[[b]]$ share no factor, so the GCD is $[[g]]$.",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "gcd(a*g, b*g)",
+        "template": {
+          "vars": {
+            "g": {
+              "from": 2,
+              "to": 12
+            },
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["a < b", "gcd(a, b) == 1"]
+        }
+      },
+      {
+        "id": "find-lcm",
+        "prompt": "What is the least common multiple of $[[a*g]]$ and $[[b*g]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b*g]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*b*g*g]]",
+              "why": "That is the product. Divide it by the GCD, $[[g]]$."
+            }
+          ]
+        },
+        "hints": [
+          "$\\text{lcm} = \\frac{[[a*g]] \\times [[b*g]]}{\\gcd}$, and the GCD is $[[g]]$."
+        ],
+        "solution": "$\\gcd = [[g]]$, so $\\text{lcm} = \\frac{[[a*g]] \\times [[b*g]]}{[[g]]} = [[a*b*g]]$.",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "lcm(a*g, b*g)",
+        "template": {
+          "vars": {
+            "g": {
+              "from": 2,
+              "to": 8
+            },
+            "a": {
+              "from": 2,
+              "to": 7
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a < b", "gcd(a, b) == 1"]
+        }
+      },
+      {
+        "id": "other-number",
+        "prompt": "Two numbers have GCD $[[g]]$ and LCM $[[g*a*b]]$. One of them is $[[g*a]]$. What is the other?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[g*b]]"],
+          "form": "integer"
+        },
+        "hints": ["The product of the two numbers is $\\gcd \\times \\text{lcm} = [[g*g*a*b]]$."],
+        "solution": "The product is $[[g]] \\times [[g*a*b]] = [[g*g*a*b]]$, so the other number is $\\frac{[[g*g*a*b]]}{[[g*a]]} = [[g*b]]$.",
+        "skill": "gcd-lcm",
+        "difficulty": 2,
+        "compute": "(g*(g*a*b))/(g*a)",
+        "template": {
+          "vars": {
+            "g": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 2,
+              "to": 7
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["a != b", "gcd(a, b) == 1"]
+        }
+      },
+      {
+        "id": "blinking",
+        "prompt": "One light blinks every $[[p]]$ seconds and another every $[[q]]$ seconds. They blink together now. After how many seconds do they next blink together?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[lcm(p, q)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[p*q]]",
+              "why": "They are together then too, but sooner as well: $[[p]]$ and $[[q]]$ share a factor, so use the LCM."
+            }
+          ]
+        },
+        "hints": ["\"Together again\" means the least common multiple."],
+        "solution": "The first time both counts land together is $\\text{lcm}([[p]], [[q]]) = [[lcm(p, q)]]$ seconds.",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "lcm(p, q)",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [4, 6, 8, 9, 10, 12]
+            },
+            "q": {
+              "choose": [6, 8, 10, 12, 14, 15, 18]
+            }
+          },
+          "where": ["p < q", "gcd(p, q) > 1", "mod(q, p) != 0"]
+        }
+      },
+      {
+        "id": "square-tiles",
+        "prompt": "A $[[a*g]]$ cm by $[[b*g]]$ cm rectangle is covered exactly by equal square tiles, as large as possible. How many tiles are used?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "The largest square side that fits both lengths is the GCD.",
+          "$\\gcd([[a*g]], [[b*g]]) = [[g]]$."
+        ],
+        "solution": "The tiles are $[[g]]$ cm squares (the GCD), so there are $[[a]] \\times [[b]] = [[a*b]]$ of them.",
+        "skill": "gcd-lcm",
+        "difficulty": 2,
+        "compute": "(a*g/gcd(a*g, b*g))*(b*g/gcd(a*g, b*g))",
+        "template": {
+          "vars": {
+            "g": {
+              "from": 2,
+              "to": 6
+            },
+            "a": {
+              "from": 2,
+              "to": 7
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a < b", "gcd(a, b) == 1"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m07.gcd-set",
+    "type": "PROBLEM_SET",
+    "title": "GCD & LCM challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "gcd-pair",
+        "prompt": "What is the greatest common divisor of $84$ and $126$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$14$", "$21$", "$42$", "$84$"],
+          "correct": "D"
+        },
+        "solution": "$84 = 2^2 \\cdot 3 \\cdot 7$ and $126 = 2 \\cdot 3^2 \\cdot 7$. Smaller powers: $2 \\cdot 3 \\cdot 7 = 42$, choice (D).",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "gcd(84, 126)"
+      },
+      {
+        "id": "other-gcd",
+        "prompt": "The GCD of two numbers is $6$ and their LCM is $180$. One of the numbers is $36$. What is the other?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$18$", "$30$", "$36$", "$60$"],
+          "correct": "C"
+        },
+        "solution": "The product is $6 \\times 180 = 1080$, so the other number is $\\frac{1080}{36} = 30$, choice (C).",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "6*180/36"
+      },
+      {
+        "id": "lcm-one-to-eight",
+        "prompt": "What is the smallest positive number divisible by every whole number from $1$ to $8$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$336$", "$420$", "$840$", "$1680$", "$40320$"],
+          "correct": "C",
+          "why": {
+            "E": "$8!$ works, but it is far from the smallest: use the LCM.",
+            "B": "$420$ has only two $2$s, so $8$ doesn't divide it."
+          }
+        },
+        "solution": "Take the highest powers: $2^3 \\cdot 3 \\cdot 5 \\cdot 7 = 840$, choice (C).",
+        "skill": "gcd-lcm",
+        "difficulty": 2,
+        "compute": "lcm(lcm(lcm(lcm(lcm(5, 6), 7), 8), 4), 3)"
+      },
+      {
+        "id": "buses",
+        "prompt": "Two buses leave a station together at 6:00 am. One leaves every $12$ minutes and the other every $20$ minutes. How many times from 6:00 am to noon, counting both, do they leave together?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$7$", "$12$", "$30$"],
+          "correct": "C",
+          "why": {
+            "B": "Count both ends: 6:00 am and noon both count."
+          }
+        },
+        "solution": "They leave together every $\\text{lcm}(12, 20) = 60$ minutes: at 6, 7, 8, 9, 10, 11 and 12. That is $7$ times, choice (C).",
+        "skill": "gcd-lcm",
+        "difficulty": 2,
+        "compute": "6*60/lcm(12, 20) + 1"
+      },
+      {
+        "id": "coprime-count",
+        "prompt": "How many whole numbers from $1$ to $100$ share no common factor greater than $1$ with $100$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$40$", "$50$", "$60$", "$80$"],
+          "correct": "B",
+          "why": {
+            "C": "Odd numbers avoid the $2$, but the multiples of $5$ must go too."
+          }
+        },
+        "solution": "$100 = 2^2 \\cdot 5^2$, so remove multiples of $2$ or $5$. Half the numbers are odd ($50$), and $\\frac{4}{5}$ of those avoid $5$: $40$, choice (B).",
+        "skill": "gcd-lcm",
+        "difficulty": 3,
+        "compute": "100*(1 - 1/2)*(1 - 1/5)"
+      }
+    ]
+  },
+  {
+    "key": "m07.divisors-practice",
+    "type": "PROBLEMS",
+    "title": "Counting divisors",
+    "instructions": "Type each answer and press Check. Factor into primes, add one to each exponent, then multiply. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "two-primes",
+        "prompt": "How many positive divisors does $[[2^s*3^t]]$ have?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(s + 1)*(t + 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[s*t]]",
+              "why": "Add one to each exponent first: the power $0$ is a choice too."
+            }
+          ]
+        },
+        "hints": ["$[[2^s*3^t]] = 2^{[[s]]} \\cdot 3^{[[t]]}$."],
+        "solution": "$[[2^s*3^t]] = 2^{[[s]]} \\cdot 3^{[[t]]}$, so it has $([[s]] + 1)([[t]] + 1) = [[(s + 1)*(t + 1)]]$ divisors.",
+        "skill": "counting-divisors",
+        "difficulty": 1,
+        "compute": "(s + 1)*(t + 1)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 1,
+              "to": 5
+            },
+            "t": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "three-primes",
+        "prompt": "How many positive divisors does $[[2^s*5^t*7]]$ have?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(s + 1)*(t + 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(s + 1)*(t + 1)]]",
+              "why": "Don't forget the prime $7$: it doubles the count."
+            }
+          ]
+        },
+        "hints": ["$[[2^s*5^t*7]] = 2^{[[s]]} \\cdot 5^{[[t]]} \\cdot 7$."],
+        "solution": "$2^{[[s]]} \\cdot 5^{[[t]]} \\cdot 7^1$ has $([[s]] + 1)([[t]] + 1)(1 + 1) = [[2*(s + 1)*(t + 1)]]$ divisors.",
+        "skill": "counting-divisors",
+        "difficulty": 1,
+        "compute": "(s + 1)*(t + 1)*(1 + 1)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "even-divisors",
+        "prompt": "How many of the positive divisors of $[[2^s*3^t]]$ are even?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*(t + 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(s + 1)*(t + 1)]]",
+              "why": "That counts every divisor. An even divisor needs at least one $2$: $[[s]]$ choices for the power of $2$, not $[[s + 1]]$."
+            }
+          ]
+        },
+        "hints": ["An even divisor uses $2^1$ up to $2^{[[s]]}$: $[[s]]$ choices."],
+        "solution": "The power of $2$ can be $1$ to $[[s]]$ ($[[s]]$ choices) and the power of $3$ can be $0$ to $[[t]]$ ($[[t + 1]]$ choices): $[[s*(t + 1)]]$ even divisors.",
+        "skill": "counting-divisors",
+        "difficulty": 2,
+        "compute": "s*(t + 1)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 1,
+              "to": 5
+            },
+            "t": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "divisor-sum",
+        "prompt": "What is the sum of all the positive divisors of $[[3*2^s]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*(2^(s + 1) - 1)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "$[[3*2^s]] = 2^{[[s]]} \\cdot 3$.",
+          "The sum is $(1 + 2 + \\cdots + 2^{[[s]]})(1 + 3)$."
+        ],
+        "solution": "$(1 + 2 + \\cdots + 2^{[[s]]})(1 + 3) = [[2^(s + 1) - 1]] \\times 4 = [[4*(2^(s + 1) - 1)]]$.",
+        "skill": "counting-divisors",
+        "difficulty": 2,
+        "compute": "(2^(s + 1) - 1)*(1 + 3)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 6
+            }
+          }
+        }
+      },
+      {
+        "id": "odd-count",
+        "prompt": "How many whole numbers from $1$ to $[[k*k + j]]$ have an ODD number of positive divisors?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Divisors pair up as $d$ and $\\frac{n}{d}$, except when $d = \\frac{n}{d}$.",
+          "Only perfect squares have an odd number of divisors."
+        ],
+        "solution": "Only perfect squares have an odd number of divisors. The squares up to $[[k*k + j]]$ are $1^2, 2^2, \\ldots, [[k]]^2$: that is $[[k]]$ numbers.",
+        "skill": "counting-divisors",
+        "difficulty": 2,
+        "compute": "k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 5,
+              "to": 20
+            },
+            "j": {
+              "from": 1,
+              "to": 10
+            }
+          },
+          "where": ["j <= 2*k"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m07.divisors-set",
+    "type": "PROBLEM_SET",
+    "title": "Counting divisors challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "divisors-360",
+        "prompt": "How many positive divisors does $360$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$18$", "$20$", "$24$", "$30$"],
+          "correct": "D",
+          "why": {
+            "A": "That forgets the prime $5$, which doubles the count."
+          }
+        },
+        "solution": "$360 = 2^3 \\cdot 3^2 \\cdot 5$, so it has $4 \\times 3 \\times 2 = 24$ divisors, choice (D).",
+        "skill": "counting-divisors",
+        "difficulty": 1,
+        "compute": "(3 + 1)*(2 + 1)*(1 + 1)"
+      },
+      {
+        "id": "six-divisors",
+        "prompt": "What is the smallest positive integer with exactly $6$ positive divisors?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$12$", "$18$", "$20$", "$32$"],
+          "correct": "B",
+          "why": {
+            "A": "$6 = 2 \\cdot 3$ has only $4$ divisors.",
+            "E": "$32 = 2^5$ has $6$ divisors, but $12$ is smaller."
+          }
+        },
+        "solution": "$6 = 6 \\times 1 = 3 \\times 2$, so the number is $p^5$ or $p^2 q$. The smallest are $2^5 = 32$ and $2^2 \\cdot 3 = 12$. Choice (B).",
+        "skill": "counting-divisors",
+        "difficulty": 2,
+        "compute": "2^2*3"
+      },
+      {
+        "id": "square-divisors",
+        "prompt": "How many positive divisors of $2^4 \\cdot 3^3$ are perfect squares?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$6$", "$8$", "$20$"],
+          "correct": "C",
+          "why": {
+            "E": "That is every divisor. A square divisor needs even powers."
+          }
+        },
+        "solution": "The power of $2$ is $0$, $2$ or $4$ ($3$ choices) and the power of $3$ is $0$ or $2$ ($2$ choices): $6$ square divisors, choice (C).",
+        "skill": "counting-divisors",
+        "difficulty": 2,
+        "compute": "3*2"
+      },
+      {
+        "id": "multiples-of-ten",
+        "prompt": "How many positive divisors of $1000$ are multiples of $10$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$8$", "$9$", "$12$", "$16$"],
+          "correct": "C",
+          "why": {
+            "E": "That is every divisor of $1000$."
+          }
+        },
+        "solution": "$1000 = 2^3 \\cdot 5^3$. A multiple of $10$ needs at least one $2$ and one $5$: $3 \\times 3 = 9$ choices, choice (C).",
+        "skill": "counting-divisors",
+        "difficulty": 2,
+        "compute": "3*3"
+      },
+      {
+        "id": "three-divisors",
+        "prompt": "How many positive integers less than $100$ have exactly $3$ positive divisors?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$5$", "$9$", "$10$"],
+          "correct": "B",
+          "why": {
+            "D": "Not every square works: $36$ has $9$ divisors. Only squares of primes have exactly $3$."
+          }
+        },
+        "solution": "Exactly $3$ divisors means $p^2$ for a prime $p$: $4, 9, 25, 49$. That is $4$ numbers, choice (B).",
+        "skill": "counting-divisors",
+        "difficulty": 3,
+        "compute": "4"
+      }
+    ]
+  },
+  {
+    "key": "m07.zeros-practice",
+    "type": "PROBLEMS",
+    "title": "Factorials & trailing zeros",
+    "instructions": "Type each answer and press Check. Count the $5$s (or the prime you need), and don't forget the extra ones from higher powers. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "trailing-zeros",
+        "prompt": "How many zeros does $[[n]]!$ end with?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(n/5) + floor(n/25) + floor(n/125)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(n/5)]]",
+              "why": "Multiples of $25$ give a second $5$: add $[[floor(n/25)]]$ more."
+            }
+          ]
+        },
+        "hints": [
+          "Count the multiples of $5$ up to $[[n]]$.",
+          "Then add the multiples of $25$ (and $125$)."
+        ],
+        "solution": "$\\left\\lfloor \\frac{[[n]]}{5} \\right\\rfloor + \\left\\lfloor \\frac{[[n]]}{25} \\right\\rfloor + \\left\\lfloor \\frac{[[n]]}{125} \\right\\rfloor = [[floor(n/5)]] + [[floor(n/25)]] + [[floor(n/125)]] = [[floor(n/5) + floor(n/25) + floor(n/125)]]$.",
+        "skill": "factorials-zeros",
+        "difficulty": 1,
+        "compute": "floor(n/5) + floor(n/25) + floor(n/125)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 30,
+              "to": 200,
+              "step": 7
+            }
+          }
+        }
+      },
+      {
+        "id": "power-of-two",
+        "prompt": "What is the largest $k$ such that $2^k$ divides $[[n]]!$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(n/2) + floor(n/4) + floor(n/8) + floor(n/16)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(n/2)]]",
+              "why": "Multiples of $4$, $8$ and $16$ give extra $2$s."
+            }
+          ]
+        },
+        "hints": [
+          "Add $\\left\\lfloor \\frac{[[n]]}{2} \\right\\rfloor$, $\\left\\lfloor \\frac{[[n]]}{4} \\right\\rfloor$, $\\left\\lfloor \\frac{[[n]]}{8} \\right\\rfloor$, $\\left\\lfloor \\frac{[[n]]}{16} \\right\\rfloor$."
+        ],
+        "solution": "$[[floor(n/2)]] + [[floor(n/4)]] + [[floor(n/8)]] + [[floor(n/16)]] = [[floor(n/2) + floor(n/4) + floor(n/8) + floor(n/16)]]$.",
+        "skill": "factorials-zeros",
+        "difficulty": 2,
+        "compute": "floor(n/2) + floor(n/4) + floor(n/8) + floor(n/16)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 31
+            }
+          }
+        }
+      },
+      {
+        "id": "power-of-three",
+        "prompt": "What is the largest $k$ such that $3^k$ divides $[[n]]!$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(n/3) + floor(n/9) + floor(n/27)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(n/3)]]",
+              "why": "Multiples of $9$ (and $27$) give extra $3$s."
+            }
+          ]
+        },
+        "hints": [
+          "Add $\\left\\lfloor \\frac{[[n]]}{3} \\right\\rfloor + \\left\\lfloor \\frac{[[n]]}{9} \\right\\rfloor + \\left\\lfloor \\frac{[[n]]}{27} \\right\\rfloor$."
+        ],
+        "solution": "$[[floor(n/3)]] + [[floor(n/9)]] + [[floor(n/27)]] = [[floor(n/3) + floor(n/9) + floor(n/27)]]$.",
+        "skill": "factorials-zeros",
+        "difficulty": 2,
+        "compute": "floor(n/3) + floor(n/9) + floor(n/27)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "factorial-ratio",
+        "prompt": "What is $\\frac{[[n]]!}{[[n - 2]]!}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*(n-1)*(n-2)]]",
+              "why": "$[[n - 2]]!$ cancels everything from $[[n - 2]]$ down: only $[[n]] \\times [[n - 1]]$ is left."
+            }
+          ]
+        },
+        "hints": ["$[[n]]! = [[n]] \\times [[n - 1]] \\times [[n - 2]]!$."],
+        "solution": "$\\frac{[[n]]!}{[[n - 2]]!} = [[n]] \\times [[n - 1]] = [[n*(n - 1)]]$.",
+        "skill": "factorials-zeros",
+        "difficulty": 1,
+        "compute": "fact(n)/fact(n - 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 8,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "zeros-product",
+        "prompt": "How many zeros does $[[a]]! \\times [[b]]!$ end with?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(a/5) + floor(a/25) + floor(b/5) + floor(b/25)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Count the $5$s in each factorial and add them.",
+          "There are plenty of $2$s to pair with every $5$."
+        ],
+        "solution": "$[[a]]!$ has $[[floor(a/5) + floor(a/25)]]$ fives and $[[b]]!$ has $[[floor(b/5) + floor(b/25)]]$, so the product ends in $[[floor(a/5) + floor(a/25) + floor(b/5) + floor(b/25)]]$ zeros.",
+        "skill": "factorials-zeros",
+        "difficulty": 2,
+        "compute": "floor(a/5) + floor(a/25) + floor(b/5) + floor(b/25)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 24
+            },
+            "b": {
+              "from": 25,
+              "to": 49
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m07.zeros-set",
+    "type": "PROBLEM_SET",
+    "title": "Factorials challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "fifty-zeros",
+        "prompt": "How many zeros does $50!$ end with?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$11$", "$12$", "$13$", "$15$"],
+          "correct": "C",
+          "why": {
+            "A": "$25$ and $50$ each give a second $5$."
+          }
+        },
+        "solution": "$\\left\\lfloor \\frac{50}{5} \\right\\rfloor + \\left\\lfloor \\frac{50}{25} \\right\\rfloor = 10 + 2 = 12$, choice (C).",
+        "skill": "factorials-zeros",
+        "difficulty": 1,
+        "compute": "floor(50/5) + floor(50/25)"
+      },
+      {
+        "id": "twos-in-twenty",
+        "prompt": "What is the largest $k$ such that $2^k$ divides $20!$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$16$", "$18$", "$19$", "$20$"],
+          "correct": "C",
+          "why": {
+            "A": "That counts the even numbers only. Multiples of $4$, $8$ and $16$ add more."
+          }
+        },
+        "solution": "$10 + 5 + 2 + 1 = 18$, choice (C).",
+        "skill": "factorials-zeros",
+        "difficulty": 2,
+        "compute": "floor(20/2) + floor(20/4) + floor(20/8) + floor(20/16)"
+      },
+      {
+        "id": "year-zeros",
+        "prompt": "How many zeros does $2026!$ end with?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$405$", "$486$", "$502$", "$505$", "$506$"],
+          "correct": "D",
+          "why": {
+            "A": "That counts the multiples of $5$ only.",
+            "B": "Add the multiples of $125$ and $625$ too."
+          }
+        },
+        "solution": "$405 + 81 + 16 + 3 = 505$, choice (D).",
+        "skill": "factorials-zeros",
+        "difficulty": 2,
+        "compute": "floor(2026/5) + floor(2026/25) + floor(2026/125) + floor(2026/625)"
+      },
+      {
+        "id": "sixes",
+        "prompt": "What is the largest $n$ such that $6^n$ divides $15!$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$7$", "$11$", "$15$"],
+          "correct": "B",
+          "why": {
+            "D": "$15!$ has $11$ twos but only $6$ threes, and each $6$ needs one of each."
+          }
+        },
+        "solution": "Each $6$ needs a $2$ and a $3$. $15!$ has $7 + 3 + 1 = 11$ twos and $5 + 1 = 6$ threes, so $n = 6$, choice (B).",
+        "skill": "factorials-zeros",
+        "difficulty": 3,
+        "compute": "floor(15/3) + floor(15/9)"
+      },
+      {
+        "id": "exactly-four",
+        "prompt": "For how many whole numbers $n$ from $1$ to $30$ does $n!$ end in exactly $4$ zeros?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$4$", "$5$", "$6$", "$10$"],
+          "correct": "C"
+        },
+        "solution": "$20!$ is the first with $4$ zeros, and $25!$ jumps to $6$. So $n = 20, 21, 22, 23, 24$: $5$ numbers, choice (C).",
+        "skill": "factorials-zeros",
+        "difficulty": 3,
+        "compute": "24 - 20 + 1"
+      }
+    ]
+  },
+  {
+    "key": "m07.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "nine-rem",
+        "prompt": "What is the remainder when $[[a]][[b]][[c]]$ is divided by $9$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(100*a + 10*b + c, 9)]]"],
+          "form": "integer"
+        },
+        "hints": ["Add the digits."],
+        "solution": "The digit sum $[[a + b + c]]$ leaves remainder $[[mod(a + b + c, 9)]]$, and so does the number.",
+        "skill": "divisibility",
+        "difficulty": 1,
+        "compute": "mod(100*a + 10*b + c, 9)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 0,
+              "to": 9
+            },
+            "c": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "big-prime",
+        "prompt": "What is the largest prime factor of $[[p*q*r]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[r]]"],
+          "form": "integer"
+        },
+        "hints": ["Divide out the small primes first."],
+        "solution": "$[[p*q*r]] = [[p]] \\times [[q]] \\times [[r]]$, so the answer is $[[r]]$.",
+        "skill": "primes-factorization",
+        "difficulty": 1,
+        "compute": "r",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [2, 3, 5]
+            },
+            "q": {
+              "choose": [7, 11]
+            },
+            "r": {
+              "choose": [13, 17, 19]
+            }
+          }
+        }
+      },
+      {
+        "id": "lcm-pair",
+        "prompt": "What is the least common multiple of $[[a*g]]$ and $[[b*g]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b*g]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*b*g*g]]",
+              "why": "That is the product. Divide by the GCD, $[[g]]$."
+            }
+          ]
+        },
+        "hints": ["The GCD is $[[g]]$."],
+        "solution": "$\\frac{[[a*g]] \\times [[b*g]]}{[[g]]} = [[a*b*g]]$.",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "lcm(a*g, b*g)",
+        "template": {
+          "vars": {
+            "g": {
+              "from": 2,
+              "to": 6
+            },
+            "a": {
+              "from": 2,
+              "to": 5
+            },
+            "b": {
+              "from": 3,
+              "to": 7
+            }
+          },
+          "where": ["a < b", "gcd(a, b) == 1"]
+        }
+      },
+      {
+        "id": "count-div",
+        "prompt": "How many positive divisors does $[[2^s*3^t]]$ have?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(s + 1)*(t + 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[s*t]]",
+              "why": "Add one to each exponent first."
+            }
+          ]
+        },
+        "hints": ["Write it as $2^a \\cdot 3^b$."],
+        "solution": "$2^{[[s]]} \\cdot 3^{[[t]]}$ has $[[s + 1]] \\times [[t + 1]] = [[(s + 1)*(t + 1)]]$ divisors.",
+        "skill": "counting-divisors",
+        "difficulty": 1,
+        "compute": "(s + 1)*(t + 1)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 1,
+              "to": 5
+            },
+            "t": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "zeros",
+        "prompt": "How many zeros does $[[n]]!$ end with?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(n/5) + floor(n/25)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(n/5)]]",
+              "why": "Multiples of $25$ give a second $5$."
+            }
+          ]
+        },
+        "hints": ["Count the multiples of $5$, then of $25$."],
+        "solution": "$[[floor(n/5)]] + [[floor(n/25)]] = [[floor(n/5) + floor(n/25)]]$.",
+        "skill": "factorials-zeros",
+        "difficulty": 1,
+        "compute": "floor(n/5) + floor(n/25)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 26,
+              "to": 120,
+              "step": 6
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m07.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 7 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-nine-digit",
+        "prompt": "The four-digit number $7d36$, where $d$ is a digit, is divisible by $9$. What is $d$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$7$", "$9$"],
+          "correct": "B",
+          "why": {
+            "D": "$7$ is the remainder of $7 + 3 + 6 = 16$. $d$ must bring the sum up to $18$."
+          }
+        },
+        "solution": "$7 + 3 + 6 = 16$, and $16 + d$ must be a multiple of $9$, so $d = 2$, choice (B).",
+        "skill": "divisibility",
+        "difficulty": 1,
+        "compute": "18 - 16"
+      },
+      {
+        "id": "check-twelve-count",
+        "prompt": "The four-digit number $52d8$, where $d$ is a digit, is divisible by $12$. How many digits $d$ are possible?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "C",
+          "why": {
+            "E": "$d = 0, 3, 6, 9$ pass the $3$ test, but $38$ and $98$ fail the $4$ test."
+          }
+        },
+        "solution": "For $3$: $15 + d$ is a multiple of $3$, so $d$ is $0, 3, 6$ or $9$. For $4$: $08$ and $68$ work, $38$ and $98$ don't. So $2$ digits, choice (C).",
+        "skill": "divisibility",
+        "difficulty": 2,
+        "compute": "2"
+      },
+      {
+        "id": "check-eleven",
+        "prompt": "Which of these numbers is divisible by $11$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4717$", "$4719$", "$4729$", "$4791$", "$4971$"],
+          "correct": "B"
+        },
+        "solution": "Alternating sums: $4717 \\to -13$, $4719 \\to -11$, $4729 \\to -10$, $4791 \\to 5$, $4971 \\to 1$. Only $4719$ gives a multiple of $11$ ($4719 = 11 \\times 429$), choice (B).",
+        "skill": "divisibility",
+        "difficulty": 2,
+        "compute": "4719"
+      },
+      {
+        "id": "check-largest-prime",
+        "prompt": "What is the largest prime factor of $2431$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$11$", "$13$", "$17$", "$19$", "$143$"],
+          "correct": "C",
+          "why": {
+            "E": "$143 = 11 \\times 13$ is not prime."
+          }
+        },
+        "solution": "$2431 = 11 \\times 221 = 11 \\times 13 \\times 17$, so the largest prime factor is $17$, choice (C).",
+        "skill": "primes-factorization",
+        "difficulty": 1,
+        "compute": "2431/(11*13)"
+      },
+      {
+        "id": "check-prime-pair",
+        "prompt": "Two primes add up to $[[q + 2]]$. What is their product?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[q]]$", "$[[2*q]]$", "$[[2*q + 4]]$", "$[[q*q]]$", "$[[q + 2]]$"],
+          "correct": "B",
+          "why": {
+            "A": "That is one prime. The other is $2$."
+          }
+        },
+        "solution": "An odd sum needs the even prime $2$. The other prime is $[[q]]$, so the product is $[[2*q]]$, choice (B).",
+        "skill": "primes-factorization",
+        "difficulty": 2,
+        "compute": "2*((q + 2) - 2)",
+        "template": {
+          "vars": {
+            "q": {
+              "choose": [11, 17, 29, 41, 59, 71]
+            }
+          }
+        }
+      },
+      {
+        "id": "check-exponents",
+        "prompt": "If $2^a \\cdot 3^b \\cdot 5^c = 720$, what is $a + b + c$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$7$", "$8$", "$9$"],
+          "correct": "C"
+        },
+        "solution": "$720 = 16 \\times 45 = 2^4 \\cdot 3^2 \\cdot 5$, so $a + b + c = 4 + 2 + 1 = 7$, choice (C).",
+        "skill": "primes-factorization",
+        "difficulty": 1,
+        "compute": "4 + 2 + 1"
+      },
+      {
+        "id": "check-gcd",
+        "prompt": "What is the greatest common divisor of $180$ and $252$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$18$", "$24$", "$36$", "$72$"],
+          "correct": "D"
+        },
+        "solution": "$180 = 2^2 \\cdot 3^2 \\cdot 5$ and $252 = 2^2 \\cdot 3^2 \\cdot 7$. The GCD is $2^2 \\cdot 3^2 = 36$, choice (D).",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "gcd(180, 252)"
+      },
+      {
+        "id": "check-lcm",
+        "prompt": "What is the least common multiple of $[[a*g]]$ and $[[b*g]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[g]]$", "$[[a*b*g]]$", "$[[a*b*g*g]]$", "$[[(a + b)*g]]$", "$[[a*b]]$"],
+          "correct": "B",
+          "why": {
+            "A": "That is the GCD.",
+            "C": "That is the product. Divide by the GCD, $[[g]]$."
+          }
+        },
+        "solution": "$\\gcd = [[g]]$, so $\\text{lcm} = \\frac{[[a*g]] \\times [[b*g]]}{[[g]]} = [[a*b*g]]$, choice (B).",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "lcm(a*g, b*g)",
+        "template": {
+          "vars": {
+            "g": {
+              "from": 2,
+              "to": 6
+            },
+            "a": {
+              "from": 2,
+              "to": 5
+            },
+            "b": {
+              "from": 3,
+              "to": 7
+            }
+          },
+          "where": ["a < b", "gcd(a, b) == 1", "a*b != g", "(a + b)*g != a*b"]
+        }
+      },
+      {
+        "id": "check-missing",
+        "prompt": "Two numbers have GCD $12$ and LCM $360$. One of them is $72$. What is the other?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$30$", "$48$", "$60$", "$72$", "$120$"],
+          "correct": "C"
+        },
+        "solution": "The product is $12 \\times 360 = 4320$, so the other number is $\\frac{4320}{72} = 60$, choice (C).",
+        "skill": "gcd-lcm",
+        "difficulty": 2,
+        "compute": "12*360/72"
+      },
+      {
+        "id": "check-lights",
+        "prompt": "Three lights blink every $4$, $6$ and $10$ seconds. They blink together now. After how many seconds do all three next blink together?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$30$", "$60$", "$120$", "$240$"],
+          "correct": "C",
+          "why": {
+            "E": "$4 \\times 6 \\times 10 = 240$ works, but it isn't the first time: use the LCM."
+          }
+        },
+        "solution": "$\\text{lcm}(4, 6, 10) = 2^2 \\cdot 3 \\cdot 5 = 60$, choice (C).",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "lcm(lcm(4, 6), 10)"
+      },
+      {
+        "id": "check-divisors",
+        "prompt": "How many positive divisors does $[[2^s*3^t]]$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[s*t]]$",
+            "$[[s + t + 1]]$",
+            "$[[(s + 1)*(t + 1)]]$",
+            "$[[s*t + 1]]$",
+            "$[[s + t]]$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "Add one to each exponent before multiplying."
+          }
+        },
+        "solution": "$[[2^s*3^t]] = 2^{[[s]]} \\cdot 3^{[[t]]}$ has $[[s + 1]] \\times [[t + 1]] = [[(s + 1)*(t + 1)]]$ divisors, choice (C).",
+        "skill": "counting-divisors",
+        "difficulty": 1,
+        "compute": "(s + 1)*(t + 1)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 5
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          },
+          "where": ["s*t != s + t", "s*t != s + t + 1"]
+        }
+      },
+      {
+        "id": "check-thousand",
+        "prompt": "How many positive divisors does $1000$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$9$", "$12$", "$16$", "$20$"],
+          "correct": "D",
+          "why": {
+            "B": "$1000 = 2^3 \\cdot 5^3$: add one to each exponent, $4 \\times 4$."
+          }
+        },
+        "solution": "$1000 = 2^3 \\cdot 5^3$ has $4 \\times 4 = 16$ divisors, choice (D).",
+        "skill": "counting-divisors",
+        "difficulty": 1,
+        "compute": "(3 + 1)*(3 + 1)"
+      },
+      {
+        "id": "check-odd-divisors",
+        "prompt": "How many odd positive divisors does $720$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$6$", "$8$", "$30$"],
+          "correct": "C",
+          "why": {
+            "E": "That is every divisor of $720$."
+          }
+        },
+        "solution": "$720 = 2^4 \\cdot 3^2 \\cdot 5$. Odd divisors use no $2$: $3 \\times 2 = 6$, choice (C).",
+        "skill": "counting-divisors",
+        "difficulty": 2,
+        "compute": "(2 + 1)*(1 + 1)"
+      },
+      {
+        "id": "check-odd-count",
+        "prompt": "How many whole numbers from $1$ to $200$ have an odd number of positive divisors?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$13$", "$14$", "$15$", "$100$", "$101$"],
+          "correct": "B",
+          "why": {
+            "D": "Odd NUMBERS aren't the point: only perfect squares have an odd number of divisors."
+          }
+        },
+        "solution": "Only perfect squares do, and $14^2 = 196 \\leq 200 < 225 = 15^2$. So $14$, choice (B).",
+        "skill": "counting-divisors",
+        "difficulty": 3,
+        "compute": "14"
+      },
+      {
+        "id": "check-zeros",
+        "prompt": "How many zeros does $[[n]]!$ end with?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[floor(n/25)]]$",
+            "$[[floor(n/10)]]$",
+            "$[[floor(n/5)]]$",
+            "$[[floor(n/5) + floor(n/25)]]$",
+            "$[[2*floor(n/5)]]$"
+          ],
+          "correct": "D",
+          "why": {
+            "C": "Multiples of $25$ give a second $5$.",
+            "B": "Count fives, not multiples of $10$: every $5$ finds a $2$."
+          }
+        },
+        "solution": "$[[floor(n/5)]] + [[floor(n/25)]] = [[floor(n/5) + floor(n/25)]]$, choice (D).",
+        "skill": "factorials-zeros",
+        "difficulty": 1,
+        "compute": "floor(n/5) + floor(n/25) + floor(n/125)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 50,
+              "to": 120,
+              "step": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "check-thirty-twos",
+        "prompt": "What is the largest $k$ such that $2^k$ divides $30!$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$15$", "$22$", "$25$", "$26$", "$30$"],
+          "correct": "D",
+          "why": {
+            "A": "That counts the even numbers only."
+          }
+        },
+        "solution": "$15 + 7 + 3 + 1 = 26$, choice (D).",
+        "skill": "factorials-zeros",
+        "difficulty": 2,
+        "compute": "floor(30/2) + floor(30/4) + floor(30/8) + floor(30/16)"
+      },
+      {
+        "id": "check-hundred",
+        "prompt": "How many zeros does $100!$ end with?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$21$", "$24$", "$25$", "$30$"],
+          "correct": "C",
+          "why": {
+            "A": "$25, 50, 75, 100$ each give a second $5$."
+          }
+        },
+        "solution": "$20 + 4 = 24$, choice (C).",
+        "skill": "factorials-zeros",
+        "difficulty": 1,
+        "compute": "floor(100/5) + floor(100/25)"
+      },
+      {
+        "id": "check-six-zeros",
+        "prompt": "What is the smallest $n$ such that $n!$ ends in at least $6$ zeros?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$25$", "$26$", "$30$", "$35$"],
+          "correct": "B",
+          "why": {
+            "D": "$25$ gives two fives at once, so $25!$ already has $6$ zeros."
+          }
+        },
+        "solution": "$24!$ has $4$ zeros, and $25!$ has $5 + 1 = 6$. So $n = 25$, choice (B).",
+        "skill": "factorials-zeros",
+        "difficulty": 3,
+        "compute": "25"
+      },
+      {
+        "id": "check-coprime",
+        "prompt": "How many whole numbers from $1$ to $60$ share no common factor greater than $1$ with $60$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$14$", "$16$", "$18$", "$20$"],
+          "correct": "C"
+        },
+        "solution": "$60 = 2^2 \\cdot 3 \\cdot 5$. Keep numbers with no $2$, $3$ or $5$: $60 \\times \\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{4}{5} = 16$, choice (C).",
+        "skill": "gcd-lcm",
+        "difficulty": 3,
+        "compute": "60*(1 - 1/2)*(1 - 1/3)*(1 - 1/5)"
+      }
+    ]
+  }
+]

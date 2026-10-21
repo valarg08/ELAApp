@@ -1,0 +1,63 @@
+{
+  "slug": "math-number-theory-1-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Number Theory I",
+  "estMinutes": 40,
+  "focusSkills": [
+    "divisibility",
+    "primes-factorization",
+    "gcd-lcm",
+    "counting-divisors",
+    "factorials-zeros"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which number theory tool do you reach for fastest now, and which one do you still have to stop and think about?",
+      "placeholder": "Fastest… Still tricky…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Divisibility, primes, GCD & LCM: quick review",
+          "body": "Tests: $4$ and $8$ use the last two or three digits, $3$ and $9$ the digit sum, $11$ the alternating sum. Combine tests whose numbers share no factor ($12 = 3 \\times 4$). Factor into primes; test primes only up to $\\sqrt{n}$. GCD: smaller powers; LCM: larger powers; $\\gcd \\times \\text{lcm} = ab$."
+        },
+        {
+          "kind": "definition",
+          "title": "Divisors & factorials: quick review",
+          "body": "$p^a q^b$ has $(a + 1)(b + 1)$ divisors; only squares have an odd number. Zeros of $n!$: $\\left\\lfloor \\frac{n}{5} \\right\\rfloor + \\left\\lfloor \\frac{n}{25} \\right\\rfloor + \\cdots$, and the same count with any prime $p$ gives its power in $n!$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m07.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m07.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

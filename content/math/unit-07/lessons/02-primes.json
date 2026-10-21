@@ -1,0 +1,100 @@
+{
+  "slug": "math-primes-factorization",
+  "order": 2,
+  "title": "Primes & Factorization",
+  "estMinutes": 35,
+  "focusSkills": ["primes-factorization"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Is $221$ prime? How far do you have to check before you can be sure?",
+      "placeholder": "I would try dividing by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Building blocks",
+          "body": "A prime has exactly two divisors, $1$ and itself: $2, 3, 5, 7, 11, 13, \\ldots$ ($1$ is not prime, and $2$ is the only even prime). Every whole number above $1$ splits into primes in exactly one way, like $360 = 2^3 \\cdot 3^2 \\cdot 5$. Build the factor tree by pulling out small primes first."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a factor tree",
+          "problem": "Write $360$ as a product of primes.",
+          "steps": [
+            {
+              "text": "Halve while you can: $360 \\to 180 \\to 90 \\to 45$. That is three $2$s.",
+              "try": {
+                "prompt": "How many times can you halve $360$ and still get a whole number?",
+                "accepted": ["3"],
+                "compute": "3"
+              }
+            },
+            {
+              "text": "Then $45 = 3^2 \\cdot 5$, so $360 = 2^3 \\cdot 3^2 \\cdot 5$: three different primes.",
+              "try": {
+                "prompt": "How many different primes divide $360$?",
+                "accepted": ["3"],
+                "compute": "3"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Testing for a prime",
+          "body": "If $n$ is not prime, it has a prime factor no bigger than $\\sqrt{n}$. So to test $n$, try only the primes up to $\\sqrt{n}$. For $221$, $\\sqrt{221} < 15$, so try $2, 3, 5, 7, 11, 13$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: is 221 prime?",
+          "problem": "Is $221$ prime?",
+          "steps": [
+            {
+              "text": "$14^2 = 196$ and $15^2 = 225$, so we only need primes up to $14$: the largest is $13$.",
+              "try": {
+                "prompt": "What is the largest prime you need to try?",
+                "accepted": ["13"],
+                "compute": "13"
+              }
+            },
+            {
+              "text": "$2, 3, 5, 7, 11$ fail, but $221 = 13 \\times 17$. So $221$ is not prime.",
+              "try": {
+                "prompt": "$221 = 13 \\times$ what?",
+                "accepted": ["17"],
+                "compute": "221/13"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: 1, 2 and hidden factors",
+          "body": "$1$ is not prime. $2$ is prime, and it is the only even one, so if two primes add to an odd number, one of them is $2$. Numbers like $91 = 7 \\times 13$ and $143 = 11 \\times 13$ look prime but aren't: check every prime up to the square root."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m07.primes-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m07.primes-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which numbers look prime but aren't? Name one and its factors."],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}
