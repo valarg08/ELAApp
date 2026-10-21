@@ -4,5 +4,5 @@
   "title": "Counting I",
   "summary": "The multiplication principle, permutations, combinations, casework and complementary counting.",
   "bigIdeas": ["Count what you want, or count what you don’t want and subtract."],
-  "published": false
+  "published": true
 }

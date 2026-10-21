@@ -1,0 +1,63 @@
+{
+  "slug": "math-counting-1-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Counting I",
+  "estMinutes": 40,
+  "focusSkills": [
+    "multiplication-principle",
+    "permutations",
+    "combinations",
+    "casework",
+    "complementary-counting"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which counting tool do you reach for fastest now, and which one do you still have to stop and think about?",
+      "placeholder": "Fastest… Still tricky…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Arranging and choosing: quick review",
+          "body": "Steps in a row multiply; \"or\" adds. Restrictions first (no leading $0$). In order: $n!$ and $\\frac{n!}{(n - k)!}$; divide by the shuffles of repeated items; round table $(n - 1)!$. No order: $\\binom{n}{k}$; grid paths $\\binom{a + b}{a}$; handshakes $\\binom{n}{2}$."
+        },
+        {
+          "kind": "definition",
+          "title": "Cases and opposites: quick review",
+          "body": "Casework: split into cases that don't overlap and cover everything, then add. Complementary counting: \"at least one\" $=$ total $-$ none; \"not together\" $=$ total $-$ together."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m09.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m09.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "slug": "math-multiplication-principle",
+  "order": 1,
+  "title": "The Multiplication Principle",
+  "estMinutes": 35,
+  "focusSkills": ["multiplication-principle"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You have $3$ shirts, $4$ pairs of trousers and $2$ pairs of shoes. How many different outfits can you make? Do you add or multiply?",
+      "placeholder": "I think you… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Choices in a row multiply",
+          "body": "If a task is made of steps, and step one can be done in $a$ ways, step two in $b$ ways, and so on, then the whole task can be done in $a \\times b \\times \\cdots$ ways. Use \"and\" to multiply (a shirt AND trousers). Use \"or\" to add (a starter OR a dessert)."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: codes",
+          "problem": "A code is two letters (A to Z) followed by three digits ($0$ to $9$). How many codes are possible?",
+          "steps": [
+            {
+              "text": "The two letters can be chosen in $26 \\times 26 = 676$ ways.",
+              "try": {
+                "prompt": "What is $26 \\times 26$?",
+                "accepted": ["676"],
+                "compute": "26*26"
+              }
+            },
+            {
+              "text": "The three digits can be chosen in $10 \\times 10 \\times 10 = 1000$ ways, so there are $676 \\times 1000 = 676{,}000$ codes.",
+              "try": {
+                "prompt": "How many codes are possible?",
+                "accepted": ["676000"],
+                "compute": "26*26*10*10*10"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Restrictions first",
+          "body": "Fill the most restricted spot first. For a three-digit number, the first digit can't be $0$ ($9$ choices). If the digits must all be different, each later spot has one fewer choice. If the number must be even, decide the last digit early."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: different digits",
+          "problem": "How many three-digit numbers have all three digits different?",
+          "steps": [
+            {
+              "text": "The first digit can be $1$ to $9$: $9$ choices.",
+              "try": {
+                "prompt": "How many choices are there for the first digit?",
+                "accepted": ["9"],
+                "compute": "9"
+              }
+            },
+            {
+              "text": "The second digit can be any digit except the first ($9$ choices, now $0$ is allowed), and the third any except those two ($8$). So $9 \\times 9 \\times 8 = 648$.",
+              "try": {
+                "prompt": "How many three-digit numbers have all digits different?",
+                "accepted": ["648"],
+                "compute": "9*9*8"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: adding instead of multiplying",
+          "body": "$3$ shirts and $4$ trousers make $3 \\times 4 = 12$ outfits, not $7$. And handle the restrictions (no leading $0$, no repeats, even or odd) before the free spots, or the counts change under you."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m09.multiply-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m09.multiply-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you decide whether to add or to multiply in a counting problem?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

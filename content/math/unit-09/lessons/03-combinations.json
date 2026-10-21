@@ -1,0 +1,100 @@
+{
+  "slug": "math-combinations",
+  "order": 3,
+  "title": "Combinations",
+  "estMinutes": 35,
+  "focusSkills": ["combinations"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Choosing a president, vice-president and treasurer from $7$ people gives $210$ ways. How many ways are there to choose just a committee of $3$ from the same $7$? Why is it fewer?",
+      "placeholder": "It is fewer because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Choosing a group",
+          "body": "The number of ways to choose $k$ things from $n$ when order doesn't matter is $\\binom{n}{k} = \\frac{n!}{k! \\, (n - k)!}$, read \"$n$ choose $k$\". It is the ordered count divided by $k!$, because each group can be ordered in $k!$ ways. Also $\\binom{n}{k} = \\binom{n}{n - k}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a committee",
+          "problem": "How many committees of $3$ can be chosen from $7$ people?",
+          "steps": [
+            {
+              "text": "In order there are $7 \\times 6 \\times 5 = 210$ ways.",
+              "try": {
+                "prompt": "What is $7 \\times 6 \\times 5$?",
+                "accepted": ["210"],
+                "compute": "7*6*5"
+              }
+            },
+            {
+              "text": "Each committee was counted $3! = 6$ times, so there are $\\frac{210}{6} = 35$ committees.",
+              "try": {
+                "prompt": "How many committees are there?",
+                "accepted": ["35"],
+                "compute": "binom(7, 3)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Paths, handshakes and lines",
+          "body": "A path on a grid that goes $a$ steps right and $b$ steps up is a string of $a + b$ moves; choose which $a$ of them go right: $\\binom{a + b}{a}$ paths. $n$ people shaking hands once each: $\\binom{n}{2}$. Lines through $n$ points with no three in a line: also $\\binom{n}{2}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: grid paths",
+          "problem": "How many shortest paths go from $(0, 0)$ to $(4, 3)$, moving one unit right or up at a time?",
+          "steps": [
+            {
+              "text": "Every path uses $4$ rights and $3$ ups: $7$ moves.",
+              "try": {
+                "prompt": "How many moves does each path have?",
+                "accepted": ["7"],
+                "compute": "4 + 3"
+              }
+            },
+            {
+              "text": "Choose which $3$ of the $7$ moves are ups: $\\binom{7}{3} = 35$ paths.",
+              "try": {
+                "prompt": "How many paths are there?",
+                "accepted": ["35"],
+                "compute": "binom(7, 3)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: counting groups in order",
+          "body": "A committee, a hand of cards or a set of toppings has no order: divide the ordered count by $k!$. When a choice has two parts (two boys AND two girls), multiply the two combinations. When one person must be included, choose the rest from the others."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m09.combinations-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m09.combinations-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Give one example where order matters and one where it doesn't."],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

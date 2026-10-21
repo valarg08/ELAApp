@@ -1,0 +1,1745 @@
+[
+  {
+    "key": "m09.multiply-practice",
+    "type": "PROBLEMS",
+    "title": "The multiplication principle",
+    "instructions": "Type each answer and press Check. Steps in a row multiply; fill the most restricted spot first. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "outfits",
+        "prompt": "You have $[[a]]$ shirts, $[[b]]$ pairs of trousers and $[[c]]$ hats. An outfit is one of each. How many outfits are there?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b*c]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a + b + c]]",
+              "why": "You wear a shirt AND trousers AND a hat: multiply, don't add."
+            }
+          ]
+        },
+        "hints": ["Each shirt goes with every pair of trousers and every hat."],
+        "solution": "$[[a]] \\times [[b]] \\times [[c]] = [[a*b*c]]$ outfits.",
+        "skill": "multiplication-principle",
+        "difficulty": 1,
+        "compute": "a*b*c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 7
+            },
+            "b": {
+              "from": 3,
+              "to": 6
+            },
+            "c": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "lock-code",
+        "prompt": "A lock code is $[[k]]$ digits long, and each digit is one of $1, 2, \\ldots, [[m]]$. Digits may repeat. How many codes are possible?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[m^k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[m*k]]",
+              "why": "Each of the $[[k]]$ spots has $[[m]]$ choices: multiply $[[m]]$ by itself $[[k]]$ times, don't multiply $[[m]]$ by $[[k]]$."
+            }
+          ]
+        },
+        "hints": ["Each digit can be chosen in $[[m]]$ ways, whatever the others are."],
+        "solution": "Each of the $[[k]]$ digits has $[[m]]$ choices, so there are $[[m]]^{[[k]]} = [[m^k]]$ codes.",
+        "skill": "multiplication-principle",
+        "difficulty": 1,
+        "compute": "m^k",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "digits-up-to",
+        "prompt": "How many three-digit numbers use only the digits $0, 1, \\ldots, [[m]]$? Digits may repeat.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[m*(m + 1)^2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(m + 1)^3]]",
+              "why": "The first digit can't be $0$, so it has only $[[m]]$ choices."
+            }
+          ]
+        },
+        "hints": ["The first digit can be $1$ to $[[m]]$. The other two can be $0$ to $[[m]]$."],
+        "solution": "$[[m]]$ choices for the first digit and $[[m + 1]]$ for each of the others: $[[m]] \\times [[m + 1]] \\times [[m + 1]] = [[m*(m + 1)^2]]$.",
+        "skill": "multiplication-principle",
+        "difficulty": 1,
+        "compute": "m*(m + 1)^2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "meal-or",
+        "prompt": "A menu has $[[a]]$ starters, $[[b]]$ mains and $[[c]]$ desserts. A meal is one main together with either one starter or one dessert (not both). How many meals are there?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b*(a + c)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*b*c]]",
+              "why": "That would be a starter AND a dessert. Here it is a starter OR a dessert: add those first."
+            }
+          ]
+        },
+        "hints": ["The second course can be chosen in $[[a]] + [[c]]$ ways."],
+        "solution": "The extra course is a starter or a dessert: $[[a]] + [[c]] = [[a + c]]$ ways. With the main: $[[b]] \\times [[a + c]] = [[b*(a + c)]]$.",
+        "skill": "multiplication-principle",
+        "difficulty": 2,
+        "compute": "b*(a + c)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 6
+            },
+            "b": {
+              "from": 4,
+              "to": 7
+            },
+            "c": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "no-neighbours-same",
+        "prompt": "How many $[[k]]$-digit numbers have no two neighbouring digits the same?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[9^k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[10*9^(k - 1)]]",
+              "why": "The first digit can't be $0$: it has $9$ choices."
+            }
+          ]
+        },
+        "hints": [
+          "The first digit has $9$ choices ($1$ to $9$).",
+          "Each later digit can be anything except the digit just before it."
+        ],
+        "solution": "The first digit has $9$ choices, and each of the other $[[k - 1]]$ digits has $9$ (any digit but the one before). So $9^{[[k]]} = [[9^k]]$.",
+        "skill": "multiplication-principle",
+        "difficulty": 2,
+        "compute": "9^k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 2,
+              "to": 6
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m09.multiply-set",
+    "type": "PROBLEM_SET",
+    "title": "Multiplication principle challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "lunch",
+        "prompt": "A diner offers $4$ soups, $5$ sandwiches and $3$ drinks. A lunch is one soup, one sandwich and one drink. How many different lunches are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$20$", "$47$", "$60$", "$120$"],
+          "correct": "D",
+          "why": {
+            "A": "That adds the choices. One of each means multiply."
+          }
+        },
+        "solution": "$4 \\times 5 \\times 3 = 60$, choice (D).",
+        "skill": "multiplication-principle",
+        "difficulty": 1,
+        "compute": "4*5*3"
+      },
+      {
+        "id": "all-even-digits",
+        "prompt": "How many four-digit numbers have all four digits even?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$256$", "$400$", "$500$", "$625$", "$1024$"],
+          "correct": "C",
+          "why": {
+            "D": "The first digit can't be $0$."
+          }
+        },
+        "solution": "The first digit is $2, 4, 6$ or $8$ ($4$ choices); each other digit is $0, 2, 4, 6$ or $8$ ($5$ choices). $4 \\times 5^3 = 500$, choice (C).",
+        "skill": "multiplication-principle",
+        "difficulty": 1,
+        "compute": "4*5^3"
+      },
+      {
+        "id": "colour-strip",
+        "prompt": "Four squares in a row are each coloured red, green or blue. Squares that share a side must be different colours. How many colourings are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$18$", "$24$", "$48$", "$81$"],
+          "correct": "C",
+          "why": {
+            "E": "That ignores the rule that neighbours differ."
+          }
+        },
+        "solution": "The first square has $3$ choices and each later square $2$ (not its left neighbour's colour): $3 \\times 2^3 = 24$, choice (C).",
+        "skill": "multiplication-principle",
+        "difficulty": 2,
+        "compute": "3*2^3"
+      },
+      {
+        "id": "five-digit-palindromes",
+        "prompt": "A palindrome reads the same forwards and backwards, like $12321$. How many five-digit palindromes are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$90$", "$100$", "$900$", "$1000$", "$9000$"],
+          "correct": "C",
+          "why": {
+            "D": "The first digit can't be $0$."
+          }
+        },
+        "solution": "The first three digits decide the number: $9 \\times 10 \\times 10 = 900$, choice (C).",
+        "skill": "multiplication-principle",
+        "difficulty": 2,
+        "compute": "9*10*10"
+      },
+      {
+        "id": "even-distinct",
+        "prompt": "How many even three-digit numbers have all three digits different?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$320$", "$328$", "$360$", "$405$", "$450$"],
+          "correct": "B",
+          "why": {
+            "E": "That allows repeated digits."
+          }
+        },
+        "solution": "Last digit $0$: the first digit has $9$ choices and the middle $8$, so $72$. Last digit $2, 4, 6$ or $8$: the first digit has $8$ choices (not $0$, not the last), the middle $8$, so $4 \\times 64 = 256$. Total $72 + 256 = 328$, choice (B).",
+        "skill": "multiplication-principle",
+        "difficulty": 3,
+        "compute": "9*8 + 4*8*8"
+      }
+    ]
+  },
+  {
+    "key": "m09.permutations-practice",
+    "type": "PROBLEMS",
+    "title": "Permutations",
+    "instructions": "Type each answer and press Check. Order matters here; divide when items repeat. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "line-up",
+        "prompt": "In how many orders can $[[n]]$ people stand in a line?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[fact(n)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n^n]]",
+              "why": "A person can't stand in two places: each spot has one fewer choice than the last."
+            }
+          ]
+        },
+        "hints": ["The first spot has $[[n]]$ choices, the next $[[n - 1]]$, and so on."],
+        "solution": "$[[n]]! = [[fact(n)]]$.",
+        "skill": "permutations",
+        "difficulty": 1,
+        "compute": "fact(n)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "medals",
+        "prompt": "$[[n]]$ runners finish a race with no ties. In how many ways can the gold, silver and bronze medals be given out?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n - 1)*(n - 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(n, 3)]]",
+              "why": "Order matters here: gold, silver and bronze are different prizes."
+            }
+          ]
+        },
+        "hints": ["Gold has $[[n]]$ choices. How many are left for silver?"],
+        "solution": "$[[n]] \\times [[n - 1]] \\times [[n - 2]] = [[n*(n - 1)*(n - 2)]]$.",
+        "skill": "permutations",
+        "difficulty": 1,
+        "compute": "n*(n - 1)*(n - 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "flags",
+        "prompt": "In how many ways can $[[a]]$ identical red flags and $[[b]]$ identical blue flags be hung in a row?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[fact(a + b)/(fact(a)*fact(b))]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[fact(a + b)]]",
+              "why": "The red flags look the same, and so do the blue ones. Divide by the ways to shuffle each colour."
+            }
+          ]
+        },
+        "hints": [
+          "If every flag were different there would be $[[a + b]]!$ orders.",
+          "Divide by $[[a]]!$ and by $[[b]]!$."
+        ],
+        "solution": "$\\frac{[[a + b]]!}{[[a]]! \\, [[b]]!} = [[fact(a + b)/(fact(a)*fact(b))]]$.",
+        "skill": "permutations",
+        "difficulty": 1,
+        "compute": "fact(a + b)/(fact(a)*fact(b))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 5
+            },
+            "b": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "round-table",
+        "prompt": "In how many ways can $[[n]]$ people sit around a round table, if turning everyone the same number of seats gives the same seating?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[fact(n - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[fact(n)]]",
+              "why": "Each seating was counted $[[n]]$ times, once for each turn. Divide by $[[n]]$."
+            }
+          ]
+        },
+        "hints": ["Seat one person anywhere. Then arrange the rest in a line going round."],
+        "solution": "Fix one person's seat; the other $[[n - 1]]$ can be arranged in $[[n - 1]]! = [[fact(n - 1)]]$ ways.",
+        "skill": "permutations",
+        "difficulty": 1,
+        "compute": "fact(n - 1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "pair-together",
+        "prompt": "$[[n]]$ people stand in a line, and two friends insist on standing next to each other. In how many orders can they stand?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*fact(n - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[fact(n - 1)]]",
+              "why": "The two friends can stand in either order inside their block: times $2$."
+            }
+          ]
+        },
+        "hints": [
+          "Glue the two friends into one block: now there are $[[n - 1]]$ things to arrange."
+        ],
+        "solution": "The block and the other $[[n - 2]]$ people: $[[n - 1]]! = [[fact(n - 1)]]$ orders. The friends can swap: $2 \\times [[fact(n - 1)]] = [[2*fact(n - 1)]]$.",
+        "skill": "permutations",
+        "difficulty": 2,
+        "compute": "2*fact(n - 1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 8
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m09.permutations-set",
+    "type": "PROBLEM_SET",
+    "title": "Permutations challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "math-letters",
+        "prompt": "In how many different orders can the letters of the word MATH be written?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$12$", "$16$", "$24$", "$256$"],
+          "correct": "D",
+          "why": {
+            "E": "Each letter is used exactly once."
+          }
+        },
+        "solution": "$4! = 24$, choice (D).",
+        "skill": "permutations",
+        "difficulty": 1,
+        "compute": "fact(4)"
+      },
+      {
+        "id": "letter-letters",
+        "prompt": "How many different arrangements are there of the letters of the word LETTER?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$90$", "$120$", "$180$", "$360$", "$720$"],
+          "correct": "C",
+          "why": {
+            "E": "Swapping the two E's (or the two T's) gives the same word."
+          }
+        },
+        "solution": "$\\frac{6!}{2! \\, 2!} = \\frac{720}{4} = 180$, choice (C).",
+        "skill": "permutations",
+        "difficulty": 2,
+        "compute": "fact(6)/(fact(2)*fact(2))"
+      },
+      {
+        "id": "six-round",
+        "prompt": "In how many ways can $6$ people sit around a round table, if seatings that differ only by turning everyone are the same?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$36$", "$60$", "$120$", "$360$", "$720$"],
+          "correct": "C",
+          "why": {
+            "E": "Turning everyone one seat gives the same seating: divide by $6$."
+          }
+        },
+        "solution": "$(6 - 1)! = 120$, choice (C).",
+        "skill": "permutations",
+        "difficulty": 2,
+        "compute": "fact(5)"
+      },
+      {
+        "id": "books-apart",
+        "prompt": "Five different books go on a shelf. Two of them, a dictionary and an atlas, must NOT be next to each other. In how many orders can the books go?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$48$", "$72$", "$96$", "$120$"],
+          "correct": "C",
+          "why": {
+            "B": "That counts the orders where they ARE together.",
+            "E": "That ignores the rule."
+          }
+        },
+        "solution": "All orders: $5! = 120$. Together: glue them, $2 \\times 4! = 48$. Apart: $120 - 48 = 72$, choice (C).",
+        "skill": "permutations",
+        "difficulty": 2,
+        "compute": "fact(5) - 2*fact(4)"
+      },
+      {
+        "id": "vowel-start",
+        "prompt": "Four-letter strings are made from the letters of PROBLEM, using each letter at most once. How many of them start with a vowel?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$120$", "$240$", "$360$", "$480$", "$840$"],
+          "correct": "B",
+          "why": {
+            "E": "That is every string; only those starting with O or E count."
+          }
+        },
+        "solution": "The first letter is O or E ($2$ ways), then $6 \\times 5 \\times 4$ for the rest: $2 \\times 120 = 240$, choice (B).",
+        "skill": "permutations",
+        "difficulty": 3,
+        "compute": "2*6*5*4"
+      }
+    ]
+  },
+  {
+    "key": "m09.combinations-practice",
+    "type": "PROBLEMS",
+    "title": "Combinations",
+    "instructions": "Type each answer and press Check. No order: divide the ordered count by $k!$. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "committee",
+        "prompt": "How many committees of $[[k]]$ people can be chosen from $[[n]]$ people?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n, k)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[fact(n)/fact(n - k)]]",
+              "why": "That counts the members in order. A committee has no order: divide by $[[k]]!$."
+            }
+          ]
+        },
+        "hints": [
+          "In order there are $\\frac{[[n]]!}{[[n - k]]!}$ ways. Each committee appears $[[k]]!$ times."
+        ],
+        "solution": "$\\binom{[[n]]}{[[k]]} = [[binom(n, k)]]$.",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(n, k)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 12
+            },
+            "k": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "handshakes",
+        "prompt": "$[[n]]$ people meet, and every two of them shake hands once. How many handshakes are there?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n, 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*(n - 1)]]",
+              "why": "That counts each handshake twice (once for each person). Divide by $2$."
+            }
+          ]
+        },
+        "hints": ["A handshake is a pair of people: choose $2$ of $[[n]]$."],
+        "solution": "$\\binom{[[n]]}{2} = \\frac{[[n]] \\times [[n - 1]]}{2} = [[binom(n, 2)]]$.",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(n, 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "grid-paths",
+        "prompt": "How many shortest paths go from $(0, 0)$ to $([[a]], [[b]])$, moving one unit right or one unit up at each step?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(a + b, a)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*b]]",
+              "why": "Each path is a string of rights and ups. Choose where the rights go."
+            }
+          ]
+        },
+        "hints": ["Every path has $[[a + b]]$ moves, $[[a]]$ of them to the right."],
+        "solution": "Choose which $[[a]]$ of the $[[a + b]]$ moves go right: $\\binom{[[a + b]]}{[[a]]} = [[binom(a + b, a)]]$.",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(a + b, a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 2,
+              "to": 5
+            }
+          },
+          "where": ["a*b != binom(a + b, a)"]
+        }
+      },
+      {
+        "id": "two-and-two",
+        "prompt": "A group has $[[b]]$ boys and $[[g]]$ girls. How many ways are there to choose $2$ boys and $2$ girls?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(b, 2)*binom(g, 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(b + g, 4)]]",
+              "why": "That allows any $4$ people. You need exactly $2$ boys AND $2$ girls: multiply."
+            }
+          ]
+        },
+        "hints": ["Choose the boys: $\\binom{[[b]]}{2}$. Choose the girls: $\\binom{[[g]]}{2}$."],
+        "solution": "$\\binom{[[b]]}{2} \\times \\binom{[[g]]}{2} = [[binom(b, 2)]] \\times [[binom(g, 2)]] = [[binom(b, 2)*binom(g, 2)]]$.",
+        "skill": "combinations",
+        "difficulty": 2,
+        "compute": "binom(b, 2)*binom(g, 2)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 4,
+              "to": 8
+            },
+            "g": {
+              "from": 3,
+              "to": 7
+            }
+          },
+          "where": ["binom(b, 2)*binom(g, 2) != binom(b + g, 4)"]
+        }
+      },
+      {
+        "id": "with-captain",
+        "prompt": "A team of $[[k]]$ is chosen from $[[n]]$ players, and the captain must be on the team. How many teams are possible?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n - 1, k - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(n, k)]]",
+              "why": "The captain is already in. Choose only the other places."
+            }
+          ]
+        },
+        "hints": ["Put the captain in. Then choose $[[k - 1]]$ more from the other $[[n - 1]]$."],
+        "solution": "$\\binom{[[n - 1]]}{[[k - 1]]} = [[binom(n - 1, k - 1)]]$.",
+        "skill": "combinations",
+        "difficulty": 2,
+        "compute": "binom(n - 1, k - 1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 8,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 5
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m09.combinations-set",
+    "type": "PROBLEM_SET",
+    "title": "Combinations challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "toppings",
+        "prompt": "A pizza shop has $6$ toppings. How many pizzas have exactly $2$ different toppings?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$15$", "$30$", "$36$", "$64$"],
+          "correct": "B",
+          "why": {
+            "C": "Ham and olives is the same pizza as olives and ham: divide by $2$."
+          }
+        },
+        "solution": "$\\binom{6}{2} = 15$, choice (B).",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(6, 2)"
+      },
+      {
+        "id": "octagon-diagonals",
+        "prompt": "How many diagonals does an octagon (an $8$-sided polygon) have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$20$", "$28$", "$40$", "$56$"],
+          "correct": "B",
+          "why": {
+            "C": "That counts every pair of corners, including the $8$ sides."
+          }
+        },
+        "solution": "Pairs of corners: $\\binom{8}{2} = 28$. Take away the $8$ sides: $20$, choice (B).",
+        "skill": "combinations",
+        "difficulty": 2,
+        "compute": "binom(8, 2) - 8"
+      },
+      {
+        "id": "path-through",
+        "prompt": "How many shortest grid paths (one unit right or up at a time) go from $(0, 0)$ to $(5, 3)$ and pass through $(2, 2)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$24$", "$30$", "$56$", "$80$"],
+          "correct": "B",
+          "why": {
+            "A": "Each first half can be followed by each second half: multiply.",
+            "D": "That is all paths, not only those through $(2, 2)$."
+          }
+        },
+        "solution": "To $(2, 2)$: $\\binom{4}{2} = 6$. Then to $(5, 3)$ ($3$ right, $1$ up): $\\binom{4}{1} = 4$. $6 \\times 4 = 24$, choice (B).",
+        "skill": "combinations",
+        "difficulty": 2,
+        "compute": "binom(4, 2)*binom(4, 1)"
+      },
+      {
+        "id": "teachers-students",
+        "prompt": "A panel of $4$ is chosen from $5$ teachers and $4$ students. It must have exactly $2$ teachers and $2$ students. How many panels are possible?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$60$", "$90$", "$126$", "$240$"],
+          "correct": "B",
+          "why": {
+            "D": "That is every panel of $4$, with any mix."
+          }
+        },
+        "solution": "$\\binom{5}{2} \\times \\binom{4}{2} = 10 \\times 6 = 60$, choice (B).",
+        "skill": "combinations",
+        "difficulty": 2,
+        "compute": "binom(5, 2)*binom(4, 2)"
+      },
+      {
+        "id": "two-lines-triangles",
+        "prompt": "Five points lie on one line and four other points lie on a second line parallel to it. How many triangles have all three corners among these nine points?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$40$", "$70$", "$74$", "$84$", "$120$"],
+          "correct": "B",
+          "why": {
+            "D": "Three points on the same line don't make a triangle."
+          }
+        },
+        "solution": "All triples: $\\binom{9}{3} = 84$. Take away triples on one line: $\\binom{5}{3} + \\binom{4}{3} = 14$. $84 - 14 = 70$, choice (B).",
+        "skill": "combinations",
+        "difficulty": 3,
+        "compute": "binom(9, 3) - binom(5, 3) - binom(4, 3)"
+      }
+    ]
+  },
+  {
+    "key": "m09.casework-practice",
+    "type": "PROBLEMS",
+    "title": "Casework",
+    "instructions": "Type each answer and press Check. Split into cases that don't overlap, count each, then add. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "two-digit-sum",
+        "prompt": "How many two-digit numbers have digits that add up to $[[s]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[s + 1]]",
+              "why": "A two-digit number can't start with $0$, so $0[[s]]$ doesn't count."
+            }
+          ]
+        },
+        "hints": ["Split by the first digit: it can be $1$, $2$, … up to $[[s]]$."],
+        "solution": "The first digit is $1$ to $[[s]]$ and the second digit is then fixed, so there are $[[s]]$ numbers.",
+        "skill": "casework",
+        "difficulty": 1,
+        "compute": "s",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "middle-largest",
+        "prompt": "How many three-digit numbers have middle digit $[[m]]$ and a middle digit larger than both of the other two digits?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[m*(m - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[m*m]]",
+              "why": "The first digit can't be $0$: it has $[[m - 1]]$ choices, not $[[m]]$."
+            }
+          ]
+        },
+        "hints": ["The first digit is $1$ to $[[m - 1]]$; the last digit is $0$ to $[[m - 1]]$."],
+        "solution": "First digit: $1$ to $[[m - 1]]$ ($[[m - 1]]$ choices). Last digit: $0$ to $[[m - 1]]$ ($[[m]]$ choices). So $[[m - 1]] \\times [[m]] = [[m*(m - 1)]]$.",
+        "skill": "casework",
+        "difficulty": 1,
+        "compute": "m*(m - 1)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "pairs-sum",
+        "prompt": "How many pairs of positive integers $a < b$ have $a + b = [[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor((n - 1)/2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n - 1]]",
+              "why": "That counts $(a, b)$ and $(b, a)$ both. Here $a < b$, so count each pair once."
+            }
+          ]
+        },
+        "hints": [
+          "Split by $a$: $a = 1, 2, 3, \\ldots$ while $a < b$, that is while $a < \\frac{[[n]]}{2}$."
+        ],
+        "solution": "$a$ can be any positive integer less than $\\frac{[[n]]}{2}$, which gives $[[floor((n - 1)/2)]]$ pairs.",
+        "skill": "casework",
+        "difficulty": 1,
+        "compute": "floor((n - 1)/2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "triangle-perimeter",
+        "prompt": "How many triangles have whole-number side lengths and perimeter $[[p]]$? (Triangles with the same three side lengths count once.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor((p*p + 24)/48)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Call the sides $a \\leq b \\leq c$. The longest side must be less than $\\frac{[[p]]}{2}$.",
+          "Split by the longest side $c$ and count the pairs $a \\leq b \\leq c$ with $a + b > c$."
+        ],
+        "solution": "List the cases by the longest side $c$ (from about a third of $[[p]]$ up to just under half) and count $a \\leq b \\leq c$ with $a + b = [[p]] - c$. There are $[[floor((p*p + 24)/48)]]$ triangles.",
+        "skill": "casework",
+        "difficulty": 2,
+        "compute": "floor((p*p + 24)/48)",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 8,
+              "to": 18,
+              "step": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "squares-board",
+        "prompt": "How many squares of any size are there on a $[[n]] \\times [[n]]$ chessboard-style grid of unit squares?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n + 1)*(2*n + 1)/6]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*n]]",
+              "why": "That counts only the small squares. Count the $2 \\times 2$, $3 \\times 3$ … squares too."
+            }
+          ]
+        },
+        "hints": ["Split by size. A $k \\times k$ square fits in $([[n]] - k + 1)^2$ places."],
+        "solution": "$[[n]]^2 + [[n - 1]]^2 + \\cdots + 1^2 = [[n*(n + 1)*(2*n + 1)/6]]$.",
+        "skill": "casework",
+        "difficulty": 2,
+        "compute": "n*(n + 1)*(2*n + 1)/6",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 8
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m09.casework-set",
+    "type": "PROBLEM_SET",
+    "title": "Casework challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "sum-seven",
+        "prompt": "How many two-digit numbers have digits that add up to $7$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$7$", "$8$", "$9$", "$10$"],
+          "correct": "B",
+          "why": {
+            "C": "$07$ isn't a two-digit number."
+          }
+        },
+        "solution": "$16, 25, 34, 43, 52, 61, 70$: $7$ numbers, choice (B).",
+        "skill": "casework",
+        "difficulty": 1,
+        "compute": "7"
+      },
+      {
+        "id": "perimeter-fifteen",
+        "prompt": "How many triangles with whole-number side lengths have perimeter $15$? (Triangles with the same three side lengths count once.)",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$7$", "$8$", "$12$"],
+          "correct": "C"
+        },
+        "solution": "With $a \\leq b \\leq c$: $c = 7$ gives $(1, 7, 7), (2, 6, 7), (3, 5, 7), (4, 4, 7)$; $c = 6$ gives $(3, 6, 6), (4, 5, 6)$; $c = 5$ gives $(5, 5, 5)$. That is $7$, choice (C).",
+        "skill": "casework",
+        "difficulty": 2,
+        "compute": "4 + 2 + 1"
+      },
+      {
+        "id": "squares-five",
+        "prompt": "How many squares of any size are there on a $5 \\times 5$ grid of unit squares?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$25$", "$30$", "$50$", "$55$", "$100$"],
+          "correct": "D",
+          "why": {
+            "A": "Count the bigger squares too."
+          }
+        },
+        "solution": "$25 + 16 + 9 + 4 + 1 = 55$, choice (D).",
+        "skill": "casework",
+        "difficulty": 2,
+        "compute": "25 + 16 + 9 + 4 + 1"
+      },
+      {
+        "id": "increasing-digits",
+        "prompt": "How many three-digit numbers have digits that strictly increase from left to right, like $147$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$72$", "$84$", "$120$", "$165$", "$504$"],
+          "correct": "B",
+          "why": {
+            "E": "Each set of three digits can be written in increasing order in only one way."
+          }
+        },
+        "solution": "$0$ can't be used (it would have to come first). Any $3$ of the digits $1$ to $9$ give exactly one such number: $\\binom{9}{3} = 84$, choice (B).",
+        "skill": "casework",
+        "difficulty": 2,
+        "compute": "binom(9, 3)"
+      },
+      {
+        "id": "product-at-most-ten",
+        "prompt": "How many ordered pairs $(a, b)$ of positive integers have $ab \\leq 10$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$25$", "$27$", "$30$", "$36$"],
+          "correct": "C"
+        },
+        "solution": "Split by $a$: for each $a$ there are $\\lfloor \\frac{10}{a} \\rfloor$ choices of $b$. $10 + 5 + 3 + 2 + 2 + 1 + 1 + 1 + 1 + 1 = 27$, choice (C).",
+        "skill": "casework",
+        "difficulty": 3,
+        "compute": "10 + 5 + 3 + 2 + 2 + 1 + 1 + 1 + 1 + 1"
+      }
+    ]
+  },
+  {
+    "key": "m09.complement-practice",
+    "type": "PROBLEMS",
+    "title": "Complementary counting",
+    "instructions": "Type each answer and press Check. Count what you don't want, then subtract from the total. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "has-a-zero",
+        "prompt": "How many $[[k]]$-digit numbers have at least one digit $0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[9*10^(k - 1) - 9^k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[9^k]]",
+              "why": "That counts the numbers with NO zero. Subtract it from the total."
+            }
+          ]
+        },
+        "hints": [
+          "There are $[[9*10^(k - 1)]]$ numbers with $[[k]]$ digits.",
+          "With no $0$ at all, every digit has $9$ choices."
+        ],
+        "solution": "Total $[[9*10^(k - 1)]]$; with no zero $9^{[[k]]} = [[9^k]]$. So $[[9*10^(k - 1)]] - [[9^k]] = [[9*10^(k - 1) - 9^k]]$.",
+        "skill": "complementary-counting",
+        "difficulty": 1,
+        "compute": "9*10^(k - 1) - 9^k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 2,
+              "to": 6
+            }
+          }
+        }
+      },
+      {
+        "id": "at-least-one-girl",
+        "prompt": "A committee of $[[k]]$ is chosen from $[[b]]$ boys and $[[g]]$ girls. How many committees have at least one girl?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(b + g, k) - binom(b, k)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(b + g, k)]]",
+              "why": "That is every committee. Subtract the ones with no girls."
+            }
+          ]
+        },
+        "hints": [
+          "All committees: $\\binom{[[b + g]]}{[[k]]}$. All-boy committees: $\\binom{[[b]]}{[[k]]}$."
+        ],
+        "solution": "$\\binom{[[b + g]]}{[[k]]} - \\binom{[[b]]}{[[k]]} = [[binom(b + g, k)]] - [[binom(b, k)]] = [[binom(b + g, k) - binom(b, k)]]$.",
+        "skill": "complementary-counting",
+        "difficulty": 1,
+        "compute": "binom(b + g, k) - binom(b, k)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 5,
+              "to": 8
+            },
+            "g": {
+              "from": 3,
+              "to": 6
+            },
+            "k": {
+              "from": 3,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "one-head",
+        "prompt": "$[[n]]$ different coins are flipped. In how many of the possible outcomes is there at least one head?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2^n - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2^n]]",
+              "why": "That is every outcome. Take away the one outcome with no heads at all."
+            }
+          ]
+        },
+        "hints": ["There are $2^{[[n]]}$ outcomes. How many have no heads?"],
+        "solution": "All outcomes: $2^{[[n]]} = [[2^n]]$. Only one has no heads (all tails), so $[[2^n]] - 1 = [[2^n - 1]]$.",
+        "skill": "complementary-counting",
+        "difficulty": 1,
+        "compute": "2^n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "not-together",
+        "prompt": "$[[n]]$ people stand in a line. Two of them must NOT stand next to each other. In how many orders can they stand?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[fact(n) - 2*fact(n - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2*fact(n - 1)]]",
+              "why": "That counts the orders where the two ARE together. Subtract it from the total."
+            }
+          ]
+        },
+        "hints": ["All orders: $[[n]]!$. Together: glue the two, $2 \\times [[n - 1]]!$."],
+        "solution": "$[[fact(n)]] - 2 \\times [[fact(n - 1)]] = [[fact(n) - 2*fact(n - 1)]]$.",
+        "skill": "complementary-counting",
+        "difficulty": 2,
+        "compute": "fact(n) - 2*fact(n - 1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "two-heads",
+        "prompt": "$[[n]]$ different coins are flipped. In how many outcomes are there at least two heads?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2^n - 1 - n]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2^n - 1]]",
+              "why": "The opposite of \"at least two\" is \"zero or one\". Also take away the outcomes with exactly one head."
+            }
+          ]
+        },
+        "hints": [
+          "Take away the outcomes with no heads ($1$) and with exactly one head ($[[n]]$)."
+        ],
+        "solution": "$2^{[[n]]} - 1 - [[n]] = [[2^n - 1 - n]]$.",
+        "skill": "complementary-counting",
+        "difficulty": 2,
+        "compute": "2^n - 1 - n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 10
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m09.complement-set",
+    "type": "PROBLEM_SET",
+    "title": "Complementary counting challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "dice-six",
+        "prompt": "Two ordinary dice, one red and one blue, are rolled. In how many of the $36$ outcomes does at least one die show a $6$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$10$", "$11$", "$12$", "$25$"],
+          "correct": "C",
+          "why": {
+            "D": "That counts double six twice.",
+            "E": "That is the outcomes with NO six."
+          }
+        },
+        "solution": "No six: $5 \\times 5 = 25$. So $36 - 25 = 11$, choice (C).",
+        "skill": "complementary-counting",
+        "difficulty": 1,
+        "compute": "36 - 25"
+      },
+      {
+        "id": "has-a-five",
+        "prompt": "How many three-digit numbers have at least one digit equal to $5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$225$", "$243$", "$252$", "$271$", "$648$"],
+          "correct": "C",
+          "why": {
+            "E": "That is the numbers with NO $5$."
+          }
+        },
+        "solution": "No $5$: $8 \\times 9 \\times 9 = 648$. So $900 - 648 = 252$, choice (C).",
+        "skill": "complementary-counting",
+        "difficulty": 1,
+        "compute": "900 - 8*9*9"
+      },
+      {
+        "id": "repeat-letter",
+        "prompt": "A code is three letters, each one of A, B, C, D or E; letters may repeat. How many codes use some letter more than once?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$60$", "$65$", "$75$", "$100$", "$125$"],
+          "correct": "B",
+          "why": {
+            "A": "That is the codes with all letters different.",
+            "E": "That is every code."
+          }
+        },
+        "solution": "All codes: $5^3 = 125$. All different: $5 \\times 4 \\times 3 = 60$. So $125 - 60 = 65$, choice (B).",
+        "skill": "complementary-counting",
+        "difficulty": 2,
+        "compute": "5^3 - 5*4*3"
+      },
+      {
+        "id": "six-apart",
+        "prompt": "Six people sit in a row of six chairs. Two of them, Ana and Ben, must not sit next to each other. How many seatings are possible?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$240$", "$360$", "$480$", "$600$", "$720$"],
+          "correct": "C",
+          "why": {
+            "A": "That is the seatings where they ARE together."
+          }
+        },
+        "solution": "All: $6! = 720$. Together: $2 \\times 5! = 240$. Apart: $480$, choice (C).",
+        "skill": "complementary-counting",
+        "difficulty": 2,
+        "compute": "fact(6) - 2*fact(5)"
+      },
+      {
+        "id": "mixed-committee",
+        "prompt": "A committee of $4$ is chosen from $6$ men and $5$ women. How many committees have at least one man and at least one woman?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$300$", "$305$", "$310$", "$315$", "$330$"],
+          "correct": "C",
+          "why": {
+            "E": "Take away the all-man and the all-woman committees.",
+            "D": "Also take away the all-woman committees."
+          }
+        },
+        "solution": "All: $\\binom{11}{4} = 330$. All men: $\\binom{6}{4} = 15$. All women: $\\binom{5}{4} = 5$. $330 - 15 - 5 = 310$, choice (C).",
+        "skill": "complementary-counting",
+        "difficulty": 3,
+        "compute": "binom(11, 4) - binom(6, 4) - binom(5, 4)"
+      }
+    ]
+  },
+  {
+    "key": "m09.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "review-code",
+        "prompt": "A lock code is $[[k]]$ digits long, and each digit is one of $1, 2, \\ldots, [[m]]$. Digits may repeat. How many codes are possible?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[m^k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[m*k]]",
+              "why": "Each of the $[[k]]$ spots has $[[m]]$ choices: multiply $[[m]]$ by itself $[[k]]$ times, don't multiply $[[m]]$ by $[[k]]$."
+            }
+          ]
+        },
+        "hints": ["Each digit can be chosen in $[[m]]$ ways, whatever the others are."],
+        "solution": "Each of the $[[k]]$ digits has $[[m]]$ choices, so there are $[[m]]^{[[k]]} = [[m^k]]$ codes.",
+        "skill": "multiplication-principle",
+        "difficulty": 1,
+        "compute": "m^k",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "review-medals",
+        "prompt": "$[[n]]$ runners finish a race with no ties. In how many ways can the gold, silver and bronze medals be given out?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n - 1)*(n - 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(n, 3)]]",
+              "why": "Order matters here: gold, silver and bronze are different prizes."
+            }
+          ]
+        },
+        "hints": ["Gold has $[[n]]$ choices. How many are left for silver?"],
+        "solution": "$[[n]] \\times [[n - 1]] \\times [[n - 2]] = [[n*(n - 1)*(n - 2)]]$.",
+        "skill": "permutations",
+        "difficulty": 1,
+        "compute": "n*(n - 1)*(n - 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "review-handshakes",
+        "prompt": "$[[n]]$ people meet, and every two of them shake hands once. How many handshakes are there?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n, 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*(n - 1)]]",
+              "why": "That counts each handshake twice (once for each person). Divide by $2$."
+            }
+          ]
+        },
+        "hints": ["A handshake is a pair of people: choose $2$ of $[[n]]$."],
+        "solution": "$\\binom{[[n]]}{2} = \\frac{[[n]] \\times [[n - 1]]}{2} = [[binom(n, 2)]]$.",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(n, 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "review-middle",
+        "prompt": "How many three-digit numbers have middle digit $[[m]]$ and a middle digit larger than both of the other two digits?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[m*(m - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[m*m]]",
+              "why": "The first digit can't be $0$: it has $[[m - 1]]$ choices, not $[[m]]$."
+            }
+          ]
+        },
+        "hints": ["The first digit is $1$ to $[[m - 1]]$; the last digit is $0$ to $[[m - 1]]$."],
+        "solution": "First digit: $1$ to $[[m - 1]]$ ($[[m - 1]]$ choices). Last digit: $0$ to $[[m - 1]]$ ($[[m]]$ choices). So $[[m - 1]] \\times [[m]] = [[m*(m - 1)]]$.",
+        "skill": "casework",
+        "difficulty": 1,
+        "compute": "m*(m - 1)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "review-heads",
+        "prompt": "$[[n]]$ different coins are flipped. In how many of the possible outcomes is there at least one head?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2^n - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2^n]]",
+              "why": "That is every outcome. Take away the one outcome with no heads at all."
+            }
+          ]
+        },
+        "hints": ["There are $2^{[[n]]}$ outcomes. How many have no heads?"],
+        "solution": "All outcomes: $2^{[[n]]} = [[2^n]]$. Only one has no heads (all tails), so $[[2^n]] - 1 = [[2^n - 1]]$.",
+        "skill": "complementary-counting",
+        "difficulty": 1,
+        "compute": "2^n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 10
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m09.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 9 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-cake-drink",
+        "prompt": "A café has $5$ cakes and $4$ drinks. An order is one cake and one drink. How many orders are possible?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9$", "$16$", "$20$", "$25$", "$45$"],
+          "correct": "C",
+          "why": {
+            "A": "A cake AND a drink: multiply."
+          }
+        },
+        "solution": "$5 \\times 4 = 20$, choice (C).",
+        "skill": "multiplication-principle",
+        "difficulty": 1,
+        "compute": "5*4"
+      },
+      {
+        "id": "check-vowel-strings",
+        "prompt": "How many three-letter strings of capital letters A to Z start with a vowel (A, E, I, O, U) and use no letter twice?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2600$", "$3000$", "$3125$", "$3380$", "$15600$"],
+          "correct": "B",
+          "why": {
+            "D": "Letters may not repeat.",
+            "E": "The first letter must be a vowel."
+          }
+        },
+        "solution": "$5 \\times 25 \\times 24 = 3000$, choice (B).",
+        "skill": "multiplication-principle",
+        "difficulty": 1,
+        "compute": "5*25*24"
+      },
+      {
+        "id": "check-odd-distinct",
+        "prompt": "How many four-digit numbers are odd and have all four digits different?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2240$", "$2520$", "$2800$", "$4536$", "$5000$"],
+          "correct": "A",
+          "why": {
+            "B": "The first digit can't be $0$ either."
+          }
+        },
+        "solution": "Last digit: $5$ odd choices. First digit: not $0$ and not the last digit, $8$ choices. Then $8$ and $7$ for the middle digits. $5 \\times 8 \\times 8 \\times 7 = 2240$, choice (A).",
+        "skill": "multiplication-principle",
+        "difficulty": 2,
+        "compute": "5*8*8*7"
+      },
+      {
+        "id": "check-noon",
+        "prompt": "How many different arrangements are there of the letters of NOON?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$6$", "$12$", "$16$", "$24$"],
+          "correct": "B",
+          "why": {
+            "E": "Swapping the two O's (or the two N's) gives the same arrangement."
+          }
+        },
+        "solution": "$\\frac{4!}{2! \\, 2!} = 6$, choice (B).",
+        "skill": "permutations",
+        "difficulty": 1,
+        "compute": "fact(4)/(fact(2)*fact(2))"
+      },
+      {
+        "id": "check-medals",
+        "prompt": "$[[n]]$ runners finish a race with no ties. In how many ways can the gold, silver and bronze medals be given out?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[binom(n, 3)]]$",
+            "$[[3*n]]$",
+            "$[[n*(n - 1)*(n - 2)]]$",
+            "$[[n^3]]$",
+            "$[[n*(n - 1)]]$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "Order matters: gold, silver and bronze are different.",
+            "D": "One runner can't win two medals."
+          }
+        },
+        "solution": "$[[n]] \\times [[n - 1]] \\times [[n - 2]] = [[n*(n - 1)*(n - 2)]]$, choice (C).",
+        "skill": "permutations",
+        "difficulty": 1,
+        "compute": "n*(n - 1)*(n - 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 12
+            }
+          },
+          "where": ["binom(n, 3) != n*(n - 1)", "binom(n, 3) != 3*n"]
+        }
+      },
+      {
+        "id": "check-round-pair",
+        "prompt": "Seven people sit around a round table; seatings that differ only by turning everyone are the same. Two of them must sit next to each other. How many seatings are possible?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$120$", "$240$", "$720$", "$1440$", "$5040$"],
+          "correct": "B",
+          "why": {
+            "A": "The two can swap seats with each other: times $2$.",
+            "D": "Turning everyone round gives the same seating."
+          }
+        },
+        "solution": "Glue the pair: $6$ units round a table, $(6 - 1)! = 120$. Times $2$ for the pair's order: $240$, choice (B).",
+        "skill": "permutations",
+        "difficulty": 2,
+        "compute": "2*fact(5)"
+      },
+      {
+        "id": "check-canada",
+        "prompt": "How many different arrangements are there of the letters of CANADA?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$60$", "$120$", "$180$", "$360$", "$720$"],
+          "correct": "B",
+          "why": {
+            "E": "The three A's can swap without changing the word."
+          }
+        },
+        "solution": "$\\frac{6!}{3!} = 120$, choice (B).",
+        "skill": "permutations",
+        "difficulty": 2,
+        "compute": "fact(6)/fact(3)"
+      },
+      {
+        "id": "check-books",
+        "prompt": "In how many ways can you choose $3$ books from $8$ to take on holiday?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$56$", "$112$", "$336$", "$512$"],
+          "correct": "B",
+          "why": {
+            "D": "The order you pick them in doesn't matter."
+          }
+        },
+        "solution": "$\\binom{8}{3} = 56$, choice (B).",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(8, 3)"
+      },
+      {
+        "id": "check-handshakes",
+        "prompt": "$[[n]]$ people meet and every two of them shake hands once. How many handshakes are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[binom(n, 2)]]$",
+            "$[[n*(n - 1)]]$",
+            "$[[n^2]]$",
+            "$[[2*n]]$",
+            "$[[n - 1]]$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "That counts each handshake twice."
+          }
+        },
+        "solution": "$\\binom{[[n]]}{2} = [[binom(n, 2)]]$, choice (A).",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(n, 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "check-two-or-three",
+        "prompt": "A pizza shop has $8$ toppings. How many pizzas have exactly $2$ or exactly $3$ different toppings?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$56$", "$84$", "$120$", "$168$", "$1568$"],
+          "correct": "B",
+          "why": {
+            "E": "Two OR three toppings: add the counts."
+          }
+        },
+        "solution": "$\\binom{8}{2} + \\binom{8}{3} = 28 + 56 = 84$, choice (B).",
+        "skill": "combinations",
+        "difficulty": 2,
+        "compute": "binom(8, 2) + binom(8, 3)"
+      },
+      {
+        "id": "check-rectangles",
+        "prompt": "How many rectangles of any size are there in a $4 \\times 3$ grid of unit squares?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$36$", "$60$", "$72$", "$120$"],
+          "correct": "C",
+          "why": {
+            "A": "Count the bigger rectangles too."
+          }
+        },
+        "solution": "A rectangle is fixed by $2$ of the $5$ vertical lines and $2$ of the $4$ horizontal lines: $\\binom{5}{2} \\times \\binom{4}{2} = 60$, choice (C).",
+        "skill": "combinations",
+        "difficulty": 3,
+        "compute": "binom(5, 2)*binom(4, 2)"
+      },
+      {
+        "id": "check-sum-ten",
+        "prompt": "How many two-digit numbers have digits that add up to $10$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$9$", "$10$", "$11$", "$19$"],
+          "correct": "B",
+          "why": {
+            "C": "The first digit runs from $1$ to $9$, and each gives exactly one number."
+          }
+        },
+        "solution": "$19, 28, 37, 46, 55, 64, 73, 82, 91$: $9$ numbers, choice (B).",
+        "skill": "casework",
+        "difficulty": 1,
+        "compute": "9"
+      },
+      {
+        "id": "check-perimeter-thirteen",
+        "prompt": "How many triangles with whole-number side lengths have perimeter $13$? (Triangles with the same three side lengths count once.)",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$5$", "$6$", "$7$"],
+          "correct": "C"
+        },
+        "solution": "With $a \\leq b \\leq c$: $c = 6$ gives $(1, 6, 6), (2, 5, 6), (3, 4, 6)$; $c = 5$ gives $(3, 5, 5), (4, 4, 5)$. That is $5$, choice (C).",
+        "skill": "casework",
+        "difficulty": 2,
+        "compute": "3 + 2"
+      },
+      {
+        "id": "check-product-twelve",
+        "prompt": "How many three-digit numbers have digits whose product is $12$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9$", "$12$", "$15$", "$18$", "$21$"],
+          "correct": "C",
+          "why": {
+            "B": "Don't forget $2, 2, 3$: it gives $3$ more numbers."
+          }
+        },
+        "solution": "The digits are $1, 2, 6$ ($6$ orders), $1, 3, 4$ ($6$ orders) or $2, 2, 3$ ($3$ orders): $15$, choice (C).",
+        "skill": "casework",
+        "difficulty": 3,
+        "compute": "6 + 6 + 3"
+      },
+      {
+        "id": "check-tails",
+        "prompt": "Six different coins are flipped. In how many outcomes is there at least one tail?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$32$", "$62$", "$63$", "$64$"],
+          "correct": "D",
+          "why": {
+            "E": "Take away the one outcome that is all heads."
+          }
+        },
+        "solution": "$2^6 - 1 = 63$, choice (D).",
+        "skill": "complementary-counting",
+        "difficulty": 1,
+        "compute": "2^6 - 1"
+      },
+      {
+        "id": "check-avoid-point",
+        "prompt": "How many shortest grid paths (one unit right or up at a time) go from $(0, 0)$ to $(4, 4)$ and do NOT pass through $(2, 2)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$34$", "$36$", "$40$", "$64$", "$70$"],
+          "correct": "A",
+          "why": {
+            "B": "That is the paths that DO pass through $(2, 2)$.",
+            "E": "That is all paths."
+          }
+        },
+        "solution": "All paths: $\\binom{8}{4} = 70$. Through $(2, 2)$: $\\binom{4}{2} \\times \\binom{4}{2} = 36$. So $70 - 36 = 34$, choice (A).",
+        "skill": "complementary-counting",
+        "difficulty": 2,
+        "compute": "binom(8, 4) - binom(4, 2)^2"
+      },
+      {
+        "id": "check-repeat-digit",
+        "prompt": "How many four-digit numbers have at least one digit that appears more than once?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4464$", "$4536$", "$4960$", "$5040$", "$9000$"],
+          "correct": "A",
+          "why": {
+            "B": "That is the numbers with all digits different."
+          }
+        },
+        "solution": "All four-digit numbers: $9000$. All different: $9 \\times 9 \\times 8 \\times 7 = 4536$. So $9000 - 4536 = 4464$, choice (A).",
+        "skill": "complementary-counting",
+        "difficulty": 2,
+        "compute": "9000 - 9*9*8*7"
+      },
+      {
+        "id": "check-two-girls",
+        "prompt": "A committee of $4$ is chosen from $5$ boys and $6$ girls. How many committees have at least $2$ girls?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$150$", "$200$", "$265$", "$325$", "$330$"],
+          "correct": "C",
+          "why": {
+            "D": "Also take away the committees with exactly one girl.",
+            "E": "That is every committee."
+          }
+        },
+        "solution": "All: $\\binom{11}{4} = 330$. No girls: $\\binom{5}{4} = 5$. One girl: $6 \\times \\binom{5}{3} = 60$. $330 - 5 - 60 = 265$, choice (C).",
+        "skill": "complementary-counting",
+        "difficulty": 3,
+        "compute": "binom(11, 4) - binom(5, 4) - 6*binom(5, 3)"
+      },
+      {
+        "id": "check-dice-match",
+        "prompt": "Four ordinary dice of different colours are rolled. In how many of the $1296$ outcomes do at least two dice show the same number?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$360$", "$720$", "$900$", "$936$", "$1296$"],
+          "correct": "D",
+          "why": {
+            "A": "That is the outcomes with all four numbers different."
+          }
+        },
+        "solution": "All different: $6 \\times 5 \\times 4 \\times 3 = 360$. So $1296 - 360 = 936$, choice (D).",
+        "skill": "complementary-counting",
+        "difficulty": 3,
+        "compute": "6^4 - 6*5*4*3"
+      }
+    ]
+  }
+]

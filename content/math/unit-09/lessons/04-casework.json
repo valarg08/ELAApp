@@ -1,0 +1,100 @@
+{
+  "slug": "math-casework",
+  "order": 4,
+  "title": "Casework",
+  "estMinutes": 35,
+  "focusSkills": ["casework"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "How many triangles have whole-number side lengths and perimeter $12$? How would you organise your search so you don't miss any or count one twice?",
+      "placeholder": "I would sort them by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Split, count, add",
+          "body": "When one formula doesn't fit, split the problem into cases that don't overlap and together cover everything. Count each case (often with the multiplication principle) and add. Good ways to split: by the first digit, by the largest number, by how many of something there are."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: digit sums",
+          "problem": "How many three-digit numbers have digits that add up to $4$?",
+          "steps": [
+            {
+              "text": "Split by the first digit, which is $1$ to $4$. If it is $1$, the other two digits add to $3$: $03, 12, 21, 30$, so $4$ numbers.",
+              "try": {
+                "prompt": "If the first digit is $2$, how many numbers are there?",
+                "accepted": ["3"],
+                "compute": "3"
+              }
+            },
+            {
+              "text": "First digit $3$: $2$ numbers; first digit $4$: $1$ ($400$). Total $4 + 3 + 2 + 1 = 10$.",
+              "try": {
+                "prompt": "How many three-digit numbers have digit sum $4$?",
+                "accepted": ["10"],
+                "compute": "4 + 3 + 2 + 1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Order the cases",
+          "body": "To avoid double counting, list things in a fixed order, such as $a \\leq b \\leq c$ for triangle sides. For a triangle, the two shorter sides must add to more than the longest side. Make a small table and check that your cases cover every possibility exactly once."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: triangles",
+          "problem": "How many triangles have whole-number sides $a \\leq b \\leq c$ and perimeter $12$?",
+          "steps": [
+            {
+              "text": "The longest side must be less than half the perimeter, so $c < 6$, and $c \\geq 4$ because it is the largest of three numbers adding to $12$.",
+              "try": {
+                "prompt": "What is the largest possible value of $c$?",
+                "accepted": ["5"],
+                "compute": "5"
+              }
+            },
+            {
+              "text": "$c = 5$: $(2, 5, 5)$ and $(3, 4, 5)$. $c = 4$: $(4, 4, 4)$. That is $3$ triangles.",
+              "try": {
+                "prompt": "How many triangles are there?",
+                "accepted": ["3"],
+                "compute": "2 + 1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: overlapping or missing cases",
+          "body": "If two cases can both happen at once, you count those twice. If you forget a case (a $0$ digit, a tie, the largest value), you undercount. Check the extremes, and when there are many cases, look for a pattern instead of grinding."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m09.casework-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m09.casework-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you choose what to split a problem into cases by?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

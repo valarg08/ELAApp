@@ -1,0 +1,100 @@
+{
+  "slug": "math-complementary-counting",
+  "order": 5,
+  "title": "Complementary Counting",
+  "estMinutes": 35,
+  "focusSkills": ["complementary-counting"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "How many three-digit numbers have at least one digit equal to $7$? Is it easier to count the ones you want, or the ones you don't?",
+      "placeholder": "Easier to count… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Count the opposite",
+          "body": "Sometimes the things you DON'T want are much easier to count. Then: wanted $=$ total $-$ unwanted. The words \"at least one\" are the big clue: the opposite of \"at least one\" is \"none\"."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: at least one 7",
+          "problem": "How many three-digit numbers have at least one digit $7$?",
+          "steps": [
+            {
+              "text": "There are $900$ three-digit numbers. With NO $7$: the first digit has $8$ choices ($1$ to $9$ except $7$), the others $9$ each.",
+              "try": {
+                "prompt": "How many three-digit numbers have no digit $7$?",
+                "accepted": ["648"],
+                "compute": "8*9*9"
+              }
+            },
+            {
+              "text": "So $900 - 648 = 252$ have at least one $7$.",
+              "try": {
+                "prompt": "How many have at least one $7$?",
+                "accepted": ["252"],
+                "compute": "900 - 8*9*9"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Other opposites",
+          "body": "\"Not next to each other\" $=$ all arrangements $-$ arrangements where they ARE together. \"At least one girl\" $=$ all committees $-$ all-boy committees. \"At least two heads\" $=$ all $-$ no heads $-$ exactly one head."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: at least one girl",
+          "problem": "A committee of $3$ is chosen from $6$ boys and $4$ girls. How many committees have at least one girl?",
+          "steps": [
+            {
+              "text": "All committees: $\\binom{10}{3} = 120$. All-boy committees: $\\binom{6}{3} = 20$.",
+              "try": {
+                "prompt": "How many committees are all boys?",
+                "accepted": ["20"],
+                "compute": "binom(6, 3)"
+              }
+            },
+            {
+              "text": "So $120 - 20 = 100$ committees have at least one girl.",
+              "try": {
+                "prompt": "How many committees have at least one girl?",
+                "accepted": ["100"],
+                "compute": "binom(10, 3) - binom(6, 3)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the wrong opposite",
+          "body": "The opposite of \"at least two\" is \"zero or one\", not just \"zero\". The opposite of \"all different\" is \"at least one repeat\". Make sure your total counts the same kind of objects as the part you subtract."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m09.complement-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m09.complement-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which words in a problem make you think of counting the opposite?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

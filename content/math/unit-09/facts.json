@@ -1,0 +1,49 @@
+{
+  "sections": [
+    {
+      "skill": "multiplication-principle",
+      "title": "The multiplication principle",
+      "facts": [
+        "Steps in a row (\"and\") multiply; separate options (\"or\") add.",
+        "Fill the most restricted spot first: a first digit can't be $0$.",
+        "$k$ characters from $m$ symbols, repeats allowed: $m^k$."
+      ]
+    },
+    {
+      "skill": "permutations",
+      "title": "Permutations",
+      "facts": [
+        "$n$ things in a line: $n!$. Choose $k$ in order: $\\frac{n!}{(n - k)!}$.",
+        "Repeated items: divide by the shuffles of each repeat, as in $\\frac{5!}{2! \\, 2!}$.",
+        "Round table: $(n - 1)!$. Must sit together: glue into a block, times the block's orders."
+      ]
+    },
+    {
+      "skill": "combinations",
+      "title": "Combinations",
+      "facts": [
+        "$\\binom{n}{k} = \\frac{n!}{k! \\, (n - k)!}$, and $\\binom{n}{k} = \\binom{n}{n - k}$.",
+        "Grid paths $a$ right and $b$ up: $\\binom{a + b}{a}$. Handshakes or lines: $\\binom{n}{2}$.",
+        "Diagonals of an $n$-gon: $\\frac{n(n - 3)}{2}$."
+      ]
+    },
+    {
+      "skill": "casework",
+      "title": "Casework",
+      "facts": [
+        "Split into cases that don't overlap and cover everything; add the counts.",
+        "List in a fixed order (like $a \\leq b \\leq c$) to avoid double counting.",
+        "Triangle sides: the two shorter sides add to more than the longest."
+      ]
+    },
+    {
+      "skill": "complementary-counting",
+      "title": "Complementary counting",
+      "facts": [
+        "Wanted $=$ total $-$ unwanted.",
+        "\"At least one\" is the opposite of \"none\"; \"at least two\" of \"zero or one\".",
+        "\"Not together\" $=$ all arrangements $-$ arrangements together."
+      ]
+    }
+  ]
+}

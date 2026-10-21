@@ -1,0 +1,100 @@
+{
+  "slug": "math-permutations",
+  "order": 2,
+  "title": "Permutations",
+  "estMinutes": 35,
+  "focusSkills": ["permutations"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "In how many orders can $5$ friends stand in a line for a photo? Try $3$ friends first and list them.",
+      "placeholder": "For 3 friends I count… so for 5…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Arranging in order",
+          "body": "$n$ different things can be put in a line in $n! = n \\times (n - 1) \\times \\cdots \\times 1$ ways. Choosing $k$ of them in order (first, second, third…) gives $n \\times (n - 1) \\times \\cdots$ with $k$ factors, which is $\\frac{n!}{(n - k)!}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: officers",
+          "problem": "A club of $10$ members chooses a president, a vice-president and a treasurer, all different people. In how many ways can it do this?",
+          "steps": [
+            {
+              "text": "The president can be any of $10$, the vice-president any of the other $9$.",
+              "try": {
+                "prompt": "In how many ways can the president and vice-president be chosen?",
+                "accepted": ["90"],
+                "compute": "10*9"
+              }
+            },
+            {
+              "text": "The treasurer is one of the remaining $8$: $10 \\times 9 \\times 8 = 720$ ways.",
+              "try": {
+                "prompt": "How many ways in all?",
+                "accepted": ["720"],
+                "compute": "fact(10)/fact(7)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Repeats, circles and blocks",
+          "body": "Letters that repeat: divide by the ways to shuffle the copies, so LEVEL has $\\frac{5!}{2! \\, 2!} = 30$ arrangements. Around a round table, turning everyone one seat gives the same seating: $(n - 1)!$. Two people who must sit together: glue them into one block, then multiply by $2$ for their order."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: repeated letters",
+          "problem": "How many different arrangements are there of the letters of BANANA?",
+          "steps": [
+            {
+              "text": "If all six letters were different there would be $6! = 720$ arrangements.",
+              "try": {
+                "prompt": "What is $6!$?",
+                "accepted": ["720"],
+                "compute": "fact(6)"
+              }
+            },
+            {
+              "text": "The three A's can be shuffled in $3! = 6$ ways and the two N's in $2! = 2$ ways without changing the word, so there are $\\frac{720}{6 \\times 2} = 60$ arrangements.",
+              "try": {
+                "prompt": "How many arrangements of BANANA are there?",
+                "accepted": ["60"],
+                "compute": "fact(6)/(fact(3)*fact(2))"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: does order matter?",
+          "body": "Use permutations only when the order or the roles matter (gold, silver, bronze; president and treasurer). If you are just choosing a group, the order doesn't matter: that is a combination, the next lesson. And remember to divide when some items are identical."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m09.permutations-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m09.permutations-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why do we divide by $2!$ when two letters are the same?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}
