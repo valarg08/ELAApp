@@ -1,0 +1,103 @@
+{
+  "slug": "math-arithmetic-sequences",
+  "order": 1,
+  "title": "Arithmetic Sequences",
+  "estMinutes": 35,
+  "focusSkills": ["arithmetic-sequences"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Add up $1 + 2 + 3 + \\cdots + 100$ without adding one number at a time. Hint: pair the first number with the last.",
+      "placeholder": "Each pair makes… there are… pairs…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Same step every time",
+          "body": "An arithmetic sequence adds the same number $d$ each time: $a, a + d, a + 2d, \\ldots$ Term number $n$ is $a + (n - 1)d$: to reach term $n$ you take $n - 1$ steps. The number of terms from first to last is $\\frac{\\text{last} - \\text{first}}{d} + 1$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: how many terms?",
+          "problem": "How many terms are in $7, 11, 15, \\ldots, 203$?",
+          "steps": [
+            {
+              "text": "The step is $d = 4$."
+            },
+            {
+              "text": "From $7$ to $203$ is $196$, which is $\\frac{196}{4} = 49$ steps.",
+              "try": {
+                "prompt": "How many steps of $4$ from $7$ to $203$?",
+                "accepted": ["49"],
+                "compute": "(203 - 7)/4"
+              }
+            },
+            {
+              "text": "$49$ steps join $50$ terms (like fence posts).",
+              "try": {
+                "prompt": "How many terms?",
+                "accepted": ["50"],
+                "compute": "(203 - 7)/4 + 1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Sum = number of terms × average",
+          "body": "Pair the first and last, the second and second-last, …: each pair has the same total. So the sum is (number of terms) $\\times$ $\\frac{\\text{first} + \\text{last}}{2}$. The average of an arithmetic sequence is the average of its first and last terms, which is also its middle term."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the sum",
+          "problem": "What is $7 + 11 + 15 + \\cdots + 203$?",
+          "steps": [
+            {
+              "text": "The average is $\\frac{7 + 203}{2} = 105$.",
+              "try": {
+                "prompt": "What is the average of the terms?",
+                "accepted": ["105"],
+                "compute": "(7 + 203)/2"
+              }
+            },
+            {
+              "text": "There are $50$ terms, so the sum is $50 \\times 105 = 5250$.",
+              "try": {
+                "prompt": "What is the sum?",
+                "accepted": ["5250"],
+                "compute": "50*(7 + 203)/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: fence posts",
+          "body": "The number of terms is the number of steps PLUS ONE. Term $n$ is $a + (n - 1)d$, not $a + nd$. And when you pair up terms, don't forget to divide by $2$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m06.arith-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m06.arith-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain the fence-post rule to a friend with your own example."],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

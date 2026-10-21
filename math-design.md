@@ -446,7 +446,9 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | **M2 Unit 2 Arithmetic & Number Sense** ✅ | 6 lessons (§4.2), published | Played end to end; content:check verifies every answer and variant |
 | **M3 Unit 3 Linear Equations & Word Problems** ✅ | 6 lessons (§4.3), published | Played end to end; content:check verifies every answer and variant |
 | **M4 Unit 4 Quadratics & Polynomials** ✅ | 6 lessons (§4.4), published | Played end to end; content:check verifies every answer and variant |
-| **M5–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
+| **M5 Unit 5 Functions & Inequalities** ✅ | 6 lessons (§4.5), published | Played end to end; content:check verifies every answer and variant |
+| **M6 Unit 6 Sequences & Patterns** ✅ | 6 lessons (§4.6), published | Played end to end; content:check verifies every answer and variant |
+| **M7–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
 | **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
 
 ### 4.1 M1 as built (2026-10-16)
@@ -496,15 +498,41 @@ Templates whose numbers name a quantity ("$a$ litres", "$h$ hours later") start 
 
 ### 4.4 M4 as built (2026-10-21)
 
-Unit 4 Quadratics & Polynomials is published, with 6 lessons in the same shape. No new tools were needed: roots like $2 + sqrt{3}$ use the `radical` answer form, and "how many solutions" answers are computed from the discriminant with `min(max(D, -1), 1) + 1`. Templates keep every printed coefficient at least $2$ (never "$1x$") and positive, with the signs written in the text.
+Unit 4 Quadratics & Polynomials is published, with 6 lessons in the same shape. No new tools were needed: roots like $2 + \sqrt{3}$ use the `radical` answer form, and "how many solutions" answers are computed from the discriminant with `min(max(D, -1), 1) + 1`. Templates keep every printed coefficient at least $2$ (never "$1x$") and positive, with the signs written in the text.
 
 | # | Lesson | Practice | Challenge |
 |---|---|---|---|
-| 1 | Factoring | `m04.factoring-practice` (the larger root, difference of squares, the lost root $x = 0$, $2x^2$ quadratics, the hidden rectangle) | `m04.factoring-set` (a positive root, $x^2 - y^2$, a quartic, $ab + a + b$, $x + rac{1}{x}$) |
+| 1 | Factoring | `m04.factoring-practice` (the larger root, difference of squares, the lost root $x = 0$, $2x^2$ quadratics, the hidden rectangle) | `m04.factoring-set` (a positive root, $x^2 - y^2$, a quartic, $ab + a + b$, $x + \frac{1}{x}$) |
 | 2 | Quadratic Formula & Discriminant | `m04.formula-practice` (the discriminant, how many solutions, exactly one solution, a radical root, no real solutions) | `m04.formula-set` |
-| 3 | Vieta's Formulas | `m04.vieta-practice` (sum, product, $r^2 + t^2$, $rac{1}{r} + rac{1}{t}$, building from roots) | `m04.vieta-set` |
+| 3 | Vieta's Formulas | `m04.vieta-practice` (sum, product, $r^2 + t^2$, $\frac{1}{r} + \frac{1}{t}$, building from roots) | `m04.vieta-set` |
 | 4 | Completing the Square & the Vertex | `m04.square-practice` (vertex form, the smallest value, the vertex $x$, the largest rectangle, solving by completing) | `m04.square-set` (a thrown ball, four brackets) |
 | 5 | Polynomial Remainders | `m04.remainder-practice` (plug in $a$, plug in $-a$, making a factor, the sum of coefficients, a quadratic divisor) | `m04.remainder-set` |
 | 6 | ⭐ Unit Check | `m04.review-practice` (5-problem warm-up, one per lesson) | `m04.unit-check`: 8 of 19 problems per try, pass at 100% |
 
 Also fixed in M4 (Math only): the hook question, the reflect prompts and the instructions of `PROBLEMS` and `PROBLEM_SET` activities now render $…$ with KaTeX (they showed raw TeX in Units 1–3), and content:check checks their TeX. Hook placeholders stay plain text. A worked-example step's text appears after its try, so a step that only sets the scene ("Here $a = 1$…") has no try of its own.
+
+### 4.5 M5 as built (2026-10-21)
+
+Unit 5 Functions & Inequalities is published, with 6 lessons in the same shape and no new tools. Piecewise functions are written with TeX `cases`, and floor and ceiling answers are computed with `floor` and `ceil`. Template variable names are lowercase letters only (no digits).
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Functions & Notation | `m05.functions-practice` | `m05.functions-set` |
+| 2 | Graphs & Transformations | `m05.graphs-practice` | `m05.graphs-set` |
+| 3 | Absolute Value | `m05.abs-practice` | `m05.abs-set` |
+| 4 | Inequalities & AM–GM | `m05.inequalities-practice` | `m05.inequalities-set` |
+| 5 | Floor, Ceiling & Piecewise | `m05.floor-practice` | `m05.floor-set` |
+| 6 | ⭐ Unit Check | `m05.review-practice` (5-problem warm-up, one per lesson) | `m05.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.6 M6 as built (2026-10-21)
+
+Unit 6 Sequences & Patterns is published, with 6 lessons in the same shape and no new tools. Cycle answers ("remainder $0$ means the last item") are computed with `mod(n - 1, k) + 1`, and last digits with `mod(b^n, 10)`. Recursion templates avoid fixed points, so a wrong-answer note never equals the right answer.
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Arithmetic Sequences | `m06.arith-practice` (term $n$, counting terms, $1 + \cdots + n$, a sum, two known terms) | `m06.arith-set` |
+| 2 | Geometric Sequences & Series | `m06.geo-practice` (term $n$, the geometric middle, $1 + r + \cdots + r^n$, a forever sum, doubling) | `m06.geo-set` (a bouncing ball, a repeating decimal) |
+| 3 | Recursion | `m06.recursion-practice` (step by step, Fibonacci-like, stairs, period $6$, growing steps) | `m06.recursion-set` (strings with no two A's) |
+| 4 | Telescoping & Clever Sums | `m06.telescoping-practice` ($\frac{1}{k(k+1)}$, products, pairs, differences of squares, $\frac{1}{k(k+2)}$) | `m06.telescoping-set` ($\sqrt{k+1} - \sqrt{k}$, $k \cdot k!$) |
+| 5 | Finding the Pattern | `m06.pattern-practice` (last digits, repeating sums, triangular numbers, remainder $0$, $n(n+1)$) | `m06.pattern-set` |
+| 6 | ⭐ Unit Check | `m06.review-practice` (5-problem warm-up, one per lesson) | `m06.unit-check`: 8 of 19 problems per try, pass at 100% |

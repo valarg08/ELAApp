@@ -1,0 +1,95 @@
+{
+  "slug": "math-telescoping",
+  "order": 4,
+  "title": "Telescoping & Clever Sums",
+  "estMinutes": 35,
+  "focusSkills": ["telescoping"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Work out $\\left(1 - \\frac{1}{2}\\right) + \\left(\\frac{1}{2} - \\frac{1}{3}\\right) + \\left(\\frac{1}{3} - \\frac{1}{4}\\right)$. What happens to the middle parts?",
+      "placeholder": "The answer is… the middle parts…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Sums that collapse",
+          "body": "If each term is a difference $f(k) - f(k + 1)$, adding them cancels everything in the middle and leaves first minus last, like a telescope folding up. The key example: $\\frac{1}{k(k + 1)} = \\frac{1}{k} - \\frac{1}{k + 1}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: unit fractions",
+          "problem": "What is $\\frac{1}{1 \\cdot 2} + \\frac{1}{2 \\cdot 3} + \\cdots + \\frac{1}{9 \\cdot 10}$?",
+          "steps": [
+            {
+              "text": "Rewrite: $\\left(1 - \\frac{1}{2}\\right) + \\left(\\frac{1}{2} - \\frac{1}{3}\\right) + \\cdots + \\left(\\frac{1}{9} - \\frac{1}{10}\\right)$."
+            },
+            {
+              "text": "Everything cancels except $1 - \\frac{1}{10} = \\frac{9}{10}$.",
+              "try": {
+                "prompt": "What is the sum?",
+                "accepted": ["9/10", "0.9"],
+                "compute": "1 - 1/10"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Products and pairs",
+          "body": "Products telescope too: $\\frac{2}{1} \\cdot \\frac{3}{2} \\cdot \\frac{4}{3} \\cdots \\frac{n + 1}{n} = n + 1$. For alternating sums like $1 - 2 + 3 - 4 + \\cdots$, group the terms in pairs. And $k \\cdot k! = (k + 1)! - k!$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: pair them up",
+          "problem": "What is $100 - 99 + 98 - 97 + \\cdots + 2 - 1$?",
+          "steps": [
+            {
+              "text": "Group: $(100 - 99) + (98 - 97) + \\cdots + (2 - 1)$. Each pair is $1$, and $100$ numbers make $50$ pairs.",
+              "try": {
+                "prompt": "How many pairs?",
+                "accepted": ["50"],
+                "compute": "100/2"
+              }
+            },
+            {
+              "text": "So the sum is $50 \\times 1 = 50$.",
+              "try": {
+                "prompt": "What is the sum?",
+                "accepted": ["50"],
+                "compute": "50*1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: what survives",
+          "body": "Write out the first two and last two terms to see exactly what is left at each end. $\\frac{1}{k(k + 2)} = \\frac{1}{2}\\left(\\frac{1}{k} - \\frac{1}{k + 2}\\right)$: there is a factor $\\frac{1}{2}$, and terms cancel two apart. And count the pairs carefully."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m06.telescoping-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m06.telescoping-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How can you tell that a sum might telescope? What do you look for?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

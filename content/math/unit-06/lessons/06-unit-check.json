@@ -1,0 +1,63 @@
+{
+  "slug": "math-sequences-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Sequences & Patterns",
+  "estMinutes": 40,
+  "focusSkills": [
+    "arithmetic-sequences",
+    "geometric-sequences",
+    "recursion",
+    "telescoping",
+    "patterns"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which kind of sequence do you handle fastest now, and which one do you still have to stop and think about?",
+      "placeholder": "Fastest… Still tricky…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Sequences and sums: quick review",
+          "body": "Arithmetic: term $n$ is $a + (n - 1)d$, terms $= \\frac{\\text{last} - \\text{first}}{d} + 1$, sum $=$ terms $\\times$ average. Geometric: term $n$ is $ar^{n - 1}$, $1 + r + \\cdots + r^n = \\frac{r^{n + 1} - 1}{r - 1}$, forever $= \\frac{a}{1 - r}$ when $-1 < r < 1$."
+        },
+        {
+          "kind": "definition",
+          "title": "Recursion, telescoping, patterns: quick review",
+          "body": "Recursion: compute the first terms carefully; stairs: $W(n) = W(n - 1) + W(n - 2)$. Telescoping: $\\frac{1}{k(k + 1)} = \\frac{1}{k} - \\frac{1}{k + 1}$, and only the ends survive. Patterns: find the cycle, use the remainder, and remainder $0$ means the last item."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m06.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m06.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

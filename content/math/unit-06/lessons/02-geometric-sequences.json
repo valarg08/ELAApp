@@ -1,0 +1,97 @@
+{
+  "slug": "math-geometric-sequences",
+  "order": 2,
+  "title": "Geometric Sequences & Series",
+  "estMinutes": 35,
+  "focusSkills": ["geometric-sequences"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A ball dropped from $16$ m bounces back to half its height each time. How high is the 4th bounce? Do you think the total distance it travels is finite?",
+      "placeholder": "The 4th bounce… the total…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Same ratio every time",
+          "body": "A geometric sequence multiplies by the same ratio $r$ each time: $a, ar, ar^2, \\ldots$ Term number $n$ is $ar^{n - 1}$. Find $r$ by dividing a term by the one before it. The middle of three terms in a row is the geometric mean: $b^2 = ac$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a far term",
+          "problem": "What is the 8th term of $3, 6, 12, \\ldots$?",
+          "steps": [
+            {
+              "text": "The ratio is $r = \\frac{6}{3} = 2$."
+            },
+            {
+              "text": "Term $8$ is $3 \\times 2^{7} = 3 \\times 128 = 384$: seven multiplications after the first term.",
+              "try": {
+                "prompt": "What is the 8th term?",
+                "accepted": ["384"],
+                "compute": "3*2^7"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Geometric sums",
+          "body": "The sum of $n$ terms is $a \\cdot \\frac{r^n - 1}{r - 1}$. For example, $1 + 2 + 4 + \\cdots + 2^{n} = 2^{n + 1} - 1$. When $-1 < r < 1$ the terms shrink and the sum FOREVER is $\\frac{a}{1 - r}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a sum that never ends",
+          "problem": "What is $12 + 6 + 3 + 1.5 + \\cdots$ (forever)?",
+          "steps": [
+            {
+              "text": "$a = 12$ and each term is half the one before, so $r = \\frac{1}{2}$.",
+              "try": {
+                "prompt": "What is the ratio $r$?",
+                "accepted": ["1/2", "0.5"],
+                "compute": "6/12"
+              }
+            },
+            {
+              "text": "The sum is $\\frac{12}{1 - \\frac{1}{2}} = 24$.",
+              "try": {
+                "prompt": "What is the sum?",
+                "accepted": ["24"],
+                "compute": "12/(1 - 1/2)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: one power too many",
+          "body": "Term $n$ uses $r^{n - 1}$, not $r^n$. $1 + r + \\cdots + r^{n}$ has $n + 1$ terms. The forever sum only works when $-1 < r < 1$. And a negative ratio makes the signs alternate."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m06.geo-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m06.geo-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Why does $12 + 6 + 3 + \\cdots$ add up to a finite number, but $1 + 2 + 4 + \\cdots$ doesn't?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

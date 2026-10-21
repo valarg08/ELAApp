@@ -1,0 +1,1731 @@
+[
+  {
+    "key": "m06.arith-practice",
+    "type": "PROBLEMS",
+    "title": "Arithmetic sequences",
+    "instructions": "Type each answer and press Check. Count steps, then add one for the number of terms. Sum $=$ terms $\\times$ average. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "nth-term",
+        "prompt": "The sequence $[[a]], [[a+d]], [[a+2*d]], \\ldots$ goes up by $[[d]]$ each time. What is term number $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + (n-1)*d]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a + n*d]]",
+              "why": "Term $[[n]]$ is only $[[n-1]]$ steps after the first term."
+            }
+          ]
+        },
+        "hints": ["Term $[[n]]$ is the first term plus $[[n-1]]$ steps of $[[d]]$."],
+        "solution": "$[[a]] + [[n-1]] \\times [[d]] = [[a + (n-1)*d]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "a + (n - 1)*d",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 20 },
+            "d": { "from": 2, "to": 9 },
+            "n": { "from": 10, "to": 50, "step": 5 }
+          }
+        }
+      },
+      {
+        "id": "count-terms",
+        "prompt": "How many terms are in the list $[[a]], [[a+d]], [[a+2*d]], \\ldots, [[a+(m-1)*d]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[m]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[m - 1]]",
+              "why": "That is the number of STEPS. The number of terms is one more (fence posts)."
+            }
+          ]
+        },
+        "hints": [
+          "How many steps of $[[d]]$ from $[[a]]$ to $[[a+(m-1)*d]]$?",
+          "$\\frac{[[(m-1)*d]]}{[[d]]} = [[m-1]]$ steps."
+        ],
+        "solution": "$\\frac{[[a+(m-1)*d]] - [[a]]}{[[d]]} + 1 = [[m-1]] + 1 = [[m]]$ terms.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "((a + (m-1)*d) - a)/d + 1",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 15 },
+            "d": { "from": 2, "to": 9 },
+            "m": { "from": 10, "to": 40 }
+          }
+        }
+      },
+      {
+        "id": "sum-to-n",
+        "prompt": "What is $1 + 2 + 3 + \\cdots + [[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n+1)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*(n+1)]]",
+              "why": "Each pair adds to $[[n+1]]$, but there are only $\\frac{[[n]]}{2}$ pairs: divide by $2$."
+            }
+          ]
+        },
+        "hints": ["Pair $1$ with $[[n]]$, $2$ with $[[n-1]]$, …"],
+        "solution": "$[[n]]$ terms with average $\\frac{1 + [[n]]}{2}$: the sum is $\\frac{[[n]] \\times [[n+1]]}{2} = [[n*(n+1)/2]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "n*(n + 1)/2",
+        "template": {
+          "vars": {
+            "n": { "from": 10, "to": 100, "step": 5 }
+          }
+        }
+      },
+      {
+        "id": "arith-sum",
+        "prompt": "What is $[[a]] + [[a+d]] + [[a+2*d]] + \\cdots + [[a+(m-1)*d]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[m*(2*a + (m-1)*d)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(m-1)*(2*a + (m-1)*d)/2]]",
+              "why": "There are $[[m]]$ terms, not $[[m-1]]$: steps plus one."
+            }
+          ]
+        },
+        "hints": [
+          "Number of terms: $\\frac{[[(m-1)*d]]}{[[d]]} + 1 = [[m]]$.",
+          "Average: $\\frac{[[a]] + [[a+(m-1)*d]]}{2}$."
+        ],
+        "solution": "There are $[[m]]$ terms with average $\\frac{[[a]] + [[a+(m-1)*d]]}{2} = [[(2*a + (m-1)*d)/2]]$, so the sum is $[[m*(2*a + (m-1)*d)/2]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 2,
+        "compute": "m*(a + (a + (m-1)*d))/2",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 9 },
+            "d": { "from": 2, "to": 6 },
+            "m": { "from": 8, "to": 20 }
+          }
+        }
+      },
+      {
+        "id": "two-terms",
+        "prompt": "In an arithmetic sequence, the 3rd term is $[[a+2*d]]$ and the 8th term is $[[a+7*d]]$. What is the 20th term?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 19*d]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a + 20*d]]",
+              "why": "From the 3rd term to the 20th is $17$ steps, not $18$."
+            }
+          ]
+        },
+        "hints": [
+          "From the 3rd to the 8th term is $5$ steps, which adds $[[5*d]]$.",
+          "So $d = [[d]]$. From the 3rd to the 20th is $17$ steps."
+        ],
+        "solution": "$5$ steps add $[[5*d]]$, so $d = [[d]]$. The 20th term is $[[a+2*d]] + 17 \\times [[d]] = [[a + 19*d]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 2,
+        "compute": "(a + 2*d) + 17*((a + 7*d) - (a + 2*d))/5",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 20 },
+            "d": { "from": 2, "to": 9 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m06.arith-set",
+    "type": "PROBLEM_SET",
+    "title": "Arithmetic sequences challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "list-length",
+        "prompt": "How many numbers are in the list $13, 17, 21, \\ldots, 201$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$46$", "$47$", "$48$", "$49$", "$50$"],
+          "correct": "C",
+          "why": {
+            "B": "$47$ is the number of steps. Add one for the terms."
+          }
+        },
+        "solution": "$\\frac{201 - 13}{4} + 1 = 47 + 1 = 48$, choice (C).",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "(201 - 13)/4 + 1"
+      },
+      {
+        "id": "odd-sum",
+        "prompt": "What is the sum of all the odd numbers from $1$ to $99$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2450$", "$2500$", "$2550$", "$4950$", "$5000$"],
+          "correct": "B",
+          "why": {
+            "D": "That is $1 + 2 + \\cdots + 99$, every number, not only the odd ones."
+          }
+        },
+        "solution": "There are $50$ odd numbers with average $\\frac{1 + 99}{2} = 50$, so the sum is $2500$, choice (B). (The first $n$ odd numbers add to $n^2$.)",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "50*(1 + 99)/2"
+      },
+      {
+        "id": "first-term",
+        "prompt": "The 5th term of an arithmetic sequence is $17$ and the 12th term is $45$. What is the 1st term?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-3$", "$1$", "$4$", "$5$", "$13$"],
+          "correct": "B",
+          "why": {
+            "E": "$13$ is the 4th term. Go back $4$ steps from the 5th term, not $1$.",
+            "A": "From the 5th term to the 1st is $4$ steps, not $5$."
+          }
+        },
+        "solution": "$7$ steps add $28$, so $d = 4$. The 1st term is $17 - 4 \\times 4 = 1$, choice (B).",
+        "skill": "arithmetic-sequences",
+        "difficulty": 2,
+        "compute": "17 - 4*((45 - 17)/7)"
+      },
+      {
+        "id": "three-digit-multiples",
+        "prompt": "How many three-digit numbers are multiples of $7$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$127$", "$128$", "$129$", "$142$", "$143$"],
+          "correct": "B",
+          "why": {
+            "A": "From $105$ to $994$ is $127$ steps of $7$: add one for the terms."
+          }
+        },
+        "solution": "The smallest is $105$ and the largest $994$. $\\frac{994 - 105}{7} + 1 = 127 + 1 = 128$, choice (B).",
+        "skill": "arithmetic-sequences",
+        "difficulty": 2,
+        "compute": "(994 - 105)/7 + 1"
+      },
+      {
+        "id": "consecutive-largest",
+        "prompt": "Nine consecutive integers add up to $117$. What is the largest of them?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$13$", "$15$", "$17$", "$19$", "$21$"],
+          "correct": "C",
+          "why": {
+            "A": "$13$ is the middle (the average). The largest is $4$ more."
+          }
+        },
+        "solution": "The middle number is the average, $\\frac{117}{9} = 13$. The nine numbers are $9$ to $17$, so the largest is $17$, choice (C).",
+        "skill": "arithmetic-sequences",
+        "difficulty": 2,
+        "compute": "117/9 + 4"
+      }
+    ]
+  },
+  {
+    "key": "m06.geo-practice",
+    "type": "PROBLEMS",
+    "title": "Geometric sequences & series",
+    "instructions": "Type each answer and press Check. Term $n$ is $ar^{n-1}$; a forever sum is $\\frac{a}{1 - r}$. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "geo-term",
+        "prompt": "The sequence $[[a]], [[a*r]], [[a*r*r]], \\ldots$ multiplies by $[[r]]$ each time. What is term number $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*r^(n-1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*r^n]]",
+              "why": "Term $[[n]]$ is $[[n-1]]$ multiplications after the first: $[[a]] \\times [[r]]^{[[n-1]]}$."
+            }
+          ]
+        },
+        "hints": ["Term $[[n]]$ is $[[a]] \\times [[r]]^{[[n-1]]}$."],
+        "solution": "$[[a]] \\times [[r]]^{[[n-1]]} = [[a*r^(n-1)]]$.",
+        "skill": "geometric-sequences",
+        "difficulty": 1,
+        "compute": "a*r^(n - 1)",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 5 },
+            "r": { "from": 2, "to": 3 },
+            "n": { "from": 5, "to": 8 }
+          }
+        }
+      },
+      {
+        "id": "geo-middle",
+        "prompt": "In a geometric sequence of positive numbers, the 2nd term is $[[a*r]]$ and the 4th term is $[[a*r^3]]$. What is the 3rd term?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*r*r]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(a*r + a*r^3)/2]]",
+              "why": "That is the ARITHMETIC middle. In a geometric sequence the middle is the square root of the product."
+            }
+          ]
+        },
+        "hints": ["For three terms in a row, $b^2 = ac$."],
+        "solution": "$b^2 = [[a*r]] \\times [[a*r^3]] = [[a*a*r^4]]$, so $b = [[a*r*r]]$ (it is positive).",
+        "skill": "geometric-sequences",
+        "difficulty": 2,
+        "compute": "sqrt((a*r)*(a*r^3))",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 6 },
+            "r": { "from": 2, "to": 5 }
+          }
+        }
+      },
+      {
+        "id": "power-sum",
+        "prompt": "What is $1 + [[r]] + [[r]]^2 + \\cdots + [[r]]^{[[n]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(r^(n+1) - 1)/(r - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(r^n - 1)/(r - 1)]]",
+              "why": "There are $[[n+1]]$ terms, from power $0$ to power $[[n]]$."
+            }
+          ]
+        },
+        "hints": [
+          "$a = 1$, $r = [[r]]$, and there are $[[n+1]]$ terms.",
+          "Sum $= \\frac{[[r]]^{[[n+1]]} - 1}{[[r]] - 1}$."
+        ],
+        "solution": "$\\frac{[[r]]^{[[n+1]]} - 1}{[[r - 1]]} = \\frac{[[r^(n+1) - 1]]}{[[r - 1]]} = [[(r^(n+1) - 1)/(r - 1)]]$.",
+        "skill": "geometric-sequences",
+        "difficulty": 2,
+        "compute": "(r^(n + 1) - 1)/(r - 1)",
+        "template": {
+          "vars": {
+            "r": { "from": 2, "to": 5 },
+            "n": { "from": 4, "to": 7 }
+          }
+        }
+      },
+      {
+        "id": "forever-sum",
+        "prompt": "What is $[[a]] + \\frac{[[a]]}{[[q]]} + \\frac{[[a]]}{[[q*q]]} + \\frac{[[a]]}{[[q*q*q]]} + \\cdots$ (forever)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*q/(q - 1)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a*(q - 1)/q]]",
+              "why": "DIVIDE by $1 - r$: $\\frac{[[a]]}{1 - \\frac{1}{[[q]]}}$."
+            }
+          ]
+        },
+        "hints": ["$a = [[a]]$ and $r = \\frac{1}{[[q]]}$."],
+        "solution": "$\\frac{[[a]]}{1 - \\frac{1}{[[q]]}} = \\frac{[[a]]}{\\frac{[[q-1]]}{[[q]]}} = [[a*q/(q - 1)]]$.",
+        "skill": "geometric-sequences",
+        "difficulty": 2,
+        "compute": "a/(1 - 1/q)",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 12 },
+            "q": { "from": 2, "to": 5 }
+          }
+        }
+      },
+      {
+        "id": "doubling",
+        "prompt": "A colony of bacteria doubles every $[[t]]$ minutes. It starts with $[[a]]$ bacteria. How many are there after $[[t*k]]$ minutes?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*2^k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*2*k]]",
+              "why": "Doubling $[[k]]$ times multiplies by $2^{[[k]]}$, not by $2 \\times [[k]]$."
+            }
+          ]
+        },
+        "hints": ["$[[t*k]]$ minutes is $[[k]]$ doublings."],
+        "solution": "$[[k]]$ doublings: $[[a]] \\times 2^{[[k]]} = [[a*2^k]]$.",
+        "skill": "geometric-sequences",
+        "difficulty": 1,
+        "compute": "a*2^((t*k)/t)",
+        "template": {
+          "vars": {
+            "t": { "choose": [10, 15, 20, 30] },
+            "a": { "from": 2, "to": 9 },
+            "k": { "from": 3, "to": 8 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m06.geo-set",
+    "type": "PROBLEM_SET",
+    "title": "Geometric sequences challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "negative-ratio",
+        "prompt": "What is the 6th term of $2, -6, 18, \\ldots$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-1458$", "$-486$", "$-54$", "$486$", "$1458$"],
+          "correct": "B",
+          "why": {
+            "D": "An odd power of $-3$ is negative.",
+            "A": "That is the 7th term."
+          }
+        },
+        "solution": "$r = -3$, so the 6th term is $2 \\times (-3)^5 = 2 \\times (-243) = -486$, choice (B).",
+        "skill": "geometric-sequences",
+        "difficulty": 1,
+        "compute": "2*(-3)^5"
+      },
+      {
+        "id": "powers-of-two",
+        "prompt": "What is $1 + 2 + 4 + 8 + \\cdots + 512$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$511$", "$1022$", "$1023$", "$1024$", "$2047$"],
+          "correct": "C",
+          "why": {
+            "D": "$1024$ is the next power. The sum is one less."
+          }
+        },
+        "solution": "$512 = 2^9$, and $1 + 2 + \\cdots + 2^9 = 2^{10} - 1 = 1023$, choice (C).",
+        "skill": "geometric-sequences",
+        "difficulty": 1,
+        "compute": "2^10 - 1"
+      },
+      {
+        "id": "bouncing-ball",
+        "prompt": "A ball is dropped from $16$ m. Each bounce rises to half the height it fell from. What total distance, in metres, does it travel (down and up) before it stops?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$32$", "$40$", "$48$", "$64$"],
+          "correct": "D",
+          "why": {
+            "B": "Each bounce goes UP and then DOWN again: count it twice."
+          }
+        },
+        "solution": "Down $16$, then each bounce goes up and down: $16 + 2(8 + 4 + 2 + \\cdots) = 16 + 2 \\times \\frac{8}{1 - \\frac{1}{2}} = 16 + 32 = 48$, choice (D).",
+        "skill": "geometric-sequences",
+        "difficulty": 2,
+        "compute": "16 + 2*(8/(1 - 1/2))"
+      },
+      {
+        "id": "geometric-mean",
+        "prompt": "The positive numbers $4, x, 25$ form a geometric sequence. What is $x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$\\frac{29}{2}$", "$21$", "$29$", "$100$"],
+          "correct": "A",
+          "why": {
+            "B": "That is the arithmetic middle. Geometric: $x^2 = 4 \\times 25$.",
+            "E": "$100$ is $x^2$. Take the square root."
+          }
+        },
+        "solution": "$x^2 = 4 \\times 25 = 100$, so $x = 10$, choice (A). (The ratio is $\\frac{5}{2}$.)",
+        "skill": "geometric-sequences",
+        "difficulty": 2,
+        "compute": "sqrt(4*25)"
+      },
+      {
+        "id": "repeating-decimal",
+        "prompt": "Which fraction equals $0.363636\\ldots$ (the digits $36$ repeating forever)?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{9}{25}$",
+            "$\\frac{4}{11}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{36}{37}$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "$\\frac{9}{25} = 0.36$ exactly. The repeating digits add a little more."
+          }
+        },
+        "solution": "$0.3636\\ldots = \\frac{36}{100} + \\frac{36}{100^2} + \\cdots = \\frac{0.36}{1 - 0.01} = \\frac{36}{99} = \\frac{4}{11}$, choice (B).",
+        "skill": "geometric-sequences",
+        "difficulty": 3,
+        "compute": "(36/100)/(1 - 1/100)"
+      }
+    ]
+  },
+  {
+    "key": "m06.recursion-practice",
+    "type": "PROBLEMS",
+    "title": "Recursion",
+    "instructions": "Type each answer and press Check. Work out the terms one at a time, carefully. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "next-terms",
+        "prompt": "$a_1 = [[s]]$ and $a_{n+1} = [[m]]a_n - [[k]]$. What is $a_4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[m*(m*(m*s - k) - k) - k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[m*(m*s - k) - k]]",
+              "why": "That is $a_3$. One more step."
+            }
+          ]
+        },
+        "hints": ["$a_2 = [[m]] \\times [[s]] - [[k]] = [[m*s - k]]$."],
+        "solution": "$a_2 = [[m*s - k]]$, $a_3 = [[m*(m*s - k) - k]]$, $a_4 = [[m*(m*(m*s - k) - k) - k]]$.",
+        "skill": "recursion",
+        "difficulty": 1,
+        "compute": "m*(m*(m*s - k) - k) - k",
+        "template": {
+          "vars": {
+            "s": { "from": 2, "to": 6 },
+            "m": { "from": 2, "to": 3 },
+            "k": { "from": 1, "to": 5 }
+          },
+          "where": ["(m - 1)*s > k"]
+        }
+      },
+      {
+        "id": "fibonacci-like",
+        "prompt": "$a_1 = [[p]]$, $a_2 = [[q]]$, and each term after that is the sum of the two before it. What is $a_7$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*p + 8*q]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[3*p + 5*q]]",
+              "why": "That is $a_6$. One more term."
+            }
+          ]
+        },
+        "hints": ["$a_3 = [[p + q]]$, $a_4 = [[p + 2*q]]$, …"],
+        "solution": "$[[p]], [[q]], [[p+q]], [[p+2*q]], [[2*p+3*q]], [[3*p+5*q]], [[5*p+8*q]]$, so $a_7 = [[5*p + 8*q]]$.",
+        "skill": "recursion",
+        "difficulty": 1,
+        "compute": "5*p + 8*q",
+        "template": {
+          "vars": {
+            "p": { "from": 1, "to": 9 },
+            "q": { "from": 1, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "eight-stairs",
+        "prompt": "You climb $8$ stairs taking $1$ or $2$ steps at a time. In how many different ways can you do it?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["34"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "21",
+              "why": "That is $W(7)$, for $7$ stairs. Add $W(6) = 13$."
+            }
+          ]
+        },
+        "hints": ["$W(n) = W(n - 1) + W(n - 2)$, with $W(1) = 1$ and $W(2) = 2$."],
+        "solution": "$W$: $1, 2, 3, 5, 8, 13, 21, 34$, so $W(8) = 34$.",
+        "skill": "recursion",
+        "difficulty": 2,
+        "compute": "13 + 21"
+      },
+      {
+        "id": "period-six",
+        "prompt": "$a_1 = [[p]]$, $a_2 = [[q]]$ and $a_{n+2} = a_{n+1} - a_n$. What is $a_{[[big]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[q - p]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[p - q]]",
+              "why": "Check the sign: $a_3 = a_2 - a_1 = [[q]] - [[p]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Write out terms until they repeat: $[[p]], [[q]], [[q-p]], [[-p]], \\ldots$",
+          "The terms repeat every $6$. $[[big]]$ leaves remainder $3$ when divided by $6$."
+        ],
+        "solution": "The terms go $[[p]], [[q]], [[q-p]], [[-p]], [[-q]], [[p-q]]$ and then repeat every $6$. $[[big]] = 6 \\times [[(big-3)/6]] + 3$, so $a_{[[big]]} = a_3 = [[q - p]]$.",
+        "skill": "recursion",
+        "difficulty": 3,
+        "compute": "q - p",
+        "template": {
+          "vars": {
+            "p": { "from": 1, "to": 9 },
+            "q": { "from": 1, "to": 9 },
+            "big": { "choose": [21, 27, 33, 45, 51, 63, 99] }
+          },
+          "where": ["p != q"]
+        }
+      },
+      {
+        "id": "growing-steps",
+        "prompt": "$a_1 = 1$ and $a_{n+1} = a_n + [[d]]n$. What is $a_{[[n]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1 + d*n*(n-1)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[1 + d*n*(n+1)/2]]",
+              "why": "Going from $a_1$ to $a_{[[n]]}$ adds $[[d]] \\times 1$ up to $[[d]] \\times [[n-1]]$, not up to $[[d]] \\times [[n]]$."
+            }
+          ]
+        },
+        "hints": ["$a_{[[n]]} = 1 + [[d]](1 + 2 + \\cdots + [[n-1]])$."],
+        "solution": "$a_{[[n]]} = 1 + [[d]](1 + 2 + \\cdots + [[n-1]]) = 1 + [[d]] \\times [[n*(n-1)/2]] = [[1 + d*n*(n-1)/2]]$.",
+        "skill": "recursion",
+        "difficulty": 2,
+        "compute": "1 + d*n*(n - 1)/2",
+        "template": {
+          "vars": {
+            "d": { "from": 2, "to": 5 },
+            "n": { "from": 6, "to": 12 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m06.recursion-set",
+    "type": "PROBLEM_SET",
+    "title": "Recursion challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "fifth-term",
+        "prompt": "$a_1 = 2$ and $a_{n+1} = 3a_n - 2$. What is $a_5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$28$", "$54$", "$82$", "$162$", "$244$"],
+          "correct": "C",
+          "why": {
+            "A": "That is $a_4$.",
+            "E": "That is $a_6$."
+          }
+        },
+        "solution": "$2, 4, 10, 28, 82$, so $a_5 = 82$, choice (C).",
+        "skill": "recursion",
+        "difficulty": 1,
+        "compute": "3*(3*(3*(3*2 - 2) - 2) - 2) - 2"
+      },
+      {
+        "id": "seven-stairs",
+        "prompt": "In how many ways can you climb $7$ stairs taking $1$ or $2$ steps at a time?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$13$", "$14$", "$21$", "$28$", "$34$"],
+          "correct": "C",
+          "why": {
+            "A": "That is for $6$ stairs.",
+            "E": "That is for $8$ stairs."
+          }
+        },
+        "solution": "$1, 2, 3, 5, 8, 13, 21$: $W(7) = 21$, choice (C).",
+        "skill": "recursion",
+        "difficulty": 1,
+        "compute": "8 + 13"
+      },
+      {
+        "id": "hundredth",
+        "prompt": "$a_1 = 3$, $a_2 = 5$ and $a_{n+2} = a_{n+1} - a_n$. What is $a_{100}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-5$", "$-3$", "$-2$", "$2$", "$3$"],
+          "correct": "B",
+          "why": {
+            "E": "That is $a_1$. $100$ leaves remainder $4$ when divided by $6$, so it matches $a_4$."
+          }
+        },
+        "solution": "The terms go $3, 5, 2, -3, -5, -2$, then repeat every $6$. $100 = 6 \\times 16 + 4$, so $a_{100} = a_4 = -3$, choice (B).",
+        "skill": "recursion",
+        "difficulty": 2,
+        "compute": "-3"
+      },
+      {
+        "id": "add-two-n",
+        "prompt": "$f(1) = 2$ and $f(n + 1) = f(n) + 2n$ for $n \\geq 1$. What is $f(10)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$90$", "$92$", "$100$", "$110$", "$112$"],
+          "correct": "B",
+          "why": {
+            "E": "From $f(1)$ to $f(10)$ adds $2n$ only for $n = 1$ to $9$.",
+            "A": "Don't forget the starting value $f(1) = 2$."
+          }
+        },
+        "solution": "$f(10) = 2 + 2(1 + 2 + \\cdots + 9) = 2 + 2 \\times 45 = 92$, choice (B).",
+        "skill": "recursion",
+        "difficulty": 2,
+        "compute": "2 + 2*(9*10/2)"
+      },
+      {
+        "id": "no-two-a",
+        "prompt": "How many strings of $5$ letters, each A or B, have no two A's next to each other?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$13$", "$16$", "$21$", "$32$"],
+          "correct": "B",
+          "why": {
+            "E": "$32$ counts all the strings, including ones with AA.",
+            "A": "That is the count for $4$ letters."
+          }
+        },
+        "solution": "Let $S(n)$ count the good strings. One that ends in B is any good string of length $n - 1$ plus B; one that ends in A must end in BA. So $S(n) = S(n - 1) + S(n - 2)$, with $S(1) = 2$ and $S(2) = 3$: $2, 3, 5, 8, 13$. Choice (B).",
+        "skill": "recursion",
+        "difficulty": 3,
+        "compute": "5 + 8"
+      }
+    ]
+  },
+  {
+    "key": "m06.telescoping-practice",
+    "type": "PROBLEMS",
+    "title": "Telescoping & clever sums",
+    "instructions": "Type each answer and press Check. Rewrite each term as a difference and see what survives at the ends. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "unit-fractions",
+        "prompt": "What is $\\frac{1}{1 \\cdot 2} + \\frac{1}{2 \\cdot 3} + \\cdots + \\frac{1}{[[n]] \\cdot [[n+1]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n/(n+1)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1/(n+1)]]",
+              "why": "What survives is $1 - \\frac{1}{[[n+1]]}$: the first term $1$ stays."
+            }
+          ]
+        },
+        "hints": ["$\\frac{1}{k(k + 1)} = \\frac{1}{k} - \\frac{1}{k + 1}$."],
+        "solution": "The sum is $\\left(1 - \\frac{1}{2}\\right) + \\cdots + \\left(\\frac{1}{[[n]]} - \\frac{1}{[[n+1]]}\\right) = 1 - \\frac{1}{[[n+1]]} = [[n/(n+1)]]$.",
+        "skill": "telescoping",
+        "difficulty": 1,
+        "compute": "1 - 1/(n + 1)",
+        "template": {
+          "vars": {
+            "n": { "from": 5, "to": 30 }
+          }
+        }
+      },
+      {
+        "id": "product",
+        "prompt": "What is $\\left(1 + \\frac{1}{2}\\right)\\left(1 + \\frac{1}{3}\\right)\\cdots\\left(1 + \\frac{1}{[[n]]}\\right)$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(n+1)/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n + 1]]",
+              "why": "The product starts at $\\frac{3}{2}$, so the $2$ at the bottom survives."
+            }
+          ]
+        },
+        "hints": [
+          "$1 + \\frac{1}{k} = \\frac{k + 1}{k}$, so the product is $\\frac{3}{2} \\cdot \\frac{4}{3} \\cdots \\frac{[[n+1]]}{[[n]]}$."
+        ],
+        "solution": "$\\frac{3}{2} \\cdot \\frac{4}{3} \\cdots \\frac{[[n+1]]}{[[n]]}$: every top cancels the next bottom, leaving $\\frac{[[n+1]]}{2} = [[(n+1)/2]]$.",
+        "skill": "telescoping",
+        "difficulty": 2,
+        "compute": "(n + 1)/2",
+        "template": {
+          "vars": {
+            "n": { "from": 5, "to": 30 }
+          }
+        }
+      },
+      {
+        "id": "alternating",
+        "prompt": "What is $1 - 2 + 3 - 4 + \\cdots + [[2*m - 1]] - [[2*m]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[-m]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[m]]",
+              "why": "Each pair $(1 - 2), (3 - 4), \\ldots$ is $-1$, not $+1$."
+            }
+          ]
+        },
+        "hints": ["Group: $(1 - 2) + (3 - 4) + \\cdots$. How many pairs?"],
+        "solution": "There are $[[m]]$ pairs, each equal to $-1$, so the sum is $[[-m]]$.",
+        "skill": "telescoping",
+        "difficulty": 1,
+        "compute": "-1*(2*m/2)",
+        "template": {
+          "vars": {
+            "m": { "from": 10, "to": 60, "step": 5 }
+          }
+        }
+      },
+      {
+        "id": "square-differences",
+        "prompt": "What is $[[n]]^2 - [[n-1]]^2 + [[n-2]]^2 - [[n-3]]^2 + \\cdots + 2^2 - 1^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n+1)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*(n+1)]]",
+              "why": "The pairs add up to $[[n]] + [[n-1]] + \\cdots + 1$, which is $\\frac{[[n]] \\times [[n+1]]}{2}$."
+            }
+          ]
+        },
+        "hints": [
+          "$k^2 - (k - 1)^2 = k + (k - 1)$.",
+          "So the sum is $[[n]] + [[n-1]] + \\cdots + 2 + 1$."
+        ],
+        "solution": "Each pair is $k^2 - (k - 1)^2 = k + (k - 1)$, so the whole sum is $[[n]] + [[n-1]] + \\cdots + 1 = [[n*(n+1)/2]]$.",
+        "skill": "telescoping",
+        "difficulty": 2,
+        "compute": "n*(n + 1)/2",
+        "template": {
+          "vars": {
+            "n": { "from": 10, "to": 30, "step": 2 }
+          }
+        }
+      },
+      {
+        "id": "skip-two",
+        "prompt": "What is $\\frac{1}{1 \\cdot 3} + \\frac{1}{3 \\cdot 5} + \\cdots + \\frac{1}{[[2*n-1]] \\cdot [[2*n+1]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n/(2*n+1)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n/(2*n+1)]]",
+              "why": "Each term is HALF of $\\frac{1}{k} - \\frac{1}{k + 2}$: $\\frac{1}{k(k + 2)} = \\frac{1}{2}\\left(\\frac{1}{k} - \\frac{1}{k + 2}\\right)$."
+            }
+          ]
+        },
+        "hints": [
+          "$\\frac{1}{k(k + 2)} = \\frac{1}{2}\\left(\\frac{1}{k} - \\frac{1}{k + 2}\\right)$."
+        ],
+        "solution": "The sum is $\\frac{1}{2}\\left(1 - \\frac{1}{[[2*n+1]]}\\right) = \\frac{1}{2} \\times \\frac{[[2*n]]}{[[2*n+1]]} = [[n/(2*n+1)]]$.",
+        "skill": "telescoping",
+        "difficulty": 3,
+        "compute": "(1 - 1/(2*n + 1))/2",
+        "template": {
+          "vars": {
+            "n": { "from": 4, "to": 20 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m06.telescoping-set",
+    "type": "PROBLEM_SET",
+    "title": "Telescoping challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "start-at-two",
+        "prompt": "What is $\\frac{1}{2 \\cdot 3} + \\frac{1}{3 \\cdot 4} + \\cdots + \\frac{1}{9 \\cdot 10}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{2}{5}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{9}{10}$",
+            "$\\frac{4}{5}$",
+            "$\\frac{1}{10}$"
+          ],
+          "correct": "A",
+          "why": {
+            "C": "The sum starts at $\\frac{1}{2 \\cdot 3}$, so the first surviving term is $\\frac{1}{2}$, not $1$."
+          }
+        },
+        "solution": "$\\left(\\frac{1}{2} - \\frac{1}{3}\\right) + \\cdots + \\left(\\frac{1}{9} - \\frac{1}{10}\\right) = \\frac{1}{2} - \\frac{1}{10} = \\frac{2}{5}$, choice (A).",
+        "skill": "telescoping",
+        "difficulty": 1,
+        "compute": "1/2 - 1/10"
+      },
+      {
+        "id": "minus-product",
+        "prompt": "What is $\\left(1 - \\frac{1}{2}\\right)\\left(1 - \\frac{1}{3}\\right)\\left(1 - \\frac{1}{4}\\right)\\cdots\\left(1 - \\frac{1}{20}\\right)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{20}$",
+            "$\\frac{1}{19}$",
+            "$\\frac{1}{10}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{19}{20}$"
+          ],
+          "correct": "A",
+          "why": {
+            "E": "That is only the last factor."
+          }
+        },
+        "solution": "$\\frac{1}{2} \\cdot \\frac{2}{3} \\cdot \\frac{3}{4} \\cdots \\frac{19}{20} = \\frac{1}{20}$: each top cancels the bottom before it. Choice (A).",
+        "skill": "telescoping",
+        "difficulty": 1,
+        "compute": "1/20"
+      },
+      {
+        "id": "groups-of-three",
+        "prompt": "What is $1 + 2 - 3 + 4 + 5 - 6 + \\cdots + 28 + 29 - 30$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$120$", "$135$", "$145$", "$150$", "$165$"],
+          "correct": "B",
+          "why": {
+            "E": "Each group $(3k - 2) + (3k - 1) - 3k$ is $3k - 3$, not $3k$."
+          }
+        },
+        "solution": "Group in threes: $(3k - 2) + (3k - 1) - 3k = 3k - 3$ for $k = 1$ to $10$. The sum is $3(1 + \\cdots + 10) - 30 = 165 - 30 = 135$, choice (B).",
+        "skill": "telescoping",
+        "difficulty": 2,
+        "compute": "3*(10*11/2) - 3*10"
+      },
+      {
+        "id": "root-differences",
+        "prompt": "What is $\\frac{1}{\\sqrt{1} + \\sqrt{2}} + \\frac{1}{\\sqrt{2} + \\sqrt{3}} + \\cdots + \\frac{1}{\\sqrt{99} + \\sqrt{100}}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$9$", "$10$", "$99$", "$100$"],
+          "correct": "B",
+          "why": {
+            "C": "What is left is $\\sqrt{100} - \\sqrt{1} = 10 - 1$."
+          }
+        },
+        "solution": "Multiply top and bottom by $\\sqrt{k + 1} - \\sqrt{k}$: each term is $\\sqrt{k + 1} - \\sqrt{k}$. The sum telescopes to $\\sqrt{100} - \\sqrt{1} = 9$, choice (B).",
+        "skill": "telescoping",
+        "difficulty": 4,
+        "compute": "sqrt(100) - sqrt(1)"
+      },
+      {
+        "id": "factorial-sum",
+        "prompt": "What is $1 \\cdot 1! + 2 \\cdot 2! + 3 \\cdot 3! + 4 \\cdot 4! + 5 \\cdot 5!$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$119$", "$600$", "$719$", "$720$", "$721$"],
+          "correct": "C",
+          "why": {
+            "D": "$6! - 1!$: the $1! = 1$ is taken away."
+          }
+        },
+        "solution": "$k \\cdot k! = (k + 1)! - k!$, so the sum telescopes to $6! - 1! = 720 - 1 = 719$, choice (C).",
+        "skill": "telescoping",
+        "difficulty": 3,
+        "compute": "fact(6) - fact(1)"
+      }
+    ]
+  },
+  {
+    "key": "m06.pattern-practice",
+    "type": "PROBLEMS",
+    "title": "Finding the pattern",
+    "instructions": "Type each answer and press Check. Work out small cases, find the cycle, then use the remainder. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "last-digit",
+        "prompt": "What is the last digit of $[[b]]^{[[n]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(b^n, 10)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Write the last digits of $[[b]]^1, [[b]]^2, [[b]]^3, [[b]]^4, [[b]]^5$.",
+          "The cycle has length $4$. What is the remainder when $[[n]]$ is divided by $4$?"
+        ],
+        "solution": "The last digits of powers of $[[b]]$ repeat every $4$. $[[n]]$ leaves remainder $[[mod(n, 4)]]$ when divided by $4$, so the last digit is $[[mod(b^n, 10)]]$ (remainder $0$ means the 4th in the cycle).",
+        "skill": "patterns",
+        "difficulty": 1,
+        "compute": "mod(b^n, 10)",
+        "template": {
+          "vars": {
+            "b": { "choose": [2, 3, 7, 8] },
+            "n": { "from": 21, "to": 120, "step": 3 }
+          }
+        }
+      },
+      {
+        "id": "repeating-sum",
+        "prompt": "The pattern $[[p]], [[q]], [[r]], [[p]], [[q]], [[r]], \\ldots$ repeats forever. What is the sum of the first $[[3*k + j]]$ numbers?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k*(p+q+r) + p + (j-1)*q]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "$[[3*k + j]] = 3 \\times [[k]] + [[j]]$: $[[k]]$ full cycles and $[[j]]$ more.",
+          "Each full cycle adds $[[p+q+r]]$."
+        ],
+        "solution": "$[[k]]$ full cycles add $[[k]] \\times [[p+q+r]] = [[k*(p+q+r)]]$, and the next $[[j]]$ numbers add $[[p + (j-1)*q]]$. Total: $[[k*(p+q+r) + p + (j-1)*q]]$.",
+        "skill": "patterns",
+        "difficulty": 2,
+        "compute": "k*(p + q + r) + p + (j - 1)*q",
+        "template": {
+          "vars": {
+            "p": { "from": 1, "to": 9 },
+            "q": { "from": 1, "to": 9 },
+            "r": { "from": 1, "to": 9 },
+            "k": { "from": 10, "to": 30, "step": 5 },
+            "j": { "choose": [1, 2] }
+          },
+          "where": ["p != q", "q != r", "p != r"]
+        }
+      },
+      {
+        "id": "triangular",
+        "prompt": "Figure 1 has $1$ dot, figure 2 has $3$, figure 3 has $6$, figure 4 has $10$, and so on (each new figure adds a row with one more dot). How many dots are in figure $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n+1)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*n]]",
+              "why": "The differences are $2, 3, 4, \\ldots$, so the figures are $1 + 2 + \\cdots + n$, not $n^2$."
+            }
+          ]
+        },
+        "hints": ["Figure $n$ has $1 + 2 + \\cdots + n$ dots."],
+        "solution": "Figure $[[n]]$ has $1 + 2 + \\cdots + [[n]] = \\frac{[[n]] \\times [[n+1]]}{2} = [[n*(n+1)/2]]$ dots.",
+        "skill": "patterns",
+        "difficulty": 1,
+        "compute": "n*(n + 1)/2",
+        "template": {
+          "vars": {
+            "n": { "from": 10, "to": 40 }
+          }
+        }
+      },
+      {
+        "id": "remainder-zero",
+        "prompt": "Lights flash red, green, blue, yellow, red, green, blue, yellow, … Number the colours red $1$, green $2$, blue $3$, yellow $4$. Which colour number is flash $[[4*k]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["4"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "$[[4*k]]$ leaves remainder $0$: that is the LAST colour of the cycle, yellow."
+            },
+            {
+              "value": "0",
+              "why": "There is no colour $0$: remainder $0$ means the last colour, number $4$."
+            }
+          ]
+        },
+        "hints": ["Flash $4$ is yellow, flash $8$ is yellow, …"],
+        "solution": "$[[4*k]] = 4 \\times [[k]]$ leaves remainder $0$, so it is the last colour of the cycle: yellow, number $4$.",
+        "skill": "patterns",
+        "difficulty": 1,
+        "compute": "mod(4*k - 1, 4) + 1",
+        "template": {
+          "vars": {
+            "k": { "from": 5, "to": 50 }
+          }
+        }
+      },
+      {
+        "id": "rectangular-numbers",
+        "prompt": "The sequence $2, 6, 12, 20, 30, \\ldots$ continues in the same way. What is term number $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n+1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*(n-1)]]",
+              "why": "Term $1$ is $2 = 1 \\times 2$: term $n$ is $n(n + 1)$, not $(n - 1)n$."
+            }
+          ]
+        },
+        "hints": ["$2 = 1 \\times 2$, $6 = 2 \\times 3$, $12 = 3 \\times 4$, …"],
+        "solution": "Term $n$ is $n(n + 1)$, so term $[[n]]$ is $[[n]] \\times [[n+1]] = [[n*(n+1)]]$.",
+        "skill": "patterns",
+        "difficulty": 1,
+        "compute": "n*(n + 1)",
+        "template": {
+          "vars": {
+            "n": { "from": 10, "to": 30 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m06.pattern-set",
+    "type": "PROBLEM_SET",
+    "title": "Finding the pattern challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "seven-power",
+        "prompt": "What is the last digit of $7^{2026}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$3$", "$7$", "$9$"],
+          "correct": "E",
+          "why": {
+            "D": "$2026$ leaves remainder $2$ when divided by $4$, so it matches $7^2$, not $7^1$."
+          }
+        },
+        "solution": "The last digits of $7^n$ go $7, 9, 3, 1$ and repeat. $2026 = 4 \\times 506 + 2$, so the last digit is the 2nd in the cycle: $9$, choice (E).",
+        "skill": "patterns",
+        "difficulty": 1,
+        "compute": "mod(7^2026, 10)"
+      },
+      {
+        "id": "seventh-digits",
+        "prompt": "$\\frac{1}{7} = 0.142857142857\\ldots$, with the digits $142857$ repeating. What is the $100$th digit after the decimal point?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$4$", "$5$", "$8$"],
+          "correct": "E",
+          "why": {
+            "C": "Remainder $4$ means the 4th digit of $142857$, which is $8$, not the digit $4$."
+          }
+        },
+        "solution": "The cycle has $6$ digits and $100 = 6 \\times 16 + 4$, so the 100th digit is the 4th of $142857$: $8$, choice (E).",
+        "skill": "patterns",
+        "difficulty": 2,
+        "compute": "mod(floor(10^100/7), 10)"
+      },
+      {
+        "id": "factorial-digits",
+        "prompt": "What is the last digit of $1! + 2! + 3! + \\cdots + 100!$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$3$", "$4$", "$6$", "$9$"],
+          "correct": "B",
+          "why": {
+            "A": "From $5!$ on every term ends in $0$, but $1! + 2! + 3! + 4! = 33$ doesn't."
+          }
+        },
+        "solution": "From $5!$ on, every factorial has a factor $10$, so it ends in $0$. $1 + 2 + 6 + 24 = 33$, so the last digit is $3$, choice (B).",
+        "skill": "patterns",
+        "difficulty": 2,
+        "compute": "mod(fact(1) + fact(2) + fact(3) + fact(4), 10)"
+      },
+      {
+        "id": "growing-figures",
+        "prompt": "Figures of squares have $1, 5, 13, 25, \\ldots$ squares: each new figure adds a ring of $4$ more squares than the last ring. How many squares are in figure $10$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$81$", "$100$", "$145$", "$181$", "$221$"],
+          "correct": "D",
+          "why": {
+            "C": "That is figure $9$."
+          }
+        },
+        "solution": "The rings are $4, 8, 12, \\ldots, 36$, so figure $10$ has $1 + 4(1 + 2 + \\cdots + 9) = 1 + 4 \\times 45 = 181$ squares, choice (D). (In general, $2n^2 - 2n + 1$.)",
+        "skill": "patterns",
+        "difficulty": 3,
+        "compute": "2*10^2 - 2*10 + 1"
+      },
+      {
+        "id": "power-remainder",
+        "prompt": "What is the remainder when $2^{100}$ is divided by $7$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$6$"],
+          "correct": "B",
+          "why": {
+            "A": "$2^{99} = (2^3)^{33}$ leaves remainder $1$, and there is one more factor $2$."
+          }
+        },
+        "solution": "Powers of $2$ leave remainders $2, 4, 1, 2, 4, 1, \\ldots$ when divided by $7$, a cycle of $3$. $100 = 3 \\times 33 + 1$, so the remainder is $2$, choice (B).",
+        "skill": "patterns",
+        "difficulty": 3,
+        "compute": "mod(2^100, 7)"
+      }
+    ]
+  },
+  {
+    "key": "m06.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "term-n",
+        "prompt": "The sequence $[[a]], [[a+d]], [[a+2*d]], \\ldots$ goes up by $[[d]]$ each time. What is term number $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + (n-1)*d]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a + n*d]]",
+              "why": "Term $[[n]]$ is $[[n-1]]$ steps after the first."
+            }
+          ]
+        },
+        "hints": ["$[[a]] + [[n-1]] \\times [[d]]$."],
+        "solution": "$[[a]] + [[n-1]] \\times [[d]] = [[a + (n-1)*d]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "a + (n - 1)*d",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 9 },
+            "d": { "from": 2, "to": 7 },
+            "n": { "from": 10, "to": 30, "step": 5 }
+          }
+        }
+      },
+      {
+        "id": "doubling-sum",
+        "prompt": "What is $1 + 2 + 4 + \\cdots + 2^{[[n]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2^(n+1) - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2^(n+1)]]",
+              "why": "The sum is ONE LESS than the next power of $2$."
+            }
+          ]
+        },
+        "hints": ["$1 + 2 = 3$, $1 + 2 + 4 = 7$, $1 + 2 + 4 + 8 = 15$, …"],
+        "solution": "$1 + 2 + \\cdots + 2^{[[n]]} = 2^{[[n+1]]} - 1 = [[2^(n+1) - 1]]$.",
+        "skill": "geometric-sequences",
+        "difficulty": 1,
+        "compute": "2^(n + 1) - 1",
+        "template": {
+          "vars": {
+            "n": { "from": 5, "to": 12 }
+          }
+        }
+      },
+      {
+        "id": "sixth-term",
+        "prompt": "$a_1 = [[p]]$, $a_2 = [[q]]$, and each term after that is the sum of the two before. What is $a_6$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[3*p + 5*q]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2*p + 3*q]]",
+              "why": "That is $a_5$."
+            }
+          ]
+        },
+        "hints": ["$a_3 = [[p+q]]$, $a_4 = [[p+2*q]]$."],
+        "solution": "$[[p]], [[q]], [[p+q]], [[p+2*q]], [[2*p+3*q]], [[3*p+5*q]]$.",
+        "skill": "recursion",
+        "difficulty": 1,
+        "compute": "3*p + 5*q",
+        "template": {
+          "vars": {
+            "p": { "from": 1, "to": 9 },
+            "q": { "from": 1, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "collapse",
+        "prompt": "What is $\\frac{1}{1 \\cdot 2} + \\frac{1}{2 \\cdot 3} + \\cdots + \\frac{1}{[[n]] \\cdot [[n+1]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n/(n+1)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1/(n+1)]]",
+              "why": "What is left is $1 - \\frac{1}{[[n+1]]}$."
+            }
+          ]
+        },
+        "hints": ["$\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$."],
+        "solution": "It telescopes to $1 - \\frac{1}{[[n+1]]} = [[n/(n+1)]]$.",
+        "skill": "telescoping",
+        "difficulty": 1,
+        "compute": "1 - 1/(n + 1)",
+        "template": {
+          "vars": {
+            "n": { "from": 5, "to": 25 }
+          }
+        }
+      },
+      {
+        "id": "three-cycle",
+        "prompt": "What is the last digit of $3^{[[n]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(3^n, 10)]]"],
+          "form": "integer"
+        },
+        "hints": ["The last digits go $3, 9, 7, 1$ and repeat."],
+        "solution": "$[[n]]$ leaves remainder $[[mod(n, 4)]]$ when divided by $4$, so the last digit is $[[mod(3^n, 10)]]$.",
+        "skill": "patterns",
+        "difficulty": 1,
+        "compute": "mod(3^n, 10)",
+        "template": {
+          "vars": {
+            "n": { "from": 10, "to": 60 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m06.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 6 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-nth-term",
+        "prompt": "The sequence $[[a]], [[a+d]], [[a+2*d]], \\ldots$ goes up by $[[d]]$ each time. What is term number $[[n]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[a + (n-2)*d]]$",
+            "$[[a + (n-1)*d]]$",
+            "$[[a + n*d]]$",
+            "$[[n*d]]$",
+            "$[[a*n]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "C": "Term $[[n]]$ is only $[[n-1]]$ steps after the first.",
+            "D": "Start from the first term, $[[a]]$, not from $0$."
+          }
+        },
+        "solution": "$[[a]] + [[n-1]] \\times [[d]] = [[a + (n-1)*d]]$, choice (B).",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "a + (n - 1)*d",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 12 },
+            "d": { "from": 2, "to": 9 },
+            "n": { "from": 10, "to": 40, "step": 3 }
+          },
+          "where": [
+            "a != d",
+            "a != 2*d",
+            "a*n != a + (n-2)*d",
+            "a*n != a + (n-1)*d",
+            "a*n != a + n*d",
+            "a*n != n*d"
+          ]
+        }
+      },
+      {
+        "id": "check-count",
+        "prompt": "How many terms are in the list $[[a]], [[a+d]], [[a+2*d]], \\ldots, [[a+(m-1)*d]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[m - 2]]$", "$[[m - 1]]$", "$[[m]]$", "$[[m + 1]]$", "$[[(m-1)*d]]$"],
+          "correct": "C",
+          "why": {
+            "B": "That is the number of steps. Add one for the terms.",
+            "E": "That is the distance from first to last. Divide by $[[d]]$."
+          }
+        },
+        "solution": "$\\frac{[[(m-1)*d]]}{[[d]]} + 1 = [[m]]$, choice (C).",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "((a + (m-1)*d) - a)/d + 1",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 20 },
+            "d": { "from": 3, "to": 9 },
+            "m": { "from": 15, "to": 60, "step": 3 }
+          }
+        }
+      },
+      {
+        "id": "check-odd-sum",
+        "prompt": "What is the sum of the first $30$ odd numbers, $1 + 3 + 5 + \\cdots$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$870$", "$899$", "$900$", "$930$", "$961$"],
+          "correct": "C",
+          "why": {
+            "E": "$961 = 31^2$ would be the first $31$ odd numbers."
+          }
+        },
+        "solution": "The 30th odd number is $59$. $30 \\times \\frac{1 + 59}{2} = 900$, choice (C). (The first $n$ odd numbers add to $n^2$.)",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "30*(1 + 59)/2"
+      },
+      {
+        "id": "check-smallest-even",
+        "prompt": "Eleven consecutive even numbers add up to $242$. What is the smallest of them?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$12$", "$17$", "$22$", "$32$"],
+          "correct": "B",
+          "why": {
+            "D": "$22$ is the middle (the average). The smallest is $5$ steps of $2$ below it.",
+            "E": "That is the largest."
+          }
+        },
+        "solution": "The middle number is $\\frac{242}{11} = 22$, and the smallest is $5$ steps of $2$ below: $22 - 10 = 12$, choice (B).",
+        "skill": "arithmetic-sequences",
+        "difficulty": 2,
+        "compute": "242/11 - 2*5"
+      },
+      {
+        "id": "check-geo-term",
+        "prompt": "The sequence $[[a]], [[a*r]], [[a*r*r]], \\ldots$ multiplies by $[[r]]$ each time. What is term number $[[n]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[a*r^(n-2)]]$",
+            "$[[a*r^(n-1)]]$",
+            "$[[a*r^n]]$",
+            "$[[a*r*(n-1)]]$",
+            "$[[a + (n-1)*r]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "C": "Term $[[n]]$ is only $[[n-1]]$ multiplications after the first.",
+            "D": "Multiply by $[[r]]$ again and again: that is a power, not $[[r]] \\times [[n-1]]$."
+          }
+        },
+        "solution": "$[[a]] \\times [[r]]^{[[n-1]]} = [[a*r^(n-1)]]$, choice (B).",
+        "skill": "geometric-sequences",
+        "difficulty": 1,
+        "compute": "a*r^(n - 1)",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 5 },
+            "r": { "from": 2, "to": 3 },
+            "n": { "from": 6, "to": 8 }
+          },
+          "where": ["r*(n-1) != r^(n-2)", "a + (n-1)*r != a*r^(n-2)", "a + (n-1)*r != a*r*(n-1)"]
+        }
+      },
+      {
+        "id": "check-power-sum",
+        "prompt": "What is $1 + [[r]] + [[r]]^2 + \\cdots + [[r]]^{[[n]]}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[(r^n - 1)/(r - 1)]]$",
+            "$[[(r^(n+1) - 1)/(r - 1)]]$",
+            "$[[r^(n+1) - 1]]$",
+            "$[[r^(n+1)]]$",
+            "$[[(n+1)*r]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "There are $[[n+1]]$ terms, from power $0$ to power $[[n]]$.",
+            "C": "Divide by $r - 1 = [[r - 1]]$."
+          }
+        },
+        "solution": "$\\frac{[[r]]^{[[n+1]]} - 1}{[[r]] - 1} = [[(r^(n+1) - 1)/(r - 1)]]$, choice (B).",
+        "skill": "geometric-sequences",
+        "difficulty": 2,
+        "compute": "(r^(n + 1) - 1)/(r - 1)",
+        "template": {
+          "vars": {
+            "r": { "from": 3, "to": 5 },
+            "n": { "from": 4, "to": 7 }
+          }
+        }
+      },
+      {
+        "id": "check-alternating-forever",
+        "prompt": "What is $18 - 6 + 2 - \\frac{2}{3} + \\cdots$ (forever)?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$\\frac{27}{2}$", "$18$", "$24$", "$27$"],
+          "correct": "B",
+          "why": {
+            "D": "The ratio is $-\\frac{1}{3}$, not $\\frac{1}{3}$: $1 - r = \\frac{4}{3}$."
+          }
+        },
+        "solution": "$a = 18$ and $r = -\\frac{1}{3}$, so the sum is $\\frac{18}{1 + \\frac{1}{3}} = \\frac{18}{\\frac{4}{3}} = \\frac{27}{2}$, choice (B).",
+        "skill": "geometric-sequences",
+        "difficulty": 2,
+        "compute": "18/(1 - (-1/3))"
+      },
+      {
+        "id": "check-geo-middle",
+        "prompt": "The positive numbers $3, x, y, 81$ form a geometric sequence. What is $x + y$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$30$", "$36$", "$42$", "$48$", "$84$"],
+          "correct": "B",
+          "why": {
+            "E": "That treats it as arithmetic ($3, 29, 55, 81$). Geometric means multiply by the same ratio."
+          }
+        },
+        "solution": "$3r^3 = 81$, so $r^3 = 27$ and $r = 3$: the sequence is $3, 9, 27, 81$, and $x + y = 36$, choice (B).",
+        "skill": "geometric-sequences",
+        "difficulty": 2,
+        "compute": "3*3 + 3*9"
+      },
+      {
+        "id": "check-recursive",
+        "prompt": "$a_1 = [[s]]$ and $a_{n+1} = 2a_n + [[k]]$. What is $a_4$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[4*s + 3*k]]$",
+            "$[[8*s + 7*k]]$",
+            "$[[16*s + 15*k]]$",
+            "$[[8*s + 3*k]]$",
+            "$[[2*s + 3*k]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "That is $a_3$.",
+            "C": "That is $a_5$."
+          }
+        },
+        "solution": "$a_2 = [[2*s + k]]$, $a_3 = [[4*s + 3*k]]$, $a_4 = [[8*s + 7*k]]$, choice (B).",
+        "skill": "recursion",
+        "difficulty": 1,
+        "compute": "2*(2*(2*s + k) + k) + k",
+        "template": {
+          "vars": {
+            "s": { "from": 1, "to": 9 },
+            "k": { "from": 1, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "check-stairs",
+        "prompt": "In how many ways can you climb $9$ stairs taking $1$ or $2$ steps at a time?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$34$", "$45$", "$55$", "$89$", "$512$"],
+          "correct": "C",
+          "why": {
+            "A": "That is for $8$ stairs.",
+            "D": "That is for $10$ stairs."
+          }
+        },
+        "solution": "$1, 2, 3, 5, 8, 13, 21, 34, 55$: $W(9) = 55$, choice (C).",
+        "skill": "recursion",
+        "difficulty": 1,
+        "compute": "21 + 34"
+      },
+      {
+        "id": "check-period",
+        "prompt": "$a_1 = 2$, $a_2 = 7$ and $a_{n+2} = a_{n+1} - a_n$. What is $a_{2026}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-7$", "$-5$", "$-2$", "$5$", "$7$"],
+          "correct": "C",
+          "why": {
+            "E": "$2026$ leaves remainder $4$ when divided by $6$, so it matches $a_4$, not $a_2$."
+          }
+        },
+        "solution": "The terms go $2, 7, 5, -2, -7, -5$ and repeat every $6$. $2026 = 6 \\times 337 + 4$, so $a_{2026} = a_4 = -2$, choice (C).",
+        "skill": "recursion",
+        "difficulty": 2,
+        "compute": "-2"
+      },
+      {
+        "id": "check-growing-steps",
+        "prompt": "$a_1 = [[s]]$ and $a_{n+1} = a_n + [[d]]n$. What is $a_{[[n]]}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[s + d*n*(n-1)/2]]$",
+            "$[[s + d*n*(n+1)/2]]$",
+            "$[[s + d*(n-1)]]$",
+            "$[[d*n*(n-1)/2]]$",
+            "$[[s + d*n]]$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "From $a_1$ to $a_{[[n]]}$ adds $[[d]] \\times 1$ up to $[[d]] \\times [[n-1]]$ only.",
+            "D": "Don't forget the start, $a_1 = [[s]]$."
+          }
+        },
+        "solution": "$a_{[[n]]} = [[s]] + [[d]](1 + 2 + \\cdots + [[n-1]]) = [[s]] + [[d*n*(n-1)/2]] = [[s + d*n*(n-1)/2]]$, choice (A).",
+        "skill": "recursion",
+        "difficulty": 2,
+        "compute": "s + d*n*(n - 1)/2",
+        "template": {
+          "vars": {
+            "s": { "from": 1, "to": 9 },
+            "d": { "from": 2, "to": 5 },
+            "n": { "from": 5, "to": 10 }
+          },
+          "where": ["d*n*(n-1)/2 != s + d*(n-1)", "d*n*(n-1)/2 != s + d*n"]
+        }
+      },
+      {
+        "id": "check-unit-fractions",
+        "prompt": "What is $\\frac{1}{1 \\cdot 2} + \\frac{1}{2 \\cdot 3} + \\cdots + \\frac{1}{[[n]] \\cdot [[n+1]]}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[1/(n+1)]]$",
+            "$[[n/(n+1)]]$",
+            "$[[(n+1)/n]]$",
+            "$[[1/n]]$",
+            "$[[(n-1)/n]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "What survives is $1 - \\frac{1}{[[n+1]]}$: the $1$ stays."
+          }
+        },
+        "solution": "It telescopes to $1 - \\frac{1}{[[n+1]]} = [[n/(n+1)]]$, choice (B).",
+        "skill": "telescoping",
+        "difficulty": 1,
+        "compute": "1 - 1/(n + 1)",
+        "template": {
+          "vars": {
+            "n": { "from": 4, "to": 30 }
+          }
+        }
+      },
+      {
+        "id": "check-product",
+        "prompt": "What is $\\left(1 + \\frac{1}{1}\\right)\\left(1 + \\frac{1}{2}\\right)\\left(1 + \\frac{1}{3}\\right)\\cdots\\left(1 + \\frac{1}{49}\\right)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$25$", "$49$", "$50$", "$51$", "$100$"],
+          "correct": "C",
+          "why": {
+            "A": "The product starts at $\\frac{2}{1}$, so nothing is left on the bottom except $1$."
+          }
+        },
+        "solution": "$\\frac{2}{1} \\cdot \\frac{3}{2} \\cdots \\frac{50}{49} = 50$, choice (C).",
+        "skill": "telescoping",
+        "difficulty": 1,
+        "compute": "50/1"
+      },
+      {
+        "id": "check-alternating",
+        "prompt": "What is $1 - 2 + 3 - 4 + \\cdots - [[2*m]] + [[2*m + 1]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[-m]]$", "$[[m]]$", "$[[m + 1]]$", "$[[2*m + 1]]$", "$[[-m - 1]]$"],
+          "correct": "C",
+          "why": {
+            "A": "Don't forget the last term, $+[[2*m + 1]]$: it has no partner.",
+            "B": "Each pair $(1 - 2)$ is $-1$; then add the last term."
+          }
+        },
+        "solution": "The $[[m]]$ pairs $(1 - 2), \\ldots, ([[2*m - 1]] - [[2*m]])$ add to $[[-m]]$; then $+[[2*m + 1]]$ gives $[[m + 1]]$, choice (C).",
+        "skill": "telescoping",
+        "difficulty": 2,
+        "compute": "-m + (2*m + 1)",
+        "template": {
+          "vars": {
+            "m": { "from": 10, "to": 50, "step": 5 }
+          }
+        }
+      },
+      {
+        "id": "check-root-telescope",
+        "prompt": "What is $\\frac{1}{\\sqrt{1} + \\sqrt{2}} + \\frac{1}{\\sqrt{2} + \\sqrt{3}} + \\cdots + \\frac{1}{\\sqrt{48} + \\sqrt{49}}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$7$", "$48$", "$49$"],
+          "correct": "B",
+          "why": {
+            "C": "What is left is $\\sqrt{49} - \\sqrt{1} = 7 - 1$."
+          }
+        },
+        "solution": "Each term is $\\sqrt{k + 1} - \\sqrt{k}$, so the sum is $\\sqrt{49} - \\sqrt{1} = 6$, choice (B).",
+        "skill": "telescoping",
+        "difficulty": 3,
+        "compute": "sqrt(49) - sqrt(1)"
+      },
+      {
+        "id": "check-last-digit",
+        "prompt": "What is the last digit of $3^{2027}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$3$", "$7$", "$9$"],
+          "correct": "D",
+          "why": {
+            "C": "$2027$ leaves remainder $3$ when divided by $4$: the 3rd digit of the cycle $3, 9, 7, 1$."
+          }
+        },
+        "solution": "The last digits of $3^n$ go $3, 9, 7, 1$. $2027 = 4 \\times 506 + 3$, so the last digit is $7$, choice (D).",
+        "skill": "patterns",
+        "difficulty": 1,
+        "compute": "mod(3^2027, 10)"
+      },
+      {
+        "id": "check-flash",
+        "prompt": "Lights flash red, green, blue, yellow, red, green, … Number the colours red $1$, green $2$, blue $3$, yellow $4$. Which colour number is flash $[[4*k]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$[[k]]$"],
+          "correct": "D",
+          "why": {
+            "A": "Remainder $0$ means the LAST colour of the cycle.",
+            "E": "$[[k]]$ is the number of full cycles, not the colour."
+          }
+        },
+        "solution": "$[[4*k]]$ leaves remainder $0$ when divided by $4$, so it is the last colour: yellow, number $4$, choice (D).",
+        "skill": "patterns",
+        "difficulty": 1,
+        "compute": "mod(4*k - 1, 4) + 1",
+        "template": {
+          "vars": {
+            "k": { "from": 5, "to": 60 }
+          }
+        }
+      },
+      {
+        "id": "check-triangular",
+        "prompt": "The sequence $1, 3, 6, 10, 15, \\ldots$ continues in the same way. What is its 20th term?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$190$", "$200$", "$210$", "$231$", "$400$"],
+          "correct": "C",
+          "why": {
+            "A": "That is the 19th term.",
+            "E": "The differences are $2, 3, 4, \\ldots$: these are $1 + 2 + \\cdots + n$, not $n^2$."
+          }
+        },
+        "solution": "Term $n$ is $1 + 2 + \\cdots + n = \\frac{n(n + 1)}{2}$, so the 20th is $\\frac{20 \\times 21}{2} = 210$, choice (C).",
+        "skill": "patterns",
+        "difficulty": 2,
+        "compute": "20*21/2"
+      }
+    ]
+  }
+]

@@ -1,0 +1,100 @@
+{
+  "slug": "math-recursion",
+  "order": 3,
+  "title": "Recursion",
+  "estMinutes": 35,
+  "focusSkills": ["recursion"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Start with $1, 1$. Each new number is the sum of the two before it. Write the first ten numbers. What do you notice about every third one?",
+      "placeholder": "1, 1, 2, … I notice…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Each term from the ones before",
+          "body": "A recursive rule like $a_{n + 1} = 2a_n + 1$ builds each term from earlier terms, starting from given values. Work out the first few terms carefully. Often a pattern appears that you can then prove or trust."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: spot the pattern",
+          "problem": "$a_1 = 1$ and $a_{n + 1} = 2a_n + 1$. What is $a_{10}$?",
+          "steps": [
+            {
+              "text": "The first terms are $1, 3, 7, 15, \\ldots$",
+              "try": {
+                "prompt": "What is $a_5$?",
+                "accepted": ["31"],
+                "compute": "2*15 + 1"
+              }
+            },
+            {
+              "text": "Each term is one less than a power of $2$: $a_n = 2^n - 1$. So $a_{10} = 1024 - 1 = 1023$.",
+              "try": {
+                "prompt": "What is $a_{10}$?",
+                "accepted": ["1023"],
+                "compute": "2^10 - 1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Counting with recursion",
+          "body": "To count the ways to climb $n$ stairs taking $1$ or $2$ steps at a time, look at the LAST step: it was a $1$ (from stair $n - 1$) or a $2$ (from stair $n - 2$). So $W(n) = W(n - 1) + W(n - 2)$, with $W(1) = 1$ and $W(2) = 2$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: climbing stairs",
+          "problem": "In how many ways can you climb $6$ stairs taking $1$ or $2$ steps at a time?",
+          "steps": [
+            {
+              "text": "$W(1) = 1$, $W(2) = 2$, $W(3) = 3$, $W(4) = 5$, and $W(5) = 3 + 5 = 8$.",
+              "try": {
+                "prompt": "What is $W(5)$?",
+                "accepted": ["8"],
+                "compute": "3 + 5"
+              }
+            },
+            {
+              "text": "$W(6) = W(5) + W(4) = 8 + 5 = 13$.",
+              "try": {
+                "prompt": "What is $W(6)$?",
+                "accepted": ["13"],
+                "compute": "5 + 8"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: off by one",
+          "body": "Check whether the sequence starts at $a_0$ or $a_1$, and count terms carefully: $a_5$ is the FIFTH term when you start at $a_1$. Use the starting values given. And test a pattern on at least four terms before trusting it."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m06.recursion-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m06.recursion-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain why the number of ways to climb $n$ stairs is $W(n - 1) + W(n - 2)$."],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

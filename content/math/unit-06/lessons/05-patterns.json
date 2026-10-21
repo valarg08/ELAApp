@@ -1,0 +1,105 @@
+{
+  "slug": "math-patterns",
+  "order": 5,
+  "title": "Finding the Pattern",
+  "estMinutes": 35,
+  "focusSkills": ["patterns"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "What is the last digit of $7^{100}$? Write the last digits of $7, 7^2, 7^3, 7^4, 7^5$ first. What do you see?",
+      "placeholder": "The last digits are… so…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Small cases, then the cycle",
+          "body": "When a question asks about a huge term, work out small cases until they repeat. Find the cycle length, then use the remainder. The last digits of powers repeat in cycles of length $1$, $2$ or $4$: for $3$ they go $3, 9, 7, 1, 3, 9, 7, 1, \\ldots$"
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the last digit",
+          "problem": "What is the last digit of $3^{2026}$?",
+          "steps": [
+            {
+              "text": "The last digits of $3^1, 3^2, 3^3, 3^4$ are $3, 9, 7, 1$, then they repeat: the cycle has length $4$."
+            },
+            {
+              "text": "$2026 = 4 \\times 506 + 2$, so the remainder is $2$.",
+              "try": {
+                "prompt": "What is the remainder when $2026$ is divided by $4$?",
+                "accepted": ["2"],
+                "compute": "mod(2026, 4)"
+              }
+            },
+            {
+              "text": "Remainder $2$ means the same last digit as $3^2$: $9$.",
+              "try": {
+                "prompt": "What is the last digit of $3^{2026}$?",
+                "accepted": ["9"],
+                "compute": "mod(3^2026, 10)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Remainder zero is the END of the cycle",
+          "body": "In a cycle of length $k$, term $n$ matches the term with position $n \\bmod k$, except that remainder $0$ means the LAST one in the cycle. For number patterns, look at the differences: constant first differences mean arithmetic; constant second differences mean a quadratic like $n^2$ or $\\frac{n(n + 1)}{2}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: remainder zero",
+          "problem": "Lights flash red, green, blue, yellow, red, green, … What colour is the $100$th flash?",
+          "steps": [
+            {
+              "text": "The cycle has $4$ colours, and $100 = 4 \\times 25$.",
+              "try": {
+                "prompt": "What is the remainder when $100$ is divided by $4$?",
+                "accepted": ["0"],
+                "compute": "mod(100, 4)"
+              }
+            },
+            {
+              "text": "Remainder $0$ means the LAST colour of the cycle: the 100th flash is yellow, colour number $4$.",
+              "try": {
+                "prompt": "Which colour number (red $1$, green $2$, blue $3$, yellow $4$)?",
+                "accepted": ["4"],
+                "compute": "mod(100 - 1, 4) + 1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: trusting too few terms",
+          "body": "Remainder $0$ is the last item of the cycle, not the first. Make sure the cycle really starts at term $1$ (some sequences settle into a cycle later). And check a pattern on enough terms: $1, 2, 4$ could continue $8$ or $7$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m06.pattern-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m06.pattern-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What will you do first next time a problem asks about the $2026$th term of something?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

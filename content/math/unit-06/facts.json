@@ -1,0 +1,55 @@
+{
+  "sections": [
+    {
+      "skill": "arithmetic-sequences",
+      "title": "Arithmetic sequences",
+      "facts": [
+        "Term $n$: $a + (n - 1)d$.",
+        "Number of terms: $\\frac{\\text{last} - \\text{first}}{d} + 1$ (steps plus one).",
+        "Sum $=$ number of terms $\\times \\frac{\\text{first} + \\text{last}}{2}$.",
+        "$1 + 2 + \\cdots + n = \\frac{n(n + 1)}{2}$ and $1 + 3 + 5 + \\cdots + (2n - 1) = n^2$.",
+        "The average of an arithmetic sequence is its middle term."
+      ]
+    },
+    {
+      "skill": "geometric-sequences",
+      "title": "Geometric sequences & series",
+      "facts": [
+        "Term $n$: $ar^{n - 1}$. Three terms in a row: $b^2 = ac$.",
+        "$a + ar + \\cdots + ar^{n - 1} = a \\cdot \\frac{r^n - 1}{r - 1}$.",
+        "$1 + 2 + 4 + \\cdots + 2^n = 2^{n + 1} - 1$.",
+        "Forever, when $-1 < r < 1$: $a + ar + ar^2 + \\cdots = \\frac{a}{1 - r}$."
+      ]
+    },
+    {
+      "skill": "recursion",
+      "title": "Recursion",
+      "facts": [
+        "Write out the first terms carefully; check whether the sequence starts at $a_0$ or $a_1$.",
+        "Stairs with steps of $1$ or $2$: $W(n) = W(n - 1) + W(n - 2)$, with $W(1) = 1$, $W(2) = 2$.",
+        "Fibonacci: $1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \\ldots$",
+        "$a_{n + 2} = a_{n + 1} - a_n$ repeats every $6$ terms."
+      ]
+    },
+    {
+      "skill": "telescoping",
+      "title": "Telescoping & clever sums",
+      "facts": [
+        "$\\frac{1}{k(k + 1)} = \\frac{1}{k} - \\frac{1}{k + 1}$, so $\\frac{1}{1 \\cdot 2} + \\cdots + \\frac{1}{n(n + 1)} = \\frac{n}{n + 1}$.",
+        "$\\frac{1}{k(k + 2)} = \\frac{1}{2}\\left(\\frac{1}{k} - \\frac{1}{k + 2}\\right)$.",
+        "$\\frac{1}{\\sqrt{k} + \\sqrt{k + 1}} = \\sqrt{k + 1} - \\sqrt{k}$ and $k \\cdot k! = (k + 1)! - k!$.",
+        "Alternating sums: group the terms in pairs."
+      ]
+    },
+    {
+      "skill": "patterns",
+      "title": "Finding the pattern",
+      "facts": [
+        "Last digits of powers repeat: $2$: $2, 4, 8, 6$; $3$: $3, 9, 7, 1$; $7$: $7, 9, 3, 1$; $8$: $8, 4, 2, 6$.",
+        "Cycle of length $k$: use $n \\bmod k$, and remainder $0$ means the LAST item.",
+        "Constant second differences mean a quadratic pattern.",
+        "Triangular numbers: $1, 3, 6, 10, \\ldots, \\frac{n(n + 1)}{2}$."
+      ]
+    }
+  ]
+}
