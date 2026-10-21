@@ -1,0 +1,99 @@
+{
+  "slug": "math-quadratic-formula",
+  "order": 2,
+  "title": "Quadratic Formula & Discriminant",
+  "estMinutes": 35,
+  "focusSkills": ["quadratic-formula"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Try to factor $x^2 - 4x + 1$. What goes wrong? Do you think $x^2 - 4x + 1 = 0$ still has solutions?",
+      "placeholder": "When I try to factor… I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The quadratic formula",
+          "body": "Every equation $ax^2 + bx + c = 0$ (with $a \\neq 0$) has solutions $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$. Use it when the quadratic doesn't factor nicely. Write down $a$, $b$ and $c$ WITH their signs first."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: roots that aren't whole",
+          "problem": "Solve $x^2 - 4x + 1 = 0$.",
+          "steps": [
+            {
+              "text": "Here $a = 1$, $b = -4$ and $c = 1$."
+            },
+            {
+              "text": "$b^2 - 4ac = 16 - 4 = 12$.",
+              "try": {
+                "prompt": "What is $b^2 - 4ac$?",
+                "accepted": ["12"],
+                "compute": "(-4)^2 - 4*1*1"
+              }
+            },
+            {
+              "text": "$x = \\frac{4 \\pm \\sqrt{12}}{2} = \\frac{4 \\pm 2\\sqrt{3}}{2} = 2 \\pm \\sqrt{3}$: divide BOTH parts of the top by $2$.",
+              "try": {
+                "prompt": "What is the larger solution? Type roots like 2+√3 or 2+sqrt(3).",
+                "accepted": ["2+√3"],
+                "form": "radical",
+                "compute": "(4 + sqrt(12))/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The discriminant counts the solutions",
+          "body": "$D = b^2 - 4ac$ is the part under the root. If $D > 0$ there are two real solutions, if $D = 0$ exactly one (a double root), and if $D < 0$ none. With whole-number coefficients, the solutions are rational exactly when $D$ is a perfect square."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: exactly one solution",
+          "problem": "For what value of $k$ does $x^2 + 6x + k = 0$ have exactly one solution?",
+          "steps": [
+            {
+              "text": "One solution means $D = 0$: $6^2 - 4 \\times 1 \\times k = 36 - 4k = 0$."
+            },
+            {
+              "text": "So $4k = 36$. (Check: $x^2 + 6x + 9 = (x + 3)^2$, a perfect square.)",
+              "try": {
+                "prompt": "What is $k$?",
+                "accepted": ["9"],
+                "compute": "36/4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: signs and the 2a",
+          "body": "If $b = -4$ then $-b = +4$ and $b^2 = 16$, never $-16$. If $c$ is negative, $-4ac$ becomes PLUS. Divide the WHOLE top by $2a$, not just the first number. And \"no real solutions\" means $D < 0$; $D = 0$ still gives one."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m04.formula-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m04.formula-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How can you tell how many solutions a quadratic has without solving it?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

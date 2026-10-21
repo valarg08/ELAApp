@@ -243,7 +243,9 @@ export function Problems({
   const key = `${locator.activityKey}/${locator.problemId}/${locator.seed ?? ''}`;
   return (
     <div className="flex flex-col gap-5">
-      {index === 0 && !item.extra && <p className="text-muted">{activity.instructions}</p>}
+      {index === 0 && !item.extra && (
+        <MathText as="p" className="text-muted" text={activity.instructions} />
+      )}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm font-semibold text-muted" aria-live="polite">
           {item.extra ? 'A similar problem' : `Problem ${index + 1} of ${activity.problems.length}`}

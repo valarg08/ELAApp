@@ -1,0 +1,100 @@
+{
+  "slug": "math-factoring",
+  "order": 1,
+  "title": "Factoring",
+  "estMinutes": 35,
+  "focusSkills": ["factoring"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Find two numbers that multiply to $24$ and add up to $11$. How could those two numbers help you solve $x^2 - 11x + 24 = 0$?",
+      "placeholder": "The numbers are… They help because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "If a product is zero, a factor is zero",
+          "body": "If $AB = 0$, then $A = 0$ or $B = 0$. So to solve $x^2 + bx + c = 0$, write it as $(x - r)(x - s) = 0$: find two numbers that MULTIPLY to $c$ and ADD to $b$. Each bracket that can be zero gives a solution."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: factor and solve",
+          "problem": "Solve $x^2 - x - 12 = 0$.",
+          "steps": [
+            {
+              "text": "We need two numbers that multiply to $-12$ and add to $-1$: $-4$ and $3$."
+            },
+            {
+              "text": "So $(x - 4)(x + 3) = 0$."
+            },
+            {
+              "text": "Either $x - 4 = 0$, giving $x = 4$, or $x + 3 = 0$, giving the other solution.",
+              "try": {
+                "prompt": "What is the negative solution?",
+                "accepted": ["-3"],
+                "compute": "-3"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Patterns to spot",
+          "body": "Difference of squares: $a^2 - b^2 = (a - b)(a + b)$. Perfect squares: $a^2 + 2ab + b^2 = (a + b)^2$. Pull out common factors first: $x^3 - 4x = x(x - 2)(x + 2)$. And a hidden rectangle: $xy + x + y + 1 = (x + 1)(y + 1)$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: use the pattern, not the letters",
+          "problem": "If $x^2 - y^2 = 48$ and $x + y = 12$, what is $x$?",
+          "steps": [
+            {
+              "text": "$x^2 - y^2 = (x + y)(x - y)$, so $12(x - y) = 48$.",
+              "try": {
+                "prompt": "What is $x - y$?",
+                "accepted": ["4"],
+                "compute": "48/12"
+              }
+            },
+            {
+              "text": "Now $x + y = 12$ and $x - y = 4$. Add them: $2x = 16$.",
+              "try": {
+                "prompt": "What is $x$?",
+                "accepted": ["8"],
+                "compute": "(12+4)/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: dividing by $x$",
+          "body": "From $x^2 = 5x$, dividing both sides by $x$ gives only $x = 5$ and LOSES $x = 0$. Move everything to one side and factor: $x(x - 5) = 0$. Also watch the sign: the bracket $(x + 3)$ gives $x = -3$, not $3$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m04.factoring-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m04.factoring-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which pattern (difference of squares, perfect square, common factor, hidden rectangle) will you look for first? Why?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

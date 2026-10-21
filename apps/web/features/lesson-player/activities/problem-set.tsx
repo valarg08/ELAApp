@@ -188,7 +188,7 @@ export function ProblemSet({
             <span aria-hidden="true">🧮 </span>
             {activity.title}
           </h2>
-          <p>{activity.instructions}</p>
+          <MathText as="p" text={activity.instructions} />
           <p className="text-sm text-muted">
             {status.problemCount} problems
             {status.timeLimitMinutes ? ` · ${status.timeLimitMinutes} minutes` : ''}

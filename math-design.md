@@ -445,7 +445,8 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | **M1 Unit 1 Problem Solving & the AMC 10** ✅ | 6 lessons (§4.1), published | Played end to end; content:check verifies every answer and variant |
 | **M2 Unit 2 Arithmetic & Number Sense** ✅ | 6 lessons (§4.2), published | Played end to end; content:check verifies every answer and variant |
 | **M3 Unit 3 Linear Equations & Word Problems** ✅ | 6 lessons (§4.3), published | Played end to end; content:check verifies every answer and variant |
-| **M4–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
+| **M4 Unit 4 Quadratics & Polynomials** ✅ | 6 lessons (§4.4), published | Played end to end; content:check verifies every answer and variant |
+| **M5–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
 | **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
 
 ### 4.1 M1 as built (2026-10-16)
@@ -492,3 +493,18 @@ Unit 3 Linear Equations & Word Problems is published, with 6 lessons in the same
 | 6 | ⭐ Unit Check | `m03.review-practice` (5-problem warm-up) | `m03.unit-check`: 8 of 19 problems per try, pass at 100% |
 
 Templates whose numbers name a quantity ("$a$ litres", "$h$ hours later") start at $2$ so the wording never reads "1 litres".
+
+### 4.4 M4 as built (2026-10-21)
+
+Unit 4 Quadratics & Polynomials is published, with 6 lessons in the same shape. No new tools were needed: roots like $2 + sqrt{3}$ use the `radical` answer form, and "how many solutions" answers are computed from the discriminant with `min(max(D, -1), 1) + 1`. Templates keep every printed coefficient at least $2$ (never "$1x$") and positive, with the signs written in the text.
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Factoring | `m04.factoring-practice` (the larger root, difference of squares, the lost root $x = 0$, $2x^2$ quadratics, the hidden rectangle) | `m04.factoring-set` (a positive root, $x^2 - y^2$, a quartic, $ab + a + b$, $x + rac{1}{x}$) |
+| 2 | Quadratic Formula & Discriminant | `m04.formula-practice` (the discriminant, how many solutions, exactly one solution, a radical root, no real solutions) | `m04.formula-set` |
+| 3 | Vieta's Formulas | `m04.vieta-practice` (sum, product, $r^2 + t^2$, $rac{1}{r} + rac{1}{t}$, building from roots) | `m04.vieta-set` |
+| 4 | Completing the Square & the Vertex | `m04.square-practice` (vertex form, the smallest value, the vertex $x$, the largest rectangle, solving by completing) | `m04.square-set` (a thrown ball, four brackets) |
+| 5 | Polynomial Remainders | `m04.remainder-practice` (plug in $a$, plug in $-a$, making a factor, the sum of coefficients, a quadratic divisor) | `m04.remainder-set` |
+| 6 | ⭐ Unit Check | `m04.review-practice` (5-problem warm-up, one per lesson) | `m04.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+Also fixed in M4 (Math only): the hook question, the reflect prompts and the instructions of `PROBLEMS` and `PROBLEM_SET` activities now render $…$ with KaTeX (they showed raw TeX in Units 1–3), and content:check checks their TeX. Hook placeholders stay plain text. A worked-example step's text appears after its try, so a step that only sets the scene ("Here $a = 1$…") has no try of its own.

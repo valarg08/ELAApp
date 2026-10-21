@@ -114,6 +114,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
         {view === 0 && (
           <HookStep
             step={hook}
+            math={lesson.unit.track === 'MATH'}
             done={done('hook')}
             busy={busy}
             onComplete={completeOrReport('hook')}
@@ -161,6 +162,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
           <ReflectStep
             step={reflect}
             lessonId={lesson.id}
+            math={lesson.unit.track === 'MATH'}
             done={done('reflect')}
             busy={busy}
             onComplete={(b) => complete('reflect', b)}

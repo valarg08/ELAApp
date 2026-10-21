@@ -1,0 +1,1833 @@
+[
+  {
+    "key": "m04.factoring-practice",
+    "type": "PROBLEMS",
+    "title": "Factoring",
+    "instructions": "Type each answer and press Check. Move everything to one side, factor, and set each bracket to zero. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "factor-roots",
+        "prompt": "Solve $x^2 - [[r+s]]x + [[r*s]] = 0$. What is the larger solution?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[r]]",
+              "why": "That is the smaller solution. The question asks for the larger one."
+            },
+            {
+              "value": "[[r+s]]",
+              "why": "That is the SUM of the two solutions. Factor first: $(x - [[r]])(x - [[s]]) = 0$."
+            }
+          ]
+        },
+        "hints": [
+          "Find two numbers that multiply to $[[r*s]]$ and add up to $[[r+s]]$.",
+          "$(x - [[r]])(x - [[s]]) = 0$."
+        ],
+        "solution": "$[[r]] \\times [[s]] = [[r*s]]$ and $[[r]] + [[s]] = [[r+s]]$, so $(x - [[r]])(x - [[s]]) = 0$ and $x = [[r]]$ or $x = [[s]]$. The larger is $[[s]]$.",
+        "skill": "factoring",
+        "difficulty": 1,
+        "compute": "((r+s) + sqrt((r+s)^2 - 4*r*s))/2",
+        "template": {
+          "vars": {
+            "r": { "from": 1, "to": 9 },
+            "s": { "from": 2, "to": 12 }
+          },
+          "where": ["r < s"]
+        }
+      },
+      {
+        "id": "difference-squares",
+        "prompt": "If $x^2 - y^2 = [[d*s]]$ and $x + y = [[s]]$, what is $x - y$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[d]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[d*s - s]]",
+              "why": "Don't subtract. $x^2 - y^2 = (x + y)(x - y)$, so DIVIDE by $[[s]]$."
+            }
+          ]
+        },
+        "hints": ["$x^2 - y^2 = (x + y)(x - y)$.", "$[[s]](x - y) = [[d*s]]$."],
+        "solution": "$x^2 - y^2 = (x + y)(x - y)$, so $[[s]](x - y) = [[d*s]]$ and $x - y = [[d]]$.",
+        "skill": "factoring",
+        "difficulty": 1,
+        "compute": "(d*s)/s",
+        "template": {
+          "vars": {
+            "d": { "from": 2, "to": 9 },
+            "s": { "from": 3, "to": 15 }
+          },
+          "where": ["s > d", "d*s - s != d"]
+        }
+      },
+      {
+        "id": "lost-root",
+        "prompt": "How many real numbers $x$ satisfy $x^3 = [[k*k]]x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["3"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "2",
+              "why": "Dividing both sides by $x$ loses the solution $x = 0$. Write $x^3 - [[k*k]]x = 0$ and factor."
+            },
+            {
+              "value": "1",
+              "why": "$x^2 = [[k*k]]$ has TWO solutions, $[[k]]$ and $-[[k]]$, and $x = 0$ works too."
+            }
+          ]
+        },
+        "hints": [
+          "Move everything to one side: $x^3 - [[k*k]]x = 0$. Don't divide by $x$.",
+          "$x(x - [[k]])(x + [[k]]) = 0$."
+        ],
+        "solution": "$x^3 - [[k*k]]x = x(x^2 - [[k*k]]) = x(x - [[k]])(x + [[k]]) = 0$, so $x = 0$, $[[k]]$ or $-[[k]]$: $3$ numbers.",
+        "skill": "factoring",
+        "difficulty": 2,
+        "compute": "3",
+        "template": {
+          "vars": {
+            "k": { "from": 2, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "factor-ac",
+        "prompt": "What is the positive solution of $2x^2 + [[2*q-p]]x - [[p*q]] = 0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[p]]",
+              "why": "The factor is $2x - [[p]]$, which is zero when $x = \\frac{[[p]]}{2}$, not $[[p]]$."
+            },
+            {
+              "value": "[[q]]",
+              "why": "The factor $x + [[q]]$ gives $x = -[[q]]$, which is negative."
+            }
+          ]
+        },
+        "hints": [
+          "Try $(2x - [[p]])(x + \\ldots)$: the numbers must multiply to $-[[p*q]]$.",
+          "$(2x - [[p]])(x + [[q]]) = 0$."
+        ],
+        "solution": "$(2x - [[p]])(x + [[q]]) = 2x^2 + [[2*q]]x - [[p]]x - [[p*q]] = 2x^2 + [[2*q-p]]x - [[p*q]]$. So $x = \\frac{[[p]]}{2}$ or $x = -[[q]]$, and the positive solution is $[[p/2]]$.",
+        "skill": "factoring",
+        "difficulty": 2,
+        "compute": "(-(2*q-p) + sqrt((2*q-p)^2 + 8*p*q))/4",
+        "template": {
+          "vars": {
+            "p": { "from": 3, "to": 9, "step": 2 },
+            "q": { "from": 2, "to": 8 }
+          },
+          "where": ["2*q - p > 1", "p != q"]
+        }
+      },
+      {
+        "id": "hidden-rectangle",
+        "prompt": "Positive whole numbers $x$ and $y$ satisfy $xy + x + y = 34$, and $x < y$. What is $x + y$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["10"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "12",
+              "why": "That is $(x + 1) + (y + 1)$. Take away the two $1$s."
+            },
+            {
+              "value": "36",
+              "why": "$x = 0$ is not positive, so $(x + 1)(y + 1) = 1 \\times 35$ doesn't work."
+            }
+          ]
+        },
+        "hints": [
+          "Add $1$ to both sides: $xy + x + y + 1 = 35$.",
+          "$(x + 1)(y + 1) = 35 = 5 \\times 7$."
+        ],
+        "solution": "Add $1$: $(x + 1)(y + 1) = 35$. Since $x \\geq 1$, both brackets are at least $2$, so they are $5$ and $7$: $x = 4$, $y = 6$ and $x + y = 10$.",
+        "skill": "factoring",
+        "difficulty": 3,
+        "compute": "(5-1) + (7-1)"
+      }
+    ]
+  },
+  {
+    "key": "m04.factoring-set",
+    "type": "PROBLEM_SET",
+    "title": "Factoring challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "positive-root",
+        "prompt": "The equation $x^2 - 5x - 14 = 0$ has one positive solution. What is it?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$5$", "$7$", "$14$", "$19$"],
+          "correct": "C",
+          "why": {
+            "A": "The factor $x + 2$ gives $x = -2$, which is negative."
+          }
+        },
+        "solution": "$-7 \\times 2 = -14$ and $-7 + 2 = -5$, so $(x - 7)(x + 2) = 0$ and $x = 7$ or $x = -2$. The positive one is $7$, choice (C).",
+        "skill": "factoring",
+        "difficulty": 1,
+        "compute": "(5 + sqrt(25 + 56))/2"
+      },
+      {
+        "id": "find-x",
+        "prompt": "If $x^2 - y^2 = 77$ and $x - y = 7$, what is $x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$4$", "$9$", "$11$", "$18$"],
+          "correct": "C",
+          "why": {
+            "D": "$11$ is $x + y$. Now add $x - y = 7$ and halve.",
+            "A": "That is $y$."
+          }
+        },
+        "solution": "$(x + y)(x - y) = 77$, so $x + y = 11$. Adding $x - y = 7$: $2x = 18$ and $x = 9$, choice (C).",
+        "skill": "factoring",
+        "difficulty": 2,
+        "compute": "(77/7 + 7)/2"
+      },
+      {
+        "id": "four-roots",
+        "prompt": "How many real numbers $x$ satisfy $x^4 - 13x^2 + 36 = 0$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "E",
+          "why": {
+            "C": "$x^2 = 4$ or $x^2 = 9$, and each gives TWO values of $x$: $\\pm 2$ and $\\pm 3$."
+          }
+        },
+        "solution": "Treat $x^2$ as one number: $(x^2 - 4)(x^2 - 9) = 0$, so $x^2 = 4$ or $9$ and $x = \\pm 2$ or $\\pm 3$: $4$ numbers, choice (E).",
+        "skill": "factoring",
+        "difficulty": 2,
+        "compute": "4"
+      },
+      {
+        "id": "rectangle-trick",
+        "prompt": "Positive whole numbers $a$ and $b$ satisfy $ab + a + b = 54$, and $a < b$. What is $a + b$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$14$", "$16$", "$24$", "$55$"],
+          "correct": "B",
+          "why": {
+            "C": "$16$ is $(a + 1) + (b + 1)$. Take away the two $1$s."
+          }
+        },
+        "solution": "Add $1$: $(a + 1)(b + 1) = 55 = 5 \\times 11$ (the pair $1 \\times 55$ would make $a = 0$). So $a = 4$, $b = 10$ and $a + b = 14$, choice (B).",
+        "skill": "factoring",
+        "difficulty": 3,
+        "compute": "(5-1) + (11-1)"
+      },
+      {
+        "id": "reciprocal-square",
+        "prompt": "If $x + \\frac{1}{x} = 5$, what is $x^2 + \\frac{1}{x^2}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$10$", "$23$", "$25$", "$27$"],
+          "correct": "C",
+          "why": {
+            "D": "$\\left(x + \\frac{1}{x}\\right)^2 = x^2 + 2 + \\frac{1}{x^2}$: there is a middle term $2$ to take away.",
+            "E": "Take the $2$ away, don't add it."
+          }
+        },
+        "solution": "Square both sides: $x^2 + 2 + \\frac{1}{x^2} = 25$, so $x^2 + \\frac{1}{x^2} = 23$, choice (C).",
+        "skill": "factoring",
+        "difficulty": 3,
+        "compute": "5^2 - 2"
+      }
+    ]
+  },
+  {
+    "key": "m04.formula-practice",
+    "type": "PROBLEMS",
+    "title": "Quadratic formula & discriminant",
+    "instructions": "Type each answer and press Check. Write down $a$, $b$ and $c$ with their signs first. Type roots like 3+√2 or 3+sqrt(2). Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "discriminant-value",
+        "prompt": "What is the discriminant $b^2 - 4ac$ of $[[a]]x^2 + [[b]]x + [[c]] = 0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b^2 - 4*a*c]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b^2 + 4*a*c]]",
+              "why": "SUBTRACT $4ac$: $[[b*b]] - [[4*a*c]]$."
+            },
+            {
+              "value": "[[b - 4*a*c]]",
+              "why": "Square $b$ first: $b^2 = [[b*b]]$."
+            }
+          ]
+        },
+        "hints": [
+          "$a = [[a]]$, $b = [[b]]$, $c = [[c]]$.",
+          "$b^2 = [[b*b]]$ and $4ac = [[4*a*c]]$."
+        ],
+        "solution": "$b^2 - 4ac = [[b*b]] - 4 \\times [[a]] \\times [[c]] = [[b*b]] - [[4*a*c]] = [[b^2 - 4*a*c]]$.",
+        "skill": "quadratic-formula",
+        "difficulty": 1,
+        "compute": "b^2 - 4*a*c",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 5 },
+            "b": { "from": 2, "to": 9 },
+            "c": { "from": 1, "to": 6 }
+          }
+        }
+      },
+      {
+        "id": "how-many-roots",
+        "prompt": "How many real solutions does $x^2 + [[b]]x + [[c]] = 0$ have?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[min(max(b^2 - 4*c, -1), 1) + 1]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Work out the discriminant $b^2 - 4ac = [[b*b]] - [[4*c]]$.",
+          "Positive: two solutions. Zero: one. Negative: none."
+        ],
+        "solution": "$D = [[b*b]] - 4 \\times [[c]] = [[b^2 - 4*c]]$. Positive means $2$ real solutions, zero means $1$ and negative means $0$, so the answer is $[[min(max(b^2 - 4*c, -1), 1) + 1]]$.",
+        "skill": "quadratic-formula",
+        "difficulty": 1,
+        "compute": "min(max(b^2 - 4*c, -1), 1) + 1",
+        "template": {
+          "vars": {
+            "b": { "from": 2, "to": 8 },
+            "c": { "from": 1, "to": 20 }
+          }
+        }
+      },
+      {
+        "id": "one-solution-k",
+        "prompt": "For what positive value of $k$ does $x^2 + kx + [[m*m]] = 0$ have exactly one real solution?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*m]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[m]]",
+              "why": "$k^2 - 4 \\times [[m*m]] = 0$ gives $k^2 = [[4*m*m]]$, so $k = [[2*m]]$. Don't forget the $4$."
+            },
+            {
+              "value": "[[4*m*m]]",
+              "why": "That is $k^2$. Take the square root."
+            }
+          ]
+        },
+        "hints": [
+          "Exactly one solution means the discriminant is $0$.",
+          "$k^2 - 4 \\times [[m*m]] = 0$."
+        ],
+        "solution": "$D = k^2 - [[4*m*m]] = 0$, so $k^2 = [[4*m*m]]$ and $k = [[2*m]]$. Check: $x^2 + [[2*m]]x + [[m*m]] = (x + [[m]])^2$.",
+        "skill": "quadratic-formula",
+        "difficulty": 2,
+        "compute": "sqrt(4*m*m)",
+        "template": {
+          "vars": {
+            "m": { "from": 2, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "formula-radical",
+        "prompt": "What is the larger solution of $x^2 - [[2*p]]x + [[p*p - q]] = 0$? Type roots like 3+√2.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p]]+√[[q]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[p]]-√[[q]]",
+              "why": "That is the smaller solution: take the $+$ sign."
+            },
+            {
+              "value": "[[2*p]]+2√[[q]]",
+              "why": "Divide the WHOLE top by $2a = 2$."
+            }
+          ]
+        },
+        "hints": [
+          "$b^2 - 4ac = [[4*p*p]] - [[4*(p*p - q)]] = [[4*q]]$.",
+          "$x = \\frac{[[2*p]] \\pm \\sqrt{[[4*q]]}}{2}$, and $\\sqrt{[[4*q]]} = 2\\sqrt{[[q]]}$."
+        ],
+        "solution": "$D = [[4*p*p]] - [[4*(p*p - q)]] = [[4*q]]$, so $x = \\frac{[[2*p]] \\pm 2\\sqrt{[[q]]}}{2} = [[p]] \\pm \\sqrt{[[q]]}$. The larger is $[[p]] + \\sqrt{[[q]]}$.",
+        "skill": "quadratic-formula",
+        "difficulty": 2,
+        "compute": "(2*p + sqrt(4*p*p - 4*(p*p - q)))/2",
+        "template": {
+          "vars": {
+            "p": { "from": 2, "to": 6 },
+            "q": { "choose": [2, 3, 5, 6, 7, 10, 11] }
+          },
+          "where": ["p*p > q"]
+        }
+      },
+      {
+        "id": "no-real-roots",
+        "prompt": "What is the smallest whole number $c$ for which $x^2 + [[b]]x + c = 0$ has no real solutions?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b*b/4 + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[b*b/4]]",
+              "why": "At $c = [[b*b/4]]$ the discriminant is $0$, which still gives one solution."
+            },
+            {
+              "value": "[[b*b + 1]]",
+              "why": "The discriminant is $[[b*b]] - 4c$: divide by $4$."
+            }
+          ]
+        },
+        "hints": ["No real solutions means $[[b*b]] - 4c < 0$.", "So $c > [[b*b/4]]$."],
+        "solution": "We need $D = [[b*b]] - 4c < 0$, so $c > [[b*b/4]]$. The smallest whole number is $[[b*b/4 + 1]]$.",
+        "skill": "quadratic-formula",
+        "difficulty": 2,
+        "compute": "floor(b^2/4) + 1",
+        "template": {
+          "vars": {
+            "b": { "from": 2, "to": 16, "step": 2 }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m04.formula-set",
+    "type": "PROBLEM_SET",
+    "title": "Quadratic formula challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "discriminant-signs",
+        "prompt": "What is the discriminant of $2x^2 - 3x - 5 = 0$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-31$", "$1$", "$9$", "$31$", "$49$"],
+          "correct": "E",
+          "why": {
+            "A": "$c = -5$, so $-4ac = -4 \\times 2 \\times (-5) = +40$.",
+            "C": "That is only $b^2$. Now take away $4ac$."
+          }
+        },
+        "solution": "$b^2 - 4ac = (-3)^2 - 4 \\times 2 \\times (-5) = 9 + 40 = 49$, choice (E).",
+        "skill": "quadratic-formula",
+        "difficulty": 1,
+        "compute": "9 + 40"
+      },
+      {
+        "id": "count-k",
+        "prompt": "For how many whole numbers $k$ (positive, negative or zero) does $x^2 + kx + 9 = 0$ have no real solutions?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$10$", "$11$", "$12$"],
+          "correct": "D",
+          "why": {
+            "A": "$k$ can be negative too: $k^2 < 36$ for $k$ from $-5$ to $5$.",
+            "C": "Don't forget $k = 0$: $-5$ to $5$ is $11$ numbers.",
+            "E": "At $k = \\pm 6$ the discriminant is $0$: one solution, not none."
+          }
+        },
+        "solution": "No real solutions means $k^2 - 36 < 0$, so $k^2 < 36$ and $k = -5, -4, \\ldots, 5$: $11$ numbers, choice (D).",
+        "skill": "quadratic-formula",
+        "difficulty": 2,
+        "compute": "2*5 + 1"
+      },
+      {
+        "id": "larger-radical",
+        "prompt": "What is the larger solution of $x^2 - 6x + 4 = 0$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$3 - \\sqrt{5}$",
+            "$2 + \\sqrt{5}$",
+            "$3 + \\sqrt{5}$",
+            "$3 + 2\\sqrt{5}$",
+            "$6 + 2\\sqrt{5}$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "That is the smaller solution.",
+            "D": "Divide BOTH parts of the top by $2$: $\\frac{2\\sqrt{5}}{2} = \\sqrt{5}$.",
+            "E": "Divide the whole top by $2a = 2$."
+          }
+        },
+        "solution": "$D = 36 - 16 = 20$ and $\\sqrt{20} = 2\\sqrt{5}$, so $x = \\frac{6 \\pm 2\\sqrt{5}}{2} = 3 \\pm \\sqrt{5}$. The larger is $3 + \\sqrt{5}$, choice (C).",
+        "skill": "quadratic-formula",
+        "difficulty": 2,
+        "compute": "(6 + sqrt(36 - 16))/2"
+      },
+      {
+        "id": "one-solution-c",
+        "prompt": "For what value of $c$ does $4x^2 - 12x + c = 0$ have exactly one solution?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$6$", "$9$", "$12$", "$36$"],
+          "correct": "C",
+          "why": {
+            "E": "$4ac$ includes $a = 4$: $144 - 16c = 0$, not $144 - 4c = 0$."
+          }
+        },
+        "solution": "One solution means $D = 0$: $144 - 4 \\times 4 \\times c = 144 - 16c = 0$, so $c = 9$, choice (C). Check: $4x^2 - 12x + 9 = (2x - 3)^2$.",
+        "skill": "quadratic-formula",
+        "difficulty": 2,
+        "compute": "144/16"
+      },
+      {
+        "id": "roots-differ",
+        "prompt": "The two solutions of $x^2 - 8x + c = 0$ differ by $2$. What is $c$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$14$", "$15$", "$16$", "$60$"],
+          "correct": "C",
+          "why": {
+            "D": "$c = 16$ gives $(x - 4)^2$: one solution, so they differ by $0$."
+          }
+        },
+        "solution": "The solutions are $\\frac{8 \\pm \\sqrt{64 - 4c}}{2}$, which differ by $\\sqrt{64 - 4c} = 2$. So $64 - 4c = 4$ and $c = 15$, choice (C). (The solutions are $3$ and $5$.)",
+        "skill": "quadratic-formula",
+        "difficulty": 3,
+        "compute": "(64 - 4)/4"
+      }
+    ]
+  },
+  {
+    "key": "m04.vieta-practice",
+    "type": "PROBLEMS",
+    "title": "Vieta's formulas",
+    "instructions": "Type each answer and press Check. Use the sum $-\\frac{b}{a}$ and the product $\\frac{c}{a}$; you don't need the solutions themselves. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sum-roots",
+        "prompt": "What is the sum of the solutions of $[[a]]x^2 - [[b]]x + [[c]] = 0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b/a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b]]",
+              "why": "Divide by $a = [[a]]$: the sum is $-\\frac{b}{a}$."
+            },
+            {
+              "value": "[[-b/a]]",
+              "why": "Check the sign: $b = -[[b]]$, so $-\\frac{b}{a} = +\\frac{[[b]]}{[[a]]}$."
+            }
+          ]
+        },
+        "hints": ["The sum is $-\\frac{b}{a}$. Here $b = -[[b]]$ and $a = [[a]]$."],
+        "solution": "The sum is $-\\frac{b}{a} = -\\frac{-[[b]]}{[[a]]} = [[b/a]]$.",
+        "skill": "vieta",
+        "difficulty": 1,
+        "compute": "b/a",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 6 },
+            "b": { "from": 2, "to": 20 },
+            "c": { "from": 1, "to": 9 }
+          },
+          "where": ["b*b - 4*a*c >= 0"]
+        }
+      },
+      {
+        "id": "product-roots",
+        "prompt": "What is the product of the solutions of $x^2 + [[b]]x - [[c]] = 0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[-c]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[c]]",
+              "why": "Keep the sign of the constant term: the product is $c = -[[c]]$."
+            },
+            {
+              "value": "[[-b]]",
+              "why": "That is the sum. The product is the constant term."
+            }
+          ]
+        },
+        "hints": ["The product is $\\frac{c}{a}$, and here $a = 1$."],
+        "solution": "The product is $\\frac{c}{a} = \\frac{-[[c]]}{1} = [[-c]]$.",
+        "skill": "vieta",
+        "difficulty": 1,
+        "compute": "-c/1",
+        "template": {
+          "vars": {
+            "b": { "from": 2, "to": 9 },
+            "c": { "from": 1, "to": 20 }
+          },
+          "where": ["b != c"]
+        }
+      },
+      {
+        "id": "sum-squares",
+        "prompt": "The solutions of $x^2 - [[s]]x + [[p]] = 0$ are $r$ and $t$. What is $r^2 + t^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*s - 2*p]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[s*s]]",
+              "why": "$(r + t)^2 = r^2 + 2rt + t^2$: take away $2rt$."
+            },
+            {
+              "value": "[[s*s + 2*p]]",
+              "why": "SUBTRACT $2rt$: $r^2 + t^2 = (r + t)^2 - 2rt$."
+            }
+          ]
+        },
+        "hints": ["$r + t = [[s]]$ and $rt = [[p]]$.", "$r^2 + t^2 = (r + t)^2 - 2rt$."],
+        "solution": "$r + t = [[s]]$ and $rt = [[p]]$, so $r^2 + t^2 = (r + t)^2 - 2rt = [[s*s]] - [[2*p]] = [[s*s - 2*p]]$.",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "s^2 - 2*p",
+        "template": {
+          "vars": {
+            "s": { "from": 3, "to": 10 },
+            "p": { "from": 1, "to": 12 }
+          },
+          "where": ["s*s >= 4*p"]
+        }
+      },
+      {
+        "id": "reciprocal-sum",
+        "prompt": "The solutions of $x^2 - [[s]]x + [[p]] = 0$ are $r$ and $t$. What is $\\frac{1}{r} + \\frac{1}{t}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s/p]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[p/s]]",
+              "why": "Upside down: $\\frac{1}{r} + \\frac{1}{t} = \\frac{r + t}{rt}$, the sum over the product."
+            }
+          ]
+        },
+        "hints": [
+          "Add the fractions: $\\frac{1}{r} + \\frac{1}{t} = \\frac{t + r}{rt}$.",
+          "$r + t = [[s]]$ and $rt = [[p]]$."
+        ],
+        "solution": "$\\frac{1}{r} + \\frac{1}{t} = \\frac{r + t}{rt} = \\frac{[[s]]}{[[p]]} = [[s/p]]$.",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "s/p",
+        "template": {
+          "vars": {
+            "s": { "from": 3, "to": 10 },
+            "p": { "from": 2, "to": 12 }
+          },
+          "where": ["s*s >= 4*p", "p != s"]
+        }
+      },
+      {
+        "id": "build-from-roots",
+        "prompt": "The quadratic $x^2 + bx + c$ has solutions $[[r]]$ and $-[[t]]$. What is $b + c$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[t - r - r*t]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[r - t - r*t]]",
+              "why": "$b$ is MINUS the sum: $b = -([[r]] - [[t]]) = [[t-r]]$."
+            },
+            {
+              "value": "[[t - r + r*t]]",
+              "why": "$c$ is the product $[[r]] \\times (-[[t]])$, which is negative."
+            }
+          ]
+        },
+        "hints": [
+          "The quadratic is $(x - [[r]])(x + [[t]])$.",
+          "$b = -(\\text{sum})$ and $c = \\text{product}$."
+        ],
+        "solution": "The sum is $[[r]] - [[t]] = [[r-t]]$, so $b = [[t-r]]$. The product is $[[r]] \\times (-[[t]]) = [[-r*t]]$, so $c = [[-r*t]]$. Then $b + c = [[t - r - r*t]]$.",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "-(r - t) + r*(-t)",
+        "template": {
+          "vars": {
+            "r": { "from": 1, "to": 9 },
+            "t": { "from": 1, "to": 9 }
+          },
+          "where": ["r != t"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m04.vieta-set",
+    "type": "PROBLEM_SET",
+    "title": "Vieta's formulas challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "product-divide",
+        "prompt": "What is the product of the solutions of $3x^2 - 7x - 12 = 0$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-12$", "$-4$", "$\\frac{7}{3}$", "$4$", "$12$"],
+          "correct": "B",
+          "why": {
+            "A": "Divide by $a = 3$: the product is $\\frac{c}{a}$.",
+            "C": "That is the sum.",
+            "D": "Keep the sign of $c = -12$."
+          }
+        },
+        "solution": "The product is $\\frac{c}{a} = \\frac{-12}{3} = -4$, choice (B).",
+        "skill": "vieta",
+        "difficulty": 1,
+        "compute": "-12/3"
+      },
+      {
+        "id": "squares-sum",
+        "prompt": "The solutions of $x^2 - 6x + 2 = 0$ are $r$ and $s$. What is $r^2 + s^2$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$32$", "$34$", "$36$", "$38$", "$40$"],
+          "correct": "A",
+          "why": {
+            "C": "$(r + s)^2 = 36$ includes $2rs$: take it away.",
+            "E": "SUBTRACT $2rs$, don't add it."
+          }
+        },
+        "solution": "$r + s = 6$ and $rs = 2$, so $r^2 + s^2 = 36 - 4 = 32$, choice (A).",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "6^2 - 2*2"
+      },
+      {
+        "id": "shifted-product",
+        "prompt": "The solutions of $2x^2 + 5x - 3 = 0$ are $r$ and $s$. What is $(r + 1)(s + 1)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-4$", "$-3$", "$0$", "$2$", "$3$"],
+          "correct": "B",
+          "why": {
+            "D": "The sum is $-\\frac{b}{a} = -\\frac{5}{2}$, not $+\\frac{5}{2}$."
+          }
+        },
+        "solution": "$rs = -\\frac{3}{2}$ and $r + s = -\\frac{5}{2}$. So $(r + 1)(s + 1) = rs + (r + s) + 1 = -\\frac{3}{2} - \\frac{5}{2} + 1 = -3$, choice (B). (Check: the solutions are $\\frac{1}{2}$ and $-3$, and $\\frac{3}{2} \\times (-2) = -3$.)",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "-3/2 - 5/2 + 1"
+      },
+      {
+        "id": "missing-b",
+        "prompt": "One solution of $x^2 + bx + 24 = 0$ is $3$. What is $b$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-11$", "$-8$", "$-5$", "$8$", "$11$"],
+          "correct": "A",
+          "why": {
+            "B": "$8$ is the other solution. Now use the sum.",
+            "E": "The sum of the solutions is $-b$, so $b = -11$."
+          }
+        },
+        "solution": "The product is $24$, so the other solution is $8$. The sum $3 + 8 = 11 = -b$, so $b = -11$, choice (A).",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "-(3 + 24/3)"
+      },
+      {
+        "id": "count-k-values",
+        "prompt": "Both solutions of $x^2 - kx + 36 = 0$ are positive whole numbers. How many different values can $k$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$6$", "$9$", "$10$"],
+          "correct": "B",
+          "why": {
+            "A": "Don't forget $6 \\times 6$: a double solution still counts.",
+            "D": "$36$ has $9$ divisors, but the pairs $(r, s)$ and $(s, r)$ give the same $k$."
+          }
+        },
+        "solution": "The solutions multiply to $36$: the pairs are $1 \\times 36$, $2 \\times 18$, $3 \\times 12$, $4 \\times 9$ and $6 \\times 6$. Their sums $k = 37, 20, 15, 13, 12$ are all different: $5$ values, choice (B).",
+        "skill": "vieta",
+        "difficulty": 3,
+        "compute": "(9 + 1)/2"
+      }
+    ]
+  },
+  {
+    "key": "m04.square-practice",
+    "type": "PROBLEMS",
+    "title": "Completing the square & the vertex",
+    "instructions": "Type each answer and press Check. Halve the $x$ coefficient and square it. Read whether the question wants WHERE ($x$) or HOW MUCH (the value). Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "complete-k",
+        "prompt": "Write $x^2 - [[2*h]]x + [[c]]$ as $(x - [[h]])^2 + k$. What is $k$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c - h*h]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[c + h*h]]",
+              "why": "$(x - [[h]])^2$ already holds $+[[h*h]]$, so SUBTRACT it: $k = [[c]] - [[h*h]]$."
+            }
+          ]
+        },
+        "hints": [
+          "$(x - [[h]])^2 = x^2 - [[2*h]]x + [[h*h]]$.",
+          "What do you add to $[[h*h]]$ to get $[[c]]$?"
+        ],
+        "solution": "$(x - [[h]])^2 = x^2 - [[2*h]]x + [[h*h]]$, so $x^2 - [[2*h]]x + [[c]] = (x - [[h]])^2 + [[c - h*h]]$ and $k = [[c - h*h]]$.",
+        "skill": "completing-square",
+        "difficulty": 1,
+        "compute": "c - h^2",
+        "template": {
+          "vars": {
+            "h": { "from": 1, "to": 9 },
+            "c": { "from": 1, "to": 60 }
+          }
+        }
+      },
+      {
+        "id": "min-value",
+        "prompt": "What is the smallest value of $x^2 + [[2*h]]x + [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c - h*h]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[-h]]",
+              "why": "That is the $x$ where it is smallest. The question asks for the smallest VALUE."
+            },
+            {
+              "value": "[[c]]",
+              "why": "That is the value at $x = 0$. It gets smaller at $x = [[-h]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Complete the square: $x^2 + [[2*h]]x = (x + [[h]])^2 - [[h*h]]$.",
+          "A square is never negative, so the smallest it can be is $0$."
+        ],
+        "solution": "$x^2 + [[2*h]]x + [[c]] = (x + [[h]])^2 + [[c - h*h]]$. The square is at least $0$, so the smallest value is $[[c - h*h]]$, at $x = [[-h]]$.",
+        "skill": "completing-square",
+        "difficulty": 1,
+        "compute": "c - h^2",
+        "template": {
+          "vars": {
+            "h": { "from": 1, "to": 8 },
+            "c": { "from": 1, "to": 50 }
+          },
+          "where": ["c - h*h != -h"]
+        }
+      },
+      {
+        "id": "vertex-x",
+        "prompt": "At what value of $x$ is $y = [[a]]x^2 - [[b]]x + [[c]]$ smallest?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b/(2*a)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b/a]]",
+              "why": "Divide by $2a = [[2*a]]$, not by $a$."
+            },
+            {
+              "value": "[[-b/(2*a)]]",
+              "why": "Check the sign: $b = -[[b]]$, so $-\\frac{b}{2a}$ is positive."
+            }
+          ]
+        },
+        "hints": ["The vertex is at $x = -\\frac{b}{2a}$, with $b = -[[b]]$ and $a = [[a]]$."],
+        "solution": "$x = -\\frac{b}{2a} = \\frac{[[b]]}{[[2*a]]} = [[b/(2*a)]]$.",
+        "skill": "completing-square",
+        "difficulty": 2,
+        "compute": "b/(2*a)",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 5 },
+            "b": { "from": 2, "to": 24 },
+            "c": { "from": 1, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "max-area",
+        "prompt": "A rectangle is made from $[[f]]$ metres of fence. What is the largest area it can have, in square metres?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[f*f/16]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[f*f/4]]",
+              "why": "Length plus width is HALF the fence, $[[f/2]]$ m, not one side."
+            }
+          ]
+        },
+        "hints": [
+          "If one side is $x$, the other is $[[f/2]] - x$. The area is $x([[f/2]] - x)$.",
+          "The area is largest halfway between the zeros $0$ and $[[f/2]]$."
+        ],
+        "solution": "With sides $x$ and $[[f/2]] - x$, the area $x([[f/2]] - x)$ is largest at $x = [[f/4]]$, the middle of $0$ and $[[f/2]]$: a square, with area $[[f/4]]^2 = [[f*f/16]]$ square metres.",
+        "skill": "completing-square",
+        "difficulty": 2,
+        "compute": "(f/4)^2",
+        "template": {
+          "vars": {
+            "f": { "from": 8, "to": 80, "step": 4 }
+          }
+        }
+      },
+      {
+        "id": "square-root-solve",
+        "prompt": "What is the positive solution of $x^2 + [[2*h]]x = [[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s - h]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[s]]",
+              "why": "That is $x + [[h]]$. Now take away $[[h]]$."
+            },
+            {
+              "value": "[[s + h]]",
+              "why": "$x + [[h]] = [[s]]$ means $x = [[s]] - [[h]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Add $[[h*h]]$ to both sides: $x^2 + [[2*h]]x + [[h*h]] = [[n + h*h]]$.",
+          "$(x + [[h]])^2 = [[n + h*h]]$."
+        ],
+        "solution": "Add $[[h*h]]$: $(x + [[h]])^2 = [[n + h*h]] = [[s]]^2$. So $x + [[h]] = \\pm [[s]]$, and the positive solution is $x = [[s - h]]$.",
+        "skill": "completing-square",
+        "difficulty": 2,
+        "compute": "sqrt(n + h^2) - h",
+        "template": {
+          "vars": {
+            "h": { "from": 1, "to": 6 },
+            "s": { "from": 2, "to": 12 },
+            "n": { "let": "s*s - h*h" }
+          },
+          "where": ["s > h"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m04.square-set",
+    "type": "PROBLEM_SET",
+    "title": "Completing the square challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "smallest-value",
+        "prompt": "What is the smallest value of $x^2 - 8x + 21$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$13$", "$16$", "$21$"],
+          "correct": "B",
+          "why": {
+            "A": "$4$ is the $x$ where it is smallest, not the value.",
+            "E": "That is the value at $x = 0$."
+          }
+        },
+        "solution": "$x^2 - 8x + 21 = (x - 4)^2 + 5$, so the smallest value is $5$ (at $x = 4$), choice (B).",
+        "skill": "completing-square",
+        "difficulty": 1,
+        "compute": "21 - 16"
+      },
+      {
+        "id": "match-square",
+        "prompt": "If $x^2 + 6x + c = (x + h)^2$ for every $x$, what is $c + h$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$9$", "$12$", "$15$", "$18$"],
+          "correct": "C",
+          "why": {
+            "B": "That is $c$ alone. Add $h = 3$.",
+            "D": "$h$ is HALF of $6$: $h = 3$, not $6$."
+          }
+        },
+        "solution": "$(x + h)^2 = x^2 + 2hx + h^2$, so $2h = 6$, $h = 3$ and $c = 9$. Then $c + h = 12$, choice (C).",
+        "skill": "completing-square",
+        "difficulty": 1,
+        "compute": "3^2 + 3"
+      },
+      {
+        "id": "largest-value",
+        "prompt": "What is the largest value of $-2x^2 + 8x + 3$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$5$", "$8$", "$11$", "$19$"],
+          "correct": "D",
+          "why": {
+            "A": "That is the value at $x = 0$. It gets larger.",
+            "E": "Take out the $-2$ first: $-2(x^2 - 4x) + 3 = -2(x - 2)^2 + 8 + 3$."
+          }
+        },
+        "solution": "The vertex is at $x = -\\frac{8}{2 \\times (-2)} = 2$, and $-2 \\times 4 + 16 + 3 = 11$, choice (D). (Or: $-2(x - 2)^2 + 11$.)",
+        "skill": "completing-square",
+        "difficulty": 2,
+        "compute": "-2*2^2 + 8*2 + 3"
+      },
+      {
+        "id": "ball-height",
+        "prompt": "A ball is thrown upwards. After $t$ seconds its height is $-5t^2 + 30t$ metres. What is its greatest height, in metres?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$30$", "$45$", "$90$", "$180$"],
+          "correct": "C",
+          "why": {
+            "A": "$3$ seconds is WHEN it is highest. The question asks how high."
+          }
+        },
+        "solution": "The vertex is at $t = -\\frac{30}{2 \\times (-5)} = 3$, and $-5 \\times 9 + 90 = 45$ metres, choice (C).",
+        "skill": "completing-square",
+        "difficulty": 2,
+        "compute": "-5*3^2 + 30*3"
+      },
+      {
+        "id": "four-brackets",
+        "prompt": "What is the smallest value of $(x - 1)(x - 3)(x - 5)(x - 7)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-16$", "$-15$", "$-9$", "$0$", "$105$"],
+          "correct": "A",
+          "why": {
+            "D": "It is $0$ at $x = 1$, but between $1$ and $3$ three brackets are negative, so the product dips below $0$.",
+            "B": "That is the value at $x = 2$, but it gets lower."
+          }
+        },
+        "solution": "Pair the outer and inner brackets: $(x - 1)(x - 7) = x^2 - 8x + 7$ and $(x - 3)(x - 5) = x^2 - 8x + 15$. With $u = x^2 - 8x + 11$, the product is $(u - 4)(u + 4) = u^2 - 16$, which is smallest, $-16$, when $u = 0$ (and $u$ can be $0$, since $x^2 - 8x + 11 = 0$ has real solutions). Choice (A).",
+        "skill": "completing-square",
+        "difficulty": 4,
+        "compute": "0^2 - 16"
+      }
+    ]
+  },
+  {
+    "key": "m04.remainder-practice",
+    "type": "PROBLEMS",
+    "title": "Polynomial remainders",
+    "instructions": "Type each answer and press Check. The remainder of $p(x) \\div (x - a)$ is $p(a)$: set the divisor to zero to find the number to plug in. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "remainder-plug",
+        "prompt": "What is the remainder when $x^3 + [[a]]x + [[b]]$ is divided by $x - [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c^3 + a*c + b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b - c^3 - a*c]]",
+              "why": "Dividing by $x - [[c]]$ means plugging in $+[[c]]$, not $-[[c]]$."
+            },
+            {
+              "value": "[[b]]",
+              "why": "That is $p(0)$, the constant term. Plug in $x = [[c]]$."
+            }
+          ]
+        },
+        "hints": ["The remainder is $p([[c]])$.", "$[[c]]^3 + [[a]] \\times [[c]] + [[b]]$."],
+        "solution": "The remainder is $p([[c]]) = [[c^3]] + [[a*c]] + [[b]] = [[c^3 + a*c + b]]$.",
+        "skill": "polynomial-remainders",
+        "difficulty": 1,
+        "compute": "c^3 + a*c + b",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 9 },
+            "b": { "from": 1, "to": 9 },
+            "c": { "from": 1, "to": 4 }
+          }
+        }
+      },
+      {
+        "id": "remainder-plus",
+        "prompt": "What is the remainder when $x^2 + [[a]]x + [[b]]$ is divided by $x + [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c*c - a*c + b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[c*c + a*c + b]]",
+              "why": "$x + [[c]] = 0$ when $x = -[[c]]$: plug in $-[[c]]$, not $[[c]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Set $x + [[c]] = 0$: plug in $x = -[[c]]$.",
+          "$(-[[c]])^2 + [[a]] \\times (-[[c]]) + [[b]]$."
+        ],
+        "solution": "The remainder is $p(-[[c]]) = [[c*c]] - [[a*c]] + [[b]] = [[c*c - a*c + b]]$.",
+        "skill": "polynomial-remainders",
+        "difficulty": 1,
+        "compute": "c^2 - a*c + b",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 9 },
+            "b": { "from": 1, "to": 9 },
+            "c": { "from": 1, "to": 5 }
+          }
+        }
+      },
+      {
+        "id": "make-factor",
+        "prompt": "For what value of $k$ is $x - [[r]]$ a factor of $x^2 + kx - [[r*q]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[q - r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[r - q]]",
+              "why": "Check the sign: $[[r*r]] + [[r]]k - [[r*q]] = 0$ gives $[[r]]k = [[r*q - r*r]]$."
+            }
+          ]
+        },
+        "hints": [
+          "$x - [[r]]$ is a factor exactly when $p([[r]]) = 0$.",
+          "$[[r*r]] + [[r]]k - [[r*q]] = 0$."
+        ],
+        "solution": "$p([[r]]) = [[r*r]] + [[r]]k - [[r*q]] = 0$, so $[[r]]k = [[r*q - r*r]]$ and $k = [[q - r]]$.",
+        "skill": "polynomial-remainders",
+        "difficulty": 2,
+        "compute": "(r*q - r^2)/r",
+        "template": {
+          "vars": {
+            "r": { "from": 1, "to": 9 },
+            "q": { "from": 1, "to": 12 }
+          },
+          "where": ["q != r"]
+        }
+      },
+      {
+        "id": "coefficient-sum",
+        "prompt": "What is the sum of the coefficients of $(x + [[a]])^{[[n]]}$ when it is multiplied out?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(1+a)^n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a^n]]",
+              "why": "That is the constant term, $p(0)$. The sum of the coefficients is $p(1)$."
+            }
+          ]
+        },
+        "hints": ["The sum of the coefficients is $p(1)$: put $x = 1$.", "$(1 + [[a]])^{[[n]]}$."],
+        "solution": "Putting $x = 1$ turns every power of $x$ into $1$, leaving the sum of the coefficients: $p(1) = [[1+a]]^{[[n]]} = [[(1+a)^n]]$.",
+        "skill": "polynomial-remainders",
+        "difficulty": 2,
+        "compute": "(1 + a)^n",
+        "template": {
+          "vars": {
+            "a": { "from": 1, "to": 4 },
+            "n": { "from": 2, "to": 5 }
+          }
+        }
+      },
+      {
+        "id": "two-remainders",
+        "prompt": "A polynomial $p(x)$ leaves remainder $[[u]]$ when divided by $x - 1$ and remainder $[[v]]$ when divided by $x - 2$. When $p(x)$ is divided by $(x - 1)(x - 2)$ the remainder is $ax + b$. What is $b$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*u - v]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[v - u]]",
+              "why": "That is $a$. Now use $a + b = [[u]]$."
+            },
+            {
+              "value": "[[u]]",
+              "why": "That is $a + b$, the remainder at $x = 1$."
+            }
+          ]
+        },
+        "hints": [
+          "$p(x) = (x - 1)(x - 2)q(x) + ax + b$. Put in $x = 1$ and $x = 2$.",
+          "$a + b = [[u]]$ and $2a + b = [[v]]$."
+        ],
+        "solution": "At $x = 1$: $a + b = [[u]]$. At $x = 2$: $2a + b = [[v]]$. Subtracting, $a = [[v - u]]$, so $b = [[u]] - ([[v-u]]) = [[2*u - v]]$.",
+        "skill": "polynomial-remainders",
+        "difficulty": 3,
+        "compute": "2*u - v",
+        "template": {
+          "vars": {
+            "u": { "from": 1, "to": 12 },
+            "v": { "from": 1, "to": 12 }
+          },
+          "where": ["u != v", "3*u != 2*v", "u != v - u"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m04.remainder-set",
+    "type": "PROBLEM_SET",
+    "title": "Polynomial remainders challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "divide-plus-one",
+        "prompt": "What is the remainder when $x^3 - 2x^2 + 5$ is divided by $x + 1$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$2$", "$4$", "$5$", "$8$"],
+          "correct": "B",
+          "why": {
+            "C": "That is $p(1)$. Dividing by $x + 1$ means plugging in $-1$.",
+            "D": "That is the constant term, $p(0)$."
+          }
+        },
+        "solution": "$p(-1) = -1 - 2 + 5 = 2$, choice (B).",
+        "skill": "polynomial-remainders",
+        "difficulty": 1,
+        "compute": "(-1)^3 - 2*(-1)^2 + 5"
+      },
+      {
+        "id": "factor-k",
+        "prompt": "For what value of $k$ is $x + 2$ a factor of $x^3 + kx^2 - 4$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-3$", "$-1$", "$1$", "$3$", "$12$"],
+          "correct": "D",
+          "why": {
+            "B": "That makes $x - 2$ a factor. For $x + 2$, plug in $-2$."
+          }
+        },
+        "solution": "We need $p(-2) = -8 + 4k - 4 = 0$, so $4k = 12$ and $k = 3$, choice (D).",
+        "skill": "polynomial-remainders",
+        "difficulty": 2,
+        "compute": "(8 + 4)/4"
+      },
+      {
+        "id": "sum-coefficients",
+        "prompt": "What is the sum of the coefficients of $(3x - 1)^5$ when it is multiplied out?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-1$", "$1$", "$32$", "$243$", "$1024$"],
+          "correct": "C",
+          "why": {
+            "A": "That is the constant term, $p(0) = (-1)^5$.",
+            "D": "That is only the coefficient of $x^5$."
+          }
+        },
+        "solution": "The sum of the coefficients is $p(1) = (3 - 1)^5 = 2^5 = 32$, choice (C).",
+        "skill": "polynomial-remainders",
+        "difficulty": 2,
+        "compute": "(3 - 1)^5"
+      },
+      {
+        "id": "find-p-two",
+        "prompt": "Let $p(x) = x^4 + ax + b$. If $p(1) = 4$ and $p(-1) = 10$, what is $p(2)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$13$", "$16$", "$22$", "$28$"],
+          "correct": "C",
+          "why": {
+            "E": "Subtracting the equations gives $2a = 4 - 10 = -6$, so $a = -3$, not $3$."
+          }
+        },
+        "solution": "$1 + a + b = 4$ and $1 - a + b = 10$. Subtracting, $2a = -6$, so $a = -3$ and $b = 6$. Then $p(2) = 16 - 6 + 6 = 16$, choice (C).",
+        "skill": "polynomial-remainders",
+        "difficulty": 3,
+        "compute": "2^4 + 2*(-3) + 6"
+      },
+      {
+        "id": "quadratic-divisor",
+        "prompt": "A polynomial $p(x)$ leaves remainder $3$ when divided by $x - 1$ and remainder $9$ when divided by $x - 4$. When $p(x)$ is divided by $(x - 1)(x - 4)$ the remainder is $ax + b$. What is $b$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$6$", "$9$"],
+          "correct": "A",
+          "why": {
+            "B": "That is $a$. Now use $a + b = 3$.",
+            "C": "$3$ is $a + b$, the remainder at $x = 1$."
+          }
+        },
+        "solution": "At $x = 1$: $a + b = 3$. At $x = 4$: $4a + b = 9$. Subtracting, $3a = 6$, so $a = 2$ and $b = 1$, choice (A).",
+        "skill": "polynomial-remainders",
+        "difficulty": 3,
+        "compute": "3 - (9 - 3)/3"
+      }
+    ]
+  },
+  {
+    "key": "m04.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "smaller-root",
+        "prompt": "What is the smaller solution of $x^2 - [[r+s]]x + [[r*s]] = 0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[s]]",
+              "why": "That is the larger solution."
+            }
+          ]
+        },
+        "hints": ["Find two numbers that multiply to $[[r*s]]$ and add to $[[r+s]]$."],
+        "solution": "$(x - [[r]])(x - [[s]]) = 0$, so $x = [[r]]$ or $[[s]]$. The smaller is $[[r]]$.",
+        "skill": "factoring",
+        "difficulty": 1,
+        "compute": "((r+s) - sqrt((r+s)^2 - 4*r*s))/2",
+        "template": {
+          "vars": {
+            "r": { "from": 1, "to": 8 },
+            "s": { "from": 2, "to": 12 }
+          },
+          "where": ["r < s"]
+        }
+      },
+      {
+        "id": "one-solution",
+        "prompt": "For what positive value of $k$ does $x^2 - kx + [[m*m]] = 0$ have exactly one real solution?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*m]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[m]]",
+              "why": "$k^2 = 4 \\times [[m*m]] = [[4*m*m]]$, so $k = [[2*m]]$."
+            }
+          ]
+        },
+        "hints": ["One solution means $k^2 - 4 \\times [[m*m]] = 0$."],
+        "solution": "$k^2 - [[4*m*m]] = 0$, so $k = [[2*m]]$, and $x^2 - [[2*m]]x + [[m*m]] = (x - [[m]])^2$.",
+        "skill": "quadratic-formula",
+        "difficulty": 1,
+        "compute": "sqrt(4*m^2)",
+        "template": {
+          "vars": {
+            "m": { "from": 2, "to": 10 }
+          }
+        }
+      },
+      {
+        "id": "root-sum",
+        "prompt": "What is the sum of the solutions of $[[a]]x^2 + [[b]]x - [[c]] = 0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[-b/a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b/a]]",
+              "why": "The sum is MINUS $\\frac{b}{a}$."
+            },
+            {
+              "value": "[[-c/a]]",
+              "why": "That is the product."
+            }
+          ]
+        },
+        "hints": ["The sum is $-\\frac{b}{a}$."],
+        "solution": "The sum is $-\\frac{b}{a} = -\\frac{[[b]]}{[[a]]} = [[-b/a]]$.",
+        "skill": "vieta",
+        "difficulty": 1,
+        "compute": "-b/a",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 5 },
+            "b": { "from": 2, "to": 12 },
+            "c": { "from": 1, "to": 9 }
+          },
+          "where": ["b != c"]
+        }
+      },
+      {
+        "id": "least-value",
+        "prompt": "What is the smallest value of $x^2 - [[2*h]]x + [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c - h*h]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[h]]",
+              "why": "That is the $x$ where it is smallest, not the value."
+            }
+          ]
+        },
+        "hints": ["$x^2 - [[2*h]]x + [[c]] = (x - [[h]])^2 + \\ldots$"],
+        "solution": "$x^2 - [[2*h]]x + [[c]] = (x - [[h]])^2 + [[c - h*h]]$, so the smallest value is $[[c - h*h]]$, at $x = [[h]]$.",
+        "skill": "completing-square",
+        "difficulty": 1,
+        "compute": "c - h^2",
+        "template": {
+          "vars": {
+            "h": { "from": 1, "to": 8 },
+            "c": { "from": 1, "to": 60 }
+          },
+          "where": ["c - h*h != h"]
+        }
+      },
+      {
+        "id": "plug-in",
+        "prompt": "What is the remainder when $x^3 - [[a]]x + [[b]]$ is divided by $x - [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c^3 - a*c + b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a*c + b - c^3]]",
+              "why": "Plug in $+[[c]]$, not $-[[c]]$."
+            }
+          ]
+        },
+        "hints": ["The remainder is $p([[c]])$."],
+        "solution": "$p([[c]]) = [[c^3]] - [[a*c]] + [[b]] = [[c^3 - a*c + b]]$.",
+        "skill": "polynomial-remainders",
+        "difficulty": 1,
+        "compute": "c^3 - a*c + b",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 9 },
+            "b": { "from": 1, "to": 9 },
+            "c": { "from": 1, "to": 3 }
+          },
+          "where": ["c*c != a"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m04.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 4 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-larger-root",
+        "prompt": "What is the larger solution of $x^2 - [[r+s]]x + [[r*s]] = 0$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[-s]]$", "$[[r]]$", "$[[s]]$", "$[[r+s]]$", "$[[r*s]]$"],
+          "correct": "C",
+          "why": {
+            "A": "The factor $x - [[s]]$ gives $x = +[[s]]$.",
+            "B": "That is the smaller solution.",
+            "D": "That is the sum of the solutions."
+          }
+        },
+        "solution": "$(x - [[r]])(x - [[s]]) = 0$, so $x = [[r]]$ or $[[s]]$. The larger is $[[s]]$, choice (C).",
+        "skill": "factoring",
+        "difficulty": 1,
+        "compute": "((r+s) + sqrt((r+s)^2 - 4*r*s))/2",
+        "template": {
+          "vars": {
+            "r": { "from": 2, "to": 6 },
+            "s": { "from": 3, "to": 9 }
+          },
+          "where": ["r < s"]
+        }
+      },
+      {
+        "id": "check-diff-squares",
+        "prompt": "If $a + b = 12$ and $a^2 - b^2 = 96$, what is $a$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$8$", "$10$", "$12$", "$20$"],
+          "correct": "C",
+          "why": {
+            "A": "That is $b$.",
+            "B": "$8$ is $a - b$. Add $a + b = 12$ and halve."
+          }
+        },
+        "solution": "$a^2 - b^2 = (a + b)(a - b) = 96$, so $a - b = 8$. Then $2a = 12 + 8 = 20$ and $a = 10$, choice (C).",
+        "skill": "factoring",
+        "difficulty": 1,
+        "compute": "(12 + 96/12)/2"
+      },
+      {
+        "id": "check-lost-root",
+        "prompt": "How many real numbers $x$ satisfy $x^3 = 4x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "D",
+          "why": {
+            "C": "Dividing by $x$ loses $x = 0$. Factor: $x(x - 2)(x + 2) = 0$."
+          }
+        },
+        "solution": "$x^3 - 4x = x(x - 2)(x + 2) = 0$, so $x = 0$, $2$ or $-2$: $3$ numbers, choice (D).",
+        "skill": "factoring",
+        "difficulty": 2,
+        "compute": "3"
+      },
+      {
+        "id": "check-rectangle-pairs",
+        "prompt": "How many pairs of positive whole numbers $(m, n)$ with $m < n$ satisfy $mn - m - n = 11$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$6$", "$12$"],
+          "correct": "B",
+          "why": {
+            "D": "$12$ has $6$ divisors, but each pair with $m < n$ uses two of them."
+          }
+        },
+        "solution": "Add $1$: $(m - 1)(n - 1) = 12$. With $m - 1 < n - 1$ the pairs are $1 \\times 12$, $2 \\times 6$ and $3 \\times 4$, giving $(2, 13)$, $(3, 7)$ and $(4, 5)$: $3$ pairs, choice (B).",
+        "skill": "factoring",
+        "difficulty": 3,
+        "compute": "6/2"
+      },
+      {
+        "id": "check-one-root-k",
+        "prompt": "For what positive value of $k$ does $x^2 + kx + [[m*m]] = 0$ have exactly one real solution?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[m]]$", "$[[2*m]]$", "$[[m*m]]$", "$[[2*m*m]]$", "$[[4*m*m]]$"],
+          "correct": "B",
+          "why": {
+            "A": "$k^2 = 4 \\times [[m*m]] = [[4*m*m]]$, so $k = [[2*m]]$. Don't forget the $4$.",
+            "E": "That is $k^2$. Take the square root."
+          }
+        },
+        "solution": "One solution means $k^2 - 4 \\times [[m*m]] = 0$, so $k^2 = [[4*m*m]]$ and $k = [[2*m]]$, choice (B).",
+        "skill": "quadratic-formula",
+        "difficulty": 1,
+        "compute": "sqrt(4*m^2)",
+        "template": {
+          "vars": {
+            "m": { "from": 3, "to": 10 }
+          }
+        }
+      },
+      {
+        "id": "check-no-roots",
+        "prompt": "How many real solutions does $3x^2 - 5x + 4 = 0$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "A",
+          "why": {
+            "C": "Check the discriminant: $25 - 48$ is negative."
+          }
+        },
+        "solution": "$D = (-5)^2 - 4 \\times 3 \\times 4 = 25 - 48 = -23 < 0$, so there are no real solutions, choice (A).",
+        "skill": "quadratic-formula",
+        "difficulty": 1,
+        "compute": "min(max(25 - 48, -1), 1) + 1"
+      },
+      {
+        "id": "check-radical-root",
+        "prompt": "What is the smaller solution of $x^2 + 4x - 1 = 0$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$-2 - \\sqrt{5}$",
+            "$-2 + \\sqrt{5}$",
+            "$-4 - 2\\sqrt{5}$",
+            "$2 - \\sqrt{5}$",
+            "$-2 - \\sqrt{3}$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "That is the larger solution.",
+            "C": "Divide the WHOLE top by $2a = 2$.",
+            "E": "$c = -1$, so $-4ac = +4$ and $D = 16 + 4 = 20$."
+          }
+        },
+        "solution": "$D = 16 + 4 = 20$, so $x = \\frac{-4 \\pm 2\\sqrt{5}}{2} = -2 \\pm \\sqrt{5}$. The smaller is $-2 - \\sqrt{5}$, choice (A).",
+        "skill": "quadratic-formula",
+        "difficulty": 2,
+        "compute": "(-4 - sqrt(16 + 4))/2"
+      },
+      {
+        "id": "check-no-real-c",
+        "prompt": "What is the smallest whole number $c$ for which $x^2 + [[2*m]]x + c = 0$ has no real solutions?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[m*m-1]]$", "$[[m*m]]$", "$[[m*m+1]]$", "$[[2*m]]$", "$[[4*m*m]]$"],
+          "correct": "C",
+          "why": {
+            "B": "At $c = [[m*m]]$ the discriminant is $0$: still one solution.",
+            "E": "The discriminant is $[[4*m*m]] - 4c$: divide by $4$."
+          }
+        },
+        "solution": "No real solutions means $[[4*m*m]] - 4c < 0$, so $c > [[m*m]]$. The smallest whole number is $[[m*m+1]]$, choice (C).",
+        "skill": "quadratic-formula",
+        "difficulty": 2,
+        "compute": "floor((2*m)^2/4) + 1",
+        "template": {
+          "vars": {
+            "m": { "from": 3, "to": 9 }
+          }
+        }
+      },
+      {
+        "id": "check-vieta-sum",
+        "prompt": "What is the sum of the solutions of $[[a]]x^2 - [[b]]x - [[c]] = 0$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[-b/a]]$", "$[[-c/a]]$", "$[[b/a]]$", "$[[b]]$", "$[[c/a]]$"],
+          "correct": "C",
+          "why": {
+            "A": "$b = -[[b]]$, so $-\\frac{b}{a}$ is positive.",
+            "B": "That is the product.",
+            "D": "Divide by $a = [[a]]$."
+          }
+        },
+        "solution": "The sum is $-\\frac{b}{a} = \\frac{[[b]]}{[[a]]} = [[b/a]]$, choice (C).",
+        "skill": "vieta",
+        "difficulty": 1,
+        "compute": "b/a",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 5 },
+            "b": { "from": 2, "to": 12 },
+            "c": { "from": 1, "to": 12 }
+          },
+          "where": ["b != c", "c != a*b"]
+        }
+      },
+      {
+        "id": "check-sum-squares",
+        "prompt": "The solutions of $x^2 - 5x + 2 = 0$ are $r$ and $s$. What is $r^2 + s^2$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$21$", "$23$", "$25$", "$27$", "$29$"],
+          "correct": "A",
+          "why": {
+            "C": "$(r + s)^2$ includes $2rs$: take it away.",
+            "E": "SUBTRACT $2rs$, don't add it."
+          }
+        },
+        "solution": "$r + s = 5$ and $rs = 2$, so $r^2 + s^2 = 25 - 4 = 21$, choice (A).",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "5^2 - 2*2"
+      },
+      {
+        "id": "check-missing-c",
+        "prompt": "One solution of $x^2 - [[r+s]]x + c = 0$ is $[[r]]$. What is $c$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[s]]$", "$[[r+s]]$", "$[[r*s]]$", "$[[r*(r+s)]]$", "$[[-r*s]]$"],
+          "correct": "C",
+          "why": {
+            "A": "$[[s]]$ is the other solution. $c$ is the PRODUCT of the solutions.",
+            "B": "That is the sum of the solutions.",
+            "E": "Both solutions are positive, so their product is positive."
+          }
+        },
+        "solution": "The solutions add up to $[[r+s]]$, so the other one is $[[s]]$. Then $c = [[r]] \\times [[s]] = [[r*s]]$, choice (C).",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "r*((r+s) - r)",
+        "template": {
+          "vars": {
+            "r": { "from": 2, "to": 6 },
+            "s": { "from": 2, "to": 9 }
+          },
+          "where": ["r != s"]
+        }
+      },
+      {
+        "id": "check-largest-k",
+        "prompt": "Both solutions of $x^2 - kx + 18 = 0$ are positive whole numbers. What is the largest possible value of $k$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9$", "$11$", "$18$", "$19$", "$36$"],
+          "correct": "D",
+          "why": {
+            "C": "$18$ is the PRODUCT of the solutions; $k$ is their sum.",
+            "B": "$2 + 9 = 11$ works, but $1 + 18$ is larger."
+          }
+        },
+        "solution": "The solutions multiply to $18$: $1 \\times 18$, $2 \\times 9$ or $3 \\times 6$. Their sum $k$ is largest for $1 + 18 = 19$, choice (D).",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "1 + 18"
+      },
+      {
+        "id": "check-min-value",
+        "prompt": "What is the smallest value of $x^2 - [[2*h]]x + [[h*h + k]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[h]]$",
+            "$[[k]]$",
+            "$[[h*h + k]]$",
+            "$[[2*h*h + k]]$",
+            "$[[h*h + k - 2*h]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "$[[h]]$ is the $x$ where it is smallest, not the value.",
+            "C": "That is the value at $x = 0$.",
+            "E": "$(x - [[h]])^2$ holds $+[[h*h]]$, so subtract $[[h*h]]$, not $[[2*h]]$."
+          }
+        },
+        "solution": "$x^2 - [[2*h]]x + [[h*h + k]] = (x - [[h]])^2 + [[k]]$, so the smallest value is $[[k]]$, choice (B).",
+        "skill": "completing-square",
+        "difficulty": 1,
+        "compute": "(h*h + k) - h^2",
+        "template": {
+          "vars": {
+            "h": { "from": 3, "to": 8 },
+            "k": { "from": 1, "to": 12 }
+          },
+          "where": ["h != k", "h*h - 3*h + k != 0"]
+        }
+      },
+      {
+        "id": "check-largest-value",
+        "prompt": "What is the largest value of $-x^2 + 6x - 4$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-4$", "$3$", "$5$", "$9$", "$14$"],
+          "correct": "C",
+          "why": {
+            "B": "$3$ is the $x$ where it is largest.",
+            "A": "That is the value at $x = 0$."
+          }
+        },
+        "solution": "The vertex is at $x = -\\frac{6}{2 \\times (-1)} = 3$, and $-9 + 18 - 4 = 5$, choice (C). (Or: $-(x - 3)^2 + 5$.)",
+        "skill": "completing-square",
+        "difficulty": 1,
+        "compute": "-(3^2) + 6*3 - 4"
+      },
+      {
+        "id": "check-max-area",
+        "prompt": "A rectangle has a perimeter of $[[f]]$ cm. What is the largest area it can have, in square centimetres?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[f/4]]$", "$[[f]]$", "$[[f*f/16]]$", "$[[f*f/8]]$", "$[[f*f/4]]$"],
+          "correct": "C",
+          "why": {
+            "A": "That is the length of each side of the best rectangle. Square it.",
+            "E": "Length plus width is HALF the perimeter."
+          }
+        },
+        "solution": "Length plus width is $[[f/2]]$. The product is largest when they are equal, a square with side $[[f/4]]$ cm, so the area is $[[f*f/16]]$ square centimetres, choice (C).",
+        "skill": "completing-square",
+        "difficulty": 2,
+        "compute": "(f/4)^2",
+        "template": {
+          "vars": {
+            "f": { "from": 20, "to": 60, "step": 4 }
+          }
+        }
+      },
+      {
+        "id": "check-h-plus-k",
+        "prompt": "If $x^2 - 10x + 7 = (x - h)^2 + k$ for every $x$, what is $h + k$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-23$", "$-13$", "$-5$", "$12$", "$37$"],
+          "correct": "B",
+          "why": {
+            "A": "$(x - h)^2$ with $h = +5$, not $-5$.",
+            "D": "$k$ is not $7$: $(x - 5)^2$ already holds $25$, so $k = 7 - 25$."
+          }
+        },
+        "solution": "$(x - 5)^2 = x^2 - 10x + 25$, so $h = 5$ and $k = 7 - 25 = -18$. Then $h + k = -13$, choice (B).",
+        "skill": "completing-square",
+        "difficulty": 2,
+        "compute": "5 + (7 - 25)"
+      },
+      {
+        "id": "check-remainder",
+        "prompt": "What is the remainder when $x^3 + [[a]]x^2 + [[b]]$ is divided by $x - [[c]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[b]]$",
+            "$[[1 + a + b]]$",
+            "$[[a*c^2 + b - c^3]]$",
+            "$[[c^3 + a*c^2 + b]]$",
+            "$0$"
+          ],
+          "correct": "D",
+          "why": {
+            "A": "That is $p(0)$, the constant term.",
+            "B": "That is $p(1)$, the sum of the coefficients.",
+            "C": "Dividing by $x - [[c]]$ means plugging in $+[[c]]$."
+          }
+        },
+        "solution": "The remainder is $p([[c]]) = [[c^3]] + [[a*c^2]] + [[b]] = [[c^3 + a*c^2 + b]]$, choice (D).",
+        "skill": "polynomial-remainders",
+        "difficulty": 1,
+        "compute": "c^3 + a*c^2 + b",
+        "template": {
+          "vars": {
+            "a": { "from": 2, "to": 5 },
+            "b": { "from": 1, "to": 9 },
+            "c": { "from": 2, "to": 3 }
+          },
+          "where": ["a != c", "a*c^2 + b - c^3 != 0", "a*c^2 + b - c^3 != 1 + a + b"]
+        }
+      },
+      {
+        "id": "check-factor-k",
+        "prompt": "For what value of $k$ is $x - 2$ a factor of $2x^3 - kx + 6$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-11$", "$5$", "$7$", "$11$", "$22$"],
+          "correct": "D",
+          "why": {
+            "B": "That makes $x + 2$ a factor. For $x - 2$, plug in $+2$.",
+            "E": "$2k = 22$, so $k = 11$."
+          }
+        },
+        "solution": "We need $p(2) = 16 - 2k + 6 = 0$, so $2k = 22$ and $k = 11$, choice (D).",
+        "skill": "polynomial-remainders",
+        "difficulty": 2,
+        "compute": "(16 + 6)/2"
+      },
+      {
+        "id": "check-two-remainders",
+        "prompt": "A polynomial $p(x)$ leaves remainder $5$ when divided by $x - 2$ and remainder $-1$ when divided by $x + 1$. When $p(x)$ is divided by $(x - 2)(x + 1)$ the remainder is $ax + b$. What is $a + b$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$5$"],
+          "correct": "C",
+          "why": {
+            "A": "That is $b$ alone.",
+            "B": "That is $a$ alone.",
+            "E": "$5$ is $2a + b$, the remainder at $x = 2$, not $a + b$."
+          }
+        },
+        "solution": "At $x = 2$: $2a + b = 5$. At $x = -1$: $-a + b = -1$. Subtracting, $3a = 6$, so $a = 2$ and $b = 1$. Then $a + b = 3$, choice (C).",
+        "skill": "polynomial-remainders",
+        "difficulty": 3,
+        "compute": "(5 - (-1))/3 + (-1 + (5 - (-1))/3)"
+      }
+    ]
+  }
+]

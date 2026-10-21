@@ -2,12 +2,20 @@
 
 import type { LessonSteps } from '@storyforge/shared';
 import { useState } from 'react';
+import { MathText } from '@/components/math-text';
 import { Button } from '@/components/ui';
 import type { StepProps } from './step-props';
 
 type Hook = LessonSteps[0];
 
-export function HookStep({ step, done, busy, onComplete }: StepProps<Hook>) {
+/** `math`: Math lessons render $…$ in the question prompt with KaTeX. */
+export function HookStep({
+  step,
+  done,
+  busy,
+  onComplete,
+  math = false,
+}: StepProps<Hook> & { math?: boolean }) {
   const [picked, setPicked] = useState<'a' | 'b' | null>(null);
   const [response, setResponse] = useState('');
 
@@ -72,7 +80,7 @@ export function HookStep({ step, done, busy, onComplete }: StepProps<Hook>) {
   return (
     <div className="flex flex-col gap-5">
       <label htmlFor="hook-response" className="text-2xl font-bold">
-        {step.prompt}
+        {math ? <MathText text={step.prompt} /> : step.prompt}
       </label>
       <textarea
         id="hook-response"

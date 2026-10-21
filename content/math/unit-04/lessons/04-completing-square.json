@@ -1,0 +1,95 @@
+{
+  "slug": "math-completing-square",
+  "order": 4,
+  "title": "Completing the Square & the Vertex",
+  "estMinutes": 35,
+  "focusSkills": ["completing-square"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "What is the smallest value $x^2$ can take? What about $(x - 3)^2 + 5$? For which $x$ does it happen?",
+      "placeholder": "The smallest value… it happens when…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Make a perfect square",
+          "body": "$(x + h)^2 = x^2 + 2hx + h^2$. So take HALF the $x$ coefficient, square it, and add and take it away: $x^2 + 6x + 2 = (x^2 + 6x + 9) - 9 + 2 = (x + 3)^2 - 7$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: vertex form",
+          "problem": "Write $x^2 - 10x + 31$ as $(x - h)^2 + k$.",
+          "steps": [
+            {
+              "text": "Half of $-10$ is $-5$, and $(x - 5)^2 = x^2 - 10x + 25$. So $h = 5$."
+            },
+            {
+              "text": "$x^2 - 10x + 31 = (x - 5)^2 - 25 + 31$.",
+              "try": {
+                "prompt": "What is $k$?",
+                "accepted": ["6"],
+                "compute": "31 - 25"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The vertex is the lowest (or highest) point",
+          "body": "A square is never negative, so $a(x - h)^2 + k$ with $a > 0$ is smallest when $x = h$, and its smallest value is $k$. With $a < 0$ the parabola opens down and $k$ is the LARGEST value. Shortcut: the vertex is at $x = -\\frac{b}{2a}$; put that $x$ back in to get the value."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the smallest value",
+          "problem": "What is the smallest value of $2x^2 - 12x + 5$?",
+          "steps": [
+            {
+              "text": "The vertex is at $x = -\\frac{b}{2a} = \\frac{12}{4}$.",
+              "try": {
+                "prompt": "At which $x$ is it smallest?",
+                "accepted": ["3"],
+                "compute": "12/(2*2)"
+              }
+            },
+            {
+              "text": "Put $x = 3$ back in: $2 \\times 9 - 36 + 5$. (Or: $2(x - 3)^2 - 13$.)",
+              "try": {
+                "prompt": "What is the smallest value?",
+                "accepted": ["-13"],
+                "compute": "2*3^2 - 12*3 + 5"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: where vs how much",
+          "body": "The smallest VALUE is $k$; the $x$ where it happens is $h$. Read which one the question wants. $(x - 5)^2$ means $h = +5$. And when $a \\neq 1$, take $a$ out of the $x$ terms first: $2x^2 - 12x = 2(x^2 - 6x)$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m04.square-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m04.square-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain to a friend why $(x - h)^2 + k$ can never be smaller than $k$."],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

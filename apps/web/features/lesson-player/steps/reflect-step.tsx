@@ -16,7 +16,8 @@ export function ReflectStep({
   busy,
   onComplete,
   lessonId,
-}: StepProps<Reflect> & { lessonId: string }) {
+  math = false,
+}: StepProps<Reflect> & { lessonId: string; math?: boolean }) {
   const [answers, setAnswers] = useState<string[]>(step.prompts.map(() => ''));
   const [confidence, setConfidence] = useState<number | null>(null);
   const [trap, setTrap] = useState<Trap>({ activityKey: '', problemId: '', note: '' });
@@ -45,7 +46,7 @@ export function ReflectStep({
       {step.prompts.map((prompt, i) => (
         <div key={prompt} className="flex flex-col gap-1">
           <label htmlFor={`reflect-${i}`} className="text-lg font-medium">
-            {prompt}
+            {math ? <MathText text={prompt} /> : prompt}
           </label>
           <textarea
             id={`reflect-${i}`}

@@ -1,0 +1,92 @@
+{
+  "slug": "math-polynomial-remainders",
+  "order": 5,
+  "title": "Polynomial Remainders",
+  "estMinutes": 35,
+  "focusSkills": ["polynomial-remainders"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Let $p(x) = x^2 + x + 1$. Work out $p(2)$. Now: $x^2 + x + 1 = (x - 2)(x + 3) + 7$. What do you notice?",
+      "placeholder": "p(2) is… I notice…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The remainder theorem",
+          "body": "Dividing $p(x)$ by $x - a$ gives $p(x) = (x - a)q(x) + R$. Put $x = a$ in: the first part is $0$, so $R = p(a)$. The remainder is just $p(a)$, no long division needed. If $p(a) = 0$, then $x - a$ is a FACTOR of $p(x)$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: plug in",
+          "problem": "What is the remainder when $x^3 - 4x^2 + 2x + 7$ is divided by $x - 3$?",
+          "steps": [
+            {
+              "text": "Dividing by $x - 3$ means $a = 3$: the remainder is $p(3)$."
+            },
+            {
+              "text": "$p(3) = 3^3 - 4 \\times 3^2 + 2 \\times 3 + 7 = 27 - 36 + 6 + 7$.",
+              "try": {
+                "prompt": "What is the remainder?",
+                "accepted": ["4"],
+                "compute": "3^3 - 4*3^2 + 2*3 + 7"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Handy values",
+          "body": "Dividing by $x + 2$ means $a = -2$. Dividing by $2x - 1$ means $x = \\frac{1}{2}$. $p(1)$ is the SUM of the coefficients, $p(0)$ is the constant term, and $p(-1)$ is the alternating sum. Dividing by a quadratic leaves a remainder like $ax + b$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: make it a factor",
+          "problem": "For what value of $k$ is $x - 2$ a factor of $x^3 + kx - 6$?",
+          "steps": [
+            {
+              "text": "$x - 2$ is a factor exactly when $p(2) = 0$: $8 + 2k - 6 = 0$."
+            },
+            {
+              "text": "So $2k = -2$.",
+              "try": {
+                "prompt": "What is $k$?",
+                "accepted": ["-1"],
+                "compute": "-(8 - 6)/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the sign of a",
+          "body": "Dividing by $x + 2$: plug in $-2$, not $2$. Set the divisor equal to zero and solve for $x$; that is the number to plug in. And a remainder of $0$ means \"is a factor\", not \"no answer\"."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m04.remainder-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m04.remainder-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What number do you plug in to find the remainder when dividing by $x + 5$? By $3x - 2$? How do you know?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

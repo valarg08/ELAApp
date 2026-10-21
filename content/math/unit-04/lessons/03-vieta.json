@@ -1,0 +1,100 @@
+{
+  "slug": "math-vieta",
+  "order": 3,
+  "title": "Vieta's Formulas",
+  "estMinutes": 35,
+  "focusSkills": ["vieta"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Multiply out $(x - 2)(x - 5)$. Where do you see $2 + 5$ and $2 \\times 5$ in the answer? Do you think that always happens?",
+      "placeholder": "I get… I see the sum… I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Sum and product from the coefficients",
+          "body": "If $r$ and $s$ are the solutions, $x^2 + bx + c = (x - r)(x - s) = x^2 - (r + s)x + rs$. So $r + s = -b$ and $rs = c$. For $ax^2 + bx + c = 0$ divide by $a$ first: $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$. You never need the solutions themselves."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: squares of the roots",
+          "problem": "The solutions of $x^2 - 7x + 3 = 0$ are $r$ and $s$. What is $r^2 + s^2$?",
+          "steps": [
+            {
+              "text": "Sum: $r + s = -(-7) = 7$. Product: $rs = 3$."
+            },
+            {
+              "text": "$(r + s)^2 = r^2 + 2rs + s^2$, so $r^2 + s^2 = (r + s)^2 - 2rs$.",
+              "try": {
+                "prompt": "What is $r^2 + s^2$?",
+                "accepted": ["43"],
+                "compute": "7^2 - 2*3"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Write everything with the sum and product",
+          "body": "$\\frac{1}{r} + \\frac{1}{s} = \\frac{r + s}{rs}$. $(r - s)^2 = (r + s)^2 - 4rs$. $(r + 1)(s + 1) = rs + (r + s) + 1$. And a quadratic with solutions $r$ and $s$ is $x^2 - (\\text{sum})x + (\\text{product})$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: shift the roots",
+          "problem": "The solutions of $x^2 - 5x + 3 = 0$ are $r$ and $s$. Find a quadratic $x^2 + Bx + C$ whose solutions are $r + 2$ and $s + 2$.",
+          "steps": [
+            {
+              "text": "Old sum $r + s = 5$ and old product $rs = 3$.",
+              "try": {
+                "prompt": "What is the new sum $(r + 2) + (s + 2)$?",
+                "accepted": ["9"],
+                "compute": "5 + 4"
+              }
+            },
+            {
+              "text": "New product: $(r + 2)(s + 2) = rs + 2(r + s) + 4$.",
+              "try": {
+                "prompt": "What is the new product?",
+                "accepted": ["17"],
+                "compute": "3 + 2*5 + 4"
+              }
+            },
+            {
+              "text": "So the quadratic is $x^2 - 9x + 17$: $B = -9$ and $C = 17$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the sign of the sum",
+          "body": "The sum is $-\\frac{b}{a}$: for $x^2 - 7x + 3$ it is $+7$, not $-7$. The product is $\\frac{c}{a}$, keeping the sign of $c$. And don't forget to divide by $a$ when $a \\neq 1$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m04.vieta-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m04.vieta-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Write $r^2 + s^2$ and $\\frac{1}{r} + \\frac{1}{s}$ using only $r + s$ and $rs$. Which one was harder to remember?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

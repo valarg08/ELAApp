@@ -1,0 +1,63 @@
+{
+  "slug": "math-quadratics-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Quadratics & Polynomials",
+  "estMinutes": 40,
+  "focusSkills": [
+    "factoring",
+    "quadratic-formula",
+    "vieta",
+    "completing-square",
+    "polynomial-remainders"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which tool from this unit do you reach for fastest now, and which one do you still have to stop and think about?",
+      "placeholder": "Fastest… Still tricky…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Solving quadratics: quick review",
+          "body": "Factor when you can: two numbers that multiply to $c$ and add to $b$; spot $a^2 - b^2$; never divide by $x$. Otherwise $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$. The discriminant $b^2 - 4ac$ says two, one or no real solutions."
+        },
+        {
+          "kind": "definition",
+          "title": "Roots, vertices and remainders: quick review",
+          "body": "Vieta: sum $= -\\frac{b}{a}$, product $= \\frac{c}{a}$; $r^2 + s^2 = (r + s)^2 - 2rs$. Vertex form $a(x - h)^2 + k$: the smallest (or largest) value is $k$, at $x = h = -\\frac{b}{2a}$. The remainder of $p(x) \\div (x - a)$ is $p(a)$, and $p(1)$ is the sum of the coefficients."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m04.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m04.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

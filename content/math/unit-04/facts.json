@@ -1,0 +1,56 @@
+{
+  "sections": [
+    {
+      "skill": "factoring",
+      "title": "Factoring",
+      "facts": [
+        "If $AB = 0$ then $A = 0$ or $B = 0$. Move everything to one side, then factor.",
+        "$x^2 + bx + c = (x - r)(x - s)$: $r$ and $s$ multiply to $c$ and add to $-b$.",
+        "$a^2 - b^2 = (a - b)(a + b)$ and $a^2 \\pm 2ab + b^2 = (a \\pm b)^2$.",
+        "$xy + x + y + 1 = (x + 1)(y + 1)$: add a number to both sides to make a rectangle.",
+        "$\\left(x + \\frac{1}{x}\\right)^2 = x^2 + 2 + \\frac{1}{x^2}$.",
+        "Never divide by $x$: $x^2 = 5x$ has two solutions, $0$ and $5$."
+      ]
+    },
+    {
+      "skill": "quadratic-formula",
+      "title": "Quadratic formula & discriminant",
+      "facts": [
+        "$ax^2 + bx + c = 0$ has $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$.",
+        "$D = b^2 - 4ac$: $D > 0$ two real solutions, $D = 0$ one, $D < 0$ none.",
+        "Whole-number coefficients: rational solutions exactly when $D$ is a perfect square.",
+        "The two solutions differ by $\\frac{\\sqrt{D}}{|a|}$."
+      ]
+    },
+    {
+      "skill": "vieta",
+      "title": "Vieta's formulas",
+      "facts": [
+        "For $ax^2 + bx + c = 0$: $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$.",
+        "$r^2 + s^2 = (r + s)^2 - 2rs$ and $(r - s)^2 = (r + s)^2 - 4rs$.",
+        "$\\frac{1}{r} + \\frac{1}{s} = \\frac{r + s}{rs}$ and $(r + 1)(s + 1) = rs + (r + s) + 1$.",
+        "Solutions $r$ and $s$: the quadratic is $x^2 - (r + s)x + rs$."
+      ]
+    },
+    {
+      "skill": "completing-square",
+      "title": "Completing the square & the vertex",
+      "facts": [
+        "$x^2 + 2hx = (x + h)^2 - h^2$: halve the $x$ coefficient and square it.",
+        "$a(x - h)^2 + k$ has its vertex at $(h, k)$: the smallest value $k$ if $a > 0$, the largest if $a < 0$.",
+        "The vertex is at $x = -\\frac{b}{2a}$.",
+        "Two numbers with a fixed sum have the largest product when they are equal: a rectangle of fixed perimeter has the most area as a square."
+      ]
+    },
+    {
+      "skill": "polynomial-remainders",
+      "title": "Polynomial remainders",
+      "facts": [
+        "The remainder of $p(x) \\div (x - a)$ is $p(a)$. Dividing by $x + 2$: plug in $-2$.",
+        "$x - a$ is a factor exactly when $p(a) = 0$.",
+        "$p(1)$ is the sum of the coefficients, $p(0)$ the constant term, $p(-1)$ the alternating sum.",
+        "Dividing by a quadratic leaves a remainder $ax + b$: find $a$ and $b$ from two values of $p$."
+      ]
+    }
+  ]
+}

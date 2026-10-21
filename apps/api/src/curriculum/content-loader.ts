@@ -331,9 +331,20 @@ async function loadTrack(root: string, folder: string, track: Track): Promise<Lo
     }
 
     if (track === 'MATH') {
-      for (const lesson of lessons)
-        for (const value of stringsIn(lesson.steps[1].cards))
+      // Math lessons render $…$ in the hook question, the Learn cards and the reflect prompts.
+      for (const lesson of lessons) {
+        const [hook, learn, , , reflect] = lesson.steps;
+        const texts = [
+          ...('prompt' in hook ? [hook.prompt] : []),
+          ...stringsIn(learn.cards),
+          ...reflect.prompts,
+        ];
+        for (const value of texts)
           errors.push(...texErrors(`${folder}/${dirName}: lesson "${lesson.slug}"`, value));
+      }
+      for (const a of activities)
+        if (a.type === 'PROBLEMS' || a.type === 'PROBLEM_SET')
+          errors.push(...texErrors(`${folder}/${dirName}: ${a.key}`, a.instructions));
     }
     for (const { a, p } of problemsOf(activities)) {
       const where = `${folder}/${dirName}: ${a.key}/${p.id}`;
