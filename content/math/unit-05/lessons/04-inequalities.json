@@ -1,0 +1,97 @@
+{
+  "slug": "math-inequalities",
+  "order": 4,
+  "title": "Inequalities & AM–GM",
+  "estMinutes": 35,
+  "focusSkills": ["inequalities"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Two positive numbers add up to $10$. How large can their product be? Try a few pairs and see what happens.",
+      "placeholder": "I tried… the largest product…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Solving inequalities",
+          "body": "Solve an inequality like an equation, with one rule: multiplying or dividing both sides by a NEGATIVE number flips the sign. From $-2x > 6$, dividing by $-2$ gives $x < -3$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: count the solutions",
+          "problem": "How many positive integers $x$ satisfy $3x - 7 < 20$?",
+          "steps": [
+            {
+              "text": "Add $7$: $3x < 27$. Divide by $3$: $x < 9$."
+            },
+            {
+              "text": "$x = 9$ makes the two sides equal, so it doesn't count. The answers are $1, 2, \\ldots, 8$.",
+              "try": {
+                "prompt": "How many positive integers?",
+                "accepted": ["8"],
+                "compute": "27/3 - 1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "AM–GM: equal is best",
+          "body": "For positive $a$ and $b$, $\\frac{a + b}{2} \\geq \\sqrt{ab}$, with equality exactly when $a = b$. So with a FIXED SUM the product is largest when the numbers are equal, and with a FIXED PRODUCT the sum is smallest when they are equal. For example, $x + \\frac{1}{x} \\geq 2$ for $x > 0$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the smallest value",
+          "problem": "For $x > 0$, what is the smallest value of $x + \\frac{16}{x}$?",
+          "steps": [
+            {
+              "text": "The two parts multiply to $x \\times \\frac{16}{x} = 16$, a fixed product. So the sum is smallest when they are equal: $x = \\frac{16}{x}$, $x = 4$.",
+              "try": {
+                "prompt": "At which $x$ is it smallest?",
+                "accepted": ["4"],
+                "compute": "sqrt(16)"
+              }
+            },
+            {
+              "text": "Then $x + \\frac{16}{x} = 4 + 4 = 8$. (AM–GM: $x + \\frac{16}{x} \\geq 2\\sqrt{16} = 8$.)",
+              "try": {
+                "prompt": "What is the smallest value?",
+                "accepted": ["8"],
+                "compute": "2*sqrt(16)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the flip and the ends",
+          "body": "Forget to flip when dividing by a negative and you get the opposite answer. With strict $<$, the end value doesn't count. AM–GM needs POSITIVE numbers, and its bound only counts if equality can happen. And $(x - 2)(x - 5) < 0$ means $x$ is BETWEEN $2$ and $5$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m05.inequalities-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m05.inequalities-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "When does AM–GM help? Write one sum you could make as small as possible with it."
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

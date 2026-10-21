@@ -1,0 +1,57 @@
+{
+  "sections": [
+    {
+      "skill": "functions",
+      "title": "Functions & notation",
+      "facts": [
+        "$f(a)$: replace every $x$ with $a$, in brackets.",
+        "$f(g(x))$: do $g$ first, then $f$. Usually $f(g(x)) \\neq g(f(x))$.",
+        "$f^{-1}$ undoes $f$: to find $f^{-1}(y)$, solve $f(x) = y$.",
+        "$f(x + 1) \\neq f(x) + 1$ and $f^{-1}(x) \\neq \\frac{1}{f(x)}$.",
+        "Given $f(2x + 1)$, find $f(7)$ by choosing $x$ so that $2x + 1 = 7$."
+      ]
+    },
+    {
+      "skill": "graph-transformations",
+      "title": "Graphs & transformations",
+      "facts": [
+        "$f(x) + k$: up $k$. $f(x - h)$: right $h$. $-f(x)$: flip over the $x$-axis. $f(-x)$: flip over the $y$-axis.",
+        "Slope $= \\frac{y_2 - y_1}{x_2 - x_1}$; $y = mx + b$ crosses the $y$-axis at $b$.",
+        "Parallel: equal slopes. Perpendicular: slopes multiply to $-1$.",
+        "$ax + by = c$ has slope $-\\frac{a}{b}$ and crosses the axes at $\\frac{c}{a}$ and $\\frac{c}{b}$."
+      ]
+    },
+    {
+      "skill": "absolute-value",
+      "title": "Absolute value",
+      "facts": [
+        "$|x - c|$ is the distance from $x$ to $c$.",
+        "$|x - c| = d > 0$: $x = c \\pm d$, and the solutions add to $2c$.",
+        "$|x - c| \\leq d$: $c - d \\leq x \\leq c + d$, which holds $2d + 1$ integers.",
+        "$|x - a| + |x - b|$ is smallest, $|a - b|$, for $x$ between $a$ and $b$.",
+        "When $x$ is on both sides, check every answer in the original equation."
+      ]
+    },
+    {
+      "skill": "inequalities",
+      "title": "Inequalities & AM–GM",
+      "facts": [
+        "Multiplying or dividing by a negative flips the inequality.",
+        "$\\frac{a + b}{2} \\geq \\sqrt{ab}$ for $a, b > 0$, with equality when $a = b$.",
+        "Fixed sum: largest product when equal. Fixed product: smallest sum when equal.",
+        "$x + \\frac{k}{x} \\geq 2\\sqrt{k}$ for $x > 0$.",
+        "$(x - a)(x - b) < 0$ means $x$ is between $a$ and $b$."
+      ]
+    },
+    {
+      "skill": "floor-ceiling",
+      "title": "Floor, ceiling & piecewise",
+      "facts": [
+        "$\\lfloor x \\rfloor$ rounds down, $\\lceil x \\rceil$ rounds up: $\\lfloor -2.5 \\rfloor = -3$.",
+        "$\\lfloor x \\rfloor = n$ means $n \\leq x < n + 1$.",
+        "There are $\\lfloor \\frac{N}{k} \\rfloor$ multiples of $k$ from $1$ to $N$.",
+        "Piecewise: decide which piece the input is in (watch $<$ vs $\\geq$), then use that rule."
+      ]
+    }
+  ]
+}

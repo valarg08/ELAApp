@@ -1,0 +1,105 @@
+{
+  "slug": "math-functions-notation",
+  "order": 1,
+  "title": "Functions & Notation",
+  "estMinutes": 35,
+  "focusSkills": ["functions"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A machine doubles a number and adds $3$. You put in $5$, then put the answer back in. What comes out the second time?",
+      "placeholder": "First time… second time…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "A function is a rule",
+          "body": "$f(x) = x^2 - 2x$ is a rule: \"square it, then take away twice it\". $f(3)$ means: replace EVERY $x$ with $3$. Put the new input in brackets, especially when it is negative or an expression: $f(a + 1) = (a + 1)^2 - 2(a + 1)$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a negative input",
+          "problem": "If $f(x) = x^2 - 2x$, what is $f(-3)$?",
+          "steps": [
+            {
+              "text": "Replace every $x$ with $(-3)$, in brackets: $f(-3) = (-3)^2 - 2(-3)$."
+            },
+            {
+              "text": "$(-3)^2 = 9$ and $-2(-3) = +6$, so $f(-3) = 9 + 6 = 15$.",
+              "try": {
+                "prompt": "What is $f(-3)$?",
+                "accepted": ["15"],
+                "compute": "(-3)^2 - 2*(-3)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Composition and inverses",
+          "body": "$f(g(x))$ means: do $g$ first, then $f$. Work from the INSIDE out. The inverse $f^{-1}$ undoes $f$: if $f(3) = 7$ then $f^{-1}(7) = 3$. To find $f^{-1}(y)$, solve $f(x) = y$ for $x$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: order matters",
+          "problem": "Let $f(x) = 2x + 1$ and $g(x) = x^2$. Find $f(g(3))$ and $g(f(3))$.",
+          "steps": [
+            {
+              "text": "Inside first: $g(3) = 9$.",
+              "try": {
+                "prompt": "What is $g(3)$?",
+                "accepted": ["9"],
+                "compute": "3^2"
+              }
+            },
+            {
+              "text": "Then $f(9) = 2 \\times 9 + 1 = 19$.",
+              "try": {
+                "prompt": "What is $f(g(3))$?",
+                "accepted": ["19"],
+                "compute": "2*3^2 + 1"
+              }
+            },
+            {
+              "text": "The other way: $f(3) = 7$ and $g(7) = 49$. Different order, different answer.",
+              "try": {
+                "prompt": "What is $g(f(3))$?",
+                "accepted": ["49"],
+                "compute": "(2*3 + 1)^2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: functions don't split",
+          "body": "$f(x + 1)$ is NOT $f(x) + 1$, and $f(2x)$ is NOT $2f(x)$: put the whole input in for $x$. $f^{-1}(x)$ is NOT $\\frac{1}{f(x)}$. And $f(g(x))$ usually differs from $g(f(x))$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m05.functions-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m05.functions-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain to a friend why $f(g(x))$ and $g(f(x))$ can be different. Give an example."
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

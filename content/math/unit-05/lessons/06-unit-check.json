@@ -1,0 +1,63 @@
+{
+  "slug": "math-functions-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Functions & Inequalities",
+  "estMinutes": 40,
+  "focusSkills": [
+    "functions",
+    "graph-transformations",
+    "absolute-value",
+    "inequalities",
+    "floor-ceiling"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which idea from this unit do you use fastest now, and which one do you still have to stop and think about?",
+      "placeholder": "Fastest… Still tricky…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Functions and graphs: quick review",
+          "body": "Replace every $x$, in brackets. $f(g(x))$: inside first. $f^{-1}$ undoes $f$. $f(x - h) + k$ moves the graph right $h$ and up $k$. Slope is rise over run; perpendicular slopes multiply to $-1$."
+        },
+        {
+          "kind": "definition",
+          "title": "Absolute value, inequalities, floor: quick review",
+          "body": "$|x - c|$ is the distance from $x$ to $c$; check answers when $x$ is on both sides. Dividing by a negative flips the inequality. AM–GM: equal parts give the best case. $\\lfloor x \\rfloor$ rounds down (towards $-\\infty$), and there are $\\lfloor \\frac{N}{k} \\rfloor$ multiples of $k$ from $1$ to $N$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m05.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m05.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

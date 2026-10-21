@@ -1,0 +1,95 @@
+{
+  "slug": "math-graph-transformations",
+  "order": 2,
+  "title": "Graphs & Transformations",
+  "estMinutes": 35,
+  "focusSkills": ["graph-transformations"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "The graph of $y = x^2$ is a U with its lowest point at $(0, 0)$. Where do you think the lowest point of $y = (x - 3)^2 + 1$ is? Guess before you work it out.",
+      "placeholder": "I guess… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Moving a graph",
+          "body": "$y = f(x) + k$ moves the graph UP $k$. $y = f(x - h)$ moves it RIGHT $h$: changes inside the bracket go the opposite way to how they look. $y = -f(x)$ flips it over the $x$-axis and $y = f(-x)$ over the $y$-axis."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: right and down",
+          "problem": "The graph of $y = x^2$ is moved $4$ units right and $2$ units down. Where does the new graph cross the $y$-axis?",
+          "steps": [
+            {
+              "text": "Right $4$: replace $x$ with $x - 4$. Down $2$: subtract $2$. The new graph is $y = (x - 4)^2 - 2$."
+            },
+            {
+              "text": "It crosses the $y$-axis where $x = 0$: $y = (0 - 4)^2 - 2 = 16 - 2 = 14$.",
+              "try": {
+                "prompt": "What is $y$ when $x = 0$?",
+                "accepted": ["14"],
+                "compute": "(0 - 4)^2 - 2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Lines",
+          "body": "The slope of the line through $(x_1, y_1)$ and $(x_2, y_2)$ is $\\frac{y_2 - y_1}{x_2 - x_1}$: rise over run. In $y = mx + b$, $m$ is the slope and $b$ is where it crosses the $y$-axis. Parallel lines have equal slopes; perpendicular slopes multiply to $-1$, so $\\frac{2}{3}$ goes with $-\\frac{3}{2}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a line through two points",
+          "problem": "Find the line through $(2, 5)$ and $(5, 14)$.",
+          "steps": [
+            {
+              "text": "Slope: $\\frac{14 - 5}{5 - 2} = \\frac{9}{3} = 3$.",
+              "try": {
+                "prompt": "What is the slope?",
+                "accepted": ["3"],
+                "compute": "(14 - 5)/(5 - 2)"
+              }
+            },
+            {
+              "text": "So $y = 3x + b$. Put in $(2, 5)$: $5 = 6 + b$, so $b = -1$ and the line is $y = 3x - 1$.",
+              "try": {
+                "prompt": "The line is $y = 3x + b$ and passes through $(2, 5)$. What is $b$?",
+                "accepted": ["-1"],
+                "compute": "5 - 3*2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: inside goes the other way",
+          "body": "$f(x - 3)$ moves the graph RIGHT, and $f(x + 3)$ moves it LEFT. Slope is $y$ change over $x$ change, not the other way. A perpendicular slope is the NEGATIVE reciprocal: flip the fraction AND change the sign."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m05.graphs-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m05.graphs-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why does $y = (x - 3)^2$ sit to the RIGHT of $y = x^2$, not the left?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

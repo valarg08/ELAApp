@@ -1,0 +1,93 @@
+{
+  "slug": "math-absolute-value",
+  "order": 3,
+  "title": "Absolute Value",
+  "estMinutes": 35,
+  "focusSkills": ["absolute-value"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$|x|$ is the distance from $x$ to $0$. How many numbers are at distance $4$ from $0$? Which numbers are at distance $4$ from $7$?",
+      "placeholder": "From 0… from 7…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Absolute value is a distance",
+          "body": "$|a|$ is the distance from $a$ to $0$, so it is never negative. $|x - c|$ is the distance from $x$ to $c$. So $|x - c| = d$ has two solutions, $c + d$ and $c - d$, when $d > 0$; one when $d = 0$; and none when $d < 0$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: two cases",
+          "problem": "Solve $|2x - 5| = 9$.",
+          "steps": [
+            {
+              "text": "The inside is $9$ or $-9$: $2x - 5 = 9$ or $2x - 5 = -9$."
+            },
+            {
+              "text": "First case: $2x = 14$, so $x = 7$."
+            },
+            {
+              "text": "Second case: $2x = -4$, so $x = -2$. Check: $|2(-2) - 5| = |-9| = 9$ ✓.",
+              "try": {
+                "prompt": "What is the other solution?",
+                "accepted": ["-2"],
+                "compute": "(5 - 9)/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Inequalities with absolute value",
+          "body": "$|x - c| < d$ means $x$ is within $d$ of $c$: $c - d < x < c + d$. $|x - c| > d$ means $x$ is further than $d$ away. To count the whole numbers from $a$ to $b$, both included, use $b - a + 1$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: count the integers",
+          "problem": "How many integers $x$ satisfy $|x + 2| < 5$?",
+          "steps": [
+            {
+              "text": "$|x + 2| = |x - (-2)|$ is the distance from $x$ to $-2$. So $-7 < x < 3$."
+            },
+            {
+              "text": "The ends don't count (strict $<$): the integers are $-6, -5, \\ldots, 2$, and $2 - (-6) + 1 = 9$.",
+              "try": {
+                "prompt": "How many integers?",
+                "accepted": ["9"],
+                "compute": "2 - (-6) + 1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: losing or inventing solutions",
+          "body": "$|x + 2|$ is the distance to $-2$, not to $2$. $|x| = -3$ has NO solutions. When the other side has $x$ in it, like $|x - 4| = 2x - 5$, check each answer in the original: some cases give fake solutions. And with $<$ the ends don't count."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m05.abs-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m05.abs-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How does thinking of $|x - c|$ as a distance help you solve problems faster?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}
