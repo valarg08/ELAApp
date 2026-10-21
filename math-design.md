@@ -444,7 +444,8 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | **M0.5 Math practice upgrade** ✅ | Part A (skills, templates, wrong-answer notes, worked examples, figure flags), Part B (answer record, mastery, daily review, sprints, confidence, scratchpad), Part C (Quill nudges, the math card tutor, the trap picker, tone, teacher skills view), Part D (the `MOCK_TEST` engine with skip, flag and the 2-minute rule, the diagnostic test with its 25 problems, checkpoint slots, the danger-zone report, fact sheets, light review, stage labels) (§3) | §3.6 |
 | **M1 Unit 1 Problem Solving & the AMC 10** ✅ | 6 lessons (§4.1), published | Played end to end; content:check verifies every answer and variant |
 | **M2 Unit 2 Arithmetic & Number Sense** ✅ | 6 lessons (§4.2), published | Played end to end; content:check verifies every answer and variant |
-| **M3–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
+| **M3 Unit 3 Linear Equations & Word Problems** ✅ | 6 lessons (§4.3), published | Played end to end; content:check verifies every answer and variant |
+| **M4–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
 | **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
 
 ### 4.1 M1 as built (2026-10-16)
@@ -476,3 +477,18 @@ Unit 2 Arithmetic & Number Sense is published, with 6 lessons in the same shape 
 | 6 | ⭐ Unit Check | `m02.review-practice` (5-problem warm-up, one per lesson) | `m02.unit-check`: 8 of 19 problems per try, pass at 100% |
 
 The fact sheet covers all five skills. Templated choice problems list `where` conditions so no two choices can ever have the same value.
+
+### 4.3 M3 as built (2026-10-21)
+
+Unit 3 Linear Equations & Word Problems is published, with 6 lessons in the same shape. No new tools were needed. Work and rate answers may be fractions (typed as 12/7 or a decimal).
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Linear Equations | `m03.linear-practice` (two-step, both sides, clearing fractions, consecutive even numbers, "less than" phrases) | `m03.linear-set` (brackets, five consecutive numbers, a negative answer, pens and pencils, no solution) |
+| 2 | Systems of Equations | `m03.systems-practice` (sum and difference, elimination, $x + y$ by adding, tickets, where two lines cross) | `m03.systems-set` |
+| 3 | Distance, Rate & Time | `m03.drt-practice` (meeting, minutes to hours, a chase, late and early, up and down a trail) | `m03.drt-set` (two legs, head-on, catching up, the escalator, a river current) |
+| 4 | Work & Mixtures | `m03.work-practice` (working together, a tap and a drain, adding water, mixing two strengths, worker-days) | `m03.work-set` |
+| 5 | Ages, Coins & Money | `m03.ages-practice` (twice as old, years ago, nickels and dimes, a father and son, two kinds of stamps) | `m03.ages-set` |
+| 6 | ⭐ Unit Check | `m03.review-practice` (5-problem warm-up) | `m03.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+Templates whose numbers name a quantity ("$a$ litres", "$h$ hours later") start at $2$ so the wording never reads "1 litres".

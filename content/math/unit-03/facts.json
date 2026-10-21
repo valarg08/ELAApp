@@ -1,0 +1,57 @@
+{
+  "sections": [
+    {
+      "skill": "linear-equations",
+      "title": "Linear equations",
+      "facts": [
+        "Name the unknown, write what the words say, then do the same to both sides.",
+        "Clear fractions first: multiply both sides by a common denominator.",
+        "\"$5$ less than $x$\" is $x - 5$; \"$x$ less than $5$\" is $5 - x$.",
+        "Consecutive numbers: $n$, $n + 1$, $n + 2$. Consecutive odd or even: $n$, $n + 2$, $n + 4$. The middle one is the average.",
+        "$ax + b = cx + d$ has no solution when $a = c$ but $b \\neq d$, and every $x$ works when $a = c$ and $b = d$."
+      ]
+    },
+    {
+      "skill": "systems",
+      "title": "Systems of equations",
+      "facts": [
+        "Add or subtract the equations to cancel a letter; or solve one for a letter and substitute.",
+        "Sum $s$ and difference $d$: the numbers are $\\frac{s + d}{2}$ and $\\frac{s - d}{2}$.",
+        "Asked for $x + y$? Try adding the equations: $3x + 2y = 17$ and $2x + 3y = 13$ give $5(x + y) = 30$.",
+        "$x + y$, $y + z$ and $x + z$ add up to $2(x + y + z)$.",
+        "Parallel lines (same $x$ and $y$ ratio, different constant) have no common solution."
+      ]
+    },
+    {
+      "skill": "distance-rate-time",
+      "title": "Distance, rate & time",
+      "facts": [
+        "$d = rt$. Match the units: $15$ minutes $= \\frac{1}{4}$ hour.",
+        "Towards each other: speeds add. Chasing in the same direction: speeds subtract.",
+        "Downstream $=$ boat $+$ current; upstream $=$ boat $-$ current. The current is half the difference.",
+        "Average speed $=$ total distance $\\div$ total time."
+      ]
+    },
+    {
+      "skill": "work-mixtures",
+      "title": "Work & mixtures",
+      "facts": [
+        "A job done in $t$ hours is done at $\\frac{1}{t}$ per hour. Together, rates add; a drain's rate subtracts.",
+        "Two workers taking $a$ and $b$ hours together take $\\frac{ab}{a + b}$ hours.",
+        "Worker-days: $w$ workers for $d$ days is $wd$ worker-days of work.",
+        "Mixtures: pure amount $=$ percent $\\times$ total. Pure amounts add and totals add.",
+        "Adding water keeps the pure amount the same; adding pure stuff raises both the pure amount and the total."
+      ]
+    },
+    {
+      "skill": "ages-coins-money",
+      "title": "Ages, coins & money",
+      "facts": [
+        "Ages: make a table with a column for each time. Everyone ages by the same number of years.",
+        "The difference between two people's ages never changes.",
+        "Coins: one equation for how MANY coins, one for how much they are WORTH. Work in cents.",
+        "Quick trick: pretend every coin is the cheaper kind, then each dearer coin adds the difference in value."
+      ]
+    }
+  ]
+}

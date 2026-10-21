@@ -1,0 +1,103 @@
+{
+  "slug": "math-solving-linear-equations",
+  "order": 1,
+  "title": "Linear Equations",
+  "estMinutes": 35,
+  "focusSkills": ["linear-equations"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "I think of a number, double it and add $7$. I get the same as when I triple it and take away $5$. What is my number? Can you write it as one equation?",
+      "placeholder": "My equation… My number…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Name it, write it, solve it",
+          "body": "Give the unknown a letter and say what it stands for: \"let $x$ be the number\". Write what the words say, one phrase at a time. Then do the same thing to both sides until $x$ is alone. If there are fractions, multiply both sides by a common denominator first to clear them."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: clear the fractions",
+          "problem": "Solve $\\frac{x}{3} + \\frac{x}{4} = 14$.",
+          "steps": [
+            {
+              "text": "Multiply both sides by $12$, which both $3$ and $4$ go into: $4x + 3x = 168$."
+            },
+            {
+              "text": "Collect like terms: $7x = 168$."
+            },
+            {
+              "text": "Divide by $7$: $x = 24$. Check: $\\frac{24}{3} + \\frac{24}{4} = 8 + 6 = 14$ ✓.",
+              "try": {
+                "prompt": "What is $x$?",
+                "accepted": ["24"],
+                "compute": "168/7"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Words into symbols",
+          "body": "\"$5$ less than $x$\" is $x - 5$, but \"$x$ less than $5$\" is $5 - x$. \"Is\" means $=$. Three consecutive whole numbers are $n$, $n + 1$, $n + 2$; consecutive odd (or even) numbers are $n$, $n + 2$, $n + 4$. Choosing the MIDDLE one as $n$ often makes the algebra shorter."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: consecutive odd numbers",
+          "problem": "Three consecutive odd numbers add up to $117$. What is the largest?",
+          "steps": [
+            {
+              "text": "Call them $n$, $n + 2$ and $n + 4$. Their sum is $3n + 6 = 117$."
+            },
+            {
+              "text": "So $3n = 111$.",
+              "try": {
+                "prompt": "What is $n$?",
+                "accepted": ["37"],
+                "compute": "(117-6)/3"
+              }
+            },
+            {
+              "text": "The numbers are $37$, $39$ and $41$. The question asks for the largest: $41$.",
+              "try": {
+                "prompt": "What is the largest number?",
+                "accepted": ["41"],
+                "compute": "(117-6)/3 + 4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: solving for the wrong thing",
+          "body": "Finding $n$ is not always the end: the question may ask for the largest number, or for $2n + 1$. Read the last line again before you answer. And watch the signs when you open brackets: $-(x - 3) = -x + 3$, and $-3(x - 1) = -3x + 3$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m03.linear-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m03.linear-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which phrase is easiest to turn into symbols the wrong way round? Write it both ways."
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

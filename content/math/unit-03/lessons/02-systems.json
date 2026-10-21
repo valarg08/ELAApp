@@ -1,0 +1,103 @@
+{
+  "slug": "math-systems",
+  "order": 2,
+  "title": "Systems of Equations",
+  "estMinutes": 35,
+  "focusSkills": ["systems"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Two numbers add up to $30$ and differ by $8$. What are they? How did you find them?",
+      "placeholder": "The numbers are… I found them by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Two unknowns, two equations",
+          "body": "With two unknowns you need two equations. Elimination: add or subtract the equations so one letter cancels. Substitution: solve one equation for a letter and put that into the other. Pick whichever makes a letter vanish fastest."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: add to eliminate",
+          "problem": "Two numbers add up to $30$ and differ by $8$. What are they?",
+          "steps": [
+            {
+              "text": "Write the two equations: $x + y = 30$ and $x - y = 8$."
+            },
+            {
+              "text": "Add them: the $y$'s cancel and $2x = 38$, so $x = 19$."
+            },
+            {
+              "text": "Put $x = 19$ back into $x + y = 30$ to find $y$.",
+              "try": {
+                "prompt": "What is $y$?",
+                "accepted": ["11"],
+                "compute": "30-19"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Find what is asked, not always $x$ and $y$",
+          "body": "AMC questions often ask for $x + y$ or $x - y$, and you can get it in one step. If $3x + 2y = 17$ and $2x + 3y = 13$, adding gives $5x + 5y = 30$, so $x + y = 6$ without ever finding $x$ or $y$. Look at the question before you start solving."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: tickets",
+          "problem": "Adult tickets cost $\\$8$ and child tickets $\\$5$. A show sold $40$ tickets for $\\$266$. How many adult tickets were sold?",
+          "steps": [
+            {
+              "text": "Let $a$ be adult tickets. Then $40 - a$ are child tickets, and $8a + 5(40 - a) = 266$."
+            },
+            {
+              "text": "Open the bracket: $8a + 200 - 5a = 266$, so $3a = 66$.",
+              "try": {
+                "prompt": "What is $3a$?",
+                "accepted": ["66"],
+                "compute": "266-200"
+              }
+            },
+            {
+              "text": "So $a = 22$ adult tickets (and $18$ child tickets: $176 + 90 = 266$ ✓).",
+              "try": {
+                "prompt": "How many adult tickets?",
+                "accepted": ["22"],
+                "compute": "(266-200)/3"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: stopping halfway",
+          "body": "After finding one letter, check which one the question wants, and put your answer into BOTH equations to check it. Also, two equations don't always give one answer: $x + y = 5$ and $2x + 2y = 7$ have none (the lines are parallel), and $x + y = 5$ and $2x + 2y = 10$ have infinitely many."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m03.systems-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m03.systems-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "When a question asks for $x + y$, what will you try before solving for $x$ and $y$?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

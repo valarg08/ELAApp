@@ -1,0 +1,63 @@
+{
+  "slug": "math-linear-equations-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Linear Equations & Word Problems",
+  "estMinutes": 40,
+  "focusSkills": [
+    "linear-equations",
+    "systems",
+    "distance-rate-time",
+    "work-mixtures",
+    "ages-coins-money"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which kind of word problem do you set up fastest now, and which one still makes you stop and think?",
+      "placeholder": "Fastest… Still tricky…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Equations and systems: quick review",
+          "body": "Name the unknown, write what the words say, clear fractions by multiplying both sides. Consecutive numbers: $n$, $n + 1$, $n + 2$ (odd or even: $n$, $n + 2$, $n + 4$). For two unknowns, add or subtract the equations to cancel a letter, and look for a shortcut to what is asked, like $x + y$."
+        },
+        {
+          "kind": "definition",
+          "title": "Word problems: quick review",
+          "body": "$d = rt$: towards each other, speeds add; chasing, they subtract. Work: rates ($\\frac{1}{\\text{time}}$) add, and a drain subtracts. Mixtures: follow the pure part. Ages: make a table; age differences never change. Coins: one equation for how many, one for how much."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m03.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m03.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which set-up habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

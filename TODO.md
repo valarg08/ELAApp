@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-16 (M2 built: Math Unit 2 published; on branch phase-m2).
+Last updated: 2026-10-21 (M3 built: Math Unit 3 published; on branch phase-m3).
 
 ## Done so far
 
@@ -12,7 +12,7 @@ Last updated: 2026-10-16 (M2 built: Math Unit 2 published; on branch phase-m2).
 - [x] E0–E15: the whole Essay Writing track (§9.12)
 - [x] P5a: teacher progress views: the class heatmap and the student profile (§11.3)
 - [x] M0: the Math track engine (math-design.md §2)
-- [x] M0.5, M1 and M2: the Math practice upgrade and Math Units 1–2 (math-design.md §3, §4.1, §4.2)
+- [x] M0.5 and M1–M3: the Math practice upgrade and Math Units 1–3 (math-design.md §3, §4.1–§4.3)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -45,7 +45,7 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
 - [x] **M1** Unit 1 Problem Solving & the AMC 10: finish the lessons after the sample lesson (incl. smart guessing & the 2-minute rule), the ⭐ check (100%), publish the unit, in the M0.5 format
 - [ ] Math extras noted in M0: `$$…$$` display math
 - [x] **M2** Unit 2 Arithmetic & Number Sense: 5 lessons and the ⭐ check (100%), published, with its fact sheet
-- [ ] **M3** Unit 3 Linear Equations & Word Problems
+- [x] **M3** Unit 3 Linear Equations & Word Problems: 5 lessons and the ⭐ check (100%), published, with its fact sheet
 - [ ] **M4** Unit 4 Quadratics & Polynomials
 - [ ] **M5** Unit 5 Functions & Inequalities
 - [ ] **M6** Unit 6 Sequences & Patterns

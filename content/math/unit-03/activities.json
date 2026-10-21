@@ -1,0 +1,2167 @@
+[
+  {
+    "key": "m03.linear-practice",
+    "type": "PROBLEMS",
+    "title": "Linear equations",
+    "instructions": "Type each answer and press Check. Name the unknown, write what the words say, then do the same to both sides. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "two-step",
+        "prompt": "Solve $[[a]]x + [[b]] = [[c]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(c+b)/a]]",
+              "why": "Undo adding $[[b]]$ by SUBTRACTING $[[b]]$ from both sides."
+            }
+          ]
+        },
+        "hints": [
+          "First take $[[b]]$ away from both sides.",
+          "$[[a]]x = [[c-b]]$. Now divide both sides by $[[a]]$."
+        ],
+        "solution": "Take $[[b]]$ from both sides: $[[a]]x = [[c-b]]$. Divide by $[[a]]$: $x = [[n]]$. Check: $[[a]] \\times [[n]] + [[b]] = [[c]]$ ✓.",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "(c-b)/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "n": {
+              "from": -5,
+              "to": 12
+            },
+            "b": {
+              "from": 1,
+              "to": 20
+            },
+            "c": {
+              "let": "a*n + b"
+            }
+          },
+          "where": ["n != 0"]
+        }
+      },
+      {
+        "id": "both-sides",
+        "prompt": "Solve $[[a]]x - [[b]] = [[c]]x + [[d]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(b+d)/(a+c)]]",
+              "why": "Move $[[c]]x$ by SUBTRACTING it from both sides: that leaves $[[a-c]]x$, not $[[a+c]]x$."
+            }
+          ]
+        },
+        "hints": [
+          "Get the $x$ terms on one side: subtract $[[c]]x$ from both sides.",
+          "$[[a-c]]x - [[b]] = [[d]]$. Now add $[[b]]$ to both sides."
+        ],
+        "solution": "Subtract $[[c]]x$: $[[a-c]]x - [[b]] = [[d]]$. Add $[[b]]$: $[[a-c]]x = [[b+d]]$. Divide: $x = [[n]]$.",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "(b+d)/(a-c)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 9
+            },
+            "c": {
+              "from": 1,
+              "to": 3
+            },
+            "n": {
+              "from": 2,
+              "to": 12
+            },
+            "b": {
+              "from": 1,
+              "to": 15
+            },
+            "d": {
+              "let": "(a-c)*n - b"
+            }
+          },
+          "where": ["d > 0"]
+        }
+      },
+      {
+        "id": "clear-fractions",
+        "prompt": "Solve $\\frac{x}{[[p]]} + \\frac{x}{[[q]]} = [[s]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[v]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[s*(p+q)]]",
+              "why": "$\\frac{x}{[[p]]} + \\frac{x}{[[q]]}$ is not $\\frac{x}{[[p+q]]}$. Multiply both sides by $[[lcm(p,q)]]$ to clear the fractions."
+            }
+          ]
+        },
+        "hints": [
+          "Multiply both sides by $[[lcm(p,q)]]$, which both $[[p]]$ and $[[q]]$ go into.",
+          "That gives $[[lcm(p,q)/p]]x + [[lcm(p,q)/q]]x = [[s*lcm(p,q)]]$."
+        ],
+        "solution": "Multiply by $[[lcm(p,q)]]$: $[[lcm(p,q)/p]]x + [[lcm(p,q)/q]]x = [[s*lcm(p,q)]]$, so $[[lcm(p,q)/p + lcm(p,q)/q]]x = [[s*lcm(p,q)]]$ and $x = [[v]]$. Check: $\\frac{[[v]]}{[[p]]} + \\frac{[[v]]}{[[q]]} = [[v/p]] + [[v/q]] = [[s]]$ ✓.",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "s*p*q/(p+q)",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [2, 3, 4, 5, 6]
+            },
+            "q": {
+              "choose": [3, 4, 6, 8, 10]
+            },
+            "m": {
+              "from": 1,
+              "to": 4
+            },
+            "v": {
+              "let": "m*lcm(p,q)"
+            },
+            "s": {
+              "let": "v/p + v/q"
+            }
+          },
+          "where": ["p < q"]
+        }
+      },
+      {
+        "id": "consecutive-even",
+        "prompt": "The sum of four consecutive even numbers is $[[4*n+12]]$. What is the smallest of them?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n+6]]",
+              "why": "That is the largest. The question asks for the smallest."
+            },
+            {
+              "value": "[[n+3]]",
+              "why": "That is their average, which falls between two of the even numbers. Write them as $n$, $n + 2$, $n + 4$, $n + 6$."
+            }
+          ]
+        },
+        "hints": [
+          "Call them $n$, $n + 2$, $n + 4$ and $n + 6$.",
+          "Their sum is $4n + 12 = [[4*n+12]]$."
+        ],
+        "solution": "The numbers are $n$, $n + 2$, $n + 4$, $n + 6$, with sum $4n + 12 = [[4*n+12]]$. So $4n = [[4*n]]$ and $n = [[n]]$: the numbers are $[[n]]$, $[[n+2]]$, $[[n+4]]$ and $[[n+6]]$.",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "(4*n+12-12)/4",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 40,
+              "step": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "less-than-phrase",
+        "prompt": "Five less than three times a number is the same as the number increased by $[[k]]$. What is the number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(k+5)/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(k-5)/2]]",
+              "why": "\"Five less than three times a number\" means take $5$ away: $3x - 5$, not $3x + 5$."
+            }
+          ]
+        },
+        "hints": [
+          "\"Five less than three times a number\" is $3x - 5$.",
+          "Solve $3x - 5 = x + [[k]]$."
+        ],
+        "solution": "$3x - 5 = x + [[k]]$. Subtract $x$ and add $5$: $2x = [[k+5]]$, so $x = [[(k+5)/2]]$.",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "(k+5)/2",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 29,
+              "step": 2
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m03.linear-set",
+    "type": "PROBLEM_SET",
+    "title": "Linear equations challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "open-bracket",
+        "prompt": "If $4(x - 3) = 2x + 6$, what is $x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4.5$", "$6$", "$9$", "$18$"],
+          "correct": "D",
+          "why": {
+            "B": "$4(x - 3)$ is $4x - 12$, not $4x - 3$: multiply both terms in the bracket."
+          }
+        },
+        "solution": "$4x - 12 = 2x + 6$, so $2x = 18$ and $x = 9$, choice (D). Check: $4 \\times 6 = 24$ and $18 + 6 = 24$ ✓.",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "18/2"
+      },
+      {
+        "id": "five-consecutive-product",
+        "prompt": "The sum of five consecutive whole numbers is $105$. What is the product of the smallest and the largest?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$399$", "$437$", "$440$", "$441$", "$483$"],
+          "correct": "B",
+          "why": {
+            "D": "$441 = 21^2$ is the middle number squared. The smallest and largest are $19$ and $23$."
+          }
+        },
+        "solution": "The middle number is the average: $\\frac{105}{5} = 21$. The numbers are $19$ to $23$, and $19 \\times 23 = 437$, choice (B). (Shortcut: $(21 - 2)(21 + 2) = 441 - 4$.)",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "19*23"
+      },
+      {
+        "id": "two-thirds-half",
+        "prompt": "When $7$ is added to two-thirds of a number, the result is $5$ more than half of the number. What is the number?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-12$", "$-6$", "$6$", "$12$", "$72$"],
+          "correct": "A",
+          "why": {
+            "D": "Check the sign: $\\frac{2}{3}x - \\frac{1}{2}x = 5 - 7 = -2$, so $\\frac{x}{6}$ is negative."
+          }
+        },
+        "solution": "$\\frac{2}{3}x + 7 = \\frac{1}{2}x + 5$. Multiply by $6$: $4x + 42 = 3x + 30$, so $x = -12$, choice (A). Check: $-8 + 7 = -1$ and $-6 + 5 = -1$ ✓.",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "30-42"
+      },
+      {
+        "id": "pens-pencils",
+        "prompt": "A pen costs $3$ dollars more than a pencil. Four pens and six pencils cost $27$ dollars in all. How many dollars does one pencil cost?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1.2$", "$1.5$", "$2.4$", "$3$", "$4.5$"],
+          "correct": "B",
+          "why": {
+            "E": "That is the price of a pen. The question asks for a pencil."
+          }
+        },
+        "solution": "Let a pencil cost $p$. Then $4(p + 3) + 6p = 27$, so $10p + 12 = 27$ and $p = 1.5$ dollars, choice (B). Check: pens cost $4.5$, and $18 + 9 = 27$ ✓.",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "(27-12)/10"
+      },
+      {
+        "id": "no-solution",
+        "prompt": "For which value of $a$ does the equation $a(x - 2) = 6x + 4$ have NO solution?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-2$", "$0$", "$2$", "$4$", "$6$"],
+          "correct": "E",
+          "why": {
+            "A": "With $a = -2$ the equation becomes $-8x = 0$, which has the solution $x = 0$."
+          }
+        },
+        "solution": "Rearrange: $ax - 2a = 6x + 4$, so $(a - 6)x = 2a + 4$. If $a = 6$, this says $0 = 16$: no $x$ works. For any other $a$ we can divide by $a - 6$ and get one solution. So $a = 6$, choice (E).",
+        "skill": "linear-equations",
+        "difficulty": 3,
+        "compute": "6"
+      }
+    ]
+  },
+  {
+    "key": "m03.systems-practice",
+    "type": "PROBLEMS",
+    "title": "Systems of equations",
+    "instructions": "Type each answer and press Check. Add or subtract the equations to cancel a letter, and look for a shortcut to what is asked. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sum-and-difference",
+        "prompt": "Two numbers add up to $[[x+y]]$ and differ by $[[x-y]]$. What is the larger number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[y]]",
+              "why": "That is the smaller number."
+            },
+            {
+              "value": "[[(x+y)/2]]",
+              "why": "That is halfway between them. The larger one is half the difference, $[[(x-y)/2]]$, above that."
+            }
+          ]
+        },
+        "hints": [
+          "Write $a + b = [[x+y]]$ and $a - b = [[x-y]]$.",
+          "Add the two equations: $2a = [[2*x]]$."
+        ],
+        "solution": "Adding $a + b = [[x+y]]$ and $a - b = [[x-y]]$ gives $2a = [[2*x]]$, so the larger number is $[[x]]$ (and the smaller is $[[y]]$).",
+        "skill": "systems",
+        "difficulty": 1,
+        "compute": "((x+y)+(x-y))/2",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 10,
+              "to": 60
+            },
+            "y": {
+              "from": 2,
+              "to": 40
+            }
+          },
+          "where": ["x > y"]
+        }
+      },
+      {
+        "id": "add-to-eliminate",
+        "prompt": "If $[[a]]x + [[b]]y = [[a*p+b*q]]$ and $[[a]]x - [[b]]y = [[a*p-b*q]]$, what is $x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[q]]",
+              "why": "That is $y$. The question asks for $x$."
+            }
+          ]
+        },
+        "hints": ["Add the two equations: the $y$ terms cancel.", "$[[2*a]]x = [[2*a*p]]$."],
+        "solution": "Adding the equations cancels $y$: $[[2*a]]x = [[2*a*p]]$, so $x = [[p]]$. (Subtracting them gives $[[2*b]]y = [[2*b*q]]$, so $y = [[q]]$.)",
+        "skill": "systems",
+        "difficulty": 1,
+        "compute": "p",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 2,
+              "to": 6
+            },
+            "p": {
+              "from": 1,
+              "to": 9
+            },
+            "q": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["p != q"]
+        }
+      },
+      {
+        "id": "find-x-plus-y",
+        "prompt": "If $[[m]]x + [[n]]y = [[m*p+n*q]]$ and $[[n]]x + [[m]]y = [[n*p+m*q]]$, what is $x + y$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p+q]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(m+n)*(p+q)]]",
+              "why": "That is $[[m+n]](x + y)$. Divide by $[[m+n]]$."
+            }
+          ]
+        },
+        "hints": [
+          "You don't need $x$ and $y$ on their own. Add the two equations.",
+          "Adding gives $[[m+n]]x + [[m+n]]y = [[(m+n)*(p+q)]]$."
+        ],
+        "solution": "Add the equations: $[[m+n]]x + [[m+n]]y = [[(m+n)*(p+q)]]$, so $[[m+n]](x + y) = [[(m+n)*(p+q)]]$ and $x + y = [[p+q]]$.",
+        "skill": "systems",
+        "difficulty": 2,
+        "compute": "p+q",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 7
+            },
+            "n": {
+              "from": 1,
+              "to": 6
+            },
+            "p": {
+              "from": 1,
+              "to": 9
+            },
+            "q": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["m != n", "m*p + n*q != n*p + m*q"]
+        }
+      },
+      {
+        "id": "ticket-sales",
+        "prompt": "A show sold $[[t]]$ tickets for $[[8*a + 5*(t-a)]]$ dollars in all. Adult tickets cost $8$ dollars and child tickets $5$ dollars. How many adult tickets were sold?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[t-a]]",
+              "why": "That is the number of child tickets."
+            }
+          ]
+        },
+        "hints": [
+          "Let $a$ be the adult tickets, so $[[t]] - a$ are child tickets.",
+          "$8a + 5([[t]] - a) = [[8*a + 5*(t-a)]]$."
+        ],
+        "solution": "$8a + 5([[t]] - a) = [[8*a + 5*(t-a)]]$, so $3a + [[5*t]] = [[8*a + 5*(t-a)]]$ and $3a = [[3*a]]$: $a = [[a]]$ adult tickets.",
+        "skill": "systems",
+        "difficulty": 2,
+        "compute": "(8*a + 5*(t-a) - 5*t)/3",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 30,
+              "to": 60
+            },
+            "a": {
+              "from": 5,
+              "to": 55
+            }
+          },
+          "where": ["a < t", "t != 2*a"]
+        }
+      },
+      {
+        "id": "lines-cross",
+        "prompt": "The lines $y = [[m]]x - [[b]]$ and $y = [[c]] - [[k]]x$ cross at one point. What is the $x$-coordinate of that point?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[m*n - b]]",
+              "why": "That is the $y$-coordinate. The question asks for $x$."
+            }
+          ]
+        },
+        "hints": [
+          "Where the lines cross, both $y$ values are equal: $[[m]]x - [[b]] = [[c]] - [[k]]x$.",
+          "$[[m+k]]x = [[b+c]]$."
+        ],
+        "solution": "Set the $y$ values equal: $[[m]]x - [[b]] = [[c]] - [[k]]x$, so $[[m+k]]x = [[b+c]]$ and $x = [[n]]$. (Then $y = [[m]] \\times [[n]] - [[b]] = [[m*n-b]]$.)",
+        "skill": "systems",
+        "difficulty": 2,
+        "compute": "(b+c)/(m+k)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 6
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            },
+            "n": {
+              "from": 1,
+              "to": 8
+            },
+            "b": {
+              "from": 1,
+              "to": 12
+            },
+            "c": {
+              "let": "(m+k)*n - b"
+            }
+          },
+          "where": ["c > 0", "m*n - b != n"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m03.systems-set",
+    "type": "PROBLEM_SET",
+    "title": "Systems challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set.",
+    "problems": [
+      {
+        "id": "product-xy",
+        "prompt": "If $x + y = 12$ and $x - y = 4$, what is $xy$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$24$", "$32$", "$36$", "$48$"],
+          "correct": "C",
+          "why": {
+            "D": "$36 = 6 \\times 6$ would need $x = y$, but $x - y = 4$."
+          }
+        },
+        "solution": "Adding gives $2x = 16$, so $x = 8$ and $y = 4$. Then $xy = 32$, choice (C).",
+        "skill": "systems",
+        "difficulty": 1,
+        "compute": "8*4"
+      },
+      {
+        "id": "a-plus-b",
+        "prompt": "If $5a + 2b = 31$ and $2a + 5b = 25$, what is $a + b$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$7$", "$8$", "$9$", "$56$"],
+          "correct": "C",
+          "why": {
+            "E": "$56$ is $7(a + b)$. Divide by $7$."
+          }
+        },
+        "solution": "Add the equations: $7a + 7b = 56$, so $a + b = 8$, choice (C). You never need $a$ and $b$ on their own.",
+        "skill": "systems",
+        "difficulty": 2,
+        "compute": "56/7"
+      },
+      {
+        "id": "heads-and-legs",
+        "prompt": "A farm has only chickens and cows. Together they have $50$ heads and $140$ legs. How many cows are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$15$", "$20$", "$25$", "$30$", "$35$"],
+          "correct": "B",
+          "why": {
+            "D": "That is the number of chickens."
+          }
+        },
+        "solution": "If all $50$ were chickens there would be $100$ legs. Each cow adds $2$ more legs, and there are $40$ extra, so there are $20$ cows, choice (B). (As a system: $h + w = 50$ and $2h + 4w = 140$.)",
+        "skill": "systems",
+        "difficulty": 2,
+        "compute": "(140-100)/2"
+      },
+      {
+        "id": "three-sums",
+        "prompt": "If $x + y = 10$, $y + z = 14$ and $x + z = 16$, what is $x + y + z$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$18$", "$20$", "$22$", "$24$", "$40$"],
+          "correct": "B",
+          "why": {
+            "E": "$40$ counts every letter twice: it is $2(x + y + z)$."
+          }
+        },
+        "solution": "Add all three: each letter appears twice, so $2(x + y + z) = 40$ and $x + y + z = 20$, choice (B).",
+        "skill": "systems",
+        "difficulty": 2,
+        "compute": "(10+14+16)/2"
+      },
+      {
+        "id": "parallel-lines",
+        "prompt": "For which value of $k$ do the equations $2x + 3y = 7$ and $kx + 6y = 9$ have NO common solution?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$6$", "$9$"],
+          "correct": "C",
+          "why": {
+            "A": "With $k = 2$ the lines have different slopes, so they cross once."
+          }
+        },
+        "solution": "Doubling the first equation gives $4x + 6y = 14$. If $k = 4$, the second says $4x + 6y = 9$: the same left side can't equal both $14$ and $9$, so there is no solution (the lines are parallel). For any other $k$ the lines cross. So $k = 4$, choice (C).",
+        "skill": "systems",
+        "difficulty": 3,
+        "compute": "4"
+      }
+    ]
+  },
+  {
+    "key": "m03.drt-practice",
+    "type": "PROBLEMS",
+    "title": "Distance, rate and time",
+    "instructions": "Type each answer and press Check. Use $d = rt$, keep the units matched, and decide whether speeds add or subtract. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "cyclists-meet",
+        "prompt": "Two cyclists start $[[(u+v)*t]]$ km apart and ride towards each other at $[[u]]$ km/h and $[[v]]$ km/h. After how many hours do they meet?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[t]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(u+v)*t/(v-u)]]",
+              "why": "They ride TOWARDS each other, so the gap closes at the sum of the speeds, $[[u]] + [[v]]$."
+            }
+          ]
+        },
+        "hints": [
+          "How much does the gap shrink each hour?",
+          "The gap shrinks by $[[u]] + [[v]] = [[u+v]]$ km each hour."
+        ],
+        "solution": "The gap closes at $[[u]] + [[v]] = [[u+v]]$ km/h, so they meet after $\\frac{[[(u+v)*t]]}{[[u+v]]} = [[t]]$ hours.",
+        "skill": "distance-rate-time",
+        "difficulty": 1,
+        "compute": "(u+v)*t/(u+v)",
+        "template": {
+          "vars": {
+            "u": {
+              "from": 10,
+              "to": 20
+            },
+            "v": {
+              "from": 12,
+              "to": 25
+            },
+            "t": {
+              "from": 1,
+              "to": 5
+            }
+          },
+          "where": ["v > u"]
+        }
+      },
+      {
+        "id": "minutes-to-hours",
+        "prompt": "A car drives $[[d]]$ km in $[[m]]$ minutes. What is its average speed, in km/h?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[60*d/m]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[d/m]]",
+              "why": "That is km per MINUTE. An hour has $60$ minutes."
+            }
+          ]
+        },
+        "hints": [
+          "$[[m]]$ minutes is $\\frac{[[m]]}{60}$ of an hour.",
+          "Speed $= \\frac{\\text{distance}}{\\text{time}} = [[d]] \\div \\frac{[[m]]}{60}$."
+        ],
+        "solution": "$[[m]]$ minutes is $\\frac{[[m]]}{60}$ hours, so the speed is $[[d]] \\div \\frac{[[m]]}{60} = \\frac{[[d]] \\times 60}{[[m]]} = [[60*d/m]]$ km/h.",
+        "skill": "distance-rate-time",
+        "difficulty": 1,
+        "compute": "d/(m/60)",
+        "template": {
+          "vars": {
+            "m": {
+              "choose": [10, 12, 15, 20, 30, 40, 45]
+            },
+            "d": {
+              "from": 5,
+              "to": 60
+            }
+          },
+          "where": ["mod(60*d, m) == 0"]
+        }
+      },
+      {
+        "id": "dog-chases-cat",
+        "prompt": "A dog chases a cat that is $[[w*t]]$ m ahead. The dog runs at $[[v+w]]$ m/s and the cat at $[[v]]$ m/s, in the same direction. After how many seconds does the dog catch the cat?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[t]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[w*t/(2*v+w)]]",
+              "why": "They run the SAME way, so the gap closes at the difference of the speeds, not the sum."
+            }
+          ]
+        },
+        "hints": [
+          "Each second, how much closer does the dog get?",
+          "The gap closes by $[[v+w]] - [[v]] = [[w]]$ m each second."
+        ],
+        "solution": "The gap closes at $[[v+w]] - [[v]] = [[w]]$ m/s, so the dog catches the cat after $\\frac{[[w*t]]}{[[w]]} = [[t]]$ seconds.",
+        "skill": "distance-rate-time",
+        "difficulty": 2,
+        "compute": "w*t/((v+w)-v)",
+        "template": {
+          "vars": {
+            "v": {
+              "from": 3,
+              "to": 8
+            },
+            "w": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 5,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "late-and-early",
+        "prompt": "Ben cycles to school. At $10$ km/h he arrives $[[p]]$ minutes late; at $15$ km/h he arrives $[[q]]$ minutes early. How far is school, in km?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(p+q)/2]]"],
+          "form": "any"
+        },
+        "hints": [
+          "The two trips take $[[p]] + [[q]] = [[p+q]]$ minutes apart. Write that in hours.",
+          "$\\frac{d}{10} - \\frac{d}{15} = \\frac{[[p+q]]}{60}$, and $\\frac{d}{10} - \\frac{d}{15} = \\frac{d}{30}$."
+        ],
+        "solution": "The times differ by $[[p+q]]$ minutes, or $\\frac{[[p+q]]}{60}$ hours. So $\\frac{d}{10} - \\frac{d}{15} = \\frac{d}{30} = \\frac{[[p+q]]}{60}$, and $d = \\frac{[[p+q]]}{2} = [[(p+q)/2]]$ km.",
+        "skill": "distance-rate-time",
+        "difficulty": 3,
+        "compute": "((p+q)/60)/(1/10-1/15)",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 2,
+              "to": 12
+            },
+            "q": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["mod(p+q, 2) == 0"]
+        }
+      },
+      {
+        "id": "trail-up-down",
+        "prompt": "Mia jogs up a trail at $[[u]]$ km/h and back down the same trail at $[[v]]$ km/h. The round trip takes $[[t]]$ hours. How long is the trail, in km?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[t*u*v/(u+v)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[t*(u+v)/4]]",
+              "why": "That uses the average of the two speeds. She spends longer at the slower speed: write each part's time as distance $\\div$ speed."
+            }
+          ]
+        },
+        "hints": [
+          "Call the length $d$. Going up takes $\\frac{d}{[[u]]}$ hours and coming down $\\frac{d}{[[v]]}$ hours.",
+          "$\\frac{d}{[[u]]} + \\frac{d}{[[v]]} = [[t]]$."
+        ],
+        "solution": "$\\frac{d}{[[u]]} + \\frac{d}{[[v]]} = [[t]]$. Multiply by $[[u*v]]$: $[[v]]d + [[u]]d = [[t*u*v]]$, so $d = \\frac{[[t*u*v]]}{[[u+v]]} = [[t*u*v/(u+v)]]$ km.",
+        "skill": "distance-rate-time",
+        "difficulty": 3,
+        "compute": "t/(1/u + 1/v)",
+        "template": {
+          "vars": {
+            "u": {
+              "choose": [4, 6, 8]
+            },
+            "v": {
+              "choose": [6, 8, 12]
+            },
+            "t": {
+              "choose": [1, 2, 3, 5]
+            }
+          },
+          "where": ["u < v", "mod(t*u*v, u + v) == 0"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m03.drt-set",
+    "type": "PROBLEM_SET",
+    "title": "Distance, rate and time challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set.",
+    "problems": [
+      {
+        "id": "two-legs",
+        "prompt": "A train travels $240$ km at $80$ km/h, then $150$ km at $100$ km/h. How many hours does the whole trip take?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3.5$", "$4$", "$4.5$", "$5$", "$5.5$"],
+          "correct": "C"
+        },
+        "solution": "The first part takes $\\frac{240}{80} = 3$ hours and the second $\\frac{150}{100} = 1.5$ hours: $4.5$ hours in all, choice (C).",
+        "skill": "distance-rate-time",
+        "difficulty": 1,
+        "compute": "240/80 + 150/100"
+      },
+      {
+        "id": "head-on",
+        "prompt": "Two cars are $378$ km apart and drive towards each other, one at $60$ km/h and the other at $66$ km/h. After how many hours do they meet?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2.5$", "$3$", "$3.5$", "$5.7$", "$6.3$"],
+          "correct": "B",
+          "why": {
+            "E": "That is how long the first car alone would take. Both cars close the gap."
+          }
+        },
+        "solution": "The gap closes at $60 + 66 = 126$ km/h, so they meet after $\\frac{378}{126} = 3$ hours, choice (B).",
+        "skill": "distance-rate-time",
+        "difficulty": 1,
+        "compute": "378/(60+66)"
+      },
+      {
+        "id": "sister-catches-up",
+        "prompt": "Tom leaves home walking at $5$ km/h. One hour later his sister follows him on a bike at $15$ km/h. How many minutes after she leaves does she catch up with him?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$15$", "$20$", "$30$", "$45$", "$60$"],
+          "correct": "C",
+          "why": {
+            "B": "That uses her full speed. The gap closes at $15 - 5 = 10$ km/h, because Tom keeps walking."
+          }
+        },
+        "solution": "When she leaves, Tom is $5$ km ahead. The gap closes at $15 - 5 = 10$ km/h, so she catches him after $\\frac{5}{10} = \\frac{1}{2}$ hour: $30$ minutes, choice (C).",
+        "skill": "distance-rate-time",
+        "difficulty": 2,
+        "compute": "5/(15-5)*60"
+      },
+      {
+        "id": "escalator",
+        "prompt": "Walking up a moving escalator, Lia reaches the top in $20$ seconds. Standing still on it, she takes $30$ seconds. How many seconds would she take to walk up it if it were switched off?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$25$", "$50$", "$60$", "$70$"],
+          "correct": "D",
+          "why": {
+            "A": "Times don't subtract. Her walking SPEED is the difference of the two speeds."
+          }
+        },
+        "solution": "Say the escalator is $60$ steps long. Walking on it she covers $3$ steps a second; the escalator alone moves $2$ steps a second. So her own walking speed is $1$ step a second, and $60$ steps take $60$ seconds, choice (D).",
+        "skill": "distance-rate-time",
+        "difficulty": 3,
+        "compute": "1/(1/20-1/30)"
+      },
+      {
+        "id": "boat-current",
+        "prompt": "A boat goes $24$ km downstream in $2$ hours and comes back upstream in $3$ hours. What is the speed of the current, in km/h?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$4$", "$8$", "$10$"],
+          "correct": "B",
+          "why": {
+            "C": "$4$ is the difference between the two speeds. The current adds on the way down and subtracts on the way up, so it is HALF that difference.",
+            "E": "$10$ is the boat's speed in still water."
+          }
+        },
+        "solution": "Downstream: $\\frac{24}{2} = 12$ km/h $=$ boat $+$ current. Upstream: $\\frac{24}{3} = 8$ km/h $=$ boat $-$ current. Subtracting, $2 \\times$ current $= 4$, so the current is $2$ km/h, choice (B).",
+        "skill": "distance-rate-time",
+        "difficulty": 3,
+        "compute": "(24/2 - 24/3)/2"
+      }
+    ]
+  },
+  {
+    "key": "m03.work-practice",
+    "type": "PROBLEMS",
+    "title": "Work and mixtures",
+    "instructions": "Type each answer and press Check. For work, add the rates. For mixtures, follow the pure part. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "mow-together",
+        "prompt": "Pat can mow a lawn in $[[a]]$ hours and Sam can mow it in $[[b]]$ hours. Working together, how many hours does it take them?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b/(a+b)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(a+b)/2]]",
+              "why": "That averages the times. Working together they are faster than either one alone."
+            },
+            {
+              "value": "[[a+b]]",
+              "why": "Adding the times means one works after the other. Add their RATES: $\\frac{1}{[[a]]} + \\frac{1}{[[b]]}$."
+            }
+          ]
+        },
+        "hints": [
+          "Pat mows $\\frac{1}{[[a]]}$ of the lawn per hour and Sam $\\frac{1}{[[b]]}$.",
+          "Together they mow $\\frac{1}{[[a]]} + \\frac{1}{[[b]]} = [[1/a + 1/b]]$ of the lawn per hour."
+        ],
+        "solution": "Together they mow $\\frac{1}{[[a]]} + \\frac{1}{[[b]]} = [[1/a + 1/b]]$ of the lawn per hour, so the lawn takes $1 \\div [[1/a + 1/b]] = [[a*b/(a+b)]]$ hours.",
+        "skill": "work-mixtures",
+        "difficulty": 1,
+        "compute": "1/(1/a + 1/b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          },
+          "where": ["a < b"]
+        }
+      },
+      {
+        "id": "tap-and-drain",
+        "prompt": "A tap fills a tub in $[[a]]$ minutes, and the drain empties a full tub in $[[b]]$ minutes. With the tap on and the drain open, how many minutes does it take to fill the tub?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b/(b-a)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a*b/(a+b)]]",
+              "why": "The drain works AGAINST the tap: subtract its rate instead of adding it."
+            }
+          ]
+        },
+        "hints": [
+          "The tap adds $\\frac{1}{[[a]]}$ of the tub per minute; the drain takes away $\\frac{1}{[[b]]}$.",
+          "Each minute the tub gains $\\frac{1}{[[a]]} - \\frac{1}{[[b]]} = [[1/a - 1/b]]$."
+        ],
+        "solution": "Each minute the tub gains $\\frac{1}{[[a]]} - \\frac{1}{[[b]]} = [[1/a - 1/b]]$ of its volume, so it fills in $1 \\div [[1/a - 1/b]] = [[a*b/(b-a)]]$ minutes.",
+        "skill": "work-mixtures",
+        "difficulty": 2,
+        "compute": "1/(1/a - 1/b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 3,
+              "to": 20
+            }
+          },
+          "where": ["a < b", "mod(a*b, b - a) == 0"]
+        }
+      },
+      {
+        "id": "add-water",
+        "prompt": "How many litres of pure water must be added to $[[v]]$ litres of $[[p]]\\%$ salt water to make it $[[q]]\\%$ salt?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[v*(p-q)/q]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[v*p/q]]",
+              "why": "That is the total volume at the end. Take away the $[[v]]$ litres you started with."
+            }
+          ]
+        },
+        "hints": [
+          "Adding water doesn't change the amount of salt: $\\frac{[[p]]}{100} \\times [[v]] = [[v*p/100]]$ litres.",
+          "At the end that salt is $[[q]]\\%$ of the total, so the total is $[[v*p/100]] \\div \\frac{[[q]]}{100}$."
+        ],
+        "solution": "The salt stays the same: $[[v*p/100]]$ litres. For it to be $[[q]]\\%$, the total must be $\\frac{[[v*p/100]]}{[[q/100]]} = [[v*p/q]]$ litres. So add $[[v*p/q]] - [[v]] = [[v*(p-q)/q]]$ litres of water.",
+        "skill": "work-mixtures",
+        "difficulty": 2,
+        "compute": "v*p/q - v",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [20, 30, 40, 50, 60]
+            },
+            "q": {
+              "choose": [10, 15, 20, 25]
+            },
+            "v": {
+              "choose": [4, 6, 8, 10, 12]
+            }
+          },
+          "where": ["q < p", "mod(v*(p-q), q) == 0"]
+        }
+      },
+      {
+        "id": "mix-percent",
+        "prompt": "$[[a]]$ litres of $[[p]]\\%$ juice are mixed with $[[b]]$ litres of $[[q]]\\%$ juice. What percent juice is the mix? Type just the number.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(a*p+b*q)/(a+b)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(p+q)/2]]",
+              "why": "That averages the percents, as if there were equal amounts of each. Follow the litres of juice."
+            }
+          ]
+        },
+        "hints": [
+          "Juice: $\\frac{[[p]]}{100} \\times [[a]] + \\frac{[[q]]}{100} \\times [[b]]$ litres.",
+          "That is $[[(a*p+b*q)/100]]$ litres of juice out of $[[a+b]]$ litres."
+        ],
+        "solution": "Juice: $[[a*p/100]] + [[b*q/100]] = [[(a*p+b*q)/100]]$ litres out of $[[a+b]]$ litres. As a percent: $\\frac{[[(a*p+b*q)/100]]}{[[a+b]]} \\times 100 = [[(a*p+b*q)/(a+b)]]\\%$.",
+        "skill": "work-mixtures",
+        "difficulty": 2,
+        "compute": "(a*p+b*q)/(a+b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 8
+            },
+            "b": {
+              "from": 1,
+              "to": 8
+            },
+            "p": {
+              "choose": [10, 20, 30, 40, 50]
+            },
+            "q": {
+              "choose": [60, 70, 80, 90, 100]
+            }
+          },
+          "where": ["a != b", "mod(a*p + b*q, a + b) == 0"]
+        }
+      },
+      {
+        "id": "workers-days",
+        "prompt": "$[[w]]$ workers build a wall in $[[d]]$ days. At the same rate, how many days would $[[v]]$ workers take?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[w*d/v]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[d*v/w]]",
+              "why": "More workers means FEWER days. The days go the other way: find the worker-days first."
+            }
+          ]
+        },
+        "hints": [
+          "The wall takes $[[w]] \\times [[d]] = [[w*d]]$ worker-days of work.",
+          "Share those $[[w*d]]$ worker-days among $[[v]]$ workers."
+        ],
+        "solution": "The wall is $[[w]] \\times [[d]] = [[w*d]]$ worker-days of work. With $[[v]]$ workers it takes $\\frac{[[w*d]]}{[[v]]} = [[w*d/v]]$ days.",
+        "skill": "work-mixtures",
+        "difficulty": 1,
+        "compute": "w*d/v",
+        "template": {
+          "vars": {
+            "w": {
+              "from": 2,
+              "to": 12
+            },
+            "d": {
+              "from": 2,
+              "to": 15
+            },
+            "v": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["v != w", "mod(w*d, v) == 0"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m03.work-set",
+    "type": "PROBLEM_SET",
+    "title": "Work and mixtures challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set.",
+    "problems": [
+      {
+        "id": "two-painters",
+        "prompt": "Ivy can paint a room in $4$ hours and Max can paint it in $12$ hours. Working together, how many hours do they take?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$6$", "$8$", "$16$"],
+          "correct": "A",
+          "why": {
+            "D": "That averages the times. Together they are faster than Ivy alone.",
+            "E": "That adds the times, as if one painted after the other."
+          }
+        },
+        "solution": "Together they paint $\\frac{1}{4} + \\frac{1}{12} = \\frac{4}{12} = \\frac{1}{3}$ of the room per hour, so they take $3$ hours, choice (A).",
+        "skill": "work-mixtures",
+        "difficulty": 1,
+        "compute": "1/(1/4 + 1/12)"
+      },
+      {
+        "id": "three-pipes",
+        "prompt": "Pipes A, B and C can each fill a pool on their own in $6$, $10$ and $15$ hours. With all three open, how many hours does it take?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$5$", "$10$"],
+          "correct": "B"
+        },
+        "solution": "Together: $\\frac{1}{6} + \\frac{1}{10} + \\frac{1}{15} = \\frac{5 + 3 + 2}{30} = \\frac{1}{3}$ of the pool per hour, so it takes $3$ hours, choice (B).",
+        "skill": "work-mixtures",
+        "difficulty": 2,
+        "compute": "1/(1/6 + 1/10 + 1/15)"
+      },
+      {
+        "id": "acid-mix",
+        "prompt": "How many litres of $60\\%$ acid must be mixed with $10$ litres of $20\\%$ acid to make a $30\\%$ acid mix?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$\\frac{10}{3}$", "$5$", "$10$"],
+          "correct": "C",
+          "why": {
+            "E": "Equal amounts would give the average, $40\\%$, not $30\\%$.",
+            "B": "Check: $10$ litres of $20\\%$ and $3$ of $60\\%$ hold $3.8$ litres of acid out of $13$: about $29\\%$."
+          }
+        },
+        "solution": "Acid: $0.2 \\times 10 + 0.6x = 0.3(10 + x)$, so $2 + 0.6x = 3 + 0.3x$, $0.3x = 1$ and $x = \\frac{10}{3}$ litres, choice (C).",
+        "skill": "work-mixtures",
+        "difficulty": 2,
+        "compute": "(3-2)/(0.6-0.3)"
+      },
+      {
+        "id": "joins-later",
+        "prompt": "Lea can do a job alone in $10$ days and Rob can do it alone in $15$ days. Lea works alone for $4$ days, then Rob joins her. How many more days do they need to finish the job?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$3.6$", "$4$", "$5$", "$6$"],
+          "correct": "B",
+          "why": {
+            "E": "$6$ days is how long the WHOLE job takes them together. Lea has already done part of it."
+          }
+        },
+        "solution": "In $4$ days Lea does $\\frac{4}{10} = \\frac{2}{5}$ of the job, leaving $\\frac{3}{5}$. Together they do $\\frac{1}{10} + \\frac{1}{15} = \\frac{1}{6}$ per day, so they need $\\frac{3}{5} \\div \\frac{1}{6} = \\frac{18}{5} = 3.6$ days, choice (B).",
+        "skill": "work-mixtures",
+        "difficulty": 3,
+        "compute": "(1 - 4/10)/(1/10 + 1/15)"
+      },
+      {
+        "id": "copper-alloy",
+        "prompt": "A $40$ kg alloy is $25\\%$ copper. How many kg of pure copper must be added to make it $40\\%$ copper?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$8$", "$10$", "$12$", "$15$"],
+          "correct": "C",
+          "why": {
+            "A": "$6$ kg is $15\\%$ of $40$, but adding copper also makes the total heavier. Check: $16$ out of $46$ kg is only about $35\\%$."
+          }
+        },
+        "solution": "There are $0.25 \\times 40 = 10$ kg of copper. Adding $x$ kg: $10 + x = 0.4(40 + x) = 16 + 0.4x$, so $0.6x = 6$ and $x = 10$ kg, choice (C). Check: $20$ out of $50$ kg is $40\\%$ ✓.",
+        "skill": "work-mixtures",
+        "difficulty": 3,
+        "compute": "(0.4*40 - 10)/0.6"
+      }
+    ]
+  },
+  {
+    "key": "m03.ages-practice",
+    "type": "PROBLEMS",
+    "title": "Ages, coins and money",
+    "instructions": "Type each answer and press Check. Make a table: for ages, one column per time; for coins, one equation for how many and one for how much. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "mother-twice",
+        "prompt": "Leo is $[[a]]$ years old and his mother is $[[m]]$. In how many years will his mother be exactly twice as old as Leo?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[m-2*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[m-a]]",
+              "why": "That is their age difference, which never changes. Write both ages in $x$ years."
+            }
+          ]
+        },
+        "hints": [
+          "In $x$ years Leo is $[[a]] + x$ and his mother is $[[m]] + x$.",
+          "Solve $[[m]] + x = 2([[a]] + x)$."
+        ],
+        "solution": "In $x$ years: $[[m]] + x = 2([[a]] + x) = [[2*a]] + 2x$, so $x = [[m]] - [[2*a]] = [[m-2*a]]$. Check: Leo will be $[[a + m - 2*a]]$ and his mother $[[m + m - 2*a]]$ ✓.",
+        "skill": "ages-coins-money",
+        "difficulty": 1,
+        "compute": "m - 2*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 14
+            },
+            "m": {
+              "from": 30,
+              "to": 45
+            }
+          },
+          "where": ["m - 2*a > 0"]
+        }
+      },
+      {
+        "id": "years-ago-triple",
+        "prompt": "Kim is $[[k]]$ years older than Jay. $[[y]]$ years ago, Kim was three times as old as Jay. How old is Jay now?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k/2+y]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[k/2]]",
+              "why": "That is how old Jay was $[[y]]$ years ago. Add the $[[y]]$ years back."
+            }
+          ]
+        },
+        "hints": [
+          "$[[y]]$ years ago, call Jay's age $j$. Kim was then $j + [[k]]$.",
+          "$j + [[k]] = 3j$, because the age difference never changes."
+        ],
+        "solution": "$[[y]]$ years ago Jay was $j$ and Kim $j + [[k]] = 3j$, so $j = [[k/2]]$. Now Jay is $[[k/2]] + [[y]] = [[k/2+y]]$.",
+        "skill": "ages-coins-money",
+        "difficulty": 2,
+        "compute": "k/2 + y",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 4,
+              "to": 20,
+              "step": 2
+            },
+            "y": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "nickels-and-dimes",
+        "prompt": "Jo has $[[n]]$ coins, all nickels ($5$ cents) and dimes ($10$ cents). They are worth $[[5*n+5*d]]$ cents in all. How many dimes are there?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[d]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n-d]]",
+              "why": "That is the number of nickels."
+            }
+          ]
+        },
+        "hints": [
+          "If all $[[n]]$ were nickels they would be worth $[[5*n]]$ cents.",
+          "Each dime adds $5$ cents more than a nickel."
+        ],
+        "solution": "All nickels would be worth $[[5*n]]$ cents. The extra $[[5*n+5*d]] - [[5*n]] = [[5*d]]$ cents come from dimes, $5$ cents extra each: $[[d]]$ dimes. (As a system: $5([[n]] - d) + 10d = [[5*n+5*d]]$.)",
+        "skill": "ages-coins-money",
+        "difficulty": 1,
+        "compute": "(5*n+5*d - 5*n)/5",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 30
+            },
+            "d": {
+              "from": 1,
+              "to": 29
+            }
+          },
+          "where": ["d < n", "2*d != n"]
+        }
+      },
+      {
+        "id": "father-times-son",
+        "prompt": "A father is $[[k*(s-x)+x]]$ years old and his son is $[[s]]$. How many years ago was the father exactly $[[k]]$ times as old as his son?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Call it $t$ years ago. Then the father was $[[k*(s-x)+x]] - t$ and the son $[[s]] - t$.",
+          "Solve $[[k*(s-x)+x]] - t = [[k]]([[s]] - t)$."
+        ],
+        "solution": "$t$ years ago: $[[k*(s-x)+x]] - t = [[k]]([[s]] - t) = [[k*s]] - [[k]]t$. So $[[k-1]]t = [[k*s]] - [[k*(s-x)+x]] = [[(k-1)*x]]$ and $t = [[x]]$. Check: the father was $[[k*(s-x)]]$ and the son $[[s-x]]$ ✓.",
+        "skill": "ages-coins-money",
+        "difficulty": 3,
+        "compute": "(k*s - (k*(s-x)+x))/(k-1)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 8,
+              "to": 20
+            },
+            "k": {
+              "choose": [3, 4, 5]
+            },
+            "x": {
+              "from": 1,
+              "to": 7
+            }
+          },
+          "where": ["s - x >= 2", "k*(s-x)+x <= 60", "k*(s-x)+x >= 25"]
+        }
+      },
+      {
+        "id": "two-stamps",
+        "prompt": "Sara buys $[[n]]$ stamps, some at $[[p]]$ cents and the rest at $[[q]]$ cents. She pays $[[p*a + q*(n-a)]]$ cents in all. How many $[[p]]$-cent stamps did she buy?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n-a]]",
+              "why": "That is how many $[[q]]$-cent stamps she bought."
+            }
+          ]
+        },
+        "hints": [
+          "Let $a$ be the $[[p]]$-cent stamps, so $[[n]] - a$ are $[[q]]$-cent stamps.",
+          "$[[p]]a + [[q]]([[n]] - a) = [[p*a + q*(n-a)]]$."
+        ],
+        "solution": "$[[p]]a + [[q]]([[n]] - a) = [[p*a + q*(n-a)]]$, so $[[q*n]] - [[q-p]]a = [[p*a + q*(n-a)]]$ and $[[q-p]]a = [[(q-p)*a]]$: $a = [[a]]$.",
+        "skill": "ages-coins-money",
+        "difficulty": 2,
+        "compute": "(q*n - (p*a + q*(n-a)))/(q-p)",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [20, 25, 30]
+            },
+            "q": {
+              "choose": [45, 50, 60]
+            },
+            "n": {
+              "from": 8,
+              "to": 20
+            },
+            "a": {
+              "from": 1,
+              "to": 19
+            }
+          },
+          "where": ["a < n", "2*a != n"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m03.ages-set",
+    "type": "PROBLEM_SET",
+    "title": "Ages, coins and money challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set.",
+    "problems": [
+      {
+        "id": "aunt-twice",
+        "prompt": "Ella is $12$ and her aunt is $40$. In how many years will her aunt be exactly twice as old as Ella?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$12$", "$14$", "$16$", "$28$"],
+          "correct": "D",
+          "why": {
+            "E": "$28$ is their age difference, which never changes.",
+            "C": "$14$ would make the aunt $54$ and Ella $26$: not quite twice."
+          }
+        },
+        "solution": "In $x$ years: $40 + x = 2(12 + x) = 24 + 2x$, so $x = 16$, choice (D). Check: $56 = 2 \\times 28$ ✓.",
+        "skill": "ages-coins-money",
+        "difficulty": 1,
+        "compute": "40 - 2*12"
+      },
+      {
+        "id": "dimes-quarters",
+        "prompt": "A jar has $30$ coins, all dimes ($10$ cents) and quarters ($25$ cents), worth $510$ cents in all. How many quarters are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$12$", "$14$", "$16$", "$18$"],
+          "correct": "C",
+          "why": {
+            "D": "That is the number of dimes."
+          }
+        },
+        "solution": "All dimes would be worth $300$ cents. Each quarter adds $15$ cents more, and there are $210$ extra cents, so there are $\\frac{210}{15} = 14$ quarters, choice (C). Check: $16 \\times 10 + 14 \\times 25 = 160 + 350 = 510$ ✓.",
+        "skill": "ages-coins-money",
+        "difficulty": 2,
+        "compute": "(510-300)/15"
+      },
+      {
+        "id": "mother-daughter",
+        "prompt": "A mother's and her daughter's ages add up to $50$. Five years ago the mother was $4$ times as old as the daughter. How old is the daughter now?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9$", "$10$", "$12$", "$13$", "$15$"],
+          "correct": "D",
+          "why": {
+            "B": "Five years ago their ages added up to $40$, not $50$: both were $5$ years younger."
+          }
+        },
+        "solution": "Let the daughter be $d$, so the mother is $50 - d$. Five years ago: $45 - d = 4(d - 5) = 4d - 20$, so $5d = 65$ and $d = 13$, choice (D). Check: $8$ and $32$ ✓.",
+        "skill": "ages-coins-money",
+        "difficulty": 2,
+        "compute": "(45+20)/5"
+      },
+      {
+        "id": "movie-group",
+        "prompt": "Movie tickets cost $7$ dollars for students and $11$ dollars for adults. A group of $12$ paid $112$ dollars. How many adults were in the group?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$6$", "$7$", "$8$"],
+          "correct": "D",
+          "why": {
+            "B": "That is the number of students."
+          }
+        },
+        "solution": "All students would cost $84$ dollars. Each adult costs $4$ more, and there are $28$ extra dollars, so there are $7$ adults, choice (D). Check: $5 \\times 7 + 7 \\times 11 = 35 + 77 = 112$ ✓.",
+        "skill": "ages-coins-money",
+        "difficulty": 2,
+        "compute": "(112-84)/4"
+      },
+      {
+        "id": "three-coin-kinds",
+        "prompt": "Max has only nickels, dimes and quarters. He has $3$ times as many dimes as quarters, and $2$ more nickels than dimes. His coins are worth $290$ cents. How many coins does he have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$26$", "$28$", "$30$", "$32$", "$34$"],
+          "correct": "C",
+          "why": {
+            "A": "Count all three kinds: $4$ quarters, $12$ dimes AND $14$ nickels."
+          }
+        },
+        "solution": "Let $q$ be the quarters: $3q$ dimes and $3q + 2$ nickels. Value: $25q + 30q + 5(3q + 2) = 70q + 10 = 290$, so $q = 4$. That is $4 + 12 + 14 = 30$ coins, choice (C).",
+        "skill": "ages-coins-money",
+        "difficulty": 3,
+        "compute": "4 + 12 + 14"
+      }
+    ]
+  },
+  {
+    "key": "m03.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "bracket-equation",
+        "prompt": "Solve $[[a]](x - [[b]]) = [[a*(n-b)]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n-2*b]]",
+              "why": "Undo the bracket: divide by $[[a]]$, then ADD $[[b]]$."
+            }
+          ]
+        },
+        "hints": ["Divide both sides by $[[a]]$ first."],
+        "solution": "Divide by $[[a]]$: $x - [[b]] = [[n-b]]$. Add $[[b]]$: $x = [[n]]$.",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "a*(n-b)/a + b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            },
+            "n": {
+              "from": 1,
+              "to": 15
+            }
+          },
+          "where": ["n != b"]
+        }
+      },
+      {
+        "id": "find-y",
+        "prompt": "If $x + y = [[x+y]]$ and $x - y = [[x-y]]$, what is $y$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[y]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[x]]",
+              "why": "That is $x$. Subtract the equations to find $y$."
+            }
+          ]
+        },
+        "hints": ["Subtract the second equation from the first: the $x$'s cancel."],
+        "solution": "Subtracting: $2y = [[x+y]] - [[x-y]] = [[2*y]]$, so $y = [[y]]$.",
+        "skill": "systems",
+        "difficulty": 1,
+        "compute": "((x+y)-(x-y))/2",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 5,
+              "to": 30
+            },
+            "y": {
+              "from": 1,
+              "to": 25
+            }
+          },
+          "where": ["x > y"]
+        }
+      },
+      {
+        "id": "runner-speed",
+        "prompt": "A runner covers $[[d]]$ km in $[[m]]$ minutes. What is her average speed, in km/h?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[60*d/m]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[d/m]]",
+              "why": "That is km per minute. Multiply by $60$ for km per hour."
+            }
+          ]
+        },
+        "hints": ["$[[m]]$ minutes is $\\frac{[[m]]}{60}$ of an hour."],
+        "solution": "$[[d]] \\div \\frac{[[m]]}{60} = [[60*d/m]]$ km/h.",
+        "skill": "distance-rate-time",
+        "difficulty": 1,
+        "compute": "d/(m/60)",
+        "template": {
+          "vars": {
+            "m": {
+              "choose": [20, 30, 40, 45, 50]
+            },
+            "d": {
+              "from": 2,
+              "to": 15
+            }
+          },
+          "where": ["mod(60*d, m) == 0"]
+        }
+      },
+      {
+        "id": "pipes-together",
+        "prompt": "Pipe A fills a tank in $[[a]]$ hours and pipe B fills it in $[[b]]$ hours. With both open, how many hours does it take?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b/(a+b)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(a+b)/2]]",
+              "why": "That averages the times. Add the rates instead."
+            }
+          ]
+        },
+        "hints": ["Together they fill $\\frac{1}{[[a]]} + \\frac{1}{[[b]]}$ of the tank per hour."],
+        "solution": "$\\frac{1}{[[a]]} + \\frac{1}{[[b]]} = [[1/a + 1/b]]$ of the tank per hour, so it takes $[[a*b/(a+b)]]$ hours.",
+        "skill": "work-mixtures",
+        "difficulty": 1,
+        "compute": "1/(1/a + 1/b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 8
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          },
+          "where": ["a < b"]
+        }
+      },
+      {
+        "id": "sister-twice",
+        "prompt": "Ravi is $[[r]]$ and his sister is $[[s]]$. In how many years will Ravi be exactly twice as old as his sister?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[r-2*s]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[r-s]]",
+              "why": "That is their age difference, which never changes."
+            }
+          ]
+        },
+        "hints": ["Solve $[[r]] + x = 2([[s]] + x)$."],
+        "solution": "$[[r]] + x = 2([[s]] + x) = [[2*s]] + 2x$, so $x = [[r]] - [[2*s]] = [[r-2*s]]$.",
+        "skill": "ages-coins-money",
+        "difficulty": 1,
+        "compute": "r - 2*s",
+        "template": {
+          "vars": {
+            "r": {
+              "from": 20,
+              "to": 40
+            },
+            "s": {
+              "from": 3,
+              "to": 15
+            }
+          },
+          "where": ["r - 2*s > 0"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m03.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 3 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-both-sides",
+        "prompt": "If $[[a]]x - [[b]] = [[c]]x + [[d]]$, what is $x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[n-1]]$",
+            "$[[n]]$",
+            "$[[n+1]]$",
+            "$[[(d-b)/(a-c)]]$",
+            "$[[(b+d)/(a+c)]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "D": "Moving $-[[b]]$ to the other side makes it $+[[b]]$.",
+            "E": "Subtract $[[c]]x$ from both sides: that leaves $[[a-c]]x$, not $[[a+c]]x$."
+          }
+        },
+        "solution": "Subtract $[[c]]x$ and add $[[b]]$: $[[a-c]]x = [[b+d]]$, so $x = [[n]]$, choice (B).",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "(b+d)/(a-c)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 9
+            },
+            "c": {
+              "from": 1,
+              "to": 4
+            },
+            "n": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 12
+            },
+            "d": {
+              "let": "(a-c)*n - b"
+            }
+          },
+          "where": ["d > 0", "2*b != a - c", "(d-b)*(a+c) != (b+d)*(a-c)", "b + d != (n-1)*(a+c)"]
+        }
+      },
+      {
+        "id": "check-consecutive-odd",
+        "prompt": "The sum of four consecutive odd numbers is $[[4*n+12]]$. What is the largest of them?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[n]]$", "$[[n+3]]$", "$[[n+4]]$", "$[[n+6]]$", "$[[n+8]]$"],
+          "correct": "D",
+          "why": {
+            "A": "That is the smallest.",
+            "B": "That is their average, which isn't even odd. Write them as $n$, $n + 2$, $n + 4$, $n + 6$."
+          }
+        },
+        "solution": "Write them as $n$, $n + 2$, $n + 4$, $n + 6$: $4n + 12 = [[4*n+12]]$, so $n = [[n]]$ and the largest is $[[n+6]]$, choice (D).",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "(4*n+12-12)/4 + 6",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 45,
+              "step": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "check-fraction-equation",
+        "prompt": "If $\\frac{x + 2}{3} - \\frac{x - 1}{4} = 2$, what is $x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$11$", "$13$", "$17$", "$19$"],
+          "correct": "C",
+          "why": {
+            "E": "Careful: $-3(x - 1) = -3x + 3$, not $-3x - 3$."
+          }
+        },
+        "solution": "Multiply by $12$: $4(x + 2) - 3(x - 1) = 24$, so $4x + 8 - 3x + 3 = 24$, $x + 11 = 24$ and $x = 13$, choice (C).",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "24 - 11"
+      },
+      {
+        "id": "check-no-solution",
+        "prompt": "For which value of $a$ does the equation $3(ax - 2) = 12x + 5$ have NO solution?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$6$", "$12$"],
+          "correct": "C",
+          "why": {
+            "E": "The $x$ terms must match: $3a = 12$, so $a = 4$, not $12$."
+          }
+        },
+        "solution": "$3ax - 6 = 12x + 5$, so $(3a - 12)x = 11$. If $3a = 12$, this says $0 = 11$: no solution. So $a = 4$, choice (C).",
+        "skill": "linear-equations",
+        "difficulty": 3,
+        "compute": "12/3"
+      },
+      {
+        "id": "check-smaller-number",
+        "prompt": "Two numbers add up to $[[x+y]]$ and differ by $[[x-y]]$. What is the smaller number?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[y]]$", "$[[x]]$", "$[[(x+y)/2|decimal]]$", "$[[x-y]]$", "$[[x+y]]$"],
+          "correct": "A",
+          "why": {
+            "B": "That is the larger number.",
+            "C": "That is halfway between the two numbers.",
+            "D": "That is the difference, not a number."
+          }
+        },
+        "solution": "Subtracting the equations $a + b = [[x+y]]$ and $a - b = [[x-y]]$ gives $2b = [[2*y]]$, so the smaller number is $[[y]]$, choice (A).",
+        "skill": "systems",
+        "difficulty": 1,
+        "compute": "((x+y)-(x-y))/2",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 10,
+              "to": 40
+            },
+            "y": {
+              "from": 3,
+              "to": 20
+            }
+          },
+          "where": ["x > y", "x != 2*y", "x != 3*y"]
+        }
+      },
+      {
+        "id": "check-x-plus-y",
+        "prompt": "If $[[m]]x + [[n]]y = [[m*p+n*q]]$ and $[[n]]x + [[m]]y = [[n*p+m*q]]$, what is $x + y$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[p+q-2]]$",
+            "$[[p+q-1]]$",
+            "$[[p+q]]$",
+            "$[[p+q+1]]$",
+            "$[[(m+n)*(p+q)]]$"
+          ],
+          "correct": "C",
+          "why": {
+            "E": "Adding the equations gives $[[m+n]](x + y)$. Divide by $[[m+n]]$."
+          }
+        },
+        "solution": "Add the equations: $[[m+n]]x + [[m+n]]y = [[(m+n)*(p+q)]]$, so $x + y = [[p+q]]$, choice (C).",
+        "skill": "systems",
+        "difficulty": 2,
+        "compute": "p+q",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 7
+            },
+            "n": {
+              "from": 1,
+              "to": 6
+            },
+            "p": {
+              "from": 1,
+              "to": 9
+            },
+            "q": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["m != n", "m*p + n*q != n*p + m*q"]
+        }
+      },
+      {
+        "id": "check-chickens-pigs",
+        "prompt": "A farm has only chickens and pigs. Together they have $35$ heads and $94$ legs. How many pigs are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$11$", "$12$", "$13$", "$23$", "$24$"],
+          "correct": "B",
+          "why": {
+            "D": "That is the number of chickens.",
+            "E": "$24$ is the number of extra legs. Each pig has $2$ more legs than a chicken."
+          }
+        },
+        "solution": "If all $35$ were chickens there would be $70$ legs. The $24$ extra legs come from pigs, $2$ extra each: $12$ pigs, choice (B).",
+        "skill": "systems",
+        "difficulty": 2,
+        "compute": "(94-70)/2"
+      },
+      {
+        "id": "check-three-sums",
+        "prompt": "If $a + b = 13$, $b + c = 17$ and $a + c = 20$, what is $c$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$8$", "$10$", "$12$", "$25$"],
+          "correct": "D",
+          "why": {
+            "B": "$8$ is $a$.",
+            "E": "$25$ is $a + b + c$. Now take away $a + b$."
+          }
+        },
+        "solution": "Adding all three: $2(a + b + c) = 50$, so $a + b + c = 25$ and $c = 25 - 13 = 12$, choice (D).",
+        "skill": "systems",
+        "difficulty": 2,
+        "compute": "(13+17+20)/2 - 13"
+      },
+      {
+        "id": "check-trains-meet",
+        "prompt": "Two trains start $[[(u+v)*t]]$ km apart and travel towards each other at $[[u]]$ km/h and $[[v]]$ km/h. After how many hours do they meet?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[t]]$",
+            "$[[(u+v)*t/(v-u)]]$",
+            "$[[(u+v)*t/u]]$",
+            "$[[(u+v)*t/v]]$",
+            "$[[2*t]]$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "They move TOWARDS each other, so the gap closes at the sum of the speeds.",
+            "C": "That is how long the first train alone would take to cover the whole gap."
+          }
+        },
+        "solution": "The gap closes at $[[u]] + [[v]] = [[u+v]]$ km/h, so they meet after $\\frac{[[(u+v)*t]]}{[[u+v]]} = [[t]]$ hours, choice (A).",
+        "skill": "distance-rate-time",
+        "difficulty": 1,
+        "compute": "(u+v)*t/(u+v)",
+        "template": {
+          "vars": {
+            "u": {
+              "choose": [40, 50, 60, 70, 80]
+            },
+            "v": {
+              "choose": [60, 75, 90, 100, 120]
+            },
+            "t": {
+              "from": 2,
+              "to": 5
+            }
+          },
+          "where": ["u < v", "v != 2*u", "v != 3*u"]
+        }
+      },
+      {
+        "id": "check-second-car",
+        "prompt": "A car leaves town at $[[v]]$ km/h. $[[h]]$ hours later a second car leaves the same town on the same road at $[[u]]$ km/h. How many hours after it leaves does the second car catch up?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[v*h/(u-v)]]$",
+            "$[[v*h/(u+v)]]$",
+            "$[[v*h/(u-v) + h]]$",
+            "$[[h]]$",
+            "$[[2*v*h/(u-v)]]$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "The cars go the same way, so the gap closes at the DIFFERENCE of the speeds.",
+            "C": "That counts from when the FIRST car left."
+          }
+        },
+        "solution": "When the second car leaves, the first is $[[v]] \\times [[h]] = [[v*h]]$ km ahead. The gap closes at $[[u]] - [[v]] = [[u-v]]$ km/h, so it takes $\\frac{[[v*h]]}{[[u-v]]} = [[v*h/(u-v)]]$ hours, choice (A).",
+        "skill": "distance-rate-time",
+        "difficulty": 2,
+        "compute": "v*h/(u-v)",
+        "template": {
+          "vars": {
+            "v": {
+              "choose": [40, 45, 50, 60]
+            },
+            "h": {
+              "from": 2,
+              "to": 3
+            },
+            "u": {
+              "choose": [60, 75, 80, 90, 100]
+            }
+          },
+          "where": ["u > v", "mod(v*h, u - v) == 0", "u != 2*v", "u != 3*v"]
+        }
+      },
+      {
+        "id": "check-late-early",
+        "prompt": "Driving at $60$ km/h, Rae arrives $10$ minutes late. Driving at $80$ km/h, she arrives $5$ minutes early. How far does she drive, in km?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$40$", "$50$", "$60$", "$75$", "$80$"],
+          "correct": "C"
+        },
+        "solution": "The times differ by $15$ minutes $= \\frac{1}{4}$ hour: $\\frac{d}{60} - \\frac{d}{80} = \\frac{d}{240} = \\frac{1}{4}$, so $d = 60$ km, choice (C). Check: $1$ hour versus $45$ minutes ✓.",
+        "skill": "distance-rate-time",
+        "difficulty": 3,
+        "compute": "(15/60)/(1/60 - 1/80)"
+      },
+      {
+        "id": "check-still-water",
+        "prompt": "A boat travels $36$ km downstream in $2$ hours and returns upstream in $3$ hours. What is the boat's speed in still water, in km/h?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$6$", "$12$", "$15$", "$18$"],
+          "correct": "D",
+          "why": {
+            "A": "$3$ km/h is the speed of the current.",
+            "E": "$18$ km/h is the downstream speed, with the current's help."
+          }
+        },
+        "solution": "Downstream: $18$ km/h $=$ boat $+$ current. Upstream: $12$ km/h $=$ boat $-$ current. Adding, $2 \\times$ boat $= 30$, so the boat goes $15$ km/h in still water, choice (D).",
+        "skill": "distance-rate-time",
+        "difficulty": 3,
+        "compute": "(36/2 + 36/3)/2"
+      },
+      {
+        "id": "check-together",
+        "prompt": "Ana can do a job in $[[a]]$ hours and Bea can do it in $[[b]]$ hours. Working together, how many hours do they take?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[a*b/(a+b)]]$",
+            "$[[(a+b)/2|decimal]]$",
+            "$[[a+b]]$",
+            "$[[b-a]]$",
+            "$[[a]]$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "That averages the times. Together they are faster than either one alone.",
+            "C": "That adds the times, as if one worked after the other.",
+            "E": "That is how long Ana takes alone."
+          }
+        },
+        "solution": "Together: $\\frac{1}{[[a]]} + \\frac{1}{[[b]]} = [[1/a + 1/b]]$ of the job per hour, so they take $[[a*b/(a+b)]]$ hours, choice (A).",
+        "skill": "work-mixtures",
+        "difficulty": 1,
+        "compute": "1/(1/a + 1/b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          },
+          "where": ["a < b", "b != 2*a", "b != 3*a", "a*b != (b-a)*(a+b)"]
+        }
+      },
+      {
+        "id": "check-tap-drain",
+        "prompt": "A tap fills a sink in $[[a]]$ minutes. The drain empties a full sink in $[[b]]$ minutes. With both open, how many minutes does it take to fill the sink?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[a*b/(a+b)]]$",
+            "$[[b-a]]$",
+            "$[[a*b/(b-a)]]$",
+            "$[[a+b]]$",
+            "$[[(a+b)/2|decimal]]$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "That adds the two rates. The drain works AGAINST the tap: subtract its rate.",
+            "B": "Times don't subtract. Subtract the RATES: $\\frac{1}{[[a]]} - \\frac{1}{[[b]]}$."
+          }
+        },
+        "solution": "Each minute the sink gains $\\frac{1}{[[a]]} - \\frac{1}{[[b]]} = [[1/a - 1/b]]$ of its volume, so it fills in $[[a*b/(b-a)]]$ minutes, choice (C).",
+        "skill": "work-mixtures",
+        "difficulty": 2,
+        "compute": "1/(1/a - 1/b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 8
+            },
+            "b": {
+              "from": 3,
+              "to": 15
+            }
+          },
+          "where": [
+            "a < b",
+            "a*b != (b-a)*(b-a)",
+            "a*b != b*b - a*a",
+            "2*a*b != b*b - a*a",
+            "b != 3*a",
+            "a*b != (b-a)*(a+b)"
+          ]
+        }
+      },
+      {
+        "id": "check-juice-mix",
+        "prompt": "$[[a]]$ litres of $[[p]]\\%$ juice are mixed with $[[b]]$ litres of $[[q]]\\%$ juice. What percent of the mix is juice?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[(a*p+b*q)/(a+b)]]\\%$",
+            "$[[(p+q)/2]]\\%$",
+            "$[[(b*p+a*q)/(a+b)]]\\%$",
+            "$[[p]]\\%$",
+            "$[[q]]\\%$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "That averages the percents, as if there were equal amounts of each.",
+            "C": "That swaps the amounts: there are $[[a]]$ litres of the $[[p]]\\%$ juice."
+          }
+        },
+        "solution": "Juice: $[[a*p/100]] + [[b*q/100]] = [[(a*p+b*q)/100]]$ litres out of $[[a+b]]$, which is $[[(a*p+b*q)/(a+b)]]\\%$, choice (A).",
+        "skill": "work-mixtures",
+        "difficulty": 2,
+        "compute": "(a*p+b*q)/(a+b)/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 1,
+              "to": 6
+            },
+            "p": {
+              "choose": [10, 20, 30, 40]
+            },
+            "q": {
+              "choose": [60, 70, 80, 90]
+            }
+          },
+          "where": ["a != b", "mod(a*p + b*q, a + b) == 0"]
+        }
+      },
+      {
+        "id": "check-gold-alloy",
+        "prompt": "How many grams of pure gold must be added to $60$ grams of a $50\\%$ gold alloy to make a $70\\%$ gold alloy?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$20$", "$24$", "$40$", "$60$"],
+          "correct": "D",
+          "why": {
+            "B": "Check: $20$ g makes $50$ g of gold out of $80$ g, only $62.5\\%$. The added gold also makes the total heavier."
+          }
+        },
+        "solution": "There are $30$ g of gold. Adding $x$ g: $30 + x = 0.7(60 + x) = 42 + 0.7x$, so $0.3x = 12$ and $x = 40$ g, choice (D). Check: $70$ out of $100$ g ✓.",
+        "skill": "work-mixtures",
+        "difficulty": 3,
+        "compute": "(0.7*60 - 30)/0.3"
+      },
+      {
+        "id": "check-mother-twice",
+        "prompt": "A mother is $[[m]]$ years old and her son is $[[s]]$. In how many years will she be exactly twice his age?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[m-2*s]]$", "$[[m-s]]$", "$[[2*s]]$", "$[[m-2*s+2]]$", "$[[m+s]]$"],
+          "correct": "A",
+          "why": {
+            "B": "That is their age difference, which never changes."
+          }
+        },
+        "solution": "In $x$ years: $[[m]] + x = 2([[s]] + x)$, so $x = [[m]] - [[2*s]] = [[m-2*s]]$, choice (A).",
+        "skill": "ages-coins-money",
+        "difficulty": 1,
+        "compute": "m - 2*s",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 30,
+              "to": 45
+            },
+            "s": {
+              "from": 5,
+              "to": 15
+            }
+          },
+          "where": ["m - 2*s > 0", "m != 3*s", "m != 4*s", "m != 4*s - 2"]
+        }
+      },
+      {
+        "id": "check-nickels-quarters",
+        "prompt": "A purse has $[[n]]$ coins, all nickels ($5$ cents) and quarters ($25$ cents), worth $[[5*(n-q)+25*q]]$ cents in all. How many quarters are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[n-q]]$", "$[[q]]$", "$[[q+1]]$", "$[[q-1]]$", "$[[n]]$"],
+          "correct": "B",
+          "why": {
+            "A": "That is the number of nickels.",
+            "E": "That is all the coins."
+          }
+        },
+        "solution": "All nickels would be worth $[[5*n]]$ cents. Each quarter adds $20$ cents more, and there are $[[20*q]]$ extra cents, so there are $[[q]]$ quarters, choice (B).",
+        "skill": "ages-coins-money",
+        "difficulty": 2,
+        "compute": "(5*(n-q)+25*q - 5*n)/20",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 12,
+              "to": 30
+            },
+            "q": {
+              "from": 2,
+              "to": 20
+            }
+          },
+          "where": ["q < n - 1", "n != 2*q", "n != 2*q + 1", "n != 2*q - 1"]
+        }
+      },
+      {
+        "id": "check-ages-sum",
+        "prompt": "Three years ago, Nia was twice as old as Omar. In five years, their ages will add up to $49$. How old is Nia now?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$14$", "$22$", "$24$", "$25$", "$26$"],
+          "correct": "D",
+          "why": {
+            "A": "$14$ is Omar's age."
+          }
+        },
+        "solution": "Now Nia is $N$ and Omar $O$. Three years ago: $N - 3 = 2(O - 3)$, so $N = 2O - 3$. In five years: $N + O + 10 = 49$, so $N + O = 39$. Then $3O - 3 = 39$, $O = 14$ and $N = 25$, choice (D).",
+        "skill": "ages-coins-money",
+        "difficulty": 3,
+        "compute": "2*14 - 3"
+      }
+    ]
+  }
+]

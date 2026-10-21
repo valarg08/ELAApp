@@ -1,0 +1,103 @@
+{
+  "slug": "math-work-mixtures",
+  "order": 4,
+  "title": "Work & Mixtures",
+  "estMinutes": 35,
+  "focusSkills": ["work-mixtures"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Ana can paint a fence in $3$ hours and Ben in $6$ hours. Working together, do they take $4.5$ hours? $9$? Something else? Why?",
+      "placeholder": "I think… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Rates add, times don't",
+          "body": "If a job takes $3$ hours, you do $\\frac{1}{3}$ of it each hour: that is your rate. Working together, RATES add: $\\frac{1}{3} + \\frac{1}{6} = \\frac{1}{2}$ of the fence per hour, so together they take $2$ hours. Something that undoes the work, like a drain, has its rate subtracted."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: two pipes",
+          "problem": "One pipe fills a tank in $4$ hours and another in $12$ hours. With both open, how many hours does it take?",
+          "steps": [
+            {
+              "text": "Rates: $\\frac{1}{4}$ and $\\frac{1}{12}$ of the tank per hour."
+            },
+            {
+              "text": "Together: $\\frac{1}{4} + \\frac{1}{12} = \\frac{3}{12} + \\frac{1}{12} = \\frac{4}{12} = \\frac{1}{3}$ of the tank per hour."
+            },
+            {
+              "text": "A third of the tank each hour means the whole tank takes $3$ hours.",
+              "try": {
+                "prompt": "How many hours?",
+                "accepted": ["3"],
+                "compute": "1/(1/4+1/12)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Mixtures: follow the pure part",
+          "body": "In a mixture, track how much of the pure stuff there is: $6$ litres of $20\\%$ juice hold $0.2 \\times 6 = 1.2$ litres of juice. When you mix, the pure amounts add and the totals add. Then the new percent is pure amount $\\div$ total."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: stronger juice",
+          "problem": "How many litres of $50\\%$ juice must be added to $6$ litres of $20\\%$ juice to make $30\\%$ juice?",
+          "steps": [
+            {
+              "text": "Find the juice already in the $6$ litres.",
+              "try": {
+                "prompt": "How many litres of juice are in the $6$ litres of $20\\%$ juice?",
+                "accepted": ["1.2", "6/5"],
+                "compute": "0.2*6"
+              }
+            },
+            {
+              "text": "Add $x$ litres of $50\\%$ juice: the juice is $1.2 + 0.5x$ out of $6 + x$ litres, and that must be $30\\%$: $1.2 + 0.5x = 0.3(6 + x)$."
+            },
+            {
+              "text": "So $1.2 + 0.5x = 1.8 + 0.3x$, giving $0.2x = 0.6$ and $x = 3$ litres.",
+              "try": {
+                "prompt": "How many litres must be added?",
+                "accepted": ["3"],
+                "compute": "(1.8-1.2)/(0.5-0.3)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: averaging",
+          "body": "Don't average the times ($4.5$ hours for the fence is wrong) and don't add them ($9$ is how long it takes one after the other). Add the RATES. Likewise, mixing two strengths gives the average percent only when the amounts are equal. Adding water or pure stuff also changes the total."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m03.work-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m03.work-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain to a friend why two people working together don't take the average of their times."
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

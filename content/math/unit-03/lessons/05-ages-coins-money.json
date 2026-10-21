@@ -1,0 +1,101 @@
+{
+  "slug": "math-ages-coins-money",
+  "order": 5,
+  "title": "Ages, Coins & Money",
+  "estMinutes": 35,
+  "focusSkills": ["ages-coins-money"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Mia is $3$ times as old as her brother. In $10$ years she will be twice as old as him. How old is her brother now? Try making a table.",
+      "placeholder": "Now… In 10 years… So he is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Ages: make a table",
+          "body": "Make columns for the times in the story (now, $5$ years ago, in $10$ years) and a row for each person. Everyone ages by the same number of years, so the difference between two people's ages never changes. Write the sentence about ratios as an equation in the right column."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: three times, then twice",
+          "problem": "Mia is $3$ times as old as her brother. In $10$ years she will be twice as old as him. How old is her brother now?",
+          "steps": [
+            {
+              "text": "Now: brother $b$, Mia $3b$. In $10$ years: brother $b + 10$, Mia $3b + 10$."
+            },
+            {
+              "text": "In $10$ years Mia is twice as old: $3b + 10 = 2(b + 10) = 2b + 20$."
+            },
+            {
+              "text": "So $b = 10$: her brother is $10$ and Mia is $30$. Check: in $10$ years, $40 = 2 \\times 20$ ✓.",
+              "try": {
+                "prompt": "How old is her brother now?",
+                "accepted": ["10"],
+                "compute": "20-10"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Coins and money: number AND value",
+          "body": "For coins, keep two counts apart: how MANY coins there are, and what they are WORTH. Work in cents to avoid decimals: $n$ nickels are worth $5n$ cents and $d$ dimes $10d$ cents. Usually one equation counts the coins and the other adds up their value."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: nickels and dimes",
+          "problem": "Jo has $20$ coins, all nickels ($5$ cents) and dimes ($10$ cents), worth $\\$1.40$ in all. How many dimes are there?",
+          "steps": [
+            {
+              "text": "Let $d$ be the dimes, so there are $20 - d$ nickels. In cents: $5(20 - d) + 10d = 140$."
+            },
+            {
+              "text": "Open the bracket: $100 - 5d + 10d = 140$, so $5d = 40$.",
+              "try": {
+                "prompt": "What is $5d$?",
+                "accepted": ["40"],
+                "compute": "140-100"
+              }
+            },
+            {
+              "text": "So $d = 8$ dimes (and $12$ nickels: $80 + 60 = 140$ ✓).",
+              "try": {
+                "prompt": "How many dimes?",
+                "accepted": ["8"],
+                "compute": "(140-100)/5"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: mixing up counts and values",
+          "body": "\"$12$ coins\" and \"$\\$1.20$\" are different kinds of numbers: never add them together. With ages, \"in $5$ years\" adds $5$ to EVERY person, and \"twice as old\" doubles only one side. Check your answer against every sentence of the story."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m03.ages-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m03.ages-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How will a table help you on the next age or coin problem? Sketch one."],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

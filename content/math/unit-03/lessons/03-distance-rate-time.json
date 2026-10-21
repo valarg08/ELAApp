@@ -1,0 +1,98 @@
+{
+  "slug": "math-distance-rate-time",
+  "order": 3,
+  "title": "Distance, Rate & Time",
+  "estMinutes": 35,
+  "focusSkills": ["distance-rate-time"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Two trains $300$ km apart head towards each other at $70$ km/h and $80$ km/h. How long until they meet? How fast is the gap between them shrinking?",
+      "placeholder": "The gap shrinks at… They meet after…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Distance = rate × time",
+          "body": "$d = rt$, so $t = \\frac{d}{r}$ and $r = \\frac{d}{t}$. Keep the units matched: km/h with hours, m/s with seconds. When two things move towards each other, the gap closes at the SUM of their speeds. When one chases the other, it closes at the DIFFERENCE."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: meeting trains",
+          "problem": "Two trains $300$ km apart head towards each other at $70$ km/h and $80$ km/h. After how many hours do they meet?",
+          "steps": [
+            {
+              "text": "Each hour the gap closes by $70 + 80 = 150$ km."
+            },
+            {
+              "text": "The gap is $300$ km, so they meet after $\\frac{300}{150}$ hours.",
+              "try": {
+                "prompt": "After how many hours?",
+                "accepted": ["2"],
+                "compute": "300/(70+80)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Make a table",
+          "body": "For each part of a trip, write a row: rate, time, distance. Then look for what is equal: the same distance there and back, the same time if they start and stop together, or distances that add up to the whole trip. That equal thing is your equation."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: late and early",
+          "problem": "Walking at $4$ km/h, Ana gets to school $10$ minutes late. At $6$ km/h she is $5$ minutes early. How far is school?",
+          "steps": [
+            {
+              "text": "Call the distance $d$. The slow walk takes $\\frac{d}{4}$ hours and the fast walk $\\frac{d}{6}$ hours."
+            },
+            {
+              "text": "The two times differ by $10 + 5 = 15$ minutes. Change that to hours.",
+              "try": {
+                "prompt": "What is $15$ minutes in hours?",
+                "accepted": ["1/4", "0.25"],
+                "compute": "15/60"
+              }
+            },
+            {
+              "text": "So $\\frac{d}{4} - \\frac{d}{6} = \\frac{1}{4}$. The left side is $\\frac{d}{12}$, so $d = 3$ km.",
+              "try": {
+                "prompt": "How far is school, in km?",
+                "accepted": ["3"],
+                "compute": "(1/4)/(1/4-1/6)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: minutes and hours",
+          "body": "$15$ minutes is $\\frac{1}{4}$ of an hour, not $0.15$. Change every time to the same unit before you write the equation. And remember from Unit 2: average speed is total distance over total time, not the average of the speeds."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m03.drt-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m03.drt-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When do speeds add, and when do they subtract? Give an example of each."],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}
