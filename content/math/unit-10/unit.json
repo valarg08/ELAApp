@@ -4,5 +4,5 @@
   "title": "Counting II & Probability",
   "summary": "Stars and bars, inclusion–exclusion, probability, geometric probability and expected value.",
   "bigIdeas": ["Probability is counting twice: the good cases over all cases."],
-  "published": false
+  "published": true
 }

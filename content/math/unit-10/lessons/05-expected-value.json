@@ -1,0 +1,100 @@
+{
+  "slug": "math-expected-value",
+  "order": 5,
+  "title": "Expected Value",
+  "estMinutes": 35,
+  "focusSkills": ["expected-value"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You roll a die many, many times and write down every number. What do you expect the average of all your numbers to be? Can that average be a number you never roll?",
+      "placeholder": "About… and yes/no because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The long-run average",
+          "body": "The expected value is the average result over many tries: multiply each value by its probability and add, $E = \\sum (\\text{value}) \\times P(\\text{value})$. It doesn't have to be a value you can actually get."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: one die",
+          "problem": "What is the expected value of one roll of a fair six-sided die?",
+          "steps": [
+            {
+              "text": "Each face has probability $\\frac{1}{6}$, so $E = \\frac{1 + 2 + 3 + 4 + 5 + 6}{6}$.",
+              "try": {
+                "prompt": "What is $1 + 2 + 3 + 4 + 5 + 6$?",
+                "accepted": ["21"],
+                "compute": "21"
+              }
+            },
+            {
+              "text": "$E = \\frac{21}{6} = \\frac{7}{2}$.",
+              "try": {
+                "prompt": "What is the expected value?",
+                "accepted": ["7/2", "3.5"],
+                "compute": "21/6"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Expected values add",
+          "body": "The expected value of a sum is the sum of the expected values, even when the parts depend on each other. So the expected total of $n$ dice is $\\frac{7n}{2}$, and the expected number of heads in $n$ flips is $\\frac{n}{2}$. To count \"how many\", add up the chance of each single thing happening."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a spinner",
+          "problem": "A spinner pays $0$ points with probability $\\frac{1}{2}$, $3$ points with probability $\\frac{1}{3}$ and $12$ points with probability $\\frac{1}{6}$. What is the expected number of points?",
+          "steps": [
+            {
+              "text": "The $3$-point part gives $\\frac{1}{3} \\times 3 = 1$.",
+              "try": {
+                "prompt": "What does the $12$-point part give, $\\frac{1}{6} \\times 12$?",
+                "accepted": ["2"],
+                "compute": "12/6"
+              }
+            },
+            {
+              "text": "$E = 0 + 1 + 2 = 3$ points.",
+              "try": {
+                "prompt": "What is the expected number of points?",
+                "accepted": ["3"],
+                "compute": "0/2 + 3/3 + 12/6"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: averaging values that aren't equally likely",
+          "body": "The spinner's values $0$, $3$ and $12$ average $5$, but the expected value is $3$, because $0$ comes up most often. Weight each value by its probability. In a game, remember to subtract what you pay to play."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m10.ev-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m10.ev-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why can the expected value be a number you can never actually get?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "slug": "math-inclusion-exclusion",
+  "order": 2,
+  "title": "Inclusion–Exclusion",
+  "estMinutes": 35,
+  "focusSkills": ["inclusion-exclusion"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "In a class, $14$ students have a dog and $9$ have a cat. Does that mean $23$ students have a pet? What else would you need to know?",
+      "placeholder": "Not always, because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Add, then take away the overlap",
+          "body": "For two sets, $|A \\cup B| = |A| + |B| - |A \\cap B|$: the things in both were counted twice, so take them away once. A Venn diagram helps: fill in the middle first, then work outwards."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: multiples",
+          "problem": "How many of the numbers $1, 2, \\ldots, 100$ are divisible by $3$ or by $5$?",
+          "steps": [
+            {
+              "text": "Multiples of $3$: $33$. Multiples of $5$: $20$. The numbers divisible by both are the multiples of $15$.",
+              "try": {
+                "prompt": "How many multiples of $15$ are there from $1$ to $100$?",
+                "accepted": ["6"],
+                "compute": "floor(100/15)"
+              }
+            },
+            {
+              "text": "So $33 + 20 - 6 = 47$.",
+              "try": {
+                "prompt": "How many numbers are divisible by $3$ or $5$?",
+                "accepted": ["47"],
+                "compute": "33 + 20 - 6"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Three sets",
+          "body": "$|A \\cup B \\cup C| = |A| + |B| + |C| - |A \\cap B| - |A \\cap C| - |B \\cap C| + |A \\cap B \\cap C|$. Add the singles, take away the pairs, add back the triple. \"Neither\" or \"none\" is the total minus the union."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: clubs",
+          "problem": "Of $30$ students, $15$ play football, $12$ swim and $10$ play chess. $5$ do football and swimming, $4$ football and chess, $3$ swimming and chess, and $2$ do all three. How many do none of them?",
+          "steps": [
+            {
+              "text": "$15 + 12 + 10 - 5 - 4 - 3 + 2 = 27$ do at least one.",
+              "try": {
+                "prompt": "How many students do at least one?",
+                "accepted": ["27"],
+                "compute": "15 + 12 + 10 - 5 - 4 - 3 + 2"
+              }
+            },
+            {
+              "text": "So $30 - 27 = 3$ do none.",
+              "try": {
+                "prompt": "How many do none?",
+                "accepted": ["3"],
+                "compute": "30 - 27"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: forgetting the overlap",
+          "body": "Just adding counts the overlap twice. With three sets, after taking away the pairs you have removed the middle completely, so add it back once. And \"divisible by $4$ and $6$\" means divisible by $\\text{lcm}(4, 6) = 12$, not by $24$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m10.incl-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m10.incl-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why do we add the middle of a three-set Venn diagram back at the end?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

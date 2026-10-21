@@ -1,0 +1,63 @@
+{
+  "slug": "math-counting-2-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Counting II & Probability",
+  "estMinutes": 40,
+  "focusSkills": [
+    "stars-bars",
+    "inclusion-exclusion",
+    "probability",
+    "geometric-probability",
+    "expected-value"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which idea from this unit surprised you most, and which one would you like one more look at?",
+      "placeholder": "Surprised by… One more look at…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Counting tools: quick review",
+          "body": "Stars and bars: $n$ identical things into $k$ boxes, $\\binom{n + k - 1}{k - 1}$; at least one each, $\\binom{n - 1}{k - 1}$. Inclusion–exclusion: $|A \\cup B| = |A| + |B| - |A \\cap B|$; with three sets, add back the triple. \"Neither\" $=$ total $-$ union."
+        },
+        {
+          "kind": "definition",
+          "title": "Probability: quick review",
+          "body": "$P = \\frac{\\text{good}}{\\text{all}}$ with equally likely outcomes; $P(\\text{not } E) = 1 - P(E)$. Geometric: good length or area over total. Expected value: weight each value by its probability; expected values add."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m10.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m10.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

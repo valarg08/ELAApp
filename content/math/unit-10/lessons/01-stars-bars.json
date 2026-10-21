@@ -1,0 +1,102 @@
+{
+  "slug": "math-stars-and-bars",
+  "order": 1,
+  "title": "Stars and Bars",
+  "estMinutes": 35,
+  "focusSkills": ["stars-bars"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "In how many ways can $5$ identical sweets be shared among $3$ children, if some children may get none? Try drawing the sweets as dots and the splits between children as lines.",
+      "placeholder": "I drew… and counted…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Stars and bars",
+          "body": "Share $n$ identical things among $k$ people: write the $n$ things as stars and put $k - 1$ bars between them to split them up. Every way of sharing is one row of $n + k - 1$ symbols, so the count is $\\binom{n + k - 1}{k - 1}$. It also counts the solutions of $x_1 + \\cdots + x_k = n$ in whole numbers $x_i \\geq 0$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: sweets",
+          "problem": "In how many ways can $7$ identical sweets be shared among $3$ children, if a child may get none?",
+          "steps": [
+            {
+              "text": "Use $7$ stars and $2$ bars: a row of $9$ symbols.",
+              "try": {
+                "prompt": "How many symbols are in each row?",
+                "accepted": ["9"],
+                "compute": "7 + 2"
+              }
+            },
+            {
+              "text": "Choose where the $2$ bars go: $\\binom{9}{2} = 36$ ways.",
+              "try": {
+                "prompt": "How many ways are there to share the sweets?",
+                "accepted": ["36"],
+                "compute": "binom(9, 2)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "At least one each",
+          "body": "If everyone must get at least one, hand out one each first, then share what is left with stars and bars. For positive whole numbers, $x_1 + \\cdots + x_k = n$ has $\\binom{n - 1}{k - 1}$ solutions. The same trick works for \"at least $2$ each\"."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: positive solutions",
+          "problem": "How many solutions does $a + b + c + d = 10$ have in positive integers?",
+          "steps": [
+            {
+              "text": "Give each variable $1$ first.",
+              "try": {
+                "prompt": "How much is left to share after that?",
+                "accepted": ["6"],
+                "compute": "10 - 4"
+              }
+            },
+            {
+              "text": "Share $6$ among $4$ variables, zeros allowed: $\\binom{6 + 3}{3} = \\binom{9}{3} = 84$.",
+              "try": {
+                "prompt": "How many solutions are there?",
+                "accepted": ["84"],
+                "compute": "binom(9, 3)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: which kind of sharing?",
+          "body": "Stars and bars needs the things to be identical (sweets, not named people) and the boxes to be different (children, not piles). Read whether a box may be empty: $\\binom{n + k - 1}{k - 1}$ allows zeros, $\\binom{n - 1}{k - 1}$ doesn't."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m10.stars-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m10.stars-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How do you change a problem with \"at least one each\" into one where zeros are allowed?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

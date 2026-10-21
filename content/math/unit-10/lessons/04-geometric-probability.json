@@ -1,0 +1,100 @@
+{
+  "slug": "math-geometric-probability",
+  "order": 4,
+  "title": "Geometric Probability",
+  "estMinutes": 35,
+  "focusSkills": ["geometric-probability"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A point is picked at random on a ruler from $0$ to $10$. There are infinitely many points, so you can't count them. How could you still find the chance that the point is less than $3$?",
+      "placeholder": "Instead of counting I would…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Measure instead of count",
+          "body": "When a point is chosen at random from a segment or a region, $P = \\frac{\\text{good length}}{\\text{total length}}$ or $\\frac{\\text{good area}}{\\text{total area}}$. Draw the picture, shade the good part, and measure it."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: closer to 0",
+          "problem": "A number $x$ is chosen at random between $0$ and $10$. What is the probability that $x$ is closer to $0$ than to $7$?",
+          "steps": [
+            {
+              "text": "The halfway point between $0$ and $7$ is $\\frac{7}{2}$. Points to its left are closer to $0$.",
+              "try": {
+                "prompt": "Below which number is $x$ closer to $0$ than to $7$?",
+                "accepted": ["7/2", "3.5"],
+                "compute": "7/2"
+              }
+            },
+            {
+              "text": "The good length is $\\frac{7}{2}$ out of $10$: probability $\\frac{7}{20}$.",
+              "try": {
+                "prompt": "What is the probability, as a fraction?",
+                "accepted": ["7/20"],
+                "compute": "(7/2)/10"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Two numbers make a square",
+          "body": "Choosing two numbers $x$ and $y$ at random between $0$ and $1$ is like choosing a point $(x, y)$ in the unit square. Conditions like $x + y < 1$ or $|x - y| < \\frac{1}{2}$ become regions you can draw. Circles bring in $\\pi$: a circle of radius $r$ has area $\\pi r^2$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a corner triangle",
+          "problem": "A point $(x, y)$ is chosen at random in the square with corners $(0, 0)$ and $(2, 2)$. What is the probability that $x + y < 1$?",
+          "steps": [
+            {
+              "text": "The good region is the triangle with corners $(0, 0)$, $(1, 0)$ and $(0, 1)$.",
+              "try": {
+                "prompt": "What is the area of that triangle?",
+                "accepted": ["1/2", "0.5"],
+                "compute": "1/2"
+              }
+            },
+            {
+              "text": "The square has area $4$, so the probability is $\\frac{1/2}{4} = \\frac{1}{8}$.",
+              "try": {
+                "prompt": "What is the probability?",
+                "accepted": ["1/8"],
+                "compute": "(1/2)/4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: comparing lengths instead of areas",
+          "body": "A dart inside a circle of radius $2$ on a board of radius $6$: the chance is $\\frac{2^2}{6^2} = \\frac{1}{9}$, not $\\frac{2}{6}$. Areas grow with the square of the size. Also cut off any part of the good region that sticks out of the total region."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m10.geo-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m10.geo-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When do you use length, and when do you use area, to find a probability?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

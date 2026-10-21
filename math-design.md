@@ -450,7 +450,9 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | **M6 Unit 6 Sequences & Patterns** ✅ | 6 lessons (§4.6), published | Played end to end; content:check verifies every answer and variant |
 | **M7 Unit 7 Number Theory I** ✅ | 6 lessons (§4.7), published | Played end to end; content:check verifies every answer and variant |
 | **M8 Unit 8 Number Theory II** ✅ | 6 lessons (§4.8), published, and checkpoint mock 1 (`tests/checkpoint-1.json`, 25 problems, 75 minutes) | Played end to end; content:check verifies every answer and variant |
-| **M9–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M13** also writes checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
+| **M9 Unit 9 Counting I** ✅ | 6 lessons (§4.9), published | Played end to end; content:check verifies every answer and variant |
+| **M10 Unit 10 Counting II & Probability** ✅ | 6 lessons (§4.10), published | Played end to end; content:check verifies every answer and variant |
+| **M11–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M13** also writes checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
 | **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
 
 ### 4.1 M1 as built (2026-10-16)
@@ -564,3 +566,29 @@ Unit 8 Number Theory II is published, with 6 lessons in the same shape and no ne
 | 4 | Digit Problems | `m08.digits-practice` (reversal gaps, finding the number, $10^n - k$, digit-sum counts, all the digits) | `m08.digits-set` |
 | 5 | Integer Equations | `m08.integer-practice` ($x + y = n$, $ax + y = c$, $xy = n$, $(x - 1)(y - 1)$, $a^2 - b^2 = p$) | `m08.integer-set` |
 | 6 | ⭐ Unit Check | `m08.review-practice` (5-problem warm-up, one per lesson) | `m08.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.9 M9 as built (2026-10-21)
+
+Unit 9 Counting I is published, with 6 lessons in the same shape and no new tools (the counting tree builder stays an idea; the worked examples and casework tables cover it). Answers are whole numbers; `compute` uses `binom` and `fact`. Templates stay under 20,000 combinations and give at least 5 variants, and every mistake note differs from the answer in every variant.
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | The Multiplication Principle | `m09.multiply-practice` (outfits, codes, digits up to $m$, "and" versus "or", no equal neighbours) | `m09.multiply-set` |
+| 2 | Permutations | `m09.permutations-practice` (a line, medals, identical flags, a round table, a pair together) | `m09.permutations-set` |
+| 3 | Combinations | `m09.combinations-practice` (committees, handshakes, grid paths, two and two, the captain) | `m09.combinations-set` |
+| 4 | Casework | `m09.casework-practice` (digit sums, the largest middle digit, pairs $a < b$, triangles by perimeter, squares on a board) | `m09.casework-set` |
+| 5 | Complementary Counting | `m09.complement-practice` (at least one $0$, at least one girl, at least one head, not together, at least two heads) | `m09.complement-set` |
+| 6 | ⭐ Unit Check | `m09.review-practice` (5-problem warm-up, one per lesson) | `m09.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.10 M10 as built (2026-10-21)
+
+Unit 10 Counting II & Probability is published, with 6 lessons in the same shape and no new tools. Probabilities are typed as fractions in lowest terms (`form: "fraction"`); expected values may be typed in any form (`form: "any"`). Choices with $pi$ are checked by value like any other choice.
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Stars and Bars | `m10.stars-practice` (sweets, positive solutions, four variables, at least two each, doughnuts) | `m10.stars-set` |
+| 2 | Inclusion–Exclusion | `m10.incl-practice` ($a$ or $b$, neither sport, the overlap, neither $2$ nor $3$, three divisors) | `m10.incl-set` |
+| 3 | Probability | `m10.prob-practice` (dice sums, multiples, exactly $k$ heads, at least one head, two reds without replacement) | `m10.prob-set` |
+| 4 | Geometric Probability | `m10.geo-practice` (a segment, closer to $0$, a square in a rectangle, a corner triangle, a dart) | `m10.geo-set` |
+| 5 | Expected Value | `m10.ev-practice` (an $n$-sided die, a spinner, dice totals, counting sixes, a coin jar) | `m10.ev-set` |
+| 6 | ⭐ Unit Check | `m10.review-practice` (5-problem warm-up, one per lesson) | `m10.unit-check`: 8 of 19 problems per try, pass at 100% |

@@ -1,0 +1,1878 @@
+[
+  {
+    "key": "m10.stars-practice",
+    "type": "PROBLEMS",
+    "title": "Stars and bars",
+    "instructions": "Type each answer and press Check. Stars for the things, bars for the splits. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sweets",
+        "prompt": "In how many ways can $[[n]]$ identical sweets be shared among $[[k]]$ children, if a child may get none?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n + k - 1, k - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(n - 1, k - 1)]]",
+              "why": "That gives every child at least one. Here a child may get none."
+            }
+          ]
+        },
+        "hints": [
+          "Use $[[n]]$ stars and $[[k - 1]]$ bars: a row of $[[n + k - 1]]$ symbols.",
+          "Choose where the bars go."
+        ],
+        "solution": "$\\binom{[[n + k - 1]]}{[[k - 1]]} = [[binom(n + k - 1, k - 1)]]$.",
+        "skill": "stars-bars",
+        "difficulty": 1,
+        "compute": "binom(n + k - 1, k - 1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "positive-three",
+        "prompt": "How many solutions does $a + b + c = [[n]]$ have in positive integers?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n - 1, 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(n + 2, 2)]]",
+              "why": "That allows zeros. Each of $a$, $b$, $c$ must be at least $1$."
+            }
+          ]
+        },
+        "hints": ["Give each variable $1$ first. Then share the remaining $[[n - 3]]$ freely."],
+        "solution": "Share $[[n - 3]]$ among $3$ with zeros allowed: $\\binom{[[n - 1]]}{2} = [[binom(n - 1, 2)]]$.",
+        "skill": "stars-bars",
+        "difficulty": 1,
+        "compute": "binom(n - 1, 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "nonneg-four",
+        "prompt": "How many solutions does $a + b + c + d = [[n]]$ have in whole numbers $a, b, c, d \\geq 0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n + 3, 3)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(n - 1, 3)]]",
+              "why": "That needs each variable to be at least $1$. Here zeros are allowed."
+            }
+          ]
+        },
+        "hints": ["$[[n]]$ stars and $3$ bars."],
+        "solution": "$\\binom{[[n + 3]]}{3} = [[binom(n + 3, 3)]]$.",
+        "skill": "stars-bars",
+        "difficulty": 1,
+        "compute": "binom(n + 3, 3)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "at-least-two",
+        "prompt": "In how many ways can $[[n]]$ identical balls be put into $3$ different boxes, with at least $2$ balls in each box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n - 4, 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(n + 2, 2)]]",
+              "why": "Put $2$ balls in each box first, then share what is left."
+            }
+          ]
+        },
+        "hints": ["After $2$ in each box, $[[n - 6]]$ balls are left to share freely."],
+        "solution": "Share $[[n - 6]]$ balls among $3$ boxes: $\\binom{[[n - 6]] + 2}{2} = [[binom(n - 4, 2)]]$.",
+        "skill": "stars-bars",
+        "difficulty": 2,
+        "compute": "binom(n - 4, 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 8,
+              "to": 18
+            }
+          }
+        }
+      },
+      {
+        "id": "donuts",
+        "prompt": "A shop sells $[[k]]$ kinds of doughnut. In how many ways can you buy $[[n]]$ doughnuts? (Only how many of each kind matters.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n + k - 1, k - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[k^n]]",
+              "why": "That counts the doughnuts in order. Only the number of each kind matters."
+            }
+          ]
+        },
+        "hints": ["The $[[n]]$ doughnuts are the stars; $[[k - 1]]$ bars split them into kinds."],
+        "solution": "$\\binom{[[n + k - 1]]}{[[k - 1]]} = [[binom(n + k - 1, k - 1)]]$.",
+        "skill": "stars-bars",
+        "difficulty": 2,
+        "compute": "binom(n + k - 1, k - 1)",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 3,
+              "to": 5
+            },
+            "n": {
+              "from": 3,
+              "to": 6
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m10.stars-set",
+    "type": "PROBLEM_SET",
+    "title": "Stars and bars challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "apples",
+        "prompt": "In how many ways can $8$ identical apples be shared among $3$ children, if a child may get none?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$21$", "$28$", "$36$", "$45$", "$56$"],
+          "correct": "D",
+          "why": {
+            "A": "That gives every child at least one apple."
+          }
+        },
+        "solution": "$8$ stars and $2$ bars: $\\binom{10}{2} = 45$, choice (D).",
+        "skill": "stars-bars",
+        "difficulty": 1,
+        "compute": "binom(10, 2)"
+      },
+      {
+        "id": "positive-nine",
+        "prompt": "How many solutions does $a + b + c + d = 9$ have in positive integers?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$56$", "$70$", "$84$", "$120$", "$220$"],
+          "correct": "A",
+          "why": {
+            "E": "That allows zeros."
+          }
+        },
+        "solution": "Give each $1$, then share $5$ among $4$: $\\binom{8}{3} = 56$, choice (A).",
+        "skill": "stars-bars",
+        "difficulty": 1,
+        "compute": "binom(8, 3)"
+      },
+      {
+        "id": "four-doughnuts",
+        "prompt": "A shop sells $5$ kinds of doughnut. In how many ways can you buy $4$ doughnuts, if only how many of each kind matters?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$56$", "$70$", "$126$", "$625$"],
+          "correct": "C",
+          "why": {
+            "E": "Order doesn't matter here, only how many of each kind."
+          }
+        },
+        "solution": "$4$ stars and $4$ bars: $\\binom{8}{4} = 70$, choice (C).",
+        "skill": "stars-bars",
+        "difficulty": 2,
+        "compute": "binom(8, 4)"
+      },
+      {
+        "id": "two-each",
+        "prompt": "In how many ways can $10$ identical balls go into $4$ different boxes with at least $2$ balls in each box?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$10$", "$20$", "$35$", "$84$"],
+          "correct": "B",
+          "why": {
+            "E": "That only puts at least $1$ in each box."
+          }
+        },
+        "solution": "Put $2$ in each box ($8$ balls), then share the last $2$ among $4$ boxes: $\\binom{5}{3} = 10$, choice (B).",
+        "skill": "stars-bars",
+        "difficulty": 2,
+        "compute": "binom(5, 3)"
+      },
+      {
+        "id": "upper-limit",
+        "prompt": "How many solutions does $a + b + c = 10$ have in whole numbers $a, b, c \\geq 0$ with $a \\leq 3$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$28$", "$36$", "$38$", "$40$", "$66$"],
+          "correct": "C",
+          "why": {
+            "E": "That ignores the rule $a \\leq 3$.",
+            "A": "That counts the solutions with $a \\geq 4$, the ones to leave out."
+          }
+        },
+        "solution": "Split by $a$: for $a = 0, 1, 2, 3$, $b + c$ is $10, 9, 8, 7$, giving $11 + 10 + 9 + 8 = 38$, choice (C).",
+        "skill": "stars-bars",
+        "difficulty": 3,
+        "compute": "11 + 10 + 9 + 8"
+      }
+    ]
+  },
+  {
+    "key": "m10.incl-practice",
+    "type": "PROBLEMS",
+    "title": "Inclusion–exclusion",
+    "instructions": "Type each answer and press Check. Add the sets, then take away the overlap. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "div-or",
+        "prompt": "How many of the numbers $1, 2, \\ldots, [[n]]$ are divisible by $[[a]]$ or by $[[b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(n/a) + floor(n/b) - floor(n/(a*b))]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(n/a) + floor(n/b)]]",
+              "why": "The multiples of $[[a*b]]$ were counted twice. Take them away once."
+            }
+          ]
+        },
+        "hints": [
+          "Count the multiples of $[[a]]$, of $[[b]]$, and of both (multiples of $[[a*b]]$)."
+        ],
+        "solution": "$[[floor(n/a)]] + [[floor(n/b)]] - [[floor(n/(a*b))]] = [[floor(n/a) + floor(n/b) - floor(n/(a*b))]]$.",
+        "skill": "inclusion-exclusion",
+        "difficulty": 1,
+        "compute": "floor(n/a) + floor(n/b) - floor(n/(a*b))",
+        "template": {
+          "vars": {
+            "a": {
+              "choose": [2, 3]
+            },
+            "b": {
+              "choose": [5, 7]
+            },
+            "n": {
+              "from": 50,
+              "to": 200,
+              "step": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "neither-sport",
+        "prompt": "In a class of $[[n]]$, $[[x]]$ students play football, $[[y]]$ play tennis and $[[z]]$ play both. How many play neither?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n - (x + y - z)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n - x - y]]",
+              "why": "The $[[z]]$ who play both were taken away twice. Add them back once."
+            }
+          ]
+        },
+        "hints": ["At least one sport: $[[x]] + [[y]] - [[z]]$."],
+        "solution": "$[[x]] + [[y]] - [[z]] = [[x + y - z]]$ play at least one, so $[[n]] - [[x + y - z]] = [[n - x - y + z]]$ play neither.",
+        "skill": "inclusion-exclusion",
+        "difficulty": 1,
+        "compute": "n - (x + y - z)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 25,
+              "to": 40
+            },
+            "x": {
+              "from": 10,
+              "to": 18
+            },
+            "y": {
+              "from": 8,
+              "to": 14
+            },
+            "z": {
+              "from": 2,
+              "to": 6
+            }
+          },
+          "where": ["x + y - z < n"]
+        }
+      },
+      {
+        "id": "overlap",
+        "prompt": "Set $A$ has $[[a]]$ members, set $B$ has $[[b]]$ members, and together they have $[[u]]$ different members. How many members are in both?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + b - u]]"],
+          "form": "integer"
+        },
+        "hints": ["$|A \\cup B| = |A| + |B| - |A \\cap B|$."],
+        "solution": "$[[u]] = [[a]] + [[b]] - |A \\cap B|$, so $|A \\cap B| = [[a + b - u]]$.",
+        "skill": "inclusion-exclusion",
+        "difficulty": 1,
+        "compute": "a + b - u",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 30
+            },
+            "b": {
+              "from": 10,
+              "to": 30
+            },
+            "u": {
+              "from": 20,
+              "to": 50
+            }
+          },
+          "where": ["u >= a", "u >= b", "u < a + b"]
+        }
+      },
+      {
+        "id": "neither-two-three",
+        "prompt": "How many of the numbers $1, 2, \\ldots, [[n]]$ are divisible by neither $2$ nor $3$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n - floor(n/2) - floor(n/3) + floor(n/6)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n - floor(n/2) - floor(n/3)]]",
+              "why": "The multiples of $6$ were taken away twice. Add them back once."
+            }
+          ]
+        },
+        "hints": ["First count those divisible by $2$ or $3$, then take that from $[[n]]$."],
+        "solution": "Divisible by $2$ or $3$: $[[floor(n/2)]] + [[floor(n/3)]] - [[floor(n/6)]] = [[floor(n/2) + floor(n/3) - floor(n/6)]]$. Neither: $[[n]] - [[floor(n/2) + floor(n/3) - floor(n/6)]] = [[n - floor(n/2) - floor(n/3) + floor(n/6)]]$.",
+        "skill": "inclusion-exclusion",
+        "difficulty": 2,
+        "compute": "n - floor(n/2) - floor(n/3) + floor(n/6)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 30,
+              "to": 120,
+              "step": 7
+            }
+          }
+        }
+      },
+      {
+        "id": "two-three-five",
+        "prompt": "How many of the numbers $1, 2, \\ldots, [[n]]$ are divisible by at least one of $2$, $3$ and $5$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n/2 + n/3 + n/5 - n/6 - n/10 - n/15 + n/30]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n/2 + n/3 + n/5 - n/6 - n/10 - n/15]]",
+              "why": "The multiples of $30$ were added three times and taken away three times. Add them back once."
+            }
+          ]
+        },
+        "hints": [
+          "Singles: multiples of $2$, $3$, $5$. Pairs: of $6$, $10$, $15$. Triple: of $30$."
+        ],
+        "solution": "$[[n/2]] + [[n/3]] + [[n/5]] - [[n/6]] - [[n/10]] - [[n/15]] + [[n/30]] = [[n/2 + n/3 + n/5 - n/6 - n/10 - n/15 + n/30]]$.",
+        "skill": "inclusion-exclusion",
+        "difficulty": 2,
+        "compute": "n/2 + n/3 + n/5 - n/6 - n/10 - n/15 + n/30",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 60,
+              "to": 300,
+              "step": 30
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m10.incl-set",
+    "type": "PROBLEM_SET",
+    "title": "Inclusion–exclusion challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "two-or-five",
+        "prompt": "How many of the numbers $1, 2, \\ldots, 100$ are divisible by $2$ or by $5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$50$", "$60$", "$65$", "$70$", "$80$"],
+          "correct": "B",
+          "why": {
+            "D": "The multiples of $10$ were counted twice."
+          }
+        },
+        "solution": "$50 + 20 - 10 = 60$, choice (B).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 1,
+        "compute": "50 + 20 - 10"
+      },
+      {
+        "id": "math-art",
+        "prompt": "In a class of $30$, $18$ students like maths, $15$ like art and $8$ like both. How many like neither?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$3$", "$5$", "$7$", "$8$"],
+          "correct": "C"
+        },
+        "solution": "At least one: $18 + 15 - 8 = 25$. Neither: $30 - 25 = 5$, choice (C).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 1,
+        "compute": "30 - (18 + 15 - 8)"
+      },
+      {
+        "id": "coprime-six",
+        "prompt": "How many of the numbers $1, 2, \\ldots, 1000$ are divisible by neither $2$ nor $3$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$166$", "$333$", "$334$", "$500$", "$667$"],
+          "correct": "B",
+          "why": {
+            "E": "That counts the numbers divisible by $2$ or $3$."
+          }
+        },
+        "solution": "Divisible by $2$ or $3$: $500 + 333 - 166 = 667$. Neither: $1000 - 667 = 333$, choice (B).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 2,
+        "compute": "1000 - 500 - 333 + 166"
+      },
+      {
+        "id": "three-four-five",
+        "prompt": "How many of the numbers $1, 2, \\ldots, 300$ are divisible by at least one of $3$, $4$ and $5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$160$", "$175$", "$180$", "$185$", "$235$"],
+          "correct": "C",
+          "why": {
+            "B": "Add back the multiples of $60$.",
+            "E": "Numbers in two of the sets were counted twice."
+          }
+        },
+        "solution": "$100 + 75 + 60 - 25 - 20 - 15 + 5 = 180$, choice (C).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 2,
+        "compute": "100 + 75 + 60 - 25 - 20 - 15 + 5"
+      },
+      {
+        "id": "no-fixed",
+        "prompt": "The numbers $1, 2, 3, 4$ are put in a row in random order. In how many orders is no number in its own place (so $1$ is not first, $2$ is not second, and so on)?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$8$", "$9$", "$11$", "$12$"],
+          "correct": "C"
+        },
+        "solution": "All orders $24$. Take away those with a given number fixed: $4 \\times 3! = 24$. Add back two fixed: $6 \\times 2! = 12$. Take away three fixed: $4 \\times 1 = 4$. Add back all four: $1$. $24 - 24 + 12 - 4 + 1 = 9$, choice (C).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 3,
+        "compute": "fact(4) - 4*fact(3) + 6*fact(2) - 4 + 1"
+      }
+    ]
+  },
+  {
+    "key": "m10.prob-practice",
+    "type": "PROBLEMS",
+    "title": "Probability",
+    "instructions": "Type each answer and press Check. Write each probability as a fraction in lowest terms. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "dice-sum",
+        "prompt": "Two fair dice are rolled. What is the probability that the sum is $[[s]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(6 - abs(s - 7))/36]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "1/11",
+              "why": "The $11$ sums are not equally likely. Count the $36$ ordered pairs."
+            }
+          ]
+        },
+        "hints": [
+          "List the ordered pairs that add to $[[s]]$.",
+          "There are $36$ equally likely pairs."
+        ],
+        "solution": "$[[6 - abs(s - 7)]]$ of the $36$ pairs add to $[[s]]$, so the probability is $[[(6 - abs(s - 7))/36]]$.",
+        "skill": "probability",
+        "difficulty": 1,
+        "compute": "(6 - abs(s - 7))/36",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["s != 7"]
+        }
+      },
+      {
+        "id": "multiple-of",
+        "prompt": "A whole number is chosen at random from $1$ to $[[n]]$. What is the probability that it is a multiple of $[[d]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(n/d)/n]]"],
+          "form": "fraction"
+        },
+        "hints": ["There are $[[floor(n/d)]]$ multiples of $[[d]]$ up to $[[n]]$."],
+        "solution": "$\\frac{[[floor(n/d)]]}{[[n]]} = [[floor(n/d)/n]]$.",
+        "skill": "probability",
+        "difficulty": 1,
+        "compute": "floor(n/d)/n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 20,
+              "to": 60,
+              "step": 5
+            },
+            "d": {
+              "choose": [3, 4, 6, 7]
+            }
+          }
+        }
+      },
+      {
+        "id": "exactly-heads",
+        "prompt": "$[[n]]$ fair coins are flipped. What is the probability of exactly $[[k]]$ heads?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n, k)/2^n]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "[[1/2^n]]",
+              "why": "That is one outcome. There are $\\binom{[[n]]}{[[k]]}$ ways to choose which coins are heads."
+            }
+          ]
+        },
+        "hints": [
+          "There are $2^{[[n]]}$ equally likely outcomes.",
+          "Choose which $[[k]]$ coins land heads."
+        ],
+        "solution": "$\\frac{\\binom{[[n]]}{[[k]]}}{2^{[[n]]}} = \\frac{[[binom(n, k)]]}{[[2^n]]} = [[binom(n, k)/2^n]]$.",
+        "skill": "probability",
+        "difficulty": 1,
+        "compute": "binom(n, k)/2^n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 6
+            },
+            "k": {
+              "from": 1,
+              "to": 3
+            }
+          },
+          "where": ["k < n"]
+        }
+      },
+      {
+        "id": "some-head",
+        "prompt": "$[[n]]$ fair coins are flipped. What is the probability of at least one head?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1 - 1/2^n]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "[[1/2^n]]",
+              "why": "That is the chance of NO heads. Subtract it from $1$."
+            }
+          ]
+        },
+        "hints": ["The opposite of \"at least one head\" is \"all tails\"."],
+        "solution": "$1 - \\frac{1}{2^{[[n]]}} = [[1 - 1/2^n]]$.",
+        "skill": "probability",
+        "difficulty": 1,
+        "compute": "1 - 1/2^n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "both-red",
+        "prompt": "A bag holds $[[a]]$ red and $[[b]]$ blue marbles. Two are taken out without putting the first back. What is the probability that both are red?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*(a - 1)/((a + b)*(a + b - 1))]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "[[a^2/(a + b)^2]]",
+              "why": "That puts the first marble back. Without it, the second draw has one fewer red and one fewer marble."
+            }
+          ]
+        },
+        "hints": [
+          "First red: $\\frac{[[a]]}{[[a + b]]}$. Then second red: $\\frac{[[a - 1]]}{[[a + b - 1]]}$."
+        ],
+        "solution": "$\\frac{[[a]]}{[[a + b]]} \\times \\frac{[[a - 1]]}{[[a + b - 1]]} = [[a*(a - 1)/((a + b)*(a + b - 1))]]$.",
+        "skill": "probability",
+        "difficulty": 2,
+        "compute": "a*(a - 1)/((a + b)*(a + b - 1))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 6
+            },
+            "b": {
+              "from": 3,
+              "to": 7
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m10.prob-set",
+    "type": "PROBLEM_SET",
+    "title": "Probability challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "letter-b",
+        "prompt": "A letter is chosen at random from the word PROBABILITY. What is the probability that it is a B?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{11}$",
+            "$\\frac{2}{11}$",
+            "$\\frac{3}{11}$",
+            "$\\frac{1}{5}$",
+            "$\\frac{2}{9}$"
+          ],
+          "correct": "B",
+          "why": {
+            "E": "Count every letter, repeats included: there are $11$."
+          }
+        },
+        "solution": "$2$ of the $11$ letters are B: $\\frac{2}{11}$, choice (B).",
+        "skill": "probability",
+        "difficulty": 1,
+        "compute": "2/11"
+      },
+      {
+        "id": "sum-nine",
+        "prompt": "Two fair dice are rolled. What is the probability that the sum is $9$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{12}$",
+            "$\\frac{1}{11}$",
+            "$\\frac{1}{9}$",
+            "$\\frac{1}{6}$",
+            "$\\frac{2}{9}$"
+          ],
+          "correct": "C",
+          "why": {
+            "B": "The $11$ sums aren't equally likely."
+          }
+        },
+        "solution": "$(3, 6), (4, 5), (5, 4), (6, 3)$: $\\frac{4}{36} = \\frac{1}{9}$, choice (C).",
+        "skill": "probability",
+        "difficulty": 1,
+        "compute": "4/36"
+      },
+      {
+        "id": "two-of-three",
+        "prompt": "Three fair coins are flipped. What is the probability of exactly two heads?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{8}$",
+            "$\\frac{1}{4}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{2}{3}$"
+          ],
+          "correct": "C",
+          "why": {
+            "B": "The four possible numbers of heads aren't equally likely."
+          }
+        },
+        "solution": "HHT, HTH, THH: $3$ of the $8$ outcomes, $\\frac{3}{8}$, choice (C).",
+        "skill": "probability",
+        "difficulty": 2,
+        "compute": "3/8"
+      },
+      {
+        "id": "one-of-each",
+        "prompt": "A bag holds $4$ red and $6$ blue marbles. Two are taken out at once. What is the probability that they are different colours?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{6}{25}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{12}{25}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{8}{15}$"
+          ],
+          "correct": "E",
+          "why": {
+            "C": "That puts the first marble back before the second draw."
+          }
+        },
+        "solution": "$\\frac{4 \\times 6}{\\binom{10}{2}} = \\frac{24}{45} = \\frac{8}{15}$, choice (E).",
+        "skill": "probability",
+        "difficulty": 2,
+        "compute": "4*6/binom(10, 2)"
+      },
+      {
+        "id": "product-even",
+        "prompt": "Three different numbers are chosen at random from $1, 2, \\ldots, 10$. What is the probability that their product is even?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{4}$",
+            "$\\frac{5}{6}$",
+            "$\\frac{11}{12}$",
+            "$\\frac{23}{24}$"
+          ],
+          "correct": "D"
+        },
+        "solution": "The product is odd only if all three are odd: $\\frac{\\binom{5}{3}}{\\binom{10}{3}} = \\frac{10}{120} = \\frac{1}{12}$. So even: $1 - \\frac{1}{12} = \\frac{11}{12}$, choice (D).",
+        "skill": "probability",
+        "difficulty": 3,
+        "compute": "1 - binom(5, 3)/binom(10, 3)"
+      }
+    ]
+  },
+  {
+    "key": "m10.geo-practice",
+    "type": "PROBLEMS",
+    "title": "Geometric probability",
+    "instructions": "Type each answer and press Check. Shade the good part and compare lengths or areas. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "less-than",
+        "prompt": "A number $x$ is chosen at random between $0$ and $[[l]]$. What is the probability that $x < [[a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/l]]"],
+          "form": "fraction"
+        },
+        "hints": ["The good part is from $0$ to $[[a]]$, out of a total length $[[l]]$."],
+        "solution": "$\\frac{[[a]]}{[[l]]} = [[a/l]]$.",
+        "skill": "geometric-probability",
+        "difficulty": 1,
+        "compute": "a/l",
+        "template": {
+          "vars": {
+            "l": {
+              "from": 8,
+              "to": 20
+            },
+            "a": {
+              "from": 1,
+              "to": 7
+            }
+          }
+        }
+      },
+      {
+        "id": "closer-to-zero",
+        "prompt": "A number $x$ is chosen at random between $0$ and $[[l]]$. What is the probability that $x$ is closer to $0$ than to $[[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c/(2*l)]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "[[c/l]]",
+              "why": "Closer to $0$ means left of the halfway point $\\frac{[[c]]}{2}$, not left of $[[c]]$."
+            }
+          ]
+        },
+        "hints": [
+          "$x$ is closer to $0$ when it is less than the halfway point between $0$ and $[[c]]$."
+        ],
+        "solution": "The good part is from $0$ to $\\frac{[[c]]}{2}$, so the probability is $\\frac{[[c]]}{2 \\times [[l]]} = [[c/(2*l)]]$.",
+        "skill": "geometric-probability",
+        "difficulty": 1,
+        "compute": "c/(2*l)",
+        "template": {
+          "vars": {
+            "l": {
+              "from": 6,
+              "to": 16
+            },
+            "c": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["c <= l"]
+        }
+      },
+      {
+        "id": "square-in-rectangle",
+        "prompt": "A point is chosen at random inside a $[[a]] \\times [[b]]$ rectangle. A $[[c]] \\times [[c]]$ square is drawn inside the rectangle. What is the probability that the point lands in the square?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c^2/(a*b)]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "[[c/(a*b)]]",
+              "why": "Use the square's area, $[[c]]^2 = [[c^2]]$, not its side."
+            }
+          ]
+        },
+        "hints": ["Compare areas: $[[c^2]]$ out of $[[a*b]]$."],
+        "solution": "$\\frac{[[c^2]]}{[[a*b]]} = [[c^2/(a*b)]]$.",
+        "skill": "geometric-probability",
+        "difficulty": 1,
+        "compute": "c^2/(a*b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 10
+            },
+            "b": {
+              "from": 4,
+              "to": 10
+            },
+            "c": {
+              "from": 2,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "corner-triangle",
+        "prompt": "A point $(x, y)$ is chosen at random in the square with corners $(0, 0)$ and $([[s]], [[s]])$. What is the probability that $x + y < [[t]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[t^2/(2*s^2)]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "[[t^2/s^2]]",
+              "why": "The good region is a triangle: its area is half of $[[t]] \\times [[t]]$."
+            }
+          ]
+        },
+        "hints": [
+          "The good region is the triangle with corners $(0, 0)$, $([[t]], 0)$ and $(0, [[t]])$."
+        ],
+        "solution": "The triangle has area $\\frac{[[t]]^2}{2} = [[t^2/2]]$ and the square $[[s^2]]$, so the probability is $[[t^2/(2*s^2)]]$.",
+        "skill": "geometric-probability",
+        "difficulty": 2,
+        "compute": "t^2/(2*s^2)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 4,
+              "to": 10
+            },
+            "t": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["t <= s"]
+        }
+      },
+      {
+        "id": "dart",
+        "prompt": "A dart lands at a random point on a round board of radius $[[b]]$. What is the probability that it lands within $[[a]]$ of the centre?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a^2/b^2]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "[[a/b]]",
+              "why": "Compare areas, not radii: areas grow with the square of the radius."
+            }
+          ]
+        },
+        "hints": ["The good region is a circle of radius $[[a]]$: area $[[a^2]]\\pi$."],
+        "solution": "$\\frac{\\pi \\cdot [[a]]^2}{\\pi \\cdot [[b]]^2} = [[a^2/b^2]]$.",
+        "skill": "geometric-probability",
+        "difficulty": 2,
+        "compute": "a^2/b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 4,
+              "to": 10
+            },
+            "a": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m10.geo-set",
+    "type": "PROBLEM_SET",
+    "title": "Geometric probability challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "away-from-ends",
+        "prompt": "A point is chosen at random on a segment of length $12$. What is the probability that it is at least $3$ away from both ends?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{2}{3}$",
+            "$\\frac{3}{4}$"
+          ],
+          "correct": "C",
+          "why": {
+            "E": "Take $3$ off BOTH ends."
+          }
+        },
+        "solution": "The good part is the middle $12 - 6 = 6$: $\\frac{6}{12} = \\frac{1}{2}$, choice (C).",
+        "skill": "geometric-probability",
+        "difficulty": 1,
+        "compute": "6/12"
+      },
+      {
+        "id": "inscribed-circle",
+        "prompt": "A point is chosen at random inside a $6 \\times 6$ square. What is the probability that it lies inside the circle that touches all four sides?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{\\pi}{9}$",
+            "$\\frac{\\pi}{6}$",
+            "$\\frac{\\pi}{4}$",
+            "$\\frac{\\pi}{3}$",
+            "$\\frac{\\pi}{2}$"
+          ],
+          "correct": "C"
+        },
+        "solution": "The circle has radius $3$ and area $9\\pi$; the square has area $36$. $\\frac{9\\pi}{36} = \\frac{\\pi}{4}$, choice (C).",
+        "skill": "geometric-probability",
+        "difficulty": 1,
+        "compute": "pi/4"
+      },
+      {
+        "id": "closer-to-three",
+        "prompt": "A number $x$ is chosen at random between $0$ and $10$. What is the probability that $x$ is closer to $3$ than to $8$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{3}{10}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{11}{20}$",
+            "$\\frac{3}{5}$",
+            "$\\frac{7}{10}$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "The good part runs to the halfway point between $3$ and $8$, not to $3$."
+          }
+        },
+        "solution": "The halfway point is $5.5$. Every $x$ below it is closer to $3$: $\\frac{5.5}{10} = \\frac{11}{20}$, choice (C).",
+        "skill": "geometric-probability",
+        "difficulty": 2,
+        "compute": "11/20"
+      },
+      {
+        "id": "sum-below-three",
+        "prompt": "A point $(x, y)$ is chosen at random in the square with corners $(0, 0)$ and $(4, 4)$. What is the probability that $x + y < 3$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{3}{16}$",
+            "$\\frac{1}{4}$",
+            "$\\frac{9}{32}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{9}{16}$"
+          ],
+          "correct": "C",
+          "why": {
+            "E": "The good region is a triangle: half of $3 \\times 3$."
+          }
+        },
+        "solution": "The triangle has area $\\frac{9}{2}$ and the square $16$: $\\frac{9}{32}$, choice (C).",
+        "skill": "geometric-probability",
+        "difficulty": 2,
+        "compute": "(9/2)/16"
+      },
+      {
+        "id": "close-pair",
+        "prompt": "Two numbers $x$ and $y$ are chosen at random between $0$ and $1$. What is the probability that $|x - y| < \\frac{1}{2}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{2}{3}$",
+            "$\\frac{3}{4}$",
+            "$\\frac{7}{8}$"
+          ],
+          "correct": "D",
+          "why": {
+            "A": "That is the chance they are MORE than $\\frac{1}{2}$ apart."
+          }
+        },
+        "solution": "In the unit square, the bad region is two corner triangles, each of area $\\frac{1}{8}$. So the probability is $1 - \\frac{1}{4} = \\frac{3}{4}$, choice (D).",
+        "skill": "geometric-probability",
+        "difficulty": 3,
+        "compute": "1 - (1/2)^2"
+      }
+    ]
+  },
+  {
+    "key": "m10.ev-practice",
+    "type": "PROBLEMS",
+    "title": "Expected value",
+    "instructions": "Type each answer and press Check. Weight each value by its probability, then add. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "die-average",
+        "prompt": "A fair die has $[[n]]$ faces numbered $1$ to $[[n]]$. What is the expected value of one roll?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(n + 1)/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n/2]]",
+              "why": "The average of $1, 2, \\ldots, [[n]]$ is $\\frac{1 + [[n]]}{2}$."
+            }
+          ]
+        },
+        "hints": [
+          "Add the faces: $1 + 2 + \\cdots + [[n]] = [[n*(n + 1)/2]]$. Then divide by $[[n]]$."
+        ],
+        "solution": "$\\frac{[[n*(n + 1)/2]]}{[[n]]} = [[(n + 1)/2]]$.",
+        "skill": "expected-value",
+        "difficulty": 1,
+        "compute": "(n + 1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "spinner",
+        "prompt": "A spinner pays $[[a]]$ points with probability $\\frac{1}{2}$, $[[b]]$ points with probability $\\frac{1}{4}$, and $0$ points with probability $\\frac{1}{4}$. What is the expected number of points?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/2 + b/4]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(a + b)/3]]",
+              "why": "The three results aren't equally likely. Weight each by its probability."
+            }
+          ]
+        },
+        "hints": [
+          "$E = \\frac{1}{2} \\times [[a]] + \\frac{1}{4} \\times [[b]] + \\frac{1}{4} \\times 0$."
+        ],
+        "solution": "$\\frac{[[a]]}{2} + \\frac{[[b]]}{4} = [[a/2 + b/4]]$.",
+        "skill": "expected-value",
+        "difficulty": 1,
+        "compute": "a/2 + b/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 4,
+              "to": 20,
+              "step": 4
+            }
+          },
+          "where": ["b != 2*a"]
+        }
+      },
+      {
+        "id": "dice-total",
+        "prompt": "$[[n]]$ fair six-sided dice are rolled. What is the expected value of their total?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[7*n/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[3*n]]",
+              "why": "One die averages $\\frac{7}{2}$, not $3$."
+            }
+          ]
+        },
+        "hints": ["Expected values add. One die averages $\\frac{7}{2}$."],
+        "solution": "$[[n]] \\times \\frac{7}{2} = [[7*n/2]]$.",
+        "skill": "expected-value",
+        "difficulty": 1,
+        "compute": "7*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "count-sixes",
+        "prompt": "A fair die is rolled $[[n]]$ times. What is the expected number of sixes?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n/6]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Each roll is a six with probability $\\frac{1}{6}$. Add up over the $[[n]]$ rolls."
+        ],
+        "solution": "$[[n]] \\times \\frac{1}{6} = [[n/6]]$.",
+        "skill": "expected-value",
+        "difficulty": 2,
+        "compute": "n/6",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 18,
+              "step": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "coin-jar",
+        "prompt": "A jar holds $[[a]]$ one-cent coins, $[[b]]$ five-cent coins and $[[c]]$ ten-cent coins. One coin is taken at random. What is its expected value in cents?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(a + 5*b + 10*c)/(a + b + c)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "16/3",
+              "why": "The three kinds of coin aren't equally likely. Weight each by how many there are."
+            }
+          ]
+        },
+        "hints": [
+          "The total value is $[[a + 5*b + 10*c]]$ cents, spread over $[[a + b + c]]$ coins."
+        ],
+        "solution": "$\\frac{[[a]] \\times 1 + [[b]] \\times 5 + [[c]] \\times 10}{[[a + b + c]]} = \\frac{[[a + 5*b + 10*c]]}{[[a + b + c]]} = [[(a + 5*b + 10*c)/(a + b + c)]]$.",
+        "skill": "expected-value",
+        "difficulty": 2,
+        "compute": "(a + 5*b + 10*c)/(a + b + c)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 2,
+              "to": 6
+            },
+            "c": {
+              "from": 1,
+              "to": 4
+            }
+          },
+          "where": ["3*(a + 5*b + 10*c) != 16*(a + b + c)"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m10.ev-set",
+    "type": "PROBLEM_SET",
+    "title": "Expected value challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "one-die",
+        "prompt": "What is the expected value of one roll of a fair six-sided die?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$\\frac{7}{2}$", "$4$", "$6$", "$21$"],
+          "correct": "B",
+          "why": {
+            "E": "Divide the total by the $6$ faces."
+          }
+        },
+        "solution": "$\\frac{1 + 2 + \\cdots + 6}{6} = \\frac{21}{6} = \\frac{7}{2}$, choice (B).",
+        "skill": "expected-value",
+        "difficulty": 1,
+        "compute": "21/6"
+      },
+      {
+        "id": "coin-game",
+        "prompt": "You flip a fair coin. Heads, you win $10$ points; tails, you lose $4$ points. What is your expected gain?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$5$", "$6$", "$7$"],
+          "correct": "B",
+          "why": {
+            "E": "Tails costs you $4$ points: subtract, don't add."
+          }
+        },
+        "solution": "$\\frac{1}{2} \\times 10 + \\frac{1}{2} \\times (-4) = 3$, choice (B).",
+        "skill": "expected-value",
+        "difficulty": 1,
+        "compute": "(10 - 4)/2"
+      },
+      {
+        "id": "dice-product",
+        "prompt": "Two fair dice are rolled. What is the expected value of the product of the two numbers?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7$", "$\\frac{21}{2}$", "$12$", "$\\frac{49}{4}$", "$18$"],
+          "correct": "D"
+        },
+        "solution": "The dice are independent, so the expected product is $\\frac{7}{2} \\times \\frac{7}{2} = \\frac{49}{4}$, choice (D).",
+        "skill": "expected-value",
+        "difficulty": 2,
+        "compute": "(7/2)^2"
+      },
+      {
+        "id": "red-draws",
+        "prompt": "A box has $3$ red and $2$ blue balls. Two balls are taken out without putting back. What is the expected number of red balls taken?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\frac{3}{5}$", "$1$", "$\\frac{6}{5}$", "$\\frac{3}{2}$", "$2$"],
+          "correct": "C",
+          "why": {
+            "A": "That is for one draw. Expected values add over the two draws."
+          }
+        },
+        "solution": "Each draw is red with probability $\\frac{3}{5}$, so the expected number is $2 \\times \\frac{3}{5} = \\frac{6}{5}$, choice (C).",
+        "skill": "expected-value",
+        "difficulty": 2,
+        "compute": "2*3/5"
+      },
+      {
+        "id": "wait-six",
+        "prompt": "A fair die is rolled until a $6$ appears. What is the expected number of rolls?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$\\frac{7}{2}$", "$5$", "$6$", "$36$"],
+          "correct": "D"
+        },
+        "solution": "Let $E$ be the answer. One roll is always made; with probability $\\frac{5}{6}$ you start again. $E = 1 + \\frac{5}{6}E$, so $E = 6$, choice (D).",
+        "skill": "expected-value",
+        "difficulty": 3,
+        "compute": "6"
+      }
+    ]
+  },
+  {
+    "key": "m10.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "review-sweets",
+        "prompt": "In how many ways can $[[n]]$ identical sweets be shared among $[[k]]$ children, if a child may get none?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n + k - 1, k - 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[binom(n - 1, k - 1)]]",
+              "why": "That gives every child at least one. Here a child may get none."
+            }
+          ]
+        },
+        "hints": [
+          "Use $[[n]]$ stars and $[[k - 1]]$ bars: a row of $[[n + k - 1]]$ symbols.",
+          "Choose where the bars go."
+        ],
+        "solution": "$\\binom{[[n + k - 1]]}{[[k - 1]]} = [[binom(n + k - 1, k - 1)]]$.",
+        "skill": "stars-bars",
+        "difficulty": 1,
+        "compute": "binom(n + k - 1, k - 1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "review-div-or",
+        "prompt": "How many of the numbers $1, 2, \\ldots, [[n]]$ are divisible by $[[a]]$ or by $[[b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(n/a) + floor(n/b) - floor(n/(a*b))]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(n/a) + floor(n/b)]]",
+              "why": "The multiples of $[[a*b]]$ were counted twice. Take them away once."
+            }
+          ]
+        },
+        "hints": [
+          "Count the multiples of $[[a]]$, of $[[b]]$, and of both (multiples of $[[a*b]]$)."
+        ],
+        "solution": "$[[floor(n/a)]] + [[floor(n/b)]] - [[floor(n/(a*b))]] = [[floor(n/a) + floor(n/b) - floor(n/(a*b))]]$.",
+        "skill": "inclusion-exclusion",
+        "difficulty": 1,
+        "compute": "floor(n/a) + floor(n/b) - floor(n/(a*b))",
+        "template": {
+          "vars": {
+            "a": {
+              "choose": [2, 3]
+            },
+            "b": {
+              "choose": [5, 7]
+            },
+            "n": {
+              "from": 50,
+              "to": 200,
+              "step": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "review-dice-sum",
+        "prompt": "Two fair dice are rolled. What is the probability that the sum is $[[s]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(6 - abs(s - 7))/36]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "1/11",
+              "why": "The $11$ sums are not equally likely. Count the $36$ ordered pairs."
+            }
+          ]
+        },
+        "hints": [
+          "List the ordered pairs that add to $[[s]]$.",
+          "There are $36$ equally likely pairs."
+        ],
+        "solution": "$[[6 - abs(s - 7)]]$ of the $36$ pairs add to $[[s]]$, so the probability is $[[(6 - abs(s - 7))/36]]$.",
+        "skill": "probability",
+        "difficulty": 1,
+        "compute": "(6 - abs(s - 7))/36",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["s != 7"]
+        }
+      },
+      {
+        "id": "review-closer",
+        "prompt": "A number $x$ is chosen at random between $0$ and $[[l]]$. What is the probability that $x$ is closer to $0$ than to $[[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c/(2*l)]]"],
+          "form": "fraction",
+          "mistakes": [
+            {
+              "value": "[[c/l]]",
+              "why": "Closer to $0$ means left of the halfway point $\\frac{[[c]]}{2}$, not left of $[[c]]$."
+            }
+          ]
+        },
+        "hints": [
+          "$x$ is closer to $0$ when it is less than the halfway point between $0$ and $[[c]]$."
+        ],
+        "solution": "The good part is from $0$ to $\\frac{[[c]]}{2}$, so the probability is $\\frac{[[c]]}{2 \\times [[l]]} = [[c/(2*l)]]$.",
+        "skill": "geometric-probability",
+        "difficulty": 1,
+        "compute": "c/(2*l)",
+        "template": {
+          "vars": {
+            "l": {
+              "from": 6,
+              "to": 16
+            },
+            "c": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["c <= l"]
+        }
+      },
+      {
+        "id": "review-die-average",
+        "prompt": "A fair die has $[[n]]$ faces numbered $1$ to $[[n]]$. What is the expected value of one roll?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(n + 1)/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n/2]]",
+              "why": "The average of $1, 2, \\ldots, [[n]]$ is $\\frac{1 + [[n]]}{2}$."
+            }
+          ]
+        },
+        "hints": [
+          "Add the faces: $1 + 2 + \\cdots + [[n]] = [[n*(n + 1)/2]]$. Then divide by $[[n]]$."
+        ],
+        "solution": "$\\frac{[[n*(n + 1)/2]]}{[[n]]} = [[(n + 1)/2]]$.",
+        "skill": "expected-value",
+        "difficulty": 1,
+        "compute": "(n + 1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 20
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m10.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 10 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-cookies",
+        "prompt": "In how many ways can $6$ identical cookies be shared among $3$ children, if a child may get none?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$20$", "$28$", "$56$", "$729$"],
+          "correct": "C",
+          "why": {
+            "A": "That gives every child at least one.",
+            "E": "The cookies are identical, so their order doesn't matter."
+          }
+        },
+        "solution": "$6$ stars and $2$ bars: $\\binom{8}{2} = 28$, choice (C).",
+        "skill": "stars-bars",
+        "difficulty": 1,
+        "compute": "binom(8, 2)"
+      },
+      {
+        "id": "check-positive-twelve",
+        "prompt": "How many solutions does $a + b + c = 12$ have in positive integers?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$45$", "$55$", "$66$", "$91$", "$220$"],
+          "correct": "B",
+          "why": {
+            "D": "That allows zeros."
+          }
+        },
+        "solution": "$\\binom{11}{2} = 55$, choice (B).",
+        "skill": "stars-bars",
+        "difficulty": 2,
+        "compute": "binom(11, 2)"
+      },
+      {
+        "id": "check-bagels",
+        "prompt": "A bakery sells $4$ kinds of bagel. In how many ways can you buy $6$ bagels with at least one of each kind?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$10$", "$15$", "$35$", "$84$"],
+          "correct": "B",
+          "why": {
+            "E": "That ignores \"at least one of each kind\"."
+          }
+        },
+        "solution": "Take one of each kind, then choose $2$ more from $4$ kinds: $\\binom{5}{3} = 10$, choice (B).",
+        "skill": "stars-bars",
+        "difficulty": 3,
+        "compute": "binom(5, 3)"
+      },
+      {
+        "id": "check-four-or-six",
+        "prompt": "How many of the numbers $1, 2, \\ldots, 60$ are divisible by $4$ or by $6$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$15$", "$20$", "$25$", "$30$"],
+          "correct": "C",
+          "why": {
+            "D": "The multiples of $12$ were counted twice."
+          }
+        },
+        "solution": "$15 + 10 - 5 = 20$, choice (C).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 1,
+        "compute": "15 + 10 - 5"
+      },
+      {
+        "id": "check-languages",
+        "prompt": "Of $40$ students, $22$ study French, $18$ study Spanish and $7$ study neither. How many study both?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$6$", "$7$", "$8$"],
+          "correct": "D"
+        },
+        "solution": "$40 - 7 = 33$ study at least one. $22 + 18 - 33 = 7$, choice (D).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 2,
+        "compute": "22 + 18 - 33"
+      },
+      {
+        "id": "check-two-or-three",
+        "prompt": "How many of the numbers $1, 2, \\ldots, [[n]]$ are divisible by $2$ or by $3$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[floor(n/2)]]$",
+            "$[[floor(n/2) + floor(n/3)]]$",
+            "$[[floor(n/2) + floor(n/3) - floor(n/6)]]$",
+            "$[[n - floor(n/2) - floor(n/3) + floor(n/6)]]$",
+            "$[[floor(n/6)]]$"
+          ],
+          "correct": "C",
+          "why": {
+            "B": "The multiples of $6$ were counted twice.",
+            "D": "That counts the numbers divisible by neither."
+          }
+        },
+        "solution": "$[[floor(n/2)]] + [[floor(n/3)]] - [[floor(n/6)]] = [[floor(n/2) + floor(n/3) - floor(n/6)]]$, choice (C).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 2,
+        "compute": "floor(n/2) + floor(n/3) - floor(n/6)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 50,
+              "to": 200,
+              "step": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "check-coprime-thirty",
+        "prompt": "How many of the numbers $1, 2, \\ldots, 120$ share no factor greater than $1$ with $30$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$32$", "$36$", "$40$", "$48$"],
+          "correct": "B"
+        },
+        "solution": "Take away multiples of $2$, $3$, $5$ by inclusion–exclusion: $120 - 60 - 40 - 24 + 20 + 12 + 8 - 4 = 32$, choice (B).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 3,
+        "compute": "120 - 60 - 40 - 24 + 20 + 12 + 8 - 4"
+      },
+      {
+        "id": "check-sum-ten",
+        "prompt": "Two fair dice are rolled. What is the probability that the sum is $10$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{18}$",
+            "$\\frac{1}{12}$",
+            "$\\frac{1}{11}$",
+            "$\\frac{1}{9}$",
+            "$\\frac{1}{6}$"
+          ],
+          "correct": "B",
+          "why": {
+            "C": "The $11$ sums aren't equally likely."
+          }
+        },
+        "solution": "$(4, 6), (5, 5), (6, 4)$: $\\frac{3}{36} = \\frac{1}{12}$, choice (B).",
+        "skill": "probability",
+        "difficulty": 1,
+        "compute": "3/36"
+      },
+      {
+        "id": "check-prime-card",
+        "prompt": "A card is drawn at random from cards numbered $1$ to $20$. What is the probability that its number is prime?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{4}$",
+            "$\\frac{7}{20}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{9}{20}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correct": "C",
+          "why": {
+            "B": "Did you leave out $2$? It is prime.",
+            "D": "$1$ is not prime."
+          }
+        },
+        "solution": "The primes are $2, 3, 5, 7, 11, 13, 17, 19$: $\\frac{8}{20} = \\frac{2}{5}$, choice (C).",
+        "skill": "probability",
+        "difficulty": 1,
+        "compute": "8/20"
+      },
+      {
+        "id": "check-four-coins",
+        "prompt": "Four fair coins are flipped. What is the probability of exactly two heads?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{5}{8}$"
+          ],
+          "correct": "C",
+          "why": {
+            "B": "The five possible numbers of heads aren't equally likely."
+          }
+        },
+        "solution": "$\\frac{\\binom{4}{2}}{16} = \\frac{6}{16} = \\frac{3}{8}$, choice (C).",
+        "skill": "probability",
+        "difficulty": 2,
+        "compute": "binom(4, 2)/16"
+      },
+      {
+        "id": "check-two-green",
+        "prompt": "A bag holds $5$ red and $3$ green marbles. Two are taken out without putting the first back. What is the probability that both are green?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{3}{64}$",
+            "$\\frac{9}{64}$",
+            "$\\frac{3}{28}$",
+            "$\\frac{1}{8}$",
+            "$\\frac{3}{8}$"
+          ],
+          "correct": "C",
+          "why": {
+            "B": "That puts the first marble back."
+          }
+        },
+        "solution": "$\\frac{3}{8} \\times \\frac{2}{7} = \\frac{3}{28}$, choice (C).",
+        "skill": "probability",
+        "difficulty": 2,
+        "compute": "binom(3, 2)/binom(8, 2)"
+      },
+      {
+        "id": "check-some-six",
+        "prompt": "A fair die is rolled three times. What is the probability that at least one roll is a $6$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{6}$",
+            "$\\frac{91}{216}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{125}{216}$",
+            "$\\frac{25}{36}$"
+          ],
+          "correct": "B",
+          "why": {
+            "C": "Adding $\\frac{1}{6}$ three times counts the outcomes with two or three sixes more than once.",
+            "D": "That is the chance of NO six."
+          }
+        },
+        "solution": "No six: $\\left(\\frac{5}{6}\\right)^3 = \\frac{125}{216}$. At least one: $1 - \\frac{125}{216} = \\frac{91}{216}$, choice (B).",
+        "skill": "probability",
+        "difficulty": 3,
+        "compute": "1 - (5/6)^3"
+      },
+      {
+        "id": "check-near-middle",
+        "prompt": "A point is chosen at random on a segment of length $10$. What is the probability that it is within $2$ of the midpoint?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{5}$",
+            "$\\frac{1}{4}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{5}$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "Within $2$ means $2$ on EITHER side of the midpoint."
+          }
+        },
+        "solution": "The good part has length $4$: $\\frac{4}{10} = \\frac{2}{5}$, choice (C).",
+        "skill": "geometric-probability",
+        "difficulty": 1,
+        "compute": "4/10"
+      },
+      {
+        "id": "check-dartboard",
+        "prompt": "A dart lands at a random point on a round board of radius $6$. What is the probability that it lands within $2$ of the centre?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{9}$",
+            "$\\frac{1}{6}$",
+            "$\\frac{2}{9}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{4}{9}$"
+          ],
+          "correct": "A",
+          "why": {
+            "D": "Compare areas, not radii."
+          }
+        },
+        "solution": "$\\frac{\\pi \\cdot 2^2}{\\pi \\cdot 6^2} = \\frac{4}{36} = \\frac{1}{9}$, choice (A).",
+        "skill": "geometric-probability",
+        "difficulty": 2,
+        "compute": "(2/6)^2"
+      },
+      {
+        "id": "check-quarter-circle",
+        "prompt": "A point is chosen at random in the square with corners $(0, 0)$ and $(2, 2)$. What is the probability that it is at most $1$ away from $(0, 0)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{\\pi}{16}$",
+            "$\\frac{1}{4}$",
+            "$\\frac{\\pi}{8}$",
+            "$\\frac{\\pi}{4}$",
+            "$\\frac{\\pi}{2}$"
+          ],
+          "correct": "A",
+          "why": {
+            "D": "Only a quarter of the circle is inside the square, and the square has area $4$."
+          }
+        },
+        "solution": "The good region is a quarter circle of radius $1$, area $\\frac{\\pi}{4}$. The square has area $4$: $\\frac{\\pi}{16}$, choice (A).",
+        "skill": "geometric-probability",
+        "difficulty": 3,
+        "compute": "pi/16"
+      },
+      {
+        "id": "check-spinner",
+        "prompt": "A spinner has four equal sections labelled $1$, $2$, $3$ and $10$. What is the expected value of one spin?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$5$", "$6$", "$10$"],
+          "correct": "B"
+        },
+        "solution": "$\\frac{1 + 2 + 3 + 10}{4} = 4$, choice (B).",
+        "skill": "expected-value",
+        "difficulty": 1,
+        "compute": "16/4"
+      },
+      {
+        "id": "check-pay-to-play",
+        "prompt": "You pay $3$ points to roll a fair die, and then win as many points as the number rolled. What is your expected gain?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-\\frac{1}{2}$", "$0$", "$\\frac{1}{2}$", "$1$", "$\\frac{7}{2}$"],
+          "correct": "C",
+          "why": {
+            "E": "Subtract the $3$ points you pay."
+          }
+        },
+        "solution": "$\\frac{7}{2} - 3 = \\frac{1}{2}$, choice (C).",
+        "skill": "expected-value",
+        "difficulty": 2,
+        "compute": "7/2 - 3"
+      },
+      {
+        "id": "check-dice-total",
+        "prompt": "$[[n]]$ fair six-sided dice are rolled. What is the expected value of their total?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[3*n]]$", "$[[7*n/2]]$", "$[[6*n]]$", "$[[7*n]]$", "$[[21*n]]$"],
+          "correct": "B",
+          "why": {
+            "A": "One die averages $\\frac{7}{2}$, not $3$."
+          }
+        },
+        "solution": "Expected values add: $[[n]] \\times \\frac{7}{2} = [[7*n/2]]$, choice (B).",
+        "skill": "expected-value",
+        "difficulty": 2,
+        "compute": "7*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "check-mixed-pairs",
+        "prompt": "Four boys and four girls stand in a row in random order. What is the expected number of neighbouring pairs made of one boy and one girl?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$\\frac{7}{2}$", "$4$", "$7$"],
+          "correct": "D"
+        },
+        "solution": "Each of the $7$ neighbouring pairs is mixed with probability $\\frac{4}{8} \\times \\frac{4}{7} \\times 2 = \\frac{4}{7}$. Expected values add: $7 \\times \\frac{4}{7} = 4$, choice (D).",
+        "skill": "expected-value",
+        "difficulty": 3,
+        "compute": "7*(2*4*4)/(8*7)"
+      }
+    ]
+  }
+]

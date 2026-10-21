@@ -1,0 +1,100 @@
+{
+  "slug": "math-probability",
+  "order": 3,
+  "title": "Probability",
+  "estMinutes": 35,
+  "focusSkills": ["probability"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Two dice are rolled and added. There are $11$ possible sums, from $2$ to $12$. Is the chance of a sum of $7$ equal to $\\frac{1}{11}$? Why or why not?",
+      "placeholder": "I think… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Good over all",
+          "body": "When all outcomes are equally likely, $P(\\text{event}) = \\frac{\\text{good outcomes}}{\\text{all outcomes}}$. Probability is counting twice. Make the outcomes equally likely first: for two dice, list $36$ ordered pairs, not $11$ sums."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a sum of 8",
+          "problem": "Two fair dice are rolled. What is the probability that the sum is $8$?",
+          "steps": [
+            {
+              "text": "The pairs are $(2, 6), (3, 5), (4, 4), (5, 3), (6, 2)$.",
+              "try": {
+                "prompt": "How many of the $36$ pairs give a sum of $8$?",
+                "accepted": ["5"],
+                "compute": "5"
+              }
+            },
+            {
+              "text": "So the probability is $\\frac{5}{36}$.",
+              "try": {
+                "prompt": "What is the probability, as a fraction?",
+                "accepted": ["5/36"],
+                "compute": "5/36"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Opposites and \"and\"",
+          "body": "$P(\\text{not } E) = 1 - P(E)$, which is great for \"at least one\". For independent events, $P(A \\text{ and } B) = P(A) \\times P(B)$. Drawing without putting back changes the second draw: count with $\\binom{n}{k}$ or multiply fractions that shrink."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: two from a bag",
+          "problem": "A bag holds $3$ red and $5$ blue marbles. Two are taken out at once. What is the probability that both are red?",
+          "steps": [
+            {
+              "text": "There are $\\binom{8}{2}$ equally likely pairs.",
+              "try": {
+                "prompt": "What is $\\binom{8}{2}$?",
+                "accepted": ["28"],
+                "compute": "binom(8, 2)"
+              }
+            },
+            {
+              "text": "$\\binom{3}{2} = 3$ pairs are both red, so the probability is $\\frac{3}{28}$. (Check: $\\frac{3}{8} \\times \\frac{2}{7} = \\frac{3}{28}$.)",
+              "try": {
+                "prompt": "What is the probability that both are red?",
+                "accepted": ["3/28"],
+                "compute": "binom(3, 2)/binom(8, 2)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: outcomes that aren't equally likely",
+          "body": "The $11$ dice sums, or the $4$ possible numbers of heads in $3$ flips, are not equally likely. Count the basic outcomes instead. And watch for replacement: without it, the second draw has one fewer marble."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m10.prob-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m10.prob-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you make sure the outcomes you count are equally likely?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

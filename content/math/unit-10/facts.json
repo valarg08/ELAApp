@@ -1,0 +1,49 @@
+{
+  "sections": [
+    {
+      "skill": "stars-bars",
+      "title": "Stars and bars",
+      "facts": [
+        "$n$ identical things into $k$ different boxes, empty allowed: $\\binom{n + k - 1}{k - 1}$.",
+        "At least one in each box: $\\binom{n - 1}{k - 1}$ (hand out one each first).",
+        "The things must be identical and the boxes different."
+      ]
+    },
+    {
+      "skill": "inclusion-exclusion",
+      "title": "Inclusion–exclusion",
+      "facts": [
+        "$|A \\cup B| = |A| + |B| - |A \\cap B|$.",
+        "Three sets: add the singles, take away the pairs, add back the triple.",
+        "Divisible by $a$ and $b$ means divisible by $\\text{lcm}(a, b)$."
+      ]
+    },
+    {
+      "skill": "probability",
+      "title": "Probability",
+      "facts": [
+        "$P = \\frac{\\text{good outcomes}}{\\text{all outcomes}}$ when outcomes are equally likely.",
+        "$P(\\text{not } E) = 1 - P(E)$; independent events multiply.",
+        "Two dice: $36$ ordered pairs; sum $s$ happens $6 - |s - 7|$ times."
+      ]
+    },
+    {
+      "skill": "geometric-probability",
+      "title": "Geometric probability",
+      "facts": [
+        "$P = \\frac{\\text{good length (or area)}}{\\text{total length (or area)}}$.",
+        "Two random numbers in $[0, 1]$ make a random point in the unit square.",
+        "Areas scale with the square: radius $r$ inside radius $R$ gives $\\frac{r^2}{R^2}$."
+      ]
+    },
+    {
+      "skill": "expected-value",
+      "title": "Expected value",
+      "facts": [
+        "$E = \\sum (\\text{value}) \\times P(\\text{value})$.",
+        "Expected values add: $n$ dice average $\\frac{7n}{2}$ in total.",
+        "Waiting for something with chance $p$ each try takes $\\frac{1}{p}$ tries on average."
+      ]
+    }
+  ]
+}
