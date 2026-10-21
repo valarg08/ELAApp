@@ -448,7 +448,9 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | **M4 Unit 4 Quadratics & Polynomials** ✅ | 6 lessons (§4.4), published | Played end to end; content:check verifies every answer and variant |
 | **M5 Unit 5 Functions & Inequalities** ✅ | 6 lessons (§4.5), published | Played end to end; content:check verifies every answer and variant |
 | **M6 Unit 6 Sequences & Patterns** ✅ | 6 lessons (§4.6), published | Played end to end; content:check verifies every answer and variant |
-| **M7–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M8** also writes checkpoint mock 1 and **M13** checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
+| **M7 Unit 7 Number Theory I** ✅ | 6 lessons (§4.7), published | Played end to end; content:check verifies every answer and variant |
+| **M8 Unit 8 Number Theory II** ✅ | 6 lessons (§4.8), published, and checkpoint mock 1 (`tests/checkpoint-1.json`, 25 problems, 75 minutes) | Played end to end; content:check verifies every answer and variant |
+| **M9–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M13** also writes checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
 | **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
 
 ### 4.1 M1 as built (2026-10-16)
@@ -536,3 +538,29 @@ Unit 6 Sequences & Patterns is published, with 6 lessons in the same shape and n
 | 4 | Telescoping & Clever Sums | `m06.telescoping-practice` ($\frac{1}{k(k+1)}$, products, pairs, differences of squares, $\frac{1}{k(k+2)}$) | `m06.telescoping-set` ($\sqrt{k+1} - \sqrt{k}$, $k \cdot k!$) |
 | 5 | Finding the Pattern | `m06.pattern-practice` (last digits, repeating sums, triangular numbers, remainder $0$, $n(n+1)$) | `m06.pattern-set` |
 | 6 | ⭐ Unit Check | `m06.review-practice` (5-problem warm-up, one per lesson) | `m06.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.7 M7 as built (2026-10-21)
+
+Unit 7 Number Theory I is published, with 6 lessons in the same shape and no new tools. Divisor counts are computed from the exponents (`(s + 1)*(t + 1)`), trailing zeros and prime powers in factorials with `floor` sums, and GCD/LCM answers with `gcd` and `lcm`. Choice texts must be plain numbers the checker can read (`$111111111$`, not `$111{,}111{,}111$`).
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Divisibility Rules | `m07.divisibility-practice` (a missing digit for $9$, by $4$ not $8$, a missing digit for $11$, by $4$ and $6$, remainder by $9$) | `m07.divisibility-set` |
+| 2 | Primes & Factorization | `m07.primes-practice` (the largest prime factor, $2^a 3^b$, the smallest factor, distinct primes, two primes with an odd sum) | `m07.primes-set` |
+| 3 | GCD & LCM | `m07.gcd-practice` (GCD, LCM, the missing number, blinking lights, square tiles) | `m07.gcd-set` |
+| 4 | Counting Divisors | `m07.divisors-practice` (two and three primes, even divisors, the divisor sum, odd divisor counts) | `m07.divisors-set` |
+| 5 | Factorials & Trailing Zeros | `m07.zeros-practice` (zeros of $n!$, powers of $2$ and $3$, $\frac{n!}{(n-2)!}$, zeros of a product) | `m07.zeros-set` |
+| 6 | ⭐ Unit Check | `m07.review-practice` (5-problem warm-up, one per lesson) | `m07.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.8 M8 as built (2026-10-21)
+
+Unit 8 Number Theory II is published, with 6 lessons in the same shape and no new tools, and checkpoint mock 1 is written: `content/math/tests/checkpoint-1.json`, 25 original problems on algebra and number theory (Units 2–8) in rising difficulty, 75 minutes, `afterUnit: 8`, run by the timed test engine from M0.5 Part D. A base-$b$ answer typed as digits is checked as the integer with those digits (`100*x + 10*y + z`). Templates stay under 20,000 combinations and give at least 5 variants.
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Remainders & Modular Arithmetic | `m08.mod-practice` (a product, a known remainder, $(-1)^n$, days of the week, remainder $1$ for two divisors) | `m08.mod-set` |
+| 2 | Units Digits & Cycles | `m08.units-practice` (a product, cycles of $4$ and $2$, $2^n + 3^n$, a sum of squares) | `m08.units-set` |
+| 3 | Number Bases | `m08.bases-practice` (into and out of base ten, binary length, the largest three-digit number, a sum) | `m08.bases-set` |
+| 4 | Digit Problems | `m08.digits-practice` (reversal gaps, finding the number, $10^n - k$, digit-sum counts, all the digits) | `m08.digits-set` |
+| 5 | Integer Equations | `m08.integer-practice` ($x + y = n$, $ax + y = c$, $xy = n$, $(x - 1)(y - 1)$, $a^2 - b^2 = p$) | `m08.integer-set` |
+| 6 | ⭐ Unit Check | `m08.review-practice` (5-problem warm-up, one per lesson) | `m08.unit-check`: 8 of 19 problems per try, pass at 100% |

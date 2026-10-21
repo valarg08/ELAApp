@@ -1,0 +1,100 @@
+{
+  "slug": "math-modular-arithmetic",
+  "order": 1,
+  "title": "Remainders & Modular Arithmetic",
+  "estMinutes": 35,
+  "focusSkills": ["modular-arithmetic"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "What is the remainder when $47 \\times 58$ is divided by $9$? Can you find it without multiplying the big numbers?",
+      "placeholder": "I would first…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Work with remainders only",
+          "body": "When you add, subtract or multiply, you can replace each number by its remainder first, then take the remainder at the end. We write $a \\equiv b \\pmod{m}$ (\"$a$ is congruent to $b$ mod $m$\") when $a$ and $b$ leave the same remainder after dividing by $m$: $47 \\equiv 2 \\pmod{9}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a product",
+          "problem": "What is the remainder when $47 \\times 58$ is divided by $9$?",
+          "steps": [
+            {
+              "text": "$47 = 45 + 2$, so $47 \\equiv 2$. $58 = 54 + 4$, so $58 \\equiv 4$.",
+              "try": {
+                "prompt": "What is the remainder when $58$ is divided by $9$?",
+                "accepted": ["4"],
+                "compute": "mod(58, 9)"
+              }
+            },
+            {
+              "text": "So $47 \\times 58 \\equiv 2 \\times 4 = 8 \\pmod{9}$. (Check: $47 \\times 58 = 2726 = 9 \\times 302 + 8$.)",
+              "try": {
+                "prompt": "What is the remainder when $47 \\times 58$ is divided by $9$?",
+                "accepted": ["8"],
+                "compute": "mod(47*58, 9)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Powers and negative remainders",
+          "body": "Powers work too: if $b \\equiv 1$, then $b^n \\equiv 1$. It often helps to use $-1$: $8 \\equiv -1 \\pmod{9}$, so $8^{n}$ is $1$ for even $n$ and $-1 \\equiv 8$ for odd $n$. Days of the week are arithmetic mod $7$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a known remainder",
+          "problem": "$n$ leaves remainder $3$ when divided by $7$. What remainder does $5n$ leave?",
+          "steps": [
+            {
+              "text": "Replace $n$ by its remainder: $5n \\equiv 5 \\times 3 = 15 \\pmod{7}$.",
+              "try": {
+                "prompt": "What is $5 \\times 3$?",
+                "accepted": ["15"],
+                "compute": "5*3"
+              }
+            },
+            {
+              "text": "$15 = 14 + 1$, so the remainder is $1$.",
+              "try": {
+                "prompt": "What remainder does $5n$ leave when divided by $7$?",
+                "accepted": ["1"],
+                "compute": "mod(15, 7)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: forgetting to reduce",
+          "body": "A remainder must be smaller than the divisor: $15$ is not a remainder when dividing by $7$. You can't divide inside a remainder calculation the way you multiply. And \"remainder $2$ when divided by $3$ and by $5$\" means $2$ more than a multiple of $\\text{lcm}(3, 5) = 15$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m08.mod-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m08.mod-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Where else have you seen arithmetic that \"wraps around\", like a clock?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

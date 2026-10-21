@@ -1,0 +1,370 @@
+{
+  "key": "checkpoint-1",
+  "title": "Checkpoint mock 1: algebra & number theory",
+  "instructions": "A full practice test: 25 original AMC-style problems on algebra and number theory (Units 2–8), getting harder as you go, in 75 minutes. Scoring is like the AMC 10: 6 points for a right answer, 1.5 for a blank and 0 for a wrong answer. Use the 2-minute rule: skip, flag and come back. Afterwards you'll see your mistakes by question, strand and difficulty.",
+  "timeLimitMinutes": 75,
+  "afterUnit": 8,
+  "problems": [
+    {
+      "id": "up-then-down",
+      "prompt": "A price is raised by $20\\%$ and then the new price is lowered by $20\\%$. The final price is what percent of the original price?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$80$", "$96$", "$100$", "$104$", "$120$"],
+        "correct": "B",
+        "why": {
+          "C": "The $20\\%$ off is taken from the HIGHER price, so it removes more than was added."
+        }
+      },
+      "solution": "$1.2 \\times 0.8 = 0.96$, so the final price is $96\\%$ of the original, choice (B).",
+      "skill": "fractions-percents",
+      "difficulty": 1,
+      "compute": "100*1.2*0.8"
+    },
+    {
+      "id": "flour-sugar",
+      "prompt": "A recipe uses flour and sugar in the ratio $5 : 2$. How many cups of sugar go with $35$ cups of flour?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$10$", "$12$", "$14$", "$16$", "$18$"],
+        "correct": "C"
+      },
+      "solution": "$35$ cups is $7$ times $5$, so the sugar is $7 \\times 2 = 14$ cups, choice (C).",
+      "skill": "ratios-rates",
+      "difficulty": 1,
+      "compute": "35*2/5"
+    },
+    {
+      "id": "fifth-test",
+      "prompt": "Ravi's average on four tests is $85$. What score on a fifth test would raise his average to $88$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$88$", "$91$", "$94$", "$97$", "$100$"],
+        "correct": "E",
+        "why": {
+          "B": "Raising the average by $3$ over FIVE tests needs $5 \\times 3 = 15$ extra points, not $3$."
+        }
+      },
+      "solution": "He needs a total of $5 \\times 88 = 440$ and has $4 \\times 85 = 340$, so he needs $100$, choice (E).",
+      "skill": "averages",
+      "difficulty": 1,
+      "compute": "5*88 - 4*85"
+    },
+    {
+      "id": "solve-linear",
+      "prompt": "If $5(x - 2) = 3x + 4$, what is $x$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$3$", "$5$", "$7$", "$9$", "$11$"],
+        "correct": "C"
+      },
+      "solution": "$5x - 10 = 3x + 4$, so $2x = 14$ and $x = 7$, choice (C).",
+      "skill": "linear-equations",
+      "difficulty": 1,
+      "compute": "(4 + 10)/(5 - 3)"
+    },
+    {
+      "id": "nine-digit",
+      "prompt": "The four-digit number $6d14$, where $d$ is a digit, is divisible by $9$. What is $d$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$4$", "$5$", "$7$", "$8$"],
+        "correct": "D"
+      },
+      "solution": "$6 + 1 + 4 = 11$, and $11 + d$ must be a multiple of $9$, so $d = 7$, choice (D).",
+      "skill": "divisibility",
+      "difficulty": 1,
+      "compute": "18 - 11"
+    },
+    {
+      "id": "digit-count",
+      "prompt": "How many digits does $2^{10} \\cdot 5^{8}$ have?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$8$", "$9$", "$10$", "$11$", "$18$"],
+        "correct": "B",
+        "why": {
+          "C": "$2^{10} \\cdot 5^8 = 2^2 \\cdot 10^8 = 4$ followed by $8$ zeros: $9$ digits."
+        }
+      },
+      "solution": "Pair eight $2$s with the eight $5$s: $2^{10} \\cdot 5^8 = 4 \\cdot 10^8 = 400{,}000{,}000$, which has $9$ digits, choice (B).",
+      "skill": "exponents-roots",
+      "difficulty": 2,
+      "compute": "9"
+    },
+    {
+      "id": "sum-difference",
+      "prompt": "If $x + y = 12$ and $x - y = 4$, what is $xy$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$24$", "$32$", "$36$", "$40$", "$48$"],
+        "correct": "B"
+      },
+      "solution": "Adding gives $2x = 16$, so $x = 8$ and $y = 4$. Then $xy = 32$, choice (B).",
+      "skill": "systems",
+      "difficulty": 2,
+      "compute": "((12 + 4)/2)*((12 - 4)/2)"
+    },
+    {
+      "id": "gears",
+      "prompt": "Two gears mesh: one has $18$ teeth and the other $24$. A mark on each gear lines up now. How many full turns does the smaller gear make before the two marks line up again for the first time?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2$", "$3$", "$4$", "$6$", "$8$"],
+        "correct": "C",
+        "why": {
+          "B": "That is how many turns the LARGER gear makes."
+        }
+      },
+      "solution": "The marks line up after $\\text{lcm}(18, 24) = 72$ teeth have passed, which is $\\frac{72}{18} = 4$ turns of the smaller gear, choice (C).",
+      "skill": "gcd-lcm",
+      "difficulty": 2,
+      "compute": "lcm(18, 24)/18"
+    },
+    {
+      "id": "round-trip",
+      "prompt": "Ana drives $120$ km to a lake at $60$ km/h and back the same way at $40$ km/h. What is her average speed, in km/h, for the whole trip?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$45$", "$48$", "$50$", "$52$", "$55$"],
+        "correct": "B",
+        "why": {
+          "C": "She spends longer at the slower speed, so the average is below $50$."
+        }
+      },
+      "solution": "The trip takes $2 + 3 = 5$ hours for $240$ km, so the average speed is $\\frac{240}{5} = 48$, choice (B).",
+      "skill": "distance-rate-time",
+      "difficulty": 2,
+      "compute": "240/(120/60 + 120/40)"
+    },
+    {
+      "id": "count-terms",
+      "prompt": "How many numbers are in the list $7, 12, 17, \\ldots, 252$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$48$", "$49$", "$50$", "$51$", "$52$"],
+        "correct": "C",
+        "why": {
+          "B": "That is the number of steps. Add one for the numbers."
+        }
+      },
+      "solution": "$\\frac{252 - 7}{5} + 1 = 49 + 1 = 50$, choice (C).",
+      "skill": "arithmetic-sequences",
+      "difficulty": 2,
+      "compute": "(252 - 7)/5 + 1"
+    },
+    {
+      "id": "divisor-count",
+      "prompt": "How many positive divisors does $2^3 \\cdot 5^2 \\cdot 7$ have?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$12$", "$18$", "$24$", "$30$", "$42$"],
+        "correct": "C"
+      },
+      "solution": "$(3 + 1)(2 + 1)(1 + 1) = 24$, choice (C).",
+      "skill": "counting-divisors",
+      "difficulty": 2,
+      "compute": "(3 + 1)*(2 + 1)*(1 + 1)"
+    },
+    {
+      "id": "eight-power",
+      "prompt": "What is the units digit of $8^{2026}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$0$", "$2$", "$4$", "$6$", "$8$"],
+        "correct": "C"
+      },
+      "solution": "Powers of $8$ end in $8, 4, 2, 6$, and $2026$ leaves remainder $2$ when divided by $4$. So the units digit is $4$, choice (C).",
+      "skill": "units-digits",
+      "difficulty": 2,
+      "compute": "mod(8^2026, 10)"
+    },
+    {
+      "id": "positive-root",
+      "prompt": "What is the positive solution of $x^2 - 3x - 40 = 0$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$3$", "$5$", "$8$", "$10$", "$13$"],
+        "correct": "C",
+        "why": {
+          "B": "$x = -5$ is the other root; the positive one is $8$."
+        }
+      },
+      "solution": "$x^2 - 3x - 40 = (x - 8)(x + 5)$, so the positive solution is $8$, choice (C).",
+      "skill": "factoring",
+      "difficulty": 2,
+      "compute": "(3 + 13)/2"
+    },
+    {
+      "id": "compose",
+      "prompt": "If $f(x) = 3x - 2$, what is $f(f(2))$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$4$", "$8$", "$10$", "$12$", "$14$"],
+        "correct": "C",
+        "why": {
+          "A": "That is $f(2)$. Apply $f$ once more."
+        }
+      },
+      "solution": "$f(2) = 4$ and $f(4) = 10$, choice (C).",
+      "skill": "functions",
+      "difficulty": 2,
+      "compute": "3*(3*2 - 2) - 2"
+    },
+    {
+      "id": "three-power-mod",
+      "prompt": "What is the remainder when $3^{2026}$ is divided by $7$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$2$", "$3$", "$4$", "$5$"],
+        "correct": "D"
+      },
+      "solution": "Powers of $3$ leave remainders $3, 2, 6, 4, 5, 1$ when divided by $7$, then repeat every $6$. $2026 = 6 \\times 337 + 4$, so the remainder is the 4th one: $4$, choice (D).",
+      "skill": "modular-arithmetic",
+      "difficulty": 3,
+      "compute": "mod(3^2026, 7)"
+    },
+    {
+      "id": "sum-of-squares-roots",
+      "prompt": "The roots of $x^2 - 7x + 3 = 0$ are $r$ and $s$. What is $r^2 + s^2$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$43$", "$46$", "$49$", "$52$", "$55$"],
+        "correct": "A",
+        "why": {
+          "C": "That is $(r + s)^2$. Subtract $2rs = 6$."
+        }
+      },
+      "solution": "$r + s = 7$ and $rs = 3$, so $r^2 + s^2 = (r + s)^2 - 2rs = 49 - 6 = 43$, choice (A).",
+      "skill": "vieta",
+      "difficulty": 3,
+      "compute": "7^2 - 2*3"
+    },
+    {
+      "id": "abs-integers",
+      "prompt": "How many integers $x$ satisfy $|2x - 5| \\leq 9$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$8$", "$9$", "$10$", "$11$", "$18$"],
+        "correct": "C"
+      },
+      "solution": "$-9 \\leq 2x - 5 \\leq 9$ gives $-2 \\leq x \\leq 7$: that is $10$ integers, choice (C).",
+      "skill": "absolute-value",
+      "difficulty": 3,
+      "compute": "7 - (-2) + 1"
+    },
+    {
+      "id": "zeros-125",
+      "prompt": "How many zeros does $125!$ end with?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$25$", "$30$", "$31$", "$32$", "$35$"],
+        "correct": "C",
+        "why": {
+          "B": "$125 = 5^3$ gives a third $5$ too."
+        }
+      },
+      "solution": "$25 + 5 + 1 = 31$, choice (C).",
+      "skill": "factorials-zeros",
+      "difficulty": 3,
+      "compute": "floor(125/5) + floor(125/25) + floor(125/125)"
+    },
+    {
+      "id": "first-geometric",
+      "prompt": "In a geometric sequence, the 2nd term is $6$ and the 5th term is $162$. What is the 1st term?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$2$", "$3$", "$6$", "$18$"],
+        "correct": "B"
+      },
+      "solution": "Three steps multiply by $r^3 = \\frac{162}{6} = 27$, so $r = 3$ and the 1st term is $\\frac{6}{3} = 2$, choice (B).",
+      "skill": "geometric-sequences",
+      "difficulty": 3,
+      "compute": "6/3"
+    },
+    {
+      "id": "base-five",
+      "prompt": "What is $1234_5$ written in base ten?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$154$", "$184$", "$194$", "$204$", "$1234$"],
+        "correct": "C"
+      },
+      "solution": "$1 \\cdot 125 + 2 \\cdot 25 + 3 \\cdot 5 + 4 = 194$, choice (C).",
+      "skill": "number-bases",
+      "difficulty": 3,
+      "compute": "125 + 2*25 + 3*5 + 4"
+    },
+    {
+      "id": "smallest-sum",
+      "prompt": "For $x > 0$, what is the smallest possible value of $x + \\frac{49}{x}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$7$", "$12$", "$14$", "$25$", "$50$"],
+        "correct": "C"
+      },
+      "solution": "By AM–GM, $x + \\frac{49}{x} \\geq 2\\sqrt{49} = 14$, with equality at $x = 7$. Choice (C).",
+      "skill": "inequalities",
+      "difficulty": 3,
+      "compute": "2*sqrt(49)"
+    },
+    {
+      "id": "unit-fraction-pairs",
+      "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{4}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$3$", "$4$", "$5$", "$6$", "$9$"],
+        "correct": "C",
+        "why": {
+          "B": "Ordered pairs: $(5, 20)$ and $(20, 5)$ both count, and so does $(8, 8)$."
+        }
+      },
+      "solution": "Multiply out: $4y + 4x = xy$, so $(x - 4)(y - 4) = 16$. The $5$ positive divisors of $16$ each give a pair; negative factors make $x$ or $y$ zero or negative. Choice (C).",
+      "skill": "integer-equations",
+      "difficulty": 4,
+      "compute": "4 + 1"
+    },
+    {
+      "id": "root-telescope",
+      "prompt": "What is $\\frac{1}{\\sqrt{1} + \\sqrt{2}} + \\frac{1}{\\sqrt{2} + \\sqrt{3}} + \\cdots + \\frac{1}{\\sqrt{24} + \\sqrt{25}}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$3$", "$4$", "$5$", "$12$", "$24$"],
+        "correct": "B",
+        "why": {
+          "C": "What is left is $\\sqrt{25} - \\sqrt{1} = 5 - 1$."
+        }
+      },
+      "solution": "Each term is $\\sqrt{k + 1} - \\sqrt{k}$, so the sum is $\\sqrt{25} - \\sqrt{1} = 4$, choice (B).",
+      "skill": "telescoping",
+      "difficulty": 4,
+      "compute": "sqrt(25) - sqrt(1)"
+    },
+    {
+      "id": "odd-digits-nine",
+      "prompt": "How many three-digit numbers have only odd digits that add up to $9$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$6$", "$7$", "$9$", "$10$", "$12$"],
+        "correct": "D"
+      },
+      "solution": "The digit sets are $\\{1, 1, 7\\}$ ($3$ orders), $\\{1, 3, 5\\}$ ($6$ orders) and $\\{3, 3, 3\\}$ ($1$). A $9$ is impossible ($9 + 1 + 1 > 9$). Total $10$, choice (D).",
+      "skill": "digit-problems",
+      "difficulty": 4,
+      "compute": "3 + 6 + 1"
+    },
+    {
+      "id": "square-and-cube",
+      "prompt": "Let $n$ be the smallest positive integer such that $2n$ is a perfect square and $3n$ is a perfect cube. How many positive divisors does $n$ have?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$6$", "$8$", "$10$", "$12$", "$15$"],
+        "correct": "D"
+      },
+      "solution": "Write $n = 2^a 3^b$. $2n$ square: $a + 1$ and $b$ even. $3n$ cube: $a$ and $b + 1$ multiples of $3$. The smallest are $a = 3$, $b = 2$, so $n = 72$ ($2n = 144$, $3n = 216$). It has $4 \\times 3 = 12$ divisors, choice (D).",
+      "skill": "primes-factorization",
+      "difficulty": 5,
+      "compute": "(3 + 1)*(2 + 1)"
+    }
+  ]
+}

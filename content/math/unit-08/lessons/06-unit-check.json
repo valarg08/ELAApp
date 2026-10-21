@@ -1,0 +1,63 @@
+{
+  "slug": "math-number-theory-2-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Number Theory II",
+  "estMinutes": 40,
+  "focusSkills": [
+    "modular-arithmetic",
+    "units-digits",
+    "number-bases",
+    "digit-problems",
+    "integer-equations"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which kind of number theory problem do you solve fastest now, and which one do you still have to stop and think about?",
+      "placeholder": "Fastest… Still tricky…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Remainders, units digits, bases: quick review",
+          "body": "Replace numbers by their remainders before adding or multiplying, and reduce at the end. Units digits are remainders mod $10$; powers cycle with length $1$, $2$ or $4$, and remainder $0$ means the end of the cycle. In base $b$ the places are $1, b, b^2, \\ldots$ and digits go up to $b - 1$."
+        },
+        {
+          "kind": "definition",
+          "title": "Digits & integer equations: quick review",
+          "body": "A two-digit number is $10a + b$, and minus its reversal it is $9(a - b)$. For $ax + by = c$, find one solution and step. For $xy + ax + by = c$, add a constant and factor; $a^2 - b^2 = (a - b)(a + b)$. Check positive, ordered and digit limits."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems. Passing opens checkpoint mock 1."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m08.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m08.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

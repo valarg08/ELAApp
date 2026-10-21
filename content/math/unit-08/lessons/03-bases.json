@@ -1,0 +1,100 @@
+{
+  "slug": "math-number-bases",
+  "order": 3,
+  "title": "Number Bases",
+  "estMinutes": 35,
+  "focusSkills": ["number-bases"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "In our base-ten system, $345$ means $3 \\times 100 + 4 \\times 10 + 5$. What do you think $345$ would mean if we counted in sixes instead of tens?",
+      "placeholder": "It would mean…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Place values in base b",
+          "body": "In base $b$, the places are worth $1, b, b^2, b^3, \\ldots$ from the right, and the digits run from $0$ to $b - 1$. So $213_5 = 2 \\cdot 25 + 1 \\cdot 5 + 3 = 58$. Base $2$ (binary) uses only $0$ and $1$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: into base ten",
+          "problem": "Write $213_5$ in base ten.",
+          "steps": [
+            {
+              "text": "The places are $25$, $5$ and $1$.",
+              "try": {
+                "prompt": "What is the value of the place for the digit $2$ in $213_5$?",
+                "accepted": ["25"],
+                "compute": "5^2"
+              }
+            },
+            {
+              "text": "$2 \\cdot 25 + 1 \\cdot 5 + 3 = 50 + 5 + 3 = 58$.",
+              "try": {
+                "prompt": "What is $213_5$ in base ten?",
+                "accepted": ["58"],
+                "compute": "2*25 + 1*5 + 3"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Out of base ten",
+          "body": "To write $n$ in base $b$, take the biggest place value that fits, see how many times it fits, and carry on with what is left. Or divide by $b$ again and again: the remainders, read from last to first, are the digits."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: into base three",
+          "problem": "Write $45$ in base $3$.",
+          "steps": [
+            {
+              "text": "The places are $27, 9, 3, 1$. $27$ fits once, leaving $18$.",
+              "try": {
+                "prompt": "What is left after taking $27$ from $45$?",
+                "accepted": ["18"],
+                "compute": "45 - 27"
+              }
+            },
+            {
+              "text": "$9$ fits twice into $18$, leaving $0$. So $45 = 1 \\cdot 27 + 2 \\cdot 9 + 0 \\cdot 3 + 0 = 1200_3$.",
+              "try": {
+                "prompt": "Write the base-$3$ digits of $45$ (like $1012$).",
+                "accepted": ["1200"],
+                "compute": "1200"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: reading it as base ten",
+          "body": "$213_5$ is NOT two hundred and thirteen. A digit can't be $b$ or more in base $b$: $5$ never appears in base $5$. If a problem says \"in some base $b$\", write each number as a polynomial in $b$ and solve."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m08.bases-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m08.bases-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain how you would turn a base-ten number into base $2$ to a friend."],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

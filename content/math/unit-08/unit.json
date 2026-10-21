@@ -4,5 +4,5 @@
   "title": "Number Theory II",
   "summary": "Remainders and modular arithmetic, units digits and cycles, number bases, digit problems and integer equations.",
   "bigIdeas": ["Remainders repeat in cycles."],
-  "published": false
+  "published": true
 }

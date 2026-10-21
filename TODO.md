@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-21 (M5 and M6 built: Math Units 5 and 6 published; on branch phase-m5-m6).
+Last updated: 2026-10-21 (M7 and M8 built: Math Units 7 and 8 published, checkpoint mock 1 written; on branch phase-m7-m8).
 
 ## Done so far
 
@@ -12,7 +12,7 @@ Last updated: 2026-10-21 (M5 and M6 built: Math Units 5 and 6 published; on bran
 - [x] E0–E15: the whole Essay Writing track (§9.12)
 - [x] P5a: teacher progress views: the class heatmap and the student profile (§11.3)
 - [x] M0: the Math track engine (math-design.md §2)
-- [x] M0.5 and M1–M6: the Math practice upgrade and Math Units 1–6 (math-design.md §3, §4.1–§4.6)
+- [x] M0.5 and M1–M8: the Math practice upgrade, Math Units 1–8 and checkpoint mock 1 (math-design.md §3, §4.1–§4.8)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -49,8 +49,8 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
 - [x] **M4** Unit 4 Quadratics & Polynomials: 5 lessons and the ⭐ check (100%), published, with its fact sheet
 - [x] **M5** Unit 5 Functions & Inequalities: 5 lessons and the ⭐ check (100%), published, with its fact sheet
 - [x] **M6** Unit 6 Sequences & Patterns: 5 lessons and the ⭐ check (100%), published, with its fact sheet
-- [ ] **M7** Unit 7 Number Theory I
-- [ ] **M8** Unit 8 Number Theory II, plus checkpoint mock 1 (25 problems: algebra and number theory)
+- [x] **M7** Unit 7 Number Theory I: 5 lessons and the ⭐ check (100%), published, with its fact sheet
+- [x] **M8** Unit 8 Number Theory II: 5 lessons and the ⭐ check (100%), published, with its fact sheet, plus checkpoint mock 1 (25 problems: algebra and number theory)
 - [ ] **M9** Unit 9 Counting I
 - [ ] **M10** Unit 10 Counting II & Probability
 - [ ] **M11** Unit 11 Geometry I: Triangles & Polygons (incl. angle chasing)

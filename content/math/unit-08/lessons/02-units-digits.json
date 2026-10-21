@@ -1,0 +1,110 @@
+{
+  "slug": "math-units-digits",
+  "order": 2,
+  "title": "Units Digits & Cycles",
+  "estMinutes": 35,
+  "focusSkills": ["units-digits"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "What is the units digit of $2^{2026} + 3^{2026}$? Which digits of each number do you actually need?",
+      "placeholder": "I only need… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Only the last digit matters",
+          "body": "The units digit of a sum or product depends only on the units digits of the numbers: $17^{17}$ ends like $7^{17}$. The units digit is the remainder mod $10$. Powers cycle: $2$: $2, 4, 8, 6$; $3$: $3, 9, 7, 1$; $4$: $4, 6$; $7$: $7, 9, 3, 1$; $8$: $8, 4, 2, 6$; $9$: $9, 1$; and $0, 1, 5, 6$ never change."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a sum of powers",
+          "problem": "What is the units digit of $2^{2026} + 3^{2026}$?",
+          "steps": [
+            {
+              "text": "Both cycles have length $4$, and $2026 = 4 \\times 506 + 2$: remainder $2$.",
+              "try": {
+                "prompt": "What is the remainder when $2026$ is divided by $4$?",
+                "accepted": ["2"],
+                "compute": "mod(2026, 4)"
+              }
+            },
+            {
+              "text": "So $2^{2026}$ ends like $2^2 = 4$, and $3^{2026}$ ends like $3^2 = 9$.",
+              "try": {
+                "prompt": "What is the units digit of $3^{2026}$?",
+                "accepted": ["9"],
+                "compute": "mod(3^2026, 10)"
+              }
+            },
+            {
+              "text": "$4 + 9 = 13$, so the sum ends in $3$.",
+              "try": {
+                "prompt": "What is the units digit of $2^{2026} + 3^{2026}$?",
+                "accepted": ["3"],
+                "compute": "mod(2^2026 + 3^2026, 10)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Big bases",
+          "body": "For $17^{17}$, drop everything but the last digit of the base: $7^{17}$. Then use the cycle of $7$ with the exponent's remainder mod $4$. Remainder $0$ means the LAST digit in the cycle (for $7$, that is $1$)."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a big base",
+          "problem": "What is the units digit of $17^{17}$?",
+          "steps": [
+            {
+              "text": "$17^{17}$ ends like $7^{17}$, and $17 = 4 \\times 4 + 1$.",
+              "try": {
+                "prompt": "What is the remainder when $17$ is divided by $4$?",
+                "accepted": ["1"],
+                "compute": "mod(17, 4)"
+              }
+            },
+            {
+              "text": "Remainder $1$: the first digit of the cycle $7, 9, 3, 1$. The units digit is $7$.",
+              "try": {
+                "prompt": "What is the units digit of $17^{17}$?",
+                "accepted": ["7"],
+                "compute": "mod(17^17, 10)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the wrong cycle position",
+          "body": "Use the remainder of the EXPONENT mod the cycle length, not of the base. Remainder $0$ is the end of the cycle, not the start. For differences like $19^{19} - 11^{11}$, if the first units digit is smaller, borrow: $3 - 7$ ends in $6$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m08.units-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m08.units-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which cycles of units digits do you know by heart now, and which do you still write out?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

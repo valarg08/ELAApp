@@ -1,0 +1,100 @@
+{
+  "slug": "math-integer-equations",
+  "order": 5,
+  "title": "Integer Equations",
+  "estMinutes": 35,
+  "focusSkills": ["integer-equations"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Stamps cost $3$ and $5$ cents. In how many ways can you pay exactly $47$ cents using at least one of each?",
+      "placeholder": "I would try…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "When only whole numbers count",
+          "body": "An equation like $3x + 5y = 47$ has infinitely many real solutions but only a few in positive integers. Use divisibility to cut down the cases: $47 - 5y$ must be a multiple of $3$. Once you find one solution, the others step by the other coefficient: $y$ goes up by $3$ while $x$ goes down by $5$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: stamps",
+          "problem": "How many pairs of positive integers $(x, y)$ satisfy $3x + 5y = 47$?",
+          "steps": [
+            {
+              "text": "Try $y = 1$: $3x = 42$, so $x = 14$. A solution!",
+              "try": {
+                "prompt": "If $y = 1$, what is $x$?",
+                "accepted": ["14"],
+                "compute": "(47 - 5)/3"
+              }
+            },
+            {
+              "text": "Step $y$ by $3$: $y = 4, x = 9$ and $y = 7, x = 4$. Next, $y = 10$ makes $x$ negative. So there are $3$ pairs.",
+              "try": {
+                "prompt": "How many pairs are there?",
+                "accepted": ["3"],
+                "compute": "3"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Factor the equation",
+          "body": "For equations with $xy$, move everything to one side and factor. $xy - 2x - 3y = 0$ becomes $(x - 3)(y - 2) = 6$ (add $6$ to both sides). Then each factor pair of $6$ gives a solution. This trick is often called Simon's Favorite Factoring Trick. Also: $a^2 - b^2 = (a - b)(a + b)$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: factor and count",
+          "problem": "How many pairs of positive integers $(x, y)$ satisfy $xy = 2x + 3y$?",
+          "steps": [
+            {
+              "text": "$xy - 2x - 3y = 0$. Add $6$: $(x - 3)(y - 2) = 6$.",
+              "try": {
+                "prompt": "What number do you add to both sides to factor $xy - 2x - 3y$?",
+                "accepted": ["6"],
+                "compute": "2*3"
+              }
+            },
+            {
+              "text": "Positive factor pairs of $6$: $1 \\times 6$, $2 \\times 3$, $3 \\times 2$, $6 \\times 1$. Negative pairs make $x$ or $y$ too small. So $4$ pairs.",
+              "try": {
+                "prompt": "How many pairs $(x, y)$ are there?",
+                "accepted": ["4"],
+                "compute": "4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: missing or extra solutions",
+          "body": "Check the range: \"positive\" means $x, y \\geq 1$, so $x = 0$ doesn't count. Ordered pairs count $(2, 3)$ and $(3, 2)$ separately. Negative factor pairs can give solutions too, so check them instead of ignoring them."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m08.integer-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m08.integer-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How did you know which number to add to make the equation factor?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

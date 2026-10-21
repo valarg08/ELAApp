@@ -1,0 +1,100 @@
+{
+  "slug": "math-digit-problems",
+  "order": 4,
+  "title": "Digit Problems",
+  "estMinutes": 35,
+  "focusSkills": ["digit-problems"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Pick a two-digit number, reverse its digits, and subtract the smaller from the larger. Try a few. What do all your answers have in common?",
+      "placeholder": "All my answers are…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Write the digits as letters",
+          "body": "A two-digit number with tens digit $a$ and units digit $b$ is $10a + b$ (not $ab$, which means $a \\times b$). Its reversal is $10b + a$. A three-digit number is $100a + 10b + c$. Remember: $a$ can't be $0$, and every digit is a whole number from $0$ to $9$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: reversing",
+          "problem": "A two-digit number minus its reversal is $54$. What is the tens digit minus the units digit?",
+          "steps": [
+            {
+              "text": "$(10a + b) - (10b + a) = 9a - 9b = 9(a - b)$.",
+              "try": {
+                "prompt": "$(10a + b) - (10b + a) = k(a - b)$. What is $k$?",
+                "accepted": ["9"],
+                "compute": "9"
+              }
+            },
+            {
+              "text": "$9(a - b) = 54$, so $a - b = 6$.",
+              "try": {
+                "prompt": "What is $a - b$?",
+                "accepted": ["6"],
+                "compute": "54/9"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Equations with digits",
+          "body": "Turn the words into an equation in $a$ and $b$, simplify, then list the digit pairs that fit. \"A number is $4$ times its digit sum\" gives $10a + b = 4(a + b)$, so $6a = 3b$ and $b = 2a$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: four times the digit sum",
+          "problem": "How many two-digit numbers are $4$ times the sum of their digits?",
+          "steps": [
+            {
+              "text": "$10a + b = 4a + 4b$ gives $6a = 3b$, so $b = 2a$.",
+              "try": {
+                "prompt": "If $a = 3$, what is $b$?",
+                "accepted": ["6"],
+                "compute": "2*3"
+              }
+            },
+            {
+              "text": "$b \\leq 9$, so $a$ is $1, 2, 3$ or $4$: the numbers $12, 24, 36, 48$. That is $4$ numbers.",
+              "try": {
+                "prompt": "How many such numbers are there?",
+                "accepted": ["4"],
+                "compute": "4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: digits have limits",
+          "body": "Each digit is at most $9$, and the first digit can't be $0$. Check every candidate against these limits before you count. And $10a + b$, not $a + b$, is the number itself."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m08.digits-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m08.digits-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why is a number minus its reversal always a multiple of $9$?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

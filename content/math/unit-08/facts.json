@@ -1,0 +1,49 @@
+{
+  "sections": [
+    {
+      "skill": "modular-arithmetic",
+      "title": "Remainders & modular arithmetic",
+      "facts": [
+        "Replace numbers by their remainders before adding, subtracting or multiplying; reduce at the end.",
+        "If $b \\equiv 1 \\pmod{m}$ then $b^n \\equiv 1$; if $b \\equiv -1$ then $b^n \\equiv \\pm 1$.",
+        "Same remainder $r$ for $p$ and $q$: the number is $r$ more than a multiple of $\\text{lcm}(p, q)$."
+      ]
+    },
+    {
+      "skill": "units-digits",
+      "title": "Units digits & cycles",
+      "facts": [
+        "Only the units digits matter: $17^{17}$ ends like $7^{17}$.",
+        "Cycles: $2$: $2, 4, 8, 6$; $3$: $3, 9, 7, 1$; $4$: $4, 6$; $7$: $7, 9, 3, 1$; $8$: $8, 4, 2, 6$; $9$: $9, 1$.",
+        "Use the exponent mod the cycle length; remainder $0$ is the last digit of the cycle."
+      ]
+    },
+    {
+      "skill": "number-bases",
+      "title": "Number bases",
+      "facts": [
+        "In base $b$ the places are $1, b, b^2, \\ldots$ and the digits are $0$ to $b - 1$.",
+        "A three-digit number with digits $x, y, z$ in base $b$ is $xb^2 + yb + z$: $213_5 = 2 \\cdot 25 + 1 \\cdot 5 + 3$.",
+        "Into base $b$: divide by $b$ again and again; the remainders read upwards are the digits."
+      ]
+    },
+    {
+      "skill": "digit-problems",
+      "title": "Digit problems",
+      "facts": [
+        "A two-digit number is $10a + b$; its reversal is $10b + a$.",
+        "Number minus reversal $= 9(a - b)$; number plus reversal $= 11(a + b)$.",
+        "$10^n - 1$ is $n$ nines. The first digit is never $0$."
+      ]
+    },
+    {
+      "skill": "integer-equations",
+      "title": "Integer equations",
+      "facts": [
+        "$ax + by = c$: find one solution, then step $x$ by $b$ and $y$ by $a$ in opposite directions.",
+        "$xy - ax - by = 0$ becomes $(x - b)(y - a) = ab$.",
+        "$a^2 - b^2 = (a - b)(a + b)$: both factors have the same parity."
+      ]
+    }
+  ]
+}

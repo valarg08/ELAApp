@@ -1,0 +1,1750 @@
+[
+  {
+    "key": "m08.mod-practice",
+    "type": "PROBLEMS",
+    "title": "Remainders & modular arithmetic",
+    "instructions": "Type each answer and press Check. Replace each number by its remainder first, then reduce at the end. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "product-remainder",
+        "prompt": "What is the remainder when $[[a]] \\times [[b]]$ is divided by $[[m]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a*b, m)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "$[[a]]$ leaves remainder $[[mod(a, m)]]$ and $[[b]]$ leaves $[[mod(b, m)]]$.",
+          "Multiply the remainders, then reduce."
+        ],
+        "solution": "$[[a]] \\times [[b]] \\equiv [[mod(a, m)]] \\times [[mod(b, m)]] = [[mod(a, m)*mod(b, m)]] \\equiv [[mod(a*b, m)]] \\pmod{[[m]]}$.",
+        "skill": "modular-arithmetic",
+        "difficulty": 1,
+        "compute": "mod(a*b, m)",
+        "template": {
+          "vars": {
+            "m": {
+              "choose": [7, 9, 11]
+            },
+            "a": {
+              "from": 20,
+              "to": 60
+            },
+            "b": {
+              "from": 20,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "known-remainder",
+        "prompt": "A whole number $n$ leaves remainder $[[r]]$ when divided by $[[m]]$. What remainder does $[[k]]n$ leave when divided by $[[m]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(k*r, m)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[k*r]]",
+              "why": "Reduce: $[[k*r]]$ is more than $[[m]]$, so it isn't a remainder yet."
+            }
+          ]
+        },
+        "hints": ["$[[k]]n \\equiv [[k]] \\times [[r]] \\pmod{[[m]]}$."],
+        "solution": "$[[k]]n \\equiv [[k]] \\times [[r]] = [[k*r]] \\equiv [[mod(k*r, m)]] \\pmod{[[m]]}$.",
+        "skill": "modular-arithmetic",
+        "difficulty": 1,
+        "compute": "mod(k*r, m)",
+        "template": {
+          "vars": {
+            "m": {
+              "choose": [7, 9, 11, 13]
+            },
+            "r": {
+              "from": 2,
+              "to": 6
+            },
+            "k": {
+              "from": 3,
+              "to": 8
+            }
+          },
+          "where": ["k*r > m"]
+        }
+      },
+      {
+        "id": "minus-one",
+        "prompt": "What is the remainder when $[[m*q - 1]]^{[[n]]}$ is divided by $[[m]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod((m*q - 1)^n, m)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "$[[m*q - 1]]$ is one less than a multiple of $[[m]]$, so it is $\\equiv -1$.",
+          "$(-1)^{[[n]]}$ is $1$ or $-1$. A remainder of $-1$ means $[[m - 1]]$."
+        ],
+        "solution": "$[[m*q - 1]] \\equiv -1 \\pmod{[[m]]}$, so $[[m*q - 1]]^{[[n]]} \\equiv (-1)^{[[n]]}$, which is remainder $[[mod((m*q - 1)^n, m)]]$.",
+        "skill": "modular-arithmetic",
+        "difficulty": 2,
+        "compute": "mod((m*q - 1)^n, m)",
+        "template": {
+          "vars": {
+            "m": {
+              "choose": [5, 7, 9, 10]
+            },
+            "q": {
+              "from": 2,
+              "to": 5
+            },
+            "n": {
+              "from": 10,
+              "to": 50
+            }
+          }
+        }
+      },
+      {
+        "id": "weekday",
+        "prompt": "Today is Monday. Number the days Monday $1$, Tuesday $2$, …, Sunday $7$. Which day number is it $[[n]]$ days from today?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n, 7) + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[mod(n, 7)]]",
+              "why": "That is how many days PAST Monday. Today is day $1$, so add $1$."
+            }
+          ]
+        },
+        "hints": [
+          "Every $7$ days it is Monday again.",
+          "$[[n]] = 7 \\times [[floor(n/7)]] + [[mod(n, 7)]]$."
+        ],
+        "solution": "$[[n]]$ leaves remainder $[[mod(n, 7)]]$ when divided by $7$, so it is $[[mod(n, 7)]]$ days past a Monday: day number $[[mod(n, 7) + 1]]$.",
+        "skill": "modular-arithmetic",
+        "difficulty": 1,
+        "compute": "mod(n, 7) + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 20,
+              "to": 400,
+              "step": 13
+            }
+          }
+        }
+      },
+      {
+        "id": "remainder-one",
+        "prompt": "What is the smallest whole number greater than $1$ that leaves remainder $1$ when divided by $[[p]]$ and remainder $1$ when divided by $[[q]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[lcm(p, q) + 1]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Subtract $1$: the number minus $1$ is a multiple of both $[[p]]$ and $[[q]]$.",
+          "Use the LCM."
+        ],
+        "solution": "The number minus $1$ is a common multiple of $[[p]]$ and $[[q]]$; the smallest is $\\text{lcm}([[p]], [[q]]) = [[lcm(p, q)]]$. So the number is $[[lcm(p, q) + 1]]$.",
+        "skill": "modular-arithmetic",
+        "difficulty": 2,
+        "compute": "lcm(p, q) + 1",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [3, 4, 5, 6]
+            },
+            "q": {
+              "choose": [7, 8, 9, 10]
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m08.mod-set",
+    "type": "PROBLEM_SET",
+    "title": "Modular arithmetic challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "year-mod-seven",
+        "prompt": "What is the remainder when $2026$ is divided by $7$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "D"
+        },
+        "solution": "$7 \\times 289 = 2023$, and $2026 - 2023 = 3$, choice (D).",
+        "skill": "modular-arithmetic",
+        "difficulty": 1,
+        "compute": "mod(2026, 7)"
+      },
+      {
+        "id": "three-n",
+        "prompt": "$N$ leaves remainder $5$ when divided by $8$. What remainder does $3N$ leave when divided by $8$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$3$", "$5$", "$7$", "$15$"],
+          "correct": "D",
+          "why": {
+            "E": "$15$ is bigger than $8$: reduce it."
+          }
+        },
+        "solution": "$3N \\equiv 3 \\times 5 = 15 \\equiv 7 \\pmod{8}$, choice (D).",
+        "skill": "modular-arithmetic",
+        "difficulty": 1,
+        "compute": "mod(15, 8)"
+      },
+      {
+        "id": "sum-mod",
+        "prompt": "What is the remainder when $1 + 2 + 3 + \\cdots + 100$ is divided by $7$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$3$", "$5$", "$6$"],
+          "correct": "C"
+        },
+        "solution": "The sum is $5050$, and $7 \\times 721 = 5047$, so the remainder is $3$, choice (C).",
+        "skill": "modular-arithmetic",
+        "difficulty": 2,
+        "compute": "mod(5050, 7)"
+      },
+      {
+        "id": "remainder-one-all",
+        "prompt": "What is the smallest whole number greater than $1$ that leaves remainder $1$ when divided by each of $2, 3, 4, 5$ and $6$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$31$", "$61$", "$121$", "$301$", "$721$"],
+          "correct": "B",
+          "why": {
+            "E": "$720 + 1$ works, but there is a smaller one: use the LCM, $60$."
+          }
+        },
+        "solution": "The number minus $1$ is a multiple of $\\text{lcm}(2, 3, 4, 5, 6) = 60$. So the answer is $61$, choice (B).",
+        "skill": "modular-arithmetic",
+        "difficulty": 2,
+        "compute": "lcm(lcm(4, 5), 6) + 1"
+      },
+      {
+        "id": "two-remainders",
+        "prompt": "How many whole numbers less than $30$ leave remainder $2$ when divided by $3$ and remainder $3$ when divided by $5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$5$"],
+          "correct": "B"
+        },
+        "solution": "Remainder $3$ by $5$: $3, 8, 13, 18, 23, 28$. Of these, $8$ and $23$ leave remainder $2$ by $3$. That is $2$ numbers, choice (B). (They are $15$ apart, the LCM.)",
+        "skill": "modular-arithmetic",
+        "difficulty": 3,
+        "compute": "2"
+      }
+    ]
+  },
+  {
+    "key": "m08.units-practice",
+    "type": "PROBLEMS",
+    "title": "Units digits & cycles",
+    "instructions": "Type each answer and press Check. Keep only the units digits, and use the cycle with the exponent's remainder. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "product-units",
+        "prompt": "What is the units digit of $[[a]] \\times [[b]] \\times [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a*b*c, 10)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Multiply only the units digits: $[[mod(a, 10)]] \\times [[mod(b, 10)]] \\times [[mod(c, 10)]]$."
+        ],
+        "solution": "$[[mod(a, 10)]] \\times [[mod(b, 10)]] \\times [[mod(c, 10)]] = [[mod(a, 10)*mod(b, 10)*mod(c, 10)]]$, which ends in $[[mod(a*b*c, 10)]]$.",
+        "skill": "units-digits",
+        "difficulty": 1,
+        "compute": "mod(a*b*c, 10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 96,
+              "step": 7
+            },
+            "b": {
+              "from": 12,
+              "to": 96,
+              "step": 7
+            },
+            "c": {
+              "from": 12,
+              "to": 96,
+              "step": 7
+            }
+          }
+        }
+      },
+      {
+        "id": "four-cycle",
+        "prompt": "What is the units digit of $[[b]]^{[[n]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(b^n, 10)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Only the units digit of the base matters: $[[mod(b, 10)]]$.",
+          "The cycle has length $4$. $[[n]]$ leaves remainder $[[mod(n, 4)]]$ when divided by $4$."
+        ],
+        "solution": "$[[b]]^{[[n]]}$ ends like $[[mod(b, 10)]]^{[[n]]}$. With remainder $[[mod(n, 4)]]$ in a cycle of $4$ (remainder $0$ means the last one), the units digit is $[[mod(b^n, 10)]]$.",
+        "skill": "units-digits",
+        "difficulty": 1,
+        "compute": "mod(b^n, 10)",
+        "template": {
+          "vars": {
+            "b": {
+              "choose": [12, 13, 17, 18, 22, 23, 27, 28]
+            },
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "two-cycle",
+        "prompt": "What is the units digit of $[[b]]^{[[n]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(b^n, 10)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Powers of $[[mod(b, 10)]]$ alternate between two units digits. Is $[[n]]$ odd or even?"
+        ],
+        "solution": "Powers of $[[mod(b, 10)]]$ have a cycle of length $2$, so the units digit is $[[mod(b^n, 10)]]$.",
+        "skill": "units-digits",
+        "difficulty": 1,
+        "compute": "mod(b^n, 10)",
+        "template": {
+          "vars": {
+            "b": {
+              "choose": [4, 9, 14, 19, 24, 29]
+            },
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "sum-powers",
+        "prompt": "What is the units digit of $2^{[[n]]} + 3^{[[n]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(2^n + 3^n, 10)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Both cycles have length $4$. Find $[[n]]$ mod $4$.",
+          "Add the two units digits, then keep the units digit of the sum."
+        ],
+        "solution": "$2^{[[n]]}$ ends in $[[mod(2^n, 10)]]$ and $3^{[[n]]}$ ends in $[[mod(3^n, 10)]]$, so the sum ends in $[[mod(2^n + 3^n, 10)]]$.",
+        "skill": "units-digits",
+        "difficulty": 2,
+        "compute": "mod(2^n + 3^n, 10)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "sum-squares",
+        "prompt": "What is the units digit of $1^2 + 2^2 + 3^2 + \\cdots + [[n]]^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n*(n + 1)*(2*n + 1)/6, 10)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Units digits of squares repeat every $10$: $1, 4, 9, 6, 5, 6, 9, 4, 1, 0$, which add to $45$.",
+          "Or use $1^2 + \\cdots + n^2 = \\frac{n(n + 1)(2n + 1)}{6}$."
+        ],
+        "solution": "$\\frac{[[n]] \\times [[n + 1]] \\times [[2*n + 1]]}{6} = [[n*(n + 1)*(2*n + 1)/6]]$, so the units digit is $[[mod(n*(n + 1)*(2*n + 1)/6, 10)]]$.",
+        "skill": "units-digits",
+        "difficulty": 3,
+        "compute": "mod(n*(n + 1)*(2*n + 1)/6, 10)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 40
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m08.units-set",
+    "type": "PROBLEM_SET",
+    "title": "Units digits challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "nine-power",
+        "prompt": "What is the units digit of $9^{2027}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$3$", "$7$", "$9$"],
+          "correct": "E",
+          "why": {
+            "B": "Even powers of $9$ end in $1$, but $2027$ is odd."
+          }
+        },
+        "solution": "Powers of $9$ end in $9, 1, 9, 1, \\ldots$: odd powers end in $9$. Choice (E).",
+        "skill": "units-digits",
+        "difficulty": 1,
+        "compute": "mod(9^2027, 10)"
+      },
+      {
+        "id": "year-power",
+        "prompt": "What is the units digit of $2026^{2026}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$2$", "$4$", "$6$", "$8$"],
+          "correct": "D"
+        },
+        "solution": "$2026^{2026}$ ends like $6^{2026}$, and every power of $6$ ends in $6$. Choice (D).",
+        "skill": "units-digits",
+        "difficulty": 1,
+        "compute": "mod(6^2026, 10)"
+      },
+      {
+        "id": "two-big-powers",
+        "prompt": "What is the units digit of $13^{13} + 17^{17}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$3$", "$7$", "$9$"],
+          "correct": "A"
+        },
+        "solution": "$13 \\equiv 1$ and $17 \\equiv 1 \\pmod{4}$, so $3^{13}$ ends in $3$ and $7^{17}$ ends in $7$. $3 + 7 = 10$ ends in $0$, choice (A).",
+        "skill": "units-digits",
+        "difficulty": 2,
+        "compute": "mod(13^13 + 17^17, 10)"
+      },
+      {
+        "id": "odd-product",
+        "prompt": "What is the units digit of $1 \\times 3 \\times 5 \\times 7 \\times \\cdots \\times 99$ (all the odd numbers up to $99$)?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$3$", "$5$", "$7$", "$9$"],
+          "correct": "C"
+        },
+        "solution": "The product is odd and has a factor $5$, so it is an odd multiple of $5$: it ends in $5$. Choice (C).",
+        "skill": "units-digits",
+        "difficulty": 2,
+        "compute": "mod(1*3*5*7*9*11*13, 10)"
+      },
+      {
+        "id": "power-sum-series",
+        "prompt": "What is the units digit of $3^1 + 3^2 + 3^3 + \\cdots + 3^{100}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$3$", "$7$", "$9$"],
+          "correct": "A"
+        },
+        "solution": "Each block of four ends in $3 + 9 + 7 + 1 = 20$, units digit $0$. There are $25$ full blocks, so the sum ends in $0$. Choice (A).",
+        "skill": "units-digits",
+        "difficulty": 3,
+        "compute": "mod((3^101 - 3)/2, 10)"
+      }
+    ]
+  },
+  {
+    "key": "m08.bases-practice",
+    "type": "PROBLEMS",
+    "title": "Number bases",
+    "instructions": "Type each answer and press Check. In base $b$ the places are $1, b, b^2, \\ldots$. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "to-ten",
+        "prompt": "Write $[[x]][[y]][[z]]_{[[b]]}$ in base ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x*b*b + y*b + z]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[100*x + 10*y + z]]",
+              "why": "That reads it as base ten. In base $[[b]]$ the places are $[[b*b]]$, $[[b]]$ and $1$."
+            }
+          ]
+        },
+        "hints": ["$[[x]] \\cdot [[b*b]] + [[y]] \\cdot [[b]] + [[z]]$."],
+        "solution": "$[[x]] \\cdot [[b*b]] + [[y]] \\cdot [[b]] + [[z]] = [[x*b*b + y*b + z]]$.",
+        "skill": "number-bases",
+        "difficulty": 1,
+        "compute": "x*b*b + y*b + z",
+        "template": {
+          "vars": {
+            "b": {
+              "choose": [5, 6, 7, 8]
+            },
+            "x": {
+              "from": 1,
+              "to": 4
+            },
+            "y": {
+              "from": 0,
+              "to": 4
+            },
+            "z": {
+              "from": 0,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "from-ten",
+        "prompt": "Write $[[x*b*b + y*b + z]]$ in base $[[b]]$. Type just the digits.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*y + z]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "The places are $[[b*b]]$, $[[b]]$ and $1$.",
+          "How many times does $[[b*b]]$ fit into $[[x*b*b + y*b + z]]$?"
+        ],
+        "solution": "$[[x*b*b + y*b + z]] = [[x]] \\cdot [[b*b]] + [[y]] \\cdot [[b]] + [[z]]$, so the digits are $[[x]][[y]][[z]]$.",
+        "skill": "number-bases",
+        "difficulty": 2,
+        "compute": "100*x + 10*y + z",
+        "template": {
+          "vars": {
+            "b": {
+              "choose": [3, 4, 5, 6, 7]
+            },
+            "x": {
+              "from": 1,
+              "to": 4
+            },
+            "y": {
+              "from": 0,
+              "to": 4
+            },
+            "z": {
+              "from": 0,
+              "to": 4
+            }
+          },
+          "where": ["x < b", "y < b", "z < b"]
+        }
+      },
+      {
+        "id": "binary-length",
+        "prompt": "How many digits does $2^{[[n]]}$ have when written in base $2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n]]",
+              "why": "$2^{[[n]]}$ is a $1$ followed by $[[n]]$ zeros: count the $1$ too."
+            }
+          ]
+        },
+        "hints": ["$2^3 = 8 = 1000_2$: four digits."],
+        "solution": "$2^{[[n]]}$ is $1$ followed by $[[n]]$ zeros in base $2$: $[[n + 1]]$ digits.",
+        "skill": "number-bases",
+        "difficulty": 1,
+        "compute": "n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "largest-three",
+        "prompt": "What is the largest three-digit number in base $[[b]]$, written in base ten?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b^3 - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[b^3]]",
+              "why": "$[[b^3]]$ is $1000_{[[b]]}$, the smallest FOUR-digit number. Take one less."
+            }
+          ]
+        },
+        "hints": ["Every digit is $[[b - 1]]$. What comes right after it?"],
+        "solution": "The largest is the number with all three digits $[[b - 1]]$, one less than $1000_{[[b]]} = [[b^3]]$: that is $[[b^3 - 1]]$.",
+        "skill": "number-bases",
+        "difficulty": 2,
+        "compute": "b^3 - 1",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "add-in-base",
+        "prompt": "What is $[[x]][[y]]_{[[b]]} + [[u]][[v]]_{[[b]]}$, written in base ten?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x*b + y + u*b + v]]"],
+          "form": "integer"
+        },
+        "hints": ["Change each number to base ten first: $[[x]][[y]]_{[[b]]} = [[x*b + y]]$."],
+        "solution": "$[[x]][[y]]_{[[b]]} = [[x*b + y]]$ and $[[u]][[v]]_{[[b]]} = [[u*b + v]]$, so the sum is $[[x*b + y + u*b + v]]$.",
+        "skill": "number-bases",
+        "difficulty": 1,
+        "compute": "(x*b + y) + (u*b + v)",
+        "template": {
+          "vars": {
+            "b": {
+              "choose": [5, 6, 7, 8, 9]
+            },
+            "x": {
+              "from": 1,
+              "to": 4
+            },
+            "y": {
+              "from": 0,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            },
+            "v": {
+              "from": 0,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m08.bases-set",
+    "type": "PROBLEM_SET",
+    "title": "Number bases challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "binary-sum",
+        "prompt": "What is $1011_2 + 111_2$, written in base ten?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$17$", "$18$", "$19$", "$22$", "$1122$"],
+          "correct": "B",
+          "why": {
+            "E": "That adds the digits as if they were base-ten numbers."
+          }
+        },
+        "solution": "$1011_2 = 8 + 2 + 1 = 11$ and $111_2 = 4 + 2 + 1 = 7$, so the sum is $18$, choice (B).",
+        "skill": "number-bases",
+        "difficulty": 1,
+        "compute": "(8 + 2 + 1) + (4 + 2 + 1)"
+      },
+      {
+        "id": "three-digit-base-four",
+        "prompt": "How many three-digit numbers are there in base $4$? (The first digit can't be $0$.)",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$27$", "$36$", "$48$", "$64$", "$81$"],
+          "correct": "C",
+          "why": {
+            "D": "That lets the first digit be $0$."
+          }
+        },
+        "solution": "The first digit is $1$, $2$ or $3$, and the other two are $0$ to $3$: $3 \\times 4 \\times 4 = 48$, choice (C).",
+        "skill": "number-bases",
+        "difficulty": 1,
+        "compute": "3*4*4"
+      },
+      {
+        "id": "find-base",
+        "prompt": "In base $b$, the number $121_b$ equals $64$ in base ten. What is $b$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$7$", "$8$", "$9$"],
+          "correct": "C",
+          "why": {
+            "D": "$121_8 = 64 + 16 + 1 = 81$."
+          }
+        },
+        "solution": "$121_b = b^2 + 2b + 1 = (b + 1)^2 = 64$, so $b + 1 = 8$ and $b = 7$, choice (C).",
+        "skill": "number-bases",
+        "difficulty": 2,
+        "compute": "sqrt(64) - 1"
+      },
+      {
+        "id": "year-octal",
+        "prompt": "When $2026$ is written in base $8$, what are its digits?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2573$", "$3572$", "$3725$", "$3752$", "$4012$"],
+          "correct": "D"
+        },
+        "solution": "$2026 = 3 \\cdot 512 + 490$, $490 = 7 \\cdot 64 + 42$, $42 = 5 \\cdot 8 + 2$. So $2026 = 3752_8$, choice (D).",
+        "skill": "number-bases",
+        "difficulty": 2,
+        "compute": "1000*floor(2026/512) + 100*floor(mod(2026, 512)/64) + 10*floor(mod(2026, 64)/8) + mod(2026, 8)"
+      },
+      {
+        "id": "which-base",
+        "prompt": "In which base $b$ is $25_b + 16_b = 43_b$ true?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$7$", "$8$", "$9$", "$11$"],
+          "correct": "C",
+          "why": {
+            "E": "In base ten $25 + 16 = 41$, and base $11$ doesn't work either: check $3b + 11 = 4b + 3$."
+          }
+        },
+        "solution": "$(2b + 5) + (b + 6) = 4b + 3$, so $3b + 11 = 4b + 3$ and $b = 8$, choice (C). (Check: $21 + 14 = 35 = 4 \\cdot 8 + 3$.)",
+        "skill": "number-bases",
+        "difficulty": 3,
+        "compute": "11 - 3"
+      }
+    ]
+  },
+  {
+    "key": "m08.digits-practice",
+    "type": "PROBLEMS",
+    "title": "Digit problems",
+    "instructions": "Type each answer and press Check. Write a two-digit number as $10a + b$ and remember the digit limits. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "reversal-gap",
+        "prompt": "A two-digit number minus the number with its digits reversed is $[[9*d]]$. What is the tens digit minus the units digit?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[d]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[9*d]]",
+              "why": "The difference is $9(a - b)$. Divide by $9$."
+            }
+          ]
+        },
+        "hints": ["$(10a + b) - (10b + a) = 9(a - b)$."],
+        "solution": "$9(a - b) = [[9*d]]$, so $a - b = [[d]]$.",
+        "skill": "digit-problems",
+        "difficulty": 1,
+        "compute": "(9*d)/9",
+        "template": {
+          "vars": {
+            "d": {
+              "from": 2,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "find-number",
+        "prompt": "A two-digit number has digit sum $[[s]]$. Reversing its digits makes it $[[9*k]]$ bigger. What is the number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*((s - k)/2) + (s + k)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[10*((s + k)/2) + (s - k)/2]]",
+              "why": "That is the reversal, the bigger number."
+            }
+          ]
+        },
+        "hints": ["Reversing adds $9(b - a)$, so $b - a = [[k]]$.", "And $a + b = [[s]]$."],
+        "solution": "$b - a = [[k]]$ and $a + b = [[s]]$, so $a = [[(s - k)/2]]$ and $b = [[(s + k)/2]]$. The number is $[[10*((s - k)/2) + (s + k)/2]]$.",
+        "skill": "digit-problems",
+        "difficulty": 2,
+        "compute": "10*((s - k)/2) + (s + k)/2",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 5,
+              "to": 15
+            },
+            "k": {
+              "from": 1,
+              "to": 7
+            }
+          },
+          "where": ["mod(s + k, 2) == 0", "(s + k)/2 <= 9", "(s - k)/2 >= 1"]
+        }
+      },
+      {
+        "id": "nines-digit-sum",
+        "prompt": "What is the sum of the digits of $10^{[[n]]} - [[k]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[9*(n - 1) + 10 - k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[9*n]]",
+              "why": "That is $10^{[[n]]} - 1$. Here the last digit is $[[10 - k]]$, not $9$."
+            }
+          ]
+        },
+        "hints": ["Try a small case: $10^4 - [[k]] = [[10000 - k]]$."],
+        "solution": "$10^{[[n]]} - [[k]]$ is $[[n - 1]]$ nines followed by $[[10 - k]]$, so the digit sum is $9 \\times [[n - 1]] + [[10 - k]] = [[9*(n - 1) + 10 - k]]$.",
+        "skill": "digit-problems",
+        "difficulty": 2,
+        "compute": "9*(n - 1) + 10 - k",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 20
+            },
+            "k": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "digit-sum-count",
+        "prompt": "How many two-digit numbers have digits that add up to $[[s]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[s + 1]]",
+              "why": "The tens digit can't be $0$, so $0[[s]]$ doesn't count."
+            }
+          ]
+        },
+        "hints": ["The tens digit $a$ can be $1$ to $[[s]]$; then the units digit is $[[s]] - a$."],
+        "solution": "The tens digit is $1, 2, \\ldots, [[s]]$ and the units digit is what is left: $[[s]]$ numbers.",
+        "skill": "digit-problems",
+        "difficulty": 1,
+        "compute": "s",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "all-digits-sum",
+        "prompt": "You write down every whole number from $1$ to $[[10^n - 1]]$. What is the sum of all the digits you write?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*45*10^(n - 1)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Add leading zeros so every number has $[[n]]$ digits: $0$ to $[[10^n - 1]]$.",
+          "In each place, each digit $0$ to $9$ appears $[[10^(n - 1)]]$ times."
+        ],
+        "solution": "With leading zeros, each of the $[[n]]$ places shows each digit $[[10^(n - 1)]]$ times, adding $45 \\times [[10^(n - 1)]]$ per place. Total: $[[n]] \\times 45 \\times [[10^(n - 1)]] = [[n*45*10^(n - 1)]]$.",
+        "skill": "digit-problems",
+        "difficulty": 3,
+        "compute": "n*45*10^(n - 1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 6
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m08.digits-set",
+    "type": "PROBLEM_SET",
+    "title": "Digit problems challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "seven-times",
+        "prompt": "How many two-digit numbers are $7$ times the sum of their digits?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$5$"],
+          "correct": "D"
+        },
+        "solution": "$10a + b = 7a + 7b$ gives $3a = 6b$, so $a = 2b$: $21, 42, 63, 84$. That is $4$ numbers, choice (D).",
+        "skill": "digit-problems",
+        "difficulty": 1,
+        "compute": "4"
+      },
+      {
+        "id": "reverse-63",
+        "prompt": "A two-digit number is $63$ more than the number with its digits reversed, and its digits add to $11$. What is the number?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$29$", "$74$", "$81$", "$83$", "$92$"],
+          "correct": "E",
+          "why": {
+            "A": "That is the reversal, the smaller number."
+          }
+        },
+        "solution": "$9(a - b) = 63$, so $a - b = 7$, and $a + b = 11$. So $a = 9$, $b = 2$: the number is $92$, choice (E).",
+        "skill": "digit-problems",
+        "difficulty": 1,
+        "compute": "10*9 + 2"
+      },
+      {
+        "id": "digit-sum-five",
+        "prompt": "How many three-digit numbers have digits that add up to $5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$12$", "$15$", "$18$", "$21$"],
+          "correct": "C",
+          "why": {
+            "E": "That lets the first digit be $0$."
+          }
+        },
+        "solution": "First digit $1$: the other two add to $4$ ($5$ ways). First digit $2$: $4$ ways; $3$: $3$; $4$: $2$; $5$: $1$. Total $15$, choice (C).",
+        "skill": "digit-problems",
+        "difficulty": 2,
+        "compute": "5 + 4 + 3 + 2 + 1"
+      },
+      {
+        "id": "big-digit-sum",
+        "prompt": "What is the sum of the digits of $10^{25} - 25$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$207$", "$216$", "$219$", "$225$", "$228$"],
+          "correct": "C",
+          "why": {
+            "D": "That is $25$ nines. The last two digits are $75$, not $99$."
+          }
+        },
+        "solution": "$10^{25} - 25 = 99\\ldots975$: $23$ nines, then $7$ and $5$. The digit sum is $207 + 12 = 219$, choice (C).",
+        "skill": "digit-problems",
+        "difficulty": 2,
+        "compute": "9*23 + 7 + 5"
+      },
+      {
+        "id": "digits-to-99",
+        "prompt": "What is the sum of all the digits written when you write the numbers from $1$ to $99$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$450$", "$810$", "$900$", "$990$", "$4950$"],
+          "correct": "C",
+          "why": {
+            "E": "That is the sum of the NUMBERS, not of their digits."
+          }
+        },
+        "solution": "Write them as $00$ to $99$. Each place shows each digit $10$ times, adding $10 \\times 45 = 450$ per place. Two places: $900$, choice (C).",
+        "skill": "digit-problems",
+        "difficulty": 3,
+        "compute": "2*45*10"
+      }
+    ]
+  },
+  {
+    "key": "m08.integer-practice",
+    "type": "PROBLEMS",
+    "title": "Integer equations",
+    "instructions": "Type each answer and press Check. Use divisibility to cut down the cases, or add a number and factor. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sum-pairs",
+        "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $x + y = [[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n + 1]]",
+              "why": "Positive means $x$ and $y$ are at least $1$: $x$ runs from $1$ to $[[n - 1]]$."
+            }
+          ]
+        },
+        "hints": ["$x$ can be $1, 2, \\ldots$ What is the largest $x$ that leaves $y \\geq 1$?"],
+        "solution": "$x$ runs from $1$ to $[[n - 1]]$, and each gives one $y$: $[[n - 1]]$ pairs.",
+        "skill": "integer-equations",
+        "difficulty": 1,
+        "compute": "n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 8,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "one-free",
+        "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $[[a]]x + y = [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor((c - 1)/a)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[c/a]]",
+              "why": "$x = [[c/a]]$ makes $y = 0$, which is not positive."
+            }
+          ]
+        },
+        "hints": ["$y = [[c]] - [[a]]x$ must be at least $1$."],
+        "solution": "$y = [[c]] - [[a]]x \\geq 1$ means $x \\leq \\frac{[[c - 1]]}{[[a]]}$, so $x$ runs from $1$ to $[[floor((c - 1)/a)]]$: $[[floor((c - 1)/a)]]$ pairs.",
+        "skill": "integer-equations",
+        "difficulty": 2,
+        "compute": "floor((c - 1)/a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "c": {
+              "from": 20,
+              "to": 60
+            }
+          },
+          "where": ["mod(c, a) == 0"]
+        }
+      },
+      {
+        "id": "product-pairs",
+        "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $xy = [[2^s*3^t]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(s + 1)*(t + 1)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Each divisor $x$ gives exactly one $y$. Count the divisors of $2^{[[s]]} \\cdot 3^{[[t]]}$."
+        ],
+        "solution": "Each positive divisor $x$ of $2^{[[s]]} \\cdot 3^{[[t]]}$ gives one pair, so there are $[[s + 1]] \\times [[t + 1]] = [[(s + 1)*(t + 1)]]$ pairs.",
+        "skill": "integer-equations",
+        "difficulty": 1,
+        "compute": "(s + 1)*(t + 1)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "add-one-factor",
+        "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $xy - x - y = [[p^s - 1]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s + 1]]"],
+          "form": "integer"
+        },
+        "hints": ["Add $1$ to both sides and factor the left side.", "$(x - 1)(y - 1) = [[p^s]]$."],
+        "solution": "Adding $1$: $(x - 1)(y - 1) = [[p^s]] = [[p]]^{[[s]]}$. Both factors are positive divisors, and $[[p]]^{[[s]]}$ has $[[s + 1]]$ of them, so there are $[[s + 1]]$ pairs.",
+        "skill": "integer-equations",
+        "difficulty": 3,
+        "compute": "s + 1",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [2, 3, 5]
+            },
+            "s": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "difference-squares",
+        "prompt": "Positive integers $a$ and $b$ satisfy $a^2 - b^2 = [[p]]$. What is $a$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(p + 1)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(p - 1)/2]]",
+              "why": "That is $b$, the smaller number."
+            }
+          ]
+        },
+        "hints": [
+          "$(a - b)(a + b) = [[p]]$, and $[[p]]$ is prime.",
+          "So $a - b = 1$ and $a + b = [[p]]$."
+        ],
+        "solution": "$(a - b)(a + b) = [[p]]$ is prime, so $a - b = 1$ and $a + b = [[p]]$. Then $a = \\frac{[[p + 1]]}{2} = [[(p + 1)/2]]$.",
+        "skill": "integer-equations",
+        "difficulty": 2,
+        "compute": "(p + 1)/2",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [7, 11, 13, 17, 19, 23, 29, 31, 37]
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m08.integer-set",
+    "type": "PROBLEM_SET",
+    "title": "Integer equations challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "three-five-fifty",
+        "prompt": "How many pairs of positive integers $(x, y)$ satisfy $3x + 5y = 50$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$5$", "$10$"],
+          "correct": "B",
+          "why": {
+            "C": "$y = 10$ gives $x = 0$, which is not positive."
+          }
+        },
+        "solution": "$50 - 5y$ must be a multiple of $3$, so $y = 1, 4, 7$ (then $x = 15, 10, 5$). $y = 10$ gives $x = 0$. That is $3$ pairs, choice (B).",
+        "skill": "integer-equations",
+        "difficulty": 1,
+        "compute": "3"
+      },
+      {
+        "id": "pencils-erasers",
+        "prompt": "Pencils cost $7$ cents and erasers $11$ cents. Mo spends exactly $100$ cents and buys at least one of each. How many items does Mo buy?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$11$", "$12$", "$13$", "$14$"],
+          "correct": "C"
+        },
+        "solution": "$7p + 11e = 100$. Try $e = 1, 2, 3, \\ldots$: only $e = 4$ leaves a multiple of $7$ ($100 - 44 = 56 = 7 \\times 8$). So $8 + 4 = 12$ items, choice (C).",
+        "skill": "integer-equations",
+        "difficulty": 2,
+        "compute": "(100 - 11*4)/7 + 4"
+      },
+      {
+        "id": "squares-45",
+        "prompt": "How many pairs of positive integers $(a, b)$ satisfy $a^2 - b^2 = 45$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$6$"],
+          "correct": "C"
+        },
+        "solution": "$(a - b)(a + b) = 45$ with $a - b < a + b$: $1 \\times 45$, $3 \\times 15$, $5 \\times 9$. These give $(23, 22)$, $(9, 6)$, $(7, 2)$: $3$ pairs, choice (C).",
+        "skill": "integer-equations",
+        "difficulty": 2,
+        "compute": "3"
+      },
+      {
+        "id": "factor-trick",
+        "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $xy = 2x + 3y$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$6$", "$8$"],
+          "correct": "C",
+          "why": {
+            "E": "The negative factor pairs of $6$ give $x$ or $y$ that are not positive."
+          }
+        },
+        "solution": "$(x - 3)(y - 2) = 6$. The positive factor pairs $1 \\cdot 6, 2 \\cdot 3, 3 \\cdot 2, 6 \\cdot 1$ give $4$ pairs; the negative ones fail. Choice (C).",
+        "skill": "integer-equations",
+        "difficulty": 3,
+        "compute": "4"
+      },
+      {
+        "id": "divides-square",
+        "prompt": "What is the largest positive integer $n$ for which $n + 10$ divides $n^2 + 100$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$90$", "$110$", "$150$", "$190$", "$200$"],
+          "correct": "D",
+          "why": {
+            "E": "$n + 10$ must divide $200$, so $n + 10 \\leq 200$."
+          }
+        },
+        "solution": "$n^2 + 100 = (n + 10)(n - 10) + 200$, so $n + 10$ must divide $200$. The largest choice is $n + 10 = 200$, $n = 190$, choice (D).",
+        "skill": "integer-equations",
+        "difficulty": 4,
+        "compute": "200 - 10"
+      }
+    ]
+  },
+  {
+    "key": "m08.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "day-number",
+        "prompt": "Today is Monday. Number the days Monday $1$, Tuesday $2$, …, Sunday $7$. Which day number is it $[[n]]$ days from today?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n, 7) + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[mod(n, 7)]]",
+              "why": "Today is day $1$, so add $1$ to the remainder."
+            }
+          ]
+        },
+        "hints": ["Find the remainder of $[[n]]$ divided by $7$."],
+        "solution": "$[[n]]$ leaves remainder $[[mod(n, 7)]]$, so it is day number $[[mod(n, 7) + 1]]$.",
+        "skill": "modular-arithmetic",
+        "difficulty": 1,
+        "compute": "mod(n, 7) + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 30,
+              "to": 300,
+              "step": 11
+            }
+          }
+        }
+      },
+      {
+        "id": "units-power",
+        "prompt": "What is the units digit of $[[b]]^{[[n]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(b^n, 10)]]"],
+          "form": "integer"
+        },
+        "hints": ["Use the cycle of $[[mod(b, 10)]]$ and $[[n]]$ mod $4$."],
+        "solution": "$[[n]]$ leaves remainder $[[mod(n, 4)]]$ when divided by $4$, so the units digit is $[[mod(b^n, 10)]]$.",
+        "skill": "units-digits",
+        "difficulty": 1,
+        "compute": "mod(b^n, 10)",
+        "template": {
+          "vars": {
+            "b": {
+              "choose": [2, 3, 7, 8, 13, 17]
+            },
+            "n": {
+              "from": 10,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "base-ten",
+        "prompt": "Write $[[x]][[y]][[z]]_{[[b]]}$ in base ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x*b*b + y*b + z]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[100*x + 10*y + z]]",
+              "why": "In base $[[b]]$ the places are $[[b*b]]$, $[[b]]$ and $1$."
+            }
+          ]
+        },
+        "hints": ["$[[x]] \\cdot [[b*b]] + [[y]] \\cdot [[b]] + [[z]]$."],
+        "solution": "$[[x]] \\cdot [[b*b]] + [[y]] \\cdot [[b]] + [[z]] = [[x*b*b + y*b + z]]$.",
+        "skill": "number-bases",
+        "difficulty": 1,
+        "compute": "x*b*b + y*b + z",
+        "template": {
+          "vars": {
+            "b": {
+              "choose": [5, 6, 7]
+            },
+            "x": {
+              "from": 1,
+              "to": 4
+            },
+            "y": {
+              "from": 0,
+              "to": 4
+            },
+            "z": {
+              "from": 0,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "nines",
+        "prompt": "What is the sum of the digits of $10^{[[n]]} - [[k]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[9*(n - 1) + 10 - k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[9*n]]",
+              "why": "The last digit is $[[10 - k]]$, not $9$."
+            }
+          ]
+        },
+        "hints": ["Try $10^3 - [[k]] = [[1000 - k]]$."],
+        "solution": "$[[n - 1]]$ nines and a $[[10 - k]]$: $[[9*(n - 1) + 10 - k]]$.",
+        "skill": "digit-problems",
+        "difficulty": 1,
+        "compute": "9*(n - 1) + 10 - k",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 15
+            },
+            "k": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "prime-squares",
+        "prompt": "Positive integers $a$ and $b$ satisfy $a^2 - b^2 = [[p]]$. What is $a$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(p + 1)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(p - 1)/2]]",
+              "why": "That is $b$."
+            }
+          ]
+        },
+        "hints": ["$(a - b)(a + b) = [[p]]$, a prime."],
+        "solution": "$a - b = 1$ and $a + b = [[p]]$, so $a = [[(p + 1)/2]]$.",
+        "skill": "integer-equations",
+        "difficulty": 1,
+        "compute": "(p + 1)/2",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [11, 13, 17, 19, 23, 29]
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m08.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 8 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-square-mod",
+        "prompt": "What is the remainder when $2026^2$ is divided by $7$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$9$"],
+          "correct": "B",
+          "why": {
+            "E": "$9$ is bigger than $7$: reduce it.",
+            "C": "That is the remainder of $2026$, before squaring."
+          }
+        },
+        "solution": "$2026 \\equiv 3 \\pmod{7}$, so $2026^2 \\equiv 9 \\equiv 2$, choice (B).",
+        "skill": "modular-arithmetic",
+        "difficulty": 1,
+        "compute": "mod(2026^2, 7)"
+      },
+      {
+        "id": "check-known-remainder",
+        "prompt": "A whole number $n$ leaves remainder $[[r]]$ when divided by $[[m]]$. What remainder does $[[k]]n$ leave when divided by $[[m]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[r]]$",
+            "$[[k*r]]$",
+            "$[[mod(k*r, m)]]$",
+            "$[[mod(k + r, m)]]$",
+            "$[[k]]$"
+          ],
+          "correct": "C",
+          "why": {
+            "B": "Reduce: a remainder must be less than $[[m]]$."
+          }
+        },
+        "solution": "$[[k]]n \\equiv [[k*r]] \\equiv [[mod(k*r, m)]] \\pmod{[[m]]}$, choice (C).",
+        "skill": "modular-arithmetic",
+        "difficulty": 1,
+        "compute": "mod(k*r, m)",
+        "template": {
+          "vars": {
+            "m": {
+              "choose": [9, 11, 13]
+            },
+            "r": {
+              "from": 2,
+              "to": 7
+            },
+            "k": {
+              "from": 3,
+              "to": 8
+            }
+          },
+          "where": [
+            "k*r > m",
+            "r != k",
+            "mod(k*r, m) != r",
+            "mod(k*r, m) != k",
+            "mod(k*r, m) != mod(k + r, m)",
+            "mod(k + r, m) != r",
+            "mod(k + r, m) != k"
+          ]
+        }
+      },
+      {
+        "id": "check-remainder-two",
+        "prompt": "What is the smallest integer greater than $2$ that leaves remainder $2$ when divided by each of $3$, $4$ and $5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$32$", "$47$", "$62$", "$122$", "$182$"],
+          "correct": "C"
+        },
+        "solution": "The number minus $2$ is a multiple of $\\text{lcm}(3, 4, 5) = 60$, and it must be more than $2$, so it is $62$, choice (C).",
+        "skill": "modular-arithmetic",
+        "difficulty": 2,
+        "compute": "lcm(lcm(3, 4), 5) + 2"
+      },
+      {
+        "id": "check-power-mod",
+        "prompt": "What is the remainder when $5^{100}$ is divided by $6$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$4$", "$5$"],
+          "correct": "B",
+          "why": {
+            "E": "$5 \\equiv -1 \\pmod{6}$, and an EVEN power of $-1$ is $1$."
+          }
+        },
+        "solution": "$5 \\equiv -1 \\pmod{6}$, so $5^{100} \\equiv (-1)^{100} = 1$, choice (B).",
+        "skill": "modular-arithmetic",
+        "difficulty": 2,
+        "compute": "mod(5^100, 6)"
+      },
+      {
+        "id": "check-two-power",
+        "prompt": "What is the units digit of $2^{2026}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$2$", "$4$", "$6$", "$8$"],
+          "correct": "C",
+          "why": {
+            "B": "$2026$ leaves remainder $2$ when divided by $4$: the 2nd digit of $2, 4, 8, 6$."
+          }
+        },
+        "solution": "The cycle is $2, 4, 8, 6$ and $2026 = 4 \\times 506 + 2$, so the units digit is $4$, choice (C).",
+        "skill": "units-digits",
+        "difficulty": 1,
+        "compute": "mod(2^2026, 10)"
+      },
+      {
+        "id": "check-units-product",
+        "prompt": "What is the units digit of $7^7 \\times 3^3$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$3$", "$7$", "$9$"],
+          "correct": "B"
+        },
+        "solution": "$7^7$ ends in $3$ ($7 = 4 + 3$: the 3rd of $7, 9, 3, 1$) and $3^3 = 27$ ends in $7$. $3 \\times 7 = 21$ ends in $1$, choice (B).",
+        "skill": "units-digits",
+        "difficulty": 2,
+        "compute": "mod(7^7*3^3, 10)"
+      },
+      {
+        "id": "check-units-difference",
+        "prompt": "What is the units digit of $19^{19} - 11^{11}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$2$", "$4$", "$8$", "$9$"],
+          "correct": "D"
+        },
+        "solution": "$19^{19}$ ends in $9$ (odd power of $9$) and $11^{11}$ ends in $1$, so the difference ends in $9 - 1 = 8$, choice (D).",
+        "skill": "units-digits",
+        "difficulty": 2,
+        "compute": "mod(19^19 - 11^11, 10)"
+      },
+      {
+        "id": "check-base-ten",
+        "prompt": "Write $[[x]][[y]][[z]]_{[[b]]}$ in base ten.",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[x + y + z]]$",
+            "$[[x*b*b + y*b + z]]$",
+            "$[[x*b*b*b + y*b*b + z*b]]$",
+            "$[[100*x + 10*y + z]]$",
+            "$[[z*b*b + y*b + x]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "D": "That reads it as base ten.",
+            "E": "The rightmost digit is the ones place: read from right to left, $[[z]]$ is worth $1$."
+          }
+        },
+        "solution": "$[[x]] \\cdot [[b*b]] + [[y]] \\cdot [[b]] + [[z]] = [[x*b*b + y*b + z]]$, choice (B).",
+        "skill": "number-bases",
+        "difficulty": 1,
+        "compute": "x*b*b + y*b + z",
+        "template": {
+          "vars": {
+            "b": {
+              "choose": [5, 6, 7, 8]
+            },
+            "x": {
+              "from": 1,
+              "to": 4
+            },
+            "y": {
+              "from": 0,
+              "to": 4
+            },
+            "z": {
+              "from": 1,
+              "to": 4
+            }
+          },
+          "where": [
+            "x != z",
+            "x*b*b*b + y*b*b + z*b != 100*x + 10*y + z",
+            "z*b*b + y*b + x != 100*x + 10*y + z",
+            "z*b*b + y*b + x != x*b*b*b + y*b*b + z*b"
+          ]
+        }
+      },
+      {
+        "id": "check-find-base",
+        "prompt": "In base $b$, the number $54_b$ equals $39$ in base ten. What is $b$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$7$", "$8$", "$9$", "$10$"],
+          "correct": "B"
+        },
+        "solution": "$5b + 4 = 39$, so $b = 7$, choice (B).",
+        "skill": "number-bases",
+        "difficulty": 1,
+        "compute": "(39 - 4)/5"
+      },
+      {
+        "id": "check-binary-ones",
+        "prompt": "How many $1$s are there when $2026$ is written in base $2$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$7$", "$8$", "$9$", "$10$"],
+          "correct": "C"
+        },
+        "solution": "$2026 = 1024 + 512 + 256 + 128 + 64 + 32 + 8 + 2$, so $2026 = 11111101010_2$, with eight $1$s. Choice (C).",
+        "skill": "number-bases",
+        "difficulty": 2,
+        "compute": "8"
+      },
+      {
+        "id": "check-digit-sum",
+        "prompt": "What is the sum of the digits of $10^{[[n]]} - [[k]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[9*(n - 1)]]$",
+            "$[[9*(n - 1) + 10 - k]]$",
+            "$[[9*n]]$",
+            "$[[9*n - k]]$",
+            "$[[9*(n - 1) + k]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "C": "That is $10^{[[n]]} - 1$. Here the last digit is $[[10 - k]]$."
+          }
+        },
+        "solution": "$10^{[[n]]} - [[k]]$ is $[[n - 1]]$ nines and then $[[10 - k]]$, so the digit sum is $[[9*(n - 1) + 10 - k]]$, choice (B).",
+        "skill": "digit-problems",
+        "difficulty": 1,
+        "compute": "9*(n - 1) + 10 - k",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 25
+            },
+            "k": {
+              "from": 2,
+              "to": 8
+            }
+          },
+          "where": ["k != 5"]
+        }
+      },
+      {
+        "id": "check-six-times",
+        "prompt": "How many two-digit numbers are $6$ times the sum of their digits?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "B"
+        },
+        "solution": "$10a + b = 6a + 6b$ gives $4a = 5b$, so $a = 5$, $b = 4$: only $54$. Choice (B).",
+        "skill": "digit-problems",
+        "difficulty": 2,
+        "compute": "1"
+      },
+      {
+        "id": "check-reversal-sum",
+        "prompt": "How many two-digit numbers, added to the number with their digits reversed, give $121$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7$", "$8$", "$9$", "$10$", "$11$"],
+          "correct": "B",
+          "why": {
+            "C": "$a + b = 11$, but $a$ can't be $1$: $b$ would be $10$."
+          }
+        },
+        "solution": "$11(a + b) = 121$, so $a + b = 11$: $29, 38, 47, 56, 65, 74, 83, 92$. That is $8$ numbers, choice (B).",
+        "skill": "digit-problems",
+        "difficulty": 2,
+        "compute": "9 - 2 + 1"
+      },
+      {
+        "id": "check-prime-squares",
+        "prompt": "Positive integers $a$ and $b$ satisfy $a^2 - b^2 = [[p]]$. What is $a$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[(p - 1)/2]]$",
+            "$[[(p + 1)/2]]$",
+            "$[[(p + 3)/2]]$",
+            "$[[p]]$",
+            "$[[p + 1]]$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "That is $b$."
+          }
+        },
+        "solution": "$(a - b)(a + b) = [[p]]$ is prime, so $a - b = 1$ and $a + b = [[p]]$: $a = [[(p + 1)/2]]$, choice (B).",
+        "skill": "integer-equations",
+        "difficulty": 1,
+        "compute": "(p + 1)/2",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [11, 13, 17, 19, 23, 29, 31]
+            }
+          }
+        }
+      },
+      {
+        "id": "check-add-one",
+        "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $xy - x - y = [[p^s - 1]]$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[s]]$", "$[[s + 1]]$", "$[[2*(s + 1)]]$", "$[[p^s]]$", "$[[p^s - 1]]$"],
+          "correct": "B",
+          "why": {
+            "A": "$[[p]]^{[[s]]}$ has $[[s + 1]]$ divisors: count the power $0$ too."
+          }
+        },
+        "solution": "$(x - 1)(y - 1) = [[p^s]] = [[p]]^{[[s]]}$, which has $[[s + 1]]$ positive divisors, so there are $[[s + 1]]$ pairs, choice (B).",
+        "skill": "integer-equations",
+        "difficulty": 3,
+        "compute": "s + 1",
+        "template": {
+          "vars": {
+            "p": {
+              "choose": [3, 5, 7]
+            },
+            "s": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "check-linear",
+        "prompt": "How many pairs of positive integers $(x, y)$ satisfy $4x + 7y = 100$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$5$", "$14$"],
+          "correct": "B"
+        },
+        "solution": "$7y$ must be a multiple of $4$, so $y = 4, 8, 12$ (then $x = 18, 11, 4$). $y = 16$ is too big. That is $3$ pairs, choice (B).",
+        "skill": "integer-equations",
+        "difficulty": 2,
+        "compute": "3"
+      },
+      {
+        "id": "check-factor-trick",
+        "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $xy = 3x + 4y$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$6$", "$8$", "$12$"],
+          "correct": "C",
+          "why": {
+            "E": "The negative factor pairs of $12$ don't give positive $x$ and $y$."
+          }
+        },
+        "solution": "$(x - 4)(y - 3) = 12$. Its $6$ positive factor pairs each give a solution; the negative pairs make $x$ or $y$ zero or negative. Choice (C).",
+        "skill": "integer-equations",
+        "difficulty": 3,
+        "compute": "6"
+      },
+      {
+        "id": "check-whole-fraction",
+        "prompt": "For how many positive integers $n$ is $\\frac{n + 6}{n - 2}$ an integer?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$5$", "$6$", "$8$"],
+          "correct": "C",
+          "why": {
+            "B": "Don't forget $n = 1$: $\\frac{7}{-1} = -7$ is an integer too."
+          }
+        },
+        "solution": "$\\frac{n + 6}{n - 2} = 1 + \\frac{8}{n - 2}$, so $n - 2$ divides $8$. $n - 2 = 1, 2, 4, 8$ or $-1$ ($n = 1$); $n - 2 = -2$ gives $n = 0$. That is $5$ values, choice (C).",
+        "skill": "integer-equations",
+        "difficulty": 4,
+        "compute": "4 + 1"
+      }
+    ]
+  }
+]
