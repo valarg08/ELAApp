@@ -13,20 +13,6 @@
   --bad: #cd4236;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #14161b;
-    --foreground: #e5e7eb;
-    --muted: #9ca3af;
-    --card: #1d2027;
-    --border: #2d313a;
-    --brand: #8fb1f0;
-    --ok: #4ade80;
-    --warn: #fbbf24;
-    --bad: #f87171;
-  }
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
