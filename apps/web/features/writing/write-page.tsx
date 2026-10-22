@@ -41,7 +41,7 @@ export function WritePage({ submission }: { submission: SubmissionDetail }) {
     id: `panel-${id}`,
     role: 'tabpanel',
     'aria-labelledby': `tab-${id}`,
-    className: `${tab === id ? '' : 'hidden'} @4xl:block`,
+    className: `${tab === id ? '' : 'hidden'} @3xl:block`,
   });
 
   return (
@@ -52,10 +52,10 @@ export function WritePage({ submission }: { submission: SubmissionDetail }) {
 
       {/* On phones the prompt (and its h1) is hidden behind another tab: keep one h1 for screen readers. */}
       {tab !== 'prompt' && (
-        <h1 className="sr-only @4xl:hidden">{submission.activity.content.title}</h1>
+        <h1 className="sr-only @3xl:hidden">{submission.activity.content.title}</h1>
       )}
 
-      <div role="tablist" aria-label="Workspace" className="flex gap-2 @4xl:hidden">
+      <div role="tablist" aria-label="Workspace" className="flex gap-2 @3xl:hidden">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -76,7 +76,7 @@ export function WritePage({ submission }: { submission: SubmissionDetail }) {
         ))}
       </div>
 
-      <div className="grid items-start gap-6 @4xl:grid-cols-[minmax(18rem,1fr)_2fr]">
+      <div className="grid items-start gap-6 @3xl:grid-cols-[minmax(18rem,1fr)_2fr]">
         <div className="flex flex-col gap-6">
           <div {...panel('prompt')}>
             <Card>

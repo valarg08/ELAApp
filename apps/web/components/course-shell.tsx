@@ -9,15 +9,10 @@ import {
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { serverApi } from '@/lib/server-api';
+import { ChaptersPanel } from './course-frame';
+import { navFocus, progressPanel } from './course-styles';
 import { ProgressBar } from './progress-bar';
 
-/** Focus ring on the navy chapters panel. */
-const navFocus =
-  'focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white';
-const panel = 'rounded-2xl p-4 shadow-sm';
-/** Left: navy chapters. Right: rose progress. The page between them sits on a white panel. */
-const navPanel = `${panel} bg-brand text-white`;
-const progressPanel = `${panel} border border-border border-t-4 border-t-bad bg-progress-panel`;
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
 
 /**
@@ -175,21 +170,14 @@ export async function CourseShell({
     </div>
   );
 
+  // Only the Chapters panel is a client component (it folds); it gets the menu as its one child.
+  // When folded it carries data-folded, and the grid narrows the column with :has().
   return (
     <div
-      className={`mx-auto grid w-full ${wide ? 'max-w-[100rem]' : 'max-w-7xl'} flex-1 gap-6 px-4 py-6 md:grid-cols-[13rem_minmax(0,1fr)_12rem] md:py-10 lg:grid-cols-[16rem_minmax(0,1fr)_15rem]`}
+      className={`mx-auto grid w-full ${wide ? 'max-w-[100rem]' : 'max-w-7xl'} flex-1 gap-6 px-4 py-6 md:grid-cols-[13rem_minmax(0,1fr)_12rem] md:py-10 lg:grid-cols-[16rem_minmax(0,1fr)_15rem] md:has-[[data-folded]]:grid-cols-[3.75rem_minmax(0,1fr)_12rem] lg:has-[[data-folded]]:grid-cols-[3.75rem_minmax(0,1fr)_15rem]`}
     >
       <aside className="md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto">
-        <details className={`${navPanel} md:hidden`}>
-          <summary className={`min-h-11 cursor-pointer content-center font-semibold ${navFocus}`}>
-            Chapters
-          </summary>
-          <div className="mt-3">{chapterNav}</div>
-        </details>
-        <div className={`${navPanel} hidden md:block`}>
-          <h2 className="mb-2 text-lg font-semibold">Chapters</h2>
-          {chapterNav}
-        </div>
+        <ChaptersPanel collapsible={wide}>{chapterNav}</ChaptersPanel>
       </aside>
 
       <main className="min-w-0 rounded-2xl border border-border bg-card p-4 shadow-sm md:p-6">
