@@ -1,0 +1,57 @@
+{
+  "slug": "math-logic-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Logic & Mixed Strategies",
+  "estMinutes": 40,
+  "focusSkills": ["logic-puzzles", "invariants-parity", "games-strategy", "clocks-calendars"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which idea from this unit surprised you most?",
+      "placeholder": "The surprise was…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Logic and invariants: quick review",
+          "body": "To be sure, plan for the worst case: $n(k - 1) + 1$ objects in $n$ boxes force $k$ together. Look for what never changes: totals, parity, remainders and colourings."
+        },
+        {
+          "kind": "definition",
+          "title": "Games and time: quick review",
+          "body": "Find losing positions backwards: with \"take $1$ to $k$\", leave multiples of $k + 1$. Clock angle at $h{:}m$: $|30h - 5.5m|$. Weekdays repeat every $7$ days; century years are leap years only when divisible by $400$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m14.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m14.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

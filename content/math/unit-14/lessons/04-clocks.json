@@ -1,0 +1,100 @@
+{
+  "slug": "math-clocks-calendars",
+  "order": 4,
+  "title": "Clocks, Calendars & Time",
+  "estMinutes": 35,
+  "focusSkills": ["clocks-calendars"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "At $3{:}00$ the clock hands make a right angle. Is the angle at $3{:}15$ zero? Picture the hour hand.",
+      "placeholder": "At 3:15 the hour hand is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Clock hands",
+          "body": "The minute hand moves $6^\\circ$ a minute; the hour hand moves $30^\\circ$ an hour, which is $0.5^\\circ$ a minute. At $h{:}m$ the angle between them is $|30h - 5.5m|$ (subtract from $360$ if it's over $180$). The minute hand gains $5.5$ degrees a minute on the hour hand."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 4:20",
+          "problem": "What is the angle between the hands at $4{:}20$?",
+          "steps": [
+            {
+              "text": "Minute hand: $6 \\times 20 = 120^\\circ$. Hour hand: $120 + 10 = 130^\\circ$.",
+              "try": {
+                "prompt": "Where is the hour hand, in degrees from 12?",
+                "accepted": ["130"],
+                "compute": "4*30 + 20/2"
+              }
+            },
+            {
+              "text": "The angle is $10^\\circ$.",
+              "try": {
+                "prompt": "What is the angle?",
+                "accepted": ["10"],
+                "compute": "130 - 120"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Calendars",
+          "body": "Days of the week repeat every $7$ days, so count in remainders mod $7$. A normal year is $52$ weeks and $1$ day; a leap year is $52$ weeks and $2$ days. Leap years: divisible by $4$, except century years not divisible by $400$ ($1900$ no, $2000$ yes)."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a weekday",
+          "problem": "Today is a Tuesday. What day of the week is it $100$ days from now?",
+          "steps": [
+            {
+              "text": "$100 = 7 \\times 14 + 2$.",
+              "try": {
+                "prompt": "What is the remainder when $100$ is divided by $7$?",
+                "accepted": ["2"],
+                "compute": "mod(100, 7)"
+              }
+            },
+            {
+              "text": "Two days after Tuesday is Thursday.",
+              "try": {
+                "prompt": "How many days after Tuesday is the answer?",
+                "accepted": ["2"],
+                "compute": "2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the frozen hour hand",
+          "body": "The hour hand keeps moving while the minutes pass, so at $3{:}30$ it is halfway to $4$. And watch the off-by-one: \"from Monday to Friday, including both\" is $5$ days."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m14.clocks-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m14.clocks-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which time problem would you check twice, and why?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

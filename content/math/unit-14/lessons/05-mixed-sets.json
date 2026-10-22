@@ -1,0 +1,100 @@
+{
+  "slug": "math-mixed-strategies",
+  "order": 5,
+  "title": "Mixed Sets by Difficulty",
+  "estMinutes": 35,
+  "focusSkills": ["test-choices", "estimate-eliminate", "work-backwards"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "On a test, the topics come mixed up. When you read a new problem, what do you do in the first $20$ seconds?",
+      "placeholder": "First I…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Name it, then solve it",
+          "body": "In a mixed set, the hardest step is noticing what kind of problem it is. Read it, name the topic (percent? counting? parity?), recall the matching tool, and only then calculate. If nothing comes to mind, try a strategy: draw it, test the choices, work backwards or estimate."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: test the choices",
+          "problem": "Which of $1, 2, 3, 4, 5$ satisfies $2^x + x = 11$?",
+          "steps": [
+            {
+              "text": "Try $x = 3$: $8 + 3 = 11$.",
+              "try": {
+                "prompt": "What is $2^3 + 3$?",
+                "accepted": ["11"],
+                "compute": "2^3 + 3"
+              }
+            },
+            {
+              "text": "So $x = 3$, found without algebra.",
+              "try": {
+                "prompt": "Which choice works?",
+                "accepted": ["3"],
+                "compute": "3"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Difficulty bands",
+          "body": "AMC problems get harder through the paper: about 1–10 easier, 11–20 medium, 21–25 hard. Early problems reward speed and care; later ones reward a good idea. Bank the easy points first and don't rush them."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: estimate",
+          "problem": "Which is closest to $\\frac{401}{0.199}$: $20$, $200$, $2000$, $20000$ or $200000$?",
+          "steps": [
+            {
+              "text": "$\\frac{401}{0.199} \\approx \\frac{400}{0.2}$.",
+              "try": {
+                "prompt": "What is $\\frac{400}{0.2}$?",
+                "accepted": ["2000"],
+                "compute": "400/0.2"
+              }
+            },
+            {
+              "text": "So about $2000$.",
+              "try": {
+                "prompt": "Which choice is closest?",
+                "accepted": ["2000"],
+                "compute": "2000"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the wrong tool",
+          "body": "Grabbing the first formula you see wastes minutes. Spend a few seconds choosing. If you're stuck for $2$ minutes, mark it, move on, and come back."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m14.mixed-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m14.mixed-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which strategy rescued you most often in this unit?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

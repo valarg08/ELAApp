@@ -1,0 +1,1656 @@
+[
+  {
+    "key": "m14.logic-practice",
+    "type": "PROBLEMS",
+    "title": "Logic puzzles",
+    "instructions": "Type each answer and press Check. Think about the worst case. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "socks-pair",
+        "prompt": "A drawer holds socks in $[[n]]$ different colours, many of each. In the dark, how many socks must you take out to be sure of getting two of the same colour?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n]]",
+              "why": "With $[[n]]$ socks they could still all be different colours. You need one more."
+            }
+          ]
+        },
+        "hints": ["Think of the worst case: how many socks could you take with no two the same?"],
+        "solution": "You could take $[[n]]$ socks of different colours. The next one must match: $[[n + 1]]$.",
+        "skill": "logic-puzzles",
+        "difficulty": 1,
+        "compute": "n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "socks-many",
+        "prompt": "A drawer holds socks in $[[c]]$ colours, many of each. How many must you take out, in the dark, to be sure of $[[k]]$ socks of the same colour?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c*(k - 1) + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[c*k]]",
+              "why": "In the worst case you get $[[k - 1]]$ of every colour first; one more sock finishes the job."
+            }
+          ]
+        },
+        "hints": ["What is the most socks you could take with at most $[[k - 1]]$ of each colour?"],
+        "solution": "You could take $[[k - 1]]$ of each colour, $[[c*(k - 1)]]$ socks, without $[[k]]$ the same. One more: $[[c*(k - 1) + 1]]$.",
+        "skill": "logic-puzzles",
+        "difficulty": 2,
+        "compute": "c*(k - 1) + 1",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 2,
+              "to": 6
+            },
+            "k": {
+              "from": 3,
+              "to": 6
+            }
+          }
+        }
+      },
+      {
+        "id": "magic-square",
+        "prompt": "The numbers $[[a]], [[a + 1]], \\ldots, [[a + 8]]$ are placed in a $3 \\times 3$ grid so that every row, column and diagonal has the same sum. What is that sum?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[3*a + 12]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[9*a + 36]]",
+              "why": "That is the total of all nine numbers. The three rows share it."
+            }
+          ]
+        },
+        "hints": ["The three rows together use every number exactly once."],
+        "solution": "All nine add to $[[9*a + 36]]$, shared by three rows: $[[3*a + 12]]$.",
+        "skill": "logic-puzzles",
+        "difficulty": 1,
+        "compute": "3*a + 12",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "statements",
+        "prompt": "A list has $[[n]]$ statements. For each $k$ from $1$ to $[[n]]$, statement $k$ says: \"Exactly $k$ of the statements in this list are false.\" Which statement is true? (Give its number.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n]]",
+              "why": "If statement $[[n]]$ were true, all $[[n]]$ statements would be false, including itself."
+            }
+          ]
+        },
+        "hints": [
+          "The statements contradict each other, so at most one can be true.",
+          "Could they all be false?"
+        ],
+        "solution": "At most one is true. They can't all be false (then statement $[[n]]$ would be true), so exactly one is true and $[[n - 1]]$ are false: statement $[[n - 1]]$.",
+        "skill": "logic-puzzles",
+        "difficulty": 2,
+        "compute": "n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "worst-case",
+        "prompt": "A club has $[[b]]$ boys and $[[g]]$ girls. Names are drawn one at a time. How many names must be drawn to be sure of drawing at least $[[k]]$ girls?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b + k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[k]]",
+              "why": "The first names could all be boys. Plan for the worst case."
+            }
+          ]
+        },
+        "hints": ["In the worst case, every boy is drawn first."],
+        "solution": "All $[[b]]$ boys could come first; then $[[k]]$ more names are girls: $[[b + k]]$.",
+        "skill": "logic-puzzles",
+        "difficulty": 1,
+        "compute": "b + k",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 3,
+              "to": 12
+            },
+            "g": {
+              "from": 5,
+              "to": 12
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m14.logic-set",
+    "type": "PROBLEM_SET",
+    "title": "Logic puzzles challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "three-colours",
+        "prompt": "A drawer has $10$ red, $8$ blue and $6$ green socks. In the dark, how many socks must you take to be sure of $3$ of the same colour?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$6$", "$7$", "$9$", "$19$"],
+          "correct": "C",
+          "why": {
+            "B": "With $6$ you could have exactly $2$ of each colour."
+          }
+        },
+        "solution": "You could take $2$ of each colour ($6$ socks); the $7$th makes three of one colour, choice (C).",
+        "skill": "logic-puzzles",
+        "difficulty": 1,
+        "compute": "3*2 + 1"
+      },
+      {
+        "id": "race-order",
+        "prompt": "In a race of five runners, Ann finished ahead of Ben but behind Cy, Dee finished ahead of Cy, and Eve finished last. In which place did Ann finish?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$5$"],
+          "correct": "C"
+        },
+        "solution": "The order is Dee, Cy, Ann, Ben, Eve, so Ann was 3rd, choice (C).",
+        "skill": "logic-puzzles",
+        "difficulty": 1,
+        "compute": "3"
+      },
+      {
+        "id": "liars",
+        "prompt": "Each of Amy (person $1$), Ben (person $2$) and Cal (person $3$) always tells the truth or always lies. Amy says \"Ben is lying.\" Ben says \"Cal is lying.\" Cal says \"Amy and Ben are both lying.\" What is the sum of the numbers of the people who tell the truth?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$5$"],
+          "correct": "C"
+        },
+        "solution": "If Cal told the truth, Amy would lie, so Ben would tell the truth: a contradiction. So Cal lies, Ben tells the truth, and Amy lies. Only person $2$, choice (C).",
+        "skill": "logic-puzzles",
+        "difficulty": 2,
+        "compute": "2"
+      },
+      {
+        "id": "hundred-statements",
+        "prompt": "A list has $100$ statements. For each $k$, statement $k$ says \"Exactly $k$ of these statements are false.\" Which statement is true?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$50$", "$98$", "$99$", "$100$"],
+          "correct": "D",
+          "why": {
+            "E": "If statement $100$ were true, it would be false too."
+          }
+        },
+        "solution": "At most one statement is true, and they can't all be false, so exactly $99$ are false: statement $99$, choice (D).",
+        "skill": "logic-puzzles",
+        "difficulty": 2,
+        "compute": "99"
+      },
+      {
+        "id": "sum-21",
+        "prompt": "What is the least number of different integers you must choose from $1, 2, \\ldots, 20$ to be sure that two of them add up to $21$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$11$", "$12$", "$15$", "$20$"],
+          "correct": "B",
+          "why": {
+            "A": "You could choose one from each pair, $1$ to $10$, with no pair adding to $21$."
+          }
+        },
+        "solution": "Split the numbers into $10$ pairs adding to $21$: $(1, 20), \\ldots, (10, 11)$. Ten numbers can avoid a pair; $11$ can't, choice (B).",
+        "skill": "logic-puzzles",
+        "difficulty": 3,
+        "compute": "10 + 1"
+      }
+    ]
+  },
+  {
+    "key": "m14.invariants-practice",
+    "type": "PROBLEMS",
+    "title": "Invariants & parity",
+    "instructions": "Type each answer and press Check. Look for something that never changes. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sum-stays",
+        "prompt": "The numbers $1, 2, \\ldots, [[n]]$ are on a board. A move: erase any two numbers and write their sum. After many moves only one number is left. What is it?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n + 1)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n]]",
+              "why": "Each move keeps the total the same. Add up the numbers you start with."
+            }
+          ]
+        },
+        "hints": ["What happens to the total of all the numbers in one move?"],
+        "solution": "The total never changes, so the last number is $1 + 2 + \\cdots + [[n]] = [[n*(n + 1)/2]]$.",
+        "skill": "invariants-parity",
+        "difficulty": 1,
+        "compute": "n*(n + 1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "sum-plus-one",
+        "prompt": "The numbers $1, 2, \\ldots, [[n]]$ are on a board. A move: erase two numbers $a$ and $b$ and write $a + b + 1$. After $[[n - 1]]$ moves one number is left. What is it?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n + 1)/2 + n - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*(n + 1)/2]]",
+              "why": "Each move adds $1$ to the total, and there are $[[n - 1]]$ moves."
+            }
+          ]
+        },
+        "hints": ["Each move raises the total by exactly $1$."],
+        "solution": "The total starts at $[[n*(n + 1)/2]]$ and gains $1$ per move: $[[n*(n + 1)/2]] + [[n - 1]] = [[n*(n + 1)/2 + n - 1]]$.",
+        "skill": "invariants-parity",
+        "difficulty": 2,
+        "compute": "n*(n + 1)/2 + n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 25
+            }
+          }
+        }
+      },
+      {
+        "id": "frog",
+        "prompt": "A frog starts at $0$ on a number line and makes $[[k]]$ jumps, each $1$ unit left or right. How many different numbers could it end at?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2*k + 1]]",
+              "why": "Not every number from $-[[k]]$ to $[[k]]$ works: after $[[k]]$ jumps the end has the same parity as $[[k]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Each jump changes the position by $1$, so the parity (odd or even) flips every jump."
+        ],
+        "solution": "The end is between $-[[k]]$ and $[[k]]$ and has the same parity as $[[k]]$: that is $[[k + 1]]$ numbers.",
+        "skill": "invariants-parity",
+        "difficulty": 1,
+        "compute": "k + 1",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 3,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "flip-two",
+        "prompt": "$[[n]]$ coins lie heads up. A move turns over exactly two of them. What is the largest number of coins that can be tails up at once?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n]]",
+              "why": "Each move changes the number of tails by $-2$, $0$ or $+2$, so it stays even."
+            }
+          ]
+        },
+        "hints": ["Is the number of tails odd or even after each move?"],
+        "solution": "The number of tails stays even. $[[n]]$ is odd, so the most is $[[n - 1]]$, and that can be reached two coins at a time.",
+        "skill": "invariants-parity",
+        "difficulty": 2,
+        "compute": "n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 21,
+              "step": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "signed-sum",
+        "prompt": "Each of the numbers $1, 2, \\ldots, [[n]]$ gets a $+$ or $-$ sign, and the signed numbers are added. What is the smallest possible value of the sum that is not negative?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n*(n + 1)/2, 2)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Changing one sign changes the sum by an even number, so the sum always has the parity of $1 + 2 + \\cdots + [[n]]$."
+        ],
+        "solution": "The sum has the parity of $[[n*(n + 1)/2]]$, so it can't be smaller than $[[mod(n*(n + 1)/2, 2)]]$, and a careful choice of signs reaches it.",
+        "skill": "invariants-parity",
+        "difficulty": 2,
+        "compute": "mod(n*(n + 1)/2, 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 30
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m14.invariants-set",
+    "type": "PROBLEM_SET",
+    "title": "Invariants & parity challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "frog-fifteen",
+        "prompt": "A frog starts at $0$ and makes $15$ jumps, each $1$ unit left or right. Where could it end?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$4$", "$8$", "$13$", "$16$"],
+          "correct": "D",
+          "why": {
+            "E": "It can't get further than $15$ away."
+          }
+        },
+        "solution": "After an odd number of jumps the frog is at an odd number between $-15$ and $15$: only $13$ works, choice (D).",
+        "skill": "invariants-parity",
+        "difficulty": 1,
+        "compute": "13"
+      },
+      {
+        "id": "difference-board",
+        "prompt": "The numbers $1, 2, \\ldots, 10$ are on a board. A move: erase two numbers and write their (positive) difference. What is the smallest possible last number?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$5$", "$55$"],
+          "correct": "B",
+          "why": {
+            "A": "The parity of the total never changes, and the total starts odd."
+          }
+        },
+        "solution": "$a + b$ and $a - b$ have the same parity, so the total stays odd ($55$ at the start) and the last number is odd. Pairing $(2,1), (4,3), \\ldots$ gives five $1$s, and they can end at $1$, choice (B).",
+        "skill": "invariants-parity",
+        "difficulty": 2,
+        "compute": "1"
+      },
+      {
+        "id": "dominoes",
+        "prompt": "Two opposite corner squares are cut from an $8 \\times 8$ chessboard. What is the largest number of $1 \\times 2$ dominoes that can be placed on it without overlapping?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$28$", "$29$", "$30$", "$31$", "$32$"],
+          "correct": "C",
+          "why": {
+            "D": "Each domino covers one black and one white square, and the two cut corners have the same colour."
+          }
+        },
+        "solution": "The board has $30$ squares of one colour and $32$ of the other. Each domino covers one of each, so at most $30$ fit, and $30$ do, choice (C).",
+        "skill": "invariants-parity",
+        "difficulty": 2,
+        "compute": "30"
+      },
+      {
+        "id": "nine-cups",
+        "prompt": "$9$ cups stand upright. A move turns over exactly $2$ cups. What is the largest number of cups that can be upside down at once?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$6$", "$7$", "$8$", "$9$"],
+          "correct": "D",
+          "why": {
+            "E": "The number of upside-down cups is always even."
+          }
+        },
+        "solution": "Each move changes the count by $-2$, $0$ or $2$, so it stays even: at most $8$, choice (D).",
+        "skill": "invariants-parity",
+        "difficulty": 1,
+        "compute": "8"
+      },
+      {
+        "id": "sum-of-squares",
+        "prompt": "The numbers $3$, $4$ and $12$ are on a board. A move replaces two numbers $a$ and $b$ with $\\frac{3a + 4b}{5}$ and $\\frac{4a - 3b}{5}$. After $10$ moves, what is the sum of the squares of the three numbers?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$19$", "$144$", "$169$", "$289$", "$361$"],
+          "correct": "C"
+        },
+        "solution": "$(3a + 4b)^2 + (4a - 3b)^2 = 25(a^2 + b^2)$, so each move keeps the sum of squares: $9 + 16 + 144 = 169$, choice (C).",
+        "skill": "invariants-parity",
+        "difficulty": 3,
+        "compute": "9 + 16 + 144"
+      }
+    ]
+  },
+  {
+    "key": "m14.games-practice",
+    "type": "PROBLEMS",
+    "title": "Games & strategy",
+    "instructions": "Type each answer and press Check. Work backwards from the end of the game. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "take-away",
+        "prompt": "A pile has $[[n]]$ stones. Two players take turns removing $1$ to $[[k]]$ stones, and whoever takes the last stone wins. How many stones should the first player take to be sure of winning?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n, k + 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[mod(n, k)]]",
+              "why": "The safe piles to leave are multiples of $[[k + 1]]$, not of $[[k]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Whatever your opponent takes ($1$ to $[[k]]$), you can take enough to make $[[k + 1]]$ together.",
+          "Leave a multiple of $[[k + 1]]$."
+        ],
+        "solution": "Leave a multiple of $[[k + 1]]$: take $[[n]] \\bmod [[k + 1]] = [[mod(n, k + 1)]]$. After that, answer each move of $x$ stones with $[[k + 1]] - x$.",
+        "skill": "games-strategy",
+        "difficulty": 1,
+        "compute": "mod(n, k + 1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 40
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          },
+          "where": ["mod(n, k + 1) != 0", "mod(n, k) != mod(n, k + 1)"]
+        }
+      },
+      {
+        "id": "losing-piles",
+        "prompt": "In the game \"take $1$ to $[[k]]$ stones; whoever takes the last stone wins\", for how many starting piles from $1$ to $[[p]]$ does the first player lose (with best play by both)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(p/(k + 1))]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(p/k)]]",
+              "why": "The losing piles are the multiples of $[[k + 1]]$."
+            }
+          ]
+        },
+        "hints": [
+          "A pile is losing when every move leaves a winning pile for the other player. Start from $0$."
+        ],
+        "solution": "The losing piles are the multiples of $[[k + 1]]$: there are $\\lfloor [[p]] / [[k + 1]] \\rfloor = [[floor(p/(k + 1))]]$ of them.",
+        "skill": "games-strategy",
+        "difficulty": 2,
+        "compute": "floor(p/(k + 1))",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 20,
+              "to": 60,
+              "step": 5
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          },
+          "where": ["floor(p/k) != floor(p/(k + 1))"]
+        }
+      },
+      {
+        "id": "chocolate",
+        "prompt": "A chocolate bar is a $[[a]] \\times [[b]]$ grid of squares. A break splits one piece along a line into two pieces. How many breaks are needed to get all the single squares?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*b]]",
+              "why": "Each break makes one more piece. You start with one piece."
+            }
+          ]
+        },
+        "hints": ["How does the number of pieces change with each break?"],
+        "solution": "Each break adds one piece, from $1$ piece to $[[a*b]]$: $[[a*b - 1]]$ breaks, however you do it.",
+        "skill": "games-strategy",
+        "difficulty": 1,
+        "compute": "a*b - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "nim-two",
+        "prompt": "Two piles have $[[a]]$ and $[[b]]$ stones. A move takes any number of stones from one pile, and whoever takes the last stone wins. The first player wins by making the piles equal. How many stones should she take?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[abs(a - b)]]"],
+          "form": "integer"
+        },
+        "hints": ["After the piles are equal, copy every move of your opponent on the other pile."],
+        "solution": "Take $[[abs(a - b)]]$ from the bigger pile. Then copy each move on the other pile, so you take the last stone.",
+        "skill": "games-strategy",
+        "difficulty": 1,
+        "compute": "abs(a - b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          },
+          "where": ["a != b"]
+        }
+      },
+      {
+        "id": "race-to-t",
+        "prompt": "Two players take turns adding $1$, $2$ or $3$ to a running total that starts at $0$. Whoever reaches $[[t]]$ wins. What total should the first player say on her first turn?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(t, 4)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[mod(t, 3)]]",
+              "why": "The safe totals are $[[t]], [[t - 4]], [[t - 8]], \\ldots$: they go down by $4$, since any move and your answer can make $4$."
+            }
+          ]
+        },
+        "hints": ["Work backwards: if you say $[[t - 4]]$, can you always reach $[[t]]$ next?"],
+        "solution": "The safe totals are the numbers that leave a multiple of $4$ to go: say $[[mod(t, 4)]]$ first, then always make $4$ with your opponent.",
+        "skill": "games-strategy",
+        "difficulty": 2,
+        "compute": "mod(t, 4)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 15,
+              "to": 40
+            }
+          },
+          "where": ["mod(t, 4) != 0", "mod(t, 3) != mod(t, 4)"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m14.games-set",
+    "type": "PROBLEM_SET",
+    "title": "Games & strategy challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "fifteen-stones",
+        "prompt": "A pile has $15$ stones. Players take turns removing $1$, $2$ or $3$ stones, and whoever takes the last stone wins. How many should the first player take?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "D"
+        },
+        "solution": "Leave a multiple of $4$: take $3$, leaving $12$, choice (D).",
+        "skill": "games-strategy",
+        "difficulty": 1,
+        "compute": "mod(15, 4)"
+      },
+      {
+        "id": "chocolate-six-eight",
+        "prompt": "How many breaks does it take to split a $6 \\times 8$ chocolate bar into $48$ single squares? (A break splits one piece in two.)",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$14$", "$46$", "$47$", "$48$", "$96$"],
+          "correct": "C"
+        },
+        "solution": "Each break adds one piece: $48 - 1 = 47$, choice (C).",
+        "skill": "games-strategy",
+        "difficulty": 1,
+        "compute": "48 - 1"
+      },
+      {
+        "id": "losing-fifty",
+        "prompt": "In the game \"take $1$ to $4$ stones; whoever takes the last stone wins\", for how many starting piles from $1$ to $50$ does the first player lose with best play?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$10$", "$12$", "$25$", "$40$"],
+          "correct": "B"
+        },
+        "solution": "The losing piles are the multiples of $5$: there are $10$, choice (B).",
+        "skill": "games-strategy",
+        "difficulty": 2,
+        "compute": "50/5"
+      },
+      {
+        "id": "knockout",
+        "prompt": "$37$ players enter a knockout tournament: each match has a winner and a loser, and a loser is out. Some players skip rounds. How many matches are played to find the champion?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$18$", "$32$", "$36$", "$37$", "$64$"],
+          "correct": "C",
+          "why": {
+            "B": "Byes don't change the count: every player except the champion loses exactly once."
+          }
+        },
+        "solution": "Every player except the champion loses exactly one match: $36$ matches, choice (C).",
+        "skill": "games-strategy",
+        "difficulty": 2,
+        "compute": "37 - 1"
+      },
+      {
+        "id": "one-three-four",
+        "prompt": "Players take turns removing $1$, $3$ or $4$ stones from a pile, and whoever takes the last stone wins. For how many starting piles from $1$ to $30$ does the second player win with best play?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$7$", "$8$", "$9$", "$10$"],
+          "correct": "D"
+        },
+        "solution": "Working up from $0$, the losing piles are $0, 2, 7, 9, 14, 16, \\ldots$: those leaving remainder $0$ or $2$ on division by $7$. From $1$ to $30$: $2, 7, 9, 14, 16, 21, 23, 28, 30$, that is $9$, choice (D).",
+        "skill": "games-strategy",
+        "difficulty": 3,
+        "compute": "9"
+      }
+    ]
+  },
+  {
+    "key": "m14.clocks-practice",
+    "type": "PROBLEMS",
+    "title": "Clocks, calendars & time",
+    "instructions": "Type each answer and press Check. Count in remainders: days repeat every 7, hours every 12. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "clock-angle",
+        "prompt": "What is the smaller angle, in degrees, between the hour hand and the minute hand of a clock at $[[h]]{:}[[m]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[abs(30*h - 11*m/2)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[abs(30*h - 6*m)]]",
+              "why": "The hour hand moves too: $0.5^\\circ$ for every minute."
+            }
+          ]
+        },
+        "hints": [
+          "The minute hand is at $6m$ degrees; the hour hand is at $30h + 0.5m$ degrees (from 12)."
+        ],
+        "solution": "Minute hand $6 \\times [[m]] = [[6*m]]^\\circ$, hour hand $30 \\times [[h]] + 0.5 \\times [[m]] = [[30*h + m/2]]^\\circ$. The difference is $[[abs(30*h - 11*m/2)]]^\\circ$.",
+        "skill": "clocks-calendars",
+        "difficulty": 2,
+        "compute": "abs(30*h - 11*m/2)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 11
+            },
+            "m": {
+              "from": 10,
+              "to": 55,
+              "step": 5
+            }
+          },
+          "where": ["abs(30*h - 11*m/2) <= 180"]
+        }
+      },
+      {
+        "id": "days-later",
+        "prompt": "Today is a Sunday. $[[n]]$ days from now it will be the same day of the week as $k$ days from now, where $0 \\le k \\le 6$. What is $k$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n, 7)]]"],
+          "form": "integer"
+        },
+        "hints": ["The days of the week repeat every $7$ days."],
+        "solution": "$[[n]] = 7 \\times [[floor(n/7)]] + [[mod(n, 7)]]$, so $k = [[mod(n, 7)]]$.",
+        "skill": "clocks-calendars",
+        "difficulty": 1,
+        "compute": "mod(n, 7)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 30,
+              "to": 400
+            }
+          }
+        }
+      },
+      {
+        "id": "hands-meet",
+        "prompt": "How many minutes after $[[h]]{:}00$ do the hour and minute hands of a clock first point the same way? (A fraction is fine.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[60*h/11]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[5*h]]",
+              "why": "By then the hour hand has moved on too. The minute hand gains $5.5$ degrees a minute."
+            }
+          ]
+        },
+        "hints": [
+          "At $[[h]]{:}00$ the minute hand is $[[30*h]]^\\circ$ behind and gains $6 - 0.5 = 5.5$ degrees each minute."
+        ],
+        "solution": "$\\frac{[[30*h]]}{5.5} = [[60*h/11]]$ minutes.",
+        "skill": "clocks-calendars",
+        "difficulty": 2,
+        "compute": "60*h/11",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "fast-watch",
+        "prompt": "A watch with a 12-hour face runs fast by $[[g]]$ minutes a day. It shows the right time now. After how many days will it next show the right time?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[720/g]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[1440/g]]",
+              "why": "The face repeats every 12 hours ($720$ minutes), not every 24."
+            }
+          ]
+        },
+        "hints": ["It shows the right time again once it is a whole 12 hours ahead."],
+        "solution": "It must gain $720$ minutes: $720 \\div [[g]] = [[720/g]]$ days.",
+        "skill": "clocks-calendars",
+        "difficulty": 2,
+        "compute": "720/g",
+        "template": {
+          "vars": {
+            "g": {
+              "choose": [2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 18, 20, 24, 30]
+            }
+          }
+        }
+      },
+      {
+        "id": "leap-years",
+        "prompt": "Leap years are the years divisible by $4$, except century years, which must be divisible by $400$. How many leap years are there from $[[a]]$ to $[[b]]$, including both?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[floor(b/4) - floor((a - 1)/4) - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[floor(b/4) - floor((a - 1)/4)]]",
+              "why": "$1900$ is divisible by $4$ but is not a leap year: it's a century year not divisible by $400$."
+            }
+          ]
+        },
+        "hints": ["Count the multiples of $4$, then fix the century years."],
+        "solution": "There are $[[floor(b/4) - floor((a - 1)/4)]]$ multiples of $4$. The century years in the range are $1900$ (not a leap year) and $2000$ (a leap year), so there are $[[floor(b/4) - floor((a - 1)/4) - 1]]$.",
+        "skill": "clocks-calendars",
+        "difficulty": 2,
+        "compute": "floor(b/4) - floor((a - 1)/4) - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1810,
+              "to": 1900,
+              "step": 10
+            },
+            "b": {
+              "from": 2010,
+              "to": 2090,
+              "step": 10
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m14.clocks-set",
+    "type": "PROBLEM_SET",
+    "title": "Clocks & calendars challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "half-past-three",
+        "prompt": "What is the smaller angle, in degrees, between the hands of a clock at $3{:}30$?",
+        "figure": {
+          "file": "clock-330.svg",
+          "alt": "A clock face showing 3:30: the minute hand points at 6 and the hour hand is halfway between 3 and 4."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": ["$60$", "$75$", "$90$", "$105$", "$120$"],
+          "correct": "B",
+          "why": {
+            "C": "At $3{:}30$ the hour hand is halfway between $3$ and $4$."
+          }
+        },
+        "solution": "The minute hand is at $180^\\circ$ and the hour hand at $105^\\circ$: $75^\\circ$, choice (B).",
+        "skill": "clocks-calendars",
+        "difficulty": 1,
+        "compute": "180 - 105"
+      },
+      {
+        "id": "thursdays",
+        "prompt": "A year that is not a leap year starts on a Thursday. How many Thursdays does it have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$51$", "$52$", "$53$", "$54$", "$365$"],
+          "correct": "C"
+        },
+        "solution": "$365 = 52 \\times 7 + 1$, so the extra day is the first day of the year, a Thursday: $53$, choice (C).",
+        "skill": "clocks-calendars",
+        "difficulty": 1,
+        "compute": "52 + 1"
+      },
+      {
+        "id": "right-angles",
+        "prompt": "How many times in $12$ hours do the hands of a clock form a right angle?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$11$", "$12$", "$22$", "$24$", "$48$"],
+          "correct": "C",
+          "why": {
+            "D": "The minute hand laps the hour hand only $11$ times in $12$ hours."
+          }
+        },
+        "solution": "The minute hand gains $11$ full turns on the hour hand in $12$ hours, and makes a right angle twice per turn: $22$, choice (C).",
+        "skill": "clocks-calendars",
+        "difficulty": 2,
+        "compute": "2*11"
+      },
+      {
+        "id": "thousand-hours",
+        "prompt": "A 12-hour clock shows $9{:}00$. What hour will it show $1000$ hours later?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$4$", "$5$", "$9$", "$11$"],
+          "correct": "A",
+          "why": {
+            "B": "Add the $4$ extra hours to $9$."
+          }
+        },
+        "solution": "$1000 = 12 \\times 83 + 4$, and $4$ hours after $9{:}00$ is $1{:}00$, choice (A).",
+        "skill": "clocks-calendars",
+        "difficulty": 2,
+        "compute": "mod(9 + 1000, 12)"
+      },
+      {
+        "id": "straight-line",
+        "prompt": "How many minutes after $4{:}00$ do the hands of a clock first point in exactly opposite directions?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$50$", "$\\frac{540}{11}$", "$\\frac{600}{11}$", "$55$", "$60$"],
+          "correct": "C"
+        },
+        "solution": "The minute hand must gain $120^\\circ + 180^\\circ = 300^\\circ$ at $5.5$ degrees a minute: $\\frac{300}{5.5} = \\frac{600}{11}$, choice (C).",
+        "skill": "clocks-calendars",
+        "difficulty": 3,
+        "compute": "600/11"
+      }
+    ]
+  },
+  {
+    "key": "m14.mixed-practice",
+    "type": "PROBLEMS",
+    "title": "Mixed set",
+    "instructions": "Type each answer and press Check. Name the topic first, then pick your tool. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "percent",
+        "prompt": "What is $[[p]]\\%$ of $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p*n/100]]"],
+          "form": "any"
+        },
+        "hints": ["$[[p]]\\% = \\frac{[[p]]}{100}$."],
+        "solution": "$\\frac{[[p]]}{100} \\times [[n]] = [[p*n/100]]$.",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "p*n/100",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 10,
+              "to": 90,
+              "step": 10
+            },
+            "n": {
+              "from": 20,
+              "to": 200,
+              "step": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "backwards",
+        "prompt": "I think of a number, multiply it by $[[a]]$ and add $[[b]]$. The result is $[[a*x + b]]$. What was my number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(a*x + b)/a + b]]",
+              "why": "Undo the steps in reverse order: subtract first, then divide."
+            }
+          ]
+        },
+        "hints": ["Work backwards: undo \"add $[[b]]$\" first, then undo \"multiply by $[[a]]$\"."],
+        "solution": "$([[a*x + b]] - [[b]]) \\div [[a]] = [[x]]$.",
+        "skill": "work-backwards",
+        "difficulty": 1,
+        "compute": "x",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 20
+            },
+            "x": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "power-mod",
+        "prompt": "What is the remainder when $2^{[[n]]}$ is divided by $7$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(2^n, 7)]]"],
+          "form": "integer"
+        },
+        "hints": ["The powers of $2$ repeat every $3$ steps mod $7$: $2, 4, 1, 2, 4, 1, \\ldots$"],
+        "solution": "$[[n]]$ leaves remainder $[[mod(n, 3)]]$ when divided by $3$, so the answer is $[[mod(2^n, 7)]]$.",
+        "skill": "modular-arithmetic",
+        "difficulty": 2,
+        "compute": "mod(2^n, 7)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "pairs",
+        "prompt": "In how many ways can $2$ people be chosen from $[[n]]$ (order doesn't matter)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n, 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*(n - 1)]]",
+              "why": "Order doesn't matter, so each pair was counted twice. Halve it."
+            }
+          ]
+        },
+        "hints": ["$\\binom{n}{2} = \\frac{n(n - 1)}{2}$."],
+        "solution": "$\\binom{[[n]]}{2} = [[binom(n, 2)]]$.",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(n, 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "triple",
+        "prompt": "A right triangle has legs $[[5*k]]$ and $[[12*k]]$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[13*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[17*k]]",
+              "why": "Don't add the legs: square them, add, and take the square root."
+            }
+          ]
+        },
+        "hints": ["$5, 12, 13$ is a Pythagorean triple."],
+        "solution": "This is $[[k]]$ times $5, 12, 13$: $[[13*k]]$.",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "13*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 8
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m14.mixed-set",
+    "type": "PROBLEM_SET",
+    "title": "Mixed set by difficulty",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "estimate-product",
+        "prompt": "Which of these is closest to $0.49 \\times 201$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$10$", "$100$", "$1000$", "$10000$"],
+          "correct": "C"
+        },
+        "solution": "$0.49 \\times 201 \\approx \\frac{1}{2} \\times 200 = 100$, choice (C).",
+        "skill": "estimate-eliminate",
+        "difficulty": 1,
+        "compute": "100"
+      },
+      {
+        "id": "test-root",
+        "prompt": "Which of these numbers satisfies $x^2 = 3x + 10$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-5$", "$-1$", "$2$", "$5$", "$10$"],
+          "correct": "D"
+        },
+        "solution": "Testing the choices: $5^2 = 25 = 3 \\times 5 + 10$, choice (D).",
+        "skill": "test-choices",
+        "difficulty": 1,
+        "compute": "5"
+      },
+      {
+        "id": "think-of-number",
+        "prompt": "I think of a number, double it, add $7$ and divide by $3$. The result is $9$. What was my number?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$8$", "$10$", "$12$", "$17$"],
+          "correct": "C",
+          "why": {
+            "E": "Undo the steps in reverse order: times $3$, minus $7$, then halve."
+          }
+        },
+        "solution": "Backwards: $9 \\times 3 = 27$, $27 - 7 = 20$, $20 \\div 2 = 10$, choice (C).",
+        "skill": "work-backwards",
+        "difficulty": 1,
+        "compute": "(9*3 - 7)/2"
+      },
+      {
+        "id": "divisors-72",
+        "prompt": "How many positive divisors does $72$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$10$", "$12$", "$14$", "$18$"],
+          "correct": "C"
+        },
+        "solution": "$72 = 2^3 \\times 3^2$, so it has $4 \\times 3 = 12$ divisors, choice (C).",
+        "skill": "counting-divisors",
+        "difficulty": 2,
+        "compute": "4*3"
+      },
+      {
+        "id": "odd-triple",
+        "prompt": "Three consecutive odd numbers add up to $159$. What is the largest of them?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$51$", "$53$", "$55$", "$57$", "$59$"],
+          "correct": "C",
+          "why": {
+            "B": "$53$ is the middle number."
+          }
+        },
+        "solution": "The middle one is $\\frac{159}{3} = 53$, so the largest is $55$, choice (C).",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "159/3 + 2"
+      }
+    ]
+  },
+  {
+    "key": "m14.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "review-socks",
+        "prompt": "A drawer holds socks in $[[n]]$ different colours, many of each. In the dark, how many socks must you take out to be sure of getting two of the same colour?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n]]",
+              "why": "With $[[n]]$ socks they could still all be different colours. You need one more."
+            }
+          ]
+        },
+        "hints": ["Think of the worst case: how many socks could you take with no two the same?"],
+        "solution": "You could take $[[n]]$ socks of different colours. The next one must match: $[[n + 1]]$.",
+        "skill": "logic-puzzles",
+        "difficulty": 1,
+        "compute": "n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "review-frog",
+        "prompt": "A frog starts at $0$ on a number line and makes $[[k]]$ jumps, each $1$ unit left or right. How many different numbers could it end at?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2*k + 1]]",
+              "why": "Not every number from $-[[k]]$ to $[[k]]$ works: after $[[k]]$ jumps the end has the same parity as $[[k]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Each jump changes the position by $1$, so the parity (odd or even) flips every jump."
+        ],
+        "solution": "The end is between $-[[k]]$ and $[[k]]$ and has the same parity as $[[k]]$: that is $[[k + 1]]$ numbers.",
+        "skill": "invariants-parity",
+        "difficulty": 1,
+        "compute": "k + 1",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 3,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "review-stones",
+        "prompt": "A pile has $[[n]]$ stones. Two players take turns removing $1$ to $[[k]]$ stones, and whoever takes the last stone wins. How many stones should the first player take to be sure of winning?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n, k + 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[mod(n, k)]]",
+              "why": "The safe piles to leave are multiples of $[[k + 1]]$, not of $[[k]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Whatever your opponent takes ($1$ to $[[k]]$), you can take enough to make $[[k + 1]]$ together.",
+          "Leave a multiple of $[[k + 1]]$."
+        ],
+        "solution": "Leave a multiple of $[[k + 1]]$: take $[[n]] \\bmod [[k + 1]] = [[mod(n, k + 1)]]$. After that, answer each move of $x$ stones with $[[k + 1]] - x$.",
+        "skill": "games-strategy",
+        "difficulty": 1,
+        "compute": "mod(n, k + 1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 40
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          },
+          "where": ["mod(n, k + 1) != 0", "mod(n, k) != mod(n, k + 1)"]
+        }
+      },
+      {
+        "id": "review-clock",
+        "prompt": "What is the smaller angle, in degrees, between the hour hand and the minute hand of a clock at $[[h]]{:}[[m]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[abs(30*h - 11*m/2)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[abs(30*h - 6*m)]]",
+              "why": "The hour hand moves too: $0.5^\\circ$ for every minute."
+            }
+          ]
+        },
+        "hints": [
+          "The minute hand is at $6m$ degrees; the hour hand is at $30h + 0.5m$ degrees (from 12)."
+        ],
+        "solution": "Minute hand $6 \\times [[m]] = [[6*m]]^\\circ$, hour hand $30 \\times [[h]] + 0.5 \\times [[m]] = [[30*h + m/2]]^\\circ$. The difference is $[[abs(30*h - 11*m/2)]]^\\circ$.",
+        "skill": "clocks-calendars",
+        "difficulty": 2,
+        "compute": "abs(30*h - 11*m/2)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 11
+            },
+            "m": {
+              "from": 10,
+              "to": 55,
+              "step": 5
+            }
+          },
+          "where": ["abs(30*h - 11*m/2) <= 180"]
+        }
+      },
+      {
+        "id": "review-backwards",
+        "prompt": "I think of a number, multiply it by $[[a]]$ and add $[[b]]$. The result is $[[a*x + b]]$. What was my number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(a*x + b)/a + b]]",
+              "why": "Undo the steps in reverse order: subtract first, then divide."
+            }
+          ]
+        },
+        "hints": ["Work backwards: undo \"add $[[b]]$\" first, then undo \"multiply by $[[a]]$\"."],
+        "solution": "$([[a*x + b]] - [[b]]) \\div [[a]] = [[x]]$.",
+        "skill": "work-backwards",
+        "difficulty": 1,
+        "compute": "x",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 20
+            },
+            "x": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m14.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 14 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-four-colours",
+        "prompt": "A drawer has socks in $4$ colours. In the dark, how many socks must you take to be sure of a matching pair?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$4$", "$5$", "$8$", "$9$"],
+          "correct": "C",
+          "why": {
+            "B": "Four socks could all be different."
+          }
+        },
+        "solution": "Four could all differ; the fifth must match one: $5$, choice (C).",
+        "skill": "logic-puzzles",
+        "difficulty": 1,
+        "compute": "4 + 1"
+      },
+      {
+        "id": "check-birth-months",
+        "prompt": "What is the least number of people in a room that makes it certain two of them were born in the same month?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$12$", "$13$", "$24$", "$367$"],
+          "correct": "C",
+          "why": {
+            "B": "$12$ people could each have a different month."
+          }
+        },
+        "solution": "There are $12$ months, so $13$ people guarantee a shared month, choice (C).",
+        "skill": "logic-puzzles",
+        "difficulty": 1,
+        "compute": "12 + 1"
+      },
+      {
+        "id": "check-heights",
+        "prompt": "Pia is taller than Quinn, Rob is shorter than Quinn, and Sam is taller than Pia. How many of the other three are taller than Rob?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "D"
+        },
+        "solution": "The order is Sam, Pia, Quinn, Rob: all $3$ others are taller than Rob, choice (D).",
+        "skill": "logic-puzzles",
+        "difficulty": 1,
+        "compute": "3"
+      },
+      {
+        "id": "check-twenty-statements",
+        "prompt": "A list has $20$ statements, and statement $k$ says \"Exactly $k$ of these statements are false.\" Which statement is true?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$10$", "$19$", "$20$"],
+          "correct": "D",
+          "why": {
+            "E": "If statement $20$ were true, it would be false too."
+          }
+        },
+        "solution": "Exactly one statement can be true, so $19$ are false: statement $19$, choice (D).",
+        "skill": "logic-puzzles",
+        "difficulty": 2,
+        "compute": "19"
+      },
+      {
+        "id": "check-board-sum",
+        "prompt": "The numbers $1, 2, \\ldots, 20$ are on a board. A move erases two numbers and writes their sum. What is the last number left?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$100$", "$190$", "$210$", "$400$"],
+          "correct": "D"
+        },
+        "solution": "The total never changes: $1 + 2 + \\cdots + 20 = 210$, choice (D).",
+        "skill": "invariants-parity",
+        "difficulty": 1,
+        "compute": "20*21/2"
+      },
+      {
+        "id": "check-frog-ten",
+        "prompt": "A frog starts at $0$ and makes $10$ jumps of $1$ unit, each left or right. How many different numbers could it end at?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$11$", "$20$", "$21$", "$1024$"],
+          "correct": "B",
+          "why": {
+            "D": "After $10$ jumps the end is even."
+          }
+        },
+        "solution": "The even numbers from $-10$ to $10$: $11$, choice (B).",
+        "skill": "invariants-parity",
+        "difficulty": 1,
+        "compute": "10 + 1"
+      },
+      {
+        "id": "check-ten-board",
+        "prompt": "Two opposite corner squares are cut from a $10 \\times 10$ board. What is the largest number of $1 \\times 2$ dominoes that fit on it without overlapping?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$45$", "$48$", "$49$", "$50$", "$98$"],
+          "correct": "B",
+          "why": {
+            "C": "The two cut corners have the same colour, so the colours no longer match."
+          }
+        },
+        "solution": "There are $48$ squares of one colour and $50$ of the other; each domino covers one of each, so at most $48$, choice (B).",
+        "skill": "invariants-parity",
+        "difficulty": 2,
+        "compute": "50 - 2"
+      },
+      {
+        "id": "check-eleven-coins",
+        "prompt": "$11$ coins lie heads up. A move turns over exactly $2$ coins. What is the largest number that can be tails up at once?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$9$", "$10$", "$11$", "$22$"],
+          "correct": "C",
+          "why": {
+            "D": "The number of tails stays even."
+          }
+        },
+        "solution": "The number of tails is always even: at most $10$, choice (C).",
+        "skill": "invariants-parity",
+        "difficulty": 2,
+        "compute": "10"
+      },
+      {
+        "id": "check-twenty-three",
+        "prompt": "A pile has $23$ stones. Players take turns removing $1$ to $4$ stones; whoever takes the last stone wins. How many should the first player take?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$5$"],
+          "correct": "C"
+        },
+        "solution": "Leave a multiple of $5$: take $3$, leaving $20$, choice (C).",
+        "skill": "games-strategy",
+        "difficulty": 1,
+        "compute": "mod(23, 5)"
+      },
+      {
+        "id": "check-chocolate",
+        "prompt": "How many breaks split a $5 \\times 7$ chocolate bar into single squares? (A break splits one piece in two.)",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$34$", "$35$", "$36$", "$70$"],
+          "correct": "B"
+        },
+        "solution": "Each break adds one piece: $35 - 1 = 34$, choice (B).",
+        "skill": "games-strategy",
+        "difficulty": 1,
+        "compute": "35 - 1"
+      },
+      {
+        "id": "check-knockout",
+        "prompt": "$50$ teams play a knockout tournament (a loser is out; some teams skip rounds). How many matches are played?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$25$", "$32$", "$49$", "$50$", "$64$"],
+          "correct": "C"
+        },
+        "solution": "Every team but the champion loses once: $49$ matches, choice (C).",
+        "skill": "games-strategy",
+        "difficulty": 2,
+        "compute": "50 - 1"
+      },
+      {
+        "id": "check-race-thirty",
+        "prompt": "Players take turns adding $1$, $2$ or $3$ to a total that starts at $0$, and whoever reaches $30$ wins. What should the first player say first?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$6$"],
+          "correct": "B"
+        },
+        "solution": "The safe totals are $30, 26, 22, \\ldots, 2$: say $2$, choice (B).",
+        "skill": "games-strategy",
+        "difficulty": 2,
+        "compute": "mod(30, 4)"
+      },
+      {
+        "id": "check-two-twenty",
+        "prompt": "What is the smaller angle, in degrees, between the hands of a clock at $2{:}20$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$40$", "$50$", "$60$", "$70$", "$80$"],
+          "correct": "B",
+          "why": {
+            "C": "The hour hand has moved past the $2$: it's at $${deg(70)}$, not $${deg(60)}$."
+          }
+        },
+        "solution": "Minute hand $120^\\circ$, hour hand $60 + 10 = 70^\\circ$: $50^\\circ$, choice (B).",
+        "skill": "clocks-calendars",
+        "difficulty": 1,
+        "compute": "120 - 70"
+      },
+      {
+        "id": "check-overlap",
+        "prompt": "How many minutes after $3{:}00$ do the hands of a clock first point the same way?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$15$", "$\\frac{180}{11}$", "$16$", "$\\frac{200}{11}$", "$18$"],
+          "correct": "B",
+          "why": {
+            "A": "The hour hand keeps moving while the minute hand catches up."
+          }
+        },
+        "solution": "The minute hand must gain $90^\\circ$ at $5.5$ degrees a minute: $\\frac{90}{5.5} = \\frac{180}{11}$, choice (B).",
+        "skill": "clocks-calendars",
+        "difficulty": 2,
+        "compute": "180/11"
+      },
+      {
+        "id": "check-leap-century",
+        "prompt": "How many leap years are there from $1901$ to $2000$, including both? (Century years are leap years only when divisible by $400$.)",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$23$", "$24$", "$25$", "$26$", "$100$"],
+          "correct": "C",
+          "why": {
+            "B": "$2000$ is divisible by $400$, so it is a leap year."
+          }
+        },
+        "solution": "The multiples of $4$ from $1904$ to $2000$: $25$, and $2000$ counts, choice (C).",
+        "skill": "clocks-calendars",
+        "difficulty": 2,
+        "compute": "(2000 - 1904)/4 + 1"
+      },
+      {
+        "id": "check-thousand-days",
+        "prompt": "Today is a Monday. In how many days from now will it next be a Monday again after $1000$ days have passed? (That is, the smallest $d \\ge 1000$ for which day $d$ is a Monday.)",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1000$", "$1001$", "$1002$", "$1003$", "$1006$"],
+          "correct": "B"
+        },
+        "solution": "Mondays fall on multiples of $7$, and $1001 = 7 \\times 143$, choice (B).",
+        "skill": "clocks-calendars",
+        "difficulty": 3,
+        "compute": "1001"
+      },
+      {
+        "id": "check-estimate-roots",
+        "prompt": "Which is closest to $\\sqrt{99} \\times \\sqrt{101}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$98$", "$99$", "$100$", "$101$"],
+          "correct": "D"
+        },
+        "solution": "$\\sqrt{99 \\times 101} = \\sqrt{9999}$, just under $100$, choice (D).",
+        "skill": "estimate-eliminate",
+        "difficulty": 1,
+        "compute": "100"
+      },
+      {
+        "id": "check-backwards",
+        "prompt": "I halve a number, subtract $4$ and square the result, getting $36$. The number was positive and bigger than $8$. What was it?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$14$", "$16$", "$20$", "$28$"],
+          "correct": "D"
+        },
+        "solution": "Backwards: $\\sqrt{36} = 6$ (positive, since the number is bigger than $8$), $6 + 4 = 10$, $10 \\times 2 = 20$, choice (D).",
+        "skill": "work-backwards",
+        "difficulty": 2,
+        "compute": "(6 + 4)*2"
+      },
+      {
+        "id": "check-choices-cubic",
+        "prompt": "Which of these numbers satisfies $x^3 - 2x^2 - 5x + 6 = 0$ and is greater than $1$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-2$", "$0$", "$2$", "$3$", "$6$"],
+          "correct": "D",
+          "why": {
+            "C": "$8 - 8 - 10 + 6 = -4$, not $0$."
+          }
+        },
+        "solution": "Testing: $27 - 18 - 15 + 6 = 0$, so $x = 3$, choice (D).",
+        "skill": "test-choices",
+        "difficulty": 2,
+        "compute": "3"
+      }
+    ]
+  }
+]

@@ -1,0 +1,100 @@
+{
+  "slug": "math-logic-puzzles",
+  "order": 1,
+  "title": "Logic Puzzles",
+  "estMinutes": 35,
+  "focusSkills": ["logic-puzzles"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You pull socks from a dark drawer with black and white socks. How many do you need to be sure of a pair? Why is the answer not \"two\"?",
+      "placeholder": "I need… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The worst case and the pigeonhole principle",
+          "body": "To be SURE of something, plan for the worst luck. The pigeonhole principle: if more than $n$ things go into $n$ boxes, some box gets two. More generally, $n(k - 1) + 1$ things in $n$ boxes force $k$ in one box."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: socks",
+          "problem": "A drawer has socks in $5$ colours. How many must you take to be sure of $3$ of one colour?",
+          "steps": [
+            {
+              "text": "The worst case is $2$ of each colour: $10$ socks.",
+              "try": {
+                "prompt": "How many socks can you take with no $3$ the same?",
+                "accepted": ["10"],
+                "compute": "5*2"
+              }
+            },
+            {
+              "text": "The next one makes three: $11$.",
+              "try": {
+                "prompt": "How many socks make it certain?",
+                "accepted": ["11"],
+                "compute": "5*2 + 1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Truth-tellers, liars and orderings",
+          "body": "Try each case: suppose one statement is true and follow what it forces, until you reach a contradiction or a consistent story. For orderings, draw a line and place the people one clue at a time."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: two speakers",
+          "problem": "Each of Ana and Bo always tells the truth or always lies. Ana says \"We are both liars.\" Number Ana $1$ and Bo $2$: what is the sum of the numbers of the truth-tellers?",
+          "steps": [
+            {
+              "text": "If Ana told the truth she'd be a liar: impossible. So Ana lies.",
+              "try": {
+                "prompt": "Is Ana's number counted (type 1 for yes, 0 for no)?",
+                "accepted": ["0"],
+                "compute": "0"
+              }
+            },
+            {
+              "text": "Since Ana lies, \"we are both liars\" is false, so Bo tells the truth. The sum is $2$.",
+              "try": {
+                "prompt": "What is the sum?",
+                "accepted": ["2"],
+                "compute": "2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: being lucky",
+          "body": "\"Sure\" means in every case, not in a typical case. Don't count the lucky draws: count the longest run of bad luck, then add one."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m14.logic-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m14.logic-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you find the worst case in a pigeonhole problem?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

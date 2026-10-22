@@ -1,0 +1,49 @@
+{
+  "sections": [
+    {
+      "skill": "logic-puzzles",
+      "title": "Logic puzzles",
+      "facts": [
+        "Pigeonhole: $n + 1$ objects in $n$ boxes put two together; $n(k - 1) + 1$ put $k$ together.",
+        "To be sure, plan for the worst case, then add one.",
+        "Truth-tellers and liars: assume one case and follow it to a contradiction."
+      ]
+    },
+    {
+      "skill": "invariants-parity",
+      "title": "Invariants & parity",
+      "facts": [
+        "An invariant never changes: a total, a parity, a remainder, a colour count.",
+        "Changing a number by an even amount keeps its parity.",
+        "Chessboard colouring: a domino covers one black and one white square."
+      ]
+    },
+    {
+      "skill": "games-strategy",
+      "title": "Games & strategy",
+      "facts": [
+        "Work backwards: losing positions only lead to winning ones.",
+        "Take $1$ to $k$, last stone wins: the losing piles are multiples of $k + 1$.",
+        "A break adds one piece; a knockout match removes one player."
+      ]
+    },
+    {
+      "skill": "clocks-calendars",
+      "title": "Clocks & calendars",
+      "facts": [
+        "Angle at $h{:}m$: $|30h - 5.5m|$; the minute hand gains $5.5^\\circ$ a minute.",
+        "Weekdays repeat every $7$ days; a year is $52$ weeks plus $1$ day ($2$ in a leap year).",
+        "Leap years: divisible by $4$, but century years only if divisible by $400$."
+      ]
+    },
+    {
+      "skill": "test-choices",
+      "title": "Mixed sets",
+      "facts": [
+        "Name the topic before you calculate.",
+        "Stuck? Draw it, test the choices, work backwards or estimate.",
+        "Difficulty rises through the paper: bank the easy points first."
+      ]
+    }
+  ]
+}

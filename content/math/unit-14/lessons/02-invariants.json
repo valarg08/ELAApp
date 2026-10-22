@@ -1,0 +1,100 @@
+{
+  "slug": "math-invariants-parity",
+  "order": 2,
+  "title": "Invariants & Parity",
+  "estMinutes": 35,
+  "focusSkills": ["invariants-parity"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Write $1, 2, 3, 4, 5$. Erase any two numbers and write their sum, again and again until one number is left. Try it twice in different ways. What do you notice?",
+      "placeholder": "I always get…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Invariants",
+          "body": "An invariant is something a move never changes: a total, a parity (odd or even), a remainder, a colour count. If the start and the goal differ in an invariant, the goal is impossible. If the invariant decides the answer, you don't need to know the moves."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: sums",
+          "problem": "Start with $1, 2, \\ldots, 8$. A move erases two numbers and writes their sum. What is the last number?",
+          "steps": [
+            {
+              "text": "The total never changes. It starts at $1 + 2 + \\cdots + 8$.",
+              "try": {
+                "prompt": "What is the total?",
+                "accepted": ["36"],
+                "compute": "8*9/2"
+              }
+            },
+            {
+              "text": "So the last number is $36$, whatever the moves.",
+              "try": {
+                "prompt": "What is the last number?",
+                "accepted": ["36"],
+                "compute": "36"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Parity and colouring",
+          "body": "Parity: a move that changes something by an even amount keeps its parity. Colouring: colour a board like a chessboard; a domino always covers one black and one white square."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: flipping coins",
+          "problem": "$7$ coins are heads up. A move turns over exactly $2$ coins. Can all $7$ be tails at once?",
+          "steps": [
+            {
+              "text": "Each move changes the number of tails by $-2$, $0$ or $2$.",
+              "try": {
+                "prompt": "Is the number of tails always even (type 1) or always odd (type 0)?",
+                "accepted": ["1"],
+                "compute": "1"
+              }
+            },
+            {
+              "text": "$7$ is odd, so no. The most is $6$.",
+              "try": {
+                "prompt": "What is the most tails possible?",
+                "accepted": ["6"],
+                "compute": "6"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: trying moves forever",
+          "body": "If a problem asks \"is it possible?\" or \"what is left at the end?\", don't search through moves. Ask what never changes."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m14.invariants-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m14.invariants-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which invariants (sum, parity, colouring) will you look for first?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

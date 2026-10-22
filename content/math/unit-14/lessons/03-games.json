@@ -1,0 +1,100 @@
+{
+  "slug": "math-games-strategy",
+  "order": 3,
+  "title": "Games & Strategy",
+  "estMinutes": 35,
+  "focusSkills": ["games-strategy"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "There are $10$ stones. You and a friend take turns removing $1$ or $2$. Whoever takes the last stone wins. Would you rather go first or second?",
+      "placeholder": "I would go… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Winning and losing positions",
+          "body": "Work backwards from the end. A position is LOSING if every move leads to a winning position for the other player, and WINNING if some move leads to a losing one. With \"take $1$ to $k$, last stone wins\", the losing piles are the multiples of $k + 1$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: ten stones",
+          "problem": "In the hook game (take $1$ or $2$, last stone wins), how many should the first player take from $10$?",
+          "steps": [
+            {
+              "text": "The losing piles are multiples of $3$: $0, 3, 6, 9$.",
+              "try": {
+                "prompt": "Which losing pile can you leave from $10$?",
+                "accepted": ["9"],
+                "compute": "9"
+              }
+            },
+            {
+              "text": "So take $1$, then always make $3$ with your opponent.",
+              "try": {
+                "prompt": "How many should you take?",
+                "accepted": ["1"],
+                "compute": "10 - 9"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Symmetry and counting",
+          "body": "Copy your opponent: equal piles in two-pile Nim, or the mirror move on a symmetric board. Some \"games\" have a fixed answer: every break of a chocolate bar adds one piece, and every match in a knockout removes one player."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a knockout",
+          "problem": "$20$ players enter a knockout tournament. How many matches are played?",
+          "steps": [
+            {
+              "text": "Each match knocks out exactly one player.",
+              "try": {
+                "prompt": "How many players must be knocked out?",
+                "accepted": ["19"],
+                "compute": "20 - 1"
+              }
+            },
+            {
+              "text": "So $19$ matches, however the rounds are arranged.",
+              "try": {
+                "prompt": "How many matches?",
+                "accepted": ["19"],
+                "compute": "19"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: thinking forwards",
+          "body": "Don't play the game forwards from the start. Start from the end, find the losing positions, and spot their pattern. Check: is the safe step $k + 1$ (not $k$)?"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m14.games-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m14.games-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you find the losing positions of a game?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}
