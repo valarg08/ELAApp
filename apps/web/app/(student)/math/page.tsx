@@ -19,7 +19,8 @@ const tile =
 
 /**
  * The Math track (math-design.md): AMC 10 preparation at the student's own pace, in four stages
- * with the units in order, today's review, the tests, sprints and fact sheets.
+ * with the units in order, today's review, the tests and sprints; the fact sheets sit in the
+ * Progress panel.
  */
 export default async function MathHome() {
   const [me, units, home] = await Promise.all([
@@ -34,7 +35,34 @@ export default async function MathHome() {
   const tests = new Map((home?.tests ?? []).map((t) => [t.key, t]));
 
   return (
-    <CourseShell track="MATH">
+    <CourseShell
+      track="MATH"
+      extra={
+        home && (
+          <section aria-labelledby="fact-sheets" className="mt-5 border-t border-border pt-4">
+            <h3 id="fact-sheets" className="text-sm font-semibold">
+              Fact sheets
+            </h3>
+            {home.factSheets.length === 0 ? (
+              <p className="mt-1 text-sm text-muted">None yet</p>
+            ) : (
+              <ul className="mt-1 flex flex-col gap-1">
+                {home.factSheets.map((f) => (
+                  <li key={f.number}>
+                    <Link
+                      href={`/math/facts/${f.number}`}
+                      className="text-sm text-brand underline focus-visible:outline-3 focus-visible:outline-brand"
+                    >
+                      Unit {f.number}: {f.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        )
+      }
+    >
       <div className="flex flex-col gap-8">
         <div>
           <h1 className="text-4xl font-bold">Math: AMC 10 practice</h1>
@@ -178,24 +206,6 @@ export default async function MathHome() {
                         Easy problems on skills you know, with fact cards
                       </p>
                     </Link>
-                  </li>
-                )}
-                {stage.extras.includes('fact-sheets') && home && (
-                  <li className={`${tile} hover:border-border`}>
-                    <p className="text-lg font-bold">Fact sheets</p>
-                    {home.factSheets.length === 0 ? (
-                      <p className="text-muted">None yet</p>
-                    ) : (
-                      <ul className="mt-1 flex flex-col gap-1">
-                        {home.factSheets.map((f) => (
-                          <li key={f.number}>
-                            <Link href={`/math/facts/${f.number}`} className="text-brand underline">
-                              Unit {f.number}: {f.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </li>
                 )}
               </ol>

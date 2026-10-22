@@ -11,9 +11,9 @@
   --ok: #15803d;
   --warn: #b45309;
   --bad: #cd4236;
-  /* Course frame panels: navy chapters (--brand), a pale blue tint of the navy for the page, a rose tint of the red for progress. */
+  /* Course frame panels: navy chapters (--brand), a pale blue tint of the navy for the page, a honey tint of the amber for progress. */
   --page-panel: #eaf1fa;
-  --progress-panel: #fcefed;
+  --progress-panel: #fdf3dc;
 }
 
 @theme inline {

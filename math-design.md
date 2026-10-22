@@ -372,7 +372,7 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 
 **D5. Fact sheets**
 - Each unit may have `facts.json`: a one-page summary of formulas, identities, shortcuts and patterns, written in TeX, grouped by skill (content:check: the TeX parses and the skill ids exist).
-- `/math/facts/[unit]` shows it (by unit number), printable (print styles: no navigation, one page where possible). `/math` lists the units that have one.
+- `/math/facts/[unit]` shows it (by unit number), printable (print styles: no navigation, one page where possible). `/math` lists the units that have one in the Progress panel, below the progress bar.
 - The fact sheets are written with each unit (M1–M14); the Unit 15 refresh lessons link to them.
 
 **D6. Light review mode**

@@ -4,6 +4,6 @@
 export const navFocus =
   'focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white';
 const panel = 'rounded-2xl p-4 shadow-sm';
-/** Left: navy chapters. Right: rose progress. The page between them sits on a pale blue panel (bg-page-panel). */
+/** Left: navy chapters. Right: honey-gold progress. The page between them sits on a pale blue panel (bg-page-panel). */
 export const navPanel = `${panel} bg-brand text-white`;
-export const progressPanel = `${panel} border border-border border-t-4 border-t-bad bg-progress-panel`;
+export const progressPanel = `${panel} border border-border border-t-4 border-t-warn bg-progress-panel`;

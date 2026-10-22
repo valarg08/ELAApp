@@ -25,6 +25,7 @@ export async function CourseShell({
   unitSlug,
   lessonId,
   wide = false,
+  extra,
   children,
 }: {
   track: Track;
@@ -33,6 +34,8 @@ export async function CourseShell({
   lessonId?: string;
   /** A wider frame for pages that need room, like the writing workspace. */
   wide?: boolean;
+  /** More for the Progress panel, below the progress bars (the Math home's fact sheets). */
+  extra?: ReactNode;
   children: ReactNode;
 }) {
   const [units, unit] = await Promise.all([
@@ -186,11 +189,12 @@ export async function CourseShell({
 
       <aside
         aria-label="Progress"
-        className="order-last md:order-none md:sticky md:top-6 md:self-start"
+        className="order-last md:order-none md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto"
       >
         <div className={progressPanel}>
           <h2 className="mb-3 text-lg font-semibold">Progress</h2>
           {progress}
+          {extra}
         </div>
       </aside>
     </div>
