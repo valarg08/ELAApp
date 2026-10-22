@@ -1,0 +1,100 @@
+{
+  "slug": "math-power-of-a-point",
+  "order": 3,
+  "title": "Power of a Point",
+  "estMinutes": 35,
+  "focusSkills": ["power-of-a-point"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Two chords cross inside a circle, cutting each other into pieces. Measure the pieces in a drawing. Do you notice anything about the products?",
+      "placeholder": "The products…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "One rule, three pictures",
+          "body": "Draw any line through a point $P$ that meets a circle at $A$ and $B$. The product $PA \\cdot PB$ is the same for every such line. Chords crossing inside: $PA \\cdot PB = PC \\cdot PD$. Two lines from outside: $PA \\cdot PB = PC \\cdot PD$, with the distances measured from $P$. A tangent $PT$ counts as a line touching twice: $PT^2 = PA \\cdot PB$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: crossing chords",
+          "problem": "Chords $AB$ and $CD$ cross at $P$, with $PA = 4$, $PB = 6$ and $PC = 3$. How long is $PD$?",
+          "steps": [
+            {
+              "text": "$PA \\cdot PB = 4 \\times 6 = 24$.",
+              "try": {
+                "prompt": "What is $PA \\cdot PB$?",
+                "accepted": ["24"],
+                "compute": "4*6"
+              }
+            },
+            {
+              "text": "$3 \\times PD = 24$, so $PD = 8$.",
+              "try": {
+                "prompt": "How long is $PD$?",
+                "accepted": ["8"],
+                "compute": "24/3"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Using it from outside",
+          "body": "From an outside point, use the whole distance to the far point, not the piece inside the circle. A point inside, at distance $d$ from the centre of a circle of radius $r$, has $PA \\cdot PB = r^2 - d^2$ for every chord through it (look at the diameter)."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a tangent",
+          "problem": "From $P$, a line meets a circle at $A$ and then $B$, with $PA = 4$ and $PB = 9$. How long is the tangent $PT$?",
+          "steps": [
+            {
+              "text": "$PT^2 = PA \\cdot PB = 36$.",
+              "try": {
+                "prompt": "What is $PA \\cdot PB$?",
+                "accepted": ["36"],
+                "compute": "4*9"
+              }
+            },
+            {
+              "text": "$PT = 6$.",
+              "try": {
+                "prompt": "How long is $PT$?",
+                "accepted": ["6"],
+                "compute": "sqrt(36)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the inside piece",
+          "body": "From outside, $PB$ is the whole distance from $P$ to the far point, not the chord $AB$ inside the circle. Read which length the question wants: $PB$ or $AB$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m12.power-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m12.power-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you remember which lengths to multiply?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

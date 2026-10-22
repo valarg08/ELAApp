@@ -1,0 +1,49 @@
+{
+  "sections": [
+    {
+      "skill": "circle-angles",
+      "title": "Arcs, chords & inscribed angles",
+      "facts": [
+        "Inscribed angle $= \\frac{1}{2}$ its arc; central angle $=$ its arc.",
+        "Angle in a semicircle $= 90^\\circ$; cyclic quadrilateral: opposite angles add to $180^\\circ$.",
+        "Chord: $r^2 = d^2 + \\left(\\frac{c}{2}\\right)^2$."
+      ]
+    },
+    {
+      "skill": "tangents",
+      "title": "Tangents",
+      "facts": [
+        "Tangent $\\perp$ radius; tangent length $\\sqrt{d^2 - r^2}$.",
+        "Two tangents from one point are equal; with an incircle, $AB + CD = BC + DA$.",
+        "Common tangents: external $\\sqrt{d^2 - (r_1 - r_2)^2}$, internal $\\sqrt{d^2 - (r_1 + r_2)^2}$."
+      ]
+    },
+    {
+      "skill": "power-of-a-point",
+      "title": "Power of a point",
+      "facts": [
+        "$PA \\cdot PB = PC \\cdot PD$ for any two lines through $P$.",
+        "Tangent: $PT^2 = PA \\cdot PB$ (distances from $P$).",
+        "Inside, at distance $d$: $PA \\cdot PB = r^2 - d^2$."
+      ]
+    },
+    {
+      "skill": "inscribed-circles",
+      "title": "Inscribed & circumscribed circles",
+      "facts": [
+        "$r = \\frac{\\text{area}}{s}$; right triangle $r = \\frac{a + b - c}{2}$.",
+        "$R = \\frac{abc}{4 \\times \\text{area}}$; right triangle $R = \\frac{c}{2}$.",
+        "Equilateral side $s$: $R = \\frac{s}{\\sqrt{3}}$, $r = \\frac{R}{2}$."
+      ]
+    },
+    {
+      "skill": "circle-areas",
+      "title": "Areas with circles",
+      "facts": [
+        "Area $\\pi r^2$; circumference $2\\pi r$.",
+        "Sector $\\frac{\\theta}{360}\\pi r^2$; arc $\\frac{\\theta}{360} \\cdot 2\\pi r$.",
+        "Segment $=$ sector $-$ triangle; ring $= \\pi R^2 - \\pi r^2$."
+      ]
+    }
+  ]
+}

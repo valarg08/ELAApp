@@ -1,0 +1,100 @@
+{
+  "slug": "math-inscribed-circles",
+  "order": 4,
+  "title": "Inscribed & Circumscribed Circles",
+  "estMinutes": 35,
+  "focusSkills": ["inscribed-circles"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Every triangle has a circle that fits snugly inside it and a circle that passes through its three corners. For a right triangle, where do you think the centre of the outside circle is?",
+      "placeholder": "I think the centre is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The inscribed circle",
+          "body": "The inscribed circle (incircle) touches all three sides. Its radius is $r = \\frac{\\text{area}}{s}$, where $s$ is the semiperimeter (half the perimeter). For a right triangle, $r = \\frac{a + b - c}{2}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a 3-4-5 triangle",
+          "problem": "What is the inradius of a triangle with sides $3$, $4$ and $5$?",
+          "steps": [
+            {
+              "text": "The area is $\\frac{1}{2} \\times 3 \\times 4 = 6$ and the semiperimeter is $s = 6$.",
+              "try": {
+                "prompt": "What is $s$?",
+                "accepted": ["6"],
+                "compute": "(3 + 4 + 5)/2"
+              }
+            },
+            {
+              "text": "$r = \\frac{6}{6} = 1$ (and $\\frac{3 + 4 - 5}{2} = 1$ too).",
+              "try": {
+                "prompt": "What is the inradius?",
+                "accepted": ["1"],
+                "compute": "6/6"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The circumscribed circle",
+          "body": "The circle through the three corners has radius $R = \\frac{abc}{4 \\times \\text{area}}$. In a right triangle the hypotenuse is a diameter, so $R = \\frac{c}{2}$. In an equilateral triangle with side $s$, $R = \\frac{s}{\\sqrt{3}}$ and $r = \\frac{R}{2}$: the centre is $\\frac{2}{3}$ of the way down each height."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a 5-12-13 triangle",
+          "problem": "A triangle has sides $5$, $12$ and $13$. Find its circumradius, then its inradius.",
+          "steps": [
+            {
+              "text": "It is a right triangle, so $R = \\frac{13}{2}$.",
+              "try": {
+                "prompt": "What is the circumradius?",
+                "accepted": ["13/2", "6.5"],
+                "compute": "13/2"
+              }
+            },
+            {
+              "text": "$r = \\frac{5 + 12 - 13}{2} = 2$.",
+              "try": {
+                "prompt": "What is the inradius?",
+                "accepted": ["2"],
+                "compute": "(5 + 12 - 13)/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: perimeter or semiperimeter",
+          "body": "The inradius is the area divided by HALF the perimeter. The hypotenuse is the circumcircle's diameter, not its radius. And in an equilateral triangle, $R$ is twice $r$; neither is the height."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m12.incircle-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m12.incircle-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why is the hypotenuse a diameter of the circumcircle?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

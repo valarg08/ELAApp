@@ -1,0 +1,1809 @@
+[
+  {
+    "key": "m12.angles-practice",
+    "type": "PROBLEMS",
+    "title": "Arcs, chords & inscribed angles",
+    "instructions": "Type each answer and press Check. An inscribed angle is half its arc. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "inscribed-from-central",
+        "prompt": "A central angle of a circle is $[[c]]^\\circ$. What is an inscribed angle that cuts off the same arc, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[c]]",
+              "why": "The inscribed angle is half the central angle on the same arc."
+            }
+          ]
+        },
+        "hints": ["Inscribed angle $= \\frac{1}{2}$ central angle."],
+        "solution": "$\\frac{[[c]]}{2} = [[c/2]]$.",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "c/2",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 40,
+              "to": 160,
+              "step": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "arc-from-inscribed",
+        "prompt": "An inscribed angle of a circle is $[[a]]^\\circ$. What is the measure of the arc it cuts off, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*a]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "An inscribed angle is HALF of its arc, so the arc is twice the angle."
+            }
+          ]
+        },
+        "hints": ["Inscribed angle $= \\frac{1}{2}$ arc."],
+        "solution": "The arc is $2 \\times [[a]] = [[2*a]]$.",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "2*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 20,
+              "to": 80,
+              "step": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "cyclic-quad",
+        "prompt": "$ABCD$ is a quadrilateral with all four corners on a circle, and $\\angle A = [[a]]^\\circ$. What is $\\angle C$, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180 - a]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "Opposite angles of a cyclic quadrilateral add to $180^\\circ$; they aren't equal."
+            }
+          ]
+        },
+        "hints": ["Opposite angles of a cyclic quadrilateral add to $180^\\circ$."],
+        "solution": "$180 - [[a]] = [[180 - a]]$.",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "180 - a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 50,
+              "to": 130,
+              "step": 5
+            }
+          },
+          "where": ["a != 90"]
+        }
+      },
+      {
+        "id": "chord-distance",
+        "prompt": "A circle has radius $[[(5 + 8*t)*k]]$. A chord of length $[[(8 + 16*t)*k]]$ is drawn. How far is the chord from the centre?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(3 + 2*t)*k]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "The perpendicular from the centre bisects the chord.",
+          "Use half the chord, the distance and the radius in Pythagoras."
+        ],
+        "solution": "Half the chord is $[[(4 + 8*t)*k]]$, so the distance is $\\sqrt{[[(5 + 8*t)*k]]^2 - [[(4 + 8*t)*k]]^2} = [[(3 + 2*t)*k]]$.",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "(3 + 2*t)*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 6
+            },
+            "t": {
+              "choose": [0, 1]
+            }
+          }
+        }
+      },
+      {
+        "id": "chord-length",
+        "prompt": "A chord is $[[d]]$ away from the centre of a circle with radius $[[c]]$. How long is the chord? (A square root is fine.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*sqrt(c^2 - d^2)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[sqrt(c^2 - d^2)]]",
+              "why": "That is half the chord. Double it."
+            }
+          ]
+        },
+        "hints": ["The perpendicular from the centre bisects the chord."],
+        "solution": "Half the chord is $\\sqrt{[[c]]^2 - [[d]]^2} = [[sqrt(c^2 - d^2)]]$, so the chord is $[[2*sqrt(c^2 - d^2)]]$.",
+        "skill": "circle-angles",
+        "difficulty": 2,
+        "compute": "2*sqrt(c^2 - d^2)",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 5,
+              "to": 12
+            },
+            "d": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["d < c"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m12.angles-set",
+    "type": "PROBLEM_SET",
+    "title": "Inscribed angles challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "arc-hundred",
+        "prompt": "An inscribed angle cuts off an arc of $100^\\circ$. How big is the angle, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$25$", "$50$", "$100$", "$130$", "$200$"],
+          "correct": "B",
+          "why": {
+            "C": "That is the central angle. The inscribed angle is half of it."
+          }
+        },
+        "solution": "$\\frac{100}{2} = 50$, choice (B).",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "100/2"
+      },
+      {
+        "id": "semicircle",
+        "prompt": "$AB$ is a diameter of a circle and $C$ is another point on the circle. If $\\angle CAB = 35^\\circ$, what is $\\angle CBA$, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$35$", "$45$", "$55$", "$65$", "$90$"],
+          "correct": "C",
+          "why": {
+            "E": "That is $\\angle ACB$, the angle in the semicircle."
+          }
+        },
+        "solution": "$\\angle ACB = 90$ because $AB$ is a diameter, so $\\angle CBA = 180 - 90 - 35 = 55$, choice (C).",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "90 - 35"
+      },
+      {
+        "id": "cyclic-angles",
+        "prompt": "$ABCD$ is a cyclic quadrilateral with $\\angle A = 70^\\circ$ and $\\angle B = 95^\\circ$. What is $\\angle C$, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$70$", "$85$", "$95$", "$110$", "$120$"],
+          "correct": "D",
+          "why": {
+            "B": "That is $\\angle D$, opposite $B$."
+          }
+        },
+        "solution": "$\\angle C$ is opposite $\\angle A$: $180 - 70 = 110$, choice (D).",
+        "skill": "circle-angles",
+        "difficulty": 2,
+        "compute": "180 - 70"
+      },
+      {
+        "id": "chord-sixteen",
+        "prompt": "A circle has radius $10$. A chord is $6$ away from the centre. How long is the chord?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$12$", "$16$", "$18$", "$20$"],
+          "correct": "C",
+          "why": {
+            "A": "That is half the chord."
+          }
+        },
+        "solution": "Half the chord is $\\sqrt{100 - 36} = 8$, so the chord is $16$, choice (C).",
+        "skill": "circle-angles",
+        "difficulty": 2,
+        "compute": "2*sqrt(100 - 36)"
+      },
+      {
+        "id": "parallel-chords",
+        "prompt": "A circle of radius $5$ has two parallel chords of lengths $6$ and $8$, on opposite sides of the centre. How far apart are the chords?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$5$", "$6$", "$7$", "$8$"],
+          "correct": "D",
+          "why": {
+            "A": "That would be for chords on the SAME side of the centre."
+          }
+        },
+        "solution": "The chord of length $6$ is $\\sqrt{25 - 9} = 4$ from the centre and the chord of length $8$ is $\\sqrt{25 - 16} = 3$. On opposite sides: $4 + 3 = 7$, choice (D).",
+        "skill": "circle-angles",
+        "difficulty": 3,
+        "compute": "sqrt(25 - 9) + sqrt(25 - 16)"
+      }
+    ]
+  },
+  {
+    "key": "m12.tangents-practice",
+    "type": "PROBLEMS",
+    "title": "Tangents",
+    "instructions": "Type each answer and press Check. A radius meets a tangent at a right angle. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "tangent-length",
+        "prompt": "A circle has radius $[[(3 + 2*t)*k]]$. Point $P$ is $[[(5 + 8*t)*k]]$ from the centre. How long is a tangent segment from $P$ to the circle?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(4 + 8*t)*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(2 + 6*t)*k]]",
+              "why": "The radius meets the tangent at a right angle: use Pythagoras, not subtraction."
+            }
+          ]
+        },
+        "hints": [
+          "The radius to the point of tangency is perpendicular to the tangent, so you have a right triangle with hypotenuse $OP$."
+        ],
+        "solution": "$\\sqrt{[[(5 + 8*t)*k]]^2 - [[(3 + 2*t)*k]]^2} = [[(4 + 8*t)*k]]$.",
+        "skill": "tangents",
+        "difficulty": 1,
+        "compute": "(4 + 8*t)*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 5
+            },
+            "t": {
+              "choose": [0, 1]
+            }
+          }
+        }
+      },
+      {
+        "id": "tangent-triangle",
+        "prompt": "From a point $P$, tangents $PA$ and $PB$ touch a circle, with $PA = [[a]]$. A third tangent touches the circle at a point between $A$ and $B$ and meets $PA$ at $X$ and $PB$ at $Y$. What is the perimeter of triangle $PXY$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*a]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "Each of $XY$'s two pieces matches a piece of $PA$ or $PB$, so the perimeter is $PA + PB$."
+            }
+          ]
+        },
+        "hints": [
+          "Two tangents from the same point are equal: $X$ and $Y$ each send two equal tangents."
+        ],
+        "solution": "$XY$ splits into pieces equal to $XA$ and $YB$, so the perimeter is $PA + PB = 2 \\times [[a]] = [[2*a]]$.",
+        "skill": "tangents",
+        "difficulty": 2,
+        "compute": "2*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "pitot",
+        "prompt": "A circle sits inside quadrilateral $ABCD$ touching all four sides. $AB = [[a]]$, $BC = [[b]]$ and $CD = [[c]]$. How long is $DA$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + c - b]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Each corner sends two equal tangents, so the two pairs of opposite sides have equal sums: $AB + CD = BC + DA$."
+        ],
+        "solution": "$[[a]] + [[c]] = [[b]] + DA$, so $DA = [[a + c - b]]$.",
+        "skill": "tangents",
+        "difficulty": 1,
+        "compute": "a + c - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 12
+            },
+            "b": {
+              "from": 6,
+              "to": 12
+            },
+            "c": {
+              "from": 5,
+              "to": 12
+            }
+          },
+          "where": ["a + c - b >= 2"]
+        }
+      },
+      {
+        "id": "external-tangent",
+        "prompt": "Two circles have radii $[[s + 3*k]]$ and $[[s]]$, and their centres are $[[5*k]]$ apart. How long is a common external tangent (from where it touches one circle to where it touches the other)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[5*k]]",
+              "why": "That is the distance between the centres. Slide the tangent to make a right triangle with leg $r_1 - r_2$."
+            }
+          ]
+        },
+        "hints": [
+          "Make a right triangle: hypotenuse $[[5*k]]$ (the centres), one leg $[[3*k]]$ (the difference of the radii)."
+        ],
+        "solution": "$\\sqrt{[[5*k]]^2 - [[3*k]]^2} = [[4*k]]$.",
+        "skill": "tangents",
+        "difficulty": 2,
+        "compute": "4*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 4
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "tangent-angle",
+        "prompt": "Tangents from $P$ touch a circle with centre $O$ at $A$ and $B$, and $\\angle APB = [[x]]^\\circ$. What is $\\angle AOB$, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180 - x]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[x]]",
+              "why": "$OAPB$ has two right angles (at $A$ and $B$), so $\\angle AOB + \\angle APB = 180^\\circ$."
+            }
+          ]
+        },
+        "hints": [
+          "Each radius meets its tangent at $90^\\circ$. The four angles of $OAPB$ add to $360^\\circ$."
+        ],
+        "solution": "$360 - 90 - 90 - [[x]] = [[180 - x]]$.",
+        "skill": "tangents",
+        "difficulty": 1,
+        "compute": "180 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 30,
+              "to": 120,
+              "step": 10
+            }
+          },
+          "where": ["x != 90"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m12.tangents-set",
+    "type": "PROBLEM_SET",
+    "title": "Tangents challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "six-ten",
+        "prompt": "A circle has radius $6$, and point $P$ is $10$ from its centre. How long is a tangent from $P$ to the circle?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$6$", "$8$", "$10$", "$16$"],
+          "correct": "C",
+          "why": {
+            "A": "Use Pythagoras with the right angle at the point of tangency.",
+            "D": "That is the distance from $P$ to the centre."
+          }
+        },
+        "solution": "$\\sqrt{100 - 36} = 8$, choice (C).",
+        "skill": "tangents",
+        "difficulty": 1,
+        "compute": "sqrt(100 - 36)"
+      },
+      {
+        "id": "angle-aob",
+        "prompt": "Tangents from $P$ touch a circle with centre $O$ at $A$ and $B$, and $\\angle APB = 50^\\circ$. What is $\\angle AOB$, in degrees?",
+        "figure": {
+          "file": "tangents-from-p.svg",
+          "alt": "A circle with centre O. Two tangent segments from an outside point P touch the circle at A and B, with a 50 degree angle at P. Radii OA and OB are drawn."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": ["$50$", "$65$", "$100$", "$130$", "$140$"],
+          "correct": "D",
+          "why": {
+            "A": "The angles at $A$ and $B$ are right angles, so the angles at $O$ and $P$ add to $180$."
+          }
+        },
+        "solution": "$360 - 90 - 90 - 50 = 130$, choice (D).",
+        "skill": "tangents",
+        "difficulty": 1,
+        "compute": "180 - 50"
+      },
+      {
+        "id": "pitot-ten",
+        "prompt": "A circle is inscribed in quadrilateral $ABCD$ (it touches all four sides). $AB = 7$, $BC = 9$ and $CD = 12$. How long is $DA$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$10$", "$12$", "$14$", "$28$"],
+          "correct": "B"
+        },
+        "solution": "$AB + CD = BC + DA$, so $19 = 9 + DA$ and $DA = 10$, choice (B).",
+        "skill": "tangents",
+        "difficulty": 2,
+        "compute": "7 + 12 - 9"
+      },
+      {
+        "id": "external-twelve",
+        "prompt": "Two circles have radii $4$ and $9$, and their centres are $13$ apart. How long is a common external tangent?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$10$", "$12$", "$13$", "$15$"],
+          "correct": "C",
+          "why": {
+            "D": "That is the distance between the centres."
+          }
+        },
+        "solution": "$\\sqrt{13^2 - (9 - 4)^2} = \\sqrt{144} = 12$, choice (C).",
+        "skill": "tangents",
+        "difficulty": 2,
+        "compute": "sqrt(169 - 25)"
+      },
+      {
+        "id": "incircle-split",
+        "prompt": "The incircle of a triangle with sides $7$, $8$ and $9$ touches the side of length $9$, splitting it into two pieces. How long is the shorter piece?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$\\frac{7}{2}$", "$4$", "$\\frac{9}{2}$", "$5$"],
+          "correct": "C",
+          "why": {
+            "E": "That is the longer piece.",
+            "D": "The pieces aren't equal: the tangents from each corner depend on the other sides."
+          }
+        },
+        "solution": "With $s = 12$, the tangents from the corners are $s - 7 = 5$, $s - 8 = 4$ and $s - 9 = 3$. The side of length $9$ is split into $5$ and $4$, so the shorter piece is $4$, choice (C).",
+        "skill": "tangents",
+        "difficulty": 3,
+        "compute": "12 - 8"
+      }
+    ]
+  },
+  {
+    "key": "m12.power-practice",
+    "type": "PROBLEMS",
+    "title": "Power of a point",
+    "instructions": "Type each answer and press Check. Multiply the two distances from $P$ along each line. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "crossing-chords",
+        "prompt": "Chords $AB$ and $CD$ of a circle cross at $P$. $PA = [[a]]$, $PB = [[b]]$ and $PC = [[c]]$. How long is $PD$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b/c]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a + b - c]]",
+              "why": "It's products, not sums: $PA \\cdot PB = PC \\cdot PD$."
+            }
+          ]
+        },
+        "hints": ["$PA \\cdot PB = PC \\cdot PD$."],
+        "solution": "$[[a]] \\times [[b]] = [[c]] \\times PD$, so $PD = [[a*b/c]]$.",
+        "skill": "power-of-a-point",
+        "difficulty": 1,
+        "compute": "a*b/c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 8
+            },
+            "b": {
+              "from": 2,
+              "to": 8
+            },
+            "c": {
+              "from": 2,
+              "to": 6
+            }
+          },
+          "where": ["mod(a*b, c) == 0", "c != a", "c != b", "a*b/c != a + b - c"]
+        }
+      },
+      {
+        "id": "tangent-from-secant",
+        "prompt": "From an outside point $P$, a line meets a circle at $A$ and then $B$, with $PA = [[p]]$ and $AB = [[t*t/p - p]]$. A tangent from $P$ touches the circle at $T$. How long is $PT$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[t]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[sqrt(p*(t*t/p - p))]]",
+              "why": "Use the whole line from $P$: $PB = PA + AB = [[t*t/p]]$."
+            }
+          ]
+        },
+        "hints": ["$PT^2 = PA \\cdot PB$, where $PB$ is measured from $P$."],
+        "solution": "$PB = [[t*t/p]]$, so $PT^2 = [[p]] \\times [[t*t/p]] = [[t*t]]$ and $PT = [[t]]$.",
+        "skill": "power-of-a-point",
+        "difficulty": 1,
+        "compute": "t",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 1,
+              "to": 6
+            },
+            "t": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["mod(t*t, p) == 0", "t*t/p > p"]
+        }
+      },
+      {
+        "id": "secant-from-tangent",
+        "prompt": "A tangent from $P$ to a circle has length $[[t]]$. A line from $P$ meets the circle first at $A$, with $PA = [[p]]$, and then at $B$. How long is $PB$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[t*t/p]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[t*t/p - p]]",
+              "why": "That is $AB$, the part inside the circle. The question asks for $PB$."
+            }
+          ]
+        },
+        "hints": ["$PT^2 = PA \\cdot PB$."],
+        "solution": "$[[t]]^2 = [[p]] \\times PB$, so $PB = [[t*t/p]]$.",
+        "skill": "power-of-a-point",
+        "difficulty": 1,
+        "compute": "t*t/p",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 1,
+              "to": 6
+            },
+            "t": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["mod(t*t, p) == 0", "t*t/p > p"]
+        }
+      },
+      {
+        "id": "two-secants",
+        "prompt": "Two lines from an outside point $P$ meet a circle. One meets it at $A$ and $B$ with $PA = [[a]]$ and $PB = [[a + x]]$. The other meets it at $C$ and $D$ with $PC = [[c]]$. How long is $PD$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*(a + x)/c]]"],
+          "form": "integer"
+        },
+        "hints": ["$PA \\cdot PB = PC \\cdot PD$."],
+        "solution": "$[[a]] \\times [[a + x]] = [[c]] \\times PD$, so $PD = [[a*(a + x)/c]]$.",
+        "skill": "power-of-a-point",
+        "difficulty": 2,
+        "compute": "a*(a + x)/c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "x": {
+              "from": 2,
+              "to": 8
+            },
+            "c": {
+              "from": 2,
+              "to": 8
+            }
+          },
+          "where": ["mod(a*(a + x), c) == 0", "c != a", "a*(a + x)/c > c"]
+        }
+      },
+      {
+        "id": "chord-through-point",
+        "prompt": "Point $P$ is $[[d]]$ from the centre of a circle with radius $[[c]]$. A chord through $P$ is cut by $P$ into two pieces, one of length $[[x]]$. How long is the other piece?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(c*c - d*d)/x]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Use the diameter through $P$: its pieces are $[[c]] - [[d]]$ and $[[c]] + [[d]]$.",
+          "Every chord through $P$ has the same product of pieces."
+        ],
+        "solution": "$x \\cdot y = ([[c]] - [[d]])([[c]] + [[d]]) = [[c*c - d*d]]$, so the other piece is $\\frac{[[c*c - d*d]]}{[[x]]} = [[(c*c - d*d)/x]]$.",
+        "skill": "power-of-a-point",
+        "difficulty": 2,
+        "compute": "(c*c - d*d)/x",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 5,
+              "to": 10
+            },
+            "d": {
+              "from": 1,
+              "to": 4
+            },
+            "x": {
+              "from": 2,
+              "to": 8
+            }
+          },
+          "where": ["mod(c*c - d*d, x) == 0", "x >= c - d", "x <= c + d"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m12.power-set",
+    "type": "PROBLEM_SET",
+    "title": "Power of a point challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "chords-eight",
+        "prompt": "Chords $AB$ and $CD$ cross at $P$. $PA = 6$, $PB = 4$ and $PC = 3$. How long is $PD$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$5$", "$7$", "$8$", "$12$"],
+          "correct": "D",
+          "why": {
+            "C": "Multiply, don't add: $PA \\cdot PB = PC \\cdot PD$."
+          }
+        },
+        "solution": "$6 \\times 4 = 3 \\times PD$, so $PD = 8$, choice (D).",
+        "skill": "power-of-a-point",
+        "difficulty": 1,
+        "compute": "24/3"
+      },
+      {
+        "id": "tangent-eight",
+        "prompt": "A tangent from $P$ has length $8$. A line from $P$ meets the circle at $A$, with $PA = 4$, and then at $B$. How long is $PB$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$12$", "$16$", "$20$", "$32$"],
+          "correct": "C",
+          "why": {
+            "B": "That is $AB$, the part inside the circle."
+          }
+        },
+        "solution": "$64 = 4 \\times PB$, so $PB = 16$, choice (C).",
+        "skill": "power-of-a-point",
+        "difficulty": 1,
+        "compute": "64/4"
+      },
+      {
+        "id": "secant-tangent",
+        "prompt": "A line from an outside point $P$ meets a circle at $A$ and $B$, with $PA = 3$ and $AB = 9$. How long is a tangent from $P$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3\\sqrt{3}$", "$6$", "$9$", "$12$", "$27$"],
+          "correct": "B",
+          "why": {
+            "A": "Use the whole line $PB = 12$, not $AB$."
+          }
+        },
+        "solution": "$PT^2 = 3 \\times 12 = 36$, so $PT = 6$, choice (B).",
+        "skill": "power-of-a-point",
+        "difficulty": 2,
+        "compute": "sqrt(3*12)"
+      },
+      {
+        "id": "inside-point",
+        "prompt": "Point $P$ is $3$ from the centre of a circle with radius $7$. A chord through $P$ has one piece of length $5$. How long is the other piece?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$6$", "$8$", "$10$", "$13$"],
+          "correct": "C"
+        },
+        "solution": "The diameter through $P$ has pieces $4$ and $10$, so every chord through $P$ has product $40$: $\\frac{40}{5} = 8$, choice (C).",
+        "skill": "power-of-a-point",
+        "difficulty": 2,
+        "compute": "(49 - 9)/5"
+      },
+      {
+        "id": "secants-cd",
+        "prompt": "Two lines from $P$ meet a circle. One meets it at $A$ and then $B$, with $PA = 4$ and $AB = 5$. The other meets it at $C$ and then $D$, with $PC = 3$. How long is $CD$?",
+        "figure": {
+          "file": "two-secants.svg",
+          "alt": "A circle and an outside point P. One line from P crosses the circle at A and then B; another crosses it at C and then D."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$9$", "$12$", "$15$", "$20$"],
+          "correct": "B",
+          "why": {
+            "C": "That is $PD$. $CD = PD - PC$."
+          }
+        },
+        "solution": "$PB = 9$, so $4 \\times 9 = 3 \\times PD$ and $PD = 12$. Then $CD = 12 - 3 = 9$, choice (B).",
+        "skill": "power-of-a-point",
+        "difficulty": 3,
+        "compute": "4*9/3 - 3"
+      }
+    ]
+  },
+  {
+    "key": "m12.incircle-practice",
+    "type": "PROBLEMS",
+    "title": "Inscribed & circumscribed circles",
+    "instructions": "Type each answer and press Check. Inradius $=$ area $\\div$ semiperimeter. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "right-inradius",
+        "prompt": "A right triangle has sides $[[(3 + 2*t)*k]]$, $[[(4 + 8*t)*k]]$ and $[[(5 + 8*t)*k]]$. What is the radius of its inscribed circle?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(1 + t)*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(1 + t)*k/2]]",
+              "why": "Divide the area by the SEMIperimeter (half the perimeter), not the whole perimeter."
+            }
+          ]
+        },
+        "hints": [
+          "$r = \\frac{\\text{area}}{s}$, or for a right triangle $r = \\frac{a + b - c}{2}$."
+        ],
+        "solution": "$r = \\frac{[[(3 + 2*t)*k]] + [[(4 + 8*t)*k]] - [[(5 + 8*t)*k]]}{2} = [[(1 + t)*k]]$.",
+        "skill": "inscribed-circles",
+        "difficulty": 1,
+        "compute": "(1 + t)*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 6
+            },
+            "t": {
+              "choose": [0, 1]
+            }
+          }
+        }
+      },
+      {
+        "id": "right-circumradius",
+        "prompt": "A right triangle has legs $[[(3 + 2*t)*k]]$ and $[[(4 + 8*t)*k]]$. What is the radius of the circle through its three corners?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(5 + 8*t)*k/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(5 + 8*t)*k]]",
+              "why": "The hypotenuse is a DIAMETER of that circle. Halve it."
+            }
+          ]
+        },
+        "hints": ["The hypotenuse of a right triangle is a diameter of its circumcircle."],
+        "solution": "The hypotenuse is $[[(5 + 8*t)*k]]$, so the radius is $[[(5 + 8*t)*k/2]]$.",
+        "skill": "inscribed-circles",
+        "difficulty": 1,
+        "compute": "(5 + 8*t)*k/2",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 6
+            },
+            "t": {
+              "choose": [0, 1]
+            }
+          }
+        }
+      },
+      {
+        "id": "inradius-area",
+        "prompt": "A triangle has area $[[a]]$ and perimeter $[[p]]$. What is the radius of its inscribed circle?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*a/p]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a/p]]",
+              "why": "Divide by the semiperimeter, $\\frac{[[p]]}{2}$."
+            }
+          ]
+        },
+        "hints": ["Area $= r \\times s$, where $s$ is half the perimeter."],
+        "solution": "$s = [[p/2]]$, so $r = \\frac{[[a]]}{[[p/2]]} = [[2*a/p]]$.",
+        "skill": "inscribed-circles",
+        "difficulty": 1,
+        "compute": "2*a/p",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60,
+              "step": 6
+            },
+            "p": {
+              "from": 12,
+              "to": 36,
+              "step": 6
+            }
+          }
+        }
+      },
+      {
+        "id": "equilateral-circumradius",
+        "prompt": "An equilateral triangle has side $[[s]]$. What is the radius of the circle through its corners?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*sqrt(3)/3]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[s*sqrt(3)/2]]",
+              "why": "That is the height. The centre is $\\frac{2}{3}$ of the way down it."
+            }
+          ]
+        },
+        "hints": [
+          "The height is $\\frac{[[s]]\\sqrt{3}}{2}$, and the centre splits it in the ratio $2 : 1$."
+        ],
+        "solution": "$R = \\frac{2}{3} \\times \\frac{[[s]]\\sqrt{3}}{2} = [[s*sqrt(3)/3]]$.",
+        "skill": "inscribed-circles",
+        "difficulty": 1,
+        "compute": "s*sqrt(3)/3",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 3,
+              "to": 18,
+              "step": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "equilateral-inradius",
+        "prompt": "An equilateral triangle has side $[[s]]$. What is the radius of its inscribed circle?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*sqrt(3)/6]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[s*sqrt(3)/3]]",
+              "why": "That is the circumradius. The inradius is half of it."
+            }
+          ]
+        },
+        "hints": ["The inradius is $\\frac{1}{3}$ of the height $\\frac{[[s]]\\sqrt{3}}{2}$."],
+        "solution": "$r = \\frac{1}{3} \\times \\frac{[[s]]\\sqrt{3}}{2} = [[s*sqrt(3)/6]]$.",
+        "skill": "inscribed-circles",
+        "difficulty": 2,
+        "compute": "s*sqrt(3)/6",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 6,
+              "to": 36,
+              "step": 6
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m12.incircle-set",
+    "type": "PROBLEM_SET",
+    "title": "Inscribed & circumscribed circles challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "circum-six-eight",
+        "prompt": "A right triangle has legs $6$ and $8$. What is the radius of the circle through its three corners?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$6$", "$8$", "$10$"],
+          "correct": "B",
+          "why": {
+            "E": "The hypotenuse is a diameter. Halve it."
+          }
+        },
+        "solution": "The hypotenuse $10$ is a diameter, so the radius is $5$, choice (B).",
+        "skill": "inscribed-circles",
+        "difficulty": 1,
+        "compute": "10/2"
+      },
+      {
+        "id": "in-six-eight",
+        "prompt": "A right triangle has legs $6$ and $8$. What is the radius of its inscribed circle?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$5$"],
+          "correct": "B"
+        },
+        "solution": "$r = \\frac{6 + 8 - 10}{2} = 2$ (check: area $24$, $s = 12$), choice (B).",
+        "skill": "inscribed-circles",
+        "difficulty": 1,
+        "compute": "(6 + 8 - 10)/2"
+      },
+      {
+        "id": "area-equals-perimeter",
+        "prompt": "A triangle has area $24$ and perimeter $24$. What is the radius of its inscribed circle?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$2$", "$3$", "$4$", "$6$"],
+          "correct": "B",
+          "why": {
+            "A": "Divide by the semiperimeter $12$, not the perimeter."
+          }
+        },
+        "solution": "$r = \\frac{24}{12} = 2$, choice (B).",
+        "skill": "inscribed-circles",
+        "difficulty": 2,
+        "compute": "24/12"
+      },
+      {
+        "id": "equilateral-six",
+        "prompt": "An equilateral triangle has side $6$. What is the radius of the circle through its corners?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\sqrt{3}$", "$2\\sqrt{3}$", "$3$", "$3\\sqrt{3}$", "$6$"],
+          "correct": "B",
+          "why": {
+            "D": "That is the height. The centre is $\\frac{2}{3}$ of the way down it.",
+            "A": "That is the inradius."
+          }
+        },
+        "solution": "The height is $3\\sqrt{3}$, and $R = \\frac{2}{3} \\times 3\\sqrt{3} = 2\\sqrt{3}$, choice (B).",
+        "skill": "inscribed-circles",
+        "difficulty": 2,
+        "compute": "6/sqrt(3)"
+      },
+      {
+        "id": "circum-thirteen",
+        "prompt": "A triangle has sides $13$, $14$ and $15$. What is the radius of the circle through its three corners?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$7$",
+            "$\\frac{15}{2}$",
+            "$\\frac{65}{8}$",
+            "$\\frac{17}{2}$",
+            "$\\frac{21}{2}$"
+          ],
+          "correct": "C"
+        },
+        "solution": "The area is $84$, and $R = \\frac{abc}{4 \\times \\text{area}} = \\frac{13 \\times 14 \\times 15}{336} = \\frac{65}{8}$, choice (C).",
+        "skill": "inscribed-circles",
+        "difficulty": 3,
+        "compute": "13*14*15/(4*84)"
+      }
+    ]
+  },
+  {
+    "key": "m12.areas-practice",
+    "type": "PROBLEMS",
+    "title": "Areas with circles",
+    "instructions": "Type each answer and press Check. Write answers with π, like 9π or 36 − 9π. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "area-from-diameter",
+        "prompt": "A circle has diameter $[[d]]$. What is its area? Write it with $\\pi$, like 9π.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[pi*(d/2)^2]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[pi*d^2]]",
+              "why": "Use the radius, $[[d/2]]$, not the diameter."
+            }
+          ]
+        },
+        "hints": ["The radius is $[[d/2]]$. Area $= \\pi r^2$."],
+        "solution": "$\\pi \\times [[d/2]]^2 = [[pi*(d/2)^2]]$.",
+        "skill": "circle-areas",
+        "difficulty": 1,
+        "compute": "pi*(d/2)^2",
+        "template": {
+          "vars": {
+            "d": {
+              "from": 2,
+              "to": 20,
+              "step": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "sector-area",
+        "prompt": "A sector of a circle has radius $[[c]]$ and angle $[[a]]^\\circ$. What is its area? Write it with $\\pi$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*pi*c^2/360]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[a*pi*c/180]]",
+              "why": "That is the arc length. For the area use $\\pi r^2$."
+            }
+          ]
+        },
+        "hints": ["The sector is $\\frac{[[a]]}{360}$ of the whole circle."],
+        "solution": "$\\frac{[[a]]}{360} \\times \\pi \\times [[c]]^2 = [[a*pi*c^2/360]]$.",
+        "skill": "circle-areas",
+        "difficulty": 1,
+        "compute": "a*pi*c^2/360",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 2,
+              "to": 12
+            },
+            "a": {
+              "choose": [30, 60, 90, 120, 180]
+            }
+          },
+          "where": ["c != 2"]
+        }
+      },
+      {
+        "id": "arc-length",
+        "prompt": "An arc of a circle with radius $[[c]]$ has a central angle of $[[a]]^\\circ$. How long is the arc? Write it with $\\pi$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*pi*c/180]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[a*pi*c^2/360]]",
+              "why": "That is the sector's area. For length use the circumference $2\\pi r$."
+            }
+          ]
+        },
+        "hints": ["The arc is $\\frac{[[a]]}{360}$ of the circumference $2\\pi \\times [[c]]$."],
+        "solution": "$\\frac{[[a]]}{360} \\times 2\\pi \\times [[c]] = [[a*pi*c/180]]$.",
+        "skill": "circle-areas",
+        "difficulty": 1,
+        "compute": "a*pi*c/180",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 2,
+              "to": 12
+            },
+            "a": {
+              "choose": [30, 60, 90, 120, 180]
+            }
+          },
+          "where": ["c != 2"]
+        }
+      },
+      {
+        "id": "ring",
+        "prompt": "Two circles have the same centre and radii $[[b]]$ and $[[a]]$. What is the area of the ring between them? Write it with $\\pi$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[pi*(b^2 - a^2)]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[pi*(b - a)^2]]",
+              "why": "Subtract the AREAS, not the radii."
+            }
+          ]
+        },
+        "hints": ["Big circle minus small circle."],
+        "solution": "$\\pi \\times [[b]]^2 - \\pi \\times [[a]]^2 = [[pi*(b^2 - a^2)]]$.",
+        "skill": "circle-areas",
+        "difficulty": 1,
+        "compute": "pi*(b^2 - a^2)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 4,
+              "to": 12
+            },
+            "a": {
+              "from": 1,
+              "to": 10
+            }
+          },
+          "where": ["a < b"]
+        }
+      },
+      {
+        "id": "square-minus-circle",
+        "prompt": "A circle just fits inside a square of side $[[2*c]]$, touching all four sides. What is the area inside the square but outside the circle? Write it with $\\pi$, like 36 − 9π.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*c^2 - pi*c^2]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[4*c^2 - pi*(2*c)^2]]",
+              "why": "The circle's radius is half the side, $[[c]]$."
+            }
+          ]
+        },
+        "hints": ["The circle's diameter is the side, so its radius is $[[c]]$."],
+        "solution": "$[[4*c^2]] - \\pi \\times [[c]]^2 = [[4*c^2 - pi*c^2]]$.",
+        "skill": "circle-areas",
+        "difficulty": 2,
+        "compute": "4*c^2 - pi*c^2",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m12.areas-set",
+    "type": "PROBLEM_SET",
+    "title": "Areas with circles challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "circumference-area",
+        "prompt": "A circle has circumference $10\\pi$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5\\pi$", "$10\\pi$", "$20\\pi$", "$25\\pi$", "$100\\pi$"],
+          "correct": "D",
+          "why": {
+            "E": "The diameter is $10$; the radius is $5$."
+          }
+        },
+        "solution": "$2\\pi r = 10\\pi$ gives $r = 5$, so the area is $25\\pi$, choice (D).",
+        "skill": "circle-areas",
+        "difficulty": 1,
+        "compute": "25*pi"
+      },
+      {
+        "id": "quarter-sector",
+        "prompt": "A sector has radius $4$ and angle $90^\\circ$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\pi$", "$2\\pi$", "$4\\pi$", "$8\\pi$", "$16\\pi$"],
+          "correct": "C",
+          "why": {
+            "E": "That is the whole circle; a $90^\\circ$ sector is a quarter."
+          }
+        },
+        "solution": "$\\frac{1}{4} \\times 16\\pi = 4\\pi$, choice (C).",
+        "skill": "circle-areas",
+        "difficulty": 1,
+        "compute": "4*pi"
+      },
+      {
+        "id": "corner-quarters",
+        "prompt": "A square has side $8$. At each corner, a quarter circle of radius $4$ is cut out. What area of the square is left?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$64 - 16\\pi$", "$64 - 8\\pi$", "$32 - 4\\pi$", "$64 - 4\\pi$", "$16\\pi$"],
+          "correct": "A",
+          "why": {
+            "D": "Four quarter circles of radius $4$ make a whole circle, area $16\\pi$."
+          }
+        },
+        "solution": "The four quarters make one circle of radius $4$, area $16\\pi$: $64 - 16\\pi$, choice (A).",
+        "skill": "circle-areas",
+        "difficulty": 2,
+        "compute": "64 - 16*pi"
+      },
+      {
+        "id": "ring-five-three",
+        "prompt": "Two circles have the same centre and radii $5$ and $3$. What is the area between them?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2\\pi$", "$4\\pi$", "$8\\pi$", "$16\\pi$", "$34\\pi$"],
+          "correct": "D",
+          "why": {
+            "B": "Subtract the areas, not the radii.",
+            "E": "Subtract the areas; don't add them."
+          }
+        },
+        "solution": "$25\\pi - 9\\pi = 16\\pi$, choice (D).",
+        "skill": "circle-areas",
+        "difficulty": 2,
+        "compute": "25*pi - 9*pi"
+      },
+      {
+        "id": "triangle-minus-incircle",
+        "prompt": "A circle is inscribed in an equilateral triangle with side $6$. What is the area inside the triangle but outside the circle?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$9\\sqrt{3} - 4\\pi$",
+            "$9\\sqrt{3} - 3\\pi$",
+            "$9\\sqrt{3} - \\pi$",
+            "$18\\sqrt{3} - 3\\pi$",
+            "$36 - 3\\pi$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "The inradius is $\\sqrt{3}$, so the circle's area is $3\\pi$.",
+            "D": "The triangle's area is $\\frac{\\sqrt{3}}{4} \\times 36 = 9\\sqrt{3}$."
+          }
+        },
+        "solution": "The triangle's area is $9\\sqrt{3}$ and its inradius is $\\frac{6\\sqrt{3}}{6} = \\sqrt{3}$, so the circle's area is $3\\pi$: $9\\sqrt{3} - 3\\pi$, choice (B).",
+        "skill": "circle-areas",
+        "difficulty": 3,
+        "compute": "9*sqrt(3) - 3*pi"
+      }
+    ]
+  },
+  {
+    "key": "m12.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "review-arc",
+        "prompt": "An inscribed angle of a circle is $[[a]]^\\circ$. What is the measure of the arc it cuts off, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*a]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "An inscribed angle is HALF of its arc, so the arc is twice the angle."
+            }
+          ]
+        },
+        "hints": ["Inscribed angle $= \\frac{1}{2}$ arc."],
+        "solution": "The arc is $2 \\times [[a]] = [[2*a]]$.",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "2*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 20,
+              "to": 80,
+              "step": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "review-tangent",
+        "prompt": "A circle has radius $[[(3 + 2*t)*k]]$. Point $P$ is $[[(5 + 8*t)*k]]$ from the centre. How long is a tangent segment from $P$ to the circle?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(4 + 8*t)*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(2 + 6*t)*k]]",
+              "why": "The radius meets the tangent at a right angle: use Pythagoras, not subtraction."
+            }
+          ]
+        },
+        "hints": [
+          "The radius to the point of tangency is perpendicular to the tangent, so you have a right triangle with hypotenuse $OP$."
+        ],
+        "solution": "$\\sqrt{[[(5 + 8*t)*k]]^2 - [[(3 + 2*t)*k]]^2} = [[(4 + 8*t)*k]]$.",
+        "skill": "tangents",
+        "difficulty": 1,
+        "compute": "(4 + 8*t)*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 5
+            },
+            "t": {
+              "choose": [0, 1]
+            }
+          }
+        }
+      },
+      {
+        "id": "review-chords",
+        "prompt": "Chords $AB$ and $CD$ of a circle cross at $P$. $PA = [[a]]$, $PB = [[b]]$ and $PC = [[c]]$. How long is $PD$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b/c]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a + b - c]]",
+              "why": "It's products, not sums: $PA \\cdot PB = PC \\cdot PD$."
+            }
+          ]
+        },
+        "hints": ["$PA \\cdot PB = PC \\cdot PD$."],
+        "solution": "$[[a]] \\times [[b]] = [[c]] \\times PD$, so $PD = [[a*b/c]]$.",
+        "skill": "power-of-a-point",
+        "difficulty": 1,
+        "compute": "a*b/c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 8
+            },
+            "b": {
+              "from": 2,
+              "to": 8
+            },
+            "c": {
+              "from": 2,
+              "to": 6
+            }
+          },
+          "where": ["mod(a*b, c) == 0", "c != a", "c != b", "a*b/c != a + b - c"]
+        }
+      },
+      {
+        "id": "review-circumradius",
+        "prompt": "A right triangle has legs $[[(3 + 2*t)*k]]$ and $[[(4 + 8*t)*k]]$. What is the radius of the circle through its three corners?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(5 + 8*t)*k/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(5 + 8*t)*k]]",
+              "why": "The hypotenuse is a DIAMETER of that circle. Halve it."
+            }
+          ]
+        },
+        "hints": ["The hypotenuse of a right triangle is a diameter of its circumcircle."],
+        "solution": "The hypotenuse is $[[(5 + 8*t)*k]]$, so the radius is $[[(5 + 8*t)*k/2]]$.",
+        "skill": "inscribed-circles",
+        "difficulty": 1,
+        "compute": "(5 + 8*t)*k/2",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 6
+            },
+            "t": {
+              "choose": [0, 1]
+            }
+          }
+        }
+      },
+      {
+        "id": "review-area",
+        "prompt": "A circle has diameter $[[d]]$. What is its area? Write it with $\\pi$, like 9π.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[pi*(d/2)^2]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[pi*d^2]]",
+              "why": "Use the radius, $[[d/2]]$, not the diameter."
+            }
+          ]
+        },
+        "hints": ["The radius is $[[d/2]]$. Area $= \\pi r^2$."],
+        "solution": "$\\pi \\times [[d/2]]^2 = [[pi*(d/2)^2]]$.",
+        "skill": "circle-areas",
+        "difficulty": 1,
+        "compute": "pi*(d/2)^2",
+        "template": {
+          "vars": {
+            "d": {
+              "from": 2,
+              "to": 20,
+              "step": 2
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m12.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 12 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-central-80",
+        "prompt": "A central angle of a circle is $80^\\circ$. What is an inscribed angle on the same arc, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$40$", "$80$", "$100$", "$160$"],
+          "correct": "B",
+          "why": {
+            "E": "The inscribed angle is HALF the central angle."
+          }
+        },
+        "solution": "$\\frac{80}{2} = 40$, choice (B).",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "80/2"
+      },
+      {
+        "id": "check-cyclic-three",
+        "prompt": "In cyclic quadrilateral $ABCD$, $\\angle A$ is three times $\\angle C$. What is $\\angle A$, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$45$", "$60$", "$90$", "$120$", "$135$"],
+          "correct": "E",
+          "why": {
+            "A": "That is $\\angle C$."
+          }
+        },
+        "solution": "$\\angle A + \\angle C = 180$ and $\\angle A = 3\\angle C$, so $\\angle C = 45$ and $\\angle A = 135$, choice (E).",
+        "skill": "circle-angles",
+        "difficulty": 2,
+        "compute": "3*45"
+      },
+      {
+        "id": "check-chord-thirty",
+        "prompt": "A circle has radius $17$ and a chord of length $30$. How far is the chord from the centre?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7$", "$8$", "$9$", "$15$", "$17$"],
+          "correct": "B",
+          "why": {
+            "D": "That is half the chord."
+          }
+        },
+        "solution": "$\\sqrt{17^2 - 15^2} = \\sqrt{64} = 8$, choice (B).",
+        "skill": "circle-angles",
+        "difficulty": 2,
+        "compute": "sqrt(289 - 225)"
+      },
+      {
+        "id": "check-diameter-triangle",
+        "prompt": "$AB$ is a diameter of a circle with $AB = 10$, and $C$ is a point on the circle with $AC = 6$. What is the area of triangle $ABC$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$15$", "$24$", "$30$", "$40$", "$48$"],
+          "correct": "B",
+          "why": {
+            "C": "The right angle is at $C$, so the legs are $AC$ and $BC$, not $AB$.",
+            "E": "Remember the $\\frac{1}{2}$."
+          }
+        },
+        "solution": "$\\angle C = 90$, so $BC = \\sqrt{100 - 36} = 8$ and the area is $\\frac{1}{2} \\times 6 \\times 8 = 24$, choice (B).",
+        "skill": "circle-angles",
+        "difficulty": 3,
+        "compute": "6*8/2"
+      },
+      {
+        "id": "check-tangent-twelve",
+        "prompt": "A circle has radius $5$ and point $P$ is $13$ from its centre. How long is a tangent from $P$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$12$", "$13$", "$14$", "$18$"],
+          "correct": "B",
+          "why": {
+            "A": "Use Pythagoras, not subtraction."
+          }
+        },
+        "solution": "$\\sqrt{169 - 25} = 12$, choice (B).",
+        "skill": "tangents",
+        "difficulty": 1,
+        "compute": "sqrt(169 - 25)"
+      },
+      {
+        "id": "check-tangent-angle",
+        "prompt": "Tangents from $P$ touch a circle with centre $O$ at $A$ and $B$, and $\\angle APB = [[x]]^\\circ$. What is $\\angle AOB$, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[x]]$", "$[[2*x]]$", "$[[180 - x]]$", "$[[90 - x/2]]$", "$[[360 - x]]$"],
+          "correct": "C",
+          "why": {
+            "A": "The angles at $A$ and $B$ are right angles, so the angles at $O$ and $P$ add to $180^\\circ$."
+          }
+        },
+        "solution": "$360 - 90 - 90 - [[x]] = [[180 - x]]$, choice (C).",
+        "skill": "tangents",
+        "difficulty": 2,
+        "compute": "180 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 30,
+              "to": 80,
+              "step": 10
+            }
+          },
+          "where": ["x != 60"]
+        }
+      },
+      {
+        "id": "check-internal-tangent",
+        "prompt": "Two circles have radii $2$ and $7$, and their centres are $15$ apart. How long is a common internal tangent (one that crosses between the circles)?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9$", "$12$", "$10\\sqrt{2}$", "$15$", "$17$"],
+          "correct": "B",
+          "why": {
+            "C": "That is the external tangent. For the internal one, use the SUM of the radii."
+          }
+        },
+        "solution": "$\\sqrt{15^2 - (2 + 7)^2} = \\sqrt{144} = 12$, choice (B).",
+        "skill": "tangents",
+        "difficulty": 3,
+        "compute": "sqrt(225 - 81)"
+      },
+      {
+        "id": "check-chords-six",
+        "prompt": "Chords $AB$ and $CD$ cross at $P$, with $PA = 8$, $PB = 3$ and $PC = 4$. How long is $PD$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$6$", "$7$", "$8$", "$12$"],
+          "correct": "B",
+          "why": {
+            "C": "Multiply, don't add."
+          }
+        },
+        "solution": "$8 \\times 3 = 4 \\times PD$, so $PD = 6$, choice (B).",
+        "skill": "power-of-a-point",
+        "difficulty": 1,
+        "compute": "24/4"
+      },
+      {
+        "id": "check-whole-secant",
+        "prompt": "A tangent from $P$ has length $6$. A line from $P$ meets the circle at $A$, with $PA = 3$, and then at $B$. How long is $PB$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$9$", "$12$", "$18$", "$36$"],
+          "correct": "C",
+          "why": {
+            "B": "That is $AB$, the part inside the circle."
+          }
+        },
+        "solution": "$36 = 3 \\times PB$, so $PB = 12$, choice (C).",
+        "skill": "power-of-a-point",
+        "difficulty": 2,
+        "compute": "36/3"
+      },
+      {
+        "id": "check-shortest-chord",
+        "prompt": "Point $P$ is $6$ from the centre of a circle with radius $10$. How long is the shortest chord through $P$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$12$", "$16$", "$18$", "$20$"],
+          "correct": "C",
+          "why": {
+            "A": "That is half the chord.",
+            "E": "That is the longest chord, the diameter."
+          }
+        },
+        "solution": "The shortest chord is perpendicular to the radius through $P$. Its pieces are equal, each $\\sqrt{100 - 36} = 8$ (power of the point: $4 \\times 16 = 64$). So it is $16$, choice (C).",
+        "skill": "power-of-a-point",
+        "difficulty": 3,
+        "compute": "2*sqrt(100 - 36)"
+      },
+      {
+        "id": "check-circum-five-twelve",
+        "prompt": "A right triangle has legs $5$ and $12$. What is the radius of the circle through its three corners?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$\\frac{13}{2}$", "$12$", "$13$"],
+          "correct": "C",
+          "why": {
+            "E": "The hypotenuse is the diameter. Halve it."
+          }
+        },
+        "solution": "The hypotenuse $13$ is a diameter, so $R = \\frac{13}{2}$, choice (C).",
+        "skill": "inscribed-circles",
+        "difficulty": 1,
+        "compute": "13/2"
+      },
+      {
+        "id": "check-in-nine-twelve",
+        "prompt": "A right triangle has legs $9$ and $12$. What is the radius of its inscribed circle?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$6$", "$\\frac{15}{2}$"],
+          "correct": "B",
+          "why": {
+            "E": "That is the circumradius."
+          }
+        },
+        "solution": "The hypotenuse is $15$, so $r = \\frac{9 + 12 - 15}{2} = 3$, choice (B).",
+        "skill": "inscribed-circles",
+        "difficulty": 2,
+        "compute": "(9 + 12 - 15)/2"
+      },
+      {
+        "id": "check-in-five-five-six",
+        "prompt": "A triangle has sides $5$, $5$ and $6$. What is the radius of its inscribed circle?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\frac{3}{4}$", "$1$", "$\\frac{3}{2}$", "$2$", "$3$"],
+          "correct": "C",
+          "why": {
+            "A": "Divide the area by the semiperimeter $8$, not the perimeter $16$."
+          }
+        },
+        "solution": "The height to the base is $4$, so the area is $12$. With $s = 8$, $r = \\frac{12}{8} = \\frac{3}{2}$, choice (C).",
+        "skill": "inscribed-circles",
+        "difficulty": 2,
+        "compute": "12/8"
+      },
+      {
+        "id": "check-side-from-inradius",
+        "prompt": "An equilateral triangle has an inscribed circle of radius $2$. How long is each side?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$4\\sqrt{3}$", "$6$", "$6\\sqrt{3}$", "$12$"],
+          "correct": "B",
+          "why": {
+            "C": "The height is $3r = 6$; the side is longer than the height."
+          }
+        },
+        "solution": "The height is $3 \\times 2 = 6$, and height $= \\frac{\\sqrt{3}}{2}s$, so $s = \\frac{12}{\\sqrt{3}} = 4\\sqrt{3}$, choice (B).",
+        "skill": "inscribed-circles",
+        "difficulty": 3,
+        "compute": "12/sqrt(3)"
+      },
+      {
+        "id": "check-area-circumference",
+        "prompt": "A circle has area $49\\pi$. What is its circumference?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7\\pi$", "$14\\pi$", "$28\\pi$", "$49\\pi$", "$98\\pi$"],
+          "correct": "B"
+        },
+        "solution": "$r = 7$, so the circumference is $14\\pi$, choice (B).",
+        "skill": "circle-areas",
+        "difficulty": 1,
+        "compute": "14*pi"
+      },
+      {
+        "id": "check-quarter",
+        "prompt": "A sector of a circle with radius $[[c]]$ has angle $90^\\circ$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[pi*c^2/4]]$",
+            "$[[pi*c^2/2]]$",
+            "$[[pi*c^2]]$",
+            "$[[pi*c/2]]$",
+            "$[[pi*c^2/8]]$"
+          ],
+          "correct": "A",
+          "why": {
+            "C": "That is the whole circle. A $90^\\circ$ sector is a quarter of it.",
+            "D": "That is the arc length."
+          }
+        },
+        "solution": "$\\frac{1}{4} \\times \\pi \\times [[c]]^2 = [[pi*c^2/4]]$, choice (A).",
+        "skill": "circle-areas",
+        "difficulty": 1,
+        "compute": "pi*c^2/4",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 3,
+              "to": 12
+            }
+          },
+          "where": ["c != 4"]
+        }
+      },
+      {
+        "id": "check-square-circle",
+        "prompt": "A circle just fits inside a square of side $10$. What is the area inside the square but outside the circle?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$100 - 25\\pi$", "$100 - 10\\pi$", "$25\\pi$", "$100 - 5\\pi$", "$75\\pi$"],
+          "correct": "A",
+          "why": {
+            "B": "Use the area $\\pi r^2 = 25\\pi$, not the circumference."
+          }
+        },
+        "solution": "The radius is $5$, so the circle's area is $25\\pi$: $100 - 25\\pi$, choice (A).",
+        "skill": "circle-areas",
+        "difficulty": 2,
+        "compute": "100 - 25*pi"
+      },
+      {
+        "id": "check-segment",
+        "prompt": "A sector of a circle with radius $6$ has angle $60^\\circ$. The chord joining the ends of its arc cuts off a segment (the region between the chord and the arc). What is the area of that segment?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$6\\pi - 18$",
+            "$6\\pi - 9\\sqrt{3}$",
+            "$6\\pi - 9$",
+            "$6\\pi$",
+            "$12\\pi - 9\\sqrt{3}$"
+          ],
+          "correct": "B",
+          "why": {
+            "D": "That is the whole sector. Take away the triangle.",
+            "E": "The sector is $\\frac{60}{360}$ of $36\\pi$, which is $6\\pi$."
+          }
+        },
+        "solution": "The sector is $\\frac{1}{6} \\times 36\\pi = 6\\pi$. The triangle is equilateral with side $6$, area $9\\sqrt{3}$. Segment: $6\\pi - 9\\sqrt{3}$, choice (B).",
+        "skill": "circle-areas",
+        "difficulty": 3,
+        "compute": "6*pi - 9*sqrt(3)"
+      },
+      {
+        "id": "check-lens",
+        "prompt": "Two circles of radius $6$ each pass through the other's centre. What is the area of the region inside both circles?",
+        "figure": {
+          "file": "overlapping-circles.svg",
+          "alt": "Two equal circles with centres O and Q, each passing through the other's centre. The lens-shaped region inside both is shaded."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$24\\pi - 36\\sqrt{3}$",
+            "$12\\pi - 9\\sqrt{3}$",
+            "$12\\pi$",
+            "$24\\pi - 18\\sqrt{3}$",
+            "$36\\pi - 18\\sqrt{3}$"
+          ],
+          "correct": "D",
+          "why": {
+            "B": "That is only one half of the lens. Double it."
+          }
+        },
+        "solution": "The common chord makes a $120^\\circ$ angle at each centre. Each half of the lens is a $120^\\circ$ sector ($12\\pi$) minus a triangle with sides $6, 6$ and angle $120^\\circ$ ($9\\sqrt{3}$). Two halves: $24\\pi - 18\\sqrt{3}$, choice (D).",
+        "skill": "circle-areas",
+        "difficulty": 4,
+        "compute": "24*pi - 18*sqrt(3)"
+      }
+    ]
+  }
+]

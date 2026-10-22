@@ -1,0 +1,63 @@
+{
+  "slug": "math-geometry-2-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Geometry II",
+  "estMinutes": 40,
+  "focusSkills": [
+    "circle-angles",
+    "tangents",
+    "power-of-a-point",
+    "inscribed-circles",
+    "circle-areas"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which circle fact feels most like a tool you can use without thinking?",
+      "placeholder": "The most useful…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Angles, tangents and power: quick review",
+          "body": "Inscribed angle $= \\frac{1}{2}$ arc; semicircle $90^\\circ$; cyclic quadrilateral opposite angles add to $180^\\circ$. Tangent $\\perp$ radius; equal tangents. $PA \\cdot PB = PC \\cdot PD$; $PT^2 = PA \\cdot PB$; inside, $r^2 - d^2$."
+        },
+        {
+          "kind": "definition",
+          "title": "Circles in triangles and areas: quick review",
+          "body": "$r = \\frac{\\text{area}}{s}$; right triangle $r = \\frac{a + b - c}{2}$, $R = \\frac{c}{2}$; $R = \\frac{abc}{4K}$. Sector $\\frac{\\theta}{360}\\pi r^2$, arc $\\frac{\\theta}{360} 2\\pi r$; segment = sector $-$ triangle."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m12.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m12.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

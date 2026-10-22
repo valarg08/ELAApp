@@ -1,0 +1,100 @@
+{
+  "slug": "math-circle-areas",
+  "order": 5,
+  "title": "Areas with Circles",
+  "estMinutes": 35,
+  "focusSkills": ["circle-areas"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A pizza with diameter $12$ inches costs twice as much as one with diameter $8$ inches. Which is the better deal?",
+      "placeholder": "The better deal is… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Circles, sectors and arcs",
+          "body": "Area $\\pi r^2$, circumference $2\\pi r$. A sector with angle $\\theta$ is $\\frac{\\theta}{360}$ of the circle: area $\\frac{\\theta}{360}\\pi r^2$, arc length $\\frac{\\theta}{360} \\cdot 2\\pi r$. Leave answers in terms of $\\pi$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a sector",
+          "problem": "A sector has radius $6$ and angle $60^\\circ$. What is its area?",
+          "steps": [
+            {
+              "text": "$\\frac{60}{360} = \\frac{1}{6}$ of the circle.",
+              "try": {
+                "prompt": "What fraction of the circle is it?",
+                "accepted": ["1/6"],
+                "compute": "60/360"
+              }
+            },
+            {
+              "text": "$\\frac{1}{6} \\times 36\\pi = 6\\pi$.",
+              "try": {
+                "prompt": "What is the area of the sector? Write it with π.",
+                "accepted": ["6π"],
+                "compute": "6*pi"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Shaded regions",
+          "body": "Build the shaded region from pieces you know: add them or take them away. A ring is $\\pi R^2 - \\pi r^2$. A segment (between a chord and its arc) is a sector minus a triangle. A circle that just fits in a square has diameter equal to the side."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: circle in a square",
+          "problem": "A circle just fits inside a square of side $10$. What area of the square is outside the circle?",
+          "steps": [
+            {
+              "text": "The diameter is the side, so the radius is $5$.",
+              "try": {
+                "prompt": "What is the radius?",
+                "accepted": ["5"],
+                "compute": "10/2"
+              }
+            },
+            {
+              "text": "$100 - 25\\pi$.",
+              "try": {
+                "prompt": "What is the shaded area? Write it with π, like 36-9π.",
+                "accepted": ["100-25π"],
+                "compute": "100 - 25*pi"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: diameter for radius",
+          "body": "Halve the diameter before squaring. Area uses $\\pi r^2$ and length uses $2\\pi r$; don't mix them. And check what fraction of the circle a sector is before multiplying."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m12.areas-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m12.areas-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you plan a shaded-region problem before you calculate?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

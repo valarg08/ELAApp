@@ -1,0 +1,100 @@
+{
+  "slug": "math-tangents",
+  "order": 2,
+  "title": "Tangents",
+  "estMinutes": 35,
+  "focusSkills": ["tangents"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A line just touches a circle at one point. What angle does it make with the radius to that point? Try drawing a few.",
+      "placeholder": "The angle is… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Tangent facts",
+          "body": "A tangent is perpendicular to the radius at the point where it touches. The two tangents from an outside point are equal in length. So from $P$ at distance $d$ from the centre of a circle of radius $r$, each tangent has length $\\sqrt{d^2 - r^2}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: tangent length",
+          "problem": "Point $P$ is $13$ from the centre of a circle with radius $5$. How long is a tangent from $P$?",
+          "steps": [
+            {
+              "text": "The radius, the tangent and $OP$ make a right triangle with hypotenuse $13$: $13^2 - 5^2 = 144$.",
+              "try": {
+                "prompt": "What is $13^2 - 5^2$?",
+                "accepted": ["144"],
+                "compute": "169 - 25"
+              }
+            },
+            {
+              "text": "The tangent is $\\sqrt{144} = 12$.",
+              "try": {
+                "prompt": "How long is the tangent?",
+                "accepted": ["12"],
+                "compute": "sqrt(144)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Equal tangents at work",
+          "body": "If a circle touches all four sides of a quadrilateral, $AB + CD = BC + DA$. For two circles with radii $r_1$ and $r_2$ whose centres are $d$ apart, a common external tangent has length $\\sqrt{d^2 - (r_1 - r_2)^2}$, and an internal one (crossing between them) $\\sqrt{d^2 - (r_1 + r_2)^2}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: two circles",
+          "problem": "Two circles have radii $3$ and $8$, and their centres are $13$ apart. How long is a common external tangent?",
+          "steps": [
+            {
+              "text": "Slide the tangent towards the centres: it becomes a leg of a right triangle whose other leg is the difference of the radii.",
+              "try": {
+                "prompt": "What is the difference of the radii?",
+                "accepted": ["5"],
+                "compute": "8 - 3"
+              }
+            },
+            {
+              "text": "$\\sqrt{13^2 - 5^2} = 12$.",
+              "try": {
+                "prompt": "How long is the external tangent?",
+                "accepted": ["12"],
+                "compute": "sqrt(169 - 25)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: where the right angle is",
+          "body": "The right angle is between the radius and the tangent, at the point of touching. It is not at $P$ or at the centre. External tangents use the DIFFERENCE of the radii; internal tangents use the SUM."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m12.tangents-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m12.tangents-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which right triangle do you look for in a tangent problem?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

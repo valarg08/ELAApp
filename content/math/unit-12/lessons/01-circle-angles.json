@@ -1,0 +1,100 @@
+{
+  "slug": "math-circle-angles",
+  "order": 1,
+  "title": "Arcs, Chords & Inscribed Angles",
+  "estMinutes": 35,
+  "focusSkills": ["circle-angles"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Pick two points on a circle. From every other point on the circle, the angle they make looks about the same. Is it really the same? How does it compare with the angle at the centre?",
+      "placeholder": "I think the angle…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Inscribed angles",
+          "body": "A central angle equals its arc. An inscribed angle (its corner on the circle) is HALF its arc. So inscribed angles on the same arc are equal, an angle in a semicircle is $90^\\circ$, and opposite angles of a cyclic quadrilateral add to $180^\\circ$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: half the arc",
+          "problem": "An inscribed angle of $35^\\circ$ cuts off an arc. What is the central angle on that arc? What is another inscribed angle on it?",
+          "steps": [
+            {
+              "text": "The central angle equals the arc, which is twice the inscribed angle: $70^\\circ$.",
+              "try": {
+                "prompt": "What is the central angle, in degrees?",
+                "accepted": ["70"],
+                "compute": "2*35"
+              }
+            },
+            {
+              "text": "Every inscribed angle on that arc is half of $70^\\circ$: $35^\\circ$.",
+              "try": {
+                "prompt": "What is another inscribed angle on the same arc?",
+                "accepted": ["35"],
+                "compute": "70/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Chords and the centre",
+          "body": "The perpendicular from the centre to a chord cuts the chord in half. So the radius $r$, the distance $d$ from the centre and half the chord $\\frac{c}{2}$ make a right triangle: $r^2 = d^2 + \\left(\\frac{c}{2}\\right)^2$. Draw the radii: they are your best friends."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: chord distance",
+          "problem": "A circle has radius $13$ and a chord of length $24$. How far is the chord from the centre?",
+          "steps": [
+            {
+              "text": "The perpendicular from the centre halves the chord.",
+              "try": {
+                "prompt": "How long is half the chord?",
+                "accepted": ["12"],
+                "compute": "24/2"
+              }
+            },
+            {
+              "text": "$d = \\sqrt{13^2 - 12^2} = 5$.",
+              "try": {
+                "prompt": "How far is the chord from the centre?",
+                "accepted": ["5"],
+                "compute": "sqrt(169 - 144)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: equal instead of half",
+          "body": "An inscribed angle is half the central angle on the same arc, not equal to it. Check where the corner is: at the centre (equal to the arc) or on the circle (half). And opposite angles of a cyclic quadrilateral add to $180^\\circ$; they aren't equal."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m12.angles-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m12.angles-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why is an angle in a semicircle always a right angle?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}
