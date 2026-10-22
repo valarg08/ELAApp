@@ -11,8 +11,13 @@ import type { ReactNode } from 'react';
 import { serverApi } from '@/lib/server-api';
 import { ProgressBar } from './progress-bar';
 
-const focus = 'focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand';
-const panel = 'rounded-2xl border border-border bg-card p-4 shadow-sm';
+/** Focus ring on the navy chapters panel. */
+const navFocus =
+  'focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white';
+const panel = 'rounded-2xl p-4 shadow-sm';
+/** Left: navy chapters. Right: rose progress. The page between them sits on a white panel. */
+const navPanel = `${panel} bg-brand text-white`;
+const progressPanel = `${panel} border border-border border-t-4 border-t-bad bg-progress-panel`;
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
 
 /**
@@ -45,7 +50,7 @@ export async function CourseShell({
   const chapterNav = (
     <nav aria-label="Chapters">
       {unitSlug && (
-        <Link href={TRACK_HOME[track]} className={`text-sm text-brand underline ${focus}`}>
+        <Link href={TRACK_HOME[track]} className={`text-sm text-white underline ${navFocus}`}>
           ← {TRACK_NAMES[track]}
         </Link>
       )}
@@ -59,19 +64,21 @@ export async function CourseShell({
                 <Link
                   href={`/units/${u.slug}`}
                   aria-current={current && !lessonId ? 'page' : undefined}
-                  className={`flex min-h-11 items-start gap-2 rounded-xl px-2 py-2 text-sm hover:bg-background ${focus} ${current ? 'bg-background font-semibold text-brand' : ''}`}
+                  className={`flex min-h-11 items-start gap-2 rounded-xl px-2 py-2 text-sm hover:bg-white/10 ${navFocus} ${current ? 'bg-white/15 font-semibold' : ''}`}
                 >
                   <span aria-hidden="true" className="w-4 shrink-0">
                     {done ? '✓' : ''}
                   </span>
                   <span>
-                    <span className="block text-xs text-muted">{unitLabel(track, u.number)}</span>
+                    <span className="block text-xs text-white/80">
+                      {unitLabel(track, u.number)}
+                    </span>
                     {u.title}
                     {done && <span className="sr-only"> (completed)</span>}
                   </span>
                 </Link>
               ) : (
-                <p className="flex items-start gap-2 px-2 py-2 text-sm text-muted">
+                <p className="flex items-start gap-2 px-2 py-2 text-sm text-white/75">
                   <span aria-hidden="true" className="w-4 shrink-0">
                     🔒
                   </span>
@@ -85,12 +92,12 @@ export async function CourseShell({
               {current && unit?.available && unit.lessons.length > 0 && (
                 <ol
                   aria-label={`${unit.title} lessons`}
-                  className="mt-1 mb-2 ml-6 border-l border-border"
+                  className="mt-1 mb-2 ml-6 border-l border-white/30"
                 >
                   {unit.lessons.map((l) => (
                     <li key={l.id}>
                       {l.locked ? (
-                        <p className="py-1.5 pl-3 text-sm text-muted">
+                        <p className="py-1.5 pl-3 text-sm text-white/75">
                           <span aria-hidden="true">🔒 </span>
                           {l.order}. {l.title}
                           <span className="sr-only"> (locked)</span>
@@ -99,10 +106,10 @@ export async function CourseShell({
                         <Link
                           href={`/lessons/${l.id}`}
                           aria-current={l.id === lessonId ? 'page' : undefined}
-                          className={`-ml-px flex min-h-11 items-center gap-1 border-l-2 py-1.5 pl-3 text-sm hover:text-brand ${focus} ${l.id === lessonId ? 'border-brand font-semibold text-brand' : 'border-transparent'}`}
+                          className={`-ml-px flex min-h-11 items-center gap-1 border-l-2 py-1.5 pl-3 text-sm hover:underline ${navFocus} ${l.id === lessonId ? 'border-white font-semibold' : 'border-transparent'}`}
                         >
                           {l.completed && (
-                            <span aria-hidden="true" className="text-ok">
+                            <span aria-hidden="true" className="text-green-300">
                               ✓
                             </span>
                           )}
@@ -168,25 +175,27 @@ export async function CourseShell({
   return (
     <div className="mx-auto grid w-full max-w-7xl flex-1 gap-6 px-4 py-6 md:grid-cols-[13rem_minmax(0,1fr)_12rem] md:py-10 lg:grid-cols-[16rem_minmax(0,1fr)_15rem]">
       <aside className="md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto">
-        <details className={`${panel} md:hidden`}>
-          <summary className={`min-h-11 cursor-pointer content-center font-semibold ${focus}`}>
+        <details className={`${navPanel} md:hidden`}>
+          <summary className={`min-h-11 cursor-pointer content-center font-semibold ${navFocus}`}>
             Chapters
           </summary>
           <div className="mt-3">{chapterNav}</div>
         </details>
-        <div className={`${panel} hidden md:block`}>
+        <div className={`${navPanel} hidden md:block`}>
           <h2 className="mb-2 text-lg font-semibold">Chapters</h2>
           {chapterNav}
         </div>
       </aside>
 
-      <main className="min-w-0">{children}</main>
+      <main className="min-w-0 rounded-2xl border border-border bg-card p-4 shadow-sm md:p-6">
+        {children}
+      </main>
 
       <aside
         aria-label="Progress"
         className="order-last md:order-none md:sticky md:top-6 md:self-start"
       >
-        <div className={panel}>
+        <div className={progressPanel}>
           <h2 className="mb-3 text-lg font-semibold">Progress</h2>
           {progress}
         </div>

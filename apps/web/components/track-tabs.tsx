@@ -20,7 +20,7 @@ export function TrackTabs({
 }) {
   return (
     <nav aria-label="Learning tracks">
-      <ul className="flex gap-2 border-b border-border">
+      <ul className="flex flex-wrap gap-x-1 gap-y-1 border-b border-border sm:gap-x-2">
         {TABS.map((t) => {
           const active = t.track === current;
           return (
@@ -28,7 +28,7 @@ export function TrackTabs({
               <Link
                 href={hrefFor(t.track)}
                 aria-current={active ? 'page' : undefined}
-                className={`-mb-px inline-flex min-h-11 items-center gap-2 rounded-t-xl border border-b-0 px-4 py-2 font-semibold focus-visible:outline-3 focus-visible:outline-brand ${
+                className={`-mb-px inline-flex min-h-11 items-center gap-2 rounded-t-xl border border-b-0 px-3 py-2 font-semibold sm:px-4 focus-visible:outline-3 focus-visible:outline-brand ${
                   active
                     ? 'border-border bg-card text-brand'
                     : 'border-transparent text-muted hover:text-foreground'

@@ -11,6 +11,8 @@
   --ok: #15803d;
   --warn: #b45309;
   --bad: #cd4236;
+  /* Course frame panels: navy chapters (--brand), white page (--card), a rose tint of the red for progress. */
+  --progress-panel: #fcefed;
 }
 
 @theme inline {
@@ -23,6 +25,7 @@
   --color-ok: var(--ok);
   --color-warn: var(--warn);
   --color-bad: var(--bad);
+  --color-progress-panel: var(--progress-panel);
 }
 
 body {
