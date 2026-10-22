@@ -19,6 +19,7 @@ import { Transform } from '../activities/transform';
 import type { ActivityResult } from '../activities/types';
 import { ExtraPractice } from '../tutor/extra-practice';
 import type { StepProps } from './step-props';
+import { OwlIcon } from '@/components/owl-icon';
 
 type Practice = LessonSteps[2];
 
@@ -78,8 +79,8 @@ export function PracticeStep({
     return (
       <div className="flex flex-col gap-4 rounded-2xl border border-brand/40 bg-background p-5">
         <p className="text-lg">
-          <span aria-hidden="true">🦉 </span>That one was tricky! Quill can give you a few more
-          questions like it.
+          <OwlIcon className="mr-1" />
+          That one was tricky! Quill can give you a few more questions like it.
         </p>
         <div className="flex flex-wrap gap-3">
           <Button variant="secondary" onClick={() => setExtra(offer.key)}>
@@ -106,7 +107,8 @@ export function PracticeStep({
         {practiceKeys.length > 0 && (
           <div className="flex flex-col gap-2 border-t border-border pt-4">
             <p className="font-semibold">
-              <span aria-hidden="true">🦉 </span>Extra practice with Quill
+              <OwlIcon className="mr-1" />
+              Extra practice with Quill
             </p>
             <div className="flex flex-wrap gap-2">
               {practiceKeys.map((k) => (

@@ -26,6 +26,7 @@ import { QuillMath } from '@/features/math/quill-math';
 import { ApiError, apiJson } from '@/lib/api-client';
 import { focusOnMount } from './focus';
 import type { ActivityResult } from './types';
+import { OwlIcon } from '@/components/owl-icon';
 
 type Activity = Extract<LessonActivity, { type: 'PROBLEMS' }>;
 
@@ -309,7 +310,8 @@ export function Problems({
           {nudges.map((q, i) => (
             <li key={`n${i}`} className="rounded-xl border border-brand/40 bg-background p-3">
               <span className="font-semibold">
-                <span aria-hidden="true">🦉 </span>Quill asks:{' '}
+                <OwlIcon className="mr-1" />
+                Quill asks:{' '}
               </span>
               <MathText text={q} />
             </li>

@@ -7,6 +7,7 @@ import { MathText } from '@/components/math-text';
 import { ApiError, apiJson } from '@/lib/api-client';
 import { MATH_COPY } from './copy';
 import { AnswerBox } from './answer-box';
+import { OwlIcon } from '@/components/owl-icon';
 
 type Step = WorkedExampleCard['steps'][number];
 
@@ -170,7 +171,7 @@ export function MathCardTutor({ lessonId, cardIndex }: { lessonId: string; cardI
   return (
     <div className="flex flex-col gap-3">
       <Button variant="secondary" className="self-start" disabled={busy} onClick={() => void ask()}>
-        <span aria-hidden="true">🦉 </span>
+        <OwlIcon className="mr-1" />
         {busy
           ? 'Quill is thinking…'
           : result

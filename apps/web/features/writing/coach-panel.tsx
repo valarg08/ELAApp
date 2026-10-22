@@ -29,6 +29,7 @@ import { Button } from '@/components/ui';
 import { AskQuill } from './ask-quill';
 import { SENSE_ICONS } from './sense-icons';
 import { TONE_ICONS } from './tone-picker';
+import { OwlIcon } from '@/components/owl-icon';
 
 /**
  * Coach panel (DESIGN.md §6.3): instant, rule-based feedback from packages/writing-analysis.
@@ -94,7 +95,8 @@ export function CoachPanel({
     <section aria-labelledby="coach-title" className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 id="coach-title" className="text-xl font-bold">
-          <span aria-hidden="true">🦉 </span>Quill, your coach
+          <OwlIcon className="mr-1" />
+          Quill, your coach
         </h2>
         <Button variant={checked ? 'secondary' : 'primary'} onClick={check}>
           {checked ? 'Check again' : 'Check my writing'}
@@ -356,11 +358,13 @@ function PerspectiveStrip({
   );
 }
 
-/** The tone sliders again: where the student aimed (🎯) and where their words sit (🦉). */
+/** The tone sliders again: where the student aimed (🎯) and where their words sit (the owl). */
 function ToneBand({ scales }: { scales: NonNullable<CoachReport['tone']> }) {
   return (
     <div className="flex flex-col gap-2">
-      <h3 className="font-semibold">Your tone: aimed 🎯 and heard 🦉</h3>
+      <h3 className="font-semibold">
+        Your tone: aimed 🎯 and heard <OwlIcon />
+      </h3>
       <ul className="flex flex-col gap-3">
         {scales.map(({ axis, aimed, heard }) => {
           const [left, right] = toneAxis(axis).poles;
@@ -384,7 +388,7 @@ function ToneBand({ scales }: { scales: NonNullable<CoachReport['tone']> }) {
                         step === heard ? 'border-brand bg-brand/15' : 'border-border bg-card'
                       }`}
                     >
-                      {step === aimed ? '🎯' : step === heard ? '🦉' : ''}
+                      {step === aimed ? '🎯' : step === heard ? <OwlIcon /> : ''}
                     </span>
                   ))}
                 </div>

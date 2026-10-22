@@ -4,6 +4,7 @@ import { type FeedbackPoint, SubmissionFeedback } from '@storyforge/shared';
 import type { Span } from '@storyforge/writing-analysis';
 import { useEffect, useState } from 'react';
 import { apiJson } from '@/lib/api-client';
+import { OwlIcon } from '@/components/owl-icon';
 
 const POLL_MS = 4000;
 const MAX_POLLS = 60;
@@ -67,7 +68,8 @@ export function FeedbackPanel({
       className="flex flex-col gap-3 rounded-xl border border-brand/40 bg-background p-4"
     >
       <h2 id="ai-feedback-title" className="text-xl font-bold">
-        <span aria-hidden="true">🦉 </span>Feedback from Quill
+        <OwlIcon className="mr-1" />
+        Feedback from Quill
         {feedback.version !== null && (
           <span className="text-base font-normal text-muted"> · version {feedback.version}</span>
         )}

@@ -4,6 +4,7 @@ import { ClassSummary } from '@storyforge/shared';
 import { useState } from 'react';
 import { ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
+import { OwlIcon } from '@/components/owl-icon';
 
 type Mode = ClassSummary['aiFeedbackMode'];
 
@@ -46,7 +47,8 @@ export function AiModeSelect({ classId, initial }: { classId: string; initial: M
   return (
     <div className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-5 shadow-sm">
       <label htmlFor="ai-mode" className="font-semibold">
-        <span aria-hidden="true">🦉 </span>AI feedback from Quill
+        <OwlIcon className="mr-1" />
+        AI feedback from Quill
       </label>
       <div className="flex flex-wrap items-center gap-3">
         <select

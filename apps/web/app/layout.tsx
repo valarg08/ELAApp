@@ -3,8 +3,8 @@ import { APP_NAME } from '@storyforge/shared';
 import './globals.css';
 
 export const metadata: Metadata = {
-  // The owl shows in the tab's tooltip too; app/icon.svg is the tab icon.
-  title: { default: `🦉 ${APP_NAME}`, template: `🦉 %s · ${APP_NAME}` },
+  // app/icon.svg (the blue owl) is the tab icon.
+  title: { default: APP_NAME, template: `%s · ${APP_NAME}` },
   description: 'Writing, essays and AMC 10 math practice for middle school.',
 };
 

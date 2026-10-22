@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
 import { MultipleChoice } from '../activities/multiple-choice';
+import { OwlIcon } from '@/components/owl-icon';
 
 /**
  * Extra practice from Quill: a few new questions on the same skill. Optional, so it never blocks
@@ -45,7 +46,8 @@ export function ExtraPractice({
   return (
     <div className="flex flex-col gap-4 rounded-2xl border border-brand/40 bg-background p-5">
       <p className="font-semibold">
-        <span aria-hidden="true">🦉 </span>Extra practice with Quill
+        <OwlIcon className="mr-1" />
+        Extra practice with Quill
       </p>
       <ErrorMessage message={error} />
       {!practice && !error && <p className="text-muted">Quill is writing some questions…</p>}

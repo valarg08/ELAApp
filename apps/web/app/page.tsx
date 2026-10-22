@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { ButtonLink, Card } from '@/components/ui';
 import { getMe } from '@/lib/server-api';
+import { OwlIcon } from '@/components/owl-icon';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,8 +19,8 @@ export default async function Landing() {
   return (
     <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center gap-10 px-4 py-16">
       <header className="flex flex-col gap-3">
-        <p className="text-5xl" aria-hidden="true">
-          🦉
+        <p className="text-5xl">
+          <OwlIcon />
         </p>
         <h1 className="text-4xl font-bold sm:text-5xl">{APP_NAME}</h1>
         <p className="text-xl text-muted">Write, reason and grow, one lesson at a time.</p>

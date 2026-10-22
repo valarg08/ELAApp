@@ -4,6 +4,7 @@ import { ExplainResponse } from '@storyforge/shared';
 import { useState } from 'react';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
+import { OwlIcon } from '@/components/owl-icon';
 
 /** "Explain it another way": Quill re-teaches a Learn card from a new angle each time. */
 export function ExplainAnother({ lessonId, cardIndex }: { lessonId: string; cardIndex: number }) {
@@ -35,7 +36,7 @@ export function ExplainAnother({ lessonId, cardIndex }: { lessonId: string; card
   return (
     <div className="flex flex-col gap-3">
       <Button variant="secondary" className="self-start" disabled={busy} onClick={() => void ask()}>
-        <span aria-hidden="true">🦉</span>
+        <OwlIcon />
         {busy
           ? 'Quill is thinking…'
           : result

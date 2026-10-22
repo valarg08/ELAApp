@@ -5,6 +5,7 @@ import { useId, useState } from 'react';
 import { Button, ErrorMessage } from '@/components/ui';
 import { MathText } from '@/components/math-text';
 import { ApiError, apiJson } from '@/lib/api-client';
+import { OwlIcon } from '@/components/owl-icon';
 
 /**
  * Quill on a Math problem (math-design.md §2, §3.3): "Explain it another way" or "Why was mine
@@ -71,7 +72,7 @@ export function QuillMath({
         )}
         <div className="flex flex-wrap gap-3">
           <Button variant="secondary" disabled={busy} onClick={() => void ask(0)}>
-            <span aria-hidden="true">🦉 </span>
+            <OwlIcon className="mr-1" />
             {busy ? 'Quill is thinking…' : label}
           </Button>
           {mode === 'mistake' && !showWorking && (
@@ -92,7 +93,8 @@ export function QuillMath({
       aria-live="polite"
     >
       <p className="font-semibold">
-        <span aria-hidden="true">🦉 </span>Quill
+        <OwlIcon className="mr-1" />
+        Quill
       </p>
       {result.likelyMistake && (
         <p>
