@@ -1,0 +1,100 @@
+{
+  "slug": "math-polygons",
+  "order": 5,
+  "title": "Polygons & Angle Sums",
+  "estMinutes": 35,
+  "focusSkills": ["polygons"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "How many degrees do the angles of a pentagon add up to? Can you split it into triangles to find out?",
+      "placeholder": "I split it into… so…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Angle sums",
+          "body": "Diagonals from one corner split an $n$-gon into $n - 2$ triangles, so its interior angles add to $180(n - 2)$. In a regular $n$-gon each interior angle is $\\frac{180(n - 2)}{n}$. The exterior angles of any convex polygon add to $360^\\circ$, so a regular one has exterior angles of $\\frac{360}{n}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a regular octagon",
+          "problem": "What is each interior angle of a regular octagon?",
+          "steps": [
+            {
+              "text": "The angles add to $180 \\times 6 = 1080^\\circ$.",
+              "try": {
+                "prompt": "What is the angle sum, in degrees?",
+                "accepted": ["1080"],
+                "compute": "180*6"
+              }
+            },
+            {
+              "text": "Each angle is $\\frac{1080}{8} = 135^\\circ$.",
+              "try": {
+                "prompt": "What is each interior angle?",
+                "accepted": ["135"],
+                "compute": "1080/8"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Diagonals and hexagons",
+          "body": "An $n$-gon has $\\frac{n(n - 3)}{2}$ diagonals. A regular hexagon is six equilateral triangles, so with side $s$ its area is $\\frac{3\\sqrt{3}}{2}s^2$ and its long diagonal is $2s$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: sides from an angle",
+          "problem": "Each interior angle of a regular polygon is $150^\\circ$. How many sides does it have?",
+          "steps": [
+            {
+              "text": "Each exterior angle is $180 - 150 = 30^\\circ$.",
+              "try": {
+                "prompt": "What is each exterior angle?",
+                "accepted": ["30"],
+                "compute": "180 - 150"
+              }
+            },
+            {
+              "text": "The exterior angles add to $360$, so there are $\\frac{360}{30} = 12$ sides.",
+              "try": {
+                "prompt": "How many sides?",
+                "accepted": ["12"],
+                "compute": "360/30"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: n instead of n − 2",
+          "body": "The angle sum is $180(n - 2)$, not $180n$. The exterior angles always add to $360^\\circ$, whatever $n$ is. Working with exterior angles is usually the fastest route to $n$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m11.polygons-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m11.polygons-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why do exterior angles make regular-polygon problems faster?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

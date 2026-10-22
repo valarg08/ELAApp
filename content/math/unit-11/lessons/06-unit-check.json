@@ -1,0 +1,57 @@
+{
+  "slug": "math-geometry-1-check",
+  "order": 6,
+  "title": "⭐ Unit Check: Geometry I",
+  "estMinutes": 40,
+  "focusSkills": ["angle-chasing", "pythagoras", "similar-triangles", "triangle-area", "polygons"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which geometry fact do you reach for first, and which one do you still look up?",
+      "placeholder": "First… Still look up…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Angles and right triangles: quick review",
+          "body": "Triangle angles add to $180^\\circ$; an exterior angle is the sum of the far two; co-interior angles add to $180^\\circ$. Pythagoras $a^2 + b^2 = c^2$; triples $3, 4, 5$ and $5, 12, 13$; $x, x, x\\sqrt{2}$ and $x, x\\sqrt{3}, 2x$."
+        },
+        {
+          "kind": "definition",
+          "title": "Similarity, area and polygons: quick review",
+          "body": "Similar: sides in one ratio $k$, areas $k^2$; altitude to the hypotenuse $h^2 = pq$. Area $\\frac{1}{2}bh$ or Heron. Angle sum $180(n - 2)$, exterior angles $360$, diagonals $\\frac{n(n - 3)}{2}$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ AMC-style problems with choices, easiest first, no hints. You need all $8$ right (100%) to pass. If you miss one, you'll see the solutions and which skills to review, and the next try gives you new problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m11.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m11.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which habit from this unit will you use first on your next test?",
+        "Which skill will you keep practising in the daily review?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "slug": "math-angle-chasing",
+  "order": 1,
+  "title": "Angles & Angle Chasing",
+  "estMinutes": 35,
+  "focusSkills": ["angle-chasing"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Two parallel lines are crossed by a third line, making eight angles. If you know just one of them, how many of the other seven can you find?",
+      "placeholder": "I can find… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The angle facts",
+          "body": "Angles on a straight line add to $180^\\circ$, and around a point to $360^\\circ$. Vertical (opposite) angles are equal. The angles of a triangle add to $180^\\circ$, and an exterior angle equals the sum of the two interior angles not next to it. The base angles of an isosceles triangle are equal."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a ratio of angles",
+          "problem": "The angles of a triangle are in the ratio $2 : 3 : 4$. What is the largest angle?",
+          "steps": [
+            {
+              "text": "There are $2 + 3 + 4 = 9$ equal parts in $180^\\circ$, so one part is $20^\\circ$.",
+              "try": {
+                "prompt": "How many degrees is one part?",
+                "accepted": ["20"],
+                "compute": "180/9"
+              }
+            },
+            {
+              "text": "The largest angle is $4 \\times 20 = 80^\\circ$.",
+              "try": {
+                "prompt": "What is the largest angle, in degrees?",
+                "accepted": ["80"],
+                "compute": "4*180/9"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Parallel lines and chasing",
+          "body": "When a line crosses two parallel lines, corresponding angles and alternate angles are equal, and co-interior angles (between the lines, on the same side) add to $180^\\circ$. Angle chasing: write every angle you find on the figure, call an unknown $x$, and keep going until you reach the one you want."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: an isosceles triangle",
+          "problem": "An isosceles triangle has a top angle of $40^\\circ$. Find a base angle, then the exterior angle at that base corner.",
+          "steps": [
+            {
+              "text": "The base angles share $180 - 40 = 140$, so each is $70^\\circ$.",
+              "try": {
+                "prompt": "What is each base angle, in degrees?",
+                "accepted": ["70"],
+                "compute": "(180 - 40)/2"
+              }
+            },
+            {
+              "text": "The exterior angle is $180 - 70 = 110^\\circ$, which is also $40 + 70$.",
+              "try": {
+                "prompt": "What is the exterior angle at a base corner?",
+                "accepted": ["110"],
+                "compute": "180 - 70"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: trusting the picture",
+          "body": "AMC figures are not drawn to scale unless they say so. Don't assume lines are parallel, angles are right or sides are equal because they look it: use only what you are told. And the exterior angle is the sum of the two FAR interior angles, not the one next to it."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m11.angles-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m11.angles-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which angle fact do you use most when you chase angles?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 260" width="300" height="260">
+<polygon points="150,25 80,235 220,235" fill="none" stroke="currentColor" stroke-width="2"/>
+  <polyline points="80,235 193,155" fill="none" stroke="currentColor" stroke-width="2"/>
+  <circle cx="193" cy="155" r="3" fill="currentColor"/>
+  <text x="150" y="18" text-anchor="middle" font-size="15" fill="currentColor">A</text>  <text x="68" y="250" text-anchor="middle" font-size="15" fill="currentColor">B</text>  <text x="232" y="250" text-anchor="middle" font-size="15" fill="currentColor">C</text>  <text x="207" y="155" text-anchor="middle" font-size="15" fill="currentColor">D</text>
+  <text x="150" y="52" text-anchor="middle" font-size="13" fill="currentColor">36°</text>
+</svg>

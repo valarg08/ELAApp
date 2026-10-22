@@ -1,0 +1,102 @@
+{
+  "slug": "math-similar-triangles",
+  "order": 3,
+  "title": "Similar Triangles",
+  "estMinutes": 35,
+  "focusSkills": ["similar-triangles"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A $2$ m pole casts a $3$ m shadow. At the same moment a tree casts a $15$ m shadow. How tall is the tree?",
+      "placeholder": "The tree is… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Same shape, different size",
+          "body": "Similar triangles have the same angles, and their matching sides are all in the same ratio. Two equal angles are enough to prove it (AA). A line parallel to one side of a triangle cuts off a smaller triangle similar to the whole."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a parallel cut",
+          "problem": "In triangle $ABC$, $DE$ is parallel to $BC$ with $D$ on $AB$ and $E$ on $AC$. $AD = 4$, $DB = 6$ and $DE = 5$. How long is $BC$?",
+          "steps": [
+            {
+              "text": "Compare with the whole side: $AB = 4 + 6 = 10$.",
+              "try": {
+                "prompt": "How long is $AB$?",
+                "accepted": ["10"],
+                "compute": "4 + 6"
+              }
+            },
+            {
+              "text": "$\\frac{BC}{DE} = \\frac{AB}{AD} = \\frac{10}{4}$, so $BC = 5 \\times \\frac{10}{4} = \\frac{25}{2}$.",
+              "try": {
+                "prompt": "How long is $BC$?",
+                "accepted": ["25/2", "12.5"],
+                "compute": "5*10/4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Scaling areas",
+          "body": "If every length is multiplied by $k$, every area is multiplied by $k^2$ (and every volume by $k^3$). In a right triangle, the altitude to the hypotenuse makes two smaller triangles similar to the whole: the altitude $h$ and the two pieces $p$, $q$ of the hypotenuse satisfy $h^2 = pq$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: areas",
+          "problem": "Two similar triangles have sides in the ratio $2 : 3$. The smaller has area $12$. What is the area of the larger?",
+          "steps": [
+            {
+              "text": "Areas scale by $\\left(\\frac{3}{2}\\right)^2 = \\frac{9}{4}$.",
+              "try": {
+                "prompt": "By what fraction are the areas multiplied?",
+                "accepted": ["9/4", "2.25"],
+                "compute": "(3/2)^2"
+              }
+            },
+            {
+              "text": "$12 \\times \\frac{9}{4} = 27$.",
+              "try": {
+                "prompt": "What is the area of the larger triangle?",
+                "accepted": ["27"],
+                "compute": "12*9/4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: mismatched sides",
+          "body": "Match the sides that face equal angles. With a parallel cut, compare the small triangle with the WHOLE triangle ($AB$, not $DB$). And areas scale by the square of the ratio, not by the ratio."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m11.similar-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m11.similar-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How do you make sure you are matching the right sides of two similar triangles?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "slug": "math-pythagoras",
+  "order": 2,
+  "title": "Pythagoras & Special Right Triangles",
+  "estMinutes": 35,
+  "focusSkills": ["pythagoras"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A $5$ m ladder leans against a wall with its foot $3$ m from the wall. How high up the wall does it reach? How could you be sure without measuring?",
+      "placeholder": "It reaches… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Pythagoras",
+          "body": "In a right triangle with legs $a$ and $b$ and hypotenuse $c$ (the side opposite the right angle), $a^2 + b^2 = c^2$. Know the common triples and their multiples: $3, 4, 5$; $5, 12, 13$; $8, 15, 17$; $7, 24, 25$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the hypotenuse",
+          "problem": "A right triangle has legs $9$ and $12$. How long is the hypotenuse?",
+          "steps": [
+            {
+              "text": "$9^2 + 12^2 = 81 + 144 = 225$.",
+              "try": {
+                "prompt": "What is $9^2 + 12^2$?",
+                "accepted": ["225"],
+                "compute": "9^2 + 12^2"
+              }
+            },
+            {
+              "text": "$c = \\sqrt{225} = 15$ (a $3, 4, 5$ triangle times $3$).",
+              "try": {
+                "prompt": "How long is the hypotenuse?",
+                "accepted": ["15"],
+                "compute": "sqrt(225)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Special right triangles",
+          "body": "A $45^\\circ$-$45^\\circ$-$90^\\circ$ triangle has sides $x, x, x\\sqrt{2}$: half a square, cut along its diagonal. A $30^\\circ$-$60^\\circ$-$90^\\circ$ triangle has sides $x, x\\sqrt{3}, 2x$: half an equilateral triangle. So an equilateral triangle with side $s$ has height $\\frac{s\\sqrt{3}}{2}$ and area $\\frac{\\sqrt{3}}{4}s^2$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: an equilateral triangle",
+          "problem": "An equilateral triangle has side $6$. What is its height?",
+          "steps": [
+            {
+              "text": "The height cuts the base in half.",
+              "try": {
+                "prompt": "How long is each half of the base?",
+                "accepted": ["3"],
+                "compute": "6/2"
+              }
+            },
+            {
+              "text": "The height is $\\sqrt{6^2 - 3^2} = \\sqrt{27} = 3\\sqrt{3}$. Type roots like 3√3.",
+              "try": {
+                "prompt": "What is the height?",
+                "accepted": ["3√3"],
+                "compute": "3*sqrt(3)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: the wrong side or adding legs",
+          "body": "The hypotenuse is always the longest side, opposite the right angle: to find a leg, subtract, $b^2 = c^2 - a^2$. And $a^2 + b^2$ is not $(a + b)^2$: you can't just add the legs."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m11.pythagoras-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m11.pythagoras-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which Pythagorean triples do you know by heart now?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

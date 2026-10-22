@@ -1,0 +1,1752 @@
+[
+  {
+    "key": "m11.angles-practice",
+    "type": "PROBLEMS",
+    "title": "Angles & angle chasing",
+    "instructions": "Type each answer and press Check. Write every angle you find on your sketch. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "third-angle",
+        "prompt": "Two angles of a triangle are $[[a]]^\\circ$ and $[[b]]^\\circ$. What is the third angle, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180 - a - b]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[360 - a - b]]",
+              "why": "The angles of a triangle add to $180^\\circ$, not $360^\\circ$."
+            }
+          ]
+        },
+        "hints": ["The three angles add to $180^\\circ$."],
+        "solution": "$180 - [[a]] - [[b]] = [[180 - a - b]]$.",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "180 - a - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 30,
+              "to": 80
+            },
+            "b": {
+              "from": 30,
+              "to": 80
+            }
+          }
+        }
+      },
+      {
+        "id": "base-angles",
+        "prompt": "An isosceles triangle has a top angle (between the two equal sides) of $[[x]]^\\circ$. What is each base angle, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(180 - x)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[180 - 2*x]]",
+              "why": "$[[x]]^\\circ$ is the angle between the equal sides, so it appears once. The two base angles share $180 - [[x]]$."
+            }
+          ]
+        },
+        "hints": ["The two base angles are equal and add to $180 - [[x]]$."],
+        "solution": "$\\frac{180 - [[x]]}{2} = [[(180 - x)/2]]$.",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "(180 - x)/2",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 20,
+              "to": 140,
+              "step": 10
+            }
+          },
+          "where": ["x != 60"]
+        }
+      },
+      {
+        "id": "exterior-angle",
+        "prompt": "An exterior angle of a triangle is next to one interior angle. The other two interior angles are $[[a]]^\\circ$ and $[[b]]^\\circ$. What is the exterior angle, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + b]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[180 - a - b]]",
+              "why": "That is the interior angle next to it. The exterior angle is the sum of the two far interior angles."
+            }
+          ]
+        },
+        "hints": [
+          "An exterior angle equals the sum of the two interior angles that are not next to it."
+        ],
+        "solution": "$[[a]] + [[b]] = [[a + b]]$.",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "a + b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 30,
+              "to": 70
+            },
+            "b": {
+              "from": 30,
+              "to": 70
+            }
+          },
+          "where": ["a + b != 90"]
+        }
+      },
+      {
+        "id": "angle-ratio",
+        "prompt": "The angles of a triangle are in the ratio $[[p]] : [[q]] : [[s]]$. What is the largest angle, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180*s/(p + q + s)]]"],
+          "form": "integer"
+        },
+        "hints": ["There are $[[p + q + s]]$ equal parts in $180^\\circ$."],
+        "solution": "One part is $\\frac{180}{[[p + q + s]]} = [[180/(p + q + s)]]$, so the largest angle is $[[s]] \\times [[180/(p + q + s)]] = [[180*s/(p + q + s)]]$.",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "180*s/(p + q + s)",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 1,
+              "to": 3
+            },
+            "q": {
+              "from": 2,
+              "to": 4
+            },
+            "s": {
+              "from": 5,
+              "to": 7
+            }
+          },
+          "where": ["mod(180, p + q + s) == 0"]
+        }
+      },
+      {
+        "id": "co-interior",
+        "prompt": "Lines $\\ell$ and $m$ are parallel, and a third line crosses both. Two angles lie between $\\ell$ and $m$ on the same side of the third line. One of them is $[[x]]^\\circ$. What is the other, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180 - x]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[x]]",
+              "why": "These co-interior angles are not equal: they add to $180^\\circ$."
+            }
+          ]
+        },
+        "hints": ["Co-interior angles between parallel lines add to $180^\\circ$."],
+        "solution": "$180 - [[x]] = [[180 - x]]$.",
+        "skill": "angle-chasing",
+        "difficulty": 2,
+        "compute": "180 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 40,
+              "to": 140,
+              "step": 5
+            }
+          },
+          "where": ["x != 90"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m11.angles-set",
+    "type": "PROBLEM_SET",
+    "title": "Angle chasing challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "third-of-three",
+        "prompt": "One angle of a triangle is $50^\\circ$ and another is $65^\\circ$. What is the third angle, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$55$", "$60$", "$65$", "$70$", "$75$"],
+          "correct": "C"
+        },
+        "solution": "$180 - 50 - 65 = 65$, choice (C).",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "180 - 50 - 65"
+      },
+      {
+        "id": "remote-interior",
+        "prompt": "An exterior angle of a triangle is $120^\\circ$, and one of the two interior angles not next to it is $45^\\circ$. What is the other one, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$45$", "$60$", "$75$", "$105$", "$135$"],
+          "correct": "C",
+          "why": {
+            "A": "The two far interior angles add to the exterior angle."
+          }
+        },
+        "solution": "$120 - 45 = 75$, choice (C).",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "120 - 45"
+      },
+      {
+        "id": "obtuse-isosceles",
+        "prompt": "An isosceles triangle has an angle of $100^\\circ$. What is the size of one of its other angles, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$40$", "$50$", "$80$", "$100$"],
+          "correct": "B",
+          "why": {
+            "E": "Two angles of $100^\\circ$ would add to more than $180^\\circ$."
+          }
+        },
+        "solution": "The $100^\\circ$ angle must be the top angle, so each base angle is $\\frac{180 - 100}{2} = 40$, choice (B).",
+        "skill": "angle-chasing",
+        "difficulty": 2,
+        "compute": "(180 - 100)/2"
+      },
+      {
+        "id": "golden-bisector",
+        "prompt": "In triangle $ABC$, $AB = AC$ and $\\angle A = 36^\\circ$. The bisector of $\\angle B$ meets $AC$ at $D$. What is $\\angle BDC$, in degrees?",
+        "figure": {
+          "file": "isosceles-bisector.svg",
+          "alt": "Triangle ABC with A at the top, AB equal to AC and a 36 degree angle at A. A segment from B meets side AC at D."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": ["$36$", "$54$", "$72$", "$90$", "$108$"],
+          "correct": "C",
+          "why": {
+            "E": "That is $\\angle ADB$, the angle on the other side of $D$."
+          }
+        },
+        "solution": "$\\angle B = \\angle C = \\frac{180 - 36}{2} = 72$, so $\\angle ABD = 36$. $\\angle BDC$ is an exterior angle of triangle $ABD$: $36 + 36 = 72$, choice (C).",
+        "skill": "angle-chasing",
+        "difficulty": 2,
+        "compute": "36 + 36"
+      },
+      {
+        "id": "star-tips",
+        "prompt": "The five points of a five-pointed star are formed by drawing all five diagonals of a convex pentagon. What is the sum of the five angles at the tips of the star, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$90$", "$180$", "$270$", "$360$", "$540$"],
+          "correct": "B",
+          "why": {
+            "E": "That is the angle sum of the pentagon itself."
+          }
+        },
+        "solution": "Pick one tip. Its two lines and the segment joining two other tips make a triangle. Each of that triangle's other two angles is an exterior angle of a small triangle, so it equals the sum of two more tips. So the five tip angles fill exactly one triangle: $180^\\circ$, choice (B).",
+        "skill": "angle-chasing",
+        "difficulty": 3,
+        "compute": "180"
+      }
+    ]
+  },
+  {
+    "key": "m11.pythagoras-practice",
+    "type": "PROBLEMS",
+    "title": "Pythagoras & special right triangles",
+    "instructions": "Type each answer and press Check. Square the legs, add, then take the square root. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "triple-hypotenuse",
+        "prompt": "A right triangle has legs $[[(3 + 2*t)*k]]$ and $[[(4 + 8*t)*k]]$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(5 + 8*t)*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(7 + 10*t)*k]]",
+              "why": "Don't add the legs. Add their SQUARES, then take the square root."
+            }
+          ]
+        },
+        "hints": ["$a^2 + b^2 = c^2$. Look for a multiple of $3, 4, 5$ or $5, 12, 13$."],
+        "solution": "$\\sqrt{[[(3 + 2*t)*k]]^2 + [[(4 + 8*t)*k]]^2} = [[(5 + 8*t)*k]]$.",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "(5 + 8*t)*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 6
+            },
+            "t": {
+              "choose": [0, 1]
+            }
+          }
+        }
+      },
+      {
+        "id": "missing-leg",
+        "prompt": "A right triangle has hypotenuse $[[c]]$ and one leg $[[a]]$. How long is the other leg? (A square root is fine.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[sqrt(c^2 - a^2)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[sqrt(c^2 + a^2)]]",
+              "why": "$[[c]]$ is the hypotenuse, the longest side: subtract, $[[c]]^2 - [[a]]^2$."
+            }
+          ]
+        },
+        "hints": ["$[[a]]^2 + b^2 = [[c]]^2$."],
+        "solution": "$b = \\sqrt{[[c]]^2 - [[a]]^2} = \\sqrt{[[c^2 - a^2]]} = [[sqrt(c^2 - a^2)]]$.",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "sqrt(c^2 - a^2)",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 5,
+              "to": 12
+            },
+            "a": {
+              "from": 2,
+              "to": 10
+            }
+          },
+          "where": ["a < c"]
+        }
+      },
+      {
+        "id": "isosceles-right",
+        "prompt": "A right triangle has two legs of length $[[x]]$. How long is its hypotenuse?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x*sqrt(2)]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[2*x]]",
+              "why": "Use Pythagoras: the hypotenuse is $\\sqrt{[[x]]^2 + [[x]]^2} = [[x]]\\sqrt{2}$."
+            }
+          ]
+        },
+        "hints": ["In a $45$-$45$-$90$ triangle the hypotenuse is $\\sqrt{2}$ times a leg."],
+        "solution": "$\\sqrt{[[x]]^2 + [[x]]^2} = \\sqrt{[[2*x*x]]} = [[x*sqrt(2)]]$.",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "x*sqrt(2)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "thirty-sixty",
+        "prompt": "In a $30^\\circ$-$60^\\circ$-$90^\\circ$ triangle the shortest side is $[[x]]$. How long is the other leg?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x*sqrt(3)]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[2*x]]",
+              "why": "That is the hypotenuse. The longer leg is $\\sqrt{3}$ times the shortest side."
+            }
+          ]
+        },
+        "hints": ["The sides are in the ratio $1 : \\sqrt{3} : 2$."],
+        "solution": "The longer leg is $[[x]]\\sqrt{3}$ (and the hypotenuse is $[[2*x]]$).",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "x*sqrt(3)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "equilateral-height",
+        "prompt": "An equilateral triangle has side $[[s]]$. What is its height?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*sqrt(3)/2]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[s*sqrt(3)]]",
+              "why": "The height splits the base in half: use $\\frac{[[s]]}{2}$ as the short leg."
+            }
+          ]
+        },
+        "hints": [
+          "The height cuts the triangle into two $30^\\circ$-$60^\\circ$-$90^\\circ$ triangles with short leg $[[s/2]]$."
+        ],
+        "solution": "$\\sqrt{[[s]]^2 - [[s/2]]^2} = [[s/2]]\\sqrt{3}$.",
+        "skill": "pythagoras",
+        "difficulty": 2,
+        "compute": "s*sqrt(3)/2",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 16,
+              "step": 2
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m11.pythagoras-set",
+    "type": "PROBLEM_SET",
+    "title": "Pythagoras challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "six-eight",
+        "prompt": "A right triangle has legs $6$ and $8$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7$", "$10$", "$12$", "$14$", "$48$"],
+          "correct": "B",
+          "why": {
+            "D": "Add the squares of the legs, not the legs."
+          }
+        },
+        "solution": "$\\sqrt{36 + 64} = 10$, choice (B).",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "sqrt(36 + 64)"
+      },
+      {
+        "id": "rectangle-diagonal",
+        "prompt": "A rectangle is $5$ by $12$. How long is its diagonal?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$13$", "$15$", "$17$", "$30$", "$60$"],
+          "correct": "A"
+        },
+        "solution": "$\\sqrt{25 + 144} = 13$, choice (A).",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "sqrt(25 + 144)"
+      },
+      {
+        "id": "square-from-diagonal",
+        "prompt": "A square has a diagonal of length $10$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$25$", "$50$", "$50\\sqrt{2}$", "$100$"],
+          "correct": "C",
+          "why": {
+            "E": "That is the diagonal squared. The square's area is half of it."
+          }
+        },
+        "solution": "The side is $\\frac{10}{\\sqrt{2}}$, so the area is $\\frac{100}{2} = 50$, choice (C).",
+        "skill": "pythagoras",
+        "difficulty": 2,
+        "compute": "10^2/2"
+      },
+      {
+        "id": "equilateral-area",
+        "prompt": "An equilateral triangle has side $8$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$16\\sqrt{3}$", "$32$", "$32\\sqrt{3}$", "$64$"],
+          "correct": "B",
+          "why": {
+            "D": "Remember the $\\frac{1}{2}$: base $8$, height $4\\sqrt{3}$."
+          }
+        },
+        "solution": "The height is $4\\sqrt{3}$, so the area is $\\frac{1}{2} \\times 8 \\times 4\\sqrt{3} = 16\\sqrt{3}$, choice (B).",
+        "skill": "pythagoras",
+        "difficulty": 2,
+        "compute": "8^2*sqrt(3)/4"
+      },
+      {
+        "id": "perimeter-thirty",
+        "prompt": "A right triangle has perimeter $30$ and hypotenuse $13$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$30$", "$36$", "$60$", "$65$"],
+          "correct": "B",
+          "why": {
+            "D": "That is $ab$. The area is $\\frac{ab}{2}$."
+          }
+        },
+        "solution": "The legs add to $17$ and $a^2 + b^2 = 169$. Then $2ab = 17^2 - 169 = 120$, so the area $\\frac{ab}{2} = 30$, choice (B).",
+        "skill": "pythagoras",
+        "difficulty": 3,
+        "compute": "((30 - 13)^2 - 13^2)/4"
+      }
+    ]
+  },
+  {
+    "key": "m11.similar-practice",
+    "type": "PROBLEMS",
+    "title": "Similar triangles",
+    "instructions": "Type each answer and press Check. Match the sides that face equal angles, then use one ratio. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "shadow",
+        "prompt": "A pole $[[h]]$ m tall casts a shadow $[[s]]$ m long. At the same moment a tree casts a shadow $[[t]]$ m long. How tall is the tree, in metres?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[h*t/s]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[s*t/h]]",
+              "why": "Keep the same order on both sides: height over shadow for the pole equals height over shadow for the tree."
+            }
+          ]
+        },
+        "hints": [
+          "The sun's rays make similar triangles: $\\frac{\\text{height}}{\\text{shadow}}$ is the same for both."
+        ],
+        "solution": "$\\frac{[[h]]}{[[s]]} = \\frac{x}{[[t]]}$, so $x = [[h*t/s]]$.",
+        "skill": "similar-triangles",
+        "difficulty": 1,
+        "compute": "h*t/s",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 2,
+              "to": 4
+            },
+            "s": {
+              "choose": [2, 3, 4]
+            },
+            "t": {
+              "from": 12,
+              "to": 48,
+              "step": 12
+            }
+          },
+          "where": ["h != s"]
+        }
+      },
+      {
+        "id": "parallel-cut",
+        "prompt": "In triangle $ABC$, $D$ is on $AB$ and $E$ is on $AC$ with $DE$ parallel to $BC$. If $AD = [[a]]$, $DB = [[b]]$ and $DE = [[d]]$, how long is $BC$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[d*(a + b)/a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[d*b/a]]",
+              "why": "Compare with the WHOLE side $AB = [[a + b]]$, not $DB$."
+            }
+          ]
+        },
+        "hints": [
+          "Triangle $ADE$ is similar to triangle $ABC$ with ratio $\\frac{AB}{AD} = \\frac{[[a + b]]}{[[a]]}$."
+        ],
+        "solution": "$BC = [[d]] \\times \\frac{[[a + b]]}{[[a]]} = [[d*(a + b)/a]]$.",
+        "skill": "similar-triangles",
+        "difficulty": 1,
+        "compute": "d*(a + b)/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 2,
+              "to": 8
+            },
+            "d": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "area-scale",
+        "prompt": "Two similar triangles have corresponding sides in the ratio $[[p]] : [[q]]$. The smaller has area $[[w]]$. What is the area of the larger?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[w*q^2/p^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[w*q/p]]",
+              "why": "Areas scale by the SQUARE of the side ratio: $\\left(\\frac{[[q]]}{[[p]]}\\right)^2$."
+            }
+          ]
+        },
+        "hints": ["If sides are multiplied by $k$, areas are multiplied by $k^2$."],
+        "solution": "$[[w]] \\times \\left(\\frac{[[q]]}{[[p]]}\\right)^2 = [[w*q^2/p^2]]$.",
+        "skill": "similar-triangles",
+        "difficulty": 1,
+        "compute": "w*q^2/p^2",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 1,
+              "to": 3
+            },
+            "q": {
+              "from": 2,
+              "to": 5
+            },
+            "w": {
+              "from": 4,
+              "to": 20,
+              "step": 4
+            }
+          },
+          "where": ["p < q"]
+        }
+      },
+      {
+        "id": "side-from-areas",
+        "prompt": "Two similar triangles have areas $[[a]]$ and $[[a*k*k]]$. A side of the smaller one is $[[s]]$. How long is the matching side of the larger one?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[s*k*k]]",
+              "why": "The areas grew by $[[k*k]]$, so the sides grew by $\\sqrt{[[k*k]]} = [[k]]$."
+            }
+          ]
+        },
+        "hints": ["Side ratio $= \\sqrt{\\text{area ratio}}$."],
+        "solution": "Area ratio $[[k*k]]$, side ratio $[[k]]$: $[[s]] \\times [[k]] = [[s*k]]$.",
+        "skill": "similar-triangles",
+        "difficulty": 2,
+        "compute": "s*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "k": {
+              "from": 2,
+              "to": 4
+            },
+            "s": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "altitude-hypotenuse",
+        "prompt": "The altitude to the hypotenuse of a right triangle splits the hypotenuse into pieces of length $[[p]]$ and $[[p*m*m]]$. How long is the altitude?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p*m]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(p + p*m*m)/2]]",
+              "why": "That is the average of the pieces. The altitude is their geometric mean: $h^2 = pq$."
+            }
+          ]
+        },
+        "hints": [
+          "The altitude makes two smaller triangles similar to each other, so $\\frac{h}{p} = \\frac{q}{h}$."
+        ],
+        "solution": "$h^2 = [[p]] \\times [[p*m*m]] = [[p*p*m*m]]$, so $h = [[p*m]]$.",
+        "skill": "similar-triangles",
+        "difficulty": 2,
+        "compute": "p*m",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 1,
+              "to": 4
+            },
+            "m": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m11.similar-set",
+    "type": "PROBLEM_SET",
+    "title": "Similar triangles challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "matching-sides",
+        "prompt": "Triangle $ABC$ is similar to triangle $DEF$, with $AB = 4$, $BC = 6$ and $DE = 10$. How long is $EF$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$12$", "$15$", "$20$", "$24$"],
+          "correct": "C"
+        },
+        "solution": "The ratio is $\\frac{10}{4} = \\frac{5}{2}$, so $EF = 6 \\times \\frac{5}{2} = 15$, choice (C).",
+        "skill": "similar-triangles",
+        "difficulty": 1,
+        "compute": "6*10/4"
+      },
+      {
+        "id": "flagpole",
+        "prompt": "A person $6$ feet tall casts a shadow $4$ feet long. At the same time a flagpole casts a shadow $20$ feet long. How tall is the flagpole, in feet?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$26$", "$30$", "$36$", "$40$"],
+          "correct": "C"
+        },
+        "solution": "$\\frac{6}{4} = \\frac{h}{20}$, so $h = 30$, choice (C).",
+        "skill": "similar-triangles",
+        "difficulty": 1,
+        "compute": "6*20/4"
+      },
+      {
+        "id": "cut-triangle",
+        "prompt": "In triangle $ABC$, $DE$ is parallel to $BC$ with $D$ on $AB$ and $E$ on $AC$. If $AD = 3$, $DB = 6$ and $DE = 4$, how long is $BC$?",
+        "figure": {
+          "file": "parallel-cut.svg",
+          "alt": "Triangle ABC with A at the top. Segment DE joins a point D on AB to a point E on AC and runs parallel to the base BC."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$10$", "$12$", "$16$", "$18$"],
+          "correct": "C",
+          "why": {
+            "A": "Compare with the whole side $AB = 9$, not $DB = 6$."
+          }
+        },
+        "solution": "$\\frac{BC}{DE} = \\frac{AB}{AD} = \\frac{9}{3} = 3$, so $BC = 12$, choice (C).",
+        "skill": "similar-triangles",
+        "difficulty": 2,
+        "compute": "4*9/3"
+      },
+      {
+        "id": "perimeter-area",
+        "prompt": "Two similar triangles have perimeters $12$ and $18$. The smaller one has area $20$. What is the area of the larger one?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$30$", "$40$", "$45$", "$60$", "$80$"],
+          "correct": "C",
+          "why": {
+            "A": "Areas scale by the square of $\\frac{3}{2}$, not by $\\frac{3}{2}$."
+          }
+        },
+        "solution": "The scale factor is $\\frac{18}{12} = \\frac{3}{2}$, so the area is $20 \\times \\frac{9}{4} = 45$, choice (C).",
+        "skill": "similar-triangles",
+        "difficulty": 2,
+        "compute": "20*(18/12)^2"
+      },
+      {
+        "id": "altitude-six-eight",
+        "prompt": "A right triangle has legs $6$ and $8$. How long is the altitude to the hypotenuse?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$\\frac{24}{5}$", "$5$", "$6$", "$\\frac{48}{5}$"],
+          "correct": "B",
+          "why": {
+            "E": "Remember the $\\frac{1}{2}$ in the area: $24 = \\frac{1}{2} \\times 10 \\times h$."
+          }
+        },
+        "solution": "The area is $\\frac{1}{2} \\times 6 \\times 8 = 24$ and the hypotenuse is $10$, so $\\frac{1}{2} \\times 10 \\times h = 24$ and $h = \\frac{24}{5}$, choice (B).",
+        "skill": "similar-triangles",
+        "difficulty": 3,
+        "compute": "6*8/10"
+      }
+    ]
+  },
+  {
+    "key": "m11.area-practice",
+    "type": "PROBLEMS",
+    "title": "Area",
+    "instructions": "Type each answer and press Check. Half base times height, with the height square to the base. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "base-height",
+        "prompt": "A triangle has a base of length $[[b]]$ and a height of $[[h]]$ to that base. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b*h/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b*h]]",
+              "why": "That is the rectangle. A triangle is half of it: $\\frac{1}{2} \\times \\text{base} \\times \\text{height}$."
+            }
+          ]
+        },
+        "hints": ["Area $= \\frac{1}{2} \\times \\text{base} \\times \\text{height}$."],
+        "solution": "$\\frac{1}{2} \\times [[b]] \\times [[h]] = [[b*h/2]]$.",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "b*h/2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 4,
+              "to": 20
+            },
+            "h": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "isosceles-area",
+        "prompt": "An isosceles triangle has sides $[[5*k]]$, $[[5*k]]$ and $[[6*k]]$. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[12*k^2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[15*k^2]]",
+              "why": "The slanted side $[[5*k]]$ isn't the height. Drop the height to the base: it is $[[4*k]]$."
+            }
+          ]
+        },
+        "hints": [
+          "The height to the base $[[6*k]]$ splits it into halves of $[[3*k]]$. Use Pythagoras with $[[5*k]]$."
+        ],
+        "solution": "The height is $\\sqrt{[[5*k]]^2 - [[3*k]]^2} = [[4*k]]$, so the area is $\\frac{1}{2} \\times [[6*k]] \\times [[4*k]] = [[12*k^2]]$.",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "12*k^2",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 6
+            }
+          }
+        }
+      },
+      {
+        "id": "split-base",
+        "prompt": "Triangle $ABC$ has area $[[w]]$. Point $D$ is on $BC$ with $BD : DC = [[p]] : [[q]]$. What is the area of triangle $ABD$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[w*p/(p + q)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[w*p/q]]",
+              "why": "$ABD$ gets $[[p]]$ of the $[[p + q]]$ equal parts of the base: $\\frac{[[p]]}{[[p + q]]}$."
+            }
+          ]
+        },
+        "hints": [
+          "Triangles $ABD$ and $ABC$ have the same height from $A$, so their areas compare like their bases."
+        ],
+        "solution": "$[[w]] \\times \\frac{[[p]]}{[[p + q]]} = [[w*p/(p + q)]]$.",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "w*p/(p + q)",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 1,
+              "to": 4
+            },
+            "q": {
+              "from": 1,
+              "to": 5
+            },
+            "w": {
+              "from": 20,
+              "to": 60,
+              "step": 10
+            }
+          },
+          "where": ["p != q"]
+        }
+      },
+      {
+        "id": "midpoint-triangle",
+        "prompt": "The midpoints of the three sides of a triangle with area $[[w]]$ are joined to make a smaller triangle. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[w/4]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[w/2]]",
+              "why": "Its sides are half as long, so its area is $\\left(\\frac{1}{2}\\right)^2 = \\frac{1}{4}$ of the big one."
+            }
+          ]
+        },
+        "hints": ["The three lines cut the triangle into $4$ matching triangles."],
+        "solution": "The midpoint triangle is one of $4$ equal pieces: $\\frac{[[w]]}{4} = [[w/4]]$.",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "w/4",
+        "template": {
+          "vars": {
+            "w": {
+              "from": 8,
+              "to": 80,
+              "step": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "heron",
+        "prompt": "A triangle has sides $[[13*k]]$, $[[14*k]]$ and $[[15*k]]$. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[84*k^2]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "Heron's formula: $s$ is half the perimeter, and the area is $\\sqrt{s(s - a)(s - b)(s - c)}$."
+        ],
+        "solution": "$s = [[21*k]]$, and $\\sqrt{[[21*k]] \\times [[8*k]] \\times [[7*k]] \\times [[6*k]]} = [[84*k^2]]$.",
+        "skill": "triangle-area",
+        "difficulty": 2,
+        "compute": "84*k^2",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 6
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m11.area-set",
+    "type": "PROBLEM_SET",
+    "title": "Area challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "grid-triangle",
+        "prompt": "What is the area of the triangle with corners $(0, 0)$, $(8, 0)$ and $(3, 5)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$15$", "$20$", "$24$", "$40$"],
+          "correct": "C",
+          "why": {
+            "E": "Half of base times height."
+          }
+        },
+        "solution": "Base $8$ on the $x$-axis, height $5$: $\\frac{1}{2} \\times 8 \\times 5 = 20$, choice (C).",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "8*5/2"
+      },
+      {
+        "id": "five-twelve-thirteen",
+        "prompt": "A triangle has sides $5$, $12$ and $13$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$26$", "$30$", "$39$", "$60$", "$65$"],
+          "correct": "B",
+          "why": {
+            "D": "It is a right triangle: half the product of the legs."
+          }
+        },
+        "solution": "$5^2 + 12^2 = 13^2$, so the legs are $5$ and $12$: $\\frac{1}{2} \\times 5 \\times 12 = 30$, choice (B).",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "5*12/2"
+      },
+      {
+        "id": "seven-eight-nine",
+        "prompt": "A triangle has sides $7$, $8$ and $9$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$12\\sqrt{5}$", "$28$", "$12\\sqrt{6}$", "$36$"],
+          "correct": "B"
+        },
+        "solution": "$s = 12$, so the area is $\\sqrt{12 \\times 5 \\times 4 \\times 3} = \\sqrt{720} = 12\\sqrt{5}$, choice (B).",
+        "skill": "triangle-area",
+        "difficulty": 2,
+        "compute": "sqrt(12*5*4*3)"
+      },
+      {
+        "id": "median-midpoint",
+        "prompt": "Triangle $ABC$ has area $60$. $D$ is the midpoint of $BC$ and $E$ is the midpoint of $AD$. What is the area of triangle $BDE$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$12$", "$15$", "$20$", "$30$"],
+          "correct": "C",
+          "why": {
+            "E": "That is triangle $ABD$. $E$ halves it again."
+          }
+        },
+        "solution": "The median $AD$ halves the area: $ABD$ is $30$. $BE$ is a median of $ABD$, so $BDE$ is $15$, choice (C).",
+        "skill": "triangle-area",
+        "difficulty": 2,
+        "compute": "60/4"
+      },
+      {
+        "id": "altitude-to-leg",
+        "prompt": "A triangle has sides $10$, $10$ and $12$. How long is the altitude to one of the sides of length $10$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$8$", "$\\frac{48}{5}$", "$10$", "$12$"],
+          "correct": "C",
+          "why": {
+            "B": "That is the altitude to the base of length $12$."
+          }
+        },
+        "solution": "The altitude to the base is $\\sqrt{100 - 36} = 8$, so the area is $\\frac{1}{2} \\times 12 \\times 8 = 48$. Then $\\frac{1}{2} \\times 10 \\times h = 48$ gives $h = \\frac{48}{5}$, choice (C).",
+        "skill": "triangle-area",
+        "difficulty": 3,
+        "compute": "2*48/10"
+      }
+    ]
+  },
+  {
+    "key": "m11.polygons-practice",
+    "type": "PROBLEMS",
+    "title": "Polygons & angle sums",
+    "instructions": "Type each answer and press Check. Angle sum $180(n - 2)$; exterior angles add to $360$. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "angle-sum",
+        "prompt": "What is the sum of the interior angles of a polygon with $[[n]]$ sides, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180*(n - 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[180*n]]",
+              "why": "Split the polygon into triangles from one corner: you get $[[n - 2]]$ triangles, not $[[n]]$."
+            }
+          ]
+        },
+        "hints": ["From one corner, diagonals split an $n$-gon into $n - 2$ triangles."],
+        "solution": "$180 \\times ([[n]] - 2) = [[180*(n - 2)]]$.",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "180*(n - 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "regular-interior",
+        "prompt": "What is each interior angle of a regular polygon with $[[n]]$ sides, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180 - 360/n]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[360/n]]",
+              "why": "That is the exterior angle. The interior angle is $180 - [[360/n]]$."
+            }
+          ]
+        },
+        "hints": ["Each exterior angle is $\\frac{360}{[[n]]}$."],
+        "solution": "Exterior angle $\\frac{360}{[[n]]} = [[360/n]]$, so the interior angle is $180 - [[360/n]] = [[180 - 360/n]]$.",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "180 - 360/n",
+        "template": {
+          "vars": {
+            "n": {
+              "choose": [5, 6, 8, 9, 10, 12, 15, 18, 20]
+            }
+          }
+        }
+      },
+      {
+        "id": "sides-from-angle",
+        "prompt": "Each interior angle of a regular polygon is $[[180 - e]]^\\circ$. How many sides does it have?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[360/e]]"],
+          "form": "integer"
+        },
+        "hints": ["Each exterior angle is $180 - [[180 - e]] = [[e]]$, and they add to $360$."],
+        "solution": "$\\frac{360}{[[e]]} = [[360/e]]$ sides.",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "360/e",
+        "template": {
+          "vars": {
+            "e": {
+              "choose": [10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60, 72]
+            }
+          }
+        }
+      },
+      {
+        "id": "diagonals",
+        "prompt": "How many diagonals does a polygon with $[[n]]$ sides have?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n - 3)/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n*(n - 3)]]",
+              "why": "Each diagonal joins two corners, so counting from every corner counts it twice. Divide by $2$."
+            }
+          ]
+        },
+        "hints": [
+          "From each corner, diagonals go to all corners except itself and its two neighbours: $[[n - 3]]$."
+        ],
+        "solution": "$\\frac{[[n]] \\times [[n - 3]]}{2} = [[n*(n - 3)/2]]$.",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "n*(n - 3)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "hexagon-area",
+        "prompt": "A regular hexagon has side $[[s]]$. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[3*sqrt(3)*s^2/2]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[sqrt(3)*s^2/4]]",
+              "why": "That is one equilateral triangle. A regular hexagon is made of six of them."
+            }
+          ]
+        },
+        "hints": [
+          "Split the hexagon into $6$ equilateral triangles of side $[[s]]$; each has area $\\frac{\\sqrt{3}}{4}[[s]]^2$."
+        ],
+        "solution": "$6 \\times \\frac{\\sqrt{3}}{4} \\times [[s^2]] = [[3*sqrt(3)*s^2/2]]$.",
+        "skill": "polygons",
+        "difficulty": 2,
+        "compute": "3*sqrt(3)*s^2/2",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 12,
+              "step": 2
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m11.polygons-set",
+    "type": "PROBLEM_SET",
+    "title": "Polygons challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "hexagon-sum",
+        "prompt": "What is the sum of the interior angles of a hexagon, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$360$", "$540$", "$720$", "$900$", "$1080$"],
+          "correct": "C"
+        },
+        "solution": "$180 \\times 4 = 720$, choice (C).",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "180*4"
+      },
+      {
+        "id": "exterior-24",
+        "prompt": "Each exterior angle of a regular polygon is $24^\\circ$. How many sides does it have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$15$", "$18$", "$20$", "$24$"],
+          "correct": "B"
+        },
+        "solution": "$\\frac{360}{24} = 15$, choice (B).",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "360/24"
+      },
+      {
+        "id": "twenty-diagonals",
+        "prompt": "A polygon has $20$ diagonals. How many sides does it have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$7$", "$8$", "$10$"],
+          "correct": "D"
+        },
+        "solution": "$\\frac{n(n - 3)}{2} = 20$ gives $n(n - 3) = 40$, so $n = 8$, choice (D).",
+        "skill": "polygons",
+        "difficulty": 2,
+        "compute": "8"
+      },
+      {
+        "id": "sum-2340",
+        "prompt": "The interior angles of a convex polygon add up to $2340^\\circ$. How many sides does it have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$13$", "$14$", "$15$", "$16$", "$17$"],
+          "correct": "C",
+          "why": {
+            "A": "$\\frac{2340}{180} = 13$ is $n - 2$, so add $2$."
+          }
+        },
+        "solution": "$180(n - 2) = 2340$ gives $n - 2 = 13$, so $n = 15$, choice (C).",
+        "skill": "polygons",
+        "difficulty": 2,
+        "compute": "2340/180 + 2"
+      },
+      {
+        "id": "pentagon-acd",
+        "prompt": "$ABCDE$ is a regular pentagon. What is $\\angle ACD$, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$36$", "$54$", "$72$", "$90$", "$108$"],
+          "correct": "C",
+          "why": {
+            "E": "That is the whole angle at $C$. Take away $\\angle BCA$."
+          }
+        },
+        "solution": "Each interior angle is $108$. Triangle $ABC$ is isosceles with $AB = BC$, so $\\angle BCA = \\frac{180 - 108}{2} = 36$. Then $\\angle ACD = 108 - 36 = 72$, choice (C).",
+        "skill": "polygons",
+        "difficulty": 3,
+        "compute": "108 - 36"
+      }
+    ]
+  },
+  {
+    "key": "m11.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "review-third-angle",
+        "prompt": "Two angles of a triangle are $[[a]]^\\circ$ and $[[b]]^\\circ$. What is the third angle, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180 - a - b]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[360 - a - b]]",
+              "why": "The angles of a triangle add to $180^\\circ$, not $360^\\circ$."
+            }
+          ]
+        },
+        "hints": ["The three angles add to $180^\\circ$."],
+        "solution": "$180 - [[a]] - [[b]] = [[180 - a - b]]$.",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "180 - a - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 30,
+              "to": 80
+            },
+            "b": {
+              "from": 30,
+              "to": 80
+            }
+          }
+        }
+      },
+      {
+        "id": "review-isosceles-right",
+        "prompt": "A right triangle has two legs of length $[[x]]$. How long is its hypotenuse?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x*sqrt(2)]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[2*x]]",
+              "why": "Use Pythagoras: the hypotenuse is $\\sqrt{[[x]]^2 + [[x]]^2} = [[x]]\\sqrt{2}$."
+            }
+          ]
+        },
+        "hints": ["In a $45$-$45$-$90$ triangle the hypotenuse is $\\sqrt{2}$ times a leg."],
+        "solution": "$\\sqrt{[[x]]^2 + [[x]]^2} = \\sqrt{[[2*x*x]]} = [[x*sqrt(2)]]$.",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "x*sqrt(2)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "review-shadow",
+        "prompt": "A pole $[[h]]$ m tall casts a shadow $[[s]]$ m long. At the same moment a tree casts a shadow $[[t]]$ m long. How tall is the tree, in metres?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[h*t/s]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[s*t/h]]",
+              "why": "Keep the same order on both sides: height over shadow for the pole equals height over shadow for the tree."
+            }
+          ]
+        },
+        "hints": [
+          "The sun's rays make similar triangles: $\\frac{\\text{height}}{\\text{shadow}}$ is the same for both."
+        ],
+        "solution": "$\\frac{[[h]]}{[[s]]} = \\frac{x}{[[t]]}$, so $x = [[h*t/s]]$.",
+        "skill": "similar-triangles",
+        "difficulty": 1,
+        "compute": "h*t/s",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 2,
+              "to": 4
+            },
+            "s": {
+              "choose": [2, 3, 4]
+            },
+            "t": {
+              "from": 12,
+              "to": 48,
+              "step": 12
+            }
+          },
+          "where": ["h != s"]
+        }
+      },
+      {
+        "id": "review-base-height",
+        "prompt": "A triangle has a base of length $[[b]]$ and a height of $[[h]]$ to that base. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b*h/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b*h]]",
+              "why": "That is the rectangle. A triangle is half of it: $\\frac{1}{2} \\times \\text{base} \\times \\text{height}$."
+            }
+          ]
+        },
+        "hints": ["Area $= \\frac{1}{2} \\times \\text{base} \\times \\text{height}$."],
+        "solution": "$\\frac{1}{2} \\times [[b]] \\times [[h]] = [[b*h/2]]$.",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "b*h/2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 4,
+              "to": 20
+            },
+            "h": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "review-angle-sum",
+        "prompt": "What is the sum of the interior angles of a polygon with $[[n]]$ sides, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180*(n - 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[180*n]]",
+              "why": "Split the polygon into triangles from one corner: you get $[[n - 2]]$ triangles, not $[[n]]$."
+            }
+          ]
+        },
+        "hints": ["From one corner, diagonals split an $n$-gon into $n - 2$ triangles."],
+        "solution": "$180 \\times ([[n]] - 2) = [[180*(n - 2)]]$.",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "180*(n - 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 20
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m11.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 11 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-third-angle",
+        "prompt": "Two angles of a triangle are $47^\\circ$ and $68^\\circ$. What is the third angle, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$55$", "$65$", "$75$", "$113$", "$133$"],
+          "correct": "B",
+          "why": {
+            "D": "That is $47 + 68 - 2$. Subtract both angles from $180$."
+          }
+        },
+        "solution": "$180 - 47 - 68 = 65$, choice (B).",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "180 - 47 - 68"
+      },
+      {
+        "id": "check-algebra-angles",
+        "prompt": "The angles of a triangle are $x^\\circ$, $(2x + 10)^\\circ$ and $(3x - 10)^\\circ$. What is the largest angle, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$30$", "$60$", "$70$", "$80$", "$90$"],
+          "correct": "D",
+          "why": {
+            "A": "That is $x$. Put it back into each angle."
+          }
+        },
+        "solution": "$6x = 180$, so $x = 30$ and the angles are $30$, $70$ and $80$, choice (D).",
+        "skill": "angle-chasing",
+        "difficulty": 2,
+        "compute": "3*30 - 10"
+      },
+      {
+        "id": "check-base-angle",
+        "prompt": "An isosceles triangle has a top angle (between the two equal sides) of $[[x]]^\\circ$. What is each base angle, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[(180 - x)/2]]$", "$[[180 - 2*x]]$", "$[[x]]$", "$[[180 - x]]$", "$90$"],
+          "correct": "A",
+          "why": {
+            "B": "$[[x]]^\\circ$ is the top angle, not a base angle.",
+            "D": "The two base angles SHARE what is left."
+          }
+        },
+        "solution": "$\\frac{180 - [[x]]}{2} = [[(180 - x)/2]]$, choice (A).",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "(180 - x)/2",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 20,
+              "to": 80,
+              "step": 10
+            }
+          },
+          "where": ["x != 60"]
+        }
+      },
+      {
+        "id": "check-eight-fifteen",
+        "prompt": "A right triangle has legs $8$ and $15$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$13$", "$17$", "$19$", "$23$", "$120$"],
+          "correct": "B",
+          "why": {
+            "D": "Add the squares, not the legs."
+          }
+        },
+        "solution": "$\\sqrt{64 + 225} = 17$, choice (B).",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "sqrt(64 + 225)"
+      },
+      {
+        "id": "check-thirty-sixty-area",
+        "prompt": "A $30^\\circ$-$60^\\circ$-$90^\\circ$ triangle has hypotenuse $10$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\frac{25\\sqrt{3}}{2}$", "$25$", "$25\\sqrt{3}$", "$50$", "$50\\sqrt{3}$"],
+          "correct": "A",
+          "why": {
+            "C": "Remember the $\\frac{1}{2}$: the legs are $5$ and $5\\sqrt{3}$."
+          }
+        },
+        "solution": "The legs are $5$ and $5\\sqrt{3}$, so the area is $\\frac{1}{2} \\times 5 \\times 5\\sqrt{3} = \\frac{25\\sqrt{3}}{2}$, choice (A).",
+        "skill": "pythagoras",
+        "difficulty": 2,
+        "compute": "5*5*sqrt(3)/2"
+      },
+      {
+        "id": "check-ladder",
+        "prompt": "A $13$-foot ladder leans against a wall with its foot $5$ feet from the wall. The foot slides out until it is $12$ feet from the wall. How many feet does the top slide down?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$5$", "$7$", "$8$", "$12$"],
+          "correct": "C",
+          "why": {
+            "B": "That is how high the top ends up. Subtract from where it started."
+          }
+        },
+        "solution": "At first the top is $\\sqrt{169 - 25} = 12$ feet up; afterwards $\\sqrt{169 - 144} = 5$. It slides $7$ feet, choice (C).",
+        "skill": "pythagoras",
+        "difficulty": 2,
+        "compute": "sqrt(169 - 25) - sqrt(169 - 144)"
+      },
+      {
+        "id": "check-rectangle-area",
+        "prompt": "A rectangle has a diagonal of length $10$ and a perimeter of $28$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$40$", "$48$", "$50$", "$96$"],
+          "correct": "C",
+          "why": {
+            "E": "That is $2ab$. Halve it."
+          }
+        },
+        "solution": "The sides add to $14$ and their squares to $100$. So $2ab = 196 - 100 = 96$ and $ab = 48$, choice (C).",
+        "skill": "pythagoras",
+        "difficulty": 3,
+        "compute": "((28/2)^2 - 100)/2"
+      },
+      {
+        "id": "check-similar-side",
+        "prompt": "Triangle $ABC$ is similar to triangle $DEF$, with $AB = 6$, $DE = 9$ and $AC = 8$. How long is $DF$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$11$", "$12$", "$14$", "$16$"],
+          "correct": "C"
+        },
+        "solution": "The ratio is $\\frac{9}{6} = \\frac{3}{2}$, so $DF = 8 \\times \\frac{3}{2} = 12$, choice (C).",
+        "skill": "similar-triangles",
+        "difficulty": 1,
+        "compute": "8*9/6"
+      },
+      {
+        "id": "check-similar-area",
+        "prompt": "Two similar triangles have matching sides $3$ and $5$. The smaller one has area $18$. What is the area of the larger one?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$30$", "$40$", "$50$", "$75$", "$90$"],
+          "correct": "C",
+          "why": {
+            "A": "Areas scale by $\\left(\\frac{5}{3}\\right)^2$, not by $\\frac{5}{3}$."
+          }
+        },
+        "solution": "$18 \\times \\frac{25}{9} = 50$, choice (C).",
+        "skill": "similar-triangles",
+        "difficulty": 2,
+        "compute": "18*25/9"
+      },
+      {
+        "id": "check-geometric-mean",
+        "prompt": "Triangle $ABC$ has a right angle at $C$. The altitude $CD$ meets the hypotenuse at $D$, with $AD = 4$ and $DB = 9$. How long is $CD$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$\\frac{13}{2}$", "$9$", "$36$"],
+          "correct": "B",
+          "why": {
+            "E": "That is $CD^2$. Take the square root.",
+            "C": "That is the average of the pieces. The altitude is their geometric mean."
+          }
+        },
+        "solution": "$CD^2 = AD \\times DB = 36$, so $CD = 6$, choice (B).",
+        "skill": "similar-triangles",
+        "difficulty": 3,
+        "compute": "sqrt(4*9)"
+      },
+      {
+        "id": "check-base-height",
+        "prompt": "A triangle has base $12$ and height $7$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$19$", "$38$", "$42$", "$84$", "$168$"],
+          "correct": "C",
+          "why": {
+            "D": "Remember the $\\frac{1}{2}$."
+          }
+        },
+        "solution": "$\\frac{1}{2} \\times 12 \\times 7 = 42$, choice (C).",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "12*7/2"
+      },
+      {
+        "id": "check-heron",
+        "prompt": "A triangle has sides $13$, $14$ and $15$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$42$", "$72$", "$84$", "$96$", "$105$"],
+          "correct": "C"
+        },
+        "solution": "$s = 21$ and the area is $\\sqrt{21 \\times 8 \\times 7 \\times 6} = \\sqrt{7056} = 84$, choice (C).",
+        "skill": "triangle-area",
+        "difficulty": 2,
+        "compute": "sqrt(21*8*7*6)"
+      },
+      {
+        "id": "check-square-midpoint",
+        "prompt": "Square $ABCD$ has side $6$, and $M$ is the midpoint of side $CD$. What is the area of triangle $ABM$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9$", "$12$", "$18$", "$24$", "$36$"],
+          "correct": "C",
+          "why": {
+            "A": "The height from $M$ to $AB$ is the full side, $6$."
+          }
+        },
+        "solution": "Base $AB = 6$ and height $6$: $\\frac{1}{2} \\times 6 \\times 6 = 18$, choice (C).",
+        "skill": "triangle-area",
+        "difficulty": 2,
+        "compute": "6*6/2"
+      },
+      {
+        "id": "check-split-twice",
+        "prompt": "Triangle $ABC$ has area $60$. $D$ is on $BC$ with $BD = 2 \\cdot DC$, and $E$ is the midpoint of $AD$. What is the area of triangle $BDE$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$10$", "$15$", "$20$", "$30$", "$40$"],
+          "correct": "C",
+          "why": {
+            "E": "That is triangle $ABD$. $E$ halves it."
+          }
+        },
+        "solution": "$ABD$ has $\\frac{2}{3}$ of the area, $40$. $BE$ is a median of $ABD$, so $BDE$ is $20$, choice (C).",
+        "skill": "triangle-area",
+        "difficulty": 3,
+        "compute": "60*2/3/2"
+      },
+      {
+        "id": "check-decagon",
+        "prompt": "What is each interior angle of a regular decagon (10 sides), in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$108$", "$120$", "$135$", "$144$", "$150$"],
+          "correct": "D"
+        },
+        "solution": "Each exterior angle is $36$, so each interior angle is $144$, choice (D).",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "180 - 36"
+      },
+      {
+        "id": "check-diagonals",
+        "prompt": "How many diagonals does a polygon with $[[n]]$ sides have?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$[[n*(n - 1)/2]]$",
+            "$[[n*(n - 3)]]$",
+            "$[[n*(n - 3)/2]]$",
+            "$[[n - 3]]$",
+            "$[[n]]$"
+          ],
+          "correct": "C",
+          "why": {
+            "B": "Each diagonal was counted from both ends.",
+            "A": "That counts the sides too."
+          }
+        },
+        "solution": "$\\frac{[[n]] \\times [[n - 3]]}{2} = [[n*(n - 3)/2]]$, choice (C).",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "n*(n - 3)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 6,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "check-hexagon-area",
+        "prompt": "A regular hexagon has side $4$. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16\\sqrt{3}$", "$24$", "$24\\sqrt{3}$", "$48$", "$48\\sqrt{3}$"],
+          "correct": "C",
+          "why": {
+            "A": "A hexagon is six equilateral triangles; each has area $4\\sqrt{3}$."
+          }
+        },
+        "solution": "$6 \\times \\frac{\\sqrt{3}}{4} \\times 16 = 24\\sqrt{3}$, choice (C).",
+        "skill": "polygons",
+        "difficulty": 2,
+        "compute": "3*sqrt(3)*16/2"
+      },
+      {
+        "id": "check-1800",
+        "prompt": "The interior angles of a convex polygon add up to $1800^\\circ$. How many diagonals does it have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$44$", "$54$", "$60$", "$66$", "$120$"],
+          "correct": "B"
+        },
+        "solution": "$180(n - 2) = 1800$ gives $n = 12$, and $\\frac{12 \\times 9}{2} = 54$, choice (B).",
+        "skill": "polygons",
+        "difficulty": 2,
+        "compute": "12*9/2"
+      },
+      {
+        "id": "check-short-diagonal",
+        "prompt": "$ABCDEF$ is a regular hexagon with side $2$. How long is the diagonal $AC$?",
+        "figure": {
+          "file": "hexagon-diagonal.svg",
+          "alt": "A regular hexagon ABCDEF with side 2. The diagonal from A to C is drawn."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$2\\sqrt{2}$", "$2\\sqrt{3}$", "$3$", "$4$"],
+          "correct": "C",
+          "why": {
+            "E": "That is the long diagonal $AD$."
+          }
+        },
+        "solution": "Triangle $ABC$ has sides $2$, $2$ and an angle of $120$ between them. Its height from $B$ is $1$, so half of $AC$ is $\\sqrt{4 - 1} = \\sqrt{3}$ and $AC = 2\\sqrt{3}$, choice (C).",
+        "skill": "polygons",
+        "difficulty": 3,
+        "compute": "2*sqrt(3)"
+      }
+    ]
+  }
+]

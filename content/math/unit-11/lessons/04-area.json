@@ -1,0 +1,100 @@
+{
+  "slug": "math-triangle-area",
+  "order": 4,
+  "title": "Area",
+  "estMinutes": 35,
+  "focusSkills": ["triangle-area"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Two triangles share the same base, and their top corners lie on a line parallel to that base. Which one has the larger area?",
+      "placeholder": "I think… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Half base times height",
+          "body": "The area of a triangle is $\\frac{1}{2} \\times \\text{base} \\times \\text{height}$, where the height is perpendicular to the base (it may fall outside the triangle). Heron's formula needs only the sides: with $s = \\frac{a + b + c}{2}$, the area is $\\sqrt{s(s - a)(s - b)(s - c)}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: Heron",
+          "problem": "A triangle has sides $13$, $14$ and $15$. What is its area?",
+          "steps": [
+            {
+              "text": "$s = \\frac{13 + 14 + 15}{2} = 21$.",
+              "try": {
+                "prompt": "What is $s$?",
+                "accepted": ["21"],
+                "compute": "(13 + 14 + 15)/2"
+              }
+            },
+            {
+              "text": "$\\sqrt{21 \\times 8 \\times 7 \\times 6} = \\sqrt{7056} = 84$.",
+              "try": {
+                "prompt": "What is the area?",
+                "accepted": ["84"],
+                "compute": "sqrt(21*8*7*6)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Area tricks",
+          "body": "Triangles with the same height have areas in the same ratio as their bases, so a median cuts a triangle into two equal halves. For awkward shapes, split into pieces, or surround the shape with a rectangle and subtract the corners."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: splitting a base",
+          "problem": "Triangle $ABC$ has area $30$. $D$ is on $BC$ with $BD : DC = 2 : 3$. What is the area of triangle $ABD$?",
+          "steps": [
+            {
+              "text": "$ABD$ and $ABC$ share the height from $A$, and $BD$ is $\\frac{2}{5}$ of $BC$.",
+              "try": {
+                "prompt": "What fraction of $BC$ is $BD$?",
+                "accepted": ["2/5", "0.4"],
+                "compute": "2/5"
+              }
+            },
+            {
+              "text": "So $ABD$ has area $\\frac{2}{5} \\times 30 = 12$.",
+              "try": {
+                "prompt": "What is the area of $ABD$?",
+                "accepted": ["12"],
+                "compute": "30*2/5"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: a slanted side as the height",
+          "body": "The height must meet the base at a right angle; a slanted side is not the height. In Heron's formula, $s$ is HALF the perimeter. And don't forget the $\\frac{1}{2}$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m11.area-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m11.area-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When would you use Heron's formula instead of base and height?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

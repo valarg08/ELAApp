@@ -1,0 +1,49 @@
+{
+  "sections": [
+    {
+      "skill": "angle-chasing",
+      "title": "Angles & angle chasing",
+      "facts": [
+        "Triangle angles add to $180^\\circ$; an exterior angle equals the two far interior angles.",
+        "Parallel lines: corresponding and alternate angles are equal; co-interior angles add to $180^\\circ$.",
+        "Figures are not to scale unless they say so: use only what you are told."
+      ]
+    },
+    {
+      "skill": "pythagoras",
+      "title": "Pythagoras & special right triangles",
+      "facts": [
+        "$a^2 + b^2 = c^2$; triples $3, 4, 5$; $5, 12, 13$; $8, 15, 17$; $7, 24, 25$.",
+        "$45^\\circ$-$45^\\circ$-$90^\\circ$: $x, x, x\\sqrt{2}$. $30^\\circ$-$60^\\circ$-$90^\\circ$: $x, x\\sqrt{3}, 2x$.",
+        "Equilateral side $s$: height $\\frac{s\\sqrt{3}}{2}$, area $\\frac{\\sqrt{3}}{4}s^2$."
+      ]
+    },
+    {
+      "skill": "similar-triangles",
+      "title": "Similar triangles",
+      "facts": [
+        "Two equal angles make triangles similar; a parallel cut makes a similar triangle.",
+        "Lengths $\\times k$: areas $\\times k^2$, volumes $\\times k^3$.",
+        "Altitude to the hypotenuse: $h^2 = pq$."
+      ]
+    },
+    {
+      "skill": "triangle-area",
+      "title": "Area",
+      "facts": [
+        "$\\frac{1}{2} \\times \\text{base} \\times \\text{height}$, height perpendicular to the base.",
+        "Heron: $s = \\frac{a + b + c}{2}$, area $\\sqrt{s(s - a)(s - b)(s - c)}$.",
+        "Same height: areas compare like bases; a median halves the area."
+      ]
+    },
+    {
+      "skill": "polygons",
+      "title": "Polygons & angle sums",
+      "facts": [
+        "Angle sum $180(n - 2)$; exterior angles add to $360^\\circ$.",
+        "Diagonals: $\\frac{n(n - 3)}{2}$.",
+        "Regular hexagon side $s$: area $\\frac{3\\sqrt{3}}{2}s^2$."
+      ]
+    }
+  ]
+}
