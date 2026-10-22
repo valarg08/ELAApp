@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ToneChoice, WritingActivity } from '../curriculum/content.js';
+import { ToneChoice, Track, WritingActivity } from '../curriculum/content.js';
 import { PlotPlan } from '../curriculum/plot.js';
 import { ParagraphPlan } from '../curriculum/paragraph.js';
 import { ChecklistTicks } from '../curriculum/checklist.js';
@@ -46,6 +46,8 @@ export const SubmissionDetail = z.object({
   activity: z.object({ id: z.string(), key: z.string(), content: WritingActivity }),
   /** The lesson whose challenge this is, if any. */
   lesson: z.object({ id: z.string(), title: z.string(), order: z.number() }).nullable(),
+  /** The activity's unit, for the course frame around the writing workspace. */
+  unit: z.object({ track: Track, slug: z.string() }),
   /** Traits the student picked for the activity's trait picker (empty when it has none). */
   traits: z.array(z.string()).default([]),
   /** Moods chosen for the activity's mood picker (empty when it has none). */

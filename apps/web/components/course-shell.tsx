@@ -29,12 +29,15 @@ export async function CourseShell({
   track,
   unitSlug,
   lessonId,
+  wide = false,
   children,
 }: {
   track: Track;
   /** The open unit; omitted on the track's home page. */
   unitSlug?: string;
   lessonId?: string;
+  /** A wider frame for pages that need room, like the writing workspace. */
+  wide?: boolean;
   children: ReactNode;
 }) {
   const [units, unit] = await Promise.all([
@@ -173,7 +176,9 @@ export async function CourseShell({
   );
 
   return (
-    <div className="mx-auto grid w-full max-w-7xl flex-1 gap-6 px-4 py-6 md:grid-cols-[13rem_minmax(0,1fr)_12rem] md:py-10 lg:grid-cols-[16rem_minmax(0,1fr)_15rem]">
+    <div
+      className={`mx-auto grid w-full ${wide ? 'max-w-[100rem]' : 'max-w-7xl'} flex-1 gap-6 px-4 py-6 md:grid-cols-[13rem_minmax(0,1fr)_12rem] md:py-10 lg:grid-cols-[16rem_minmax(0,1fr)_15rem]`}
+    >
       <aside className="md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto">
         <details className={`${navPanel} md:hidden`}>
           <summary className={`min-h-11 cursor-pointer content-center font-semibold ${navFocus}`}>

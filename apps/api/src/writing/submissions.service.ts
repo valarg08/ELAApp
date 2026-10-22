@@ -5,6 +5,7 @@ import {
   type Lesson,
   Prisma,
   type Submission,
+  type Unit,
 } from '@storyforge/db';
 import {
   ActivityContent,
@@ -55,7 +56,9 @@ import { DatabaseService } from '../database/database.service.js';
 import { FeedbackService } from '../feedback/feedback.service.js';
 import { shouldSnapshot } from './snapshot-policy.js';
 
-type LoadedSubmission = Submission & { activity: Activity & { lesson: Lesson | null } };
+type LoadedSubmission = Submission & {
+  activity: Activity & { lesson: Lesson | null; unit: Unit };
+};
 
 /** Newest versions returned by the history list. */
 const VERSION_LIST_LIMIT = 200;
@@ -125,7 +128,7 @@ export class SubmissionsService {
           }),
         }
       : null;
-    const include = { activity: { include: { lesson: true } } } as const;
+    const include = { activity: { include: { lesson: true, unit: true } } } as const;
     try {
       const submission = await this.db.client.submission.upsert({
         where: { activityId_studentId_classId: key },
@@ -223,7 +226,7 @@ export class SubmissionsService {
     const updated = await this.db.client.submission.update({
       where: { id },
       data: { choices: SubmissionChoices.parse(choices) },
-      include: { activity: { include: { lesson: true } } },
+      include: { activity: { include: { lesson: true, unit: true } } },
     });
     return this.detail(updated);
   }
@@ -244,7 +247,7 @@ export class SubmissionsService {
     const updated = await this.db.client.submission.update({
       where: { id },
       data: { choices: SubmissionChoices.parse(choices) },
-      include: { activity: { include: { lesson: true } } },
+      include: { activity: { include: { lesson: true, unit: true } } },
     });
     return this.detail(updated);
   }
@@ -390,7 +393,7 @@ export class SubmissionsService {
     const updated = await this.db.client.submission.update({
       where: { id: current.id },
       data: { choices },
-      include: { activity: { include: { lesson: true } } },
+      include: { activity: { include: { lesson: true, unit: true } } },
     });
     return this.detail(updated);
   }
@@ -494,7 +497,7 @@ export class SubmissionsService {
           submittedAt: new Date(),
           wordCount,
         },
-        include: { activity: { include: { lesson: true } } },
+        include: { activity: { include: { lesson: true, unit: true } } },
       });
       await this.snapshot(tx, row, row.draftRevision, 'SUBMIT');
       return row;
@@ -553,7 +556,7 @@ export class SubmissionsService {
       if (updated.count === 0) throw conflict();
       const row = await tx.submission.findUniqueOrThrow({
         where: { id },
-        include: { activity: { include: { lesson: true } } },
+        include: { activity: { include: { lesson: true, unit: true } } },
       });
       await this.snapshot(tx, row, row.draftRevision, 'RESTORE');
       return row;
@@ -576,7 +579,7 @@ export class SubmissionsService {
   private async readable(user: AuthUser, id: string): Promise<LoadedSubmission> {
     const submission = await this.db.client.submission.findUnique({
       where: { id },
-      include: { activity: { include: { lesson: true } } },
+      include: { activity: { include: { lesson: true, unit: true } } },
     });
     if (!submission) throw submissionNotFound();
     if (user.role === 'STUDENT' && submission.studentId === user.id) return submission;
@@ -685,6 +688,7 @@ export class SubmissionsService {
             order: s.activity.lesson.order,
           }
         : null,
+      unit: { track: s.activity.unit.track, slug: s.activity.unit.slug },
       traits: choicesOf(s).traits,
       mood: choicesOf(s).mood,
       conflict: choicesOf(s).conflict,
