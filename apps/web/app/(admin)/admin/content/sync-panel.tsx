@@ -27,7 +27,7 @@ export function SyncPanel({ invalid }: { invalid: boolean }) {
       }
       router.refresh();
     } catch (e) {
-      setError(e instanceof ApiError ? e.userMessage : 'Could not reach StoryForge.');
+      setError(e instanceof ApiError ? e.userMessage : 'Could not reach Owlery Academy.');
     }
     setBusy(false);
   }

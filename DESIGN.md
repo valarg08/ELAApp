@@ -1,5 +1,7 @@
 # StoryForge: Interactive Creative Writing Platform (Grades 6–8)
 
+> **Product name: Owlery Academy** (renamed from StoryForge on 2026-10-22, now that it has Story, Essay and Math tracks). Users see `APP_NAME` from packages/shared; internal names (`@storyforge/...` packages, `storyforge` databases, cookies) stay StoryForge.
+
 **Design specification for implementation with Claude Code**
 Version 1.0 · Curriculum scope: Units 1–12 · Audience: engineers and coding agents
 

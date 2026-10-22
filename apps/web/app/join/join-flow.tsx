@@ -55,7 +55,9 @@ export function JoinFlow({
       setStudent(null);
       setStep('name');
     } catch (e) {
-      setError(e instanceof ApiError ? e.userMessage : 'Could not reach StoryForge. Try again.');
+      setError(
+        e instanceof ApiError ? e.userMessage : 'Could not reach Owlery Academy. Try again.',
+      );
     } finally {
       setBusy(false);
     }
@@ -81,7 +83,9 @@ export function JoinFlow({
             : "That code doesn't match. Try again!",
         );
       } else {
-        setError(e instanceof ApiError ? e.userMessage : 'Could not reach StoryForge. Try again.');
+        setError(
+          e instanceof ApiError ? e.userMessage : 'Could not reach Owlery Academy. Try again.',
+        );
       }
       setAttempt((n) => n + 1); // clears the picture grid for a fresh try
       setBusy(false);

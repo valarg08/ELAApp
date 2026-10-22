@@ -52,7 +52,7 @@ export default async function ClassPage({ params }: PageProps<'/classes/[classId
             {klass.joinCode}
           </p>
           <p className="mt-2 text-muted">
-            Students go to StoryForge, choose <strong>I&apos;m a student</strong> and type this
+            Students go to Owlery Academy, choose <strong>I&apos;m a student</strong> and type this
             code.
           </p>
         </div>

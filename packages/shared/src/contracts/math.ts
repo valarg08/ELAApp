@@ -250,7 +250,7 @@ export type AmcLetter = z.infer<typeof AmcLetter>;
 export const PAST_PAPER_SIZE = 25;
 
 /**
- * One question of a past paper the student worked outside StoryForge: their letter (null for a
+ * One question of a past paper the student worked outside Owlery Academy: their letter (null for a
  * blank), the official letter and an optional topic tag. Never the problem text (© MAA).
  */
 export const PastPaperItem = z.object({

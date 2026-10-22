@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 /**
  * Essay Writing checklists (Unit 14 on, DESIGN.md §9.12): a list to edit a whole essay against.
- * Items with `auto` are ticked by StoryForge from the essay analysis as the student writes; the
+ * Items with `auto` are ticked by Owlery Academy from the essay analysis as the student writes; the
  * others the student ticks themselves (stored in `Submission.choices.checklist`). It never
  * blocks submitting.
  */

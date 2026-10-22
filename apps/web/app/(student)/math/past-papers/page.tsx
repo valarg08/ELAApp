@@ -8,7 +8,7 @@ import { serverApi } from '@/lib/server-api';
 export const dynamic = 'force-dynamic';
 
 /**
- * The past-paper log (math-design.md §4.15): official AMC 10 papers worked outside StoryForge,
+ * The past-paper log (math-design.md §4.15): official AMC 10 papers worked outside Owlery Academy,
  * logged as answer letters and topics only. Past AMC problems are never on the platform (© MAA).
  */
 export default async function MathPastPapers() {
@@ -27,8 +27,8 @@ export default async function MathPastPapers() {
           <h1 className="mt-4 text-4xl font-bold">My past-paper log</h1>
           <p className="mt-2 text-lg text-muted">
             Worked an official AMC 10 paper on your own? Mark it with the official answers, then log
-            your letters here. StoryForge scores it like the AMC (6 right, 1.5 blank, 0 wrong) and
-            adds it to your AMC-score estimate and danger zones.
+            your letters here. Owlery Academy scores it like the AMC (6 right, 1.5 blank, 0 wrong)
+            and adds it to your AMC-score estimate and danger zones.
           </p>
         </div>
         <TrackTabs current="MATH" />

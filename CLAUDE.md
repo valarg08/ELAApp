@@ -1,4 +1,6 @@
-# StoryForge — notes for Claude Code
+# StoryForge (shown to users as Owlery Academy) — notes for Claude Code
+
+- The product name users see is **Owlery Academy** (`APP_NAME` in packages/shared). Keep internal names (`@storyforge/...`, databases, cookies) as they are.
 
 - Design spec: DESIGN.md (source of truth). Update it when a design decision changes.
   The Math track has its own design file: math-design.md (source of truth for Math; update it for Math decisions).

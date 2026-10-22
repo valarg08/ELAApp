@@ -1,4 +1,6 @@
-# StoryForge
+# Owlery Academy
+
+Formerly StoryForge: the code, packages (`@storyforge/...`) and databases keep the old name; only the name users see changed.
 
 An interactive creative writing platform for middle school (grades 6–8). The full design is in [DESIGN.md](DESIGN.md).
 

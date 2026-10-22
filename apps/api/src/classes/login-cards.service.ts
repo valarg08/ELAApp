@@ -181,7 +181,7 @@ export class LoginCardsService {
       .fontSize(8)
       .fillColor('#6b7280')
       .text(
-        'Scan the code or go to the StoryForge website and choose "I\'m a student". Keep this card private.',
+        'Scan the code or go to the Owlery Academy website and choose "I\'m a student". Keep this card private.',
         x + pad,
         y + h - pad - 20,
         { width: w - pad * 2 },

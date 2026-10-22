@@ -26,7 +26,9 @@ export function TeacherAuthForm({ mode }: { mode: 'login' | 'register' }) {
       router.push('/');
       router.refresh();
     } catch (e) {
-      setError(e instanceof ApiError ? e.userMessage : 'Could not reach StoryForge. Try again.');
+      setError(
+        e instanceof ApiError ? e.userMessage : 'Could not reach Owlery Academy. Try again.',
+      );
       setBusy(false);
     }
   }

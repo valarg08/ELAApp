@@ -51,7 +51,7 @@ export default async function Landing() {
                 first.
               </li>
               <li>
-                Create a class. StoryForge gives it a 6-letter <strong>class code</strong>.
+                Create a class. Owlery Academy gives it a 6-letter <strong>class code</strong>.
               </li>
               <li>
                 Open the class and use <strong>Add students</strong> (one first name per line). Pick
