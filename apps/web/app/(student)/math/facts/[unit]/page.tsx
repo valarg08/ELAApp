@@ -2,7 +2,7 @@ import { FactSheetView } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MathText } from '@/components/math-text';
-import { PageShell } from '@/components/ui';
+import { CourseShell } from '@/components/course-shell';
 import { PrintButton } from '@/features/math/print-button';
 import { serverApi } from '@/lib/server-api';
 
@@ -16,7 +16,7 @@ export default async function MathFactSheet({ params }: PageProps<'/math/facts/[
   if (!view) notFound();
 
   return (
-    <PageShell width="max-w-3xl">
+    <CourseShell track="MATH">
       <div className="flex flex-col gap-6">
         <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
           <Link href="/math" className="text-brand underline">
@@ -53,6 +53,6 @@ export default async function MathFactSheet({ params }: PageProps<'/math/facts/[
           Back to the unit
         </Link>
       </div>
-    </PageShell>
+    </CourseShell>
   );
 }

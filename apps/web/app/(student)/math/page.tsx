@@ -7,7 +7,7 @@ import {
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { TrackTabs } from '@/components/track-tabs';
-import { PageShell } from '@/components/ui';
+import { CourseShell } from '@/components/course-shell';
 import { UnitCard } from '@/components/unit-card';
 import { points } from '@/features/math/copy';
 import { getMe, serverApi } from '@/lib/server-api';
@@ -34,7 +34,7 @@ export default async function MathHome() {
   const tests = new Map((home?.tests ?? []).map((t) => [t.key, t]));
 
   return (
-    <PageShell width="max-w-5xl">
+    <CourseShell track="MATH">
       <div className="flex flex-col gap-8">
         <div>
           <h1 className="text-4xl font-bold">Math: AMC 10 practice</h1>
@@ -216,7 +216,7 @@ export default async function MathHome() {
           </section>
         )}
       </div>
-    </PageShell>
+    </CourseShell>
   );
 }
 

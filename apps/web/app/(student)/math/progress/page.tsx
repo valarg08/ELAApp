@@ -2,7 +2,8 @@ import { MathSkillsView, TrackProgress, UnitSummary } from '@storyforge/shared';
 import Link from 'next/link';
 import { TrackProgressView } from '@/components/track-progress';
 import { TrackTabs } from '@/components/track-tabs';
-import { ErrorMessage, PageShell } from '@/components/ui';
+import { ErrorMessage } from '@/components/ui';
+import { CourseShell } from '@/components/course-shell';
 import { SkillsView } from '@/features/math/skills-view';
 import { serverApi } from '@/lib/server-api';
 
@@ -17,7 +18,7 @@ export default async function MathProgress() {
   ]);
 
   return (
-    <PageShell width="max-w-5xl">
+    <CourseShell track="MATH">
       <div className="flex flex-col gap-8">
         <div>
           <Link href="/math" className="text-brand underline">
@@ -38,6 +39,6 @@ export default async function MathProgress() {
           <ErrorMessage message="Could not load your progress." />
         )}
       </div>
-    </PageShell>
+    </CourseShell>
   );
 }

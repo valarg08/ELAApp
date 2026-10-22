@@ -2,7 +2,7 @@ import { MathTestView, TestResult } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { z } from 'zod';
-import { PageShell } from '@/components/ui';
+import { CourseShell } from '@/components/course-shell';
 import { MathAttempt } from '@/features/math/test-player';
 import { serverApi } from '@/lib/server-api';
 
@@ -27,13 +27,13 @@ export default async function MathAttemptPage({
   if (!attempt) notFound();
 
   return (
-    <PageShell width="max-w-4xl">
+    <CourseShell track="MATH">
       <div className="flex flex-col gap-6">
         <Link href={back.href} className="text-brand underline">
           ← {lessonId ? 'The lesson' : 'Math'}
         </Link>
         <MathAttempt initial={attempt} back={back} />
       </div>
-    </PageShell>
+    </CourseShell>
   );
 }

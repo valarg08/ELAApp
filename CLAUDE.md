@@ -30,6 +30,7 @@
 - Curriculum content is JSON in /content (format: DESIGN.md §9.4). After editing it run `pnpm content:check`, then
   `pnpm content:sync` to load it into the dev database. API tests seed it with `seedContent()` after `resetDatabase()`.
 - turbo only passes env vars listed in `globalPassThroughEnv` (turbo.json) to tasks — add new env vars there or CI breaks.
+- Student page design (DESIGN.md §6.2): every student page in a track is wrapped in `CourseShell` (apps/web/components/course-shell.tsx): Chapters menu left, page centre, Progress right. Use it for new student pages; only the writing workspace and timed tests skip it.
 - Writing workspace (DESIGN.md §5.4.1): drafts are plain text. Autosave logic is the framework-free `AutosaveController`
   (apps/web/features/writing/autosave.ts), unit-tested with fake timers. Playwright tests call `expectAccessible(page)`
   (axe) from apps/web/e2e/helpers.ts.

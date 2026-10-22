@@ -1,7 +1,8 @@
 import { ErrorLogList, REDOS_TO_RESOLVE } from '@storyforge/shared';
 import Link from 'next/link';
 import { TrackTabs } from '@/components/track-tabs';
-import { ErrorMessage, PageShell } from '@/components/ui';
+import { ErrorMessage } from '@/components/ui';
+import { CourseShell } from '@/components/course-shell';
 import { ErrorLogView } from '@/features/math/error-log-view';
 import { serverApi } from '@/lib/server-api';
 
@@ -12,7 +13,7 @@ export default async function MathErrorLog() {
   const log = await serverApi('/math/error-log', ErrorLogList);
 
   return (
-    <PageShell width="max-w-4xl">
+    <CourseShell track="MATH">
       <div className="flex flex-col gap-8">
         <div>
           <Link href="/math" className="text-brand underline">
@@ -38,6 +39,6 @@ export default async function MathErrorLog() {
           <ErrorMessage message="Could not load your error log." />
         )}
       </div>
-    </PageShell>
+    </CourseShell>
   );
 }

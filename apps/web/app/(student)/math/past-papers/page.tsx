@@ -1,7 +1,8 @@
 import { MathSkillsView, PastPaperList } from '@storyforge/shared';
 import Link from 'next/link';
 import { TrackTabs } from '@/components/track-tabs';
-import { ErrorMessage, PageShell } from '@/components/ui';
+import { ErrorMessage } from '@/components/ui';
+import { CourseShell } from '@/components/course-shell';
 import { PastPaperLog } from '@/features/math/past-paper-log';
 import { serverApi } from '@/lib/server-api';
 
@@ -18,7 +19,7 @@ export default async function MathPastPapers() {
   ]);
 
   return (
-    <PageShell width="max-w-4xl">
+    <CourseShell track="MATH">
       <div className="flex flex-col gap-8">
         <div>
           <Link href="/math/progress" className="text-brand underline">
@@ -38,6 +39,6 @@ export default async function MathPastPapers() {
           <ErrorMessage message="Could not load your past-paper log." />
         )}
       </div>
-    </PageShell>
+    </CourseShell>
   );
 }

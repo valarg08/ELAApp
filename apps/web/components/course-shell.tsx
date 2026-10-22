@@ -16,9 +16,9 @@ const panel = 'rounded-2xl border border-border bg-card p-4 shadow-sm';
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
 
 /**
- * The course frame around the unit and lesson pages: the track's chapters (units) and the current
- * unit's lessons on the left, progress on the right. On small screens both collapse above and
- * below the page.
+ * The course frame around a track's home, unit and lesson pages: the track's chapters (units) and
+ * the current unit's lessons on the left, progress on the right. Below the md breakpoint both
+ * collapse above and below the page.
  */
 export async function CourseShell({
   track,
@@ -27,13 +27,14 @@ export async function CourseShell({
   children,
 }: {
   track: Track;
-  unitSlug: string;
+  /** The open unit; omitted on the track's home page. */
+  unitSlug?: string;
   lessonId?: string;
   children: ReactNode;
 }) {
   const [units, unit] = await Promise.all([
     serverApi(`/units?track=${track}`, UnitSummary.array()),
-    serverApi(`/units/${encodeURIComponent(unitSlug)}`, UnitDetail),
+    unitSlug ? serverApi(`/units/${encodeURIComponent(unitSlug)}`, UnitDetail) : null,
   ]);
   const chapters = units ?? [];
   const lesson = lessonId ? unit?.lessons.find((l) => l.id === lessonId) : undefined;
@@ -43,10 +44,12 @@ export async function CourseShell({
 
   const chapterNav = (
     <nav aria-label="Chapters">
-      <Link href={TRACK_HOME[track]} className={`text-sm text-brand underline ${focus}`}>
-        ← {TRACK_NAMES[track]}
-      </Link>
-      <ol className="mt-3 flex flex-col gap-1">
+      {unitSlug && (
+        <Link href={TRACK_HOME[track]} className={`text-sm text-brand underline ${focus}`}>
+          ← {TRACK_NAMES[track]}
+        </Link>
+      )}
+      <ol className={`flex flex-col gap-1 ${unitSlug ? 'mt-3' : ''}`}>
         {chapters.map((u) => {
           const current = u.slug === unitSlug;
           const done = u.lessonCount > 0 && u.completedLessons >= u.lessonCount;
@@ -163,15 +166,15 @@ export async function CourseShell({
   );
 
   return (
-    <div className="mx-auto grid w-full max-w-7xl flex-1 gap-6 px-4 py-6 lg:grid-cols-[16rem_minmax(0,1fr)_15rem] lg:py-10">
-      <aside className="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto">
-        <details className={`${panel} lg:hidden`}>
+    <div className="mx-auto grid w-full max-w-7xl flex-1 gap-6 px-4 py-6 md:grid-cols-[13rem_minmax(0,1fr)_12rem] md:py-10 lg:grid-cols-[16rem_minmax(0,1fr)_15rem]">
+      <aside className="md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto">
+        <details className={`${panel} md:hidden`}>
           <summary className={`min-h-11 cursor-pointer content-center font-semibold ${focus}`}>
             Chapters
           </summary>
           <div className="mt-3">{chapterNav}</div>
         </details>
-        <div className={`${panel} hidden lg:block`}>
+        <div className={`${panel} hidden md:block`}>
           <h2 className="mb-2 text-lg font-semibold">Chapters</h2>
           {chapterNav}
         </div>
@@ -181,7 +184,7 @@ export async function CourseShell({
 
       <aside
         aria-label="Progress"
-        className="order-last lg:order-none lg:sticky lg:top-6 lg:self-start"
+        className="order-last md:order-none md:sticky md:top-6 md:self-start"
       >
         <div className={panel}>
           <h2 className="mb-3 text-lg font-semibold">Progress</h2>

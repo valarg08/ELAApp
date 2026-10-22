@@ -2,7 +2,7 @@ import { UnitSummary } from '@storyforge/shared';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { TrackTabs } from '@/components/track-tabs';
-import { PageShell } from '@/components/ui';
+import { CourseShell } from '@/components/course-shell';
 import { UnitCard } from '@/components/unit-card';
 import { getMe, serverApi } from '@/lib/server-api';
 
@@ -18,7 +18,7 @@ export default async function EssayHome() {
   const current = units?.find((u) => u.available && u.completedLessons < u.lessonCount);
 
   return (
-    <PageShell width="max-w-5xl">
+    <CourseShell track="ESSAY">
       <div className="flex flex-col gap-8">
         <div>
           <h1 className="text-4xl font-bold">Essay Writing</h1>
@@ -72,6 +72,6 @@ export default async function EssayHome() {
           </ol>
         </section>
       </div>
-    </PageShell>
+    </CourseShell>
   );
 }
