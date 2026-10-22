@@ -186,7 +186,7 @@ Geometry basics come in Stage 3 because the unit order is kept; the diagnostic s
 
 **Not yet (later phases):**
 - "Try a similar one" from the bank (M1, once units have more problems per skill);
-- `$$…$$` display math;
+- `$…$` display math (built 2026-10-22, see §4.16);
 - the server-side timer and AMC scoring (M15).
 
 **Tests owed:**
@@ -669,3 +669,9 @@ Unit 15 Mock Exams & Final Review is published, with 10 lessons. Each has a hook
 - **`MOCK_TEST` activity:** `{ key, type: "MOCK_TEST", title, instructions, test }`, Math only and only as a lesson challenge. content:check makes sure each mock file is used by exactly one `MOCK_TEST` activity. The challenge step shows the mock card (best score, start or resume) and opens `/math/attempts/[id]?lesson=…`, whose links lead back to the lesson; the step completes once a handed-in attempt of that mock exists, and stores its points out of 150.
 - **AMC-score estimate** (`GET /math/skills` → `scores`, shown on `/math/progress` under "Full tests and my AMC-score estimate"): the full 25-problem tests (checkpoints, mocks, logged past papers), newest first; the estimate is the mean of the last 3, rounded to 0.5, with the range from their lowest to highest (±6 with only one test).
 - **Past-paper log** (`/math/past-papers`, `MathPastPaper`): a label, a date and 25 items `{ answer (A–E or blank), official (A–E), skill? }`. It never stores problem text. It is scored like the AMC on the server, joins the estimate and accuracy by question position, and a skill missed 2 or more times across past papers becomes a danger zone ("Missed N times in your past papers"). Deviation from §1: outside problems don't go into the error log, since a redo needs a real problem; the error-log page links to the past-paper log instead. Students delete their own papers (confirm step).
+
+### 4.16 Math extras (2026-10-22)
+
+- **Display math:** `$$…$$` in any Math text is set on its own centred line (KaTeX `displayMode`). `splitMath` returns `display: true` for those pieces and `fillPlaceholders` treats them as math, so `[[expr]]` inside fills as TeX. content:check renders every display piece. A formula wider than the screen scrolls sideways and is focusable (`tabIndex=0`, visible focus ring) so keyboard users can scroll it. Inline math next to inline math must be separated (`$a$ $b$`, not `$a$$b$`). First use: the "Quick identities" card in the Unit 15 algebra refresh.
+- **Mock answer letters:** the right answers of mocks A, B, C and the final mock are spread over (A)–(E), about 5 each, with the choices still in increasing order.
+

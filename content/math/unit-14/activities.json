@@ -1556,7 +1556,7 @@
           "choices": ["$40$", "$50$", "$60$", "$70$", "$80$"],
           "correct": "B",
           "why": {
-            "C": "The hour hand has moved past the $2$: it's at $${deg(70)}$, not $${deg(60)}$."
+            "C": "The hour hand has moved past the $2$: it's at $70^\\circ$, not $60^\\circ$."
           }
         },
         "solution": "Minute hand $120^\\circ$, hour hand $60 + 10 = 70^\\circ$: $50^\\circ$, choice (B).",

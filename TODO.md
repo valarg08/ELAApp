@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-21 (M14–M15 built: Math Units 14–15, the four mocks, the AMC-score estimate and the past-paper log; the Math track is complete; on branch phase-m14-m15).
+Last updated: 2026-10-22 (Math extras: $$…$$ display math and spread-out mock answer letters; the Math track is complete).
 
 ## Done so far
 
@@ -43,7 +43,7 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
   - Part C: Quill nudges, the math Learn-card tutor, the trap picker in Reflect, plainer tone for 14–16, the teacher skills view;
   - Part D, tests and final prep: the `MOCK_TEST` engine (moved from M15: skip, flag, the 2-minute rule, mistake analysis, time sinks), the diagnostic test (25 problems, report, starting skill levels), checkpoint slots, the danger-zone report, fact sheets (`facts.json`), light review, the four stage labels on `/math` (unit order unchanged).
 - [x] **M1** Unit 1 Problem Solving & the AMC 10: finish the lessons after the sample lesson (incl. smart guessing & the 2-minute rule), the ⭐ check (100%), publish the unit, in the M0.5 format
-- [ ] Math extras noted in M0: `$$…$$` display math
+- [x] Math extras noted in M0: `$…$` display math (math-design.md §4.16)
 - [x] **M2** Unit 2 Arithmetic & Number Sense: 5 lessons and the ⭐ check (100%), published, with its fact sheet
 - [x] **M3** Unit 3 Linear Equations & Word Problems: 5 lessons and the ⭐ check (100%), published, with its fact sheet
 - [x] **M4** Unit 4 Quadratics & Polynomials: 5 lessons and the ⭐ check (100%), published, with its fact sheet

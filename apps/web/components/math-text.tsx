@@ -5,23 +5,29 @@ import type { ElementType } from 'react';
 const cache = new Map<string, string>();
 
 /** One TeX piece as MathML (read by screen readers, drawn natively by the browser). */
-function render(tex: string): string {
-  const hit = cache.get(tex);
+function render(tex: string, display: boolean): string {
+  const key = `${display ? 'D' : 'I'}${tex}`;
+  const hit = cache.get(key);
   if (hit !== undefined) return hit;
   let html: string;
   try {
-    html = renderToString(tex, { output: 'mathml', throwOnError: false, trust: false });
+    html = renderToString(tex, {
+      output: 'mathml',
+      throwOnError: false,
+      trust: false,
+      displayMode: display,
+    });
   } catch {
     html = '';
   }
   if (cache.size > 500) cache.clear();
-  cache.set(tex, html);
+  cache.set(key, html);
   return html;
 }
 
 /**
- * Text with $…$ math (DESIGN.md §9.13), rendered with KaTeX. `\$` is a dollar sign. Content was
- * checked by content:check, and KaTeX escapes everything it outputs.
+ * Text with $…$ inline math and $$…$$ display math (DESIGN.md §9.13), rendered with KaTeX. `\$` is
+ * a dollar sign. Content was checked by content:check, and KaTeX escapes everything it outputs.
  */
 export function MathText({
   text,
@@ -36,8 +42,20 @@ export function MathText({
   return (
     <Tag className={className}>
       {segments.map((s, i) =>
-        s.math ? (
-          <span key={i} className="math" dangerouslySetInnerHTML={{ __html: render(s.text) }} />
+        s.display ? (
+          <span
+            key={i}
+            // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- a formula wider than a phone screen scrolls, and a scrollable region must be keyboard focusable (axe)
+            tabIndex={0}
+            className="math math-display rounded focus-visible:outline-3 focus-visible:outline-brand"
+            dangerouslySetInnerHTML={{ __html: render(s.text, true) }}
+          />
+        ) : s.math ? (
+          <span
+            key={i}
+            className="math"
+            dangerouslySetInnerHTML={{ __html: render(s.text, false) }}
+          />
         ) : (
           <span key={i}>{s.text}</span>
         ),

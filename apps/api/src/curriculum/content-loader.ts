@@ -61,15 +61,15 @@ const problemsOf = (activities: ActivityContent[]) =>
     a.type === 'PROBLEMS' || a.type === 'PROBLEM_SET' ? a.problems.map((p) => ({ a, p })) : [],
   );
 
-/** Every $…$ piece of math in a text, to check KaTeX can render it. */
+/** Every $…$ and $…$ piece of math in a text, to check KaTeX can render it. */
 function texErrors(where: string, value: string): string[] {
   const errors: string[] = [];
   const { segments, ok } = splitMath(value);
   if (!ok) errors.push(`${where}: a "$" is not closed (write \\$ for a dollar sign)`);
-  for (const { math, text } of segments) {
+  for (const { math, display, text } of segments) {
     if (!math) continue;
     try {
-      renderToString(text, { throwOnError: true, output: 'mathml' });
+      renderToString(text, { throwOnError: true, output: 'mathml', displayMode: display === true });
     } catch (e) {
       const why = e instanceof Error ? e.message : String(e);
       errors.push(`${where}: KaTeX can't read "${text}" (${why})`);

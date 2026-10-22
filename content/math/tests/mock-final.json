@@ -42,13 +42,13 @@
       "prompt": "The sum of three consecutive odd integers is $87$. What is the largest of them?",
       "answer": {
         "kind": "choice",
-        "choices": ["$27$", "$29$", "$31$", "$33$", "$35$"],
-        "correct": "C",
+        "choices": ["$23$", "$25$", "$27$", "$29$", "$31$"],
+        "correct": "E",
         "why": {
-          "B": "That is the middle one."
+          "D": "That is the middle one."
         }
       },
-      "solution": "The middle one is $\\frac{87}{3} = 29$, so the largest is $31$, choice (C).",
+      "solution": "The middle one is $\\frac{87}{3} = 29$, so the largest is $31$, choice (E).",
       "skill": "linear-equations",
       "difficulty": 1,
       "compute": "87/3 + 2"
@@ -84,10 +84,10 @@
       "prompt": "A $25$-foot ladder leans against a wall with its foot $7$ feet from the wall. How high up the wall does it reach, in feet?",
       "answer": {
         "kind": "choice",
-        "choices": ["$18$", "$20$", "$22$", "$24$", "$26$"],
-        "correct": "D"
+        "choices": ["$16$", "$18$", "$20$", "$22$", "$24$"],
+        "correct": "E"
       },
-      "solution": "$\\sqrt{25^2 - 7^2} = \\sqrt{576} = 24$, choice (D).",
+      "solution": "$\\sqrt{25^2 - 7^2} = \\sqrt{576} = 24$, choice (E).",
       "skill": "pythagoras",
       "difficulty": 1,
       "compute": "sqrt(625 - 49)"
@@ -129,10 +129,10 @@
       "prompt": "If $2x + 3y = 23$ and $3x + 2y = 22$, what is $x + y$?",
       "answer": {
         "kind": "choice",
-        "choices": ["$7$", "$8$", "$9$", "$10$", "$11$"],
-        "correct": "C"
+        "choices": ["$5$", "$6$", "$7$", "$8$", "$9$"],
+        "correct": "E"
       },
-      "solution": "Adding gives $5x + 5y = 45$, so $x + y = 9$, choice (C).",
+      "solution": "Adding gives $5x + 5y = 45$, so $x + y = 9$, choice (E).",
       "skill": "systems",
       "difficulty": 2,
       "compute": "45/5"
@@ -142,13 +142,13 @@
       "prompt": "How many positive integers $n$ have $\\lfloor \\sqrt{n} \\rfloor = 5$?",
       "answer": {
         "kind": "choice",
-        "choices": ["$5$", "$9$", "$10$", "$11$", "$12$"],
-        "correct": "D",
+        "choices": ["$7$", "$8$", "$9$", "$10$", "$11$"],
+        "correct": "E",
         "why": {
-          "C": "Count both $25$ and $35$."
+          "D": "Count both $25$ and $35$."
         }
       },
-      "solution": "$5 \\le \\sqrt{n} < 6$ means $25 \\le n \\le 35$: $11$ integers, choice (D).",
+      "solution": "$5 \\le \\sqrt{n} < 6$ means $25 \\le n \\le 35$: $11$ integers, choice (E).",
       "skill": "floor-ceiling",
       "difficulty": 2,
       "compute": "36 - 25"
@@ -222,13 +222,13 @@
       "prompt": "At the same moment, a tree casts a $15$-metre shadow and a $2$-metre pole casts a $3$-metre shadow. How tall is the tree, in metres?",
       "answer": {
         "kind": "choice",
-        "choices": ["$8$", "$9$", "$10$", "$12$", "$\\frac{45}{2}$"],
-        "correct": "C",
+        "choices": ["$10$", "$12$", "$15$", "$18$", "$\\frac{45}{2}$"],
+        "correct": "A",
         "why": {
           "E": "The ratio is upside down."
         }
       },
-      "solution": "$\\frac{h}{15} = \\frac{2}{3}$, so $h = 10$, choice (C).",
+      "solution": "$\\frac{h}{15} = \\frac{2}{3}$, so $h = 10$, choice (A).",
       "skill": "similar-triangles",
       "difficulty": 2,
       "compute": "2*15/3"
@@ -238,13 +238,13 @@
       "prompt": "How many integers $x$ satisfy $|x - 4| < 7$?",
       "answer": {
         "kind": "choice",
-        "choices": ["$11$", "$12$", "$13$", "$14$", "$15$"],
-        "correct": "C",
+        "choices": ["$13$", "$14$", "$15$", "$16$", "$17$"],
+        "correct": "A",
         "why": {
-          "E": "The inequality is strict."
+          "C": "The inequality is strict."
         }
       },
-      "solution": "$-3 < x < 11$, so $x$ runs from $-2$ to $10$: $13$ integers, choice (C).",
+      "solution": "$-3 < x < 11$, so $x$ runs from $-2$ to $10$: $13$ integers, choice (A).",
       "skill": "inequalities",
       "difficulty": 2,
       "compute": "10 - (-2) + 1"
@@ -267,13 +267,13 @@
       "prompt": "How many four-digit numbers have digits that strictly increase from left to right?",
       "answer": {
         "kind": "choice",
-        "choices": ["$84$", "$120$", "$126$", "$210$", "$252$"],
-        "correct": "C",
+        "choices": ["$126$", "$168$", "$210$", "$252$", "$504$"],
+        "correct": "A",
         "why": {
-          "D": "$0$ can't be used."
+          "C": "$0$ can't be used."
         }
       },
-      "solution": "Choose $4$ different digits from $1$ to $9$ ($0$ can't lead, and it can't come later in a rising number); they can only go in one order: $\\binom{9}{4} = 126$, choice (C).",
+      "solution": "Choose $4$ different digits from $1$ to $9$ ($0$ can't lead, and it can't come later in a rising number); they can only go in one order: $\\binom{9}{4} = 126$, choice (A).",
       "skill": "combinations",
       "difficulty": 3,
       "compute": "binom(9, 4)"
@@ -283,10 +283,10 @@
       "prompt": "Positive numbers $a$, $b$, $c$ form a geometric sequence with $a + b + c = 26$ and $abc = 216$. What is $b$?",
       "answer": {
         "kind": "choice",
-        "choices": ["$2$", "$4$", "$6$", "$8$", "$9$"],
-        "correct": "C"
+        "choices": ["$6$", "$8$", "$9$", "$12$", "$13$"],
+        "correct": "A"
       },
-      "solution": "In a geometric sequence $ac = b^2$, so $abc = b^3 = 216$ and $b = 6$, choice (C). (Then $a + c = 20$: the sequence is $2, 6, 18$.)",
+      "solution": "In a geometric sequence $ac = b^2$, so $abc = b^3 = 216$ and $b = 6$, choice (A). (Then $a + c = 20$: the sequence is $2, 6, 18$.)",
       "skill": "geometric-sequences",
       "difficulty": 3,
       "compute": "6"
@@ -309,13 +309,13 @@
       "prompt": "How many ordered triples of whole numbers $(a, b, c)$ have $a + b + c = 10$ and $a \\le 2$?",
       "answer": {
         "kind": "choice",
-        "choices": ["$27$", "$30$", "$33$", "$36$", "$66$"],
-        "correct": "B",
+        "choices": ["$30$", "$33$", "$36$", "$45$", "$66$"],
+        "correct": "A",
         "why": {
           "E": "That ignores $a \\le 2$."
         }
       },
-      "solution": "For $a = 0, 1, 2$ the pair $(b, c)$ has $11$, $10$ and $9$ choices: $30$ in all, choice (B).",
+      "solution": "For $a = 0, 1, 2$ the pair $(b, c)$ has $11$, $10$ and $9$ choices: $30$ in all, choice (A).",
       "skill": "stars-bars",
       "difficulty": 3,
       "compute": "11 + 10 + 9"

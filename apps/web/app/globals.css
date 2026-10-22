@@ -55,3 +55,13 @@ body {
   math-style: normal;
   font-size: 1.1em;
 }
+
+/* $$…$$ display math: its own centred line, scrolling sideways if it is wider than the screen. */
+.math-display {
+  display: block;
+  margin: 0.25em 0;
+  padding: 0.25em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}

@@ -28,32 +28,46 @@ const id = z.string().regex(/^[a-z0-9][a-z0-9-]*$/, 'Use lowercase letters, numb
 
 export interface MathSegment {
   math: boolean;
+  /** `$$…$$` display math, set on its own centred line. */
+  display?: boolean;
   text: string;
 }
 
 /**
- * Split text into plain and $…$ math pieces. `\$` is a literal dollar sign (for money); `ok` is
- * false when a `$` is left open.
+ * Split text into plain, $…$ inline math and $$…$$ display math pieces. `\$` is a literal dollar
+ * sign (for money); `ok` is false when a `$` or `$$` is left open.
  */
 export function splitMath(value: string): { segments: MathSegment[]; ok: boolean } {
   const segments: MathSegment[] = [];
   let current = '';
-  let math = false;
+  let mode: 'text' | 'inline' | 'display' = 'text';
+  const flush = () => {
+    if (current)
+      segments.push(
+        mode === 'display'
+          ? { math: true, display: true, text: current }
+          : { math: mode === 'inline', text: current },
+      );
+    current = '';
+  };
   for (let i = 0; i < value.length; i += 1) {
     const ch = value[i]!;
     if (ch === '\\' && value[i + 1] === '$') {
-      current += math ? '\\$' : '$';
+      current += mode === 'text' ? '$' : '\\$';
       i += 1;
-    } else if (ch === '$') {
-      if (current) segments.push({ math, text: current });
-      current = '';
-      math = !math;
+    } else if (ch === '$' && value[i + 1] === '$' && mode !== 'inline') {
+      flush();
+      mode = mode === 'display' ? 'text' : 'display';
+      i += 1;
+    } else if (ch === '$' && mode !== 'display') {
+      flush();
+      mode = mode === 'inline' ? 'text' : 'inline';
     } else {
       current += ch;
     }
   }
-  if (current) segments.push({ math, text: current });
-  return { segments, ok: !math };
+  flush();
+  return { segments, ok: mode === 'text' };
 }
 
 // ───────── Strands and skills ─────────
@@ -255,19 +269,25 @@ export function templateVariants(template: MathTemplate): Vars[] {
   return list;
 }
 
-/** Fill `[[expr]]` placeholders: TeX inside $…$, plain text ("3/4", "2√3") outside. */
+/** Fill `[[expr]]` placeholders: TeX inside $…$ and $$…$$, plain text ("3/4", "2√3") outside. */
 export function fillPlaceholders(value: string, vars: Readonly<Vars>): string {
   if (!value.includes('[[')) return value;
   let out = '';
-  let math = false;
+  // The same modes as splitMath, so a placeholder is TeX exactly when it is rendered as math.
+  let mode: 'text' | 'inline' | 'display' = 'text';
   let i = 0;
   while (i < value.length) {
     const ch = value[i]!;
+    const math = mode !== 'text';
     if (ch === '\\' && value[i + 1] === '$') {
       out += '\\$';
       i += 2;
-    } else if (ch === '$') {
-      math = !math;
+    } else if (ch === '$' && value[i + 1] === '$' && mode !== 'inline') {
+      mode = mode === 'display' ? 'text' : 'display';
+      out += '$$';
+      i += 2;
+    } else if (ch === '$' && mode !== 'display') {
+      mode = mode === 'inline' ? 'text' : 'inline';
       out += ch;
       i += 1;
     } else if (value.startsWith('[[', i)) {

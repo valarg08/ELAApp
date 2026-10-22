@@ -71,10 +71,10 @@
       "prompt": "In triangle $ABC$, $\\angle A = 50^\\circ$ and $\\angle B = 60^\\circ$. The bisector of $\\angle C$ meets $AB$ at $D$. What is $\\angle ADC$, in degrees?",
       "answer": {
         "kind": "choice",
-        "choices": ["$85$", "$90$", "$95$", "$100$", "$105$"],
-        "correct": "C"
+        "choices": ["$95$", "$100$", "$105$", "$110$", "$115$"],
+        "correct": "A"
       },
-      "solution": "$\\angle C = 70^\\circ$, so $\\angle ACD = 35^\\circ$ and $\\angle ADC = 180^\\circ - 50^\\circ - 35^\\circ = 95^\\circ$, choice (C).",
+      "solution": "$\\angle C = 70^\\circ$, so $\\angle ACD = 35^\\circ$ and $\\angle ADC = 180^\\circ - 50^\\circ - 35^\\circ = 95^\\circ$, choice (A).",
       "skill": "angle-chasing",
       "difficulty": 1,
       "compute": "180 - 50 - 35"
@@ -129,13 +129,13 @@
       "prompt": "Jo has $20$ coins, all nickels and dimes, worth $\\$1.55$ in all. How many dimes does Jo have?",
       "answer": {
         "kind": "choice",
-        "choices": ["$9$", "$10$", "$11$", "$12$", "$13$"],
-        "correct": "C",
+        "choices": ["$7$", "$8$", "$9$", "$10$", "$11$"],
+        "correct": "E",
         "why": {
-          "A": "That is the number of nickels."
+          "C": "That is the number of nickels."
         }
       },
-      "solution": "If all $20$ were nickels they would be worth $100$ cents. Each dime adds $5$ cents, and $55 \\div 5 = 11$, choice (C).",
+      "solution": "If all $20$ were nickels they would be worth $100$ cents. Each dime adds $5$ cents, and $55 \\div 5 = 11$, choice (E).",
       "skill": "ages-coins-money",
       "difficulty": 2,
       "compute": "(155 - 100)/5"
@@ -161,10 +161,10 @@
       "prompt": "What is the remainder when $x^3 - 4x + 7$ is divided by $x - 3$?",
       "answer": {
         "kind": "choice",
-        "choices": ["$4$", "$10$", "$16$", "$22$", "$34$"],
-        "correct": "D"
+        "choices": ["$16$", "$22$", "$28$", "$34$", "$40$"],
+        "correct": "B"
       },
-      "solution": "By the remainder theorem it is $3^3 - 4 \\times 3 + 7 = 22$, choice (D).",
+      "solution": "By the remainder theorem it is $3^3 - 4 \\times 3 + 7 = 22$, choice (B).",
       "skill": "polynomial-remainders",
       "difficulty": 2,
       "compute": "27 - 12 + 7"
@@ -241,13 +241,13 @@
       "prompt": "What is the area of the quadrilateral with corners $(0, 0)$, $(5, 1)$, $(4, 6)$ and $(-1, 4)$, in that order?",
       "answer": {
         "kind": "choice",
-        "choices": ["$20$", "$22$", "$24$", "$26$", "$48$"],
-        "correct": "C",
+        "choices": ["$24$", "$26$", "$28$", "$36$", "$48$"],
+        "correct": "A",
         "why": {
           "E": "The shoelace sum is twice the area."
         }
       },
-      "solution": "Shoelace: $0 + 26 + 22 + 0 = 48$, so the area is $\\frac{48}{2} = 24$, choice (C).",
+      "solution": "Shoelace: $0 + 26 + 22 + 0 = 48$, so the area is $\\frac{48}{2} = 24$, choice (A).",
       "skill": "grid-areas",
       "difficulty": 2,
       "compute": "48/2"
@@ -279,10 +279,10 @@
       "prompt": "From a point $P$ outside a circle, one line meets the circle at $A$ and then $B$, and another meets it at $C$ and then $D$. If $PA = 3$, $PB = 12$ and $PC = 4$, what is $PD$?",
       "answer": {
         "kind": "choice",
-        "choices": ["$6$", "$8$", "$9$", "$12$", "$16$"],
-        "correct": "C"
+        "choices": ["$5$", "$6$", "$7$", "$8$", "$9$"],
+        "correct": "E"
       },
-      "solution": "$PA \\times PB = PC \\times PD$: $36 = 4 \\times PD$, so $PD = 9$, choice (C).",
+      "solution": "$PA \\times PB = PC \\times PD$: $36 = 4 \\times PD$, so $PD = 9$, choice (E).",
       "skill": "power-of-a-point",
       "difficulty": 3,
       "compute": "3*12/4"
@@ -305,10 +305,10 @@
       "prompt": "How many positive divisors of $720$ are perfect squares?",
       "answer": {
         "kind": "choice",
-        "choices": ["$4$", "$5$", "$6$", "$8$", "$12$"],
-        "correct": "C"
+        "choices": ["$2$", "$3$", "$4$", "$5$", "$6$"],
+        "correct": "E"
       },
-      "solution": "$720 = 2^4 \\times 3^2 \\times 5$. A square divisor uses an even power of each prime: $2^0, 2^2, 2^4$ ($3$ ways), $3^0, 3^2$ ($2$ ways) and $5^0$: $6$, choice (C).",
+      "solution": "$720 = 2^4 \\times 3^2 \\times 5$. A square divisor uses an even power of each prime: $2^0, 2^2, 2^4$ ($3$ ways), $3^0, 3^2$ ($2$ ways) and $5^0$: $6$, choice (E).",
       "skill": "counting-divisors",
       "difficulty": 3,
       "compute": "3*2*1"

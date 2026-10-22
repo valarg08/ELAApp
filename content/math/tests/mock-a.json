@@ -65,13 +65,13 @@
       "prompt": "What is the measure, in degrees, of each interior angle of a regular octagon?",
       "answer": {
         "kind": "choice",
-        "choices": ["$108$", "$120$", "$135$", "$140$", "$144$"],
-        "correct": "C",
+        "choices": ["$105$", "$108$", "$120$", "$130$", "$135$"],
+        "correct": "E",
         "why": {
-          "A": "That is a regular pentagon."
+          "B": "That is a regular pentagon."
         }
       },
-      "solution": "Each exterior angle is $\\frac{360^\\circ}{8} = 45^\\circ$, so each interior angle is $135^\\circ$, choice (C).",
+      "solution": "Each exterior angle is $\\frac{360^\\circ}{8} = 45^\\circ$, so each interior angle is $135^\\circ$, choice (E).",
       "skill": "polygons",
       "difficulty": 1,
       "compute": "180 - 360/8"
@@ -135,10 +135,10 @@
       "prompt": "Two numbers have sum $14$ and difference $4$. What is their product?",
       "answer": {
         "kind": "choice",
-        "choices": ["$40$", "$45$", "$48$", "$49$", "$56$"],
-        "correct": "B"
+        "choices": ["$35$", "$36$", "$40$", "$44$", "$45$"],
+        "correct": "E"
       },
-      "solution": "Adding the equations, the larger is $9$ and the smaller is $5$: product $45$, choice (B).",
+      "solution": "Adding the equations, the larger is $9$ and the smaller is $5$: product $45$, choice (E).",
       "skill": "systems",
       "difficulty": 2,
       "compute": "9*5"
@@ -164,13 +164,13 @@
       "prompt": "A triangle has sides $13$, $13$ and $10$. What is its area?",
       "answer": {
         "kind": "choice",
-        "choices": ["$30$", "$60$", "$65$", "$78$", "$120$"],
-        "correct": "B",
+        "choices": ["$60$", "$65$", "$78$", "$120$", "$130$"],
+        "correct": "A",
         "why": {
-          "E": "Remember the $\\frac{1}{2}$."
+          "D": "Remember the $\\frac{1}{2}$."
         }
       },
-      "solution": "The height to the side $10$ splits it in half: $\\sqrt{13^2 - 5^2} = 12$. Area $\\frac{1}{2} \\times 10 \\times 12 = 60$, choice (B).",
+      "solution": "The height to the side $10$ splits it in half: $\\sqrt{13^2 - 5^2} = 12$. Area $\\frac{1}{2} \\times 10 \\times 12 = 60$, choice (A).",
       "skill": "pythagoras",
       "difficulty": 2,
       "compute": "10*12/2"
@@ -193,13 +193,13 @@
       "prompt": "A team of $2$ boys and $2$ girls is chosen from $5$ boys and $4$ girls. How many teams are possible?",
       "answer": {
         "kind": "choice",
-        "choices": ["$36$", "$60$", "$90$", "$126$", "$180$"],
-        "correct": "B",
+        "choices": ["$60$", "$90$", "$120$", "$126$", "$180$"],
+        "correct": "A",
         "why": {
           "D": "That is any $4$ of the $9$, without the $2$-and-$2$ rule."
         }
       },
-      "solution": "$\\binom{5}{2} \\times \\binom{4}{2} = 10 \\times 6 = 60$, choice (B).",
+      "solution": "$\\binom{5}{2} \\times \\binom{4}{2} = 10 \\times 6 = 60$, choice (A).",
       "skill": "combinations",
       "difficulty": 2,
       "compute": "binom(5, 2)*binom(4, 2)"
@@ -238,13 +238,13 @@
       "prompt": "Kai drives $120$ miles at $40$ miles per hour and then drives back the same $120$ miles at $60$ miles per hour. What is his average speed for the whole trip, in miles per hour?",
       "answer": {
         "kind": "choice",
-        "choices": ["$45$", "$48$", "$50$", "$52$", "$55$"],
-        "correct": "B",
+        "choices": ["$48$", "$50$", "$52$", "$54$", "$60$"],
+        "correct": "A",
         "why": {
-          "C": "Average speed is total distance over total time, not the average of the speeds."
+          "B": "Average speed is total distance over total time, not the average of the speeds."
         }
       },
-      "solution": "The trip takes $3 + 2 = 5$ hours for $240$ miles: $48$ miles per hour, choice (B).",
+      "solution": "The trip takes $3 + 2 = 5$ hours for $240$ miles: $48$ miles per hour, choice (A).",
       "skill": "distance-rate-time",
       "difficulty": 2,
       "compute": "240/(120/40 + 120/60)"
@@ -254,10 +254,10 @@
       "prompt": "How many three-digit numbers have at least one digit equal to $7$?",
       "answer": {
         "kind": "choice",
-        "choices": ["$225$", "$243$", "$252$", "$271$", "$300$"],
-        "correct": "C"
+        "choices": ["$196$", "$225$", "$243$", "$248$", "$252$"],
+        "correct": "E"
       },
-      "solution": "There are $900$ three-digit numbers, and $8 \\times 9 \\times 9 = 648$ have no $7$. So $900 - 648 = 252$ do, choice (C).",
+      "solution": "There are $900$ three-digit numbers, and $8 \\times 9 \\times 9 = 648$ have no $7$. So $900 - 648 = 252$ do, choice (E).",
       "skill": "complementary-counting",
       "difficulty": 2,
       "compute": "900 - 8*9*9"
@@ -331,13 +331,13 @@
       "prompt": "From a point $P$ outside a circle, a line meets the circle at $A$ and then at $B$, with $PA = 4$ and $AB = 5$. Another line from $P$ is tangent to the circle at $T$. What is $PT$?",
       "answer": {
         "kind": "choice",
-        "choices": ["$4$", "$5$", "$6$", "$8$", "$9$"],
-        "correct": "C",
+        "choices": ["$2$", "$3$", "$4$", "$5$", "$6$"],
+        "correct": "E",
         "why": {
-          "A": "$PB = PA + AB = 9$, not $5$."
+          "C": "$PB = PA + AB = 9$, not $5$."
         }
       },
-      "solution": "$PT^2 = PA \\times PB = 4 \\times 9 = 36$, so $PT = 6$, choice (C).",
+      "solution": "$PT^2 = PA \\times PB = 4 \\times 9 = 36$, so $PT = 6$, choice (E).",
       "skill": "power-of-a-point",
       "difficulty": 3,
       "compute": "sqrt(4*9)"
