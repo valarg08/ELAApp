@@ -3,8 +3,9 @@ import { APP_NAME } from '@storyforge/shared';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: APP_NAME,
-  description: 'Interactive creative writing for middle school.',
+  // The owl shows in the tab's tooltip too; app/icon.svg is the tab icon.
+  title: { default: `🦉 ${APP_NAME}`, template: `🦉 %s · ${APP_NAME}` },
+  description: 'Writing, essays and AMC 10 math practice for middle school.',
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {

@@ -1,7 +1,7 @@
 import { APP_NAME } from '@storyforge/shared';
 import Link from 'next/link';
 
-export const metadata = { title: `Privacy · ${APP_NAME}` };
+export const metadata = { title: 'Privacy' };
 
 /** A plain-language privacy note for students, parents and teachers (DESIGN.md §13). */
 export default function PrivacyPage() {
