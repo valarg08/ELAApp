@@ -54,7 +54,7 @@ Strands (progress badges): **Strategy** (1, 14, 15), **Algebra** (2–6), **Numb
 
 Geometry basics come in Stage 3 because the unit order is kept; the diagnostic shows students how they stand in geometry from the start.
 
-**Past AMC problems:** never on the platform (© MAA). Students who work an official paper on their own can record it in the **past-paper log** (M15): only their answer letter or blank per question, the official answer letter and a topic tag, never the problem text. The app scores it with AMC scoring, feeds the danger-zone report, and lets misses go to the error log as "outside problem" (topic and skill only).
+**Past AMC problems:** never on the platform (© MAA). Students who work an official paper on their own can record it in the **past-paper log** (M15): only their answer letter or blank per question, the official answer letter and a topic tag, never the problem text. The app scores it with AMC scoring, feeds the danger-zone report, and lets misses count as "outside problems" (topic and skill only). As built (§4.15), outside problems show up in the danger-zone report by skill rather than as error-log entries, because an error-log redo needs a real problem to redo.
 
 **How lessons work:**
 - **Hook:** a short puzzle or a question ("How many handshakes…?").
@@ -394,8 +394,8 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | Learn card | `worked-example` (Math only, A4) |
 | Reflect | `trapPicker` (Math only, C3) |
 | Tables | `MathAnswerLog` (B1), `MathSkillState` (B3), `MathTestAttempt` (B3, B4, D1), `MathContent`; `MathErrorLog.seed` |
-| Endpoints | `POST /math/answers`, `GET /math/home`, `GET /math/skills` (mastery, calibration, positions, danger zones), `GET /math/facts/:unitNumber`, `GET /math/similar`, `GET /math/lessons/:lessonId/trap-problems`, `POST /math/tests/:key/start` (`diagnostic`, `checkpoint-1`, `checkpoint-2`, `sprint`, `review`, `light-review`), `GET /math/tests/attempts/:id`, `PUT /math/tests/attempts/:id/answer`, `POST /math/tests/attempts/:id/submit`, `GET /math/tests/attempts/:id/review`, `POST /ai/math/nudge`, `POST /ai/math/card`, `GET /teacher/classes/:classId/math-skills`. `POST /ai/math/explain` moved to the Math module (same route) and takes a problem locator with the seed and optional working |
-| Pages | `/math` (stages, today's review, tests), `/math/tests/[key]` (start), `/math/attempts/[id]` (the test player and its review), `/math/facts/[unit]`, the skills, calibration and danger-zone sections of `/math/progress`, the teacher skills view (`?track=math&view=skills`) |
+| Endpoints | `POST /math/answers`, `GET /math/home`, `GET /math/skills` (mastery, calibration, positions, danger zones), `GET /math/facts/:unitNumber`, `GET /math/similar`, `GET /math/lessons/:lessonId/trap-problems`, `POST /math/tests/:key/start` (`diagnostic`, `checkpoint-1`, `checkpoint-2`, `sprint`, `review`, `light-review`), `GET /math/tests/attempts/:id`, `PUT /math/tests/attempts/:id/answer`, `POST /math/tests/attempts/:id/submit`, `GET /math/tests/attempts/:id/review`, `POST /ai/math/nudge`, `POST /ai/math/card`, `GET /teacher/classes/:classId/math-skills`; from M15 `POST /math/tests/:key/start` also takes the mocks (`mock-a`, `mock-b`, `mock-c`, `mock-final`), and `GET /math/past-papers`, `POST /math/past-papers` and `DELETE /math/past-papers/:id` (students only, own papers only) run the past-paper log. `POST /ai/math/explain` moved to the Math module (same route) and takes a problem locator with the seed and optional working |
+| Pages | `/math` (stages, today's review, tests), `/math/tests/[key]` (start), `/math/attempts/[id]` (the test player and its review), `/math/facts/[unit]`, the skills, calibration and danger-zone sections of `/math/progress`, the teacher skills view (`?track=math&view=skills`); from M15 `/math/past-papers` and the full tests and AMC-score estimate on `/math/progress` |
 
 ### 3.6 M0.5 acceptance
 
@@ -455,8 +455,8 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | **M11 Unit 11 Geometry I: Triangles & Polygons** ✅ | 6 lessons (§4.11), published, with SVG figures | Played end to end; content:check verifies every answer and variant |
 | **M12 Unit 12 Geometry II: Circles** ✅ | 6 lessons (§4.12), published, with SVG figures | Played end to end; content:check verifies every answer and variant |
 | **M13 Unit 13 Geometry III: Coordinates & Solids** ✅ | 6 lessons (§4.13), published, plus checkpoint mock 2 (25 problems on Units 1–13) | Played end to end; content:check verifies every answer and variant |
-| **M14 Unit 14 Logic & Mixed Strategies** | One AMC 10 unit (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs | Each unit playable end to end; every computable answer and every template variant verified by content:check |
-| **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
+| **M14 Unit 14 Logic & Mixed Strategies** ✅ | 6 lessons (§4.14), published, with an SVG figure | Played end to end; content:check verifies every answer and variant |
+| **M15 Mock exams & final prep** ✅ | Unit 15's 10 lessons (§4.15): the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
 
 ### 4.1 M1 as built (2026-10-16)
 
@@ -634,3 +634,38 @@ Unit 13 Geometry III: Coordinates & Solids is published, with 6 lessons in the s
 | 4 | 3D Solids | `m13.solids-practice` (box surface, cylinder, cone, sphere, the painted cube) | `m13.solids-set` |
 | 5 | Nets & Space Diagonals | `m13.nets-practice` (box and cube diagonals, prism edges, a face diagonal, the ant's path) | `m13.nets-set` |
 | 6 | ⭐ Unit Check | `m13.review-practice` (5-problem warm-up, one per lesson) | `m13.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.14 M14 as built (2026-10-21)
+
+Unit 14 Logic & Mixed Strategies is published, with 6 lessons in the same shape and no new tools. Figure in `content/math/unit-14/figures/`: a clock at 3:30. Four new strategy skills (`logic-puzzles`, `invariants-parity`, `games-strategy`, `clocks-calendars`); the mixed-sets lesson practises `test-choices`, `estimate-eliminate` and `work-backwards` from Unit 1.
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Logic Puzzles | `m14.logic-practice` (a pair of socks, $k$ of one colour, the magic square sum, self-referring statements, the worst case) | `m14.logic-set` |
+| 2 | Invariants & Parity | `m14.invariants-practice` (the sum stays, sum plus one, the frog's parity, flipping two coins, signed sums) | `m14.invariants-set` |
+| 3 | Games & Strategy | `m14.games-practice` (take-away, losing piles, breaking chocolate, two-pile Nim, the race to a target) | `m14.games-set` |
+| 4 | Clocks, Calendars & Time | `m14.clocks-practice` (the clock angle, days later, when the hands meet, a fast watch, leap years) | `m14.clocks-set` |
+| 5 | Mixed Strategies | `m14.mixed-practice` (one problem per strategy) | `m14.mixed-set` |
+| 6 | ⭐ Unit Check | `m14.review-practice` (5-problem warm-up, one per lesson) | `m14.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.15 M15 as built (2026-10-21)
+
+Unit 15 Mock Exams & Final Review is published, with 10 lessons. Each has a hook, worked-example cards, a 5-problem `PROBLEMS` warm-up and a challenge; there is no ⭐ unit check (the final mock ends the course). `stages.json` already puts lessons 1–7 in Stage 3 and 8–10 in Stage 4.
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | The Pacing Plan & the 2-Minute Rule | `m15.pacing-practice` | `m15.pacing-set` |
+| 2 | Mock A & Mistake Analysis | `m15.mock-a-warmup` | `m15.mock-a` (`MOCK_TEST`, `tests/mock-a.json`) |
+| 3 | Algebra Refresh | `m15.algebra-practice` | `m15.algebra-set` |
+| 4 | Geometry Refresh | `m15.geometry-practice` | `m15.geometry-set` |
+| 5 | Mock B | `m15.mock-b-warmup` | `m15.mock-b` (`tests/mock-b.json`) |
+| 6 | Counting & Number Theory Refresh | `m15.counting-practice` | `m15.counting-set` |
+| 7 | Your Danger Zones | `m15.danger-practice` (classic traps with wrong-answer notes) | `m15.danger-set` |
+| 8 | Mock C | `m15.mock-c-warmup` | `m15.mock-c` (`tests/mock-c.json`) |
+| 9 | Light Review & Confidence | `m15.light-practice` | `m15.light-set` (introduces the light review on `/math`) |
+| 10 | 🏆 Final Mock & Test-Day Plan | `m15.final-warmup` | `m15.mock-final` (`tests/mock-final.json`) |
+
+- **Mocks:** `content/math/tests/mock-{a,b,c,final}.json`, 25 original problems each in rising difficulty (8 easy, 9 medium, 8 hard), 75 minutes, `afterUnit: 14`, verified by content:check. They run on the timed test engine as kind `mock` (AMC-scored, server-side timer, handed in at zero, review by question position, strand and difficulty). The mocks are not on the `/math` stage list; they are taken inside lessons.
+- **`MOCK_TEST` activity:** `{ key, type: "MOCK_TEST", title, instructions, test }`, Math only and only as a lesson challenge. content:check makes sure each mock file is used by exactly one `MOCK_TEST` activity. The challenge step shows the mock card (best score, start or resume) and opens `/math/attempts/[id]?lesson=…`, whose links lead back to the lesson; the step completes once a handed-in attempt of that mock exists, and stores its points out of 150.
+- **AMC-score estimate** (`GET /math/skills` → `scores`, shown on `/math/progress` under "Full tests and my AMC-score estimate"): the full 25-problem tests (checkpoints, mocks, logged past papers), newest first; the estimate is the mean of the last 3, rounded to 0.5, with the range from their lowest to highest (±6 with only one test).
+- **Past-paper log** (`/math/past-papers`, `MathPastPaper`): a label, a date and 25 items `{ answer (A–E or blank), official (A–E), skill? }`. It never stores problem text. It is scored like the AMC on the server, joins the estimate and accuracy by question position, and a skill missed 2 or more times across past papers becomes a danger zone ("Missed N times in your past papers"). Deviation from §1: outside problems don't go into the error log, since a redo needs a real problem; the error-log page links to the past-paper log instead. Students delete their own papers (confirm step).

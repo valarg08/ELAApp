@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-21 (M11–M13 built: Math Units 11–13 and checkpoint mock 2 published; on branch phase-m11-m13).
+Last updated: 2026-10-21 (M14–M15 built: Math Units 14–15, the four mocks, the AMC-score estimate and the past-paper log; the Math track is complete; on branch phase-m14-m15).
 
 ## Done so far
 
@@ -12,7 +12,7 @@ Last updated: 2026-10-21 (M11–M13 built: Math Units 11–13 and checkpoint moc
 - [x] E0–E15: the whole Essay Writing track (§9.12)
 - [x] P5a: teacher progress views: the class heatmap and the student profile (§11.3)
 - [x] M0: the Math track engine (math-design.md §2)
-- [x] M0.5 and M1–M13: the Math practice upgrade, Math Units 1–13 and checkpoint mocks 1 and 2 (math-design.md §3, §4.1–§4.13)
+- [x] M0.5 and M1–M15: the Math practice upgrade, Math Units 1–15, checkpoint mocks 1 and 2, mocks A–C and the final mock, the AMC-score estimate and the past-paper log (math-design.md §3, §4.1–§4.15)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -56,9 +56,9 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
 - [x] **M11** Unit 11 Geometry I: Triangles & Polygons (incl. angle chasing)
 - [x] **M12** Unit 12 Geometry II: Circles
 - [x] **M13** Unit 13 Geometry III: Coordinates & Solids, plus checkpoint mock 2 (25 problems: everything so far)
-- [ ] **M14** Unit 14 Logic & Mixed Strategies
-- [ ] **M15** Unit 15 Mock Exams & Final Review (10 lessons): pacing & the 2-minute rule, mocks A–C with mistake analysis, algebra / geometry / counting & number theory refreshes, danger zones, light review & confidence, the final mock & test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text)
-- [ ] Every unit M1–M14 ships its fact sheet (`facts.json`)
+- [x] **M14** Unit 14 Logic & Mixed Strategies
+- [x] **M15** Unit 15 Mock Exams & Final Review (10 lessons): pacing & the 2-minute rule, mocks A–C with mistake analysis, algebra / geometry / counting & number theory refreshes, danger zones, light review & confidence, the final mock & test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text)
+- [x] Every unit M1–M14 ships its fact sheet (`facts.json`)
 
 ## 2. Teacher dashboard: rest of P5 (§11)
 
