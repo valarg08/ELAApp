@@ -11,6 +11,14 @@ try {
 }
 const env = { ...process.env, NODE_ENV: 'production' };
 const webPort = process.env.WEB_PORT ?? '3200';
+// The Cloudflare Tunnel (README step 5) runs beside the site when TUNNEL_NAME is set; its
+// settings are in %USERPROFILE%.cloudflaredconfig.yml.
+const tunnel = process.env.TUNNEL_NAME && {
+  name: 'owlery-tunnel',
+  script: process.env.CLOUDFLARED ?? 'C:\Program Files (x86)\cloudflared\cloudflared.exe',
+  args: `tunnel --no-autoupdate run ${process.env.TUNNEL_NAME}`,
+  interpreter: 'none',
+};
 
 module.exports = {
   apps: [
@@ -33,5 +41,6 @@ module.exports = {
       args: `start --port ${webPort}`,
       env,
     },
+    ...(tunnel ? [tunnel] : []),
   ].map((app) => ({ ...app, autorestart: true, max_restarts: 20, restart_delay: 3000 })),
 };

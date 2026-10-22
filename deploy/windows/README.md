@@ -28,8 +28,9 @@ never touches students' data. Updates reach students only when you run `update.p
    4. `cloudflared tunnel route dns owlery owlery.example.com` (your hostname).
    5. Copy `deploy\windows\cloudflared-config.example.yml` to `%USERPROFILE%\.cloudflared\config.yml`
       and fill in the tunnel id, credentials file and hostname.
-   6. Run it as a Windows service (admin PowerShell): `cloudflared service install`.
-   7. Set `WEB_ORIGIN=https://owlery.example.com` in `.env` and run `update.ps1` again.
+   6. Set `TUNNEL_NAME=owlery` and `WEB_ORIGIN=https://owlery.example.com` in `.env` and run
+      `update.ps1` again: pm2 starts the tunnel with the site (no Windows service or admin
+      rights needed) and restarts it if it stops.
 6. **Start on boot and nightly backups:** run `deploy\windows\register-tasks.ps1` once. It adds
    two tasks for your user: start pm2's saved processes at log-on, and back up the database
    every night at 02:00 (`backup-db.ps1`, keeps the last 14).
@@ -41,5 +42,5 @@ never touches students' data. Updates reach students only when you run `update.p
 - Status: `pm2 status`, logs: `pm2 logs`, the site's own check: `https://<your address>/status`.
 - Update to the latest `main`: run `update.ps1` again (students may see a few seconds of downtime).
 - Restore a backup: `pg_restore --clean --no-owner --dbname=<DATABASE_URL> <file>.dump`.
-- End of the trial: `pm2 delete all`, `cloudflared service uninstall`, and drop the `owlery`
+- End of the trial: `pm2 delete all`, `cloudflared tunnel delete owlery`, and drop the `owlery`
   database unless the school wants to keep the work.
