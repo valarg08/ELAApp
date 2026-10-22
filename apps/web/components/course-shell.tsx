@@ -9,8 +9,8 @@ import {
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { serverApi } from '@/lib/server-api';
-import { ChaptersPanel } from './course-frame';
-import { navFocus, progressPanel } from './course-styles';
+import { SidePanel } from './course-frame';
+import { navFocus } from './course-styles';
 import { ProgressBar } from './progress-bar';
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
@@ -110,7 +110,7 @@ export async function CourseShell({
                           className={`-ml-px flex min-h-11 items-center gap-1 border-l-2 py-1.5 pl-3 text-sm hover:underline ${navFocus} ${l.id === lessonId ? 'border-white font-semibold' : 'border-transparent'}`}
                         >
                           {l.completed && (
-                            <span aria-hidden="true" className="text-green-300">
+                            <span aria-hidden="true" className="text-mint">
                               ✓
                             </span>
                           )}
@@ -135,8 +135,13 @@ export async function CourseShell({
     <div className="flex flex-col gap-5">
       <div>
         <p className="text-sm font-semibold">{TRACK_NAMES[track]}</p>
-        <ProgressBar value={trackDone} max={trackTotal} label={`${TRACK_NAMES[track]} progress`} />
-        <p className="mt-1 text-sm text-muted">
+        <ProgressBar
+          onDark
+          value={trackDone}
+          max={trackTotal}
+          label={`${TRACK_NAMES[track]} progress`}
+        />
+        <p className="mt-1 text-sm text-white/80">
           {trackDone} of {trackTotal} lessons · {pct(trackDone, trackTotal)}%
         </p>
       </div>
@@ -146,11 +151,12 @@ export async function CourseShell({
             {unitLabel(track, unit.number)}: {unit.title}
           </p>
           <ProgressBar
+            onDark
             value={unitDone}
             max={unit.lessons.length}
             label={`${unit.title} progress`}
           />
-          <p className="mt-1 text-sm text-muted">
+          <p className="mt-1 text-sm text-white/80">
             {unitDone} of {unit.lessons.length} lessons
           </p>
         </div>
@@ -159,11 +165,12 @@ export async function CourseShell({
         <div>
           <p className="text-sm font-semibold">This lesson</p>
           <ProgressBar
+            onDark
             value={lesson.completedSteps}
             max={lesson.totalSteps}
             label={`${lesson.title} progress`}
           />
-          <p className="mt-1 text-sm text-muted">
+          <p className="mt-1 text-sm text-white/80">
             {lesson.completed
               ? '✓ Completed'
               : `${lesson.completedSteps} of ${lesson.totalSteps} steps · about ${lesson.estMinutes} min`}
@@ -173,14 +180,16 @@ export async function CourseShell({
     </div>
   );
 
-  // Only the Chapters panel is a client component (it folds); it gets the menu as its one child.
-  // When folded it carries data-folded, and the grid narrows the column with :has().
+  // Only the side panels are client components (they fold); each gets its content as one child.
+  // A folded panel carries data-folded, and the grid narrows its column with :has().
   return (
     <div
-      className={`mx-auto grid w-full ${wide ? 'max-w-[100rem]' : 'max-w-7xl'} flex-1 gap-6 px-4 py-6 md:grid-cols-[13rem_minmax(0,1fr)_12rem] md:py-10 lg:grid-cols-[16rem_minmax(0,1fr)_15rem] md:has-[[data-folded]]:grid-cols-[3.75rem_minmax(0,1fr)_12rem] lg:has-[[data-folded]]:grid-cols-[3.75rem_minmax(0,1fr)_15rem]`}
+      className={`mx-auto grid w-full ${wide ? 'max-w-[100rem]' : 'max-w-7xl'} flex-1 gap-6 px-4 py-6 [--left:13rem] [--right:12rem] md:grid-cols-[var(--left)_minmax(0,1fr)_var(--right)] md:py-10 lg:[--left:16rem] lg:[--right:15rem] has-[[data-folded=chapters]]:[--left:3.75rem] has-[[data-folded=progress]]:[--right:3.75rem]`}
     >
       <aside className="md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto">
-        <ChaptersPanel collapsible={wide}>{chapterNav}</ChaptersPanel>
+        <SidePanel name="chapters" title="Chapters" side="left" collapsible={wide} mobileFold>
+          {chapterNav}
+        </SidePanel>
       </aside>
 
       <main className="min-w-0 rounded-2xl border border-border bg-page-panel p-4 shadow-sm md:p-6">
@@ -191,11 +200,10 @@ export async function CourseShell({
         aria-label="Progress"
         className="order-last md:order-none md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto"
       >
-        <div className={progressPanel}>
-          <h2 className="mb-3 text-lg font-semibold">Progress</h2>
+        <SidePanel name="progress" title="Progress" side="right" collapsible={wide}>
           {progress}
           {extra}
-        </div>
+        </SidePanel>
       </aside>
     </div>
   );

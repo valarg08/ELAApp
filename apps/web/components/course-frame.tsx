@@ -3,12 +3,10 @@
 import { type ReactNode, useState, useSyncExternalStore } from 'react';
 import { navFocus, navPanel } from './course-styles';
 
-const STORAGE_KEY = 'course-chapters-collapsed';
-
-// The remembered choice lives in localStorage; these let React read it without a hydration mismatch.
+// The remembered choices live in localStorage; these let React read them without a hydration mismatch.
 const listeners = new Set<() => void>();
-/** Used when storage is blocked (private windows), so the toggle still works for this visit. */
-let inMemory = false;
+/** Used when storage is blocked (private windows), so the toggles still work for this visit. */
+const inMemory = new Map<string, boolean>();
 function subscribe(listener: () => void) {
   listeners.add(listener);
   window.addEventListener('storage', listener);
@@ -17,17 +15,17 @@ function subscribe(listener: () => void) {
     window.removeEventListener('storage', listener);
   };
 }
-function readCollapsed(): boolean {
+function readCollapsed(key: string): boolean {
   try {
-    return localStorage.getItem(STORAGE_KEY) === '1';
+    return localStorage.getItem(key) === '1';
   } catch {
-    return inMemory;
+    return inMemory.get(key) ?? false;
   }
 }
-function writeCollapsed(value: boolean) {
-  inMemory = value;
+function writeCollapsed(key: string, value: boolean) {
+  inMemory.set(key, value);
   try {
-    localStorage.setItem(STORAGE_KEY, value ? '1' : '0');
+    localStorage.setItem(key, value ? '1' : '0');
   } catch {
     // Not remembered across visits; readCollapsed falls back to inMemory.
   }
@@ -35,56 +33,86 @@ function writeCollapsed(value: boolean) {
 }
 
 /**
- * The Chapters panel of the course frame, with the chapters rendered once: on phones a
- * "Chapters" button shows them above the page. With `collapsible` (the writing workspace), « folds
- * the panel to a slim rail on wider screens, remembered in this browser; CourseShell's grid narrows
- * the column when it sees `data-folded`.
+ * A deep teal side panel of the course frame (Chapters on the left, Progress on the right), with its
+ * content rendered once. With `mobileFold` (Chapters) a button shows the content on phones. With
+ * `collapsible` (the writing workspace) a button folds the panel to a slim rail on wider screens,
+ * remembered in this browser; CourseShell's grid narrows the column when it sees `data-folded`.
  */
-export function ChaptersPanel({
+export function SidePanel({
+  name,
+  title,
+  side,
   collapsible,
+  mobileFold = false,
   children,
 }: {
+  /** `data-folded` value, element id and storage key part: "chapters" or "progress". */
+  name: string;
+  title: string;
+  side: 'left' | 'right';
   collapsible: boolean;
+  mobileFold?: boolean;
   children: ReactNode;
 }) {
+  const key = `course-${name}-collapsed`;
   // The server render (and the first client render) has the panel open.
-  const collapsed = useSyncExternalStore(subscribe, readCollapsed, () => false);
+  const collapsed = useSyncExternalStore(
+    subscribe,
+    () => readCollapsed(key),
+    () => false,
+  );
   const folded = collapsible && collapsed;
-  // Phones: the chapters start folded under the "Chapters" button.
   const [mobileOpen, setMobileOpen] = useState(false);
+  const id = `${name}-panel`;
+  // The arrow points the way the panel moves: towards its edge to fold, away from it to open.
+  const toEdge = side === 'left' ? '«' : '»';
+  const fromEdge = side === 'left' ? '»' : '«';
+
+  const foldButton = collapsible && (
+    <button
+      type="button"
+      onClick={() => writeCollapsed(key, !collapsed)}
+      aria-expanded={!folded}
+      aria-controls={id}
+      className={`hidden min-h-11 min-w-11 items-center justify-center rounded-xl text-lg font-semibold hover:bg-white/10 md:inline-flex ${navFocus}`}
+    >
+      <span aria-hidden="true">{folded ? fromEdge : toEdge}</span>
+      <span className="sr-only">
+        {folded ? 'Show' : 'Hide'} {title.toLowerCase()}
+      </span>
+    </button>
+  );
 
   return (
-    <div data-folded={folded || undefined} className={`${navPanel} ${folded ? 'md:px-1.5' : ''}`}>
-      <div className="flex items-center justify-between gap-2">
-        <button
-          type="button"
-          onClick={() => setMobileOpen((open) => !open)}
-          aria-expanded={mobileOpen}
-          aria-controls="chapters-panel"
-          className={`flex min-h-11 flex-1 items-center justify-between rounded-xl text-left font-semibold md:hidden ${navFocus}`}
-        >
-          Chapters
-          <span aria-hidden="true">{mobileOpen ? '▴' : '▾'}</span>
-        </button>
-        <h2 className={`hidden text-lg font-semibold md:block ${folded ? 'md:sr-only' : ''}`}>
-          Chapters
-        </h2>
-        {collapsible && (
+    <div
+      data-folded={folded ? name : undefined}
+      className={`${navPanel} ${folded ? 'md:px-1.5' : ''}`}
+    >
+      <div
+        className={`flex items-center justify-between gap-2 ${collapsible && side === 'right' ? 'md:flex-row-reverse' : ''}`}
+      >
+        {mobileFold && (
           <button
             type="button"
-            onClick={() => writeCollapsed(!collapsed)}
-            aria-expanded={!folded}
-            aria-controls="chapters-panel"
-            className={`hidden min-h-11 min-w-11 items-center justify-center rounded-xl text-lg font-semibold hover:bg-white/10 md:inline-flex ${navFocus}`}
+            onClick={() => setMobileOpen((open) => !open)}
+            aria-expanded={mobileOpen}
+            aria-controls={id}
+            className={`flex min-h-11 flex-1 items-center justify-between rounded-xl text-left font-semibold md:hidden ${navFocus}`}
           >
-            <span aria-hidden="true">{folded ? '»' : '«'}</span>
-            <span className="sr-only">{folded ? 'Show chapters' : 'Hide chapters'}</span>
+            {title}
+            <span aria-hidden="true">{mobileOpen ? '▴' : '▾'}</span>
           </button>
         )}
+        <h2
+          className={`text-lg font-semibold ${mobileFold ? 'hidden md:block' : ''} ${folded ? 'md:sr-only' : ''}`}
+        >
+          {title}
+        </h2>
+        {foldButton}
       </div>
       <div
-        id="chapters-panel"
-        className={`mt-3 md:mt-2 ${mobileOpen ? '' : 'hidden'} ${folded ? 'md:hidden' : 'md:block'}`}
+        id={id}
+        className={`mt-3 md:mt-2 ${mobileFold && !mobileOpen ? 'hidden' : ''} ${folded ? 'md:hidden' : 'md:block'}`}
       >
         {children}
       </div>
