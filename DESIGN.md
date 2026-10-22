@@ -954,6 +954,8 @@ Visual language: warm, rounded cards, large tap targets (min 44×44 px), a frien
 
 ### 6.2 Lesson player (`/lessons/[id]`)
 
+**Course frame (built, all tracks):** the unit and lesson pages sit in `CourseShell` (apps/web/components/course-shell.tsx). The left "Chapters" menu lists the track's units (✓ done, 🔒 locked) and opens the current unit's lessons as links (✓ done, 🔒 locked, the current one highlighted). The right "Progress" panel shows the track (lessons done and %), the unit, and on a lesson page its steps. The lesson player refreshes after every step so the panel keeps up. Below the `lg` breakpoint the chapters fold into a "Chapters" disclosure above the page and progress moves below it.
+
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
 │ ← Unit 1 · Lesson 3: Show, Don't Tell                     🔊 Read aloud   │

@@ -1,8 +1,9 @@
-import { TRACK_HOME, TRACK_NAMES, UnitDetail, unitLabel } from '@storyforge/shared';
+import { UnitDetail, unitLabel } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ProgressBar } from '@/components/progress-bar';
-import { Card, PageShell } from '@/components/ui';
+import { CourseShell } from '@/components/course-shell';
+import { Card } from '@/components/ui';
 import { serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
@@ -13,13 +14,10 @@ export default async function UnitPage({ params }: PageProps<'/units/[unitSlug]'
   if (!unit) notFound();
 
   return (
-    <PageShell width="max-w-4xl">
+    <CourseShell track={unit.track} unitSlug={unit.slug}>
       <div className="flex flex-col gap-8">
         <div>
-          <Link href={TRACK_HOME[unit.track]} className="text-brand underline">
-            {unit.track === 'STORY' ? '← My journey' : `← ${TRACK_NAMES[unit.track]}`}
-          </Link>
-          <p className="mt-4 text-sm font-semibold tracking-widest text-muted uppercase">
+          <p className="text-sm font-semibold tracking-widest text-muted uppercase">
             {unitLabel(unit.track, unit.number)}
           </p>
           <h1 className="text-4xl font-bold">{unit.title}</h1>
@@ -106,6 +104,6 @@ export default async function UnitPage({ params }: PageProps<'/units/[unitSlug]'
           </>
         )}
       </div>
-    </PageShell>
+    </CourseShell>
   );
 }

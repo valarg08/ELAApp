@@ -48,7 +48,8 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
       setCompleted(progress.completedSteps);
       setView(STEP_IDS.indexOf(stepId) + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (stepId === 'reflect') router.refresh();
+      // Keeps the course progress panel (and, after reflect, the next lesson) up to date.
+      router.refresh();
     } finally {
       setBusy(false);
     }
