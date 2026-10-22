@@ -49,11 +49,18 @@ export default async function Landing() {
               </li>
               <li>
                 Type your <strong>email</strong> and <strong>password</strong>, then press{' '}
-                <strong>Log in</strong>. New here?{' '}
-                <Link href="/register" className="font-semibold text-brand underline">
-                  Create an account
-                </Link>{' '}
-                first.
+                <strong>Log in</strong>.{' '}
+                {signupOpen ? (
+                  <>
+                    New here?{' '}
+                    <Link href="/register" className="font-semibold text-brand underline">
+                      Create an account
+                    </Link>{' '}
+                    first.
+                  </>
+                ) : (
+                  'No account yet? Ask the site administrator for one.'
+                )}
               </li>
               <li>
                 Create a class. Owlery Academy gives it a 6-letter <strong>class code</strong>.
