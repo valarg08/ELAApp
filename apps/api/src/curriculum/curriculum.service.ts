@@ -320,7 +320,36 @@ export class CurriculumService {
       }
     }
 
-    if (stepId.data === 'challenge' && (await this.quizKeys([challenge.activityKey])).length > 0) {
+    const mock =
+      stepId.data === 'challenge'
+        ? await this.db.client.activity.findFirst({
+            where: { key: challenge.activityKey, type: 'MOCK_TEST' },
+            select: { config: true },
+          })
+        : null;
+    if (mock) {
+      // A Unit 15 mock (math-design.md §4.15): done once an attempt at its test is handed in.
+      const content = ActivityContent.parse(mock.config);
+      const attempt =
+        content.type === 'MOCK_TEST'
+          ? await this.db.client.mathTestAttempt.findFirst({
+              where: { studentId: user.id, testKey: content.test, submittedAt: { not: null } },
+              orderBy: { submittedAt: 'desc' },
+            })
+          : null;
+      if (!attempt) {
+        throw new AppError(
+          HttpStatus.UNPROCESSABLE_ENTITY,
+          ErrorCode.PRACTICE_INCOMPLETE,
+          'Not yet!',
+          'Hand in the mock first.',
+        );
+      }
+      stored = { score: attempt.points ?? 0, total: attempt.total * 6 };
+    } else if (
+      stepId.data === 'challenge' &&
+      (await this.quizKeys([challenge.activityKey])).length > 0
+    ) {
       // A Math challenge is a marked problem set: a finished (and, with a pass mark, passed) try.
       const attempt = await this.db.client.quizAttempt.findFirst({
         where: { studentId: user.id, lessonId, activityKey: challenge.activityKey, passed: true },

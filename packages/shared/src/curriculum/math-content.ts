@@ -8,17 +8,26 @@ import {
 
 /**
  * Math-wide content (math-design.md §3): files in content/math beside the units. The skill list,
- * the four stages, the timed tests outside the units (the diagnostic and the checkpoint mocks) and
+ * the four stages, the timed tests (the diagnostic, the checkpoint mocks and the Unit 15 mocks) and
  * each unit's fact sheet. The loader validates them and the sync stores them in MathContent.
  */
 
 const text = (max = 2000) => z.string().trim().min(1).max(max);
 
-// ───────── Timed tests: the diagnostic and the checkpoint mocks ─────────
+// ───────── Timed tests: the diagnostic, the checkpoint mocks and the Unit 15 mocks ─────────
 
-export const MATH_TEST_KEYS = ['diagnostic', 'checkpoint-1', 'checkpoint-2'] as const;
+/** The Unit 15 mocks, taken inside a lesson through a MOCK_TEST activity (math-design.md §4.15). */
+export const MATH_MOCK_KEYS = ['mock-a', 'mock-b', 'mock-c', 'mock-final'] as const;
+export const MATH_TEST_KEYS = [
+  'diagnostic',
+  'checkpoint-1',
+  'checkpoint-2',
+  ...MATH_MOCK_KEYS,
+] as const;
 export const MathTestKey = z.enum(MATH_TEST_KEYS);
 export type MathTestKey = z.infer<typeof MathTestKey>;
+export const isMockKey = (key: string): boolean =>
+  (MATH_MOCK_KEYS as readonly string[]).includes(key);
 
 /** content/math/tests/<key>.json: 25 original AMC-style choice problems (fewer while drafting). */
 export const MathTestFile = z.object({
@@ -95,6 +104,8 @@ export interface MathUnitSummary {
   lessonCount: number;
   problems: MathProblem[];
   focusSkills: string[];
+  /** Tests taken in this unit's lessons (MOCK_TEST activities). */
+  mockTests: string[];
 }
 
 /**
@@ -144,6 +155,21 @@ export function validateMathContent(
       errors.push(`${where}: afterUnit ${t.afterUnit} doesn't exist`);
   }
 
+  // The Unit 15 mocks are taken in lessons: each mock test is used by exactly one MOCK_TEST activity.
+  const inLessons = new Map<string, number>();
+  for (const u of units)
+    for (const key of u.mockTests) {
+      const where = `math/unit-${String(u.number).padStart(2, '0')}`;
+      if (!isMockKey(key)) errors.push(`${where}: "${key}" is not a mock test (mock-a…mock-final)`);
+      else if (!testKeys.has(key))
+        errors.push(`${where}: mock test "${key}" has no tests/${key}.json`);
+      if (inLessons.has(key)) errors.push(`${where}: mock test "${key}" is used twice`);
+      inLessons.set(key, u.number);
+    }
+  for (const t of bundle.tests)
+    if (isMockKey(t.key) && !inLessons.has(t.key))
+      errors.push(`math/tests/${t.key}.json: no MOCK_TEST activity uses this mock`);
+
   if (bundle.stages) {
     const numbers = bundle.stages.map((s) => s.number);
     if (numbers.some((n, i) => n !== i + 1))
@@ -174,7 +200,8 @@ export function validateMathContent(
       if (whole && split) errors.push(`stages.json: unit ${u.number} is both whole and split`);
     }
     for (const t of bundle.tests)
-      if (!placed.has(t.key)) errors.push(`stages.json: test "${t.key}" is in no stage`);
+      if (!placed.has(t.key) && !isMockKey(t.key))
+        errors.push(`stages.json: test "${t.key}" is in no stage`);
   }
   return errors;
 }

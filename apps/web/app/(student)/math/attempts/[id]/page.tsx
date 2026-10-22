@@ -9,8 +9,17 @@ import { serverApi } from '@/lib/server-api';
 export const dynamic = 'force-dynamic';
 
 /** A test, sprint or review attempt: carry on with it, or its result once handed in. */
-export default async function MathAttemptPage({ params }: PageProps<'/math/attempts/[id]'>) {
+export default async function MathAttemptPage({
+  params,
+  searchParams,
+}: PageProps<'/math/attempts/[id]'>) {
   const { id } = await params;
+  // A Unit 15 mock started from its lesson links back to it.
+  const lesson = (await searchParams).lesson;
+  const lessonId = typeof lesson === 'string' && /^[a-z0-9]{10,40}$/.test(lesson) ? lesson : null;
+  const back = lessonId
+    ? { href: `/lessons/${lessonId}`, label: 'Back to the lesson' }
+    : { href: '/math', label: 'Back to Math' };
   const attempt = await serverApi(
     `/math/tests/attempts/${encodeURIComponent(id)}`,
     z.union([MathTestView, TestResult]),
@@ -20,10 +29,10 @@ export default async function MathAttemptPage({ params }: PageProps<'/math/attem
   return (
     <PageShell width="max-w-4xl">
       <div className="flex flex-col gap-6">
-        <Link href="/math" className="text-brand underline">
-          ← Math
+        <Link href={back.href} className="text-brand underline">
+          ← {lessonId ? 'The lesson' : 'Math'}
         </Link>
-        <MathAttempt initial={attempt} />
+        <MathAttempt initial={attempt} back={back} />
       </div>
     </PageShell>
   );

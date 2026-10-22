@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {
   AMC_SECONDS_PER_PROBLEM,
+  type AmcScores,
   type ClassMathSkills,
   type DangerZone,
   ErrorCode,
@@ -17,7 +18,9 @@ import {
   type TestCard,
   type TrapProblems,
   LessonSteps,
+  amcEstimate,
   bandOf,
+  isMockKey,
   problemVariant,
   calibrationOf,
   median,
@@ -32,6 +35,7 @@ import { DatabaseService } from '../database/database.service.js';
 import { MasteryService } from './mastery.service.js';
 import { MathContentService } from './math-content.service.js';
 import { MathTestsService } from './math-tests.service.js';
+import { PastPaperService } from './past-paper.service.js';
 
 const Answers = z.record(z.string(), MathTestAnswer);
 const dayOf = (d: Date) => d.toISOString().slice(0, 10);
@@ -50,6 +54,7 @@ export class MathProgressService {
     private readonly mastery: MasteryService,
     private readonly tests: MathTestsService,
     private readonly access: ClassAccessService,
+    private readonly pastPapers: PastPaperService,
   ) {}
 
   async home(user: AuthUser): Promise<MathHome> {
@@ -118,7 +123,7 @@ export class MathProgressService {
       const locked = await this.tests.lockedReason(user, test.afterUnit);
       cards.push({
         key,
-        kind: key === 'diagnostic' ? 'diagnostic' : 'checkpoint',
+        kind: key === 'diagnostic' ? 'diagnostic' : isMockKey(key) ? 'mock' : 'checkpoint',
         title: test.title,
         instructions: test.instructions,
         problemCount: test.problems.length,
@@ -198,7 +203,8 @@ export class MathProgressService {
     });
 
     const calibration = calibrationOf(rows);
-    const positions = await this.positions(user.id);
+    const papers = await this.pastPapers.rows(user.id);
+    const positions = await this.positions(user.id, papers);
     const zones: (DangerZone & { severity: number })[] = [];
     for (const s of view) {
       if (
@@ -237,6 +243,20 @@ export class MathProgressService {
           severity: 50 + sureWrong * 5,
         });
     }
+    // Topics missed in logged past papers (outside problems: topic and skill only).
+    const labels = new Map(skills.map((s) => [s.id, s.label]));
+    for (const m of this.pastPapers.missedSkills(
+      papers.flatMap((p) => p.parsed),
+      labels,
+    ))
+      if (m.missed >= 2)
+        zones.push({
+          kind: 'past-paper',
+          skill: m.skill,
+          title: m.label,
+          reason: `Missed ${m.missed} times in your past papers.`,
+          severity: Math.min(90, 55 + m.missed * 5),
+        });
     for (const p of positions)
       if (p.answered >= 5 && p.percent !== null && p.percent < 50)
         zones.push({
@@ -248,6 +268,7 @@ export class MathProgressService {
         });
 
     return {
+      scores: await this.scores(user.id, papers),
       skills: view,
       calibration: calibration.rows,
       calibrationAdvice: calibration.advice,
@@ -259,12 +280,48 @@ export class MathProgressService {
     };
   }
 
-  /** Accuracy by question position in the student's tests and sprints. */
-  private async positions(studentId: string): Promise<PositionRow[]> {
+  /** Full 25-question scores (checkpoints, mocks, past papers) and the AMC-score estimate. */
+  private async scores(
+    studentId: string,
+    papers: Awaited<ReturnType<PastPaperService['rows']>>,
+  ): Promise<AmcScores> {
+    const attempts = await this.db.client.mathTestAttempt.findMany({
+      where: { studentId, kind: { in: ['checkpoint', 'mock'] }, submittedAt: { not: null } },
+      orderBy: { submittedAt: 'desc' },
+      take: 30,
+    });
+    const titles = new Map<string, string>();
+    for (const a of attempts)
+      if (!titles.has(a.testKey))
+        titles.set(a.testKey, (await this.content.test(a.testKey))?.title ?? 'Practice test');
+    const tests: AmcScores['tests'] = [
+      ...attempts.map((a) => ({
+        kind: a.kind === 'mock' ? ('mock' as const) : ('checkpoint' as const),
+        title: titles.get(a.testKey) ?? 'Practice test',
+        points: a.points ?? 0,
+        date: (a.submittedAt ?? a.startedAt).toISOString(),
+        attemptId: a.id,
+      })),
+      ...papers.map((p) => ({
+        kind: 'past-paper' as const,
+        title: p.label,
+        points: p.points,
+        date: p.takenOn.toISOString(),
+        attemptId: null,
+      })),
+    ].toSorted((a, b) => b.date.localeCompare(a.date));
+    return { tests, estimate: amcEstimate(tests) };
+  }
+
+  /** Accuracy by question position in the student's tests, sprints and past papers. */
+  private async positions(
+    studentId: string,
+    papers: Awaited<ReturnType<PastPaperService['rows']>>,
+  ): Promise<PositionRow[]> {
     const attempts = await this.db.client.mathTestAttempt.findMany({
       where: {
         studentId,
-        kind: { in: ['diagnostic', 'checkpoint', 'sprint'] },
+        kind: { in: ['diagnostic', 'checkpoint', 'mock', 'sprint'] },
         submittedAt: { not: null },
       },
       orderBy: { submittedAt: 'desc' },
@@ -280,6 +337,14 @@ export class MathProgressService {
         if (ans.verdict === 'correct') t.correct += 1;
       }
     }
+    // Logged past papers count too (positions only).
+    for (const paper of papers)
+      paper.parsed.forEach((item, i) => {
+        if (item.answer === null) return;
+        const t = tally.get(bandOf(i))!;
+        t.answered += 1;
+        if (item.answer === item.official) t.correct += 1;
+      });
     return POSITION_BANDS.map((band) => {
       const t = tally.get(band)!;
       return {

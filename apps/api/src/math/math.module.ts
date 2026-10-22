@@ -10,6 +10,7 @@ import { MathContentService } from './math-content.service.js';
 import { MathProgressService } from './math-progress.service.js';
 import { MathTestsService } from './math-tests.service.js';
 import { MathTutorService } from './math-tutor.service.js';
+import { PastPaperService } from './past-paper.service.js';
 import { MathController, MathTutorController } from './math.controller.js';
 import { ProblemSetService } from './problem-set.service.js';
 
@@ -29,6 +30,7 @@ import { ProblemSetService } from './problem-set.service.js';
     MathTestsService,
     MathProgressService,
     MathTutorService,
+    PastPaperService,
   ],
 })
 export class MathModule {}

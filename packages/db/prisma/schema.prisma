@@ -109,6 +109,7 @@ enum ActivityType {
   ESSAY
   PROBLEMS
   PROBLEM_SET
+  MOCK_TEST
   MEMORY_TIMELINE
   GENRE_STORY
   REVISION_CHECKLIST
@@ -212,6 +213,7 @@ model User {
   mathAnswers       MathAnswerLog[]
   mathSkillStates   MathSkillState[]
   mathTestAttempts  MathTestAttempt[]
+  mathPastPapers    MathPastPaper[]
   stats             StudentStats?
   createdAt         DateTime          @default(now())
   deletedAt         DateTime? // soft delete, hard purge after retention window
@@ -424,7 +426,7 @@ model MathTestAttempt {
   id               String    @id @default(cuid())
   studentId        String
   student          User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  kind             String // diagnostic | checkpoint | sprint | review | light-review
+  kind             String // diagnostic | checkpoint | mock | sprint | review | light-review
   testKey          String // "diagnostic", "checkpoint-1", "sprint", "review:2026-10-16"
   items            Json // MathTestItem[] (Zod)
   answers          Json // { [index]: MathTestAnswer } (Zod)
@@ -436,6 +438,23 @@ model MathTestAttempt {
   total            Int
 
   @@index([studentId, kind, startedAt])
+}
+
+/// The past-paper log (math-design.md §4.15): an official AMC 10 paper the student worked outside
+/// StoryForge. Only answer letters, the official letters and topic tags: never the problem text.
+model MathPastPaper {
+  id        String   @id @default(cuid())
+  studentId String
+  student   User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  label     String // the student's own name for it, e.g. "Practice paper 1"
+  takenOn   DateTime
+  items     Json // PastPaperItem[] (Zod): { answer, official, skill } per question
+  correct   Int
+  blank     Int
+  points    Float
+  createdAt DateTime @default(now())
+
+  @@index([studentId, takenOn])
 }
 
 model SensoryWord {

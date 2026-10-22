@@ -30,7 +30,13 @@ const VERDICT = {
  * position and by strand, the time sinks, "if you had left your guesses blank", the diagnostic's
  * focus units, and every problem with its solution, Quill and "Add to my error log".
  */
-export function TestResultView({ result }: { result: TestResult }) {
+export function TestResultView({
+  result,
+  back = { href: '/math', label: 'Back to Math' },
+}: {
+  result: TestResult;
+  back?: { href: string; label: string };
+}) {
   return (
     <div className="flex flex-col gap-6">
       <div className="rounded-2xl border-2 border-brand bg-card p-5">
@@ -171,7 +177,7 @@ export function TestResultView({ result }: { result: TestResult }) {
       </details>
 
       <div className="flex flex-wrap gap-3">
-        <ButtonLink href="/math">Back to Math</ButtonLink>
+        <ButtonLink href={back.href}>{back.label}</ButtonLink>
         <ButtonLink href="/math/progress" variant="secondary">
           My skills
         </ButtonLink>

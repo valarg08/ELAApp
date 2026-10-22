@@ -25,6 +25,7 @@ import {
   type TestResult,
   answerLabel,
   bandOf,
+  isMockKey,
   markAnswer,
   newSeed,
   pointsFor,
@@ -52,7 +53,7 @@ const dayOf = (d: Date) => d.toISOString().slice(0, 10);
 /** Instant-check kinds: each answer is checked as it is given. */
 const INSTANT: readonly MathTestKind[] = ['review', 'light-review'];
 /** Kinds scored like the AMC. */
-const AMC_SCORED: readonly MathTestKind[] = ['diagnostic', 'checkpoint', 'sprint'];
+const AMC_SCORED: readonly MathTestKind[] = ['diagnostic', 'checkpoint', 'mock', 'sprint'];
 
 function shuffled<T>(items: readonly T[]): T[] {
   const out = [...items];
@@ -172,7 +173,7 @@ export class MathTestsService {
     const locked = await this.lockedReason(user, test.afterUnit);
     if (locked) throw new AppError(HttpStatus.FORBIDDEN, ErrorCode.UNIT_LOCKED, 'Not yet', locked);
     return {
-      kind: key === 'diagnostic' ? 'diagnostic' : 'checkpoint',
+      kind: key === 'diagnostic' ? 'diagnostic' : isMockKey(key) ? 'mock' : 'checkpoint',
       items: test.problems.map((p) => ({
         activityKey: `test:${key}`,
         problemId: p.id,
@@ -614,7 +615,7 @@ export class MathTestsService {
     });
     const { title } = await this.titles(attempt);
     const previous =
-      kind === 'diagnostic' || kind === 'checkpoint'
+      kind === 'diagnostic' || kind === 'checkpoint' || kind === 'mock'
         ? await this.db.client.mathTestAttempt.findFirst({
             where: {
               studentId: attempt.studentId,

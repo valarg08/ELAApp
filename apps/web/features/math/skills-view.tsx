@@ -6,7 +6,7 @@ import {
   type UnitSummary,
 } from '@storyforge/shared';
 import Link from 'next/link';
-import { clock } from './copy';
+import { clock, points } from './copy';
 
 const LEVEL_STYLE: Record<MasteryLevel, string> = {
   new: 'border-border bg-card text-muted',
@@ -16,15 +16,71 @@ const LEVEL_STYLE: Record<MasteryLevel, string> = {
 };
 
 /**
- * My skills (math-design.md §3.2 B2, B5, §3.4 D4): the danger zones first, then every skill by
- * strand with its mastery level, how sure I was against how often I was right, and my score by
- * question position.
+ * My skills (math-design.md §3.2 B2, B5, §3.4 D4, §4.15): full-test scores with the AMC-score
+ * estimate, the danger zones, then every skill by strand with its mastery level, how sure I was
+ * against how often I was right, and my score by question position.
  */
 export function SkillsView({ view, units }: { view: MathSkillsView; units: UnitSummary[] }) {
   const slugOf = new Map(units.map((u) => [u.number, u.slug]));
   const skillUnit = new Map(view.skills.map((s) => [s.skill, s.units[0]]));
+  const { scores } = view;
   return (
     <div className="flex flex-col gap-8">
+      <section aria-labelledby="amc-scores" className="flex flex-col gap-3">
+        <h2 id="amc-scores" className="text-2xl font-semibold">
+          Full tests and my AMC-score estimate
+        </h2>
+        {scores.estimate ? (
+          <p className="rounded-2xl border-2 border-brand bg-card p-4 text-lg">
+            Estimate: about <strong>{points(scores.estimate.points)}</strong> of 150 (likely{' '}
+            {points(scores.estimate.low)}–{points(scores.estimate.high)}), from your last{' '}
+            {scores.estimate.basedOn === 1 ? 'full test' : `${scores.estimate.basedOn} full tests`}.
+            It is a guide from practice papers, not a promise.
+          </p>
+        ) : (
+          <p className="text-muted">
+            Take a checkpoint or a Unit 15 mock, or log a past paper, to see an estimate.
+          </p>
+        )}
+        {scores.tests.length > 0 && (
+          <table className="w-full border-collapse text-left">
+            <caption className="sr-only">Full 25-question tests, newest first</caption>
+            <thead>
+              <tr className="border-b border-border">
+                <th scope="col" className="py-2">
+                  Test
+                </th>
+                <th scope="col">Date</th>
+                <th scope="col">Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {scores.tests.slice(0, 8).map((t, i) => (
+                <tr key={i} className="border-b border-border">
+                  <th scope="row" className="py-2 font-normal">
+                    {t.attemptId ? (
+                      <Link
+                        href={`/math/attempts/${encodeURIComponent(t.attemptId)}`}
+                        className="text-brand underline"
+                      >
+                        {t.title}
+                      </Link>
+                    ) : (
+                      <>{t.title} (past paper)</>
+                    )}
+                  </th>
+                  <td>{t.date.slice(0, 10)}</td>
+                  <td>{points(t.points)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+        <Link href="/math/past-papers" className="self-start text-brand underline">
+          My past-paper log
+        </Link>
+      </section>
+
       <section aria-labelledby="danger-zones" className="flex flex-col gap-3">
         <h2 id="danger-zones" className="text-2xl font-semibold">
           Danger zones

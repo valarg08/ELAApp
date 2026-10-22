@@ -233,7 +233,7 @@ export const PositionRow = z.object({
 export type PositionRow = z.infer<typeof PositionRow>;
 
 export const DangerZone = z.object({
-  kind: z.enum(['weak', 'slow', 'overconfident', 'position']),
+  kind: z.enum(['weak', 'slow', 'overconfident', 'position', 'past-paper']),
   /** The skill to practise (null for a question-position zone). */
   skill: z.string().nullable(),
   title: z.string(),
@@ -241,7 +241,92 @@ export const DangerZone = z.object({
 });
 export type DangerZone = z.infer<typeof DangerZone>;
 
+// ───────── The past-paper log and the AMC-score estimate (M15, math-design.md §4.15) ─────────
+
+export const AMC_LETTERS = ['A', 'B', 'C', 'D', 'E'] as const;
+export const AmcLetter = z.enum(AMC_LETTERS);
+export type AmcLetter = z.infer<typeof AmcLetter>;
+/** An official paper has 25 questions. */
+export const PAST_PAPER_SIZE = 25;
+
+/**
+ * One question of a past paper the student worked outside StoryForge: their letter (null for a
+ * blank), the official letter and an optional topic tag. Never the problem text (© MAA).
+ */
+export const PastPaperItem = z.object({
+  answer: AmcLetter.nullable(),
+  official: AmcLetter,
+  skill: z.string().trim().min(1).max(60).nullable(),
+});
+export type PastPaperItem = z.infer<typeof PastPaperItem>;
+
+export const CreatePastPaperRequest = z.object({
+  /** The student's own name for the paper, e.g. "Practice paper 1". */
+  label: z.string().trim().min(1).max(60),
+  takenOn: z.iso.date(),
+  items: z.array(PastPaperItem).length(PAST_PAPER_SIZE),
+});
+export type CreatePastPaperRequest = z.infer<typeof CreatePastPaperRequest>;
+
+export const PastPaperView = z.object({
+  id: z.string(),
+  label: z.string(),
+  takenOn: z.string(),
+  correct: z.number(),
+  wrong: z.number(),
+  blank: z.number(),
+  points: z.number(),
+  items: z.array(PastPaperItem),
+  /** Tagged skills with a wrong answer, most missed first. */
+  missedSkills: z.array(z.object({ skill: z.string(), label: z.string(), missed: z.number() })),
+});
+export type PastPaperView = z.infer<typeof PastPaperView>;
+
+export const PastPaperList = z.object({ papers: z.array(PastPaperView) });
+export type PastPaperList = z.infer<typeof PastPaperList>;
+
+/** A full 25-question score: a checkpoint, a Unit 15 mock or a logged past paper. */
+export const FullTestScore = z.object({
+  kind: z.enum(['checkpoint', 'mock', 'past-paper']),
+  title: z.string(),
+  points: z.number(),
+  date: z.string(),
+  /** The attempt's review (null for a past paper). */
+  attemptId: z.string().nullable(),
+});
+export type FullTestScore = z.infer<typeof FullTestScore>;
+
+/** How many recent full tests the AMC-score estimate averages. */
+export const ESTIMATE_TESTS = 3;
+
+export const AmcScores = z.object({
+  /** Newest first. */
+  tests: z.array(FullTestScore),
+  /** From the last ESTIMATE_TESTS full tests; null before the first one. */
+  estimate: z
+    .object({ points: z.number(), low: z.number(), high: z.number(), basedOn: z.number() })
+    .nullable(),
+});
+export type AmcScores = z.infer<typeof AmcScores>;
+
+/**
+ * The AMC-score estimate: the mean of the last few full-test scores (rounded to a half point), with
+ * their lowest and highest as the range. One test gives a range of ±6 points (one question).
+ */
+export function amcEstimate(newestFirst: readonly { points: number }[]): AmcScores['estimate'] {
+  const recent = newestFirst.slice(0, ESTIMATE_TESTS).map((t) => t.points);
+  if (recent.length === 0) return null;
+  const mean = recent.reduce((a, b) => a + b, 0) / recent.length;
+  const points = Math.round(mean * 2) / 2;
+  const clamp = (x: number) => Math.min(150, Math.max(0, x));
+  return recent.length === 1
+    ? { points, low: clamp(points - 6), high: clamp(points + 6), basedOn: 1 }
+    : { points, low: Math.min(...recent), high: Math.max(...recent), basedOn: recent.length };
+}
+
 export const MathSkillsView = z.object({
+  /** Checkpoint, mock and past-paper scores with the AMC-score estimate. */
+  scores: AmcScores,
   skills: z.array(SkillMastery),
   calibration: z.array(CalibrationRow),
   /** "Your 'Guessing' answers are right 18% of the time: leave those blank." */
@@ -257,6 +342,7 @@ export type MathSkillsView = z.infer<typeof MathSkillsView>;
 export const MATH_TEST_KINDS = [
   'diagnostic',
   'checkpoint',
+  'mock',
   'sprint',
   'review',
   'light-review',

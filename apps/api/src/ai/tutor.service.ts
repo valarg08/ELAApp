@@ -281,6 +281,7 @@ function describeActivity(
     case 'QUIZ':
     case 'PROBLEMS':
     case 'PROBLEM_SET':
+    case 'MOCK_TEST':
     case 'REFLECTION':
       return { text: '', fallback: [] };
   }

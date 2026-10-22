@@ -20,6 +20,7 @@ import { ParagraphBuilder, ParagraphPlan } from './paragraph.js';
 import { Checklist } from './checklist.js';
 import { EssayConfig, EssayPrompt, OutlineBuilder, OutlinePlan } from './outline.js';
 import { AnswerFormId, MathProblem, problemErrors } from './math.js';
+import { MathTestKey } from './math-content.js';
 import { checkAnswer, contentValue, equal, hasForm } from '@storyforge/math-check';
 
 /**
@@ -205,6 +206,19 @@ export const ProblemSetActivity = z.object({
   problems: z.array(MathProblem).min(3).max(60),
 });
 export type ProblemSetActivity = z.infer<typeof ProblemSetActivity>;
+
+/**
+ * A full mock AMC 10 inside a Unit 15 lesson (math-design.md §4.15): the challenge step runs the
+ * timed test `test` (content/math/tests/<test>.json) on the test engine, with its 75-minute server
+ * clock, AMC scoring and mistake analysis. The step is done once an attempt is handed in.
+ */
+export const MockTestActivity = z.object({
+  ...activityBase,
+  type: z.literal('MOCK_TEST'),
+  instructions: text(500),
+  test: MathTestKey,
+});
+export type MockTestActivity = z.infer<typeof MockTestActivity>;
 
 /**
  * The transformer (DESIGN.md §9.12): rewrite a sentence by a rule — change its tense, make it
@@ -548,6 +562,7 @@ export const ActivityContent = z.discriminatedUnion('type', [
   ReflectionActivity,
   ProblemsActivity,
   ProblemSetActivity,
+  MockTestActivity,
   WritingActivity,
 ]);
 export type ActivityContent = z.infer<typeof ActivityContent>;
@@ -594,6 +609,7 @@ export const LessonActivity = z.discriminatedUnion('type', [
   ReflectionActivity,
   ProblemsActivity,
   ProblemSetActivityPublic,
+  MockTestActivity,
   WritingActivity,
 ]);
 export type LessonActivity = z.infer<typeof LessonActivity>;
@@ -1078,6 +1094,8 @@ export function validateUnitBundle({
       )
         errors.push(`${a.key}: problemsPerAttempt is more than the number of problems`);
     }
+    if (a.type === 'MOCK_TEST' && track !== 'MATH')
+      errors.push(`${a.key}: mock tests belong to the Math track`);
     if (a.type === 'TRANSFORM') {
       const ids = a.items.map((i) => i.id);
       if (new Set(ids).size !== ids.length) errors.push(`${a.key}: duplicate item ids`);
@@ -1289,12 +1307,16 @@ export function validateUnitBundle({
       if (!a) errors.push(`${where}: practice activity "${key}" does not exist`);
       else if (isWritingActivity(a))
         errors.push(`${where}: practice activity "${key}" must not be a writing activity`);
+      else if (a.type === 'MOCK_TEST')
+        errors.push(`${where}: practice activity "${key}" must not be a mock test`);
     }
     const c = byKey.get(challenge.activityKey);
     if (!c) errors.push(`${where}: challenge activity "${challenge.activityKey}" does not exist`);
-    else if (track === 'MATH' ? c.type !== 'PROBLEM_SET' : !isWritingActivity(c))
+    else if (
+      track === 'MATH' ? c.type !== 'PROBLEM_SET' && c.type !== 'MOCK_TEST' : !isWritingActivity(c)
+    )
       errors.push(
-        `${where}: challenge activity "${challenge.activityKey}" must be a ${track === 'MATH' ? 'problem set' : 'writing activity'}`,
+        `${where}: challenge activity "${challenge.activityKey}" must be a ${track === 'MATH' ? 'problem set or a mock test' : 'writing activity'}`,
       );
   }
 

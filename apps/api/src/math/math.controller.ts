@@ -1,7 +1,8 @@
-import { Body, Controller, Get, HttpCode, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Query } from '@nestjs/common';
 import {
   AddErrorLogRequest,
   type ClassMathSkills,
+  CreatePastPaperRequest,
   type ErrorLogEntry,
   type ErrorLogList,
   ErrorCode,
@@ -16,6 +17,8 @@ import {
   type MathSkillsView,
   MathStartKey,
   type MathTestView,
+  type PastPaperList,
+  type PastPaperView,
   PracticeAnswersRequest,
   type PracticeAnswersResponse,
   type ProblemSetAttemptView,
@@ -38,6 +41,7 @@ import { ErrorLogService } from './error-log.service.js';
 import { MathProgressService } from './math-progress.service.js';
 import { MathTestsService } from './math-tests.service.js';
 import { MathTutorService } from './math-tutor.service.js';
+import { PastPaperService } from './past-paper.service.js';
 import { ProblemSetService } from './problem-set.service.js';
 
 /**
@@ -52,6 +56,7 @@ export class MathController {
     private readonly answers: AnswerLogService,
     private readonly tests: MathTestsService,
     private readonly progress: MathProgressService,
+    private readonly pastPapers: PastPaperService,
   ) {}
 
   @Get('lessons/:lessonId/problem-sets/:key')
@@ -115,6 +120,30 @@ export class MathController {
     @Body({ schema: RedoRequest }) body: RedoRequest,
   ): Promise<RedoResponse> {
     return this.errorLog.redo(user, id, body);
+  }
+
+  // ───────── The past-paper log (letters and topic tags only, never problem text) ─────────
+
+  @Roles('STUDENT')
+  @Get('math/past-papers')
+  pastPaperList(@CurrentUser() user: AuthUser): Promise<PastPaperList> {
+    return this.pastPapers.list(user);
+  }
+
+  @Roles('STUDENT')
+  @Post('math/past-papers')
+  addPastPaper(
+    @CurrentUser() user: AuthUser,
+    @Body({ schema: CreatePastPaperRequest }) body: CreatePastPaperRequest,
+  ): Promise<PastPaperView> {
+    return this.pastPapers.create(user, body);
+  }
+
+  @Roles('STUDENT')
+  @Delete('math/past-papers/:id')
+  @HttpCode(204)
+  removePastPaper(@CurrentUser() user: AuthUser, @Param('id') id: string): Promise<void> {
+    return this.pastPapers.remove(user, id);
   }
 
   // ───────── The answer record, skills and home ─────────

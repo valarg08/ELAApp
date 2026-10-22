@@ -23,6 +23,13 @@ export default async function MathErrorLog() {
             Problems you missed, to redo later. Get one right on {REDOS_TO_RESOLVE} different days
             and it leaves the log. Redoing beats rereading!
           </p>
+          <p className="mt-2 text-muted">
+            Missed problems on an official paper you worked on your own?{' '}
+            <Link href="/math/past-papers" className="text-brand underline">
+              Log them in your past-paper log
+            </Link>{' '}
+            by topic: they show up as danger zones.
+          </p>
         </div>
         <TrackTabs current="MATH" />
         {log ? (

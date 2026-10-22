@@ -225,6 +225,7 @@ async function loadMathExtras(
           lessonCount: u.lessons.length,
           problems: problemsOf(u.activities).map(({ p }) => p),
           focusSkills: u.lessons.flatMap((l) => l.focusSkills),
+          mockTests: u.activities.flatMap((a) => (a.type === 'MOCK_TEST' ? [a.test] : [])),
         })),
       ),
     );

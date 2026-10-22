@@ -25,12 +25,19 @@ const message = (e: unknown, fallback: string) =>
   e instanceof ApiError ? e.userMessage : fallback;
 
 /** An attempt: the player while it is open, the result once it is handed in. */
-export function MathAttempt({ initial }: { initial: MathTestView | TestResult }) {
+export function MathAttempt({
+  initial,
+  back,
+}: {
+  initial: MathTestView | TestResult;
+  /** Where the result's main button goes (a Unit 15 mock returns to its lesson). */
+  back?: { href: string; label: string };
+}) {
   const [state, setState] = useState(initial);
   return 'problems' in state ? (
     <TestPlayer view={state} onFinished={setState} />
   ) : (
-    <TestResultView result={state} />
+    <TestResultView result={state} back={back} />
   );
 }
 
@@ -443,7 +450,16 @@ function Feedback({ fb }: { fb: TestItemFeedback }) {
 }
 
 /** "Start" for a test, sprint or review: starts (or continues) the attempt, then opens it. */
-export function StartTest({ startKey, label }: { startKey: string; label: string }) {
+export function StartTest({
+  startKey,
+  label,
+  lessonId,
+}: {
+  startKey: string;
+  label: string;
+  /** Started from a lesson (a Unit 15 mock): the attempt links back to it. */
+  lessonId?: string;
+}) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -458,7 +474,9 @@ export function StartTest({ startKey, label }: { startKey: string; label: string
         'POST',
         {},
       );
-      router.push(`/math/attempts/${encodeURIComponent(v.attemptId)}`);
+      router.push(
+        `/math/attempts/${encodeURIComponent(v.attemptId)}${lessonId ? `?lesson=${encodeURIComponent(lessonId)}` : ''}`,
+      );
     } catch (e) {
       setError(message(e, 'Could not start it. Try again.'));
       setBusy(false);
