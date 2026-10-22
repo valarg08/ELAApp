@@ -180,7 +180,7 @@ export async function CourseShell({
         <ChaptersPanel collapsible={wide}>{chapterNav}</ChaptersPanel>
       </aside>
 
-      <main className="min-w-0 rounded-2xl border border-border bg-card p-4 shadow-sm md:p-6">
+      <main className="min-w-0 rounded-2xl border border-border bg-page-panel p-4 shadow-sm md:p-6">
         {children}
       </main>
 
