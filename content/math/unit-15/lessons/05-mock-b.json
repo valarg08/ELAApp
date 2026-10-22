@@ -1,0 +1,57 @@
+{
+  "slug": "math-mock-b",
+  "order": 5,
+  "title": "Mock B",
+  "estMinutes": 100,
+  "focusSkills": ["pacing", "guessing"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Look back at Mock A. Which one change will you make to how you take Mock B?",
+      "placeholder": "This time I will…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Same plan, better execution",
+          "body": "Use the same pacing plan as in Mock A, with the one change you picked. Watch the clock at problem $10$ (about $20$ minutes in) and at problem $20$. Before you hand in, check that every answer is the letter you meant."
+        },
+        {
+          "kind": "definition",
+          "title": "Mistake analysis",
+          "body": "After the mock, open your result and sort every miss and blank into one of four boxes: (1) I didn't know the idea, (2) a careless slip, (3) I misread the question, (4) I ran out of time. Add the problems you didn't know to your error log, and look at the review by strand and by difficulty: is one strand weak, or do the points leak away in the last ten problems?"
+        },
+        {
+          "kind": "definition",
+          "title": "Compare the two mocks",
+          "body": "Put the results side by side: the score, how many blanks, and which of the four boxes your misses fell into. One mock is a snapshot; two show a direction. Your progress page shows your AMC-score estimate from your last full tests."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.mock-b-warmup"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.mock-b"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Did your change from Mock A work?",
+        "Which strand cost you the most points this time?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

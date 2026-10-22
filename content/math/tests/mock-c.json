@@ -1,0 +1,397 @@
+{
+  "key": "mock-c",
+  "title": "Mock C",
+  "instructions": "A full mock AMC 10: 25 original AMC-style problems from the whole course (algebra, number theory, counting and probability, and geometry), getting harder as you go, in 75 minutes. Your third full mock, after the refreshes and your danger zones: aim to beat your Mock B score. Scoring is like the AMC 10: 6 points for a right answer, 1.5 for a blank and 0 for a wrong answer. The clock runs on the server, and the test hands itself in when time runs out. Use your pacing plan and the 2-minute rule: skip, flag and come back. Afterwards you'll see your mistakes by question, strand and difficulty.",
+  "timeLimitMinutes": 75,
+  "afterUnit": 14,
+  "problems": [
+    {
+      "id": "sixth-test",
+      "prompt": "Zoe's mean score on $5$ tests is $84$. What must she score on a $6$th test to raise her mean to $86$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$86$", "$88$", "$92$", "$96$", "$100$"],
+        "correct": "D"
+      },
+      "solution": "She needs $6 \\times 86 = 516$ points in all and has $420$: she needs $96$, choice (D).",
+      "skill": "averages",
+      "difficulty": 1,
+      "compute": "6*86 - 5*84"
+    },
+    {
+      "id": "up-and-down",
+      "prompt": "A price goes up $20\\%$ and then down $20\\%$. By what percent has it changed overall?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$-4$", "$-2$", "$0$", "$2$", "$4$"],
+        "correct": "A",
+        "why": {
+          "C": "The $20\\%$ off is taken from a bigger price."
+        }
+      },
+      "solution": "$1.2 \\times 0.8 = 0.96$: down $4\\%$, choice (A).",
+      "skill": "fractions-percents",
+      "difficulty": 1,
+      "compute": "(1.2*0.8 - 1)*100"
+    },
+    {
+      "id": "two-pipes",
+      "prompt": "Pipe $A$ fills a tank in $6$ hours, and pipe $B$ fills it in $3$ hours. How many hours do they take together?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$\\frac{3}{2}$", "$2$", "$\\frac{9}{2}$", "$9$"],
+        "correct": "C",
+        "why": {
+          "D": "Add the rates, not the times."
+        }
+      },
+      "solution": "Together they fill $\\frac{1}{6} + \\frac{1}{3} = \\frac{1}{2}$ of the tank an hour: $2$ hours, choice (C).",
+      "skill": "work-mixtures",
+      "difficulty": 1,
+      "compute": "1/(1/6 + 1/3)"
+    },
+    {
+      "id": "zeros-of-fifty",
+      "prompt": "How many zeros are at the end of $50!$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$5$", "$10$", "$11$", "$12$", "$15$"],
+        "correct": "D",
+        "why": {
+          "B": "Multiples of $25$ give an extra $5$."
+        }
+      },
+      "solution": "$\\lfloor \\frac{50}{5} \\rfloor + \\lfloor \\frac{50}{25} \\rfloor = 10 + 2 = 12$, choice (D).",
+      "skill": "factorials-zeros",
+      "difficulty": 1,
+      "compute": "floor(50/5) + floor(50/25)"
+    },
+    {
+      "id": "bisector-angle",
+      "prompt": "In triangle $ABC$, $\\angle A = 50^\\circ$ and $\\angle B = 60^\\circ$. The bisector of $\\angle C$ meets $AB$ at $D$. What is $\\angle ADC$, in degrees?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$85$", "$90$", "$95$", "$100$", "$105$"],
+        "correct": "C"
+      },
+      "solution": "$\\angle C = 70^\\circ$, so $\\angle ACD = 35^\\circ$ and $\\angle ADC = 180^\\circ - 50^\\circ - 35^\\circ = 95^\\circ$, choice (C).",
+      "skill": "angle-chasing",
+      "difficulty": 1,
+      "compute": "180 - 50 - 35"
+    },
+    {
+      "id": "chords-of-eight",
+      "prompt": "Eight points lie on a circle. How many segments join two of them?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$28$", "$32$", "$36$", "$56$", "$64$"],
+        "correct": "A",
+        "why": {
+          "D": "Each segment was counted twice."
+        }
+      },
+      "solution": "$\\binom{8}{2} = 28$, choice (A).",
+      "skill": "combinations",
+      "difficulty": 1,
+      "compute": "binom(8, 2)"
+    },
+    {
+      "id": "abs-sum",
+      "prompt": "What is the sum of all solutions of $|2x - 6| = 10$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$6$", "$8$", "$10$", "$12$", "$16$"],
+        "correct": "A",
+        "why": {
+          "B": "There is a second solution, $x = -2$."
+        }
+      },
+      "solution": "$2x - 6 = 10$ gives $x = 8$, and $2x - 6 = -10$ gives $x = -2$. The sum is $6$, choice (A).",
+      "skill": "absolute-value",
+      "difficulty": 1,
+      "compute": "8 + (-2)"
+    },
+    {
+      "id": "two-powers",
+      "prompt": "What is the units digit of $3^{2026} + 7^{2026}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$0$", "$2$", "$4$", "$6$", "$8$"],
+        "correct": "E"
+      },
+      "solution": "$2026$ leaves remainder $2$ when divided by $4$, so the units digits are those of $3^2 = 9$ and $7^2 = 49$. $9 + 9 = 18$: units digit $8$, choice (E).",
+      "skill": "units-digits",
+      "difficulty": 1,
+      "compute": "mod(3^2 + 7^2, 10)"
+    },
+    {
+      "id": "nickels-dimes",
+      "prompt": "Jo has $20$ coins, all nickels and dimes, worth $\\$1.55$ in all. How many dimes does Jo have?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$9$", "$10$", "$11$", "$12$", "$13$"],
+        "correct": "C",
+        "why": {
+          "A": "That is the number of nickels."
+        }
+      },
+      "solution": "If all $20$ were nickels they would be worth $100$ cents. Each dime adds $5$ cents, and $55 \\div 5 = 11$, choice (C).",
+      "skill": "ages-coins-money",
+      "difficulty": 2,
+      "compute": "(155 - 100)/5"
+    },
+    {
+      "id": "lowest-point",
+      "prompt": "What is the smallest value of $x^2 - 10x + 31$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$-25$", "$0$", "$5$", "$6$", "$31$"],
+        "correct": "D",
+        "why": {
+          "C": "That is where it happens ($x = 5$), not the value."
+        }
+      },
+      "solution": "$x^2 - 10x + 31 = (x - 5)^2 + 6$, so the smallest value is $6$, choice (D).",
+      "skill": "completing-square",
+      "difficulty": 2,
+      "compute": "31 - 25"
+    },
+    {
+      "id": "remainder-cubic",
+      "prompt": "What is the remainder when $x^3 - 4x + 7$ is divided by $x - 3$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$4$", "$10$", "$16$", "$22$", "$34$"],
+        "correct": "D"
+      },
+      "solution": "By the remainder theorem it is $3^3 - 4 \\times 3 + 7 = 22$, choice (D).",
+      "skill": "polynomial-remainders",
+      "difficulty": 2,
+      "compute": "27 - 12 + 7"
+    },
+    {
+      "id": "broken-stick",
+      "prompt": "A stick of length $1$ is broken at a random point. What is the probability that the longer piece has length at least $\\frac{3}{4}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{1}{4}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{3}{4}$"
+        ],
+        "correct": "C",
+        "why": {
+          "A": "Either end works."
+        }
+      },
+      "solution": "The break must be within $\\frac{1}{4}$ of either end: $\\frac{1}{4} + \\frac{1}{4} = \\frac{1}{2}$, choice (C).",
+      "skill": "geometric-probability",
+      "difficulty": 2,
+      "compute": "2*(1/4)"
+    },
+    {
+      "id": "multiples-of-seven",
+      "prompt": "How many multiples of $7$ are between $100$ and $500$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$56$", "$57$", "$58$", "$59$", "$71$"],
+        "correct": "B",
+        "why": {
+          "A": "Count both ends: add $1$."
+        }
+      },
+      "solution": "They run from $105$ to $497$: $\\frac{497 - 105}{7} + 1 = 57$, choice (B).",
+      "skill": "arithmetic-sequences",
+      "difficulty": 2,
+      "compute": "(497 - 105)/7 + 1"
+    },
+    {
+      "id": "belt",
+      "prompt": "Two circles have radii $7$ and $2$, and their centres are $13$ apart. A line touches both circles on the same side. How long is the segment of that line between the two points of tangency?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$5$", "$10$", "$12$", "$13$", "$15$"],
+        "correct": "C",
+        "why": {
+          "A": "That is the difference of the radii."
+        }
+      },
+      "solution": "Slide the tangent segment over to the centres: it is a leg of a right triangle with hypotenuse $13$ and other leg $7 - 2 = 5$. So it is $\\sqrt{169 - 25} = 12$, choice (C).",
+      "skill": "tangents",
+      "difficulty": 2,
+      "compute": "sqrt(13^2 - 5^2)"
+    },
+    {
+      "id": "gcd-times-lcm",
+      "prompt": "Two positive integers have product $432$ and greatest common divisor $6$. What is their least common multiple?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$36$", "$72$", "$108$", "$144$", "$216$"],
+        "correct": "B"
+      },
+      "solution": "$\\gcd \\times \\operatorname{lcm} = $ product, so the lcm is $\\frac{432}{6} = 72$, choice (B).",
+      "skill": "gcd-lcm",
+      "difficulty": 2,
+      "compute": "432/6"
+    },
+    {
+      "id": "shoelace-quad",
+      "prompt": "What is the area of the quadrilateral with corners $(0, 0)$, $(5, 1)$, $(4, 6)$ and $(-1, 4)$, in that order?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$20$", "$22$", "$24$", "$26$", "$48$"],
+        "correct": "C",
+        "why": {
+          "E": "The shoelace sum is twice the area."
+        }
+      },
+      "solution": "Shoelace: $0 + 26 + 22 + 0 = 48$, so the area is $\\frac{48}{2} = 24$, choice (C).",
+      "skill": "grid-areas",
+      "difficulty": 2,
+      "compute": "48/2"
+    },
+    {
+      "id": "some-even",
+      "prompt": "Three different numbers are chosen at random from $1, 2, \\ldots, 10$. What is the probability that at least one of them is even?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{1}{12}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{5}{6}$",
+          "$\\frac{7}{8}$",
+          "$\\frac{11}{12}$"
+        ],
+        "correct": "E",
+        "why": {
+          "A": "That is the chance that none is even."
+        }
+      },
+      "solution": "All three are odd with probability $\\frac{\\binom{5}{3}}{\\binom{10}{3}} = \\frac{10}{120} = \\frac{1}{12}$, so at least one is even with probability $\\frac{11}{12}$, choice (E).",
+      "skill": "complementary-counting",
+      "difficulty": 2,
+      "compute": "1 - binom(5, 3)/binom(10, 3)"
+    },
+    {
+      "id": "two-secants",
+      "prompt": "From a point $P$ outside a circle, one line meets the circle at $A$ and then $B$, and another meets it at $C$ and then $D$. If $PA = 3$, $PB = 12$ and $PC = 4$, what is $PD$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$6$", "$8$", "$9$", "$12$", "$16$"],
+        "correct": "C"
+      },
+      "solution": "$PA \\times PB = PC \\times PD$: $36 = 4 \\times PD$, so $PD = 9$, choice (C).",
+      "skill": "power-of-a-point",
+      "difficulty": 3,
+      "compute": "3*12/4"
+    },
+    {
+      "id": "box-diagonal",
+      "prompt": "A box measures $3$ by $4$ by $12$. How long is the segment joining two opposite corners of the box?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$12$", "$13$", "$14$", "$15$", "$19$"],
+        "correct": "B"
+      },
+      "solution": "$\\sqrt{3^2 + 4^2 + 12^2} = \\sqrt{169} = 13$, choice (B).",
+      "skill": "nets-diagonals",
+      "difficulty": 3,
+      "compute": "sqrt(9 + 16 + 144)"
+    },
+    {
+      "id": "square-divisors",
+      "prompt": "How many positive divisors of $720$ are perfect squares?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$4$", "$5$", "$6$", "$8$", "$12$"],
+        "correct": "C"
+      },
+      "solution": "$720 = 2^4 \\times 3^2 \\times 5$. A square divisor uses an even power of each prime: $2^0, 2^2, 2^4$ ($3$ ways), $3^0, 3^2$ ($2$ ways) and $5^0$: $6$, choice (C).",
+      "skill": "counting-divisors",
+      "difficulty": 3,
+      "compute": "3*2*1"
+    },
+    {
+      "id": "stairs",
+      "prompt": "Ana climbs a staircase of $10$ steps, taking $1$ or $2$ steps at a time. In how many different ways can she climb it?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$55$", "$64$", "$89$", "$100$", "$144$"],
+        "correct": "C",
+        "why": {
+          "A": "That is $9$ steps."
+        }
+      },
+      "solution": "The number of ways $w_n$ satisfies $w_n = w_{n - 1} + w_{n - 2}$, with $w_1 = 1$ and $w_2 = 2$: $1, 2, 3, 5, 8, 13, 21, 34, 55, 89$. So $89$, choice (C).",
+      "skill": "recursion",
+      "difficulty": 3,
+      "compute": "89"
+    },
+    {
+      "id": "shifted-roots",
+      "prompt": "The roots of $x^2 + bx + c = 0$ are each $2$ more than the roots of $x^2 - 5x + 3 = 0$. What is $c$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$7$", "$11$", "$13$", "$17$", "$21$"],
+        "correct": "D"
+      },
+      "solution": "If the old roots are $r$ and $s$, then $c = (r + 2)(s + 2) = rs + 2(r + s) + 4 = 3 + 10 + 4 = 17$, choice (D).",
+      "skill": "vieta",
+      "difficulty": 3,
+      "compute": "3 + 2*5 + 4"
+    },
+    {
+      "id": "two-reflections",
+      "prompt": "The point $(3, 7)$ is reflected over the line $y = x$, and the image is then reflected over the $x$-axis. What is the sum of the coordinates of the final point?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$-10$", "$-4$", "$0$", "$4$", "$10$"],
+        "correct": "D",
+        "why": {
+          "B": "Do the reflections in the order given."
+        }
+      },
+      "solution": "$(3, 7) \\to (7, 3) \\to (7, -3)$, and $7 + (-3) = 4$, choice (D).",
+      "skill": "transformations-symmetry",
+      "difficulty": 3,
+      "compute": "7 - 3"
+    },
+    {
+      "id": "prime-sum-pair",
+      "prompt": "Two different numbers are chosen at random from $1, 2, 3, 4, 5, 6$. What is the probability that their sum is prime?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{5}$",
+          "$\\frac{7}{15}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{8}{15}$"
+        ],
+        "correct": "C"
+      },
+      "solution": "Of the $15$ pairs, $7$ have a prime sum: $1 + 2$, $1 + 4$, $1 + 6$, $2 + 3$, $2 + 5$, $3 + 4$ and $5 + 6$. So $\\frac{7}{15}$, choice (C).",
+      "skill": "probability",
+      "difficulty": 3,
+      "compute": "7/15"
+    },
+    {
+      "id": "thirteen-fourteen",
+      "prompt": "A triangle has sides $13$, $14$ and $15$. What is the radius of its inscribed circle?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$3$", "$4$", "$5$", "$\\frac{65}{8}$", "$7$"],
+        "correct": "B",
+        "why": {
+          "D": "That is the radius of the circle through the corners."
+        }
+      },
+      "solution": "The height to the side $14$ is $12$, so the area is $84$. With semi-perimeter $21$, the radius is $\\frac{84}{21} = 4$, choice (B).",
+      "skill": "inscribed-circles",
+      "difficulty": 3,
+      "compute": "84/21"
+    }
+  ]
+}

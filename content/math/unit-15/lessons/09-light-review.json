@@ -1,0 +1,78 @@
+{
+  "slug": "math-light-review",
+  "order": 9,
+  "title": "Light Review & Confidence",
+  "estMinutes": 30,
+  "focusSkills": [
+    "amc-scoring",
+    "fractions-percents",
+    "polygons",
+    "counting-divisors",
+    "combinations"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "In the last days before a big test, is it better to learn something new or to go over what you know? Why?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Light review, not cramming",
+          "body": "In the final week, stop learning new topics. Keep the daily review going, redo a few error-log problems, and read your fact sheets once more. The Light review on the Math page is a short, untimed set of facts you already know: use it to warm up on the days before the test."
+        },
+        {
+          "kind": "definition",
+          "title": "Confidence comes from evidence",
+          "body": "Look back at your first mock and your latest one: the score, the blanks, the careless slips. You have done three full mocks, fifteen unit checks and hundreds of problems. Nerves are normal; they mean your brain is ready to work."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a quick fact",
+          "problem": "How many diagonals does a hexagon have?",
+          "steps": [
+            {
+              "text": "Each corner joins $3$ others by a diagonal.",
+              "try": {
+                "prompt": "How many diagonals from one corner?",
+                "accepted": ["3"],
+                "compute": "6 - 3"
+              }
+            },
+            {
+              "text": "$\\frac{6 \\times 3}{2} = 9$, since each diagonal has two ends.",
+              "try": {
+                "prompt": "How many diagonals?",
+                "accepted": ["9"],
+                "compute": "6*3/2"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.light-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.light-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["What will you do in the last three days before the test?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

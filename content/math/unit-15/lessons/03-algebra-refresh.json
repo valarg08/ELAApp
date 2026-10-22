@@ -1,0 +1,72 @@
+{
+  "slug": "math-algebra-refresh",
+  "order": 3,
+  "title": "Algebra Refresh",
+  "estMinutes": 35,
+  "focusSkills": ["systems", "factoring", "vieta", "functions", "arithmetic-sequences"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Which algebra idea from Units 2 to 6 do you reach for most often? Which one do you forget?",
+      "placeholder": "I use… I forget…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The algebra toolkit",
+          "body": "Equations: undo the steps in reverse. Systems: add or subtract the equations to get what's asked, often without finding $x$ and $y$. Quadratics: factor, use Vieta ($r + s = -\\frac{b}{a}$, $rs = \\frac{c}{a}$) or complete the square. Sequences: term $n$ is $a + (n - 1)d$; the sum is the number of terms times the average of the first and last."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: ask for what's asked",
+          "problem": "If $3a + 2b = 17$ and $a + 2b = 9$, what is $a$?",
+          "steps": [
+            {
+              "text": "Subtract the equations: $2a = 8$.",
+              "try": {
+                "prompt": "What is $2a$?",
+                "accepted": ["8"],
+                "compute": "17 - 9"
+              }
+            },
+            {
+              "text": "So $a = 4$.",
+              "try": {
+                "prompt": "What is $a$?",
+                "accepted": ["4"],
+                "compute": "8/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Quick identities",
+          "body": "$(a + b)^2 = a^2 + 2ab + b^2$, $a^2 - b^2 = (a - b)(a + b)$, $r^2 + s^2 = (r + s)^2 - 2rs$ and $\\left(x + \\frac{1}{x}\\right)^2 = x^2 + 2 + \\frac{1}{x^2}$. Your Units 2 to 6 fact sheets have the rest: read them through once before the next mock."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.algebra-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.algebra-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which algebra fact will you reread before Mock B?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

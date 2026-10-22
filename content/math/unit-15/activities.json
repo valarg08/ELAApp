@@ -1,0 +1,2120 @@
+[
+  {
+    "key": "m15.pacing-practice",
+    "type": "PROBLEMS",
+    "title": "Pacing and points",
+    "instructions": "Type each answer and press Check. Think about time and points. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "minutes-each",
+        "prompt": "You have $[[n*k]]$ minutes left and $[[n]]$ problems to go. How many minutes is that per problem?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k]]"],
+          "form": "integer"
+        },
+        "hints": ["Divide the time by the number of problems."],
+        "solution": "$[[n*k]] \\div [[n]] = [[k]]$ minutes each.",
+        "skill": "pacing",
+        "difficulty": 1,
+        "compute": "k",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 10
+            },
+            "k": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "sam-score",
+        "prompt": "On the AMC 10 a right answer scores $6$, a blank $1.5$ and a wrong answer $0$. Sam gets $[[c]]$ right, $[[w]]$ wrong and leaves the rest of the $25$ problems blank. What is Sam's score?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[6*c + 1.5*(25 - c - w)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[6*c]]",
+              "why": "The $[[25 - c - w]]$ blanks earn $1.5$ points each."
+            }
+          ]
+        },
+        "hints": ["How many blanks are there? $25 - [[c]] - [[w]]$."],
+        "solution": "$6 \\times [[c]] + 1.5 \\times [[25 - c - w]] = [[6*c + 1.5*(25 - c - w)]]$.",
+        "skill": "amc-scoring",
+        "difficulty": 1,
+        "compute": "6*c + 1.5*(25 - c - w)",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 10,
+              "to": 20
+            },
+            "w": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "left-for-skips",
+        "prompt": "On a $75$-minute test of $25$ problems, your first pass works $[[a]]$ problems at $2$ minutes each and skips the other $[[25 - a]]$. How many minutes are left for the skipped problems?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[75 - 2*a]]"],
+          "form": "integer"
+        },
+        "hints": ["The first pass takes $2 \\times [[a]]$ minutes."],
+        "solution": "$75 - 2 \\times [[a]] = [[75 - 2*a]]$ minutes for $[[25 - a]]$ problems.",
+        "skill": "pacing",
+        "difficulty": 1,
+        "compute": "75 - 2*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 14,
+              "to": 22
+            }
+          }
+        }
+      },
+      {
+        "id": "how-many-right",
+        "prompt": "Ana leaves $[[b]]$ problems blank, gets no answers wrong and scores $[[6*c + 1.5*b]]$ points. How many did she get right?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c]]"],
+          "form": "integer"
+        },
+        "hints": ["The blanks are worth $1.5 \\times [[b]] = [[1.5*b]]$ points."],
+        "solution": "$([[6*c + 1.5*b]] - [[1.5*b]]) \\div 6 = [[c]]$.",
+        "skill": "amc-scoring",
+        "difficulty": 1,
+        "compute": "c",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 8
+            },
+            "c": {
+              "from": 10,
+              "to": 17
+            }
+          }
+        }
+      },
+      {
+        "id": "guess-value",
+        "prompt": "On $[[n]]$ problems you have ruled out $2$ of the $5$ choices, and you guess among the other $3$. On average, how many points do these guesses earn in all? (A right answer scores $6$, a wrong one $0$.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[1.5*n]]",
+              "why": "That is what $[[n]]$ blanks would earn. Each guess is worth $6 \\times \\frac{1}{3} = 2$ points."
+            }
+          ]
+        },
+        "hints": ["Each guess is right with probability $\\frac{1}{3}$."],
+        "solution": "Each guess is worth $6 \\times \\frac{1}{3} = 2$ points on average, so $[[n]]$ guesses are worth $[[2*n]]$, more than the $[[1.5*n]]$ for blanks. Guess when you can rule out at least two choices.",
+        "skill": "guessing",
+        "difficulty": 2,
+        "compute": "2*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.pacing-set",
+    "type": "PROBLEM_SET",
+    "title": "Pacing and points set",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "full-score",
+        "prompt": "On a $25$-problem AMC 10 (right $6$, blank $1.5$, wrong $0$), Kim gets $16$ right, $4$ wrong and leaves $5$ blank. What is her score?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$96$", "$99.5$", "$103.5$", "$107$", "$111$"],
+          "correct": "C",
+          "why": {
+            "A": "The $5$ blanks earn points too."
+          }
+        },
+        "solution": "$6 \\times 16 + 1.5 \\times 5 = 103.5$, choice (C).",
+        "skill": "amc-scoring",
+        "difficulty": 1,
+        "compute": "6*16 + 1.5*5"
+      },
+      {
+        "id": "two-left",
+        "prompt": "You have ruled out $3$ of the $5$ choices. On average, how many points is a random guess between the other two worth?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1.2$", "$1.5$", "$2$", "$3$", "$6$"],
+          "correct": "D",
+          "why": {
+            "B": "That is a blank. The guess is right half the time: $\\frac{6}{2}$."
+          }
+        },
+        "solution": "It's right with probability $\\frac{1}{2}$: $\\frac{6}{2} = 3$ points, twice a blank. Choice (D).",
+        "skill": "guessing",
+        "difficulty": 1,
+        "compute": "6/2"
+      },
+      {
+        "id": "blanks-win",
+        "prompt": "Sam answers all $25$ problems and gets $18$ right. Lee answers $20$ problems, gets $17$ right and leaves $5$ blank. How many more points does Lee score than Sam?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-6$", "$-1.5$", "$0$", "$1.5$", "$6$"],
+          "correct": "D",
+          "why": {
+            "A": "Lee's $5$ blanks score $7.5$ points."
+          }
+        },
+        "solution": "Sam: $6 \\times 18 = 108$. Lee: $6 \\times 17 + 1.5 \\times 5 = 109.5$. Lee scores $1.5$ more, choice (D).",
+        "skill": "amc-scoring",
+        "difficulty": 2,
+        "compute": "(6*17 + 1.5*5) - 6*18"
+      },
+      {
+        "id": "reach-hundred",
+        "prompt": "Jo plans to leave $6$ problems blank. What is the smallest number she must get right to score at least $100$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$14$", "$15$", "$16$", "$17$", "$18$"],
+          "correct": "C",
+          "why": {
+            "B": "$6 \\times 15 + 9 = 99$, just short."
+          }
+        },
+        "solution": "The blanks give $9$ points, so she needs $6r \\ge 91$: $r \\ge 15.2$, so $16$, choice (C).",
+        "skill": "amc-scoring",
+        "difficulty": 2,
+        "compute": "floor((100 - 9)/6) + 1"
+      },
+      {
+        "id": "time-plan",
+        "prompt": "On a $75$-minute, $25$-problem test, Raj spends $2$ minutes on each of the first $10$ problems and $3$ minutes on each of the next $10$. How many minutes per problem does he have left for the last $5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$5$", "$6$", "$7$"],
+          "correct": "C"
+        },
+        "solution": "$75 - 20 - 30 = 25$ minutes for $5$ problems: $5$ each, choice (C). The hardest problems get the most time, as they should.",
+        "skill": "pacing",
+        "difficulty": 3,
+        "compute": "(75 - 20 - 30)/5"
+      }
+    ]
+  },
+  {
+    "key": "m15.mock-a-warmup",
+    "type": "PROBLEMS",
+    "title": "Warm-up before the mock",
+    "instructions": "Five quick problems from different strands to get your brain going. Type each answer and press Check. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "solve-a",
+        "prompt": "Solve $[[a]]x + [[b]] = [[a*x + b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(a*x + b)/a - b]]",
+              "why": "Subtract $[[b]]$ first, then divide by $[[a]]$."
+            }
+          ]
+        },
+        "hints": ["Subtract $[[b]]$ from both sides first."],
+        "solution": "$[[a]]x = [[a*x]]$, so $x = [[x]]$.",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "x",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 30
+            },
+            "x": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "percent-a",
+        "prompt": "What is $[[p]]\\%$ of $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p*n/100]]"],
+          "form": "integer"
+        },
+        "hints": ["$[[p]]\\%$ means $\\frac{[[p]]}{100}$."],
+        "solution": "$\\frac{[[p]]}{100} \\times [[n]] = [[p*n/100]]$.",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "p*n/100",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 5,
+              "to": 95,
+              "step": 5
+            },
+            "n": {
+              "from": 20,
+              "to": 400,
+              "step": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "choose-a",
+        "prompt": "In how many ways can you choose $[[k]]$ people from a group of $[[n]]$ (order doesn't matter)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n, k)]]"],
+          "form": "integer"
+        },
+        "hints": ["Use $\\binom{n}{k} = \\frac{n!}{k!(n - k)!}$."],
+        "solution": "$\\binom{[[n]]}{[[k]]} = [[binom(n, k)]]$.",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(n, k)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 10
+            },
+            "k": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "triangle-a",
+        "prompt": "A right triangle has legs $[[5*k]]$ and $[[12*k]]$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[13*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[17*k]]",
+              "why": "The legs don't simply add: square them, add, then take the square root."
+            }
+          ]
+        },
+        "hints": ["$c = \\sqrt{a^2 + b^2}$. Spot the $5$-$12$-$13$ triangle."],
+        "solution": "This is a $5$-$12$-$13$ triangle scaled by $[[k]]$: $[[13*k]]$.",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "13*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "units-a",
+        "prompt": "What is the units digit of $[[b]]^{[[e]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(b^e, 10)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "List the units digits of $[[b]]^1, [[b]]^2, [[b]]^3, \\ldots$ until they repeat."
+        ],
+        "solution": "The units digits of powers of $[[b]]$ repeat; for $[[b]]^{[[e]]}$ the units digit is $[[mod(b^e, 10)]]$.",
+        "skill": "units-digits",
+        "difficulty": 1,
+        "compute": "mod(b^e, 10)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 9
+            },
+            "e": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.mock-a",
+    "type": "MOCK_TEST",
+    "title": "Mock A",
+    "instructions": "A full mock AMC 10: 25 problems in 75 minutes, scored like the AMC (6 for a right answer, 1.5 for a blank, 0 for a wrong answer). The clock runs on the server and the mock hands itself in when time runs out. When you're done, come back here to continue the lesson.",
+    "test": "mock-a"
+  },
+  {
+    "key": "m15.algebra-practice",
+    "type": "PROBLEMS",
+    "title": "Algebra refresh",
+    "instructions": "Type each answer and press Check. Name the tool before you start. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sum-difference",
+        "prompt": "If $x + y = [[a + b]]$ and $x - y = [[a - b]]$, what is $x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "integer"
+        },
+        "hints": ["Add the two equations."],
+        "solution": "Adding gives $2x = [[2*a]]$, so $x = [[a]]$.",
+        "skill": "systems",
+        "difficulty": 1,
+        "compute": "a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 20
+            },
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "nth-term",
+        "prompt": "An arithmetic sequence begins $[[a]], [[a + d]], [[a + 2*d]], \\ldots$ What is term number $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + (n - 1)*d]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a + n*d]]",
+              "why": "From term $1$ to term $[[n]]$ is $[[n - 1]]$ steps, not $[[n]]$."
+            }
+          ]
+        },
+        "hints": ["Term $n$ is the first term plus $n - 1$ steps."],
+        "solution": "$[[a]] + ([[n]] - 1) \\times [[d]] = [[a + (n - 1)*d]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "a + (n - 1)*d",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 12
+            },
+            "d": {
+              "from": 2,
+              "to": 9
+            },
+            "n": {
+              "from": 10,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "f-of-f",
+        "prompt": "Let $f(x) = [[a]]x + [[b]]$. What is $f(f(1))$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*(a + b) + b]]"],
+          "form": "integer"
+        },
+        "hints": ["Find $f(1)$ first, then put it into $f$ again."],
+        "solution": "$f(1) = [[a + b]]$, and $f([[a + b]]) = [[a]] \\times [[a + b]] + [[b]] = [[a*(a + b) + b]]$.",
+        "skill": "functions",
+        "difficulty": 1,
+        "compute": "a*(a + b) + b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "roots-squares",
+        "prompt": "The roots of $x^2 - [[a + b]]x + [[a*b]] = 0$ are $r$ and $s$. What is $r^2 + s^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(a + b)^2 - 2*a*b]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(a + b)^2]]",
+              "why": "$(r + s)^2 = r^2 + s^2 + 2rs$: take away $2rs$."
+            }
+          ]
+        },
+        "hints": [
+          "$r + s$ and $rs$ come straight from the equation. Then $r^2 + s^2 = (r + s)^2 - 2rs$."
+        ],
+        "solution": "$r + s = [[a + b]]$ and $rs = [[a*b]]$, so $r^2 + s^2 = [[(a + b)^2]] - [[2*a*b]] = [[(a + b)^2 - 2*a*b]]$.",
+        "skill": "vieta",
+        "difficulty": 2,
+        "compute": "(a + b)^2 - 2*a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a != b"]
+        }
+      },
+      {
+        "id": "x-plus-reciprocal",
+        "prompt": "If $x + \\frac{1}{x} = [[k]]$, what is $x^2 + \\frac{1}{x^2}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k^2 - 2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[k^2]]",
+              "why": "Squaring gives a middle term: $\\left(x + \\frac{1}{x}\\right)^2 = x^2 + 2 + \\frac{1}{x^2}$."
+            }
+          ]
+        },
+        "hints": ["Square both sides."],
+        "solution": "Squaring: $x^2 + 2 + \\frac{1}{x^2} = [[k^2]]$, so $x^2 + \\frac{1}{x^2} = [[k^2 - 2]]$.",
+        "skill": "factoring",
+        "difficulty": 2,
+        "compute": "k^2 - 2",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.algebra-set",
+    "type": "PROBLEM_SET",
+    "title": "Algebra refresh set",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "three-x",
+        "prompt": "If $4x - 3 = 2x + 9$, what is $3x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$12$", "$15$", "$18$", "$21$"],
+          "correct": "D",
+          "why": {
+            "A": "That is $x$. The question asks for $3x$."
+          }
+        },
+        "solution": "$2x = 12$, so $x = 6$ and $3x = 18$, choice (D).",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "3*6"
+      },
+      {
+        "id": "factor-pair",
+        "prompt": "$x^2 - 5x - 14 = (x - a)(x + b)$ with $a$ and $b$ positive. What is $a + b$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$7$", "$9$", "$12$", "$14$"],
+          "correct": "C"
+        },
+        "solution": "$x^2 - 5x - 14 = (x - 7)(x + 2)$, so $a + b = 9$, choice (C).",
+        "skill": "factoring",
+        "difficulty": 1,
+        "compute": "7 + 2"
+      },
+      {
+        "id": "inverse",
+        "prompt": "Let $f(x) = 3x - 4$. For which $x$ is $f(x) = 11$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$5$", "$11$", "$29$", "$33$"],
+          "correct": "B",
+          "why": {
+            "D": "That is $f(11)$."
+          }
+        },
+        "solution": "$3x - 4 = 11$ gives $x = 5$, choice (B).",
+        "skill": "functions",
+        "difficulty": 2,
+        "compute": "(11 + 4)/3"
+      },
+      {
+        "id": "series-sum",
+        "prompt": "What is $4 + 9 + 14 + \\cdots + 99$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1000$", "$1030$", "$1050$", "$1103$", "$2060$"],
+          "correct": "B",
+          "why": {
+            "E": "Pair the terms: the sum is half of that."
+          }
+        },
+        "solution": "There are $\\frac{99 - 4}{5} + 1 = 20$ terms, so the sum is $\\frac{20(4 + 99)}{2} = 1030$, choice (B).",
+        "skill": "arithmetic-sequences",
+        "difficulty": 2,
+        "compute": "20*(4 + 99)/2"
+      },
+      {
+        "id": "square-it",
+        "prompt": "If $x + \\frac{1}{x} = 5$, what is $x^2 + \\frac{1}{x^2}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$23$", "$25$", "$27$", "$125$"],
+          "correct": "B",
+          "why": {
+            "C": "Squaring gives a middle term $2$."
+          }
+        },
+        "solution": "Square: $x^2 + 2 + \\frac{1}{x^2} = 25$, so the answer is $23$, choice (B).",
+        "skill": "factoring",
+        "difficulty": 3,
+        "compute": "5^2 - 2"
+      }
+    ]
+  },
+  {
+    "key": "m15.geometry-practice",
+    "type": "PROBLEMS",
+    "title": "Geometry refresh",
+    "instructions": "Type each answer and press Check. Draw the figure first. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "angle-sum",
+        "prompt": "What is the sum of the interior angles of a polygon with $[[n]]$ sides, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180*(n - 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[180*n]]",
+              "why": "A polygon with $n$ sides splits into $n - 2$ triangles, not $n$."
+            }
+          ]
+        },
+        "hints": ["Split it into triangles from one corner."],
+        "solution": "$180^\\circ \\times ([[n]] - 2) = [[180*(n - 2)]]^\\circ$.",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "180*(n - 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "hypotenuse",
+        "prompt": "A right triangle has legs $[[5*k]]$ and $[[12*k]]$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[13*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[17*k]]",
+              "why": "The legs don't simply add: square them, add, then take the square root."
+            }
+          ]
+        },
+        "hints": ["$c = \\sqrt{a^2 + b^2}$. Spot the $5$-$12$-$13$ triangle."],
+        "solution": "This is a $5$-$12$-$13$ triangle scaled by $[[k]]$: $[[13*k]]$.",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "13*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "half-arc",
+        "prompt": "An inscribed angle cuts off an arc of $[[2*t]]^\\circ$. How many degrees is the angle?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[t]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2*t]]",
+              "why": "That is the central angle. An inscribed angle is half the arc."
+            }
+          ]
+        },
+        "hints": ["An inscribed angle is half of its arc."],
+        "solution": "$\\frac{[[2*t]]^\\circ}{2} = [[t]]^\\circ$.",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "t",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 20,
+              "to": 85,
+              "step": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "how-far",
+        "prompt": "How far apart are the points $([[a]], [[b]])$ and $([[a + 3*k]], [[b + 4*k]])$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[7*k]]",
+              "why": "Distance is not the sum of the steps: use $\\sqrt{(\\Delta x)^2 + (\\Delta y)^2}$."
+            }
+          ]
+        },
+        "hints": ["The steps are $[[3*k]]$ across and $[[4*k]]$ up."],
+        "solution": "$\\sqrt{[[3*k]]^2 + [[4*k]]^2} = [[5*k]]$.",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "5*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": -5,
+              "to": 5
+            },
+            "b": {
+              "from": -5,
+              "to": 5
+            },
+            "k": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "half-base-height",
+        "prompt": "A triangle has base $[[b]]$ and height $[[h]]$. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b*h/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[b*h]]",
+              "why": "Remember the $\\frac{1}{2}$."
+            }
+          ]
+        },
+        "hints": ["Area $= \\frac{1}{2} \\times \\text{base} \\times \\text{height}$."],
+        "solution": "$\\frac{1}{2} \\times [[b]] \\times [[h]] = [[b*h/2]]$.",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "b*h/2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 4,
+              "to": 20,
+              "step": 2
+            },
+            "h": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.geometry-set",
+    "type": "PROBLEM_SET",
+    "title": "Geometry refresh set",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "angle-parts",
+        "prompt": "The angles of a triangle are $x^\\circ$, $2x^\\circ$ and $3x^\\circ$. What is the largest angle, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$30$", "$60$", "$90$", "$108$", "$120$"],
+          "correct": "C",
+          "why": {
+            "A": "That is $x$."
+          }
+        },
+        "solution": "$6x = 180$, so $x = 30$ and the largest angle is $90^\\circ$, choice (C).",
+        "skill": "angle-chasing",
+        "difficulty": 1,
+        "compute": "3*180/6"
+      },
+      {
+        "id": "nine-twelve",
+        "prompt": "A right triangle has legs $9$ and $12$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$13$", "$15$", "$17$", "$18$", "$21$"],
+          "correct": "B"
+        },
+        "solution": "It is a $3$-$4$-$5$ triangle scaled by $3$: $15$, choice (B).",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "sqrt(81 + 144)"
+      },
+      {
+        "id": "arc-angle",
+        "prompt": "An inscribed angle cuts off an arc of $140^\\circ$. How many degrees is the angle?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$35$", "$70$", "$110$", "$140$", "$220$"],
+          "correct": "B",
+          "why": {
+            "D": "That is the central angle."
+          }
+        },
+        "solution": "Half the arc: $70^\\circ$, choice (B).",
+        "skill": "circle-angles",
+        "difficulty": 2,
+        "compute": "140/2"
+      },
+      {
+        "id": "six-eight",
+        "prompt": "How far apart are $(-2, 3)$ and $(4, 11)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$8$", "$10$", "$12$", "$14$"],
+          "correct": "C",
+          "why": {
+            "E": "Distance is not $6 + 8$."
+          }
+        },
+        "solution": "$\\sqrt{6^2 + 8^2} = 10$, choice (C).",
+        "skill": "coordinate-geometry",
+        "difficulty": 2,
+        "compute": "sqrt(36 + 64)"
+      },
+      {
+        "id": "ball-in-cube",
+        "prompt": "A ball fits exactly inside a cube of edge $6$, touching all six faces. What is the volume of the ball?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$27\\pi$", "$36\\pi$", "$48\\pi$", "$72\\pi$", "$288\\pi$"],
+          "correct": "B",
+          "why": {
+            "E": "The radius is half the edge: $3$, not $6$."
+          }
+        },
+        "solution": "The radius is $3$: $\\frac{4}{3}\\pi \\times 27 = 36\\pi$, choice (B).",
+        "skill": "solids-3d",
+        "difficulty": 3,
+        "compute": "4/3*pi*27"
+      }
+    ]
+  },
+  {
+    "key": "m15.mock-b-warmup",
+    "type": "PROBLEMS",
+    "title": "Warm-up before the mock",
+    "instructions": "Five quick problems from different strands to get your brain going. Type each answer and press Check. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "system-b",
+        "prompt": "If $x + y = [[a + b]]$ and $x - y = [[a - b]]$, what is $x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "integer"
+        },
+        "hints": ["Add the two equations."],
+        "solution": "Adding gives $2x = [[2*a]]$, so $x = [[a]]$.",
+        "skill": "systems",
+        "difficulty": 1,
+        "compute": "a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 20
+            },
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "sequence-b",
+        "prompt": "An arithmetic sequence begins $[[a]], [[a + d]], [[a + 2*d]], \\ldots$ What is term number $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + (n - 1)*d]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a + n*d]]",
+              "why": "From term $1$ to term $[[n]]$ is $[[n - 1]]$ steps, not $[[n]]$."
+            }
+          ]
+        },
+        "hints": ["Term $n$ is the first term plus $n - 1$ steps."],
+        "solution": "$[[a]] + ([[n]] - 1) \\times [[d]] = [[a + (n - 1)*d]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "a + (n - 1)*d",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 12
+            },
+            "d": {
+              "from": 2,
+              "to": 9
+            },
+            "n": {
+              "from": 10,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "gcd-b",
+        "prompt": "What is the greatest common divisor of $[[m*g]]$ and $[[n*g]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[gcd(m*g, n*g)]]"],
+          "form": "integer"
+        },
+        "hints": ["Factor both numbers into primes and take the common part."],
+        "solution": "$\\gcd([[m*g]], [[n*g]]) = [[gcd(m*g, n*g)]]$.",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "gcd(m*g, n*g)",
+        "template": {
+          "vars": {
+            "g": {
+              "from": 2,
+              "to": 12
+            },
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "n": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["m != n"]
+        }
+      },
+      {
+        "id": "distance-b",
+        "prompt": "How far apart are the points $([[a]], [[b]])$ and $([[a + 3*k]], [[b + 4*k]])$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[7*k]]",
+              "why": "Distance is not the sum of the steps: use $\\sqrt{(\\Delta x)^2 + (\\Delta y)^2}$."
+            }
+          ]
+        },
+        "hints": ["The steps are $[[3*k]]$ across and $[[4*k]]$ up."],
+        "solution": "$\\sqrt{[[3*k]]^2 + [[4*k]]^2} = [[5*k]]$.",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "5*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": -5,
+              "to": 5
+            },
+            "b": {
+              "from": -5,
+              "to": 5
+            },
+            "k": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "stars-b",
+        "prompt": "How many ordered triples of whole numbers $(a, b, c)$ (zero allowed) have $a + b + c = [[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n + 2, 2)]]"],
+          "form": "integer"
+        },
+        "hints": ["Stars and bars: $[[n]]$ stars and $2$ bars."],
+        "solution": "$\\binom{[[n]] + 2}{2} = [[binom(n + 2, 2)]]$.",
+        "skill": "stars-bars",
+        "difficulty": 2,
+        "compute": "binom(n + 2, 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 12
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.mock-b",
+    "type": "MOCK_TEST",
+    "title": "Mock B",
+    "instructions": "A full mock AMC 10: 25 problems in 75 minutes, scored like the AMC (6 for a right answer, 1.5 for a blank, 0 for a wrong answer). The clock runs on the server and the mock hands itself in when time runs out. When you're done, come back here to continue the lesson.",
+    "test": "mock-b"
+  },
+  {
+    "key": "m15.counting-practice",
+    "type": "PROBLEMS",
+    "title": "Counting & number theory refresh",
+    "instructions": "Type each answer and press Check. Count carefully: order or no order? Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "common-divisor",
+        "prompt": "What is the greatest common divisor of $[[m*g]]$ and $[[n*g]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[gcd(m*g, n*g)]]"],
+          "form": "integer"
+        },
+        "hints": ["Factor both numbers into primes and take the common part."],
+        "solution": "$\\gcd([[m*g]], [[n*g]]) = [[gcd(m*g, n*g)]]$.",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "gcd(m*g, n*g)",
+        "template": {
+          "vars": {
+            "g": {
+              "from": 2,
+              "to": 12
+            },
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "n": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["m != n"]
+        }
+      },
+      {
+        "id": "how-many-divisors",
+        "prompt": "How many positive divisors does $2^{[[a]]} \\cdot 3^{[[b]]}$ have?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(a + 1)*(b + 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*b]]",
+              "why": "Each exponent can also be $0$: there are $[[a + 1]]$ choices for the power of $2$."
+            }
+          ]
+        },
+        "hints": ["A divisor is $2^i \\cdot 3^j$: count the choices for $i$ and for $j$."],
+        "solution": "$([[a]] + 1)([[b]] + 1) = [[(a + 1)*(b + 1)]]$.",
+        "skill": "counting-divisors",
+        "difficulty": 1,
+        "compute": "(a + 1)*(b + 1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 6
+            },
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "pick-a-group",
+        "prompt": "In how many ways can you choose $[[k]]$ people from a group of $[[n]]$ (order doesn't matter)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n, k)]]"],
+          "form": "integer"
+        },
+        "hints": ["Use $\\binom{n}{k} = \\frac{n!}{k!(n - k)!}$."],
+        "solution": "$\\binom{[[n]]}{[[k]]} = [[binom(n, k)]]$.",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(n, k)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 10
+            },
+            "k": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "share-out",
+        "prompt": "How many ordered triples of whole numbers $(a, b, c)$ (zero allowed) have $a + b + c = [[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n + 2, 2)]]"],
+          "form": "integer"
+        },
+        "hints": ["Stars and bars: $[[n]]$ stars and $2$ bars."],
+        "solution": "$\\binom{[[n]] + 2}{2} = [[binom(n + 2, 2)]]$.",
+        "skill": "stars-bars",
+        "difficulty": 2,
+        "compute": "binom(n + 2, 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "last-digit",
+        "prompt": "What is the units digit of $[[b]]^{[[e]]}$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(b^e, 10)]]"],
+          "form": "integer"
+        },
+        "hints": [
+          "List the units digits of $[[b]]^1, [[b]]^2, [[b]]^3, \\ldots$ until they repeat."
+        ],
+        "solution": "The units digits of powers of $[[b]]$ repeat; for $[[b]]^{[[e]]}$ the units digit is $[[mod(b^e, 10)]]$.",
+        "skill": "units-digits",
+        "difficulty": 1,
+        "compute": "mod(b^e, 10)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 9
+            },
+            "e": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.counting-set",
+    "type": "PROBLEM_SET",
+    "title": "Counting & number theory set",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "gcd-pair",
+        "prompt": "What is the greatest common divisor of $84$ and $126$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$14$", "$21$", "$42$", "$252$"],
+          "correct": "D",
+          "why": {
+            "E": "That is the least common multiple."
+          }
+        },
+        "solution": "$84 = 2^2 \\times 3 \\times 7$ and $126 = 2 \\times 3^2 \\times 7$, so the gcd is $2 \\times 3 \\times 7 = 42$, choice (D).",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "gcd(84, 126)"
+      },
+      {
+        "id": "level",
+        "prompt": "In how many different orders can the letters of $LEVEL$ be written?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20$", "$24$", "$30$", "$60$", "$120$"],
+          "correct": "C",
+          "why": {
+            "E": "The two $L$s and the two $E$s look the same."
+          }
+        },
+        "solution": "$\\frac{5!}{2! \\, 2!} = 30$, choice (C).",
+        "skill": "permutations",
+        "difficulty": 1,
+        "compute": "120/4"
+      },
+      {
+        "id": "thirteen-power",
+        "prompt": "What is the remainder when $13^{50}$ is divided by $12$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$5$", "$7$", "$11$"],
+          "correct": "B"
+        },
+        "solution": "$13$ leaves remainder $1$, so $13^{50}$ leaves $1^{50} = 1$, choice (B).",
+        "skill": "modular-arithmetic",
+        "difficulty": 2,
+        "compute": "mod(1^50, 12)"
+      },
+      {
+        "id": "same-rank",
+        "prompt": "Two cards are drawn from $4$ aces and $4$ kings. What is the probability that they have the same rank?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{4}$",
+            "$\\frac{3}{14}$",
+            "$\\frac{3}{7}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{4}{7}$"
+          ],
+          "correct": "C",
+          "why": {
+            "B": "Both aces OR both kings: count both."
+          }
+        },
+        "solution": "$\\frac{2\\binom{4}{2}}{\\binom{8}{2}} = \\frac{12}{28} = \\frac{3}{7}$, choice (C).",
+        "skill": "probability",
+        "difficulty": 2,
+        "compute": "2*binom(4, 2)/binom(8, 2)"
+      },
+      {
+        "id": "exactly-one",
+        "prompt": "How many of the integers $1, 2, \\ldots, 100$ are divisible by exactly one of $3$ and $5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$35$", "$41$", "$47$", "$53$", "$59$"],
+          "correct": "B",
+          "why": {
+            "C": "Multiples of $15$ were counted in both lists: take them out of both."
+          }
+        },
+        "solution": "$33$ multiples of $3$ and $20$ of $5$ share the $6$ multiples of $15$: $33 + 20 - 2 \\times 6 = 41$, choice (B).",
+        "skill": "inclusion-exclusion",
+        "difficulty": 3,
+        "compute": "33 + 20 - 2*6"
+      }
+    ]
+  },
+  {
+    "key": "m15.danger-practice",
+    "type": "PROBLEMS",
+    "title": "Classic traps",
+    "instructions": "Type each answer and press Check. Each problem hides a classic trap. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "round-trip",
+        "prompt": "You cycle to a lake at $[[a]]$ km/h and back the same way at $[[2*a]]$ km/h. What is your average speed for the trip, in km/h?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*a/3]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[3*a/2]]",
+              "why": "Average speed is total distance over total time. You spend longer at the slow speed."
+            }
+          ]
+        },
+        "hints": ["Try a distance of $[[2*a]]$ km each way and add up the times."],
+        "solution": "With $[[2*a]]$ km each way the trip takes $2 + 1 = 3$ hours for $[[4*a]]$ km: $[[4*a/3]]$ km/h.",
+        "skill": "distance-rate-time",
+        "difficulty": 2,
+        "compute": "4*a/3",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 30,
+              "to": 150,
+              "step": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "fencepost",
+        "prompt": "How many whole numbers are there from $[[a]]$ to $[[b]]$, including both?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b - a + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[b - a]]",
+              "why": "Subtracting counts the gaps. Add one to count both ends."
+            }
+          ]
+        },
+        "hints": ["Try a small case: from $3$ to $5$ there are $3$ numbers."],
+        "solution": "$[[b]] - [[a]] + 1 = [[b - a + 1]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "b - a + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 40
+            },
+            "b": {
+              "from": 60,
+              "to": 120
+            }
+          }
+        }
+      },
+      {
+        "id": "up-down",
+        "prompt": "A price goes up $[[p]]\\%$ and then down $[[p]]\\%$. By what percent has it changed overall? (Give a negative number for a fall.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[-p^2/100]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "0",
+              "why": "The $[[p]]\\%$ cut is taken from a bigger price, so it is bigger than the rise."
+            }
+          ]
+        },
+        "hints": ["Multiply: $(1 + \\frac{[[p]]}{100})(1 - \\frac{[[p]]}{100})$."],
+        "solution": "$\\left(1 + \\frac{[[p]]}{100}\\right)\\left(1 - \\frac{[[p]]}{100}\\right) = 1 - \\frac{[[p^2]]}{10000}$: a change of $[[-p^2/100]]\\%$.",
+        "skill": "fractions-percents",
+        "difficulty": 2,
+        "compute": "-p^2/100",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 10,
+              "to": 50,
+              "step": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "at-least-one-head",
+        "prompt": "$[[n]]$ coins are flipped. In how many of the $2^{[[n]]}$ outcomes is there at least one head?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2^n - 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[n]]",
+              "why": "Count the complement: only one outcome has no heads at all."
+            }
+          ]
+        },
+        "hints": ["Which outcomes have NO heads?"],
+        "solution": "Only all tails has no head: $2^{[[n]]} - 1 = [[2^n - 1]]$.",
+        "skill": "complementary-counting",
+        "difficulty": 1,
+        "compute": "2^n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "lost-root",
+        "prompt": "How many real numbers $x$ satisfy $x^2 = [[k]]x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "Dividing by $x$ loses the solution $x = 0$. Factor instead: $x(x - [[k]]) = 0$."
+            }
+          ]
+        },
+        "hints": [
+          "Move everything to one side and factor. Never divide by something that might be $0$."
+        ],
+        "solution": "$x(x - [[k]]) = 0$, so $x = 0$ or $x = [[k]]$: $2$ solutions.",
+        "skill": "factoring",
+        "difficulty": 1,
+        "compute": "2",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.danger-set",
+    "type": "PROBLEM_SET",
+    "title": "Danger-zone set",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "harmonic",
+        "prompt": "Ty walks to school at $3$ mph and runs home the same way at $6$ mph. What is his average speed, in mph?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$4.2$", "$4.5$", "$4.8$", "$5$"],
+          "correct": "A",
+          "why": {
+            "C": "Average speed is total distance over total time, not the average of the speeds."
+          }
+        },
+        "solution": "For $6$ miles each way: $2 + 1 = 3$ hours for $12$ miles, so $4$ mph, choice (A).",
+        "skill": "distance-rate-time",
+        "difficulty": 1,
+        "compute": "2*3*6/(3 + 6)"
+      },
+      {
+        "id": "fence",
+        "prompt": "How many whole numbers are there from $15$ to $85$, including both?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$69$", "$70$", "$71$", "$72$", "$85$"],
+          "correct": "C",
+          "why": {
+            "B": "Subtracting counts the gaps; add one."
+          }
+        },
+        "solution": "$85 - 15 + 1 = 71$, choice (C).",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "85 - 15 + 1"
+      },
+      {
+        "id": "undo-rise",
+        "prompt": "A price rises by $25\\%$. By what percent must the new price be cut to bring it back to the start?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$15$", "$20$", "$25$", "$30$", "$40$"],
+          "correct": "B",
+          "why": {
+            "C": "The cut is taken from the bigger price."
+          }
+        },
+        "solution": "$1.25 \\times (1 - c) = 1$ gives $c = 0.2$: $20\\%$, choice (B).",
+        "skill": "fractions-percents",
+        "difficulty": 2,
+        "compute": "100*(1 - 1/1.25)"
+      },
+      {
+        "id": "dont-divide",
+        "prompt": "How many real solutions does $x^3 = 4x$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "correct": "D",
+          "why": {
+            "C": "Dividing by $x$ loses $x = 0$."
+          }
+        },
+        "solution": "$x(x - 2)(x + 2) = 0$: $x = 0, 2, -2$, so $3$ solutions, choice (D).",
+        "skill": "factoring",
+        "difficulty": 2,
+        "compute": "3"
+      },
+      {
+        "id": "some-six",
+        "prompt": "A fair die is rolled $4$ times. What is the probability of at least one $6$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{1}{2}$",
+            "$\\frac{625}{1296}$",
+            "$\\frac{671}{1296}$",
+            "$\\frac{2}{3}$",
+            "$\\frac{5}{6}$"
+          ],
+          "correct": "C",
+          "why": {
+            "D": "Adding $\\frac{1}{6}$ four times counts the overlaps more than once.",
+            "B": "That is the chance of no $6$."
+          }
+        },
+        "solution": "No $6$ at all has probability $\\left(\\frac{5}{6}\\right)^4 = \\frac{625}{1296}$, so at least one $6$ has probability $\\frac{671}{1296}$, choice (C).",
+        "skill": "complementary-counting",
+        "difficulty": 3,
+        "compute": "1 - (5/6)^4"
+      }
+    ]
+  },
+  {
+    "key": "m15.mock-c-warmup",
+    "type": "PROBLEMS",
+    "title": "Warm-up before the mock",
+    "instructions": "Five quick problems from different strands to get your brain going. Type each answer and press Check. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "percent-c",
+        "prompt": "What is $[[p]]\\%$ of $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p*n/100]]"],
+          "form": "integer"
+        },
+        "hints": ["$[[p]]\\%$ means $\\frac{[[p]]}{100}$."],
+        "solution": "$\\frac{[[p]]}{100} \\times [[n]] = [[p*n/100]]$.",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "p*n/100",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 5,
+              "to": 95,
+              "step": 5
+            },
+            "n": {
+              "from": 20,
+              "to": 400,
+              "step": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "choose-c",
+        "prompt": "In how many ways can you choose $[[k]]$ people from a group of $[[n]]$ (order doesn't matter)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n, k)]]"],
+          "form": "integer"
+        },
+        "hints": ["Use $\\binom{n}{k} = \\frac{n!}{k!(n - k)!}$."],
+        "solution": "$\\binom{[[n]]}{[[k]]} = [[binom(n, k)]]$.",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(n, k)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 10
+            },
+            "k": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "arc-c",
+        "prompt": "An inscribed angle cuts off an arc of $[[2*t]]^\\circ$. How many degrees is the angle?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[t]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2*t]]",
+              "why": "That is the central angle. An inscribed angle is half the arc."
+            }
+          ]
+        },
+        "hints": ["An inscribed angle is half of its arc."],
+        "solution": "$\\frac{[[2*t]]^\\circ}{2} = [[t]]^\\circ$.",
+        "skill": "circle-angles",
+        "difficulty": 1,
+        "compute": "t",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 20,
+              "to": 85,
+              "step": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "remainder-c",
+        "prompt": "What is the remainder when $[[q*m + s]] \\times [[p*m + t]]$ is divided by $[[m]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(s*t, m)]]"],
+          "form": "integer"
+        },
+        "hints": ["Replace each number by its remainder first: $[[s]]$ and $[[t]]$."],
+        "solution": "The remainders are $[[s]]$ and $[[t]]$, and $[[s]] \\times [[t]] = [[s*t]]$ leaves remainder $[[mod(s*t, m)]]$.",
+        "skill": "modular-arithmetic",
+        "difficulty": 2,
+        "compute": "mod(s*t, m)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 5,
+              "to": 9
+            },
+            "q": {
+              "from": 3,
+              "to": 9
+            },
+            "p": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 2,
+              "to": 4
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "sequence-c",
+        "prompt": "An arithmetic sequence begins $[[a]], [[a + d]], [[a + 2*d]], \\ldots$ What is term number $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + (n - 1)*d]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a + n*d]]",
+              "why": "From term $1$ to term $[[n]]$ is $[[n - 1]]$ steps, not $[[n]]$."
+            }
+          ]
+        },
+        "hints": ["Term $n$ is the first term plus $n - 1$ steps."],
+        "solution": "$[[a]] + ([[n]] - 1) \\times [[d]] = [[a + (n - 1)*d]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "a + (n - 1)*d",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 12
+            },
+            "d": {
+              "from": 2,
+              "to": 9
+            },
+            "n": {
+              "from": 10,
+              "to": 40
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.mock-c",
+    "type": "MOCK_TEST",
+    "title": "Mock C",
+    "instructions": "A full mock AMC 10: 25 problems in 75 minutes, scored like the AMC (6 for a right answer, 1.5 for a blank, 0 for a wrong answer). The clock runs on the server and the mock hands itself in when time runs out. When you're done, come back here to continue the lesson.",
+    "test": "mock-c"
+  },
+  {
+    "key": "m15.light-practice",
+    "type": "PROBLEMS",
+    "title": "Quick facts",
+    "instructions": "Type each answer and press Check. Quick and calm: these are facts you know. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "percent-of",
+        "prompt": "What is $[[p]]\\%$ of $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[p*n/100]]"],
+          "form": "integer"
+        },
+        "hints": ["$[[p]]\\%$ means $\\frac{[[p]]}{100}$."],
+        "solution": "$\\frac{[[p]]}{100} \\times [[n]] = [[p*n/100]]$.",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "p*n/100",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 5,
+              "to": 95,
+              "step": 5
+            },
+            "n": {
+              "from": 20,
+              "to": 400,
+              "step": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "polygon-angles",
+        "prompt": "What is the sum of the interior angles of a polygon with $[[n]]$ sides, in degrees?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[180*(n - 2)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[180*n]]",
+              "why": "A polygon with $n$ sides splits into $n - 2$ triangles, not $n$."
+            }
+          ]
+        },
+        "hints": ["Split it into triangles from one corner."],
+        "solution": "$180^\\circ \\times ([[n]] - 2) = [[180*(n - 2)]]^\\circ$.",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "180*(n - 2)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "divisor-count",
+        "prompt": "How many positive divisors does $2^{[[a]]} \\cdot 3^{[[b]]}$ have?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(a + 1)*(b + 1)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*b]]",
+              "why": "Each exponent can also be $0$: there are $[[a + 1]]$ choices for the power of $2$."
+            }
+          ]
+        },
+        "hints": ["A divisor is $2^i \\cdot 3^j$: count the choices for $i$ and for $j$."],
+        "solution": "$([[a]] + 1)([[b]] + 1) = [[(a + 1)*(b + 1)]]$.",
+        "skill": "counting-divisors",
+        "difficulty": 1,
+        "compute": "(a + 1)*(b + 1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 6
+            },
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "sequence-term",
+        "prompt": "An arithmetic sequence begins $[[a]], [[a + d]], [[a + 2*d]], \\ldots$ What is term number $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + (n - 1)*d]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a + n*d]]",
+              "why": "From term $1$ to term $[[n]]$ is $[[n - 1]]$ steps, not $[[n]]$."
+            }
+          ]
+        },
+        "hints": ["Term $n$ is the first term plus $n - 1$ steps."],
+        "solution": "$[[a]] + ([[n]] - 1) \\times [[d]] = [[a + (n - 1)*d]]$.",
+        "skill": "arithmetic-sequences",
+        "difficulty": 1,
+        "compute": "a + (n - 1)*d",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 12
+            },
+            "d": {
+              "from": 2,
+              "to": 9
+            },
+            "n": {
+              "from": 10,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "triangle-area",
+        "prompt": "A triangle has base $[[b]]$ and height $[[h]]$. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b*h/2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[b*h]]",
+              "why": "Remember the $\\frac{1}{2}$."
+            }
+          ]
+        },
+        "hints": ["Area $= \\frac{1}{2} \\times \\text{base} \\times \\text{height}$."],
+        "solution": "$\\frac{1}{2} \\times [[b]] \\times [[h]] = [[b*h/2]]$.",
+        "skill": "triangle-area",
+        "difficulty": 1,
+        "compute": "b*h/2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 4,
+              "to": 20,
+              "step": 2
+            },
+            "h": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.light-set",
+    "type": "PROBLEM_SET",
+    "title": "Confidence set",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "fifth",
+        "prompt": "What is $20\\%$ of $45$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$8$", "$9$", "$10$", "$25$"],
+          "correct": "C"
+        },
+        "solution": "$\\frac{45}{5} = 9$, choice (C).",
+        "skill": "fractions-percents",
+        "difficulty": 1,
+        "compute": "0.2*45"
+      },
+      {
+        "id": "pentagon",
+        "prompt": "What is the sum of the interior angles of a pentagon, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$360$", "$450$", "$540$", "$620$", "$720$"],
+          "correct": "C"
+        },
+        "solution": "$180^\\circ \\times 3 = 540^\\circ$, choice (C).",
+        "skill": "polygons",
+        "difficulty": 1,
+        "compute": "180*3"
+      },
+      {
+        "id": "thirty-six",
+        "prompt": "How many positive divisors does $36$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$8$", "$9$", "$10$", "$12$"],
+          "correct": "C"
+        },
+        "solution": "$36 = 2^2 \\times 3^2$: $3 \\times 3 = 9$ divisors, choice (C).",
+        "skill": "counting-divisors",
+        "difficulty": 1,
+        "compute": "3*3"
+      },
+      {
+        "id": "handshakes",
+        "prompt": "Six friends each shake hands once with each other. How many handshakes are there?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$15$", "$18$", "$30$", "$36$"],
+          "correct": "B",
+          "why": {
+            "D": "Each handshake was counted twice."
+          }
+        },
+        "solution": "$\\binom{6}{2} = 15$, choice (B).",
+        "skill": "combinations",
+        "difficulty": 2,
+        "compute": "binom(6, 2)"
+      },
+      {
+        "id": "slope",
+        "prompt": "What is the slope of the line through $(1, 1)$ and $(5, 9)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-2$", "$\\frac{1}{2}$", "$1$", "$2$", "$4$"],
+          "correct": "D",
+          "why": {
+            "B": "Slope is rise over run: $\\frac{8}{4}$."
+          }
+        },
+        "solution": "$\\frac{9 - 1}{5 - 1} = 2$, choice (D).",
+        "skill": "coordinate-geometry",
+        "difficulty": 2,
+        "compute": "8/4"
+      }
+    ]
+  },
+  {
+    "key": "m15.final-warmup",
+    "type": "PROBLEMS",
+    "title": "Warm-up before the mock",
+    "instructions": "Five quick problems from different strands to get your brain going. Type each answer and press Check. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "score-final",
+        "prompt": "On the AMC 10 a right answer scores $6$, a blank $1.5$ and a wrong answer $0$. Sam gets $[[c]]$ right, $[[w]]$ wrong and leaves the rest of the $25$ problems blank. What is Sam's score?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[6*c + 1.5*(25 - c - w)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[6*c]]",
+              "why": "The $[[25 - c - w]]$ blanks earn $1.5$ points each."
+            }
+          ]
+        },
+        "hints": ["How many blanks are there? $25 - [[c]] - [[w]]$."],
+        "solution": "$6 \\times [[c]] + 1.5 \\times [[25 - c - w]] = [[6*c + 1.5*(25 - c - w)]]$.",
+        "skill": "amc-scoring",
+        "difficulty": 1,
+        "compute": "6*c + 1.5*(25 - c - w)",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 10,
+              "to": 20
+            },
+            "w": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "solve-final",
+        "prompt": "Solve $[[a]]x + [[b]] = [[a*x + b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(a*x + b)/a - b]]",
+              "why": "Subtract $[[b]]$ first, then divide by $[[a]]$."
+            }
+          ]
+        },
+        "hints": ["Subtract $[[b]]$ from both sides first."],
+        "solution": "$[[a]]x = [[a*x]]$, so $x = [[x]]$.",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "x",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 30
+            },
+            "x": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "triangle-final",
+        "prompt": "A right triangle has legs $[[5*k]]$ and $[[12*k]]$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[13*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[17*k]]",
+              "why": "The legs don't simply add: square them, add, then take the square root."
+            }
+          ]
+        },
+        "hints": ["$c = \\sqrt{a^2 + b^2}$. Spot the $5$-$12$-$13$ triangle."],
+        "solution": "This is a $5$-$12$-$13$ triangle scaled by $[[k]]$: $[[13*k]]$.",
+        "skill": "pythagoras",
+        "difficulty": 1,
+        "compute": "13*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "choose-final",
+        "prompt": "In how many ways can you choose $[[k]]$ people from a group of $[[n]]$ (order doesn't matter)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[binom(n, k)]]"],
+          "form": "integer"
+        },
+        "hints": ["Use $\\binom{n}{k} = \\frac{n!}{k!(n - k)!}$."],
+        "solution": "$\\binom{[[n]]}{[[k]]} = [[binom(n, k)]]$.",
+        "skill": "combinations",
+        "difficulty": 1,
+        "compute": "binom(n, k)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 10
+            },
+            "k": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "gcd-final",
+        "prompt": "What is the greatest common divisor of $[[m*g]]$ and $[[n*g]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[gcd(m*g, n*g)]]"],
+          "form": "integer"
+        },
+        "hints": ["Factor both numbers into primes and take the common part."],
+        "solution": "$\\gcd([[m*g]], [[n*g]]) = [[gcd(m*g, n*g)]]$.",
+        "skill": "gcd-lcm",
+        "difficulty": 1,
+        "compute": "gcd(m*g, n*g)",
+        "template": {
+          "vars": {
+            "g": {
+              "from": 2,
+              "to": 12
+            },
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "n": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["m != n"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m15.mock-final",
+    "type": "MOCK_TEST",
+    "title": "🏆 Final mock",
+    "instructions": "A full mock AMC 10: 25 problems in 75 minutes, scored like the AMC (6 for a right answer, 1.5 for a blank, 0 for a wrong answer). The clock runs on the server and the mock hands itself in when time runs out. When you're done, come back here to continue the lesson.",
+    "test": "mock-final"
+  }
+]

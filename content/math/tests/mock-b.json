@@ -1,0 +1,394 @@
+{
+  "key": "mock-b",
+  "title": "Mock B",
+  "instructions": "A full mock AMC 10: 25 original AMC-style problems from the whole course (algebra, number theory, counting and probability, and geometry), getting harder as you go, in 75 minutes. Your second full mock: keep your pacing plan and compare the result with Mock A. Scoring is like the AMC 10: 6 points for a right answer, 1.5 for a blank and 0 for a wrong answer. The clock runs on the server, and the test hands itself in when time runs out. Use your pacing plan and the 2-minute rule: skip, flag and come back. Afterwards you'll see your mistakes by question, strand and difficulty.",
+  "timeLimitMinutes": 75,
+  "afterUnit": 14,
+  "problems": [
+    {
+      "id": "near-hundred",
+      "prompt": "What is $99 \\times 101$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$9899$", "$9990$", "$9999$", "$10001$", "$10099$"],
+        "correct": "C"
+      },
+      "solution": "$(100 - 1)(100 + 1) = 10000 - 1 = 9999$, choice (C).",
+      "skill": "clever-arithmetic",
+      "difficulty": 1,
+      "compute": "99*101"
+    },
+    {
+      "id": "marble-ratio",
+      "prompt": "The ratio of red to blue marbles in a jar is $3 : 5$, and there are $24$ more blue marbles than red ones. How many marbles are in the jar?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$64$", "$72$", "$84$", "$96$", "$120$"],
+        "correct": "D",
+        "why": {
+          "B": "$24$ is the difference of $2$ parts, not of $3$."
+        }
+      },
+      "solution": "The difference is $2$ parts, so one part is $12$ and the jar holds $8 \\times 12 = 96$ marbles, choice (D).",
+      "skill": "ratios-rates",
+      "difficulty": 1,
+      "compute": "8*24/2"
+    },
+    {
+      "id": "twice-as-old",
+      "prompt": "Mia is three times as old as Leo. In $6$ years she will be twice as old as Leo. How old is Mia now?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$12$", "$15$", "$18$", "$21$", "$24$"],
+        "correct": "C",
+        "why": {
+          "A": "Both ages grow by $6$."
+        }
+      },
+      "solution": "$3L + 6 = 2(L + 6)$ gives $L = 6$, so Mia is $18$, choice (C).",
+      "skill": "ages-coins-money",
+      "difficulty": 1,
+      "compute": "3*6"
+    },
+    {
+      "id": "powers-of-two",
+      "prompt": "What is $\\frac{2^{10} \\cdot 4^5}{8^6}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2$", "$4$", "$8$", "$16$", "$32$"],
+        "correct": "B"
+      },
+      "solution": "Write everything as powers of $2$: $\\frac{2^{10} \\cdot 2^{10}}{2^{18}} = 2^2 = 4$, choice (B).",
+      "skill": "exponents-roots",
+      "difficulty": 1,
+      "compute": "2^10*4^5/8^6"
+    },
+    {
+      "id": "grid-triangle",
+      "prompt": "What is the area of the triangle with corners $(0, 0)$, $(8, 0)$ and $(3, 6)$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$12$", "$18$", "$20$", "$24$", "$48$"],
+        "correct": "D",
+        "why": {
+          "E": "Remember the $\\frac{1}{2}$."
+        }
+      },
+      "solution": "The base on the $x$-axis is $8$ and the height is $6$: $\\frac{1}{2} \\times 8 \\times 6 = 24$, choice (D).",
+      "skill": "triangle-area",
+      "difficulty": 1,
+      "compute": "8*6/2"
+    },
+    {
+      "id": "prime-sum",
+      "prompt": "What is the sum of the different prime factors of $210$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$10$", "$15$", "$17$", "$18$", "$210$"],
+        "correct": "C"
+      },
+      "solution": "$210 = 2 \\times 3 \\times 5 \\times 7$, and $2 + 3 + 5 + 7 = 17$, choice (C).",
+      "skill": "primes-factorization",
+      "difficulty": 1,
+      "compute": "2 + 3 + 5 + 7"
+    },
+    {
+      "id": "odd-odd-even",
+      "prompt": "How many three-digit numbers have an odd hundreds digit, an odd tens digit and an even units digit?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$100$", "$125$", "$150$", "$200$", "$250$"],
+        "correct": "B"
+      },
+      "solution": "There are $5$ choices for each digit: $5 \\times 5 \\times 5 = 125$, choice (B).",
+      "skill": "multiplication-principle",
+      "difficulty": 1,
+      "compute": "5*5*5"
+    },
+    {
+      "id": "decagon-diagonals",
+      "prompt": "How many diagonals does a decagon ($10$ sides) have?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$20$", "$30$", "$35$", "$40$", "$45$"],
+        "correct": "C",
+        "why": {
+          "E": "That also counts the $10$ sides."
+        }
+      },
+      "solution": "Each corner joins $7$ others by a diagonal, and each diagonal has $2$ ends: $\\frac{10 \\times 7}{2} = 35$, choice (C).",
+      "skill": "polygons",
+      "difficulty": 1,
+      "compute": "10*7/2"
+    },
+    {
+      "id": "one-root",
+      "prompt": "For which positive number $k$ does $x^2 + kx + 16 = 0$ have exactly one real solution?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$4$", "$8$", "$12$", "$16$", "$32$"],
+        "correct": "B",
+        "why": {
+          "D": "The discriminant is $k^2 - 4 \\times 16$."
+        }
+      },
+      "solution": "One solution means the discriminant is $0$: $k^2 = 64$, so $k = 8$, choice (B).",
+      "skill": "quadratic-formula",
+      "difficulty": 2,
+      "compute": "sqrt(4*16)"
+    },
+    {
+      "id": "compose-both-ways",
+      "prompt": "Let $f(x) = 2x + 3$ and $g(x) = x^2 - 1$. What is $f(g(3)) - g(f(1))$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$-5$", "$-3$", "$0$", "$3$", "$5$"],
+        "correct": "A",
+        "why": {
+          "E": "Watch the order of the subtraction."
+        }
+      },
+      "solution": "$f(g(3)) = f(8) = 19$ and $g(f(1)) = g(5) = 24$, so the answer is $-5$, choice (A).",
+      "skill": "functions",
+      "difficulty": 2,
+      "compute": "(2*8 + 3) - (5^2 - 1)"
+    },
+    {
+      "id": "equilateral-inradius",
+      "prompt": "What is the radius of the circle inscribed in an equilateral triangle with side $12$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$\\sqrt{3}$", "$2\\sqrt{3}$", "$3\\sqrt{3}$", "$4\\sqrt{3}$", "$6$"],
+        "correct": "B",
+        "why": {
+          "D": "That is the radius of the circle through the corners."
+        }
+      },
+      "solution": "The height is $6\\sqrt{3}$, and the inscribed circle's radius is a third of it: $2\\sqrt{3}$, choice (B).",
+      "skill": "inscribed-circles",
+      "difficulty": 2,
+      "compute": "12/(2*sqrt(3))"
+    },
+    {
+      "id": "sit-together",
+      "prompt": "In how many ways can $5$ people sit in a row if Amy and Bea must sit next to each other?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$24$", "$36$", "$48$", "$60$", "$120$"],
+        "correct": "C",
+        "why": {
+          "A": "Amy and Bea can swap places in their block."
+        }
+      },
+      "solution": "Glue Amy and Bea into one block: $4! = 24$ orders, times $2$ orders inside the block: $48$, choice (C).",
+      "skill": "permutations",
+      "difficulty": 2,
+      "compute": "2*24"
+    },
+    {
+      "id": "sum-mod-nine",
+      "prompt": "What is the remainder when $1 + 2 + 3 + \\cdots + 100$ is divided by $9$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$0$", "$1$", "$2$", "$4$", "$5$"],
+        "correct": "B"
+      },
+      "solution": "The sum is $5050$, and its digit sum $10$ leaves remainder $1$ when divided by $9$, choice (B).",
+      "skill": "modular-arithmetic",
+      "difficulty": 2,
+      "compute": "mod(5050, 9)"
+    },
+    {
+      "id": "clubs",
+      "prompt": "In a class of $30$ students, $18$ play soccer, $15$ play chess and $5$ play neither. How many play both?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$3$", "$5$", "$8$", "$10$", "$13$"],
+        "correct": "C",
+        "why": {
+          "A": "Take out the $5$ who play neither first."
+        }
+      },
+      "solution": "$25$ play at least one, so $18 + 15 - 25 = 8$ play both, choice (C).",
+      "skill": "inclusion-exclusion",
+      "difficulty": 2,
+      "compute": "18 + 15 - 25"
+    },
+    {
+      "id": "first-term",
+      "prompt": "A geometric sequence has $2$nd term $6$ and $5$th term $162$. What is its first term?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$2$", "$3$", "$6$", "$18$"],
+        "correct": "B"
+      },
+      "solution": "Three steps multiply by $27$, so the ratio is $3$ and the first term is $\\frac{6}{3} = 2$, choice (B).",
+      "skill": "geometric-sequences",
+      "difficulty": 2,
+      "compute": "6/3"
+    },
+    {
+      "id": "y-intercept",
+      "prompt": "The line through $(1, 2)$ and $(4, 11)$ crosses the $y$-axis at $(0, b)$. What is $b$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$-3$", "$-1$", "$0$", "$1$", "$2$"],
+        "correct": "B"
+      },
+      "solution": "The slope is $\\frac{9}{3} = 3$, so $b = 2 - 3 \\times 1 = -1$, choice (B).",
+      "skill": "coordinate-geometry",
+      "difficulty": 2,
+      "compute": "2 - 3*1"
+    },
+    {
+      "id": "two-heads",
+      "prompt": "Three fair coins are tossed. What is the probability of exactly two heads?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{1}{8}$",
+          "$\\frac{1}{4}$",
+          "$\\frac{3}{8}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{5}{8}$"
+        ],
+        "correct": "C"
+      },
+      "solution": "$\\binom{3}{2} = 3$ of the $8$ outcomes: $\\frac{3}{8}$, choice (C).",
+      "skill": "probability",
+      "difficulty": 2,
+      "compute": "3/8"
+    },
+    {
+      "id": "cyclic-quad",
+      "prompt": "Quadrilateral $ABCD$ has all four corners on a circle, and $\\angle A = 3\\angle C$. What is $\\angle A$, in degrees?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$45$", "$90$", "$120$", "$135$", "$150$"],
+        "correct": "D",
+        "why": {
+          "A": "That is $\\angle C$."
+        }
+      },
+      "solution": "Opposite angles of a cyclic quadrilateral add to $180^\\circ$: $4\\angle C = 180^\\circ$, so $\\angle A = 135^\\circ$, choice (D).",
+      "skill": "circle-angles",
+      "difficulty": 3,
+      "compute": "3*180/4"
+    },
+    {
+      "id": "sfft-pairs",
+      "prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy $xy = 2x + 3y$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2$", "$3$", "$4$", "$6$", "$8$"],
+        "correct": "C",
+        "why": {
+          "E": "Negative factors make $y$ negative."
+        }
+      },
+      "solution": "$xy - 2x - 3y + 6 = 6$ factors as $(x - 3)(y - 2) = 6$. Both factors must be positive (if $x - 3 < 0$, then $y$ is negative), so there is one pair for each divisor of $6$: $4$, choice (C).",
+      "skill": "integer-equations",
+      "difficulty": 3,
+      "compute": "4"
+    },
+    {
+      "id": "four-times-digits",
+      "prompt": "How many two-digit numbers are equal to $4$ times the sum of their digits?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$2$", "$3$", "$4$", "$5$"],
+        "correct": "D"
+      },
+      "solution": "$10a + b = 4a + 4b$ gives $b = 2a$: $12$, $24$, $36$ and $48$. That is $4$ numbers, choice (D).",
+      "skill": "digit-problems",
+      "difficulty": 3,
+      "compute": "4"
+    },
+    {
+      "id": "digit-sum-seven",
+      "prompt": "How many positive integers less than $100$ have digits that add to $7$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$6$", "$7$", "$8$", "$9$", "$10$"],
+        "correct": "C",
+        "why": {
+          "B": "Don't forget the one-digit number $7$."
+        }
+      },
+      "solution": "One digit: just $7$. Two digits: the tens digit is $1$ to $7$ and fixes the units digit, $7$ numbers. Total $8$, choice (C).",
+      "skill": "casework",
+      "difficulty": 3,
+      "compute": "1 + 7"
+    },
+    {
+      "id": "can-surface",
+      "prompt": "A closed cylinder has radius $3$ and height $8$. What is its total surface area?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$42\\pi$", "$48\\pi$", "$57\\pi$", "$66\\pi$", "$72\\pi$"],
+        "correct": "D",
+        "why": {
+          "B": "Add the top and bottom circles."
+        }
+      },
+      "solution": "Two circles, $2 \\times 9\\pi = 18\\pi$, plus the side, $2\\pi \\times 3 \\times 8 = 48\\pi$: total $66\\pi$, choice (D).",
+      "skill": "solids-3d",
+      "difficulty": 3,
+      "compute": "66*pi"
+    },
+    {
+      "id": "larger-die",
+      "prompt": "Two fair six-sided dice are rolled. What is the expected value of the larger of the two numbers? (If they are equal, that number counts.)",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{91}{36}$",
+          "$\\frac{7}{2}$",
+          "$\\frac{161}{36}$",
+          "$\\frac{9}{2}$",
+          "$5$"
+        ],
+        "correct": "C",
+        "why": {
+          "A": "That is the expected value of the smaller number."
+        }
+      },
+      "solution": "The larger is $k$ in $2k - 1$ of the $36$ outcomes, so the expected value is $\\frac{1 + 6 + 15 + 28 + 45 + 66}{36} = \\frac{161}{36}$, choice (C).",
+      "skill": "expected-value",
+      "difficulty": 3,
+      "compute": "161/36"
+    },
+    {
+      "id": "altitude-split",
+      "prompt": "Triangle $ABC$ has a right angle at $C$, with $AC = 6$ and $BC = 8$. The altitude from $C$ meets $AB$ at $D$. What is $AD$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$\\frac{18}{5}$", "$\\frac{24}{5}$", "$\\frac{32}{5}$", "$4$", "$5$"],
+        "correct": "A",
+        "why": {
+          "B": "That is the altitude $CD$."
+        }
+      },
+      "solution": "$AB = 10$, and triangle $ACD$ is similar to triangle $ABC$: $AD = \\frac{AC^2}{AB} = \\frac{36}{10} = \\frac{18}{5}$, choice (A).",
+      "skill": "similar-triangles",
+      "difficulty": 3,
+      "compute": "36/10"
+    },
+    {
+      "id": "growing-steps",
+      "prompt": "A sequence has $a_1 = 1$ and $a_{n + 1} = a_n + 2n$. What is $a_{20}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$361$", "$379$", "$381$", "$400$", "$401$"],
+        "correct": "C",
+        "why": {
+          "E": "The steps go up to $2 \\times 19$, not $2 \\times 20$."
+        }
+      },
+      "solution": "$a_{20} = 1 + 2(1 + 2 + \\cdots + 19) = 1 + 19 \\times 20 = 381$, choice (C).",
+      "skill": "recursion",
+      "difficulty": 3,
+      "compute": "1 + 20*19"
+    }
+  ]
+}

@@ -1,0 +1,382 @@
+{
+  "key": "mock-final",
+  "title": "🏆 Final mock",
+  "instructions": "A full mock AMC 10: 25 original AMC-style problems from the whole course (algebra, number theory, counting and probability, and geometry), getting harder as you go, in 75 minutes. The last full rehearsal: follow your test-day plan from start to finish. Scoring is like the AMC 10: 6 points for a right answer, 1.5 for a blank and 0 for a wrong answer. The clock runs on the server, and the test hands itself in when time runs out. Use your pacing plan and the 2-minute rule: skip, flag and come back. Afterwards you'll see your mistakes by question, strand and difficulty.",
+  "timeLimitMinutes": 75,
+  "afterUnit": 14,
+  "problems": [
+    {
+      "id": "rae-score",
+      "prompt": "On a $25$-problem test scored $6$ points for a right answer, $1.5$ for a blank and $0$ for a wrong answer, Rae answers $20$ problems and gets $17$ of them right. What is her score?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$102$", "$105$", "$108$", "$109.5$", "$114$"],
+        "correct": "D",
+        "why": {
+          "A": "The $5$ blanks earn $1.5$ each."
+        }
+      },
+      "solution": "$6 \\times 17 + 1.5 \\times 5 = 109.5$, choice (D).",
+      "skill": "amc-scoring",
+      "difficulty": 1,
+      "compute": "6*17 + 1.5*5"
+    },
+    {
+      "id": "pancakes",
+      "prompt": "A recipe uses $3$ cups of flour for every $4$ cups of milk. How many cups of flour go with $10$ cups of milk?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$6$", "$7$", "$\\frac{15}{2}$", "$8$", "$\\frac{40}{3}$"],
+        "correct": "C",
+        "why": {
+          "E": "The ratio is upside down."
+        }
+      },
+      "solution": "$\\frac{3}{4} \\times 10 = \\frac{15}{2}$, choice (C).",
+      "skill": "ratios-rates",
+      "difficulty": 1,
+      "compute": "3*10/4"
+    },
+    {
+      "id": "consecutive-odd",
+      "prompt": "The sum of three consecutive odd integers is $87$. What is the largest of them?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$27$", "$29$", "$31$", "$33$", "$35$"],
+        "correct": "C",
+        "why": {
+          "B": "That is the middle one."
+        }
+      },
+      "solution": "The middle one is $\\frac{87}{3} = 29$, so the largest is $31$, choice (C).",
+      "skill": "linear-equations",
+      "difficulty": 1,
+      "compute": "87/3 + 2"
+    },
+    {
+      "id": "root-of-power",
+      "prompt": "What is $\\sqrt{16^3}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$8$", "$16$", "$32$", "$64$", "$256$"],
+        "correct": "D"
+      },
+      "solution": "$\\sqrt{16^3} = 4^3 = 64$, choice (D).",
+      "skill": "exponents-roots",
+      "difficulty": 1,
+      "compute": "sqrt(16^3)"
+    },
+    {
+      "id": "multiple-of-13",
+      "prompt": "What is the largest three-digit multiple of $13$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$975$", "$988$", "$990$", "$995$", "$999$"],
+        "correct": "B"
+      },
+      "solution": "$999 = 13 \\times 76 + 11$, so the largest is $999 - 11 = 988$, choice (B).",
+      "skill": "divisibility",
+      "difficulty": 1,
+      "compute": "13*floor(999/13)"
+    },
+    {
+      "id": "ladder",
+      "prompt": "A $25$-foot ladder leans against a wall with its foot $7$ feet from the wall. How high up the wall does it reach, in feet?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$18$", "$20$", "$22$", "$24$", "$26$"],
+        "correct": "D"
+      },
+      "solution": "$\\sqrt{25^2 - 7^2} = \\sqrt{576} = 24$, choice (D).",
+      "skill": "pythagoras",
+      "difficulty": 1,
+      "compute": "sqrt(625 - 49)"
+    },
+    {
+      "id": "outfits",
+      "prompt": "Lee has $4$ shirts, $3$ pairs of trousers and $2$ hats. An outfit is a shirt, a pair of trousers and either one hat or no hat. How many outfits are there?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$9$", "$24$", "$30$", "$36$", "$48$"],
+        "correct": "D",
+        "why": {
+          "B": "No hat is also a choice."
+        }
+      },
+      "solution": "$4 \\times 3 \\times (2 + 1) = 36$: \"no hat\" is a third choice, choice (D).",
+      "skill": "multiplication-principle",
+      "difficulty": 1,
+      "compute": "4*3*(2 + 1)"
+    },
+    {
+      "id": "four-twenty",
+      "prompt": "What is the smaller angle, in degrees, between the hands of a clock at $4{:}20$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$0$", "$5$", "$10$", "$15$", "$20$"],
+        "correct": "C",
+        "why": {
+          "A": "The hour hand has moved on from the $4$."
+        }
+      },
+      "solution": "The minute hand is at $120^\\circ$; the hour hand is at $120^\\circ + 10^\\circ = 130^\\circ$. The angle is $10^\\circ$, choice (C).",
+      "skill": "clocks-calendars",
+      "difficulty": 1,
+      "compute": "abs(30*4 - 11*20/2)"
+    },
+    {
+      "id": "add-the-equations",
+      "prompt": "If $2x + 3y = 23$ and $3x + 2y = 22$, what is $x + y$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$7$", "$8$", "$9$", "$10$", "$11$"],
+        "correct": "C"
+      },
+      "solution": "Adding gives $5x + 5y = 45$, so $x + y = 9$, choice (C).",
+      "skill": "systems",
+      "difficulty": 2,
+      "compute": "45/5"
+    },
+    {
+      "id": "floor-root",
+      "prompt": "How many positive integers $n$ have $\\lfloor \\sqrt{n} \\rfloor = 5$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$5$", "$9$", "$10$", "$11$", "$12$"],
+        "correct": "D",
+        "why": {
+          "C": "Count both $25$ and $35$."
+        }
+      },
+      "solution": "$5 \\le \\sqrt{n} < 6$ means $25 \\le n \\le 35$: $11$ integers, choice (D).",
+      "skill": "floor-ceiling",
+      "difficulty": 2,
+      "compute": "36 - 25"
+    },
+    {
+      "id": "lattice-paths",
+      "prompt": "A path goes from $(0, 0)$ to $(5, 3)$ in steps of one unit, each to the right or up. How many paths are there?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$15$", "$28$", "$40$", "$56$", "$70$"],
+        "correct": "D"
+      },
+      "solution": "Each path is $8$ steps, $3$ of them up: $\\binom{8}{3} = 56$, choice (D).",
+      "skill": "combinations",
+      "difficulty": 2,
+      "compute": "binom(8, 3)"
+    },
+    {
+      "id": "ring",
+      "prompt": "Two circles have the same centre and radii $5$ and $3$. What is the area of the ring between them?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$4\\pi$", "$8\\pi$", "$16\\pi$", "$25\\pi$", "$34\\pi$"],
+        "correct": "C",
+        "why": {
+          "A": "Subtract the areas, not the radii."
+        }
+      },
+      "solution": "$25\\pi - 9\\pi = 16\\pi$, choice (C).",
+      "skill": "circle-areas",
+      "difficulty": 2,
+      "compute": "16*pi"
+    },
+    {
+      "id": "three-remainders",
+      "prompt": "What is the smallest positive integer greater than $2$ that leaves remainder $2$ when divided by $3$, by $4$ and by $5$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$22$", "$32$", "$42$", "$62$", "$122$"],
+        "correct": "D"
+      },
+      "solution": "It is $2$ more than a common multiple of $3$, $4$ and $5$. The least is $60$, so the number is $62$, choice (D).",
+      "skill": "modular-arithmetic",
+      "difficulty": 2,
+      "compute": "60 + 2"
+    },
+    {
+      "id": "differ-by-two",
+      "prompt": "Two fair six-sided dice are rolled. What is the probability that the two numbers differ by exactly $2$?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{1}{9}$",
+          "$\\frac{1}{6}$",
+          "$\\frac{2}{9}$",
+          "$\\frac{5}{18}$",
+          "$\\frac{1}{3}$"
+        ],
+        "correct": "C",
+        "why": {
+          "A": "Each pair can come in two orders."
+        }
+      },
+      "solution": "The pairs $\\{1, 3\\}$, $\\{2, 4\\}$, $\\{3, 5\\}$ and $\\{4, 6\\}$, each in $2$ orders: $\\frac{8}{36} = \\frac{2}{9}$, choice (C).",
+      "skill": "probability",
+      "difficulty": 2,
+      "compute": "8/36"
+    },
+    {
+      "id": "tree-shadow",
+      "prompt": "At the same moment, a tree casts a $15$-metre shadow and a $2$-metre pole casts a $3$-metre shadow. How tall is the tree, in metres?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$8$", "$9$", "$10$", "$12$", "$\\frac{45}{2}$"],
+        "correct": "C",
+        "why": {
+          "E": "The ratio is upside down."
+        }
+      },
+      "solution": "$\\frac{h}{15} = \\frac{2}{3}$, so $h = 10$, choice (C).",
+      "skill": "similar-triangles",
+      "difficulty": 2,
+      "compute": "2*15/3"
+    },
+    {
+      "id": "within-seven",
+      "prompt": "How many integers $x$ satisfy $|x - 4| < 7$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$11$", "$12$", "$13$", "$14$", "$15$"],
+        "correct": "C",
+        "why": {
+          "E": "The inequality is strict."
+        }
+      },
+      "solution": "$-3 < x < 11$, so $x$ runs from $-2$ to $10$: $13$ integers, choice (C).",
+      "skill": "inequalities",
+      "difficulty": 2,
+      "compute": "10 - (-2) + 1"
+    },
+    {
+      "id": "binary-ones",
+      "prompt": "How many digits $1$ are there when $100$ is written in base $2$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2$", "$3$", "$4$", "$5$", "$6$"],
+        "correct": "B"
+      },
+      "solution": "$100 = 64 + 32 + 4 = 1100100_2$: three $1$s, choice (B).",
+      "skill": "number-bases",
+      "difficulty": 2,
+      "compute": "3"
+    },
+    {
+      "id": "rising-digits",
+      "prompt": "How many four-digit numbers have digits that strictly increase from left to right?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$84$", "$120$", "$126$", "$210$", "$252$"],
+        "correct": "C",
+        "why": {
+          "D": "$0$ can't be used."
+        }
+      },
+      "solution": "Choose $4$ different digits from $1$ to $9$ ($0$ can't lead, and it can't come later in a rising number); they can only go in one order: $\\binom{9}{4} = 126$, choice (C).",
+      "skill": "combinations",
+      "difficulty": 3,
+      "compute": "binom(9, 4)"
+    },
+    {
+      "id": "geometric-middle",
+      "prompt": "Positive numbers $a$, $b$, $c$ form a geometric sequence with $a + b + c = 26$ and $abc = 216$. What is $b$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2$", "$4$", "$6$", "$8$", "$9$"],
+        "correct": "C"
+      },
+      "solution": "In a geometric sequence $ac = b^2$, so $abc = b^3 = 216$ and $b = 6$, choice (C). (Then $a + c = 20$: the sequence is $2, 6, 18$.)",
+      "skill": "geometric-sequences",
+      "difficulty": 3,
+      "compute": "6"
+    },
+    {
+      "id": "heron",
+      "prompt": "What is the area of the triangle with sides $9$, $10$ and $17$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$30$", "$36$", "$40$", "$42$", "$45$"],
+        "correct": "B"
+      },
+      "solution": "Heron's formula with $s = 18$: $\\sqrt{18 \\times 9 \\times 8 \\times 1} = \\sqrt{1296} = 36$, choice (B).",
+      "skill": "triangle-area",
+      "difficulty": 3,
+      "compute": "sqrt(18*9*8*1)"
+    },
+    {
+      "id": "small-first",
+      "prompt": "How many ordered triples of whole numbers $(a, b, c)$ have $a + b + c = 10$ and $a \\le 2$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$27$", "$30$", "$33$", "$36$", "$66$"],
+        "correct": "B",
+        "why": {
+          "E": "That ignores $a \\le 2$."
+        }
+      },
+      "solution": "For $a = 0, 1, 2$ the pair $(b, c)$ has $11$, $10$ and $9$ choices: $30$ in all, choice (B).",
+      "skill": "stars-bars",
+      "difficulty": 3,
+      "compute": "11 + 10 + 9"
+    },
+    {
+      "id": "none-of-three",
+      "prompt": "How many of the integers $1, 2, \\ldots, 1000$ are divisible by none of $2$, $3$ and $5$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$233$", "$266$", "$267$", "$300$", "$334$"],
+        "correct": "B"
+      },
+      "solution": "Inclusion–exclusion: $1000 - (500 + 333 + 200) + (166 + 100 + 66) - 33 = 266$, choice (B).",
+      "skill": "inclusion-exclusion",
+      "difficulty": 3,
+      "compute": "1000 - (500 + 333 + 200) + (166 + 100 + 66) - 33"
+    },
+    {
+      "id": "through-the-centre",
+      "prompt": "From a point $P$, a tangent to a circle has length $10$. A line from $P$ through the centre meets the circle first at $A$, with $PA = 5$. What is the radius of the circle?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$5$", "$7$", "$\\frac{15}{2}$", "$10$", "$15$"],
+        "correct": "C",
+        "why": {
+          "E": "That is the diameter."
+        }
+      },
+      "solution": "$PT^2 = PA \\times PB$ gives $PB = 20$, so the diameter $AB$ is $15$ and the radius is $\\frac{15}{2}$, choice (C).",
+      "skill": "power-of-a-point",
+      "difficulty": 3,
+      "compute": "(100/5 - 5)/2"
+    },
+    {
+      "id": "cone-volume",
+      "prompt": "A cone has base radius $6$ and slant height $10$. What is its volume?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$72\\pi$", "$96\\pi$", "$120\\pi$", "$288\\pi$", "$360\\pi$"],
+        "correct": "B",
+        "why": {
+          "D": "A cone is a third of a cylinder."
+        }
+      },
+      "solution": "The height is $\\sqrt{100 - 36} = 8$, so the volume is $\\frac{1}{3}\\pi \\times 36 \\times 8 = 96\\pi$, choice (B).",
+      "skill": "solids-3d",
+      "difficulty": 3,
+      "compute": "36*8*pi/3"
+    },
+    {
+      "id": "last-number",
+      "prompt": "The numbers $1, 2, \\ldots, 10$ are on a board. A move erases two numbers $a$ and $b$ and writes $|a - b|$. After $9$ moves one number is left. Which of these could it be?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$0$", "$2$", "$4$", "$6$", "$7$"],
+        "correct": "E"
+      },
+      "solution": "$|a - b|$ has the same parity as $a + b$, so the parity of the total never changes. The total starts at $55$, which is odd, so the last number is odd: only $7$ is possible, choice (E).",
+      "skill": "invariants-parity",
+      "difficulty": 3,
+      "compute": "7"
+    }
+  ]
+}

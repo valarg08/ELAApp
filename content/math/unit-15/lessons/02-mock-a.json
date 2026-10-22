@@ -1,0 +1,75 @@
+{
+  "slug": "math-mock-a",
+  "order": 2,
+  "title": "Mock A & Mistake Analysis",
+  "estMinutes": 100,
+  "focusSkills": ["pacing", "guessing"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before your first full mock: what score would you be happy with, and which strand do you expect to be your strongest?",
+      "placeholder": "I'd be happy with… My strongest strand is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Taking a mock like the real thing",
+          "body": "Find a quiet place and $75$ minutes with no breaks. Have scrap paper and a pencil, but no calculator: the AMC 10 doesn't allow one. Use your pacing plan: a first pass with the $2$-minute rule, then the flagged problems. The clock runs on the server, so the mock hands itself in when time runs out, even if you close the page."
+        },
+        {
+          "kind": "definition",
+          "title": "Mistake analysis",
+          "body": "After the mock, open your result and sort every miss and blank into one of four boxes: (1) I didn't know the idea, (2) a careless slip, (3) I misread the question, (4) I ran out of time. Add the problems you didn't know to your error log, and look at the review by strand and by difficulty: is one strand weak, or do the points leak away in the last ten problems?"
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: where the points went",
+          "problem": "Lena got $14$ right, $5$ wrong and left $6$ blank. Three of her wrong answers were careless slips. What would she have scored with those $3$ right?",
+          "steps": [
+            {
+              "text": "Her score was $6 \\times 14 + 1.5 \\times 6$.",
+              "try": {
+                "prompt": "What did she score?",
+                "accepted": ["93"],
+                "compute": "6*14 + 1.5*6"
+              }
+            },
+            {
+              "text": "Three more right answers add $18$ points: careless slips cost the most.",
+              "try": {
+                "prompt": "What would she have scored?",
+                "accepted": ["111"],
+                "compute": "93 + 18"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.mock-a-warmup"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.mock-a"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which of the four boxes held most of your misses?",
+        "What will you do differently in Mock B?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

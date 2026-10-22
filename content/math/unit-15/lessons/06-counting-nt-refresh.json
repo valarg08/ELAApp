@@ -1,0 +1,78 @@
+{
+  "slug": "math-counting-refresh",
+  "order": 6,
+  "title": "Counting & Number Theory Refresh",
+  "estMinutes": 35,
+  "focusSkills": [
+    "gcd-lcm",
+    "counting-divisors",
+    "combinations",
+    "stars-bars",
+    "modular-arithmetic"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "In a counting problem, how do you decide whether order matters?",
+      "placeholder": "Order matters when…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The counting toolkit",
+          "body": "Multiply independent choices. Order matters: permutations. Order doesn't matter: $\\binom{n}{k}$. Identical objects into boxes: stars and bars, $\\binom{n + k - 1}{k - 1}$. \"At least one\": count the complement. Overlaps: inclusion–exclusion. Probability is favourable over total, with equally likely outcomes."
+        },
+        {
+          "kind": "definition",
+          "title": "The number theory toolkit",
+          "body": "Factor into primes first. $n = p^a q^b$ has $(a + 1)(b + 1)$ divisors. $\\gcd \\times \\operatorname{lcm} = $ the product of the two numbers. Remainders multiply and add: work mod $m$ from the start. Units digits and remainders of powers repeat in cycles."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a cycle",
+          "problem": "What is the remainder when $2^{100}$ is divided by $5$?",
+          "steps": [
+            {
+              "text": "The remainders of $2, 4, 8, 16$ are $2, 4, 3, 1$: a cycle of length $4$.",
+              "try": {
+                "prompt": "How long is the cycle?",
+                "accepted": ["4"],
+                "compute": "4"
+              }
+            },
+            {
+              "text": "$100$ is a multiple of $4$, so the remainder is that of $2^4$: $1$.",
+              "try": {
+                "prompt": "What is the remainder?",
+                "accepted": ["1"],
+                "compute": "mod(2^4, 5)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.counting-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.counting-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which counting tool do you mix up most often?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

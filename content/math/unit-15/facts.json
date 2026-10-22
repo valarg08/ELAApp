@@ -1,0 +1,31 @@
+{
+  "sections": [
+    {
+      "skill": "amc-scoring",
+      "title": "Scoring",
+      "facts": [
+        "$25$ problems in $75$ minutes: $6$ for a right answer, $1.5$ for a blank, $0$ for a wrong answer.",
+        "Every problem is worth the same: bank the easy points first.",
+        "Check your answer sheet in the last few minutes."
+      ]
+    },
+    {
+      "skill": "pacing",
+      "title": "Pacing & the 2-minute rule",
+      "facts": [
+        "First pass in order; no plan after 2 minutes? Flag it and move on.",
+        "Aim to finish the first pass with about $25$ minutes left.",
+        "Second pass: the most promising flagged problems first."
+      ]
+    },
+    {
+      "skill": "guessing",
+      "title": "Guessing vs a blank",
+      "facts": [
+        "A wild guess is worth $\\frac{6}{5} = 1.2$ points, less than a blank.",
+        "Rule out $1$ choice: $1.5$ (a tie). Rule out $2$: $2$ points, so guess.",
+        "Never leave the answer sheet in a muddle: check the letters."
+      ]
+    }
+  ]
+}

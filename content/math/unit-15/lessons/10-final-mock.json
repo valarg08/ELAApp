@@ -1,0 +1,57 @@
+{
+  "slug": "math-final-mock",
+  "order": 10,
+  "title": "🏆 Final Mock & Test-Day Plan",
+  "estMinutes": 110,
+  "focusSkills": ["pacing", "guessing", "amc-scoring"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Picture test morning. What do you want to have done the night before, and what will you do in the first five minutes of the test?",
+      "placeholder": "The night before I will… In the first five minutes I will…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Your test-day plan",
+          "body": "The night before: sleep, pack pencils, an eraser, scrap paper, a watch and your ID, and don't cram. On the day: eat breakfast and arrive early. In the test: read each problem carefully, use your pacing plan and the 2-minute rule, leave a blank unless you can rule out two choices, and check your answer sheet in the last few minutes."
+        },
+        {
+          "kind": "definition",
+          "title": "The final mock",
+          "body": "Take this mock exactly as you'll take the real test: same time of day if you can, same plan, no interruptions. Then do the mistake analysis one last time and write down the one thing to remember on test day."
+        },
+        {
+          "kind": "definition",
+          "title": "Mistake analysis",
+          "body": "After the mock, open your result and sort every miss and blank into one of four boxes: (1) I didn't know the idea, (2) a careless slip, (3) I misread the question, (4) I ran out of time. Add the problems you didn't know to your error log, and look at the review by strand and by difficulty: is one strand weak, or do the points leak away in the last ten problems?"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.final-warmup"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.mock-final"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What is the one thing you'll remember on test day?",
+        "Looking back over the whole course, what are you proudest of?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

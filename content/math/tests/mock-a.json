@@ -1,0 +1,400 @@
+{
+  "key": "mock-a",
+  "title": "Mock A",
+  "instructions": "A full mock AMC 10: 25 original AMC-style problems from the whole course (algebra, number theory, counting and probability, and geometry), getting harder as you go, in 75 minutes. Your first full mock: take it like the real thing, then sort every miss in the mistake analysis. Scoring is like the AMC 10: 6 points for a right answer, 1.5 for a blank and 0 for a wrong answer. The clock runs on the server, and the test hands itself in when time runs out. Use your pacing plan and the 2-minute rule: skip, flag and come back. Afterwards you'll see your mistakes by question, strand and difficulty.",
+  "timeLimitMinutes": 75,
+  "afterUnit": 14,
+  "problems": [
+    {
+      "id": "missing-number",
+      "prompt": "The average of $7$, $11$ and $x$ is $12$. What is $x$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$12$", "$14$", "$16$", "$18$", "$20$"],
+        "correct": "D"
+      },
+      "solution": "The three numbers add to $3 \\times 12 = 36$, so $x = 36 - 7 - 11 = 18$, choice (D).",
+      "skill": "averages",
+      "difficulty": 1,
+      "compute": "3*12 - 7 - 11"
+    },
+    {
+      "id": "sale-then-tax",
+      "prompt": "A shirt costs $\\$40$. Its price is cut by $25\\%$, and then the sale price goes up by $10\\%$. What is the new price, in dollars?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$33$", "$34$", "$36$", "$38$", "$40$"],
+        "correct": "A",
+        "why": {
+          "C": "The $10\\%$ is of the sale price, not of the original price."
+        }
+      },
+      "solution": "$40 \\times 0.75 = 30$, then $30 \\times 1.1 = 33$, choice (A).",
+      "skill": "fractions-percents",
+      "difficulty": 1,
+      "compute": "40*0.75*1.1"
+    },
+    {
+      "id": "brackets",
+      "prompt": "If $5(x - 2) = 3x + 8$, what is $x$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$3$", "$6$", "$8$", "$9$", "$12$"],
+        "correct": "D"
+      },
+      "solution": "$5x - 10 = 3x + 8$, so $2x = 18$ and $x = 9$, choice (D).",
+      "skill": "linear-equations",
+      "difficulty": 1,
+      "compute": "(8 + 10)/2"
+    },
+    {
+      "id": "seven-power",
+      "prompt": "What is the units digit of $7^{2026}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$3$", "$5$", "$7$", "$9$"],
+        "correct": "E"
+      },
+      "solution": "The units digits of powers of $7$ repeat $7, 9, 3, 1$. As $2026 = 4 \\times 506 + 2$, the units digit is that of $7^2$: $9$, choice (E).",
+      "skill": "units-digits",
+      "difficulty": 1,
+      "compute": "mod(7^2, 10)"
+    },
+    {
+      "id": "octagon-angle",
+      "prompt": "What is the measure, in degrees, of each interior angle of a regular octagon?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$108$", "$120$", "$135$", "$140$", "$144$"],
+        "correct": "C",
+        "why": {
+          "A": "That is a regular pentagon."
+        }
+      },
+      "solution": "Each exterior angle is $\\frac{360^\\circ}{8} = 45^\\circ$, so each interior angle is $135^\\circ$, choice (C).",
+      "skill": "polygons",
+      "difficulty": 1,
+      "compute": "180 - 360/8"
+    },
+    {
+      "id": "letter-codes",
+      "prompt": "How many $3$-letter codes can be made from the letters $M$, $A$, $T$, $H$ if no letter is used twice?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$12$", "$24$", "$36$", "$48$", "$64$"],
+        "correct": "B",
+        "why": {
+          "E": "Letters can't repeat."
+        }
+      },
+      "solution": "$4 \\times 3 \\times 2 = 24$, choice (B).",
+      "skill": "permutations",
+      "difficulty": 1,
+      "compute": "4*3*2"
+    },
+    {
+      "id": "two-reds",
+      "prompt": "A bag holds $3$ red and $5$ blue marbles. Two marbles are drawn without replacement. What is the probability that both are red?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{3}{28}$",
+          "$\\frac{9}{64}$",
+          "$\\frac{3}{16}$",
+          "$\\frac{1}{4}$",
+          "$\\frac{3}{8}$"
+        ],
+        "correct": "A",
+        "why": {
+          "B": "The first marble is not put back."
+        }
+      },
+      "solution": "$\\frac{3}{8} \\times \\frac{2}{7} = \\frac{3}{28}$, choice (A).",
+      "skill": "probability",
+      "difficulty": 1,
+      "compute": "3/8*2/7"
+    },
+    {
+      "id": "buses",
+      "prompt": "One bus leaves a station every $12$ minutes and another every $20$ minutes. They both leave at noon. After how many minutes do they next leave together?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$32$", "$40$", "$60$", "$120$", "$240$"],
+        "correct": "C",
+        "why": {
+          "E": "$12 \\times 20$ is a common multiple, but not the least."
+        }
+      },
+      "solution": "The least common multiple of $12$ and $20$ is $60$, choice (C).",
+      "skill": "gcd-lcm",
+      "difficulty": 1,
+      "compute": "lcm(12, 20)"
+    },
+    {
+      "id": "sum-difference",
+      "prompt": "Two numbers have sum $14$ and difference $4$. What is their product?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$40$", "$45$", "$48$", "$49$", "$56$"],
+        "correct": "B"
+      },
+      "solution": "Adding the equations, the larger is $9$ and the smaller is $5$: product $45$, choice (B).",
+      "skill": "systems",
+      "difficulty": 2,
+      "compute": "9*5"
+    },
+    {
+      "id": "reciprocal-roots",
+      "prompt": "The roots of $x^2 - 9x + 14 = 0$ are $r$ and $s$. What is $\\frac{1}{r} + \\frac{1}{s}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$\\frac{2}{7}$", "$\\frac{9}{14}$", "$\\frac{14}{9}$", "$9$", "$14$"],
+        "correct": "B",
+        "why": {
+          "C": "That is $\\frac{rs}{r + s}$, upside down."
+        }
+      },
+      "solution": "$\\frac{1}{r} + \\frac{1}{s} = \\frac{r + s}{rs} = \\frac{9}{14}$, choice (B).",
+      "skill": "vieta",
+      "difficulty": 2,
+      "compute": "9/14"
+    },
+    {
+      "id": "isosceles-area",
+      "prompt": "A triangle has sides $13$, $13$ and $10$. What is its area?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$30$", "$60$", "$65$", "$78$", "$120$"],
+        "correct": "B",
+        "why": {
+          "E": "Remember the $\\frac{1}{2}$."
+        }
+      },
+      "solution": "The height to the side $10$ splits it in half: $\\sqrt{13^2 - 5^2} = 12$. Area $\\frac{1}{2} \\times 10 \\times 12 = 60$, choice (B).",
+      "skill": "pythagoras",
+      "difficulty": 2,
+      "compute": "10*12/2"
+    },
+    {
+      "id": "divisors-360",
+      "prompt": "How many positive divisors does $360$ have?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$12$", "$18$", "$20$", "$24$", "$36$"],
+        "correct": "D"
+      },
+      "solution": "$360 = 2^3 \\times 3^2 \\times 5$, so it has $(3 + 1)(2 + 1)(1 + 1) = 24$ divisors, choice (D).",
+      "skill": "counting-divisors",
+      "difficulty": 2,
+      "compute": "4*3*2"
+    },
+    {
+      "id": "mixed-team",
+      "prompt": "A team of $2$ boys and $2$ girls is chosen from $5$ boys and $4$ girls. How many teams are possible?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$36$", "$60$", "$90$", "$126$", "$180$"],
+        "correct": "B",
+        "why": {
+          "D": "That is any $4$ of the $9$, without the $2$-and-$2$ rule."
+        }
+      },
+      "solution": "$\\binom{5}{2} \\times \\binom{4}{2} = 10 \\times 6 = 60$, choice (B).",
+      "skill": "combinations",
+      "difficulty": 2,
+      "compute": "binom(5, 2)*binom(4, 2)"
+    },
+    {
+      "id": "twentieth-term",
+      "prompt": "The $3$rd term of an arithmetic sequence is $11$ and the $8$th term is $31$. What is the $20$th term?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$71$", "$75$", "$79$", "$83$", "$87$"],
+        "correct": "C",
+        "why": {
+          "D": "From term $1$ to term $20$ is $19$ steps, not $20$."
+        }
+      },
+      "solution": "Five steps add $20$, so the difference is $4$ and the first term is $3$. The $20$th term is $3 + 19 \\times 4 = 79$, choice (C).",
+      "skill": "arithmetic-sequences",
+      "difficulty": 2,
+      "compute": "3 + 19*4"
+    },
+    {
+      "id": "area-to-circumference",
+      "prompt": "A circle has area $49\\pi$. What is its circumference?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$7\\pi$", "$14\\pi$", "$28\\pi$", "$49\\pi$", "$98\\pi$"],
+        "correct": "B"
+      },
+      "solution": "$r^2 = 49$, so $r = 7$ and the circumference is $2\\pi r = 14\\pi$, choice (B).",
+      "skill": "circle-areas",
+      "difficulty": 2,
+      "compute": "14*pi"
+    },
+    {
+      "id": "round-trip",
+      "prompt": "Kai drives $120$ miles at $40$ miles per hour and then drives back the same $120$ miles at $60$ miles per hour. What is his average speed for the whole trip, in miles per hour?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$45$", "$48$", "$50$", "$52$", "$55$"],
+        "correct": "B",
+        "why": {
+          "C": "Average speed is total distance over total time, not the average of the speeds."
+        }
+      },
+      "solution": "The trip takes $3 + 2 = 5$ hours for $240$ miles: $48$ miles per hour, choice (B).",
+      "skill": "distance-rate-time",
+      "difficulty": 2,
+      "compute": "240/(120/40 + 120/60)"
+    },
+    {
+      "id": "some-seven",
+      "prompt": "How many three-digit numbers have at least one digit equal to $7$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$225$", "$243$", "$252$", "$271$", "$300$"],
+        "correct": "C"
+      },
+      "solution": "There are $900$ three-digit numbers, and $8 \\times 9 \\times 9 = 648$ have no $7$. So $900 - 648 = 252$ do, choice (C).",
+      "skill": "complementary-counting",
+      "difficulty": 2,
+      "compute": "900 - 8*9*9"
+    },
+    {
+      "id": "parallel-cut",
+      "prompt": "In triangle $ABC$, points $D$ on $AB$ and $E$ on $AC$ make $DE$ parallel to $BC$, with $AD = 4$ and $DB = 6$. Triangle $ADE$ has area $8$. What is the area of the trapezoid $DBCE$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$12$", "$20$", "$34$", "$42$", "$50$"],
+        "correct": "D",
+        "why": {
+          "E": "That is the whole triangle."
+        }
+      },
+      "solution": "$\\frac{AD}{AB} = \\frac{4}{10}$, so the areas are in the ratio $\\frac{4}{25}$: triangle $ABC$ has area $50$ and the trapezoid $50 - 8 = 42$, choice (D).",
+      "skill": "similar-triangles",
+      "difficulty": 3,
+      "compute": "8*25/4 - 8"
+    },
+    {
+      "id": "flat-bottom",
+      "prompt": "How many integers $x$ satisfy $|x - 3| + |x + 5| = 8$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2$", "$7$", "$8$", "$9$", "$10$"],
+        "correct": "D",
+        "why": {
+          "A": "Every point between $-5$ and $3$ works, not just the ends."
+        }
+      },
+      "solution": "$|x - 3| + |x + 5|$ is the distance from $x$ to $3$ plus the distance to $-5$. It equals $8$, the gap between them, exactly when $-5 \\le x \\le 3$: that is $9$ integers, choice (D).",
+      "skill": "absolute-value",
+      "difficulty": 3,
+      "compute": "3 - (-5) + 1"
+    },
+    {
+      "id": "candies",
+      "prompt": "In how many ways can $10$ identical candies be shared among $4$ children so that each child gets at least one?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$56$", "$84$", "$120$", "$210$", "$286$"],
+        "correct": "B",
+        "why": {
+          "E": "That lets a child get none."
+        }
+      },
+      "solution": "Give each child one candy first; the other $6$ go freely: $\\binom{6 + 3}{3} = 84$, choice (B).",
+      "skill": "stars-bars",
+      "difficulty": 3,
+      "compute": "binom(9, 3)"
+    },
+    {
+      "id": "prime-game",
+      "prompt": "You roll a fair six-sided die. If the number is prime, you win that many dollars; otherwise you lose $\\$1$. What are your expected winnings, in dollars?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$\\frac{1}{2}$", "$1$", "$\\frac{7}{6}$", "$\\frac{5}{3}$", "$2$"],
+        "correct": "C",
+        "why": {
+          "D": "The three non-primes ($1$, $4$, $6$) each lose $\\$1$."
+        }
+      },
+      "solution": "The primes are $2$, $3$ and $5$: $\\frac{2 + 3 + 5 - 1 - 1 - 1}{6} = \\frac{7}{6}$, choice (C).",
+      "skill": "expected-value",
+      "difficulty": 3,
+      "compute": "(2 + 3 + 5 - 3)/6"
+    },
+    {
+      "id": "secant-tangent",
+      "prompt": "From a point $P$ outside a circle, a line meets the circle at $A$ and then at $B$, with $PA = 4$ and $AB = 5$. Another line from $P$ is tangent to the circle at $T$. What is $PT$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$4$", "$5$", "$6$", "$8$", "$9$"],
+        "correct": "C",
+        "why": {
+          "A": "$PB = PA + AB = 9$, not $5$."
+        }
+      },
+      "solution": "$PT^2 = PA \\times PB = 4 \\times 9 = 36$, so $PT = 6$, choice (C).",
+      "skill": "power-of-a-point",
+      "difficulty": 3,
+      "compute": "sqrt(4*9)"
+    },
+    {
+      "id": "base-seven",
+      "prompt": "The number $261_7$ is written in base $7$. What is it in base $10$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$131$", "$137$", "$141$", "$147$", "$261$"],
+        "correct": "C"
+      },
+      "solution": "$2 \\times 49 + 6 \\times 7 + 1 = 141$, choice (C).",
+      "skill": "number-bases",
+      "difficulty": 3,
+      "compute": "2*49 + 6*7 + 1"
+    },
+    {
+      "id": "near-a-corner",
+      "prompt": "A point is chosen at random inside a square of side $4$. What is the probability that it is within distance $1$ of at least one corner of the square?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{\\pi}{16}$",
+          "$\\frac{\\pi}{8}$",
+          "$\\frac{\\pi}{4}$",
+          "$\\frac{1}{4}$",
+          "$\\frac{\\pi}{2}$"
+        ],
+        "correct": "A",
+        "why": {
+          "C": "The four quarter circles make one whole circle, area $\\pi$, out of $16$."
+        }
+      },
+      "solution": "Each corner has a quarter circle of radius $1$ inside the square; together they make one circle of area $\\pi$. The probability is $\\frac{\\pi}{16}$, choice (A).",
+      "skill": "geometric-probability",
+      "difficulty": 3,
+      "compute": "pi/16"
+    },
+    {
+      "id": "unit-fractions",
+      "prompt": "What is $\\frac{1}{1 \\cdot 2} + \\frac{1}{2 \\cdot 3} + \\frac{1}{3 \\cdot 4} + \\cdots + \\frac{1}{24 \\cdot 25}$?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{23}{24}$",
+          "$\\frac{24}{25}$",
+          "$\\frac{25}{26}$",
+          "$1$",
+          "$\\frac{49}{50}$"
+        ],
+        "correct": "B"
+      },
+      "solution": "$\\frac{1}{n(n + 1)} = \\frac{1}{n} - \\frac{1}{n + 1}$, so the sum telescopes to $1 - \\frac{1}{25} = \\frac{24}{25}$, choice (B).",
+      "skill": "telescoping",
+      "difficulty": 3,
+      "compute": "1 - 1/25"
+    }
+  ]
+}

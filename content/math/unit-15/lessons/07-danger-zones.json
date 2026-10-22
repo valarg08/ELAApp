@@ -1,0 +1,82 @@
+{
+  "slug": "math-danger-zones",
+  "order": 7,
+  "title": "Your Danger Zones",
+  "estMinutes": 35,
+  "focusSkills": [
+    "distance-rate-time",
+    "fractions-percents",
+    "complementary-counting",
+    "factoring"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Think of a mistake you've made more than once. Why does it keep catching you?",
+      "placeholder": "It catches me because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Find your danger zones",
+          "body": "Open My skills (your math progress page). Your danger zones are the skills where you keep losing points: in mocks, checkpoints, problem sets, the daily review and any past papers you've logged. Pick your top three and give each one a redo session from the error log this week."
+        },
+        {
+          "kind": "definition",
+          "title": "The classic traps",
+          "body": "Average speed is total distance over total time, not the average of the speeds. Counting from $a$ to $b$ gives $b - a + 1$ numbers. A rise and an equal percent fall don't cancel. \"At least one\" is easiest as $1 -$ \"none\". Never divide by something that could be $0$: factor instead."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: average speed",
+          "problem": "You go $10$ km at $10$ km/h and $10$ km at $30$ km/h. What is your average speed?",
+          "steps": [
+            {
+              "text": "The times are $1$ hour and $\\frac{1}{3}$ of an hour.",
+              "try": {
+                "prompt": "How many km do you travel in all?",
+                "accepted": ["20"],
+                "compute": "10 + 10"
+              }
+            },
+            {
+              "text": "$20 \\div \\frac{4}{3} = 15$ km/h, not $20$.",
+              "try": {
+                "prompt": "What is the average speed, in km/h?",
+                "accepted": ["15"],
+                "compute": "20/(1 + 1/3)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Past papers count too",
+          "body": "If you work official AMC 10 papers on your own, mark them and log your answer letters in your past-paper log, with a topic for the problems you can name. Missed topics there show up in your danger zones as well. The log stores letters and topics only, never the problems."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.danger-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.danger-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["What are your top three danger zones, and what's your plan for each?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

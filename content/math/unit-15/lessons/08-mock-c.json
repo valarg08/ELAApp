@@ -1,0 +1,57 @@
+{
+  "slug": "math-mock-c",
+  "order": 8,
+  "title": "Mock C",
+  "estMinutes": 100,
+  "focusSkills": ["pacing", "guessing"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You've refreshed algebra, geometry, counting and number theory, and found your danger zones. What score are you aiming for in Mock C?",
+      "placeholder": "I'm aiming for…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Trust your plan",
+          "body": "By now your pacing plan should feel natural. In Mock C, watch for your danger zones: when you meet one, slow down for ten seconds and check the trap before you answer."
+        },
+        {
+          "kind": "definition",
+          "title": "Mistake analysis",
+          "body": "After the mock, open your result and sort every miss and blank into one of four boxes: (1) I didn't know the idea, (2) a careless slip, (3) I misread the question, (4) I ran out of time. Add the problems you didn't know to your error log, and look at the review by strand and by difficulty: is one strand weak, or do the points leak away in the last ten problems?"
+        },
+        {
+          "kind": "definition",
+          "title": "Your AMC-score estimate",
+          "body": "After this mock, your progress page has an estimate built from your last three full tests (mocks, checkpoints and logged past papers), with a range. It is a guide, not a promise: a good night's sleep moves it too."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.mock-c-warmup"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.mock-c"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Did you spot any of your danger-zone traps in time?",
+        "How does Mock C compare with Mocks A and B?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "slug": "math-geometry-refresh",
+  "order": 4,
+  "title": "Geometry Refresh",
+  "estMinutes": 35,
+  "focusSkills": [
+    "angle-chasing",
+    "pythagoras",
+    "circle-angles",
+    "coordinate-geometry",
+    "solids-3d"
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Picture a geometry problem you got wrong recently. Did you draw a careful figure first?",
+      "placeholder": "I…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The geometry toolkit",
+          "body": "Always draw the figure, roughly to scale, and mark everything you know. Angles: a triangle adds to $180^\\circ$, an inscribed angle is half its arc. Lengths: Pythagoras and its triples ($3$-$4$-$5$, $5$-$12$-$13$, $8$-$15$-$17$), similar triangles, power of a point. Areas: $\\frac{1}{2}bh$, Heron, the shoelace formula. Solids: $V = \\frac{1}{3}Bh$ for cones and pyramids, $\\frac{4}{3}\\pi r^3$ for a sphere."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: draw it",
+          "problem": "A rectangle has diagonal $13$ and one side $5$. What is its area?",
+          "steps": [
+            {
+              "text": "The diagonal makes a right triangle: the other side is $\\sqrt{169 - 25}$.",
+              "try": {
+                "prompt": "How long is the other side?",
+                "accepted": ["12"],
+                "compute": "sqrt(169 - 25)"
+              }
+            },
+            {
+              "text": "Area $5 \\times 12 = 60$.",
+              "try": {
+                "prompt": "What is the area?",
+                "accepted": ["60"],
+                "compute": "5*12"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Your fact sheets",
+          "body": "The Units 11 to 13 fact sheets hold every geometry formula from the course. Read them through once, and copy the three you forget most onto a card."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.geometry-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.geometry-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which geometry formula goes on your card?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "math-pacing-plan",
+  "order": 1,
+  "title": "The Pacing Plan & the 2-Minute Rule",
+  "estMinutes": 35,
+  "focusSkills": ["pacing", "guessing", "amc-scoring"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "The AMC 10 gives you $75$ minutes for $25$ problems. Would you rather spend $10$ minutes cracking problem $20$, or use them to check problems $1$ to $10$? Why?",
+      "placeholder": "I would… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "How the AMC 10 is scored",
+          "body": "$25$ problems, $75$ minutes, choices (A) to (E). A right answer scores $6$, a blank $1.5$ and a wrong answer $0$. The problems get harder as you go, but every problem is worth the same $6$ points: an easy problem you get right counts as much as the hardest one."
+        },
+        {
+          "kind": "definition",
+          "title": "The pacing plan and the 2-minute rule",
+          "body": "Plan two passes. First pass: work through in order. If a problem has no clear plan after $2$ minutes, flag it, skip it and move on. Aim to finish the first pass with about $25$ minutes left. Second pass: go back to the flagged problems, most promising first. Save $3$ to $5$ minutes at the end to check your answer sheet."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the time budget",
+          "problem": "Your first pass works $18$ problems at about $2.5$ minutes each. How much time is left for the $7$ skipped problems?",
+          "steps": [
+            {
+              "text": "The first pass takes $18 \\times 2.5$ minutes.",
+              "try": {
+                "prompt": "How many minutes is the first pass?",
+                "accepted": ["45"],
+                "compute": "18*2.5"
+              }
+            },
+            {
+              "text": "That leaves $75 - 45 = 30$ minutes for $7$ problems: plenty for a second look.",
+              "try": {
+                "prompt": "How many minutes are left?",
+                "accepted": ["30"],
+                "compute": "75 - 45"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Guess or leave it blank?",
+          "body": "A blank is worth $1.5$ points. A wild guess among $5$ choices is worth $\\frac{6}{5} = 1.2$ points on average, less than a blank. Rule out one choice and a guess is worth $\\frac{6}{4} = 1.5$, a tie; rule out two and it is worth $2$. So: leave it blank unless you can rule out at least two choices."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: is it worth guessing?",
+          "problem": "You've ruled out $2$ choices. What is a guess worth on average?",
+          "steps": [
+            {
+              "text": "$3$ choices are left, so you're right with probability $\\frac{1}{3}$.",
+              "try": {
+                "prompt": "How many choices are left?",
+                "accepted": ["3"],
+                "compute": "5 - 2"
+              }
+            },
+            {
+              "text": "$6 \\times \\frac{1}{3} = 2$ points, more than the $1.5$ for a blank: guess.",
+              "try": {
+                "prompt": "How many points is the guess worth?",
+                "accepted": ["2"],
+                "compute": "6/3"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m15.pacing-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m15.pacing-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "What is your pacing plan for the first pass and the second pass?",
+        "When will you guess, and when will you leave a blank?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}
