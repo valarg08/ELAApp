@@ -15,7 +15,7 @@ const webPort = process.env.WEB_PORT ?? '3200';
 // settings are in %USERPROFILE%.cloudflaredconfig.yml.
 const tunnel = process.env.TUNNEL_NAME && {
   name: 'owlery-tunnel',
-  script: process.env.CLOUDFLARED ?? 'C:\Program Files (x86)\cloudflared\cloudflared.exe',
+  script: process.env.CLOUDFLARED ?? 'C:/Program Files (x86)/cloudflared/cloudflared.exe',
   args: `tunnel --no-autoupdate run ${process.env.TUNNEL_NAME}`,
   interpreter: 'none',
 };
