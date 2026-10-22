@@ -179,13 +179,14 @@ enum FlagStatus {
 
 // ───────── Identity & organisation ─────────
 model Organization {
-  id        String   @id @default(cuid())
-  name      String
-  country   String?
-  timezone  String   @default("UTC")
-  teachers  User[]
-  classes   Class[]
-  createdAt DateTime @default(now())
+  id                 String   @id @default(cuid())
+  name               String
+  country            String?
+  timezone           String   @default("UTC")
+  aiDailyBudgetCents Int? // admin cap on estimated AI spend per day; reaching it pauses live checks only
+  teachers           User[]
+  classes            Class[]
+  createdAt          DateTime @default(now())
 }
 
 model User {

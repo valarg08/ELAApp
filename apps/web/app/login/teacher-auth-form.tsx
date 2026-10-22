@@ -22,7 +22,8 @@ export function TeacherAuthForm({ mode }: { mode: 'login' | 'register' }) {
         password: form.get('password'),
         ...(mode === 'register' ? { displayName: form.get('displayName') } : {}),
       });
-      router.push('/classes');
+      // The home page sends each role to its own start page (admins to /admin).
+      router.push('/');
       router.refresh();
     } catch (e) {
       setError(e instanceof ApiError ? e.userMessage : 'Could not reach StoryForge. Try again.');

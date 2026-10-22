@@ -234,10 +234,10 @@ storyforge/
 /(teacher)/rubrics                  Rubric library and builder
 /(teacher)/tests                    Tests list, generator, results
 /(teacher)/flags                    Safety flags inbox
-/(admin)/curriculum                 Unit / lesson / activity editor
-/(admin)/schools                    Schools and teachers
-/(admin)/analytics                  Platform analytics
-/(admin)/ai                         AI settings, prompt versions, eval results
+/admin                              Platform overview: totals and 14-day activity (built, §11.9)
+/admin/schools                      Schools and teachers (built)
+/admin/ai                           AI usage, estimated cost, school budgets (built; prompt versions and evals later)
+/admin/content                      Curriculum status and sync (built; the unit / lesson / activity editor later)
 ```
 
 ### 3.2 Backend modules (`apps/api/src/modules`)
@@ -785,7 +785,11 @@ model AuditLog {
 | POST | `/lessons/:id/steps/:stepId/complete` | student | Mark a step done → XP event |
 | GET | `/activities/:id` | any | Activity config and prompt |
 | POST/PATCH/DELETE | `/admin/units`, `/admin/lessons`, `/admin/activities` | admin | Curriculum editing |
-| POST | `/admin/content/sync` | admin | Sync `/content` JSON into the DB (dry-run supported) |
+| POST | `/admin/content/sync` | admin | Sync `/content` JSON into the DB `{ dryRun }` (built) |
+| GET | `/admin/content` | admin | Units in `/content` compared with the DB (in sync / changed / not loaded), plus content errors (built) |
+| GET/POST/PATCH | `/admin/orgs`, `/admin/orgs/:id` | admin | Schools with counts and today’s AI spend; create; rename or set `aiDailyBudgetCents` (built) |
+| GET/PATCH | `/admin/teachers`, `/admin/teachers/:id` | admin | Teachers with counts and last login; `{ orgId, active }` assigns a school (and moves the teacher’s classes) or deactivates (built) |
+| GET | `/admin/analytics`, `/admin/ai-usage` | admin | Platform totals and 14-day activity; AI calls, tokens and estimated cost by day, by check and by school today (built) |
 
 ### 5.4 Writing
 
@@ -1337,7 +1341,7 @@ The student text is wrapped in `<student_writing>` tags. Anything inside is data
 | Max input | 8,000 words (projects up to 3,000 words are typical) |
 | Cache | Identical text + analyzer + prompt version → cached result for 30 days |
 
-Admin dashboard shows token usage and estimated cost per school per day. A budget cap per organisation pauses live checks (never submission feedback) when reached and alerts the admin.
+Admin dashboard shows token usage and estimated cost per school per day. A budget cap per organisation pauses live checks (never submission feedback) when reached and alerts the admin. *Built:* `Organization.aiDailyBudgetCents` (null = no cap), spend estimated from `AiUsage` tokens with `MODEL_PRICES` in packages/shared (Opus 5.5 $4 / $20 / $0.20 cache reads per MTok) over the UTC day; at the cap `/ai/live-check` answers 429 `AI_BUDGET_REACHED`. The admin sees “Live checks paused” on `/admin/ai`; an email alert is not built yet.
 
 ### 8.9 Evaluation and quality
 
@@ -1420,7 +1424,7 @@ type WritingConstraints = {
 ### 9.4 Implementation notes (as built in P2)
 
 - **Content layout:** `content/units/unit-XX/unit.json` (required), `activities.json`, `lessons/NN-slug.json`. Schemas live in `packages/shared/src/curriculum/content.ts`; `validateUnitBundle` adds cross-reference checks (activity keys exist and use the unit prefix, practice vs. writing activity types, correct answers exist, highlight targets and clue-hunt clues appear in their text, lesson orders 1…n). Step ids are fixed: `hook`, `learn`, `practice`, `challenge`, `reflect`.
-- **Sync:** `pnpm content:check` validates; `pnpm content:sync` upserts into the database (units by number, lessons by unit+slug, activities by key). Nothing is deleted; content removed from `/content` is reported as orphaned. A Vitest test loads the real `/content`, so invalid content fails CI. The admin sync endpoint (§5.3) is not built yet.
+- **Sync:** `pnpm content:check` validates; `pnpm content:sync` upserts into the database (units by number, lessons by unit+slug, activities by key). Nothing is deleted; content removed from `/content` is reported as orphaned. A Vitest test loads the real `/content`, so invalid content fails CI. Admins can also check and sync from `/admin/content` (`POST /admin/content/sync`).
 - **Pacing default:** with no pacing row, Unit 1 is open and other published units are locked until the teacher unlocks them; unpublished units show as "coming soon". Pacing rows support `hidden`, a scheduled `unlockAt`, and `dueAt`.
 - **Grading:** practice activities are checked in the browser (answers are part of the lesson payload, which is fine for low-stakes practice); the API requires every practice activity to be reported correct before the step completes. Writing constraints are checked live in the browser and again by the API (422 `CONSTRAINTS_NOT_MET` with kid-friendly messages).
 - **Challenge storage:** the challenge is written in the P3 writing workspace (§5.4.1) and stored as a `Submission`; lesson progress keeps only the word count.
@@ -1812,6 +1816,15 @@ A list of flags by severity, with the excerpt, a link to the full text, and acti
 
 ### 11.8 Class settings
 AI feedback mode, live-check limits, streak rule (every day / school days only), holiday calendar, leaderboard on/off, peer review on/off, hard vs soft constraints default, and allowed export formats.
+
+### 11.9 Admin console (built)
+Admins log in on `/login` like teachers and land on `/admin` (`homePathFor`); the teacher pages send them there and the admin pages send everyone else home. `pnpm db:seed` creates a development admin (README). Admins see counts and token totals only, never student text. Every change is written to `AuditLog` (`org.create`, `org.update`, `teacher.assign_org`, `teacher.activate`, `teacher.deactivate`, `content.sync`).
+- **Overview** (`/admin`): schools, teachers, classes, students, submissions; per UTC day for 14 days, active students (lesson progress or writing that day), lessons completed and submissions.
+- **Schools & teachers** (`/admin/schools`): add a school (name, country, time zone); per teacher, the school (assigning one also moves the teacher's classes, which is how a class's AI spend reaches a school's budget) and Deactivate / Reactivate. Deactivating locks the account indefinitely (`lockedUntil` 9999-12-31) and ends its sessions; the classes stay.
+- **AI usage** (`/admin/ai`): estimated cost today per school with its daily budget (dollars; empty = none), and 14 days of calls, tokens and estimated cost by day and by kind and check (budget rules in §8.8).
+- **Curriculum** (`/admin/content`): every unit in `/content` with published and in sync / changed / not loaded (by `contentHash`), content errors, and Check content (dry run) / Sync to database. Loading /content takes about 15 s.
+- **Later:** the curriculum editor, prompt versions and eval results, budget alert emails, school admins (admins are platform-wide).
+- **Tests owed:** authorisation for every `/admin` endpoint (students and teachers 403, unknown school or teacher 404); the budget pause (live checks 429 at the cap, submission feedback unaffected); `estimateCostCents`.
 
 ---
 

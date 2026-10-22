@@ -59,6 +59,7 @@ import { poemInput, poemScope } from './poem-input.js';
 import { grammarInput } from './grammar-input.js';
 import { paragraphInput } from './paragraph-input.js';
 import { essayInput } from './essay-input.js';
+import { orgSpendTodayCents } from './ai-budget.js';
 
 /** Live checks give up after 20 s (DESIGN.md §8.6) and ask the student to try again. */
 const LIVE_TIMEOUT_MS = 20_000;
@@ -151,6 +152,23 @@ export class LiveChecksService {
     }
 
     const klass = await this.db.client.class.findUniqueOrThrow({ where: { id: classId } });
+    if (klass.orgId) {
+      // A school's daily AI budget pauses live checks only; submission feedback always runs.
+      const org = await this.db.client.organization.findUnique({ where: { id: klass.orgId } });
+      const cap = org?.aiDailyBudgetCents;
+      if (cap != null) {
+        const spent =
+          (await orgSpendTodayCents(this.db.client, [klass.orgId])).get(klass.orgId) ?? 0;
+        if (spent >= cap) {
+          throw new AppError(
+            HttpStatus.TOO_MANY_REQUESTS,
+            ErrorCode.AI_BUDGET_REACHED,
+            'Quill is resting',
+            'Quill’s checks are paused for today. The instant checks still work, and you can still submit your writing.',
+          );
+        }
+      }
+    }
     const ctx: WritingContext = {
       text: req.text,
       activityTitle: content.title,

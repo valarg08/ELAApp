@@ -8,7 +8,13 @@ export type AuditAction =
   | 'students.bulk_add'
   | 'student.reset_secret'
   | 'flag.update'
-  | 'feedback.release';
+  | 'feedback.release'
+  | 'org.create'
+  | 'org.update'
+  | 'teacher.assign_org'
+  | 'teacher.activate'
+  | 'teacher.deactivate'
+  | 'content.sync';
 
 @Injectable()
 export class AuditService {

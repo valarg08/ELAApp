@@ -81,7 +81,7 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
 ## 4. Platform
 
 - [ ] **P11 Hardening** (§13): Postgres row-level security, security headers, a rate-limit review, k6 load tests, an accessibility audit, observability dashboards, a backup/restore runbook.
-- [ ] **Admin role** (§1): schools and teachers, curriculum editing, platform analytics, AI settings and budget caps.
+- [x] **Admin role** (§1, DESIGN.md §11.9): schools and teachers, platform analytics, AI usage with per-school daily budgets that pause live checks, curriculum status and sync, a seeded dev admin. Later: the curriculum editor, prompt versions and evals, budget alert emails.
 
 ## 5. Tests owed
 
@@ -92,6 +92,7 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
   - the marked quiz endpoints (`/lessons/:id/quiz/...`)
   - `GET /teacher/classes/:classId/progress` and `GET /teacher/classes/:classId/students/:studentId/progress` (students 403; another teacher's class or a student outside the class 404)
   - the Math endpoints: `/lessons/:id/problem-sets/:key` (start/submit student-only; another student's attempt 404), `/math/error-log` (student-only; another student's entry 404), `/ai/math/explain` (student-only; a marked set not explained before a submitted try)
+- [ ] Admin: authorisation for every `/admin` endpoint, the AI budget pause on live checks, `estimateCostCents` (DESIGN.md §11.9).
 - [ ] The analyzer, Coach and rubric unit tests listed under each E-phase (E1–E15) and SL-phase.
 - [ ] math-check unit tests (values, parsing, answer forms, TeX choices) and `problemErrors` / figure-sanitiser tests (M0).
 - [ ] Playwright happy paths with `expectAccessible(page)` for the essay workspace tools and the teacher progress pages.

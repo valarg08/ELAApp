@@ -11,6 +11,7 @@ import { LiveChecksModule } from './ai/live-checks.module.js';
 import { FeedbackModule } from './feedback/feedback.module.js';
 import { SafetyModule } from './safety/safety.module.js';
 import { MathModule } from './math/math.module.js';
+import { AdminModule } from './admin/admin.module.js';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { MathModule } from './math/math.module.js';
     FeedbackModule,
     LiveChecksModule,
     MathModule,
+    AdminModule,
   ],
 })
 export class AppModule {}
