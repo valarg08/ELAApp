@@ -1,7 +1,7 @@
 'use client';
 
 import { type ReactNode, useState, useSyncExternalStore } from 'react';
-import { navFocus, navPanel } from './course-styles';
+import { cyanFocus, cyanPanel, navFocus, navPanel } from './course-styles';
 
 // The remembered choices live in localStorage; these let React read them without a hydration mismatch.
 const listeners = new Set<() => void>();
@@ -33,7 +33,7 @@ function writeCollapsed(key: string, value: boolean) {
 }
 
 /**
- * A deep teal side panel of the course frame (Chapters on the left, Progress on the right), with its
+ * A side panel of the course frame (deep teal Chapters on the left, cyan Progress on the right), with its
  * content rendered once. With `mobileFold` (Chapters) a button shows the content on phones. With
  * `collapsible` (the writing workspace) a button folds the panel to a slim rail on wider screens,
  * remembered in this browser; CourseShell's grid narrows the column when it sees `data-folded`.
@@ -44,6 +44,7 @@ export function SidePanel({
   side,
   collapsible,
   mobileFold = false,
+  tone = 'teal',
   children,
 }: {
   /** `data-folded` value, element id and storage key part: "chapters" or "progress". */
@@ -52,6 +53,8 @@ export function SidePanel({
   side: 'left' | 'right';
   collapsible: boolean;
   mobileFold?: boolean;
+  /** Deep teal with white text (Chapters) or cyan with deep teal text (Progress). */
+  tone?: 'teal' | 'cyan';
   children: ReactNode;
 }) {
   const key = `course-${name}-collapsed`;
@@ -64,6 +67,7 @@ export function SidePanel({
   const folded = collapsible && collapsed;
   const [mobileOpen, setMobileOpen] = useState(false);
   const id = `${name}-panel`;
+  const focus = tone === 'cyan' ? cyanFocus : navFocus;
   // The arrow points the way the panel moves: towards its edge to fold, away from it to open.
   const toEdge = side === 'left' ? '«' : '»';
   const fromEdge = side === 'left' ? '»' : '«';
@@ -74,7 +78,7 @@ export function SidePanel({
       onClick={() => writeCollapsed(key, !collapsed)}
       aria-expanded={!folded}
       aria-controls={id}
-      className={`hidden min-h-11 min-w-11 items-center justify-center rounded-xl text-lg font-semibold hover:bg-white/10 md:inline-flex ${navFocus}`}
+      className={`hidden min-h-11 min-w-11 items-center justify-center rounded-xl text-lg font-semibold hover:bg-white/20 md:inline-flex ${focus}`}
     >
       <span aria-hidden="true">{folded ? fromEdge : toEdge}</span>
       <span className="sr-only">
@@ -86,7 +90,7 @@ export function SidePanel({
   return (
     <div
       data-folded={folded ? name : undefined}
-      className={`${navPanel} ${folded ? 'md:px-1.5' : ''}`}
+      className={`${tone === 'cyan' ? cyanPanel : navPanel} ${folded ? 'md:px-1.5' : ''}`}
     >
       <div
         className={`flex items-center justify-between gap-2 ${collapsible && side === 'right' ? 'md:flex-row-reverse' : ''}`}
@@ -97,7 +101,7 @@ export function SidePanel({
             onClick={() => setMobileOpen((open) => !open)}
             aria-expanded={mobileOpen}
             aria-controls={id}
-            className={`flex min-h-11 flex-1 items-center justify-between rounded-xl text-left font-semibold md:hidden ${navFocus}`}
+            className={`flex min-h-11 flex-1 items-center justify-between rounded-xl text-left font-semibold md:hidden ${focus}`}
           >
             {title}
             <span aria-hidden="true">{mobileOpen ? '▴' : '▾'}</span>

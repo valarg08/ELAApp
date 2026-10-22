@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { TrackTabs } from '@/components/track-tabs';
 import { CourseShell } from '@/components/course-shell';
-import { navFocus } from '@/components/course-styles';
+import { cyanFocus } from '@/components/course-styles';
 import { UnitCard } from '@/components/unit-card';
 import { points } from '@/features/math/copy';
 import { getMe, serverApi } from '@/lib/server-api';
@@ -40,19 +40,19 @@ export default async function MathHome() {
       track="MATH"
       extra={
         home && (
-          <section aria-labelledby="fact-sheets" className="mt-5 border-t border-white/30 pt-4">
+          <section aria-labelledby="fact-sheets" className="mt-5 border-t border-brand/30 pt-4">
             <h3 id="fact-sheets" className="text-sm font-semibold">
               Fact sheets
             </h3>
             {home.factSheets.length === 0 ? (
-              <p className="mt-1 text-sm text-white/80">None yet</p>
+              <p className="mt-1 text-sm">None yet</p>
             ) : (
               <ul className="mt-1 flex flex-col gap-1">
                 {home.factSheets.map((f) => (
                   <li key={f.number}>
                     <Link
                       href={`/math/facts/${f.number}`}
-                      className={`text-sm text-white underline ${navFocus}`}
+                      className={`text-sm text-brand underline ${cyanFocus}`}
                     >
                       Unit {f.number}: {f.title}
                     </Link>
@@ -80,7 +80,7 @@ export default async function MathHome() {
           {current && (
             <Link
               href={`/units/${current.slug}`}
-              className={`${tile} border-2 border-brand sm:col-span-2`}
+              className={`${tile} border-2 border-accent sm:col-span-2`}
             >
               <p className="text-sm font-semibold tracking-widest text-brand uppercase">
                 Keep going

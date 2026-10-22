@@ -10,12 +10,14 @@
   --border: #c9e1e6;
   --brand: #043345;
   --accent: #0d9aac; /* decoration only (borders, bars): 3.3:1 on white, too light for text */
-  --mint: #00ff99; /* on the deep teal side panels: done ticks and progress bars */
+  --cyan: #00b6c7; /* the Progress panel, with deep teal text (5.4:1) */
+  --green: #009966; /* progress bar fill on light backgrounds */
+  --mint: #00ff99; /* on deep teal: done ticks and the header edge */
   --ok: #007a52; /* the palette's green #009966, darkened for text */
   --warn: #b45309;
   --bad: #cd4236;
-  /* Course frame panels: deep teal side panels (--brand), a pale tint of the cyan for the page. */
-  --page-panel: #e3f6f8;
+  /* Course frame panels: deep teal Chapters (--brand), a light tint of the cyan for the page, cyan Progress. */
+  --page-panel: #ccf0f4;
 }
 
 @theme inline {
@@ -26,6 +28,8 @@
   --color-border: var(--border);
   --color-brand: var(--brand);
   --color-accent: var(--accent);
+  --color-cyan: var(--cyan);
+  --color-green: var(--green);
   --color-mint: var(--mint);
   --color-ok: var(--ok);
   --color-warn: var(--warn);

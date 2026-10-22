@@ -3,17 +3,17 @@ export function ProgressBar({
   value,
   max,
   label,
-  onDark = false,
+  onCyan = false,
 }: {
   value: number;
   max: number;
   label: string;
-  /** On the deep teal side panels: a mint bar on a faint track. */
-  onDark?: boolean;
+  /** On the cyan Progress panel: a deep teal bar on a light track. */
+  onCyan?: boolean;
 }) {
-  const colours = onDark
-    ? 'bg-white/25 [&::-moz-progress-bar]:bg-mint [&::-webkit-progress-bar]:bg-white/25 [&::-webkit-progress-value]:bg-mint'
-    : 'bg-border [&::-moz-progress-bar]:bg-brand [&::-webkit-progress-bar]:bg-border [&::-webkit-progress-value]:bg-brand';
+  const colours = onCyan
+    ? 'bg-white/60 [&::-moz-progress-bar]:bg-brand [&::-webkit-progress-bar]:bg-white/60 [&::-webkit-progress-value]:bg-brand'
+    : 'bg-border [&::-moz-progress-bar]:bg-green [&::-webkit-progress-bar]:bg-border [&::-webkit-progress-value]:bg-green';
   return (
     <progress
       aria-label={label}

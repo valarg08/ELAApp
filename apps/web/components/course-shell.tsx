@@ -136,12 +136,12 @@ export async function CourseShell({
       <div>
         <p className="text-sm font-semibold">{TRACK_NAMES[track]}</p>
         <ProgressBar
-          onDark
+          onCyan
           value={trackDone}
           max={trackTotal}
           label={`${TRACK_NAMES[track]} progress`}
         />
-        <p className="mt-1 text-sm text-white/80">
+        <p className="mt-1 text-sm">
           {trackDone} of {trackTotal} lessons · {pct(trackDone, trackTotal)}%
         </p>
       </div>
@@ -151,12 +151,12 @@ export async function CourseShell({
             {unitLabel(track, unit.number)}: {unit.title}
           </p>
           <ProgressBar
-            onDark
+            onCyan
             value={unitDone}
             max={unit.lessons.length}
             label={`${unit.title} progress`}
           />
-          <p className="mt-1 text-sm text-white/80">
+          <p className="mt-1 text-sm">
             {unitDone} of {unit.lessons.length} lessons
           </p>
         </div>
@@ -165,12 +165,12 @@ export async function CourseShell({
         <div>
           <p className="text-sm font-semibold">This lesson</p>
           <ProgressBar
-            onDark
+            onCyan
             value={lesson.completedSteps}
             max={lesson.totalSteps}
             label={`${lesson.title} progress`}
           />
-          <p className="mt-1 text-sm text-white/80">
+          <p className="mt-1 text-sm">
             {lesson.completed
               ? '✓ Completed'
               : `${lesson.completedSteps} of ${lesson.totalSteps} steps · about ${lesson.estMinutes} min`}
@@ -200,7 +200,7 @@ export async function CourseShell({
         aria-label="Progress"
         className="order-last md:order-none md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto"
       >
-        <SidePanel name="progress" title="Progress" side="right" collapsible={wide}>
+        <SidePanel name="progress" title="Progress" side="right" tone="cyan" collapsible={wide}>
           {progress}
           {extra}
         </SidePanel>

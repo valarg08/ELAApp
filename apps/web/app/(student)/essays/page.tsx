@@ -34,7 +34,7 @@ export default async function EssayHome() {
           {current && (
             <Link
               href={`/units/${current.slug}`}
-              className="flex-1 rounded-2xl border-2 border-brand bg-card p-6 shadow-sm transition hover:shadow-md focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              className="flex-1 rounded-2xl border-2 border-accent bg-card p-6 shadow-sm transition hover:shadow-md focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand"
             >
               <p className="text-sm font-semibold tracking-widest text-brand uppercase">
                 ⭐ Keep going
