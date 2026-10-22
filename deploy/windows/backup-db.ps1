@@ -1,4 +1,4 @@
-# Nightly backup of the production database (pg_dump custom format), keeping the last 14.
+﻿# Nightly backup of the production database (pg_dump custom format), keeping the last 14.
 # Usage: powershell -ExecutionPolicy Bypass -File deploy\windows\backup-db.ps1
 # BACKUP_DIR in .env picks the folder (a OneDrive folder keeps a copy off this PC).
 $ErrorActionPreference = 'Stop'
@@ -15,7 +15,7 @@ $pgDump = Get-ChildItem 'C:\Program Files\PostgreSQL\*\bin\pg_dump.exe' | Sort-O
 if (-not $pgDump) { throw 'pg_dump.exe not found under C:\Program Files\PostgreSQL' }
 
 $file = Join-Path $dir ("owlery-{0}.dump" -f (Get-Date -Format 'yyyy-MM-dd-HHmm'))
-& $pgDump.FullName --format=custom --no-owner --file=$file --dbname=$settings.DATABASE_URL
+& $pgDump.FullName --format=custom --no-owner --file=$file "--dbname=$($settings.DATABASE_URL)"
 if ($LASTEXITCODE -ne 0) { throw "pg_dump failed (exit $LASTEXITCODE)" }
 
 Get-ChildItem $dir -Filter 'owlery-*.dump' | Sort-Object Name -Descending | Select-Object -Skip 14 | Remove-Item
