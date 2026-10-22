@@ -1,5 +1,5 @@
 /**
- * Create (or reset) the default development teacher account.
+ * Create (or reset) the default development teacher and admin accounts.
  *   node apps/api/dist/cli/seed.js
  * Refuses to run when NODE_ENV=production. Safe to run again: it resets the password and unlocks.
  */
@@ -12,6 +12,13 @@ const DEFAULT_TEACHER = {
   password: 'storyforge-teacher',
   displayName: 'Demo Teacher',
   username: 'demo-teacher',
+} as const;
+
+const DEFAULT_ADMIN = {
+  email: 'admin@storyforge.test',
+  password: 'storyforge-admin',
+  displayName: 'Demo Admin',
+  username: 'demo-admin',
 } as const;
 
 loadEnvFile();
@@ -27,20 +34,26 @@ if (!url) {
 
 const db = createPrismaClient(url);
 try {
-  const passwordHash = await new PasswordService().hash(DEFAULT_TEACHER.password);
-  const reset = { passwordHash, failedLogins: 0, lockedUntil: null, deletedAt: null };
-  await db.user.upsert({
-    where: { email: DEFAULT_TEACHER.email },
-    update: reset,
-    create: {
-      role: 'TEACHER',
-      email: DEFAULT_TEACHER.email,
-      displayName: DEFAULT_TEACHER.displayName,
-      username: DEFAULT_TEACHER.username,
-      ...reset,
-    },
-  });
-  console.log(`✓ Default teacher ready: ${DEFAULT_TEACHER.email} (password in README).`);
+  const passwords = new PasswordService();
+  for (const [role, account] of [
+    ['TEACHER', DEFAULT_TEACHER],
+    ['ADMIN', DEFAULT_ADMIN],
+  ] as const) {
+    const passwordHash = await passwords.hash(account.password);
+    const reset = { passwordHash, failedLogins: 0, lockedUntil: null, deletedAt: null };
+    await db.user.upsert({
+      where: { email: account.email },
+      update: { ...reset, role },
+      create: {
+        role,
+        email: account.email,
+        displayName: account.displayName,
+        username: account.username,
+        ...reset,
+      },
+    });
+    console.log(`✓ Default ${role.toLowerCase()} ready: ${account.email} (password in README).`);
+  }
 } finally {
   await db.$disconnect();
 }
