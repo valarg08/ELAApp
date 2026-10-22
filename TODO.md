@@ -80,7 +80,7 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
 
 ## 4. Platform
 
-- [ ] **P11 Hardening** (§13): Postgres row-level security, security headers, a rate-limit review, k6 load tests, an accessibility audit, observability dashboards, a backup/restore runbook.
+- [ ] **P11 Hardening** (§13): Postgres row-level security, a full script CSP with nonces, k6 load tests, an accessibility audit, observability dashboards. Done for the trial: basic security headers, sign-in rate limits, closed teacher sign-up with `user:create`, `/privacy`, nightly backups and a restore note (deploy/windows/README.md).
 - [x] **Admin role** (§1, DESIGN.md §11.9): schools and teachers, platform analytics, AI usage with per-school daily budgets that pause live checks, curriculum status and sync, a seeded dev admin. Later: the curriculum editor, prompt versions and evals, budget alert emails.
 
 ## 5. Tests owed

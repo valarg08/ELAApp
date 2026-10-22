@@ -34,3 +34,6 @@ Thumbs.db
 # Local in-app browser preview launcher (machine-specific)
 .claude/launch.json
 .claude/dev.cmd
+
+# Production database backups (deploy/windows/backup-db.ps1)
+backups/

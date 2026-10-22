@@ -1,0 +1,10 @@
+# Cloudflare Tunnel: the public address -> the production web app on this PC.
+# Copy to %USERPROFILE%\.cloudflared\config.yml and fill in the tunnel id and hostname
+# (deploy/windows/README.md, step 5). The web app forwards /api to the API itself.
+tunnel: <TUNNEL-ID>
+credentials-file: C:\Users\<you>\.cloudflared\<TUNNEL-ID>.json
+
+ingress:
+  - hostname: owlery.example.com
+    service: http://localhost:3200
+  - service: http_status:404

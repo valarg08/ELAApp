@@ -11,6 +11,7 @@ import {
 import type { Request, Response } from 'express';
 import { ENV } from '../config/config.module.js';
 import type { Env } from '../config/env.js';
+import { forbidden } from '../common/app-error.js';
 import { clearSessionCookies, setSessionCookies } from './auth.cookies.js';
 import { AuthService, type LoginResult } from './auth.service.js';
 import type { AuthUser } from './auth.types.js';
@@ -24,6 +25,7 @@ interface SessionBody {
 @Controller('auth')
 export class AuthController {
   private readonly secureCookies: boolean;
+  private readonly signupOpen: boolean;
 
   constructor(
     private readonly auth: AuthService,
@@ -31,6 +33,9 @@ export class AuthController {
     @Inject(ENV) env: Env,
   ) {
     this.secureCookies = env.NODE_ENV === 'production';
+    // A public site creates teachers with `pnpm user:create` instead.
+    this.signupOpen =
+      (env.TEACHER_SIGNUP ?? (env.NODE_ENV === 'production' ? 'closed' : 'open')) === 'open';
   }
 
   @Public()
@@ -39,6 +44,9 @@ export class AuthController {
     @Body({ schema: RegisterTeacherRequest }) body: RegisterTeacherRequest,
     @Res({ passthrough: true }) res: Response,
   ): Promise<SessionBody> {
+    if (!this.signupOpen) {
+      throw forbidden('Teacher sign-up is closed. Ask the administrator for an account.');
+    }
     return this.startSession(res, await this.auth.registerTeacher(body));
   }
 

@@ -14,6 +14,8 @@ const EnvSchema = z.object({
   AI_MODEL: z.string().min(1).default('claude-opus-5-5'),
   /** Run the feedback worker inside this process. Defaults to on in development only. */
   AI_WORKER: z.enum(['true', 'false']).optional(),
+  /** Teacher self sign-up (POST /auth/register). Defaults to open, and to closed in production. */
+  TEACHER_SIGNUP: z.enum(['open', 'closed']).optional(),
 });
 
 export type Env = z.infer<typeof EnvSchema>;

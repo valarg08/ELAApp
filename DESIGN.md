@@ -1891,6 +1891,7 @@ Canvas editor (Konva): background (colour, gradient, or illustrated backgrounds 
 - Retention: student data deleted 30 days after the class is archived and the teacher confirms deletion, or on request (export first). Backups expire within 35 days.
 - Security headers (CSP without `unsafe-inline` for scripts, HSTS, frame-ancestors none), input validation on every endpoint, output encoding (student text is rendered as plain text, never as HTML).
 - Audit log for logins, resets, overrides, exports, and flag actions.
+- **Built for the public trial (2026-10):** security headers on every page (nosniff, `X-Frame-Options: DENY`, `frame-ancestors 'none'`, `object-src 'none'`, a referrer and permissions policy, HSTS when the site is HTTPS; the full script CSP waits for nonces) and on API responses (`no-store`); in production a per-IP limit on sign-in and sign-up (100 per 5 minutes, generous because a class may share one school IP) on top of the account lockouts; secure cookies in production; teacher self sign-up is closed in production (`TEACHER_SIGNUP`), and teachers and admins are created with `pnpm user:create` (a random password shown once), since `db:seed`'s known logins never run there; a plain-language privacy note at `/privacy`. The trial runs from a Windows PC behind a Cloudflare Tunnel (deploy/windows/README.md): a separate production copy and database, pm2, and nightly `pg_dump` backups.
 - Dependency scanning (Dependabot / `pnpm audit`), and secret scanning in CI.
 
 ### 13.4 Scalability

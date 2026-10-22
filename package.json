@@ -21,6 +21,7 @@
     "db:migrate": "pnpm --filter @storyforge/db migrate:dev",
     "db:migrate:deploy": "pnpm --filter @storyforge/db migrate:deploy",
     "db:seed": "turbo run build --filter=@storyforge/api... --output-logs=errors-only && node apps/api/dist/cli/seed.js",
+    "user:create": "turbo run build --filter=@storyforge/api... --output-logs=errors-only && node apps/api/dist/cli/create-user.js",
     "content:check": "turbo run build --filter=@storyforge/api... --output-logs=errors-only && node apps/api/dist/cli/content-sync.js --check",
     "content:sync": "turbo run build --filter=@storyforge/api... --output-logs=errors-only && node apps/api/dist/cli/content-sync.js",
     "ai:eval": "turbo run build --filter=@storyforge/ai... --output-logs=errors-only && node packages/ai/dist/eval.js"

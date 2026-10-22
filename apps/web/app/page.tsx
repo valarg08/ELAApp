@@ -6,6 +6,11 @@ import { getMe } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
 
+// Matches the API's TEACHER_SIGNUP default: closed on real sites (teachers come from user:create).
+const signupOpen =
+  (process.env.TEACHER_SIGNUP ?? (process.env.NODE_ENV === 'production' ? 'closed' : 'open')) ===
+  'open';
+
 export default async function Landing() {
   const me = await getMe().catch(() => null);
   if (me) redirect(homePathFor(me.role));
@@ -97,9 +102,17 @@ export default async function Landing() {
       </section>
 
       <p className="text-sm text-muted">
-        New teacher?{' '}
-        <Link href="/register" className="font-semibold text-brand underline">
-          Create an account
+        {signupOpen && (
+          <>
+            New teacher?{' '}
+            <Link href="/register" className="font-semibold text-brand underline">
+              Create an account
+            </Link>
+            {' · '}
+          </>
+        )}
+        <Link href="/privacy" className="underline">
+          Privacy
         </Link>
         {' · '}
         <Link href="/status" className="underline">

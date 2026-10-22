@@ -6,6 +6,7 @@
     "NODE_ENV",
     "CI",
     "API_PORT",
+    "TEACHER_SIGNUP",
     "API_INTERNAL_URL",
     "WEB_ORIGIN",
     "DATABASE_URL",
