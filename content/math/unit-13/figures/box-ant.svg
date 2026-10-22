@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="320" height="220">
+<polygon points="40,80 220,80 220,190 40,190" fill="none" stroke="currentColor" stroke-width="2"/>
+  <polyline points="40,80 100,30 280,30 280,140 220,190" fill="none" stroke="currentColor" stroke-width="2"/>
+  <polyline points="220,80 280,30" fill="none" stroke="currentColor" stroke-width="2"/>
+  <polyline points="40,190 160,80 280,30" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+  <circle cx="40" cy="190" r="3" fill="currentColor"/>  <circle cx="280" cy="30" r="3" fill="currentColor"/>
+  <text x="30" y="206" text-anchor="middle" font-size="15" fill="currentColor">A</text>  <text x="292" y="26" text-anchor="middle" font-size="15" fill="currentColor">B</text>
+  <text x="130" y="206" text-anchor="middle" font-size="15" fill="currentColor">3</text>  <text x="28" y="140" text-anchor="middle" font-size="15" fill="currentColor">2</text>  <text x="258" y="172" text-anchor="middle" font-size="15" fill="currentColor">1</text>
+</svg>

@@ -1,0 +1,1831 @@
+[
+  {
+    "key": "m13.coordinates-practice",
+    "type": "PROBLEMS",
+    "title": "Coordinate geometry",
+    "instructions": "Type each answer and press Check. Sketch the points before you calculate. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "distance",
+        "prompt": "What is the distance between $([[a]], [[b]])$ and $([[a + 3*k]], [[b + 4*k]])$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[7*k]]",
+              "why": "Don't add the differences. Square them, add, and take the square root."
+            }
+          ]
+        },
+        "hints": ["The differences are $[[3*k]]$ across and $[[4*k]]$ up."],
+        "solution": "$\\sqrt{[[3*k]]^2 + [[4*k]]^2} = [[5*k]]$.",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "5*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": -3,
+              "to": 3
+            },
+            "b": {
+              "from": -3,
+              "to": 3
+            },
+            "k": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "midpoint-sum",
+        "prompt": "What is the sum of the two coordinates of the midpoint of $([[x]], [[y]])$ and $([[u]], [[v]])$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(x + u + y + v)/2]]"],
+          "form": "any"
+        },
+        "hints": [
+          "The midpoint is $\\left(\\frac{[[x]] + [[u]]}{2}, \\frac{[[y]] + [[v]]}{2}\\right)$."
+        ],
+        "solution": "$\\frac{[[x + u]]}{2} + \\frac{[[y + v]]}{2} = [[(x + u + y + v)/2]]$.",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "(x + u + y + v)/2",
+        "template": {
+          "vars": {
+            "x": {
+              "from": -5,
+              "to": 5
+            },
+            "y": {
+              "from": -5,
+              "to": 5
+            },
+            "u": {
+              "from": 0,
+              "to": 9
+            },
+            "v": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "slope",
+        "prompt": "What is the slope of the line through $([[x]], [[y]])$ and $([[u]], [[v]])$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(v - y)/(u - x)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(u - x)/(v - y)]]",
+              "why": "Slope is rise over run: the change in $y$ divided by the change in $x$."
+            }
+          ]
+        },
+        "hints": ["Slope $= \\frac{y_2 - y_1}{x_2 - x_1}$."],
+        "solution": "$\\frac{[[v]] - ([[y]])}{[[u]] - ([[x]])} = \\frac{[[v - y]]}{[[u - x]]} = [[(v - y)/(u - x)]]$.",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "(v - y)/(u - x)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": -4,
+              "to": 4
+            },
+            "y": {
+              "from": -4,
+              "to": 4
+            },
+            "u": {
+              "from": -4,
+              "to": 6
+            },
+            "v": {
+              "from": -4,
+              "to": 6
+            }
+          },
+          "where": ["u != x", "v != y", "abs(v - y) != abs(u - x)"]
+        }
+      },
+      {
+        "id": "perpendicular-slope",
+        "prompt": "What is the slope of a line perpendicular to $y = [[p/q]]x + [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[-q/p]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[q/p]]",
+              "why": "Flip the fraction AND change the sign: the slopes multiply to $-1$."
+            }
+          ]
+        },
+        "hints": ["Perpendicular slopes multiply to $-1$: take the negative reciprocal."],
+        "solution": "The negative reciprocal of $[[p/q]]$ is $[[-q/p]]$.",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "-q/p",
+        "template": {
+          "vars": {
+            "p": {
+              "from": 1,
+              "to": 5
+            },
+            "q": {
+              "from": 1,
+              "to": 5
+            },
+            "c": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["p != q"]
+        }
+      },
+      {
+        "id": "intercept-triangle",
+        "prompt": "The line $[[b]]x + [[a]]y = [[a*b]]$ and the two axes enclose a triangle. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a*b]]",
+              "why": "Remember the $\\frac{1}{2}$: it's a right triangle, not a rectangle."
+            }
+          ]
+        },
+        "hints": ["Set $y = 0$ to find the $x$-intercept, and $x = 0$ for the $y$-intercept."],
+        "solution": "The intercepts are $[[a]]$ and $[[b]]$, so the area is $\\frac{1}{2} \\times [[a]] \\times [[b]] = [[a*b/2]]$.",
+        "skill": "coordinate-geometry",
+        "difficulty": 2,
+        "compute": "a*b/2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m13.coordinates-set",
+    "type": "PROBLEM_SET",
+    "title": "Coordinate geometry challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "distance-ten",
+        "prompt": "What is the distance between $(-2, 3)$ and $(4, 11)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$8$", "$10$", "$12$", "$14$"],
+          "correct": "C",
+          "why": {
+            "E": "Don't add the differences; use Pythagoras."
+          }
+        },
+        "solution": "$\\sqrt{6^2 + 8^2} = 10$, choice (C).",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "sqrt(36 + 64)"
+      },
+      {
+        "id": "slope-negative",
+        "prompt": "What is the slope of the line through $(2, 5)$ and $(6, -3)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-2$", "$-\\frac{1}{2}$", "$\\frac{1}{2}$", "$2$", "$4$"],
+          "correct": "A",
+          "why": {
+            "B": "That is run over rise. Slope is rise over run.",
+            "D": "The line goes DOWN from left to right."
+          }
+        },
+        "solution": "$\\frac{-3 - 5}{6 - 2} = \\frac{-8}{4} = -2$, choice (A).",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "(-3 - 5)/(6 - 2)"
+      },
+      {
+        "id": "perpendicular-intercept",
+        "prompt": "A line is perpendicular to $y = 2x + 1$ and passes through $(4, 3)$. What is its $y$-intercept?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$3$", "$5$", "$7$", "$11$"],
+          "correct": "C"
+        },
+        "solution": "Its slope is $-\\frac{1}{2}$, so $3 = -\\frac{1}{2} \\times 4 + b$ and $b = 5$, choice (C).",
+        "skill": "coordinate-geometry",
+        "difficulty": 2,
+        "compute": "3 + 4/2"
+      },
+      {
+        "id": "axes-triangle",
+        "prompt": "The line $3x + 4y = 24$ and the two axes enclose a triangle. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$24$", "$36$", "$48$", "$96$"],
+          "correct": "B",
+          "why": {
+            "D": "Remember the $\\frac{1}{2}$."
+          }
+        },
+        "solution": "The intercepts are $8$ and $6$, so the area is $\\frac{1}{2} \\times 8 \\times 6 = 24$, choice (B).",
+        "skill": "coordinate-geometry",
+        "difficulty": 2,
+        "compute": "8*6/2"
+      },
+      {
+        "id": "isosceles-apex",
+        "prompt": "Point $C = (k, 9)$ is the same distance from $A = (1, 1)$ as from $B = (7, 1)$. What is the perimeter of triangle $ABC$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6 + \\sqrt{73}$", "$16$", "$20$", "$6 + 2\\sqrt{73}$", "$26$"],
+          "correct": "D",
+          "why": {
+            "A": "There are two equal sides, $CA$ and $CB$."
+          }
+        },
+        "solution": "$C$ is on the perpendicular bisector of $AB$, so $k = 4$. Then $CA = CB = \\sqrt{3^2 + 8^2} = \\sqrt{73}$ and $AB = 6$: perimeter $6 + 2\\sqrt{73}$, choice (D).",
+        "skill": "coordinate-geometry",
+        "difficulty": 3,
+        "compute": "6 + 2*sqrt(73)"
+      }
+    ]
+  },
+  {
+    "key": "m13.grid-practice",
+    "type": "PROBLEMS",
+    "title": "Areas on the grid",
+    "instructions": "Type each answer and press Check. Shoelace for corners you know, Pick's theorem for grid points. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "base-on-axis",
+        "prompt": "What is the area of the triangle with corners $(0, 0)$, $([[a]], 0)$ and $([[b]], [[c]])$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*c/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a*c]]",
+              "why": "Remember the $\\frac{1}{2}$."
+            }
+          ]
+        },
+        "hints": [
+          "The base lies on the $x$-axis; the height is the $y$-coordinate of the third corner."
+        ],
+        "solution": "$\\frac{1}{2} \\times [[a]] \\times [[c]] = [[a*c/2]]$.",
+        "skill": "grid-areas",
+        "difficulty": 1,
+        "compute": "a*c/2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 0,
+              "to": 8
+            },
+            "c": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "shoelace-triangle",
+        "prompt": "What is the area of the triangle with corners $(0, 0)$, $([[a]], [[b]])$ and $([[c]], [[d]])$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(a*d - b*c)/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a*d - b*c]]",
+              "why": "The shoelace sum is TWICE the area. Halve it."
+            }
+          ]
+        },
+        "hints": ["With one corner at the origin, the area is $\\frac{1}{2}|x_1 y_2 - x_2 y_1|$."],
+        "solution": "$\\frac{1}{2}|[[a]] \\times [[d]] - [[c]] \\times [[b]]| = [[(a*d - b*c)/2]]$.",
+        "skill": "grid-areas",
+        "difficulty": 1,
+        "compute": "(a*d - b*c)/2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 6
+            },
+            "b": {
+              "from": 0,
+              "to": 3
+            },
+            "c": {
+              "from": 0,
+              "to": 3
+            },
+            "d": {
+              "from": 2,
+              "to": 7
+            }
+          },
+          "where": ["a*d - b*c > 0"]
+        }
+      },
+      {
+        "id": "pick",
+        "prompt": "A polygon with its corners on grid points has $[[i]]$ grid points inside it and $[[b]]$ grid points on its boundary. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[i + b/2 - 1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[i + b/2]]",
+              "why": "Pick's theorem subtracts $1$ at the end."
+            }
+          ]
+        },
+        "hints": ["Pick's theorem: $A = I + \\frac{B}{2} - 1$."],
+        "solution": "$[[i]] + \\frac{[[b]]}{2} - 1 = [[i + b/2 - 1]]$.",
+        "skill": "grid-areas",
+        "difficulty": 1,
+        "compute": "i + b/2 - 1",
+        "template": {
+          "vars": {
+            "i": {
+              "from": 0,
+              "to": 12
+            },
+            "b": {
+              "from": 3,
+              "to": 14
+            }
+          }
+        }
+      },
+      {
+        "id": "shoelace-quad",
+        "prompt": "What is the area of the quadrilateral with corners $(0, 0)$, $([[a]], 0)$, $([[b]], [[c]])$ and $(0, [[d]])$, in that order?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(a*c + b*d)/2]]"],
+          "form": "any"
+        },
+        "hints": [
+          "List the corners in order, repeat the first, and use the shoelace formula.",
+          "Or cut along the diagonal from $(0, 0)$ to $([[b]], [[c]])$ into two triangles."
+        ],
+        "solution": "Shoelace: $\\frac{1}{2}([[a]] \\times [[c]] + [[b]] \\times [[d]]) = [[(a*c + b*d)/2]]$.",
+        "skill": "grid-areas",
+        "difficulty": 2,
+        "compute": "(a*c + b*d)/2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 8
+            },
+            "b": {
+              "from": 2,
+              "to": 8
+            },
+            "c": {
+              "from": 2,
+              "to": 8
+            },
+            "d": {
+              "from": 2,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "lattice-on-segment",
+        "prompt": "How many grid points (points with whole-number coordinates) lie on the segment from $(0, 0)$ to $([[a]], [[b]])$, counting both ends?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[gcd(a, b) + 1]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[gcd(a, b)]]",
+              "why": "Count both ends: there is one more point than there are steps."
+            }
+          ]
+        },
+        "hints": ["The segment splits into $\\gcd([[a]], [[b]])$ equal steps between grid points."],
+        "solution": "$\\gcd([[a]], [[b]]) = [[gcd(a, b)]]$ steps, so $[[gcd(a, b) + 1]]$ points.",
+        "skill": "grid-areas",
+        "difficulty": 2,
+        "compute": "gcd(a, b) + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 24
+            },
+            "b": {
+              "from": 2,
+              "to": 24
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m13.grid-set",
+    "type": "PROBLEM_SET",
+    "title": "Areas on the grid challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "flat-base",
+        "prompt": "What is the area of the triangle with corners $(1, 1)$, $(7, 1)$ and $(4, 6)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$15$", "$18$", "$30$", "$36$"],
+          "correct": "B",
+          "why": {
+            "D": "Remember the $\\frac{1}{2}$."
+          }
+        },
+        "solution": "Base $6$, height $5$: $15$, choice (B).",
+        "skill": "grid-areas",
+        "difficulty": 1,
+        "compute": "6*5/2"
+      },
+      {
+        "id": "parallelogram",
+        "prompt": "What is the area of the quadrilateral with corners $(0, 0)$, $(4, 0)$, $(5, 3)$ and $(1, 3)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9$", "$12$", "$14$", "$15$", "$18$"],
+          "correct": "B"
+        },
+        "solution": "It is a parallelogram with base $4$ and height $3$: $12$, choice (B).",
+        "skill": "grid-areas",
+        "difficulty": 1,
+        "compute": "4*3"
+      },
+      {
+        "id": "shoelace-thirteen",
+        "prompt": "What is the area of the triangle with corners $(0, 0)$, $(5, 2)$ and $(2, 6)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$11$", "$12$", "$13$", "$14$", "$26$"],
+          "correct": "C",
+          "why": {
+            "E": "The shoelace sum is twice the area."
+          }
+        },
+        "solution": "$\\frac{1}{2}|5 \\times 6 - 2 \\times 2| = \\frac{26}{2} = 13$, choice (C).",
+        "skill": "grid-areas",
+        "difficulty": 2,
+        "compute": "(30 - 4)/2"
+      },
+      {
+        "id": "pick-thirteen",
+        "prompt": "A polygon with corners on grid points has $10$ grid points inside it and $8$ on its boundary. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$13$", "$14$", "$17$", "$18$"],
+          "correct": "B",
+          "why": {
+            "C": "Pick's theorem subtracts $1$."
+          }
+        },
+        "solution": "$10 + \\frac{8}{2} - 1 = 13$, choice (B).",
+        "skill": "grid-areas",
+        "difficulty": 2,
+        "compute": "10 + 4 - 1"
+      },
+      {
+        "id": "lattice-thirteen",
+        "prompt": "How many grid points lie on the segment from $(3, 4)$ to $(27, 40)$, counting both ends?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7$", "$12$", "$13$", "$25$", "$37$"],
+          "correct": "C",
+          "why": {
+            "B": "Count both ends."
+          }
+        },
+        "solution": "The segment moves $24$ across and $36$ up, and $\\gcd(24, 36) = 12$ steps, so $13$ points, choice (C).",
+        "skill": "grid-areas",
+        "difficulty": 3,
+        "compute": "gcd(24, 36) + 1"
+      }
+    ]
+  },
+  {
+    "key": "m13.transform-practice",
+    "type": "PROBLEMS",
+    "title": "Transformations & symmetry",
+    "instructions": "Type each answer and press Check. Track one point at a time. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "reflect-vertical",
+        "prompt": "The point $([[a]], [[b]])$ is reflected over the line $x = [[c]]$. What is the $x$-coordinate of its image?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*c - a]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[c - a]]",
+              "why": "The image is as far past $x = [[c]]$ as the point is before it: $[[c]] + ([[c]] - ([[a]]))$."
+            }
+          ]
+        },
+        "hints": ["The mirror line is halfway between the point and its image."],
+        "solution": "$2 \\times [[c]] - ([[a]]) = [[2*c - a]]$.",
+        "skill": "transformations-symmetry",
+        "difficulty": 1,
+        "compute": "2*c - a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": -5,
+              "to": 5
+            },
+            "b": {
+              "from": -5,
+              "to": 5
+            },
+            "c": {
+              "from": -3,
+              "to": 6
+            }
+          },
+          "where": ["a != c", "c != 0"]
+        }
+      },
+      {
+        "id": "rotate-90",
+        "prompt": "The point $([[a]], [[b]])$ is rotated $90^\\circ$ counterclockwise about the origin. What is the sum of the coordinates of its image?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a - b]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[b - a]]",
+              "why": "That is a clockwise turn. Counterclockwise sends $(x, y)$ to $(-y, x)$."
+            }
+          ]
+        },
+        "hints": ["A $90^\\circ$ counterclockwise turn sends $(x, y)$ to $(-y, x)$."],
+        "solution": "The image is $([[-b]], [[a]])$, and $[[-b]] + [[a]] = [[a - b]]$.",
+        "skill": "transformations-symmetry",
+        "difficulty": 1,
+        "compute": "a - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": -6,
+              "to": 6
+            },
+            "b": {
+              "from": -6,
+              "to": 6
+            }
+          },
+          "where": ["a != b"]
+        }
+      },
+      {
+        "id": "two-mirrors",
+        "prompt": "The point $([[a]], 0)$ is reflected over the line $x = [[p]]$, and the image is then reflected over the line $x = [[q]]$. What is the final $x$-coordinate?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 2*(q - p)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a + q - p]]",
+              "why": "Two reflections in parallel lines move a point by TWICE the gap between the lines."
+            }
+          ]
+        },
+        "hints": ["After the first mirror, $x = 2 \\times [[p]] - [[a]]$."],
+        "solution": "First $2 \\times [[p]] - [[a]] = [[2*p - a]]$, then $2 \\times [[q]] - [[2*p - a]] = [[a + 2*(q - p)]]$.",
+        "skill": "transformations-symmetry",
+        "difficulty": 1,
+        "compute": "a + 2*(q - p)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 0,
+              "to": 5
+            },
+            "p": {
+              "from": 1,
+              "to": 4
+            },
+            "q": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "half-turn",
+        "prompt": "The point $([[a]], [[b]])$ is rotated $180^\\circ$ about $([[h]], [[k]])$. What is the sum of the coordinates of its image?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*h + 2*k - a - b]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[-a - b]]",
+              "why": "That turns about the origin. The centre $([[h]], [[k]])$ is the midpoint of the point and its image."
+            }
+          ]
+        },
+        "hints": ["A half turn about $(h, k)$ sends $(x, y)$ to $(2h - x, 2k - y)$."],
+        "solution": "The image is $([[2*h - a]], [[2*k - b]])$, with sum $[[2*h + 2*k - a - b]]$.",
+        "skill": "transformations-symmetry",
+        "difficulty": 2,
+        "compute": "2*h + 2*k - a - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": -4,
+              "to": 6
+            },
+            "b": {
+              "from": -4,
+              "to": 6
+            },
+            "h": {
+              "from": -3,
+              "to": 3
+            },
+            "k": {
+              "from": -3,
+              "to": 3
+            }
+          },
+          "where": ["h + k != 0"]
+        }
+      },
+      {
+        "id": "mirror-diagonal",
+        "prompt": "The point $P = ([[a]], [[b]])$ is reflected over the line $y = x$ to $P'$. How long is $PP'$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[abs(a - b)*sqrt(2)]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[2*abs(a - b)]]",
+              "why": "$P' = ([[b]], [[a]])$; use the distance formula."
+            }
+          ]
+        },
+        "hints": ["Reflecting over $y = x$ swaps the coordinates."],
+        "solution": "$P' = ([[b]], [[a]])$, so $PP' = \\sqrt{2 \\times [[a - b]]^2} = [[abs(a - b)*sqrt(2)]]$.",
+        "skill": "transformations-symmetry",
+        "difficulty": 2,
+        "compute": "abs(a - b)*sqrt(2)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a != b"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "m13.transform-set",
+    "type": "PROBLEM_SET",
+    "title": "Transformations challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "mirror-y-axis",
+        "prompt": "The point $(4, -2)$ is reflected over the $y$-axis. What is the sum of the coordinates of its image?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-6$", "$-2$", "$0$", "$2$", "$6$"],
+          "correct": "A",
+          "why": {
+            "D": "That reflects over the $x$-axis instead."
+          }
+        },
+        "solution": "The image is $(-4, -2)$, with sum $-6$, choice (A).",
+        "skill": "transformations-symmetry",
+        "difficulty": 1,
+        "compute": "-4 - 2"
+      },
+      {
+        "id": "quarter-turn",
+        "prompt": "The point $(3, 7)$ is rotated $90^\\circ$ counterclockwise about the origin. What is the $x$-coordinate of its image?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-7$", "$-3$", "$3$", "$7$", "$10$"],
+          "correct": "A",
+          "why": {
+            "D": "That is a clockwise turn."
+          }
+        },
+        "solution": "$(x, y) \\to (-y, x)$ gives $(-7, 3)$, choice (A).",
+        "skill": "transformations-symmetry",
+        "difficulty": 1,
+        "compute": "-7"
+      },
+      {
+        "id": "hexagon-lines",
+        "prompt": "How many lines of symmetry does a regular hexagon have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$4$", "$6$", "$12$"],
+          "correct": "D",
+          "why": {
+            "B": "Lines through midpoints of opposite sides count too."
+          }
+        },
+        "solution": "$3$ lines through opposite corners and $3$ through midpoints of opposite sides: $6$, choice (D).",
+        "skill": "transformations-symmetry",
+        "difficulty": 1,
+        "compute": "6"
+      },
+      {
+        "id": "two-mirrors-six",
+        "prompt": "A shape is reflected over the line $x = 2$ and then over the line $x = 5$. The result is the same as moving it to the right by how much?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$6$", "$7$", "$10$"],
+          "correct": "C",
+          "why": {
+            "B": "The shift is twice the gap between the lines."
+          }
+        },
+        "solution": "Two reflections in parallel lines $3$ apart make a shift of $2 \\times 3 = 6$, choice (C).",
+        "skill": "transformations-symmetry",
+        "difficulty": 2,
+        "compute": "2*3"
+      },
+      {
+        "id": "turn-about-point",
+        "prompt": "The point $(1, 2)$ is rotated $90^\\circ$ counterclockwise about $(3, 3)$. What is the sum of the coordinates of its image?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$1$", "$3$", "$5$", "$6$", "$7$"],
+          "correct": "C"
+        },
+        "solution": "Relative to $(3, 3)$ the point is $(-2, -1)$. Turning gives $(1, -2)$, so the image is $(4, 1)$ with sum $5$, choice (C).",
+        "skill": "transformations-symmetry",
+        "difficulty": 3,
+        "compute": "4 + 1"
+      }
+    ]
+  },
+  {
+    "key": "m13.solids-practice",
+    "type": "PROBLEMS",
+    "title": "3D solids",
+    "instructions": "Type each answer and press Check. Volume of a prism is base area times height; cones and pyramids take a third. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "box-surface",
+        "prompt": "A box is $[[a]]$ by $[[b]]$ by $[[c]]$. What is its total surface area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(a*b + b*c + c*a)]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[a*b*c]]",
+              "why": "That is the volume. The surface is six rectangles, in three matching pairs."
+            }
+          ]
+        },
+        "hints": ["There are three pairs of matching faces."],
+        "solution": "$2([[a*b]] + [[b*c]] + [[c*a]]) = [[2*(a*b + b*c + c*a)]]$.",
+        "skill": "solids-3d",
+        "difficulty": 1,
+        "compute": "2*(a*b + b*c + c*a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 8
+            },
+            "b": {
+              "from": 2,
+              "to": 8
+            },
+            "c": {
+              "from": 2,
+              "to": 8
+            }
+          },
+          "where": ["a*b*c != 2*(a*b + b*c + c*a)"]
+        }
+      },
+      {
+        "id": "cylinder",
+        "prompt": "A cylinder has radius $[[c]]$ and height $[[h]]$. What is its volume? Write it with $\\pi$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[pi*c^2*h]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[2*pi*c*h]]",
+              "why": "That is the curved side's area. Volume is base area times height: $\\pi r^2 h$."
+            }
+          ]
+        },
+        "hints": ["Volume $=$ base area $\\times$ height $= \\pi r^2 h$."],
+        "solution": "$\\pi \\times [[c]]^2 \\times [[h]] = [[pi*c^2*h]]$.",
+        "skill": "solids-3d",
+        "difficulty": 1,
+        "compute": "pi*c^2*h",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 1,
+              "to": 8
+            },
+            "h": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["c != 2"]
+        }
+      },
+      {
+        "id": "cone",
+        "prompt": "A cone has radius $[[c]]$ and height $[[h]]$. What is its volume? Write it with $\\pi$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[pi*c^2*h/3]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[pi*c^2*h]]",
+              "why": "That is the cylinder. A cone is $\\frac{1}{3}$ of it."
+            }
+          ]
+        },
+        "hints": ["$V = \\frac{1}{3}\\pi r^2 h$."],
+        "solution": "$\\frac{1}{3} \\times \\pi \\times [[c]]^2 \\times [[h]] = [[pi*c^2*h/3]]$.",
+        "skill": "solids-3d",
+        "difficulty": 1,
+        "compute": "pi*c^2*h/3",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 1,
+              "to": 9
+            },
+            "h": {
+              "from": 3,
+              "to": 12,
+              "step": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "sphere",
+        "prompt": "A sphere has radius $[[c]]$. What is its volume? Write it with $\\pi$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*pi*c^3/3]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[4*pi*c^2]]",
+              "why": "That is the surface area. The volume is $\\frac{4}{3}\\pi r^3$."
+            }
+          ]
+        },
+        "hints": ["$V = \\frac{4}{3}\\pi r^3$."],
+        "solution": "$\\frac{4}{3}\\pi \\times [[c]]^3 = [[4*pi*c^3/3]]$.",
+        "skill": "solids-3d",
+        "difficulty": 1,
+        "compute": "4*pi*c^3/3",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["c != 3"]
+        }
+      },
+      {
+        "id": "painted-cube",
+        "prompt": "A $[[n]] \\times [[n]] \\times [[n]]$ cube is painted on the outside and cut into $1 \\times 1 \\times 1$ cubes. How many small cubes have paint on exactly one face?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[6*(n - 2)^2]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[6*n^2]]",
+              "why": "Only the middle of each face counts: edge and corner cubes have paint on two or three faces."
+            }
+          ]
+        },
+        "hints": [
+          "On each face, the cubes away from the edges form a $[[n - 2]] \\times [[n - 2]]$ square."
+        ],
+        "solution": "$6 \\times [[n - 2]]^2 = [[6*(n - 2)^2]]$.",
+        "skill": "solids-3d",
+        "difficulty": 2,
+        "compute": "6*(n - 2)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 10
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m13.solids-set",
+    "type": "PROBLEM_SET",
+    "title": "3D solids challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "cube-64",
+        "prompt": "A cube has volume $64$. What is its surface area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$64$", "$96$", "$128$", "$384$"],
+          "correct": "C"
+        },
+        "solution": "The edge is $4$, so the surface area is $6 \\times 16 = 96$, choice (C).",
+        "skill": "solids-3d",
+        "difficulty": 1,
+        "compute": "6*16"
+      },
+      {
+        "id": "cylinder-80",
+        "prompt": "A cylinder has radius $4$ and height $5$. What is its volume?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$20\\pi$", "$40\\pi$", "$80\\pi$", "$100\\pi$", "$160\\pi$"],
+          "correct": "C",
+          "why": {
+            "B": "That is the area of the curved side."
+          }
+        },
+        "solution": "$\\pi \\times 16 \\times 5 = 80\\pi$, choice (C).",
+        "skill": "solids-3d",
+        "difficulty": 1,
+        "compute": "80*pi"
+      },
+      {
+        "id": "cone-12",
+        "prompt": "A cone has radius $3$ and height $4$. What is its volume?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4\\pi$", "$12\\pi$", "$15\\pi$", "$36\\pi$", "$48\\pi$"],
+          "correct": "B",
+          "why": {
+            "D": "A cone is $\\frac{1}{3}$ of the cylinder."
+          }
+        },
+        "solution": "$\\frac{1}{3} \\times \\pi \\times 9 \\times 4 = 12\\pi$, choice (B).",
+        "skill": "solids-3d",
+        "difficulty": 1,
+        "compute": "pi*9*4/3"
+      },
+      {
+        "id": "painted-two-faces",
+        "prompt": "A $5 \\times 5 \\times 5$ cube is painted on the outside and cut into $125$ unit cubes. How many of them have paint on exactly two faces?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$24$", "$36$", "$54$", "$60$"],
+          "correct": "C",
+          "why": {
+            "A": "Corner cubes have paint on three faces."
+          }
+        },
+        "solution": "They sit along the $12$ edges, $3$ per edge (not the corners): $36$, choice (C).",
+        "skill": "solids-3d",
+        "difficulty": 2,
+        "compute": "12*3"
+      },
+      {
+        "id": "face-areas",
+        "prompt": "A box has faces with areas $12$, $15$ and $20$. What is its volume?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$47$", "$60$", "$72$", "$120$", "$3600$"],
+          "correct": "B",
+          "why": {
+            "E": "That is the volume squared. Take the square root."
+          }
+        },
+        "solution": "$(ab)(bc)(ca) = (abc)^2 = 12 \\times 15 \\times 20 = 3600$, so $abc = 60$, choice (B).",
+        "skill": "solids-3d",
+        "difficulty": 3,
+        "compute": "sqrt(12*15*20)"
+      }
+    ]
+  },
+  {
+    "key": "m13.nets-practice",
+    "type": "PROBLEMS",
+    "title": "Nets & space diagonals",
+    "instructions": "Type each answer and press Check. Unfold the box to measure along its surface. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "space-diagonal",
+        "prompt": "A box is $[[(1 + t)*k]]$ by $[[(2 + t)*k]]$ by $[[(2 + 4*t)*k]]$. How long is a diagonal through the inside from one corner to the opposite corner?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(3 + 4*t)*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[(5 + 6*t)*k]]",
+              "why": "Don't add the edges. Add their squares and take the square root."
+            }
+          ]
+        },
+        "hints": ["Space diagonal $= \\sqrt{a^2 + b^2 + c^2}$."],
+        "solution": "$\\sqrt{[[(1 + t)*k]]^2 + [[(2 + t)*k]]^2 + [[(2 + 4*t)*k]]^2} = [[(3 + 4*t)*k]]$.",
+        "skill": "nets-diagonals",
+        "difficulty": 1,
+        "compute": "(3 + 4*t)*k",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "choose": [0, 1]
+            }
+          }
+        }
+      },
+      {
+        "id": "cube-diagonal",
+        "prompt": "A cube has edge $[[s]]$. How long is a diagonal running through the inside from one corner to the opposite corner?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*sqrt(3)]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[s*sqrt(2)]]",
+              "why": "That is a face diagonal. The space diagonal adds one more square: $\\sqrt{s^2 + s^2 + s^2}$."
+            }
+          ]
+        },
+        "hints": ["Space diagonal $= \\sqrt{a^2 + b^2 + c^2}$."],
+        "solution": "$\\sqrt{3 \\times [[s]]^2} = [[s*sqrt(3)]]$.",
+        "skill": "nets-diagonals",
+        "difficulty": 1,
+        "compute": "s*sqrt(3)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "prism-edges",
+        "prompt": "A prism has two matching bases that are polygons with $[[n]]$ sides. How many edges does it have?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[3*n]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[2*n]]",
+              "why": "Count the $[[n]]$ side edges joining the two bases as well."
+            }
+          ]
+        },
+        "hints": ["Each base has $[[n]]$ edges, and $[[n]]$ more edges join the bases."],
+        "solution": "$[[n]] + [[n]] + [[n]] = [[3*n]]$.",
+        "skill": "nets-diagonals",
+        "difficulty": 1,
+        "compute": "3*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "face-diagonal",
+        "prompt": "A cube has surface area $[[6*s^2]]$. How long is a diagonal of one of its faces?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*sqrt(2)]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[s*sqrt(3)]]",
+              "why": "That is the space diagonal through the inside. A face diagonal is $s\\sqrt{2}$."
+            }
+          ]
+        },
+        "hints": ["Each face has area $\\frac{[[6*s^2]]}{6} = [[s^2]]$, so the edge is $[[s]]$."],
+        "solution": "The edge is $[[s]]$, so the face diagonal is $[[s*sqrt(2)]]$.",
+        "skill": "nets-diagonals",
+        "difficulty": 1,
+        "compute": "s*sqrt(2)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "ant-path",
+        "prompt": "An ant walks on the outside of a box that is $[[a]]$ by $[[b]]$ by $[[c]]$, from one corner to the opposite corner. What is the shortest distance it can walk? (A square root is fine.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[sqrt((a + b)^2 + c^2)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[sqrt(a^2 + b^2 + c^2)]]",
+              "why": "That goes through the inside of the box. Unfold the box flat and draw a straight line."
+            }
+          ]
+        },
+        "hints": [
+          "Unfold two faces into one flat rectangle. The best one is $([[a]] + [[b]])$ by $[[c]]$."
+        ],
+        "solution": "Unfolded, the path is the diagonal of a $[[a + b]] \\times [[c]]$ rectangle: $\\sqrt{[[a + b]]^2 + [[c]]^2} = [[sqrt((a + b)^2 + c^2)]]$.",
+        "skill": "nets-diagonals",
+        "difficulty": 2,
+        "compute": "sqrt((a + b)^2 + c^2)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            },
+            "c": {
+              "from": 5,
+              "to": 8
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m13.nets-set",
+    "type": "PROBLEM_SET",
+    "title": "Nets & diagonals challenge",
+    "instructions": "Five AMC-style problems with choices (A) to (E), easiest first. You can leave a problem blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each problem.",
+    "problems": [
+      {
+        "id": "box-thirteen",
+        "prompt": "A box is $3$ by $4$ by $12$. How long is a diagonal through the inside from one corner to the opposite corner?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$12$", "$13$", "$15$", "$19$"],
+          "correct": "C",
+          "why": {
+            "E": "Don't add the edges."
+          }
+        },
+        "solution": "$\\sqrt{9 + 16 + 144} = 13$, choice (C).",
+        "skill": "nets-diagonals",
+        "difficulty": 1,
+        "compute": "sqrt(9 + 16 + 144)"
+      },
+      {
+        "id": "cube-from-diagonal",
+        "prompt": "A cube has a space diagonal of length $6\\sqrt{3}$. What is its volume?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$36$", "$72$", "$108$", "$216$", "$648$"],
+          "correct": "D",
+          "why": {
+            "A": "That is one face. Volume is the edge cubed."
+          }
+        },
+        "solution": "The edge is $6$, so the volume is $216$, choice (D).",
+        "skill": "nets-diagonals",
+        "difficulty": 1,
+        "compute": "6^3"
+      },
+      {
+        "id": "euler-faces",
+        "prompt": "A convex polyhedron has $12$ vertices and $30$ edges. How many faces does it have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$16$", "$18$", "$20$", "$22$"],
+          "correct": "D"
+        },
+        "solution": "Euler: $V - E + F = 2$, so $F = 2 - 12 + 30 = 20$, choice (D).",
+        "skill": "nets-diagonals",
+        "difficulty": 2,
+        "compute": "2 - 12 + 30"
+      },
+      {
+        "id": "prism-fifteen",
+        "prompt": "A prism has $15$ edges. How many faces does it have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$6$", "$7$", "$10$", "$15$"],
+          "correct": "C",
+          "why": {
+            "A": "Count the two bases as well as the side faces."
+          }
+        },
+        "solution": "$3n = 15$, so each base has $5$ sides: $5$ side faces plus $2$ bases is $7$, choice (C).",
+        "skill": "nets-diagonals",
+        "difficulty": 2,
+        "compute": "15/3 + 2"
+      },
+      {
+        "id": "ant-one-two-three",
+        "prompt": "An ant walks on the outside of a $1 \\times 2 \\times 3$ box from corner $A$ to the opposite corner $B$. What is the shortest distance it can walk?",
+        "figure": {
+          "file": "box-ant.svg",
+          "alt": "A box with edges 3, 2 and 1. A dashed path goes along the outside of the box from corner A to the opposite corner B."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\sqrt{14}$", "$3\\sqrt{2}$", "$2\\sqrt{5}$", "$\\sqrt{26}$", "$6$"],
+          "correct": "B",
+          "why": {
+            "A": "That is the diagonal through the inside; the ant stays on the surface.",
+            "C": "Try unfolding the other way: the best rectangle puts the two short edges together."
+          }
+        },
+        "solution": "Unfolding gives rectangles $3 \\times 3$, $4 \\times 2$ and $5 \\times 1$, with diagonals $\\sqrt{18}$, $\\sqrt{20}$ and $\\sqrt{26}$. The shortest is $\\sqrt{18} = 3\\sqrt{2}$, choice (B).",
+        "skill": "nets-diagonals",
+        "difficulty": 3,
+        "compute": "sqrt(9 + 9)"
+      }
+    ]
+  },
+  {
+    "key": "m13.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up for the check",
+    "instructions": "Five quick problems, one from each lesson. Type each answer and press Check. Hints are here, but not in the check.",
+    "problems": [
+      {
+        "id": "review-distance",
+        "prompt": "What is the distance between $([[a]], [[b]])$ and $([[a + 3*k]], [[b + 4*k]])$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*k]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[7*k]]",
+              "why": "Don't add the differences. Square them, add, and take the square root."
+            }
+          ]
+        },
+        "hints": ["The differences are $[[3*k]]$ across and $[[4*k]]$ up."],
+        "solution": "$\\sqrt{[[3*k]]^2 + [[4*k]]^2} = [[5*k]]$.",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "5*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": -3,
+              "to": 3
+            },
+            "b": {
+              "from": -3,
+              "to": 3
+            },
+            "k": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "review-pick",
+        "prompt": "A polygon with its corners on grid points has $[[i]]$ grid points inside it and $[[b]]$ grid points on its boundary. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[i + b/2 - 1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[i + b/2]]",
+              "why": "Pick's theorem subtracts $1$ at the end."
+            }
+          ]
+        },
+        "hints": ["Pick's theorem: $A = I + \\frac{B}{2} - 1$."],
+        "solution": "$[[i]] + \\frac{[[b]]}{2} - 1 = [[i + b/2 - 1]]$.",
+        "skill": "grid-areas",
+        "difficulty": 1,
+        "compute": "i + b/2 - 1",
+        "template": {
+          "vars": {
+            "i": {
+              "from": 0,
+              "to": 12
+            },
+            "b": {
+              "from": 3,
+              "to": 14
+            }
+          }
+        }
+      },
+      {
+        "id": "review-rotate",
+        "prompt": "The point $([[a]], [[b]])$ is rotated $90^\\circ$ counterclockwise about the origin. What is the sum of the coordinates of its image?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a - b]]"],
+          "form": "integer",
+          "mistakes": [
+            {
+              "value": "[[b - a]]",
+              "why": "That is a clockwise turn. Counterclockwise sends $(x, y)$ to $(-y, x)$."
+            }
+          ]
+        },
+        "hints": ["A $90^\\circ$ counterclockwise turn sends $(x, y)$ to $(-y, x)$."],
+        "solution": "The image is $([[-b]], [[a]])$, and $[[-b]] + [[a]] = [[a - b]]$.",
+        "skill": "transformations-symmetry",
+        "difficulty": 1,
+        "compute": "a - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": -6,
+              "to": 6
+            },
+            "b": {
+              "from": -6,
+              "to": 6
+            }
+          },
+          "where": ["a != b"]
+        }
+      },
+      {
+        "id": "review-cylinder",
+        "prompt": "A cylinder has radius $[[c]]$ and height $[[h]]$. What is its volume? Write it with $\\pi$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[pi*c^2*h]]"],
+          "form": "pi",
+          "mistakes": [
+            {
+              "value": "[[2*pi*c*h]]",
+              "why": "That is the curved side's area. Volume is base area times height: $\\pi r^2 h$."
+            }
+          ]
+        },
+        "hints": ["Volume $=$ base area $\\times$ height $= \\pi r^2 h$."],
+        "solution": "$\\pi \\times [[c]]^2 \\times [[h]] = [[pi*c^2*h]]$.",
+        "skill": "solids-3d",
+        "difficulty": 1,
+        "compute": "pi*c^2*h",
+        "template": {
+          "vars": {
+            "c": {
+              "from": 1,
+              "to": 8
+            },
+            "h": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["c != 2"]
+        }
+      },
+      {
+        "id": "review-cube-diagonal",
+        "prompt": "A cube has edge $[[s]]$. How long is a diagonal running through the inside from one corner to the opposite corner?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*sqrt(3)]]"],
+          "form": "radical",
+          "mistakes": [
+            {
+              "value": "[[s*sqrt(2)]]",
+              "why": "That is a face diagonal. The space diagonal adds one more square: $\\sqrt{s^2 + s^2 + s^2}$."
+            }
+          ]
+        },
+        "hints": ["Space diagonal $= \\sqrt{a^2 + b^2 + c^2}$."],
+        "solution": "$\\sqrt{3 \\times [[s]]^2} = [[s*sqrt(3)]]$.",
+        "skill": "nets-diagonals",
+        "difficulty": 1,
+        "compute": "s*sqrt(3)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "m13.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 13 check",
+    "instructions": "Eight AMC-style problems with choices (A) to (E), easiest first, no hints. You need all 8 right to pass. Each try gives you different problems.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "check-distance-five",
+        "prompt": "What is the distance between $(1, 2)$ and $(4, 6)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$5$", "$7$", "$25$"],
+          "correct": "C",
+          "why": {
+            "D": "Don't add the differences.",
+            "E": "That is the distance squared."
+          }
+        },
+        "solution": "$\\sqrt{9 + 16} = 5$, choice (C).",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "sqrt(9 + 16)"
+      },
+      {
+        "id": "check-midpoint",
+        "prompt": "What is the sum of the coordinates of the midpoint of $(-3, 5)$ and $(7, -1)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$4$", "$6$", "$8$", "$10$"],
+          "correct": "B"
+        },
+        "solution": "The midpoint is $(2, 2)$, with sum $4$, choice (B).",
+        "skill": "coordinate-geometry",
+        "difficulty": 1,
+        "compute": "(-3 + 7)/2 + (5 - 1)/2"
+      },
+      {
+        "id": "check-perpendicular",
+        "prompt": "What is the slope of a line perpendicular to $3x + 4y = 12$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$-\\frac{4}{3}$",
+            "$-\\frac{3}{4}$",
+            "$\\frac{3}{4}$",
+            "$\\frac{4}{3}$",
+            "$3$"
+          ],
+          "correct": "D",
+          "why": {
+            "B": "That is the slope of the line itself.",
+            "A": "Flip AND change the sign of $-\\frac{3}{4}$."
+          }
+        },
+        "solution": "The line has slope $-\\frac{3}{4}$, so a perpendicular line has slope $\\frac{4}{3}$, choice (D).",
+        "skill": "coordinate-geometry",
+        "difficulty": 2,
+        "compute": "4/3"
+      },
+      {
+        "id": "check-circle-chord",
+        "prompt": "The circle $(x - 3)^2 + (y + 4)^2 = 25$ cuts the $x$-axis in two points. How far apart are they?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$4$", "$5$", "$6$", "$8$"],
+          "correct": "D"
+        },
+        "solution": "Put $y = 0$: $(x - 3)^2 = 9$, so $x = 0$ or $x = 6$. They are $6$ apart, choice (D).",
+        "skill": "coordinate-geometry",
+        "difficulty": 3,
+        "compute": "6 - 0"
+      },
+      {
+        "id": "check-flat-triangle",
+        "prompt": "What is the area of the triangle with corners $(2, 1)$, $(8, 1)$ and $(5, 7)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$18$", "$21$", "$24$", "$36$"],
+          "correct": "B",
+          "why": {
+            "E": "Remember the $\\frac{1}{2}$."
+          }
+        },
+        "solution": "Base $6$, height $6$: $18$, choice (B).",
+        "skill": "grid-areas",
+        "difficulty": 1,
+        "compute": "6*6/2"
+      },
+      {
+        "id": "check-shoelace-quad",
+        "prompt": "What is the area of the quadrilateral with corners $(0, 0)$, $(6, 0)$, $(4, 4)$ and $(1, 3)$, in that order?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$12$", "$14$", "$16$", "$18$", "$32$"],
+          "correct": "C",
+          "why": {
+            "E": "The shoelace sum is twice the area."
+          }
+        },
+        "solution": "Shoelace: $\\frac{1}{2}|0 + 6 \\times 4 - 0 + 4 \\times 3 - 1 \\times 4 + 0| = \\frac{32}{2} = 16$, choice (C).",
+        "skill": "grid-areas",
+        "difficulty": 2,
+        "compute": "32/2"
+      },
+      {
+        "id": "check-pick",
+        "prompt": "A polygon with corners on grid points has $5$ grid points inside it and $12$ on its boundary. What is its area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9$", "$10$", "$11$", "$16$", "$17$"],
+          "correct": "B",
+          "why": {
+            "C": "Pick's theorem subtracts $1$."
+          }
+        },
+        "solution": "$5 + 6 - 1 = 10$, choice (B).",
+        "skill": "grid-areas",
+        "difficulty": 2,
+        "compute": "5 + 6 - 1"
+      },
+      {
+        "id": "check-inside-points",
+        "prompt": "How many grid points lie strictly inside the triangle with corners $(0, 0)$, $(6, 0)$ and $(0, 6)$?",
+        "figure": {
+          "file": "pick-triangle.svg",
+          "alt": "A shaded right triangle on a square grid with corners at (0, 0), (6, 0) and (0, 6)."
+        },
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9$", "$10$", "$15$", "$21$", "$28$"],
+          "correct": "B",
+          "why": {
+            "E": "That counts the boundary points too."
+          }
+        },
+        "solution": "The area is $18$ and there are $18$ boundary points ($6$ steps on each side). Pick: $18 = I + 9 - 1$, so $I = 10$, choice (B).",
+        "skill": "grid-areas",
+        "difficulty": 3,
+        "compute": "18 - 9 + 1"
+      },
+      {
+        "id": "check-mirror-x",
+        "prompt": "The point $(2, -5)$ is reflected over the $x$-axis. What is the $y$-coordinate of its image?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-5$", "$-2$", "$2$", "$5$", "$10$"],
+          "correct": "D",
+          "why": {
+            "C": "Reflecting over the $x$-axis keeps $x$ and changes the sign of $y$."
+          }
+        },
+        "solution": "$(x, y) \\to (x, -y)$ gives $(2, 5)$, choice (D).",
+        "skill": "transformations-symmetry",
+        "difficulty": 1,
+        "compute": "5"
+      },
+      {
+        "id": "check-rotate",
+        "prompt": "The point $([[a]], [[b]])$ is rotated $90^\\circ$ counterclockwise about the origin. What is the $x$-coordinate of its image?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$[[-b]]$", "$[[b]]$", "$[[-a]]$", "$[[a]]$", "$[[a + b]]$"],
+          "correct": "A",
+          "why": {
+            "B": "That is a clockwise turn."
+          }
+        },
+        "solution": "$(x, y) \\to (-y, x)$ gives $([[-b]], [[a]])$, choice (A).",
+        "skill": "transformations-symmetry",
+        "difficulty": 2,
+        "compute": "-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a != b"]
+        }
+      },
+      {
+        "id": "check-octagon",
+        "prompt": "A regular octagon has some lines of symmetry and turns onto itself a certain number of times in a full turn. What is the sum of these two numbers?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$8$", "$12$", "$16$", "$24$"],
+          "correct": "D"
+        },
+        "solution": "$8$ lines of symmetry and rotational symmetry of order $8$: $16$, choice (D).",
+        "skill": "transformations-symmetry",
+        "difficulty": 2,
+        "compute": "8 + 8"
+      },
+      {
+        "id": "check-two-reflections",
+        "prompt": "A point is reflected over the line $y = x$ and then over the $x$-axis. The result is the same as one rotation about the origin. How many degrees counterclockwise?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$45$", "$90$", "$180$", "$270$", "$360$"],
+          "correct": "D",
+          "why": {
+            "B": "$(x, y) \\to (y, x) \\to (y, -x)$ is a quarter turn clockwise."
+          }
+        },
+        "solution": "$(x, y) \\to (y, x) \\to (y, -x)$, which is $90^\\circ$ clockwise, that is $270^\\circ$ counterclockwise, choice (D).",
+        "skill": "transformations-symmetry",
+        "difficulty": 3,
+        "compute": "270"
+      },
+      {
+        "id": "check-box-surface",
+        "prompt": "A box is $2$ by $3$ by $4$. What is its surface area?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$26$", "$48$", "$52$", "$104$"],
+          "correct": "D",
+          "why": {
+            "A": "That is the volume.",
+            "B": "There are two of each face."
+          }
+        },
+        "solution": "$2(6 + 12 + 8) = 52$, choice (D).",
+        "skill": "solids-3d",
+        "difficulty": 1,
+        "compute": "2*(6 + 12 + 8)"
+      },
+      {
+        "id": "check-sphere",
+        "prompt": "A sphere has radius $3$. What is its volume?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$9\\pi$", "$12\\pi$", "$27\\pi$", "$36\\pi$", "$108\\pi$"],
+          "correct": "D"
+        },
+        "solution": "$\\frac{4}{3}\\pi \\times 27 = 36\\pi$, choice (D).",
+        "skill": "solids-3d",
+        "difficulty": 2,
+        "compute": "4*pi*27/3"
+      },
+      {
+        "id": "check-cone-side",
+        "prompt": "A cone has radius $6$ and height $8$. What is the area of its curved surface (not including the base)?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$30\\pi$", "$48\\pi$", "$60\\pi$", "$96\\pi$", "$120\\pi$"],
+          "correct": "C",
+          "why": {
+            "B": "Use the slant height $10$, not the height $8$.",
+            "D": "That is the volume."
+          }
+        },
+        "solution": "The slant height is $\\sqrt{36 + 64} = 10$, and the curved area is $\\pi r \\ell = 60\\pi$, choice (C).",
+        "skill": "solids-3d",
+        "difficulty": 2,
+        "compute": "pi*6*10"
+      },
+      {
+        "id": "check-scale-volume",
+        "prompt": "Each edge of a cube is made $50\\%$ longer. By what percent does its volume increase?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$50$", "$125$", "$150$", "$237.5$", "$337.5$"],
+          "correct": "D",
+          "why": {
+            "B": "That is the increase in surface area.",
+            "E": "That is the new volume as a percent of the old one."
+          }
+        },
+        "solution": "The volume is multiplied by $1.5^3 = 3.375$, an increase of $237.5\\%$, choice (D).",
+        "skill": "solids-3d",
+        "difficulty": 3,
+        "compute": "(1.5^3 - 1)*100"
+      },
+      {
+        "id": "check-cube-diagonal",
+        "prompt": "A cube has edge $4$. How long is a diagonal through the inside from one corner to the opposite corner?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4\\sqrt{2}$", "$4\\sqrt{3}$", "$8$", "$12$", "$16$"],
+          "correct": "B",
+          "why": {
+            "A": "That is a face diagonal."
+          }
+        },
+        "solution": "$\\sqrt{3 \\times 16} = 4\\sqrt{3}$, choice (B).",
+        "skill": "nets-diagonals",
+        "difficulty": 1,
+        "compute": "4*sqrt(3)"
+      },
+      {
+        "id": "check-box-nine",
+        "prompt": "A box is $1$ by $4$ by $8$. How long is a diagonal through the inside from one corner to the opposite corner?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7$", "$9$", "$11$", "$13$", "$32$"],
+          "correct": "B",
+          "why": {
+            "E": "That is the volume."
+          }
+        },
+        "solution": "$\\sqrt{1 + 16 + 64} = 9$, choice (B).",
+        "skill": "nets-diagonals",
+        "difficulty": 2,
+        "compute": "sqrt(1 + 16 + 64)"
+      },
+      {
+        "id": "check-ant-cube",
+        "prompt": "An ant walks on the outside of a cube with edge $3$ from one corner to the opposite corner. What is the shortest distance it can walk?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3\\sqrt{3}$", "$6$", "$3\\sqrt{5}$", "$3 + 3\\sqrt{2}$", "$9$"],
+          "correct": "C",
+          "why": {
+            "A": "That goes through the inside of the cube.",
+            "B": "Unfold two faces into a $6 \\times 3$ rectangle and cut across it."
+          }
+        },
+        "solution": "Unfold two faces into a $6 \\times 3$ rectangle; its diagonal is $\\sqrt{36 + 9} = 3\\sqrt{5}$, choice (C).",
+        "skill": "nets-diagonals",
+        "difficulty": 3,
+        "compute": "sqrt(36 + 9)"
+      }
+    ]
+  }
+]

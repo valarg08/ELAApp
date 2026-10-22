@@ -1,0 +1,100 @@
+{
+  "slug": "math-transformations",
+  "order": 3,
+  "title": "Transformations & Symmetry",
+  "estMinutes": 35,
+  "focusSkills": ["transformations-symmetry"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Reflect a shape in one mirror, then in a second mirror parallel to the first. The shape ends up where? Try it with a letter on squared paper.",
+      "placeholder": "It ends up…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The moves",
+          "body": "Reflect over the $x$-axis: $(x, -y)$; over the $y$-axis: $(-x, y)$; over $y = x$: $(y, x)$. Rotate $90^\\circ$ counterclockwise about the origin: $(-y, x)$; $180^\\circ$: $(-x, -y)$. Translations add to both coordinates. None of these change lengths or areas."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: two moves",
+          "problem": "Reflect $(3, 5)$ over $y = x$, then rotate the image $180^\\circ$ about the origin.",
+          "steps": [
+            {
+              "text": "Over $y = x$: $(5, 3)$.",
+              "try": {
+                "prompt": "What is the $x$-coordinate after the reflection?",
+                "accepted": ["5"],
+                "compute": "5"
+              }
+            },
+            {
+              "text": "A half turn: $(-5, -3)$.",
+              "try": {
+                "prompt": "What is the final $x$-coordinate?",
+                "accepted": ["-5"],
+                "compute": "-5"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Combining moves and symmetry",
+          "body": "Two reflections in parallel lines make a translation by twice the gap. Two reflections in lines that cross make a rotation by twice the angle between them. A regular $n$-gon has $n$ lines of symmetry and rotational symmetry of order $n$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: parallel mirrors",
+          "problem": "Reflect $(2, 1)$ over $x = 4$, then over $x = 7$.",
+          "steps": [
+            {
+              "text": "Over $x = 4$: $(6, 1)$.",
+              "try": {
+                "prompt": "What is the $x$-coordinate after the first mirror?",
+                "accepted": ["6"],
+                "compute": "2*4 - 2"
+              }
+            },
+            {
+              "text": "Over $x = 7$: $(8, 1)$. The point moved $6$, twice the gap of $3$.",
+              "try": {
+                "prompt": "What is the final $x$-coordinate?",
+                "accepted": ["8"],
+                "compute": "2*7 - 6"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: which way it turns",
+          "body": "$90^\\circ$ counterclockwise is $(x, y) \\to (-y, x)$; clockwise is $(y, -x)$. To turn about a point other than the origin, move that point to the origin first, turn, then move back."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m13.transform-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m13.transform-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you check that you turned a point the right way?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

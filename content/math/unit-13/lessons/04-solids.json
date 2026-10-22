@@ -1,0 +1,102 @@
+{
+  "slug": "math-solids",
+  "order": 4,
+  "title": "3D Solids",
+  "estMinutes": 35,
+  "focusSkills": ["solids-3d"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A cone and a cylinder have the same base and the same height. How many cones of water do you think it takes to fill the cylinder?",
+      "placeholder": "I think… cones"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Volume and surface",
+          "body": "Box: $V = abc$, surface $2(ab + bc + ca)$. Prism or cylinder: base area $\\times$ height, so a cylinder is $\\pi r^2 h$ with curved area $2\\pi r h$. Pyramid or cone: $\\frac{1}{3}$ base area $\\times$ height; a cone's curved area is $\\pi r \\ell$, where $\\ell$ is the slant height. Sphere: $V = \\frac{4}{3}\\pi r^3$, surface $4\\pi r^2$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a cylinder",
+          "problem": "A cylinder has radius $3$ and height $5$. What is its volume?",
+          "steps": [
+            {
+              "text": "The base has area $\\pi \\times 3^2 = 9\\pi$.",
+              "try": {
+                "prompt": "What is the area of the base? Write it with π.",
+                "accepted": ["9π"],
+                "compute": "9*pi"
+              }
+            },
+            {
+              "text": "$9\\pi \\times 5 = 45\\pi$.",
+              "try": {
+                "prompt": "What is the volume?",
+                "accepted": ["45π"],
+                "compute": "45*pi"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Scaling and cubes",
+          "body": "Multiply every length by $k$: areas multiply by $k^2$ and volumes by $k^3$. A painted $n \\times n \\times n$ cube cut into unit cubes has $8$ corner cubes (3 painted faces), $12(n - 2)$ edge cubes (2 faces), $6(n - 2)^2$ face cubes (1 face) and $(n - 2)^3$ unpainted cubes."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a painted cube",
+          "problem": "A $4 \\times 4 \\times 4$ cube is painted and cut into unit cubes. How many have no paint? How many have paint on exactly one face?",
+          "steps": [
+            {
+              "text": "The inside cubes form a $2 \\times 2 \\times 2$ block: $8$.",
+              "try": {
+                "prompt": "How many have no paint?",
+                "accepted": ["8"],
+                "compute": "2^3"
+              }
+            },
+            {
+              "text": "Each face has a $2 \\times 2$ middle: $6 \\times 4 = 24$.",
+              "try": {
+                "prompt": "How many have exactly one painted face?",
+                "accepted": ["24"],
+                "compute": "6*4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: forgetting the third",
+          "body": "Cones and pyramids are a THIRD of the matching cylinder or prism. Use the radius, not the diameter. And keep area ($r^2$) and volume ($r^3$) formulas apart."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m13.solids-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m13.solids-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which solid formula do you find hardest to remember, and how will you remember it?"
+      ],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

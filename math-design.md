@@ -269,7 +269,7 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 **A5. Figure flags and zoom**
 - `figure.scale: "to-scale" | "not-to-scale"`, default `not-to-scale`. Unless the figure is to scale, a "Not drawn to scale" note appears under it, as on the AMC.
 - "Enlarge" opens the figure in a dialog. It is keyboard accessible: Esc closes it and focus returns to the button.
-- Interactive geometry (dragging points) waits for M11–M13.
+- Interactive geometry (dragging points) is not built: the geometry units M11–M13 use static SVG figures.
 
 ### 3.2 Part B: how students practise
 
@@ -452,7 +452,10 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | **M8 Unit 8 Number Theory II** ✅ | 6 lessons (§4.8), published, and checkpoint mock 1 (`tests/checkpoint-1.json`, 25 problems, 75 minutes) | Played end to end; content:check verifies every answer and variant |
 | **M9 Unit 9 Counting I** ✅ | 6 lessons (§4.9), published | Played end to end; content:check verifies every answer and variant |
 | **M10 Unit 10 Counting II & Probability** ✅ | 6 lessons (§4.10), published | Played end to end; content:check verifies every answer and variant |
-| **M11–M14 Math units** | One AMC 10 unit per phase (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs (for example a counting tree builder or a number line). **M13** also writes checkpoint mock 2 | Each unit playable end to end; every computable answer and every template variant verified by content:check |
+| **M11 Unit 11 Geometry I: Triangles & Polygons** ✅ | 6 lessons (§4.11), published, with SVG figures | Played end to end; content:check verifies every answer and variant |
+| **M12 Unit 12 Geometry II: Circles** ✅ | 6 lessons (§4.12), published, with SVG figures | Played end to end; content:check verifies every answer and variant |
+| **M13 Unit 13 Geometry III: Coordinates & Solids** ✅ | 6 lessons (§4.13), published, plus checkpoint mock 2 (25 problems on Units 1–13) | Played end to end; content:check verifies every answer and variant |
+| **M14 Unit 14 Logic & Mixed Strategies** | One AMC 10 unit (§1 plan), written in the M0.5 format, with its fact sheet and the tools it needs | Each unit playable end to end; every computable answer and every template variant verified by content:check |
 | **M15 Mock exams & final prep** | Unit 15's 10 lessons: the pacing plan and the 2-minute rule, mocks A, B and C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock and test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text) | A mock hands itself in when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
 
 ### 4.1 M1 as built (2026-10-16)
@@ -592,3 +595,42 @@ Unit 10 Counting II & Probability is published, with 6 lessons in the same shape
 | 4 | Geometric Probability | `m10.geo-practice` (a segment, closer to $0$, a square in a rectangle, a corner triangle, a dart) | `m10.geo-set` |
 | 5 | Expected Value | `m10.ev-practice` (an $n$-sided die, a spinner, dice totals, counting sixes, a coin jar) | `m10.ev-set` |
 | 6 | ⭐ Unit Check | `m10.review-practice` (5-problem warm-up, one per lesson) | `m10.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.11 M11 as built (2026-10-21)
+
+Unit 11 Geometry I: Triangles & Polygons is published, with 6 lessons in the same shape and no new tools. Answers with square roots use `form: "radical"` (typed like 2√3). Three challenge and check problems have SVG figures in `content/math/unit-11/figures/` (a parallel cut, an isosceles triangle with a bisector, a hexagon diagonal), each marked "Not drawn to scale".
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Angles & Angle Chasing | `m11.angles-practice` (the third angle, base angles, an exterior angle, an angle ratio, co-interior angles) | `m11.angles-set` |
+| 2 | Pythagoras & Special Right Triangles | `m11.pythagoras-practice` (a triple, a missing leg, $45$-$45$-$90$, $30$-$60$-$90$, an equilateral height) | `m11.pythagoras-set` |
+| 3 | Similar Triangles | `m11.similar-practice` (a shadow, a parallel cut, area scale, a side from areas, the altitude to the hypotenuse) | `m11.similar-set` |
+| 4 | Triangle Area | `m11.area-practice` (base and height, an isosceles triangle, a split base, the midpoint triangle, three sides) | `m11.area-set` |
+| 5 | Polygons | `m11.polygons-practice` (angle sums, a regular interior angle, sides from an angle, diagonals, a hexagon's area) | `m11.polygons-set` |
+| 6 | ⭐ Unit Check | `m11.review-practice` (5-problem warm-up, one per lesson) | `m11.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.12 M12 as built (2026-10-21)
+
+Unit 12 Geometry II: Circles is published, with 6 lessons in the same shape and no new tools. Answers with $\pi$ use `form: "pi"` (typed like 5π/2) and square roots use `form: "radical"`. Figures in `content/math/unit-12/figures/`: two tangents from a point, two secants and two overlapping circles.
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Arcs, Chords & Inscribed Angles | `m12.angles-practice` (inscribed from central, an arc from an inscribed angle, a cyclic quadrilateral, chord distance, chord length) | `m12.angles-set` |
+| 2 | Tangents | `m12.tangents-practice` (a tangent length, a tangent triangle, Pitot, an external tangent, a tangent angle) | `m12.tangents-set` |
+| 3 | Power of a Point | `m12.power-practice` (crossing chords, a tangent from a secant, a secant from a tangent, two secants, a chord through a point) | `m12.power-set` |
+| 4 | Inscribed & Circumscribed Circles | `m12.incircle-practice` (a right inradius and circumradius, inradius from area, equilateral circumradius and inradius) | `m12.incircle-set` |
+| 5 | Areas with Circles | `m12.areas-practice` (area from a diameter, a sector, an arc length, a ring, a square minus a circle) | `m12.areas-set` |
+| 6 | ⭐ Unit Check | `m12.review-practice` (5-problem warm-up, one per lesson) | `m12.unit-check`: 8 of 19 problems per try, pass at 100% |
+
+### 4.13 M13 as built (2026-10-21)
+
+Unit 13 Geometry III: Coordinates & Solids is published, with 6 lessons in the same shape and no new tools (interactive geometry stays out of scope). Figures in `content/math/unit-13/figures/`: an ant's path on a box and a grid triangle for Pick's theorem. Checkpoint mock 2 is `content/math/tests/checkpoint-2.json`: 25 original problems on Units 1–13 (algebra, number theory, counting, probability and geometry), 75 minutes, opening after Unit 13 (`stages.json` already places it).
+
+| # | Lesson | Practice | Challenge |
+|---|---|---|---|
+| 1 | Coordinate Geometry | `m13.coordinates-practice` (distance, the midpoint, slope, a perpendicular slope, the intercept triangle) | `m13.coordinates-set` |
+| 2 | Areas on the Grid | `m13.grid-practice` (a base on the axis, shoelace triangles and quadrilaterals, Pick's theorem, grid points on a segment) | `m13.grid-set` |
+| 3 | Transformations & Symmetry | `m13.transform-practice` (a mirror line, a quarter turn, two mirrors, a half turn about a point, the mirror $y = x$) | `m13.transform-set` |
+| 4 | 3D Solids | `m13.solids-practice` (box surface, cylinder, cone, sphere, the painted cube) | `m13.solids-set` |
+| 5 | Nets & Space Diagonals | `m13.nets-practice` (box and cube diagonals, prism edges, a face diagonal, the ant's path) | `m13.nets-set` |
+| 6 | ⭐ Unit Check | `m13.review-practice` (5-problem warm-up, one per lesson) | `m13.unit-check`: 8 of 19 problems per try, pass at 100% |

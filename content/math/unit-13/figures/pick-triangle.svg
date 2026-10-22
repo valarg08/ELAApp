@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" width="260" height="260">
+<g stroke="currentColor" stroke-opacity="0.25" stroke-width="1">
+    <line x1="20" y1="20" x2="20" y2="240"/><line x1="56" y1="20" x2="56" y2="240"/><line x1="92" y1="20" x2="92" y2="240"/><line x1="128" y1="20" x2="128" y2="240"/><line x1="164" y1="20" x2="164" y2="240"/><line x1="200" y1="20" x2="200" y2="240"/><line x1="236" y1="20" x2="236" y2="240"/>
+    <line x1="20" y1="20" x2="240" y2="20"/><line x1="20" y1="56" x2="240" y2="56"/><line x1="20" y1="92" x2="240" y2="92"/><line x1="20" y1="128" x2="240" y2="128"/><line x1="20" y1="164" x2="240" y2="164"/><line x1="20" y1="200" x2="240" y2="200"/><line x1="20" y1="236" x2="240" y2="236"/>
+  </g>
+  <polygon points="20,236 236,236 20,20" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2"/>
+  <text x="20" y="252" text-anchor="middle" font-size="12" fill="currentColor">(0, 0)</text>  <text x="226" y="252" text-anchor="middle" font-size="12" fill="currentColor">(6, 0)</text>  <text x="48" y="16" text-anchor="middle" font-size="12" fill="currentColor">(0, 6)</text>
+</svg>

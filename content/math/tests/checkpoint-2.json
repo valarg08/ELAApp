@@ -1,0 +1,394 @@
+{
+  "key": "checkpoint-2",
+  "title": "Checkpoint mock 2: everything so far",
+  "instructions": "A full practice test: 25 original AMC-style problems on everything so far (Units 1–13: algebra, number theory, counting, probability and geometry), getting harder as you go, in 75 minutes. Scoring is like the AMC 10: 6 points for a right answer, 1.5 for a blank and 0 for a wrong answer. Use the 2-minute rule: skip, flag and come back. Afterwards you'll see your mistakes by question, strand and difficulty.",
+  "timeLimitMinutes": 75,
+  "afterUnit": 13,
+  "problems": [
+    {
+      "id": "percent-of-percent",
+      "prompt": "What is $30\\%$ of $40\\%$ of $500$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$60$", "$70$", "$120$", "$150$", "$200$"],
+        "correct": "A",
+        "why": {
+          "B": "Percents of percents multiply; they don't add."
+        }
+      },
+      "solution": "$0.3 \\times 0.4 \\times 500 = 60$, choice (A).",
+      "skill": "fractions-percents",
+      "difficulty": 1,
+      "compute": "0.3*0.4*500"
+    },
+    {
+      "id": "balance",
+      "prompt": "If $3x - 7 = 2x + 5$, what is $x$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$-12$", "$-2$", "$2$", "$12$", "$15$"],
+        "correct": "D"
+      },
+      "solution": "Subtract $2x$ and add $7$: $x = 12$, choice (D).",
+      "skill": "linear-equations",
+      "difficulty": 1,
+      "compute": "5 + 7"
+    },
+    {
+      "id": "angle-ratio",
+      "prompt": "The angles of a triangle are in the ratio $1 : 2 : 6$. How many degrees is the largest angle?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$60$", "$90$", "$100$", "$120$", "$135$"],
+        "correct": "D"
+      },
+      "solution": "The parts add to $9$, so one part is $20^\\circ$ and the largest angle is $120^\\circ$, choice (D).",
+      "skill": "angle-chasing",
+      "difficulty": 1,
+      "compute": "6*180/9"
+    },
+    {
+      "id": "plates",
+      "prompt": "A code is $2$ letters, each $A$, $B$ or $C$ (repeats allowed), followed by $3$ digits from $0$ to $9$ (repeats allowed). How many codes are there?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$720$", "$4320$", "$6000$", "$9000$", "$30000$"],
+        "correct": "D",
+        "why": {
+          "B": "Repeats are allowed."
+        }
+      },
+      "solution": "$3 \\times 3 \\times 10 \\times 10 \\times 10 = 9000$, choice (D).",
+      "skill": "multiplication-principle",
+      "difficulty": 1,
+      "compute": "3*3*1000"
+    },
+    {
+      "id": "rectangle-diagonal",
+      "prompt": "A rectangle is $7$ by $24$. How long is its diagonal?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$17$", "$24$", "$25$", "$26$", "$31$"],
+        "correct": "C"
+      },
+      "solution": "$\\sqrt{49 + 576} = 25$, choice (C).",
+      "skill": "pythagoras",
+      "difficulty": 1,
+      "compute": "sqrt(49 + 576)"
+    },
+    {
+      "id": "removed-number",
+      "prompt": "The average of five numbers is $16$. One number is removed, and the average of the other four is $15$. What number was removed?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$15$", "$16$", "$19$", "$20$"],
+        "correct": "E",
+        "why": {
+          "A": "Compare the totals, not the averages."
+        }
+      },
+      "solution": "The totals are $80$ and $60$, so the removed number is $20$, choice (E).",
+      "skill": "averages",
+      "difficulty": 1,
+      "compute": "5*16 - 4*15"
+    },
+    {
+      "id": "even-product",
+      "prompt": "Two fair dice are rolled. What is the probability that the product of the two numbers is even?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{1}{4}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{3}{4}$",
+          "$\\frac{5}{6}$"
+        ],
+        "correct": "D",
+        "why": {
+          "A": "That is the chance it is odd."
+        }
+      },
+      "solution": "The product is odd only when both are odd: $\\frac{1}{4}$. So it is even with probability $\\frac{3}{4}$, choice (D).",
+      "skill": "probability",
+      "difficulty": 1,
+      "compute": "1 - 1/4"
+    },
+    {
+      "id": "lcm-minus-gcd",
+      "prompt": "What is the least common multiple of $12$ and $18$ minus their greatest common divisor?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$24$", "$30$", "$36$", "$42$", "$210$"],
+        "correct": "B",
+        "why": {
+          "E": "$12 \\times 18 = 216$ is a common multiple, but not the least."
+        }
+      },
+      "solution": "$36 - 6 = 30$, choice (B).",
+      "skill": "gcd-lcm",
+      "difficulty": 1,
+      "compute": "lcm(12, 18) - gcd(12, 18)"
+    },
+    {
+      "id": "square-in-circle",
+      "prompt": "A square is drawn with all four corners on a circle of circumference $12\\pi$. What is the area of the square?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$36$", "$72$", "$108$", "$144$", "$36\\pi$"],
+        "correct": "B",
+        "why": {
+          "D": "The diameter is the square's diagonal, not its side."
+        }
+      },
+      "solution": "The radius is $6$, so the square's diagonal is $12$ and its area is $\\frac{12^2}{2} = 72$, choice (B).",
+      "skill": "circle-areas",
+      "difficulty": 2,
+      "compute": "12^2/2"
+    },
+    {
+      "id": "not-both",
+      "prompt": "A committee of $3$ is chosen from $9$ people. Ana and Ben refuse to serve together. How many committees are possible?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$56$", "$70$", "$77$", "$79$", "$84$"],
+        "correct": "C",
+        "why": {
+          "E": "Take out the committees with both of them."
+        }
+      },
+      "solution": "$\\binom{9}{3} = 84$ committees, minus the $7$ with both Ana and Ben: $77$, choice (C).",
+      "skill": "combinations",
+      "difficulty": 2,
+      "compute": "binom(9, 3) - 7"
+    },
+    {
+      "id": "sum-of-squares",
+      "prompt": "The roots of $x^2 - 7x + 10 = 0$ are $r$ and $s$. What is $r^2 + s^2$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$20$", "$29$", "$39$", "$49$", "$69$"],
+        "correct": "B"
+      },
+      "solution": "$r + s = 7$ and $rs = 10$, so $r^2 + s^2 = 49 - 20 = 29$, choice (B).",
+      "skill": "vieta",
+      "difficulty": 2,
+      "compute": "49 - 20"
+    },
+    {
+      "id": "lamp-post",
+      "prompt": "A $5$-foot-tall person stands $12$ feet from the bottom of a lamp post and casts a shadow $4$ feet long. How tall is the lamp post, in feet?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$15$", "$16$", "$18$", "$20$", "$24$"],
+        "correct": "D",
+        "why": {
+          "A": "The lamp's triangle has base $12 + 4 = 16$, not $12$."
+        }
+      },
+      "solution": "Similar triangles: $\\frac{H}{12 + 4} = \\frac{5}{4}$, so $H = 20$, choice (D).",
+      "skill": "similar-triangles",
+      "difficulty": 2,
+      "compute": "5*16/4"
+    },
+    {
+      "id": "radius-chord",
+      "prompt": "A chord of a circle is as long as the radius. What is the inscribed angle, in degrees, that this chord makes at a point on the larger arc?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$15$", "$30$", "$45$", "$60$", "$120$"],
+        "correct": "B",
+        "why": {
+          "D": "That is the central angle."
+        }
+      },
+      "solution": "The chord and two radii form an equilateral triangle, so the central angle is $60^\\circ$ and the inscribed angle is $30^\\circ$, choice (B).",
+      "skill": "circle-angles",
+      "difficulty": 2,
+      "compute": "60/2"
+    },
+    {
+      "id": "at-least-two",
+      "prompt": "How many ordered triples of whole numbers $(a, b, c)$, each at least $2$, have $a + b + c = 15$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$36$", "$45$", "$55$", "$66$", "$91$"],
+        "correct": "C"
+      },
+      "solution": "Put $a = a' + 2$ and so on: $a' + b' + c' = 9$ with each at least $0$, so $\\binom{11}{2} = 55$, choice (C).",
+      "skill": "stars-bars",
+      "difficulty": 2,
+      "compute": "binom(11, 2)"
+    },
+    {
+      "id": "lines-and-axis",
+      "prompt": "The lines $y = 2x + 3$ and $y = -x + 9$ and the $y$-axis enclose a triangle. What is its area?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$6$", "$7$", "$9$", "$12$", "$14$"],
+        "correct": "A",
+        "why": {
+          "D": "Remember the $\\frac{1}{2}$."
+        }
+      },
+      "solution": "The lines meet at $(2, 7)$. The base on the $y$-axis runs from $3$ to $9$, length $6$, and the height is $2$: area $6$, choice (A).",
+      "skill": "coordinate-geometry",
+      "difficulty": 2,
+      "compute": "6*2/2"
+    },
+    {
+      "id": "power-mod",
+      "prompt": "What is the remainder when $3^{100}$ is divided by $7$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$1$", "$2$", "$3$", "$4$", "$5$"],
+        "correct": "D"
+      },
+      "solution": "The powers of $3$ repeat every $6$ mod $7$: $3, 2, 6, 4, 5, 1$. As $100 = 6 \\times 16 + 4$, the remainder is $3^4 \\equiv 4$, choice (D).",
+      "skill": "modular-arithmetic",
+      "difficulty": 2,
+      "compute": "mod(3^4, 7)"
+    },
+    {
+      "id": "four-or-six",
+      "prompt": "How many of the numbers $1, 2, \\ldots, 200$ are divisible by $4$ or by $6$ but not by $12$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$50$", "$51$", "$61$", "$67$", "$83$"],
+        "correct": "B",
+        "why": {
+          "D": "Take out the multiples of $12$."
+        }
+      },
+      "solution": "$50 + 33 - 16 = 67$ are divisible by $4$ or $6$; removing the $16$ multiples of $12$ leaves $51$, choice (B).",
+      "skill": "inclusion-exclusion",
+      "difficulty": 2,
+      "compute": "50 + 33 - 16 - 16"
+    },
+    {
+      "id": "inradius",
+      "prompt": "A right triangle has legs $20$ and $21$. What is the radius of its inscribed circle?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$5$", "$6$", "$\\frac{13}{2}$", "$7$", "$\\frac{29}{2}$"],
+        "correct": "B",
+        "why": {
+          "E": "That is the radius of the circle through the corners."
+        }
+      },
+      "solution": "The hypotenuse is $29$, and for a right triangle $r = \\frac{20 + 21 - 29}{2} = 6$, choice (B).",
+      "skill": "inscribed-circles",
+      "difficulty": 3,
+      "compute": "(20 + 21 - 29)/2"
+    },
+    {
+      "id": "three-sides",
+      "prompt": "What is the area of a triangle with sides $10$, $17$ and $21$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$68$", "$80$", "$84$", "$90$", "$105$"],
+        "correct": "C"
+      },
+      "solution": "Drop the height to the side $21$: $h^2 = 100 - x^2 = 289 - (21 - x)^2$ gives $x = 6$ and $h = 8$, so the area is $\\frac{1}{2} \\times 21 \\times 8 = 84$, choice (C).",
+      "skill": "triangle-area",
+      "difficulty": 3,
+      "compute": "21*8/2"
+    },
+    {
+      "id": "double-heads",
+      "prompt": "A fair coin is flipped $10$ times. What is the expected number of times two heads come up in a row? (Count every pair of neighbouring flips that are both heads.)",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$\\frac{9}{4}$", "$\\frac{5}{2}$", "$3$", "$\\frac{9}{2}$", "$5$"],
+        "correct": "A",
+        "why": {
+          "B": "There are $9$ neighbouring pairs, not $10$."
+        }
+      },
+      "solution": "There are $9$ neighbouring pairs, each both heads with probability $\\frac{1}{4}$, so the expected count is $\\frac{9}{4}$, choice (A).",
+      "skill": "expected-value",
+      "difficulty": 3,
+      "compute": "9/4"
+    },
+    {
+      "id": "series-ratio",
+      "prompt": "An infinite geometric series has first term $6$ and sum $18$. What is its common ratio?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$\\frac{1}{3}$", "$\\frac{1}{2}$", "$\\frac{2}{3}$", "$\\frac{3}{4}$", "$3$"],
+        "correct": "C",
+        "why": {
+          "A": "That is $1 - r$."
+        }
+      },
+      "solution": "$\\frac{6}{1 - r} = 18$, so $1 - r = \\frac{1}{3}$ and $r = \\frac{2}{3}$, choice (C).",
+      "skill": "geometric-sequences",
+      "difficulty": 3,
+      "compute": "1 - 6/18"
+    },
+    {
+      "id": "crossing-chords",
+      "prompt": "Chords $AB$ and $CD$ of a circle cross at $P$, with $AP = 2$, $PB = 12$ and $CD = 11$. If $CP < PD$, what is $CP$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2$", "$3$", "$4$", "$\\frac{11}{2}$", "$8$"],
+        "correct": "B"
+      },
+      "solution": "$CP \\times PD = 2 \\times 12 = 24$ and $CP + PD = 11$, so they are $3$ and $8$: $CP = 3$, choice (B).",
+      "skill": "power-of-a-point",
+      "difficulty": 3,
+      "compute": "3"
+    },
+    {
+      "id": "sphere-in-cube",
+      "prompt": "A sphere fits exactly inside a cube, touching all six faces. What fraction of the cube's volume does the sphere fill?",
+      "answer": {
+        "kind": "choice",
+        "choices": [
+          "$\\frac{\\pi}{8}$",
+          "$\\frac{\\pi}{6}$",
+          "$\\frac{\\pi}{4}$",
+          "$\\frac{\\pi}{3}$",
+          "$\\frac{2\\pi}{3}$"
+        ],
+        "correct": "B"
+      },
+      "solution": "With radius $r$ the cube has edge $2r$: $\\frac{\\frac{4}{3}\\pi r^3}{8r^3} = \\frac{\\pi}{6}$, choice (B).",
+      "skill": "solids-3d",
+      "difficulty": 3,
+      "compute": "pi/6"
+    },
+    {
+      "id": "zero-or-one",
+      "prompt": "How many four-digit numbers have at least one digit equal to $0$ or $1$?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$2916$", "$3439$", "$4096$", "$4904$", "$5832$"],
+        "correct": "D",
+        "why": {
+          "C": "That counts the numbers with NO $0$ or $1$."
+        }
+      },
+      "solution": "There are $9000$ four-digit numbers, and $8^4 = 4096$ use only the digits $2$ to $9$, so $9000 - 4096 = 4904$ do, choice (D).",
+      "skill": "complementary-counting",
+      "difficulty": 3,
+      "compute": "9000 - 8^4"
+    },
+    {
+      "id": "pentagon-area",
+      "prompt": "What is the area of the pentagon with corners $(0, 0)$, $(6, 0)$, $(8, 5)$, $(3, 9)$ and $(-2, 4)$, in that order?",
+      "answer": {
+        "kind": "choice",
+        "choices": ["$54$", "$56$", "$\\frac{117}{2}$", "$60$", "$117$"],
+        "correct": "C",
+        "why": {
+          "E": "The shoelace sum is twice the area."
+        }
+      },
+      "solution": "Shoelace: $0 + 30 + 57 + 30 + 0 = 117$, so the area is $\\frac{117}{2}$, choice (C).",
+      "skill": "grid-areas",
+      "difficulty": 3,
+      "compute": "117/2"
+    }
+  ]
+}

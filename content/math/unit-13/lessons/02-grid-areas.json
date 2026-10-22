@@ -1,0 +1,100 @@
+{
+  "slug": "math-grid-areas",
+  "order": 2,
+  "title": "Areas on the Grid",
+  "estMinutes": 35,
+  "focusSkills": ["grid-areas"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A polygon has its corners on grid points. Could you find its area just by counting grid points?",
+      "placeholder": "I would count…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The shoelace formula",
+          "body": "List the corners $(x_1, y_1), \\ldots, (x_n, y_n)$ in order around the shape and repeat the first. The area is $\\frac{1}{2}\\left|\\sum (x_i y_{i+1} - x_{i+1} y_i)\\right|$. Or surround the shape with a rectangle and subtract the right triangles in the corners."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: shoelace",
+          "problem": "Find the area of the triangle with corners $(0, 0)$, $(4, 1)$ and $(1, 3)$.",
+          "steps": [
+            {
+              "text": "$0 \\times 1 - 4 \\times 0 + 4 \\times 3 - 1 \\times 1 + 1 \\times 0 - 0 \\times 3 = 11$.",
+              "try": {
+                "prompt": "What is the shoelace sum?",
+                "accepted": ["11"],
+                "compute": "4*3 - 1*1"
+              }
+            },
+            {
+              "text": "The area is $\\frac{11}{2}$.",
+              "try": {
+                "prompt": "What is the area?",
+                "accepted": ["11/2", "5.5"],
+                "compute": "11/2"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Pick's theorem",
+          "body": "For a polygon whose corners are grid points, with $I$ grid points inside and $B$ on the boundary, the area is $I + \\frac{B}{2} - 1$. A segment from $(0, 0)$ to $(a, b)$ passes through $\\gcd(a, b) + 1$ grid points, counting both ends."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: Pick",
+          "problem": "A grid polygon has $6$ grid points inside and $10$ on its boundary. What is its area?",
+          "steps": [
+            {
+              "text": "$\\frac{B}{2} = 5$.",
+              "try": {
+                "prompt": "What is $\\frac{B}{2}$?",
+                "accepted": ["5"],
+                "compute": "10/2"
+              }
+            },
+            {
+              "text": "$6 + 5 - 1 = 10$.",
+              "try": {
+                "prompt": "What is the area?",
+                "accepted": ["10"],
+                "compute": "6 + 5 - 1"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: order and halving",
+          "body": "The shoelace corners must go in order around the shape, and the sum is TWICE the area. In Pick's theorem, $B$ counts every grid point on the boundary, not just the corners, and don't forget the $-1$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m13.grid-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m13.grid-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When would you choose Pick's theorem over the shoelace formula?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

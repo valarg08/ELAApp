@@ -1,0 +1,100 @@
+{
+  "slug": "math-nets-diagonals",
+  "order": 5,
+  "title": "Nets & Space Diagonals",
+  "estMinutes": 35,
+  "focusSkills": ["nets-diagonals"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "An ant on the outside of a box wants to walk to the opposite corner. A fly can fly straight through the air. Who has the shorter trip, and how could you work out the ant's?",
+      "placeholder": "The ant should…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Space diagonals",
+          "body": "A box with edges $a$, $b$, $c$ has a space diagonal (through the inside, corner to opposite corner) of $\\sqrt{a^2 + b^2 + c^2}$. A cube with edge $s$ has face diagonal $s\\sqrt{2}$ and space diagonal $s\\sqrt{3}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a box",
+          "problem": "A box is $2$ by $3$ by $6$. How long is its space diagonal?",
+          "steps": [
+            {
+              "text": "$4 + 9 + 36 = 49$.",
+              "try": {
+                "prompt": "What is $a^2 + b^2 + c^2$?",
+                "accepted": ["49"],
+                "compute": "4 + 9 + 36"
+              }
+            },
+            {
+              "text": "$\\sqrt{49} = 7$.",
+              "try": {
+                "prompt": "How long is the space diagonal?",
+                "accepted": ["7"],
+                "compute": "sqrt(49)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Nets and counting",
+          "body": "To find the shortest path along the surface, unfold the faces flat (a net) and draw a straight line. Count faces $F$, edges $E$ and vertices $V$ with Euler's formula $V - E + F = 2$. A prism on an $n$-gon has $2n$ vertices, $3n$ edges and $n + 2$ faces."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the ant",
+          "problem": "An ant walks on the outside of a cube with edge $2$ from one corner to the opposite corner. How far must it walk?",
+          "steps": [
+            {
+              "text": "Unfold two faces into a $4 \\times 2$ rectangle.",
+              "try": {
+                "prompt": "How long is the long side of the rectangle?",
+                "accepted": ["4"],
+                "compute": "2 + 2"
+              }
+            },
+            {
+              "text": "$\\sqrt{4^2 + 2^2} = \\sqrt{20} = 2\\sqrt{5}$.",
+              "try": {
+                "prompt": "How far does it walk? Write it in simplest radical form, like 3√2.",
+                "accepted": ["2√5"],
+                "compute": "2*sqrt(5)"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: through or along",
+          "body": "The space diagonal goes through the inside; a walk along the surface is longer. When unfolding, try each way and keep the shortest: put the two shorter edges together. A face diagonal is $s\\sqrt{2}$, not $s\\sqrt{3}$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["m13.nets-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "m13.nets-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you decide which way to unfold a box?"],
+      "confidenceCheck": true,
+      "trapPicker": true
+    }
+  ]
+}

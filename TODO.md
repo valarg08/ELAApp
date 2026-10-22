@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-21 (M9 and M10 built: Math Units 9 and 10 published; on branch phase-m9-m10).
+Last updated: 2026-10-21 (M11–M13 built: Math Units 11–13 and checkpoint mock 2 published; on branch phase-m11-m13).
 
 ## Done so far
 
@@ -12,7 +12,7 @@ Last updated: 2026-10-21 (M9 and M10 built: Math Units 9 and 10 published; on br
 - [x] E0–E15: the whole Essay Writing track (§9.12)
 - [x] P5a: teacher progress views: the class heatmap and the student profile (§11.3)
 - [x] M0: the Math track engine (math-design.md §2)
-- [x] M0.5 and M1–M10: the Math practice upgrade, Math Units 1–10 and checkpoint mock 1 (math-design.md §3, §4.1–§4.10)
+- [x] M0.5 and M1–M13: the Math practice upgrade, Math Units 1–13 and checkpoint mocks 1 and 2 (math-design.md §3, §4.1–§4.13)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -53,9 +53,9 @@ A third track inside StoryForge for AMC 10 practice (grades 9–10). Answers are
 - [x] **M8** Unit 8 Number Theory II: 5 lessons and the ⭐ check (100%), published, with its fact sheet, plus checkpoint mock 1 (25 problems: algebra and number theory)
 - [x] **M9** Unit 9 Counting I
 - [x] **M10** Unit 10 Counting II & Probability
-- [ ] **M11** Unit 11 Geometry I: Triangles & Polygons (incl. angle chasing)
-- [ ] **M12** Unit 12 Geometry II: Circles
-- [ ] **M13** Unit 13 Geometry III: Coordinates & Solids, plus checkpoint mock 2 (25 problems: everything so far)
+- [x] **M11** Unit 11 Geometry I: Triangles & Polygons (incl. angle chasing)
+- [x] **M12** Unit 12 Geometry II: Circles
+- [x] **M13** Unit 13 Geometry III: Coordinates & Solids, plus checkpoint mock 2 (25 problems: everything so far)
 - [ ] **M14** Unit 14 Logic & Mixed Strategies
 - [ ] **M15** Unit 15 Mock Exams & Final Review (10 lessons): pacing & the 2-minute rule, mocks A–C with mistake analysis, algebra / geometry / counting & number theory refreshes, danger zones, light review & confidence, the final mock & test-day plan; the AMC-score estimate; the past-paper log (answer letters only, never problem text)
 - [ ] Every unit M1–M14 ships its fact sheet (`facts.json`)
