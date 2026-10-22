@@ -17,7 +17,7 @@ export default async function Landing() {
           🦉
         </p>
         <h1 className="text-4xl font-bold sm:text-5xl">{APP_NAME}</h1>
-        <p className="text-xl text-muted">Learn to write amazing stories, one lesson at a time.</p>
+        <p className="text-xl text-muted">Write, reason and grow, one lesson at a time.</p>
       </header>
 
       <div className="grid gap-4 sm:grid-cols-2">
