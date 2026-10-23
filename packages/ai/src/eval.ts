@@ -33,7 +33,12 @@ if (!apiKey) {
   console.error('ai:eval calls the real Claude API: set ANTHROPIC_API_KEY in .env first.');
   process.exit(1);
 }
-const gateway = new ClaudeGateway(apiKey, process.env.AI_MODEL ?? DEFAULT_MODEL);
+const gateway = new ClaudeGateway(
+  apiKey,
+  process.env.AI_MODEL ?? DEFAULT_MODEL,
+  undefined,
+  process.env.ANTHROPIC_WORKSPACE_ID,
+);
 const golden = Golden.parse(
   JSON.parse(readFileSync(new URL('../evals/golden.json', import.meta.url), 'utf8')),
 );

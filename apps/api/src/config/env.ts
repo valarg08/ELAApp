@@ -10,6 +10,8 @@ const EnvSchema = z.object({
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().positive().default(7),
   /** Claude API key. Without it (or with AI_PROVIDER=fake) the offline fake gateway is used. */
   ANTHROPIC_API_KEY: z.string().min(1).optional(),
+  /** Needed when the API key isn't scoped to a workspace (sent as anthropic-workspace-id). */
+  ANTHROPIC_WORKSPACE_ID: z.string().min(1).optional(),
   AI_PROVIDER: z.enum(['anthropic', 'fake']).optional(),
   AI_MODEL: z.string().min(1).default('claude-opus-5-5'),
   /** Run the feedback worker inside this process. Defaults to on in development only. */

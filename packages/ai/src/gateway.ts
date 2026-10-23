@@ -22,9 +22,16 @@ export class ClaudeGateway implements AiGateway {
     apiKey: string,
     readonly model: string = DEFAULT_MODEL,
     private readonly timeoutMs = 60_000,
+    workspaceId?: string,
   ) {
-    // SDK retries (2) cover transient errors; the job queue retries whole jobs on top.
-    this.client = new Anthropic({ apiKey, maxRetries: 2, timeout: timeoutMs });
+    // SDK retries (2) cover transient errors; the job queue retries whole jobs on top. A key that
+    // isn't scoped to a workspace must name one on every request.
+    this.client = new Anthropic({
+      apiKey,
+      maxRetries: 2,
+      timeout: timeoutMs,
+      defaultHeaders: workspaceId ? { 'anthropic-workspace-id': workspaceId } : undefined,
+    });
   }
 
   async run<I, O>(def: AnalyzerDef<I, O>, input: I): Promise<AnalyzerOutcome<O>> {
@@ -79,6 +86,8 @@ export interface GatewayConfig {
   apiKey?: string;
   model?: string;
   timeoutMs?: number;
+  /** For an organisation-level API key: the workspace to bill (anthropic-workspace-id). */
+  workspaceId?: string;
 }
 
 export function createGateway(config: GatewayConfig): AiGateway {
@@ -86,5 +95,10 @@ export function createGateway(config: GatewayConfig): AiGateway {
   if (provider === 'fake') return new FakeGateway();
   if (provider !== 'anthropic') throw new Error(`Unknown AI_PROVIDER "${provider}"`);
   if (!config.apiKey) throw new Error('AI_PROVIDER=anthropic needs ANTHROPIC_API_KEY');
-  return new ClaudeGateway(config.apiKey, config.model ?? DEFAULT_MODEL, config.timeoutMs);
+  return new ClaudeGateway(
+    config.apiKey,
+    config.model ?? DEFAULT_MODEL,
+    config.timeoutMs,
+    config.workspaceId,
+  );
 }

@@ -16,6 +16,7 @@ import { QueueService } from './queue.service.js';
         createGateway({
           provider: env.AI_PROVIDER,
           apiKey: env.ANTHROPIC_API_KEY,
+          workspaceId: env.ANTHROPIC_WORKSPACE_ID,
           model: env.AI_MODEL,
         }),
     },
