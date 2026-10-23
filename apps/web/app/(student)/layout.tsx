@@ -11,7 +11,7 @@ export default async function StudentLayout({ children }: LayoutProps<'/'>) {
 
   return (
     <>
-      <AppHeader me={me} home="/home" />
+      <AppHeader me={me} home="/start" />
       {children}
     </>
   );

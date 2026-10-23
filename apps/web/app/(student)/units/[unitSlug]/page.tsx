@@ -47,7 +47,8 @@ export default async function UnitPage({ params }: PageProps<'/units/[unitSlug]'
               </Card>
             )}
 
-            <section aria-labelledby="lessons">
+            {/* From md up the lessons are listed in the Chapters panel (DESIGN.md §6.2); phones fold it. */}
+            <section aria-labelledby="lessons" className="md:hidden">
               <h2 id="lessons" className="mb-4 text-2xl font-semibold">
                 Lessons
               </h2>

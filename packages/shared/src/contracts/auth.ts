@@ -59,5 +59,5 @@ export type MeResponse = z.infer<typeof MeResponse>;
 
 /** Where each role lands after logging in. */
 export function homePathFor(role: Role): string {
-  return role === 'STUDENT' ? '/home' : role === 'ADMIN' ? '/admin' : '/classes';
+  return role === 'STUDENT' ? '/start' : role === 'ADMIN' ? '/admin' : '/classes';
 }

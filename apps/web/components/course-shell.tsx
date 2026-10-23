@@ -12,6 +12,7 @@ import { serverApi } from '@/lib/server-api';
 import { SidePanel } from './course-frame';
 import { navFocus } from './course-styles';
 import { ProgressBar } from './progress-bar';
+import { TrackMemory } from './track-memory';
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
 
@@ -65,26 +66,37 @@ export async function CourseShell({
                 <Link
                   href={`/units/${u.slug}`}
                   aria-current={current && !lessonId ? 'page' : undefined}
-                  className={`flex min-h-11 items-start gap-2 rounded-xl px-2 py-2 text-sm hover:bg-white/10 ${navFocus} ${current ? 'bg-white/15 font-semibold' : ''}`}
+                  className={`flex gap-2 rounded-xl px-2 text-sm hover:bg-white/10 ${navFocus} ${current ? 'min-h-11 items-start bg-white/15 py-2 font-semibold' : 'min-h-9 items-center py-1'}`}
                 >
                   <span aria-hidden="true" className="w-4 shrink-0">
                     {done ? '✓' : ''}
                   </span>
-                  <span>
-                    <span className="block text-xs text-white/80">
-                      {unitLabel(track, u.number)}
+                  {/* Only the open unit shows its label line and lessons; the others stay one line. */}
+                  {current ? (
+                    <span>
+                      <span className="block text-xs text-white/80">
+                        {unitLabel(track, u.number)}
+                      </span>
+                      {u.title}
+                      {done && <span className="sr-only"> (completed)</span>}
                     </span>
-                    {u.title}
-                    {done && <span className="sr-only"> (completed)</span>}
-                  </span>
+                  ) : (
+                    <span className="truncate">
+                      <span className="sr-only">{unitLabel(track, u.number)}: </span>
+                      <span aria-hidden="true">{u.number} · </span>
+                      {u.title}
+                      {done && <span className="sr-only"> (completed)</span>}
+                    </span>
+                  )}
                 </Link>
               ) : (
-                <p className="flex items-start gap-2 px-2 py-2 text-sm text-white/75">
+                <p className="flex min-h-9 items-center gap-2 px-2 py-1 text-sm text-white/75">
                   <span aria-hidden="true" className="w-4 shrink-0">
                     🔒
                   </span>
-                  <span>
-                    <span className="block text-xs">{unitLabel(track, u.number)}</span>
+                  <span className="truncate">
+                    <span className="sr-only">{unitLabel(track, u.number)}: </span>
+                    <span aria-hidden="true">{u.number} · </span>
                     {u.title}
                     <span className="sr-only"> (locked)</span>
                   </span>
@@ -186,6 +198,7 @@ export async function CourseShell({
     <div
       className={`mx-auto grid w-full ${wide ? 'max-w-[100rem]' : 'max-w-7xl'} flex-1 gap-6 px-4 py-6 [--left:13rem] [--right:12rem] md:grid-cols-[var(--left)_minmax(0,1fr)_var(--right)] md:py-10 lg:[--left:16rem] lg:[--right:15rem] has-[[data-folded=chapters]]:[--left:3.75rem] has-[[data-folded=progress]]:[--right:3.75rem]`}
     >
+      <TrackMemory track={track} />
       <aside className="md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto">
         <SidePanel name="chapters" title="Chapters" side="left" collapsible={wide} mobileFold>
           {chapterNav}

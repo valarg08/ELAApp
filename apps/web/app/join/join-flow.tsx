@@ -73,7 +73,7 @@ export function JoinFlow({
         username: student.username,
         secret,
       });
-      router.push('/home');
+      router.push('/start');
       router.refresh();
     } catch (e) {
       if (e instanceof ApiError && e.problem.code === 'INVALID_CREDENTIALS') {

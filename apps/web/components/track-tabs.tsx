@@ -1,4 +1,4 @@
-import { TRACK_HOME, type Track } from '@storyforge/shared';
+import type { Track } from '@storyforge/shared';
 import Link from 'next/link';
 
 const TABS: { track: Track; label: string; emoji: string }[] = [
@@ -13,7 +13,8 @@ const TABS: { track: Track; label: string; emoji: string }[] = [
  */
 export function TrackTabs({
   current,
-  hrefFor = (track) => TRACK_HOME[track],
+  // Students go to the unit they're working on in that track (/start).
+  hrefFor = (track) => `/start?track=${track}`,
 }: {
   current: Track;
   hrefFor?: (track: Track) => string;
