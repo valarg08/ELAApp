@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
 import {
   type AdminAiUsage,
   type AdminAnalytics,
@@ -8,6 +8,8 @@ import {
   ContentSyncRequest,
   type ContentSyncResponse,
   CreateOrgRequest,
+  CreateTeacherRequest,
+  type TeacherCredential,
   UpdateOrgRequest,
   UpdateTeacherRequest,
 } from '@storyforge/shared';
@@ -45,6 +47,23 @@ export class AdminController {
   @Get('teachers')
   teachers(): Promise<AdminTeacher[]> {
     return this.admin.teachers();
+  }
+
+  @Post('teachers')
+  createTeacher(
+    @CurrentUser() user: AuthUser,
+    @Body({ schema: CreateTeacherRequest }) body: CreateTeacherRequest,
+  ): Promise<TeacherCredential> {
+    return this.admin.createTeacher(user, body);
+  }
+
+  @Post('teachers/:teacherId/reset-password')
+  @HttpCode(200)
+  resetTeacherPassword(
+    @CurrentUser() user: AuthUser,
+    @Param('teacherId') teacherId: string,
+  ): Promise<TeacherCredential> {
+    return this.admin.resetTeacherPassword(user, teacherId);
   }
 
   @Patch('teachers/:teacherId')

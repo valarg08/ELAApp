@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { randomBytes } from 'node:crypto';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import {
   type AdminAiUsage,
   type AdminAnalytics,
@@ -7,15 +8,19 @@ import {
   type AdminTeacher,
   type ContentSyncResponse,
   type CreateOrgRequest,
+  type CreateTeacherRequest,
   ErrorCode,
   type UpdateOrgRequest,
+  type TeacherCredential,
   type UpdateTeacherRequest,
   estimateCostCents,
 } from '@storyforge/shared';
 import { orgSpendTodayCents, startOfUtcDay } from '../ai/ai-budget.js';
 import type { AuthUser } from '../auth/auth.types.js';
+import { AuthService } from '../auth/auth.service.js';
+import { PasswordService } from '../auth/password.service.js';
 import { TokenService } from '../auth/token.service.js';
-import { notFound } from '../common/app-error.js';
+import { AppError, notFound } from '../common/app-error.js';
 import { AuditService } from '../common/audit.service.js';
 import { loadContent } from '../curriculum/content-loader.js';
 import { syncContent } from '../curriculum/content-sync.js';
@@ -57,6 +62,8 @@ export class AdminService {
     private readonly db: DatabaseService,
     private readonly audit: AuditService,
     private readonly tokens: TokenService,
+    private readonly auth: AuthService,
+    private readonly passwords: PasswordService,
   ) {}
 
   async orgs(): Promise<AdminOrg[]> {
@@ -144,6 +151,57 @@ export class AdminService {
       lastLoginAt: t.lastLoginAt?.toISOString() ?? null,
       active: !(t.lockedUntil && t.lockedUntil >= DEACTIVATED_UNTIL),
     }));
+  }
+
+  /** A new teacher with a random password, shown to the admin once (only the hash is stored). */
+  async createTeacher(admin: AuthUser, req: CreateTeacherRequest): Promise<TeacherCredential> {
+    const db = this.db.client;
+    if (await db.user.findUnique({ where: { email: req.email } })) {
+      throw new AppError(
+        HttpStatus.CONFLICT,
+        ErrorCode.EMAIL_TAKEN,
+        'Email already registered',
+        'That email already has an account. Reset its password instead.',
+      );
+    }
+    if (req.orgId && !(await db.organization.findUnique({ where: { id: req.orgId } }))) {
+      throw notFound(ErrorCode.ORG_NOT_FOUND, 'School not found.');
+    }
+    const password = newPassword();
+    const teacher = await db.user.create({
+      data: {
+        role: 'TEACHER',
+        email: req.email,
+        displayName: req.displayName,
+        username: await this.auth.uniqueTeacherUsername(req.email),
+        passwordHash: await this.passwords.hash(password),
+        orgId: req.orgId ?? null,
+      },
+    });
+    await this.audit.record(admin.id, 'teacher.create', teacher.id, { orgId: req.orgId ?? null });
+    return { teacher: (await this.teachers()).find((t) => t.id === teacher.id)!, password };
+  }
+
+  /** A new random password for a teacher; signs them out everywhere and unlocks the account. */
+  async resetTeacherPassword(admin: AuthUser, teacherId: string): Promise<TeacherCredential> {
+    const teacher = await this.db.client.user.findFirst({
+      where: { id: teacherId, role: 'TEACHER', deletedAt: null },
+    });
+    if (!teacher) throw notFound(ErrorCode.TEACHER_NOT_FOUND, 'Teacher not found.');
+    const password = newPassword();
+    const deactivated = teacher.lockedUntil && teacher.lockedUntil >= DEACTIVATED_UNTIL;
+    await this.db.client.user.update({
+      where: { id: teacherId },
+      data: {
+        passwordHash: await this.passwords.hash(password),
+        failedLogins: 0,
+        // A reset unlocks a temporary lockout but never reactivates a deactivated teacher.
+        ...(deactivated ? {} : { lockedUntil: null }),
+      },
+    });
+    await this.tokens.revokeAllForUser(teacherId);
+    await this.audit.record(admin.id, 'teacher.reset_password', teacherId);
+    return { teacher: (await this.teachers()).find((t) => t.id === teacherId)!, password };
   }
 
   async updateTeacher(
@@ -324,4 +382,9 @@ export class AdminService {
     });
     return { dryRun: false, ...report, errors: [] };
   }
+}
+
+/** 20 random URL-safe characters: strong, and easy to copy from the screen. */
+function newPassword(): string {
+  return randomBytes(15).toString('base64url');
 }

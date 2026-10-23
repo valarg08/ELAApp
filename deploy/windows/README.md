@@ -20,7 +20,9 @@ never touches students' data. Updates reach students only when you run `update.p
    (teacher sign-up is closed on the public site):
    `pnpm user:create --role ADMIN --email you@school.org --name "Your Name"` and
    `pnpm user:create --role TEACHER --email teacher@school.org --name "Ms Rivera"`.
-   Each prints a password once. In `/admin`, set a daily AI budget for the school.
+   Each prints a password once. After that, add teachers in `/admin/schools` (**Add a teacher**;
+   the password is shown once, and **Reset password** makes a new one). In `/admin`, set a daily
+   AI budget for the school.
 5. **Public address (Cloudflare Tunnel):**
    1. Create a free Cloudflare account and add a domain to it (buy one there or move one in).
    2. Install cloudflared: `winget install --id Cloudflare.cloudflared`.

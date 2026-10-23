@@ -12,6 +12,8 @@ export type AuditAction =
   | 'org.create'
   | 'org.update'
   | 'teacher.assign_org'
+  | 'teacher.create'
+  | 'teacher.reset_password'
   | 'teacher.activate'
   | 'teacher.deactivate'
   | 'content.sync';

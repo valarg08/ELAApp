@@ -18,6 +18,6 @@ import { TokenService } from './token.service.js';
     { provide: APP_GUARD, useClass: CsrfGuard },
     { provide: APP_GUARD, useClass: RolesGuard },
   ],
-  exports: [PasswordService, TokenService],
+  exports: [AuthService, PasswordService, TokenService],
 })
 export class AuthModule {}

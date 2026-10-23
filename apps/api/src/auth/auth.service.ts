@@ -191,7 +191,7 @@ export class AuthService {
     });
   }
 
-  private async uniqueTeacherUsername(email: string): Promise<string> {
+  async uniqueTeacherUsername(email: string): Promise<string> {
     const base =
       (email.split('@')[0] ?? 'teacher').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') ||
       'teacher';

@@ -77,6 +77,18 @@ export const UpdateTeacherRequest = z.object({
 });
 export type UpdateTeacherRequest = z.infer<typeof UpdateTeacherRequest>;
 
+/** The admin creates teacher accounts when teacher sign-up is closed (public sites). */
+export const CreateTeacherRequest = z.object({
+  email: z.string().trim().toLowerCase().max(254).pipe(z.email('Enter a valid email address')),
+  displayName: z.string().trim().min(1).max(60),
+  orgId: z.string().min(1).nullable().optional(),
+});
+export type CreateTeacherRequest = z.infer<typeof CreateTeacherRequest>;
+
+/** Returned once, when a teacher is created or their password is reset; only a hash is stored. */
+export const TeacherCredential = z.object({ teacher: AdminTeacher, password: z.string() });
+export type TeacherCredential = z.infer<typeof TeacherCredential>;
+
 export const AdminAnalytics = z.object({
   totals: z.object({
     schools: z.number().int(),

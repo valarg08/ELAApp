@@ -2,7 +2,7 @@ import { AdminOrg, AdminTeacher } from '@storyforge/shared';
 import { Card, PageShell } from '@/components/ui';
 import { serverApi } from '@/lib/server-api';
 import { cellClass, count, tableClass } from '../format';
-import { CreateOrgForm, TeacherControls } from './school-forms';
+import { CreateOrgForm, CreateTeacherForm, TeacherControls } from './school-forms';
 
 export const dynamic = 'force-dynamic';
 
@@ -70,7 +70,7 @@ export default async function SchoolsPage() {
         <Card>
           <h2 className="mb-4 text-xl font-semibold">Teachers</h2>
           {teachers.length === 0 ? (
-            <p className="text-muted">No teachers have registered yet.</p>
+            <p className="text-muted">No teachers yet. Add the first one below.</p>
           ) : (
             <ul className="flex flex-col gap-4">
               {teachers.map((t) => (
@@ -100,6 +100,12 @@ export default async function SchoolsPage() {
               ))}
             </ul>
           )}
+          <h3 className="mt-6 mb-3 text-lg font-semibold">Add a teacher</h3>
+          <p className="mb-3 text-sm text-muted">
+            Use this when teacher sign-up is closed (the public site). The password is shown once;
+            give it to the teacher privately.
+          </p>
+          <CreateTeacherForm orgs={choices} />
         </Card>
       </div>
     </PageShell>
