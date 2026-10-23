@@ -12,7 +12,6 @@ import { serverApi } from '@/lib/server-api';
 import { SidePanel } from './course-frame';
 import { navFocus } from './course-styles';
 import { ProgressBar } from './progress-bar';
-import { TrackMemory } from './track-memory';
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
 
@@ -198,7 +197,6 @@ export async function CourseShell({
     <div
       className={`mx-auto grid w-full ${wide ? 'max-w-[100rem]' : 'max-w-7xl'} flex-1 gap-6 px-4 py-6 [--left:13rem] [--right:12rem] md:grid-cols-[var(--left)_minmax(0,1fr)_var(--right)] md:py-10 lg:[--left:16rem] lg:[--right:15rem] has-[[data-folded=chapters]]:[--left:3.75rem] has-[[data-folded=progress]]:[--right:3.75rem]`}
     >
-      <TrackMemory track={track} />
       <aside className="md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto">
         <SidePanel name="chapters" title="Chapters" side="left" collapsible={wide} mobileFold>
           {chapterNav}
