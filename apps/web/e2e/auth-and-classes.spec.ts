@@ -66,13 +66,13 @@ test('acceptance: teacher creates a class, adds 3 students, and a student logs i
   await tapPictures(page, secret);
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
 
-  await expect(page).toHaveURL(/\/(home|units\/[^/]+)$/);
+  await expect(page).toHaveURL(/\/(home|start)$/);
   await expect(page.getByRole('heading', { name: /Welcome, Maya!/ })).toBeVisible();
   await expect(page.getByText('7B Creative Writing')).toBeVisible();
 
   // Students can't open teacher pages.
   await page.goto('/classes');
-  await expect(page).toHaveURL(/\/(home|units\/[^/]+)$/);
+  await expect(page).toHaveURL(/\/(home|start)$/);
 
   // An expired access token is refreshed transparently before the page renders.
   await context.clearCookies({ name: 'sf_access' });
@@ -118,5 +118,5 @@ test('a wrong picture password shows a friendly error and clears the pictures', 
   await expect(page.getByRole('button', { name: 'Log in', exact: true })).toBeDisabled();
   await tapPictures(page, secret);
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
-  await expect(page).toHaveURL(/\/(home|units\/[^/]+)$/);
+  await expect(page).toHaveURL(/\/(home|start)$/);
 });

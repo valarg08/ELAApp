@@ -46,7 +46,7 @@ export async function studentLogin(page: Page, s: StudentLogin): Promise<void> {
       .click();
   }
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
-  await expect(page).toHaveURL(/\/(home|units\/[^/]+)$/);
+  await expect(page).toHaveURL(/\/(home|start)$/);
 }
 
 /** Open (create) the logged-in student's working copy for a Unit 1 lesson challenge, via the API. */
