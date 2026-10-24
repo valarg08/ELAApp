@@ -1304,7 +1304,7 @@ export async function runShowVsTell(text: string, ctx: AnalyzerContext) {
 
 - **Refusals:** always check `stop_reason` before reading content. Enable server-side model fallbacks (`fallbacks: "default"` with the `server-side-fallback-2026-07-01` beta) where the SDK surface in use supports it. If the whole chain declines, record `status: "declined"` and route the submission to the teacher. Children's writing about difficult themes is normal, so a decline must never show an error to the student.
 - **Prompt caching:** keep system prompts and rubric text byte-stable and first in the request; put the student text last. Check `usage.cache_read_input_tokens` in logs.
-- **Timeouts and retries:** SDK default retries (2) plus job-queue retries (3). Live checks time out at 20 s and show "Quill is thinking too hard, try again".
+- **Timeouts and retries:** SDK default retries (2) plus job-queue retries (3). Live checks time out at 20 s and show "Quill is thinking too hard, try again". Other failed Claude calls show the real reason in plain words (apps/api/src/ai/ai-error.ts `aiFailure`): a rejected API key or refused request ("Quill isn’t set up", with Anthropic’s message), no API credit ("Quill is paused"), rate limits (429), overload (529) and server errors, timeouts and connection failures, a garbled answer, and refusals; the API log records the status and Anthropic’s message (never student text).
 - **Prompt versioning:** every analyzer exports `PROMPT_VERSION`. Stored on `Feedback.promptVersion` and part of the cache key.
 - **Logging:** log analyzer id, model, token usage, latency, and outcome. **Never log student text** in application logs.
 

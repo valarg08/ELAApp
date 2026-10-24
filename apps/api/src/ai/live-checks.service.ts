@@ -60,6 +60,7 @@ import { grammarInput } from './grammar-input.js';
 import { paragraphInput } from './paragraph-input.js';
 import { essayInput } from './essay-input.js';
 import { orgSpendTodayCents } from './ai-budget.js';
+import { aiFailure } from './ai-error.js';
 
 /** Live checks give up after 20 s (DESIGN.md §8.6) and ask the student to try again. */
 const LIVE_TIMEOUT_MS = 20_000;
@@ -330,8 +331,7 @@ export class LiveChecksService {
         remaining: after,
       };
     } catch (error) {
-      if (error instanceof AppError) throw error;
-      throw unavailable();
+      throw aiFailure(error);
     }
   }
 

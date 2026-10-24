@@ -30,6 +30,7 @@ import { AppError, notFound } from '../common/app-error.js';
 import { CurriculumService } from '../curriculum/curriculum.service.js';
 import { SafetyService } from '../safety/safety.service.js';
 import { MathContentService } from './math-content.service.js';
+import { aiDeclined, aiFailure } from '../ai/ai-error.js';
 
 const unavailable = () =>
   new AppError(
@@ -180,10 +181,10 @@ export class MathTutorService {
           noCache: Boolean(working),
         },
       )
-      .catch(() => {
-        throw unavailable();
+      .catch((error: unknown) => {
+        throw aiFailure(error);
       });
-    if (outcome.status === 'declined') throw unavailable();
+    if (outcome.status === 'declined') throw aiDeclined();
 
     const steps = outcome.result.steps
       .filter((step) => !contradicts(step, problem, req.mode))
@@ -273,10 +274,10 @@ export class MathTutorService {
           text: '',
         },
       )
-      .catch(() => {
-        throw unavailable();
+      .catch((error: unknown) => {
+        throw aiFailure(error);
       });
-    if (outcome.status === 'declined') throw unavailable();
+    if (outcome.status === 'declined') throw aiDeclined();
     // The same guard as problems: a step stating a result the card doesn't is dropped.
     const stated = new Set(numbersIn(cardText(card)));
     const steps = outcome.result.steps

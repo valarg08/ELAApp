@@ -3,6 +3,7 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import type { Prisma } from '@storyforge/db';
 import type { AiGateway, AnalyzerDef, AnalyzerOutcome } from '@storyforge/ai';
 import { DatabaseService } from '../database/database.service.js';
+import { aiErrorReason } from './ai-error.js';
 
 export const AI_GATEWAY = Symbol('AI_GATEWAY');
 
@@ -65,9 +66,8 @@ export class AiRunnerService {
       outcome = await this.gateway.run(def, input);
     } catch (error) {
       await this.db.client.aiUsage.create({ data: { ...usageBase, outcome: 'error' } });
-      this.logger.warn(
-        `${def.id} failed: ${error instanceof Error ? error.constructor.name : 'error'}`,
-      );
+      // Anthropic's message (status, key/credit/limit problems), never the student's text.
+      this.logger.warn(`${def.id} failed: ${aiErrorReason(error)}`);
       throw error;
     }
 

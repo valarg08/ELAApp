@@ -25,6 +25,7 @@ import { AppError, notFound } from '../common/app-error.js';
 import { CurriculumService } from '../curriculum/curriculum.service.js';
 import { DatabaseService } from '../database/database.service.js';
 import { AiRunnerService } from './ai-runner.service.js';
+import { aiDeclined, aiFailure } from './ai-error.js';
 
 const HOUR = 3_600_000;
 /** Question sets per activity: repeat requests rotate through them (all cached and shared). */
@@ -324,10 +325,10 @@ export class TutorService {
         cacheScope: `${lesson.id}|card${req.cardIndex}|try${req.attempt}|g${klass.gradeLevel}`,
         text: '',
       })
-      .catch(() => {
-        throw unavailable();
+      .catch((error: unknown) => {
+        throw aiFailure(error);
       });
-    if (outcome.status === 'declined') throw unavailable();
+    if (outcome.status === 'declined') throw aiDeclined();
     return { ...outcome.result, remaining };
   }
 
@@ -374,10 +375,10 @@ export class TutorService {
           text: '',
         },
       )
-      .catch(() => {
-        throw unavailable();
+      .catch((error: unknown) => {
+        throw aiFailure(error);
       });
-    if (outcome.status === 'declined') throw unavailable();
+    if (outcome.status === 'declined') throw aiDeclined();
 
     const questions = outcome.result.questions
       .filter(
