@@ -34,8 +34,9 @@ never touches students' data. Updates reach students only when you run `update.p
       `update.ps1` again: pm2 starts the tunnel with the site (no Windows service or admin
       rights needed) and restarts it if it stops.
 6. **Start on boot and nightly backups:** run `deploy\windows\register-tasks.ps1` once. It adds
-   two tasks for your user: start pm2's saved processes at log-on, and back up the database
-   every night at 02:00 (`backup-db.ps1`, keeps the last 14).
+   three tasks for your user: start pm2's saved processes at log-on, back up the database
+   every night at 02:00 (`backup-db.ps1`, keeps the last 14), and empty the log files every night
+   at 02:10 (`clear-logs.ps1`), so the admin Logs page shows the day since then.
 7. **Power settings:** never sleep while plugged in; set Windows Update active hours to cover school
    and homework time.
 
