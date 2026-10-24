@@ -11,6 +11,7 @@ import type { ReactNode } from 'react';
 import { serverApi } from '@/lib/server-api';
 import { SidePanel } from './course-frame';
 import { navFocus } from './course-styles';
+import { MathFactSheets } from './math-fact-sheets';
 import { ProgressBar } from './progress-bar';
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
@@ -214,6 +215,7 @@ export async function CourseShell({
         <SidePanel name="progress" title="Progress" side="right" tone="cyan" collapsible={wide}>
           {progress}
           {extra}
+          {track === 'MATH' && <MathFactSheets />}
         </SidePanel>
       </aside>
     </div>

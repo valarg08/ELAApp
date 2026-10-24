@@ -8,7 +8,6 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { TrackTabs } from '@/components/track-tabs';
 import { CourseShell } from '@/components/course-shell';
-import { cyanFocus } from '@/components/course-styles';
 import { UnitCard } from '@/components/unit-card';
 import { points } from '@/features/math/copy';
 import { getMe, serverApi } from '@/lib/server-api';
@@ -21,7 +20,7 @@ const tile =
 /**
  * The Math track (math-design.md): AMC 10 preparation at the student's own pace, in four stages
  * with the units in order, today's review, the tests and sprints; the fact sheets sit in the
- * Progress panel.
+ * Progress panel (CourseShell shows them on every Math page).
  */
 export default async function MathHome() {
   const [me, units, home] = await Promise.all([
@@ -36,34 +35,7 @@ export default async function MathHome() {
   const tests = new Map((home?.tests ?? []).map((t) => [t.key, t]));
 
   return (
-    <CourseShell
-      track="MATH"
-      extra={
-        home && (
-          <section aria-labelledby="fact-sheets" className="mt-5 border-t border-brand/30 pt-4">
-            <h3 id="fact-sheets" className="text-sm font-semibold">
-              Fact sheets
-            </h3>
-            {home.factSheets.length === 0 ? (
-              <p className="mt-1 text-sm">None yet</p>
-            ) : (
-              <ul className="mt-1 flex flex-col gap-1">
-                {home.factSheets.map((f) => (
-                  <li key={f.number}>
-                    <Link
-                      href={`/math/facts/${f.number}`}
-                      className={`text-sm text-brand underline ${cyanFocus}`}
-                    >
-                      Unit {f.number}: {f.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
-        )
-      }
-    >
+    <CourseShell track="MATH">
       <div className="flex flex-col gap-8">
         <div>
           <h1 className="text-4xl font-bold">Math: AMC 10 practice</h1>
