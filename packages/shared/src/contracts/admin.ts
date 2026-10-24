@@ -161,3 +161,24 @@ export const ContentSyncResponse = z.object({
   errors: z.array(z.string()),
 });
 export type ContentSyncResponse = z.infer<typeof ContentSyncResponse>;
+
+/** One line (or a multi-line message, like a stack trace) from the server logs (DESIGN.md §11.9). */
+export const AdminLogEntry = z.object({
+  time: z.iso.datetime({ offset: true }),
+  /** The pm2 process without its prefix: api, worker, web or tunnel. */
+  source: z.string(),
+  level: z.enum(['error', 'warn', 'info']),
+  text: z.string(),
+});
+export type AdminLogEntry = z.infer<typeof AdminLogEntry>;
+
+export const AdminLogs = z.object({
+  /** False when the API has no LOG_DIR (development, or not run by pm2). */
+  available: z.boolean(),
+  hours: z.number().int(),
+  /** Newest first. */
+  entries: z.array(AdminLogEntry),
+  /** More than the page shows: only the newest entries are listed. */
+  truncated: z.boolean(),
+});
+export type AdminLogs = z.infer<typeof AdminLogs>;

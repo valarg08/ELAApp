@@ -11,6 +11,7 @@ const links = [
   { href: '/admin/schools', label: 'Schools & teachers' },
   { href: '/admin/ai', label: 'AI usage' },
   { href: '/admin/content', label: 'Curriculum' },
+  { href: '/admin/logs', label: 'Logs' },
 ] as const;
 
 /** The admin console (DESIGN.md §11.9): admins only. */

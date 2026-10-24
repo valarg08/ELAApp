@@ -17,6 +17,7 @@
     "CONTENT_DIR",
     "ANTHROPIC_API_KEY",
     "ANTHROPIC_WORKSPACE_ID",
+    "LOG_DIR",
     "AI_PROVIDER",
     "AI_MODEL",
     "AI_WORKER"

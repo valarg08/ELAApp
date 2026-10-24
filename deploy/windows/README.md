@@ -41,7 +41,8 @@ never touches students' data. Updates reach students only when you run `update.p
 
 ## Day to day
 
-- Status: `pm2 status`, logs: `pm2 logs`, the site's own check: `https://<your address>/status`.
+- Status: `pm2 status`, logs: **Logs** in the admin console (`/admin/logs`, the last 24 hours) or `pm2 logs`
+  (files in `%USERPROFILE%.pm2logs`), the site's own check: `https://<your address>/status`.
 - Update to the latest `main`: run `update.ps1` again (students may see a few seconds of downtime).
 - Restore a backup: `pg_restore --clean --no-owner --dbname=<DATABASE_URL> <file>.dump`.
 - End of the trial: `pm2 delete all`, `cloudflared tunnel delete owlery`, and drop the `owlery`

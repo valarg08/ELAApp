@@ -18,6 +18,8 @@ const EnvSchema = z.object({
   AI_WORKER: z.enum(['true', 'false']).optional(),
   /** Teacher self sign-up (POST /auth/register). Defaults to open, and to closed in production. */
   TEACHER_SIGNUP: z.enum(['open', 'closed']).optional(),
+  /** The pm2 log folder, read by the admin Logs page (set by deploy/windows/ecosystem.config.cjs). */
+  LOG_DIR: z.string().min(1).optional(),
 });
 
 export type Env = z.infer<typeof EnvSchema>;
