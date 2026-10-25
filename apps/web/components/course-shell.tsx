@@ -199,7 +199,7 @@ export async function CourseShell({
   return (
     <div
       data-course-shell
-      className="grid w-full flex-1 gap-4 px-4 py-6 [--left:13rem] [--right:12rem] md:min-h-0 md:grid-cols-[var(--left)_minmax(0,1fr)_var(--right)] md:grid-rows-[minmax(0,1fr)] md:px-3 md:py-3 lg:[--left:16rem] lg:[--right:15rem] has-[[data-folded=chapters]]:[--left:3.75rem] has-[[data-folded=progress]]:[--right:3.75rem]"
+      className="grid w-full flex-1 gap-4 px-4 py-6 [--left:13rem] [--right:12rem] md:min-h-0 md:grid-cols-[var(--left)_minmax(0,1fr)_var(--right)] md:grid-rows-[minmax(0,1fr)] md:px-3 md:py-3 lg:[--left:16rem] lg:[--right:15rem] xl:[--left:17rem] xl:[--right:18rem] has-[[data-folded=chapters]]:[--left:3.75rem] has-[[data-folded=progress]]:[--right:3.75rem]"
     >
       <aside className="md:overflow-y-auto md:[&>div]:min-h-full">
         <SidePanel name="chapters" title="Chapters" side="left" collapsible={wide} mobileFold>

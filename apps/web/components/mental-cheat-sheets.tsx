@@ -29,7 +29,8 @@ export async function MentalCheatSheets() {
           <h3 id="tip-of-the-day" className="text-sm font-semibold">
             <span aria-hidden="true">💡</span> Tip of the day
           </h3>
-          <p className="mt-1 text-sm">
+          {/* Math at text size (not 1.1em) so a sum fits the narrow panel. */}
+          <p className="mt-1 text-sm [&_math]:text-[1em]!">
             <MathText text={tip.tip} />
           </p>
         </section>
