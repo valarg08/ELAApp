@@ -346,12 +346,36 @@ export const MATH_TEST_KINDS = [
   'sprint',
   'review',
   'light-review',
+  // Mental Math (mental-math-design.md): the daily review, speed sprints, placement and level checks.
+  'mental-review',
+  'mental-sprint',
+  'mental-placement',
+  'mental-level',
 ] as const;
 export const MathTestKind = z.enum(MATH_TEST_KINDS);
 export type MathTestKind = z.infer<typeof MathTestKind>;
 
+/** Mental Math's start keys (mental-math-design.md): they run on the same test engine. */
+export const MENTAL_START_KEYS = [
+  'mental-review',
+  'mental-sprint',
+  'mental-placement',
+  'mental-level-1',
+  'mental-level-2',
+  'mental-level-3',
+  'mental-level-4',
+] as const;
+export const MentalStartKey = z.enum(MENTAL_START_KEYS);
+export type MentalStartKey = z.infer<typeof MentalStartKey>;
+/** A Mental Math kind (its attempts live on the Mental Math pages). */
+export const isMentalKind = (kind: string) => kind.startsWith('mental-');
+
 /** What POST /math/tests/:key/start accepts. */
-export const MathStartKey = z.union([MathTestKey, z.enum(['sprint', 'review', 'light-review'])]);
+export const MathStartKey = z.union([
+  MathTestKey,
+  z.enum(['sprint', 'review', 'light-review']),
+  MentalStartKey,
+]);
 export type MathStartKey = z.infer<typeof MathStartKey>;
 
 /** A problem in an attempt (stored in MathTestAttempt.items). */
@@ -478,6 +502,21 @@ export const TestResult = z.object({
   /** Diagnostic: the suggested focus units and the change since the last diagnostic. */
   focusUnits: z.array(z.object({ number: z.number(), title: z.string(), reason: z.string() })),
   previousPoints: z.number().nullable(),
+  /** Mental Math attempts: time taken, the sprint best, the placement and level-check outcome. */
+  mental: z
+    .object({
+      seconds: z.number(),
+      best: z.object({ correct: z.number(), seconds: z.number() }).nullable(),
+      newBest: z.boolean(),
+      placement: z
+        .object({ level: z.number(), title: z.string(), startUnit: z.number() })
+        .nullable(),
+      levelCheck: z
+        .object({ level: z.number(), passed: z.boolean(), needed: z.number() })
+        .nullable(),
+    })
+    .nullable()
+    .default(null),
 });
 export type TestResult = z.infer<typeof TestResult>;
 

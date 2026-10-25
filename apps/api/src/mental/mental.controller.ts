@@ -1,5 +1,10 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ErrorCode, type FactSheetView, type MentalHome } from '@storyforge/shared';
+import {
+  ErrorCode,
+  type FactSheetView,
+  type MentalHome,
+  type MentalProgress,
+} from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { CurrentUser, Roles } from '../auth/decorators.js';
 import { notFound } from '../common/app-error.js';
@@ -13,6 +18,12 @@ export class MentalController {
   @Get('home')
   home(@CurrentUser() user: AuthUser): Promise<MentalHome> {
     return this.mental.home(user);
+  }
+
+  @Roles('STUDENT')
+  @Get('progress')
+  progress(@CurrentUser() user: AuthUser): Promise<MentalProgress> {
+    return this.mental.progress(user);
   }
 
   @Get('cheat-sheets/:unitNumber')

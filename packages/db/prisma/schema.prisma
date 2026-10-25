@@ -217,6 +217,7 @@ model User {
   mathSkillStates   MathSkillState[]
   mathTestAttempts  MathTestAttempt[]
   mathPastPapers    MathPastPaper[]
+  mentalStart       MentalStart?
   stats             StudentStats?
   createdAt         DateTime          @default(now())
   deletedAt         DateTime? // soft delete, hard purge after retention window
@@ -430,7 +431,7 @@ model MathTestAttempt {
   id               String    @id @default(cuid())
   studentId        String
   student          User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  kind             String // diagnostic | checkpoint | mock | sprint | review | light-review
+  kind             String // diagnostic | checkpoint | mock | sprint | review | light-review | mental-*
   testKey          String // "diagnostic", "checkpoint-1", "sprint", "review:2026-10-16"
   items            Json // MathTestItem[] (Zod)
   answers          Json // { [index]: MathTestAnswer } (Zod)
@@ -442,6 +443,16 @@ model MathTestAttempt {
   total            Int
 
   @@index([studentId, kind, startedAt])
+}
+
+/// Where a student starts Mental Math after the placement check (mental-math-design.md): every unit
+/// up to startUnit is open, and later units open in order from there.
+model MentalStart {
+  studentId String   @id
+  student   User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  level     Int
+  startUnit Int
+  updatedAt DateTime @updatedAt
 }
 
 /// The past-paper log (math-design.md §4.15): an official AMC 10 paper the student worked outside

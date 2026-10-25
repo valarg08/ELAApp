@@ -1,4 +1,9 @@
-import { MentalHome as MentalHomeView, UnitSummary } from '@storyforge/shared';
+import {
+  MENTAL_SPRINT_MIN,
+  type MentalLevelCheck,
+  MentalHome as MentalHomeView,
+  UnitSummary,
+} from '@storyforge/shared';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { CourseShell } from '@/components/course-shell';
@@ -6,6 +11,8 @@ import { MathText } from '@/components/math-text';
 import { tipOfTheDay } from '@/components/mental-cheat-sheets';
 import { TrackTabs } from '@/components/track-tabs';
 import { UnitCard } from '@/components/unit-card';
+import { clock } from '@/features/math/copy';
+import { currentUnit } from '@/lib/current-unit';
 import { getMe, serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
@@ -13,7 +20,8 @@ export const dynamic = 'force-dynamic';
 /**
  * The Mental Math track (mental-math-design.md): number sense for ages 7–14 in four levels by age,
  * each unit one pattern. Units not written yet show as coming soon; the cheat sheets and the day's
- * tip sit in the Progress panel.
+ * tip sit in the Progress panel. Practice: the daily review with its streak, speed sprints with a
+ * personal best, the placement check, and a level check (with a badge) after each level.
  */
 export default async function MentalHome() {
   const [me, units, home] = await Promise.all([
@@ -22,7 +30,8 @@ export default async function MentalHome() {
     serverApi('/mental/home', MentalHomeView),
   ]);
   if (!me) redirect('/join');
-  const current = units?.find((u) => u.available && u.completedLessons < u.lessonCount);
+  const current = currentUnit(units ?? []);
+  const practice = home?.practice ?? null;
   const byNumber = new Map((units ?? []).map((u) => [u.number, u]));
   // A locked unit waits for the last built unit before it (a planned unit may not be built yet).
   const previousOpen = (n: number) =>
@@ -49,7 +58,7 @@ export default async function MentalHome() {
         <TrackTabs current="MENTAL" />
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {current && (
+          {current && current.completedLessons < current.lessonCount && (
             <Link
               href={`/units/${current.slug}`}
               className="rounded-2xl border-2 border-accent bg-card p-5 shadow-sm transition hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand"
@@ -80,6 +89,70 @@ export default async function MentalHome() {
             </aside>
           )}
         </div>
+
+        {practice && (
+          <section aria-labelledby="practice" className="flex flex-col gap-4">
+            <h2 id="practice" className="text-2xl font-semibold">
+              Practice
+            </h2>
+            <ul className="grid gap-4 sm:grid-cols-3">
+              <PracticeCard
+                href="/mental/tests/mental-review"
+                emoji="🔁"
+                title="Today’s review"
+                line={
+                  practice.review.doneToday
+                    ? '✓ Done for today'
+                    : practice.review.due > 0
+                      ? `${practice.review.due} questions due`
+                      : 'Nothing due yet'
+                }
+                extra={
+                  practice.review.streak > 0
+                    ? `🔥 ${practice.review.streak} ${practice.review.streak === 1 ? 'day' : 'days'} in a row`
+                    : 'Do it every day to build a streak'
+                }
+              />
+              <PracticeCard
+                href="/mental/tests/mental-sprint"
+                emoji="⚡"
+                title="Speed sprint"
+                line={
+                  practice.sprint.available < MENTAL_SPRINT_MIN
+                    ? 'Opens after your first lesson'
+                    : '10 questions, 3 minutes'
+                }
+                extra={
+                  practice.sprint.best
+                    ? `Your best: ${practice.sprint.best.correct} right in ${clock(practice.sprint.best.seconds)}`
+                    : 'Set your first best score'
+                }
+              />
+              <PracticeCard
+                href="/mental/tests/mental-placement"
+                emoji="🧭"
+                title="Placement check"
+                line={
+                  practice.placement.level
+                    ? `You start at Level ${practice.placement.level}`
+                    : 'Not sure where to start?'
+                }
+                extra="12 questions from all four levels"
+              />
+            </ul>
+            <p className="flex flex-wrap gap-x-6 gap-y-2">
+              <Link href="/mental/progress" className="text-brand underline">
+                My skills
+              </Link>
+              <Link href="/mental/mistakes" className="text-brand underline">
+                My mistakes
+              </Link>
+              <Link href="/mental/parents" className="text-brand underline">
+                Parent guide
+              </Link>
+            </p>
+          </section>
+        )}
 
         {(home?.levels ?? []).map((level) => (
           <section
@@ -119,9 +192,77 @@ export default async function MentalHome() {
                 );
               })}
             </ol>
+            {practice?.levelChecks
+              .filter((c) => c.level === level.number)
+              .map((c) => (
+                <LevelCheckCard key={c.level} check={c} />
+              ))}
           </section>
         ))}
       </div>
     </CourseShell>
+  );
+}
+
+function PracticeCard({
+  href,
+  emoji,
+  title,
+  line,
+  extra,
+}: {
+  href: string;
+  emoji: string;
+  title: string;
+  line: string;
+  extra: string;
+}) {
+  return (
+    <li>
+      <Link
+        href={href}
+        className="block h-full rounded-2xl border border-border bg-card p-5 shadow-sm transition hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand"
+      >
+        <p className="text-lg font-bold">
+          <span aria-hidden="true">{emoji} </span>
+          {title}
+        </p>
+        <p className="mt-1">{line}</p>
+        <p className="mt-1 text-sm text-muted">{extra}</p>
+      </Link>
+    </li>
+  );
+}
+
+/** The level check after a level's units: locked until they are done, then a badge to earn. */
+function LevelCheckCard({ check }: { check: MentalLevelCheck }) {
+  const body = (
+    <div className="flex flex-wrap items-center justify-between gap-2">
+      <p className="font-semibold">
+        <span aria-hidden="true">{check.passed ? '🏅 ' : '⭐ '}</span>
+        Level {check.level} check
+        {check.passed && ' · badge earned'}
+      </p>
+      <p className="text-sm text-muted">
+        {!check.unlocked
+          ? `🔒 ${check.lockedReason ?? 'Not open yet.'}`
+          : check.best !== null
+            ? `Best: ${check.best} of 10`
+            : '10 questions · 9 right for the badge'}
+      </p>
+    </div>
+  );
+  const base = 'block rounded-2xl border-2 border-dashed border-border bg-card p-4';
+  return check.unlocked ? (
+    <Link
+      href={`/mental/tests/mental-level-${check.level}`}
+      className={`${base} transition hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand`}
+    >
+      {body}
+    </Link>
+  ) : (
+    <div className={`${base} opacity-60`} aria-disabled="true">
+      {body}
+    </div>
   );
 }

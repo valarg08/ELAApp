@@ -8,6 +8,7 @@ import {
   SaveTestAnswerResponse,
   type TestItemFeedback,
   TestResult,
+  isMentalKind,
 } from '@storyforge/shared';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -17,6 +18,7 @@ import { ApiError, apiJson } from '@/lib/api-client';
 import { MATH_COPY, clock } from './copy';
 import { ConfidenceChips, Scratchpad, useLocalSetting, useNow } from './practice-tools';
 import { ProblemView } from './problem-view';
+import { SimpleAnswers } from './simple-answers';
 import { TestResultView } from './test-result';
 
 const PROMPT_KEY = 'storyforge.math.skipPrompt';
@@ -34,10 +36,15 @@ export function MathAttempt({
   back?: { href: string; label: string };
 }) {
   const [state, setState] = useState(initial);
-  return 'problems' in state ? (
-    <TestPlayer view={state} onFinished={setState} />
-  ) : (
-    <TestResultView result={state} back={back} />
+  // Mental Math answers are plain numbers: the answer box hides the √ π / ^ helpers.
+  return (
+    <SimpleAnswers value={isMentalKind(state.kind)}>
+      {'problems' in state ? (
+        <TestPlayer view={state} onFinished={setState} />
+      ) : (
+        <TestResultView result={state} back={back} />
+      )}
+    </SimpleAnswers>
   );
 }
 
@@ -230,7 +237,10 @@ export function TestPlayer({
     (_, i) => answers[String(i)]?.answer || feedback[String(i)],
   ).length;
   const blanks = n - answeredCount;
+  // Mental Math (ages 7–14) keeps it simple: no confidence chips or skip prompts.
+  const mental = isMentalKind(view.kind);
   const showSkipPrompt =
+    !mental &&
     timed &&
     promptOn &&
     !view.instant &&
@@ -248,7 +258,7 @@ export function TestPlayer({
         </div>
         {left !== null && (
           <p
-            className={`font-mono text-xl font-semibold tabular-nums ${left <= 300 ? 'text-warn' : 'text-muted'}`}
+            className={`font-mono text-xl font-semibold tabular-nums ${left <= Math.min(300, view.timeLimitSeconds! / 3) ? 'text-warn' : 'text-muted'}`}
           >
             <span className="sr-only">Time left: </span>
             {clock(left)}
@@ -332,7 +342,7 @@ export function TestPlayer({
           disabled={locked || busy}
           allowBlank={!view.instant}
         />
-        {current?.answer && !locked && (
+        {current?.answer && !locked && !mental && (
           <ConfidenceChips
             value={current.confidence}
             onChange={(c: MathConfidence) => update({ confidence: c })}
@@ -454,11 +464,14 @@ export function StartTest({
   startKey,
   label,
   lessonId,
+  attemptsPath = '/math/attempts',
 }: {
   startKey: string;
   label: string;
   /** Started from a lesson (a Unit 15 mock): the attempt links back to it. */
   lessonId?: string;
+  /** Where attempts open (Mental Math has its own pages). */
+  attemptsPath?: string;
 }) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
@@ -475,7 +488,7 @@ export function StartTest({
         {},
       );
       router.push(
-        `/math/attempts/${encodeURIComponent(v.attemptId)}${lessonId ? `?lesson=${encodeURIComponent(lessonId)}` : ''}`,
+        `${attemptsPath}/${encodeURIComponent(v.attemptId)}${lessonId ? `?lesson=${encodeURIComponent(lessonId)}` : ''}`,
       );
     } catch (e) {
       setError(message(e, 'Could not start it. Try again.'));

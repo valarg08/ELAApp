@@ -66,6 +66,7 @@ export function TestResultView({
               : ' Your guesses paid off this time.'}
           </p>
         )}
+        {result.mental && <MentalOutcome result={result} mental={result.mental} />}
         {result.previousPoints !== null && (
           <p className="mt-2 text-muted">
             Last time: {points(result.previousPoints)} points (
@@ -171,14 +172,17 @@ export function TestResultView({
         </summary>
         <ol className="mt-4 flex flex-col gap-6">
           {result.review.map((item) => (
-            <ReviewItem key={item.number} item={item} />
+            <ReviewItem key={item.number} item={item} mental={Boolean(result.mental)} />
           ))}
         </ol>
       </details>
 
       <div className="flex flex-wrap gap-3">
         <ButtonLink href={back.href}>{back.label}</ButtonLink>
-        <ButtonLink href="/math/progress" variant="secondary">
+        <ButtonLink
+          href={result.mental ? '/mental/progress' : '/math/progress'}
+          variant="secondary"
+        >
           My skills
         </ButtonLink>
       </div>
@@ -186,7 +190,56 @@ export function TestResultView({
   );
 }
 
-function ReviewItem({ item }: { item: TestReviewItem }) {
+/** Mental Math: the time taken and the sprint best, the placement's level, a level check's badge. */
+function MentalOutcome({
+  result,
+  mental,
+}: {
+  result: TestResult;
+  mental: NonNullable<TestResult['mental']>;
+}) {
+  return (
+    <div className="mt-2 flex flex-col gap-2">
+      <p>
+        Time: <strong>{clock(mental.seconds)}</strong>
+        {mental.best && result.kind === 'mental-sprint' && (
+          <>
+            {' '}
+            · your best: {mental.best.correct} right in {clock(mental.best.seconds)}
+          </>
+        )}
+      </p>
+      {mental.newBest && (
+        <p className="text-lg font-semibold text-ok">
+          <span aria-hidden="true">🏆 </span>A new personal best!
+        </p>
+      )}
+      {mental.placement && (
+        <p className="text-lg">
+          Start at{' '}
+          <strong>
+            Level {mental.placement.level}: {mental.placement.title}
+          </strong>
+          .{' '}
+          {mental.placement.startUnit > 1
+            ? `Units 1 to ${mental.placement.startUnit} are now open: begin with Mental Math Unit ${mental.placement.startUnit}, or go back to any earlier unit.`
+            : 'Begin with Mental Math Unit 1.'}
+        </p>
+      )}
+      {mental.levelCheck && (
+        <p className={`text-lg font-semibold ${mental.levelCheck.passed ? 'text-ok' : ''}`}>
+          {mental.levelCheck.passed
+            ? `🏅 Level ${mental.levelCheck.level} badge earned!`
+            : `Not yet: you need ${mental.levelCheck.needed} right for the Level ${mental.levelCheck.level} badge. Redo the practice of the skills you missed, then try again.`}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function ReviewItem({ item, mental }: { item: TestReviewItem; mental: boolean }) {
+  // Placement problems come from lessons the student may not have opened: no Quill or error log.
+  const located = Boolean(item.locator.lessonId) || item.locator.activityKey.startsWith('test:');
   const v = VERDICT[item.verdict];
   const [logged, setLogged] = useState<'idle' | 'busy' | 'done'>('idle');
   const [error, setError] = useState<string | null>(null);
@@ -237,23 +290,30 @@ function ReviewItem({ item }: { item: TestReviewItem }) {
         <MathText as="p" text={item.solution} className="mt-2 leading-relaxed" />
       </details>
       <div className="flex flex-col gap-2">
-        {item.verdict === 'wrong' && item.given && (
+        {located && item.verdict === 'wrong' && item.given && (
           <QuillMath locator={item.locator} mode="mistake" answer={item.given} />
         )}
-        <QuillMath locator={item.locator} mode="explain" />
-        {item.verdict !== 'correct' && (
+        {located && <QuillMath locator={item.locator} mode="explain" />}
+        {located && item.verdict !== 'correct' && (
           <Button
             variant="secondary"
             className="self-start"
             disabled={logged !== 'idle'}
             onClick={() => void addToLog()}
           >
-            {logged === 'done' ? `✓ ${MATH_COPY.inLog}` : MATH_COPY.addToLog}
+            {logged === 'done'
+              ? `✓ ${mental ? 'In your mistakes list' : MATH_COPY.inLog}`
+              : mental
+                ? 'Add to my mistakes list'
+                : MATH_COPY.addToLog}
           </Button>
         )}
         {logged === 'done' && (
-          <Link href="/math/error-log" className="text-sm text-brand underline">
-            Open my error log
+          <Link
+            href={mental ? '/mental/mistakes' : '/math/error-log'}
+            className="text-sm text-brand underline"
+          >
+            Open my {mental ? 'mistakes list' : 'error log'}
           </Link>
         )}
         <ErrorMessage message={error} />

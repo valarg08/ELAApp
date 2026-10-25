@@ -20,11 +20,13 @@ import {
   type SaveTestAnswerRequest,
   type SaveTestAnswerResponse,
   TARGET_DIFFICULTY,
+  MENTAL_SPRINT_SECONDS,
   TIME_SINK_SECONDS,
   type TestItemFeedback,
   type TestResult,
   answerLabel,
   bandOf,
+  isMentalKind,
   isMockKey,
   markAnswer,
   newSeed,
@@ -40,18 +42,27 @@ import { DatabaseService } from '../database/database.service.js';
 import { AnswerLogService } from './answer-log.service.js';
 import { ErrorLogService, redoSeed } from './error-log.service.js';
 import { MasteryService } from './mastery.service.js';
-import { MathContentService, type PoolProblem, testKeyOf } from './math-content.service.js';
+import {
+  type EngineTrack,
+  MathContentService,
+  type PoolProblem,
+  testKeyOf,
+  trackKeyFilter,
+} from './math-content.service.js';
+import { MentalPracticeService, mentalLevelOf } from './mental-practice.service.js';
+import { dayOf, reviewStreak } from './streak.js';
 
 const Items = z.array(MathTestItem);
 const Answers = z.record(z.string(), MathTestAnswer);
 /** Answers saved this long after the deadline still count (network delays). */
 const GRACE_MS = 30_000;
-const DAY = 86_400_000;
-
-const dayOf = (d: Date) => d.toISOString().slice(0, 10);
 
 /** Instant-check kinds: each answer is checked as it is given. */
-const INSTANT: readonly MathTestKind[] = ['review', 'light-review'];
+const INSTANT: readonly MathTestKind[] = ['review', 'light-review', 'mental-review'];
+/** Once-a-day kinds (their attempt key carries the day). */
+const DAILY = ['review', 'light-review', 'mental-review'] as const;
+const isDaily = (key: string): key is (typeof DAILY)[number] =>
+  (DAILY as readonly string[]).includes(key);
 /** Kinds scored like the AMC. */
 const AMC_SCORED: readonly MathTestKind[] = ['diagnostic', 'checkpoint', 'mock', 'sprint'];
 
@@ -103,6 +114,7 @@ export class MathTestsService {
     private readonly answers: AnswerLogService,
     private readonly errorLog: ErrorLogService,
     private readonly mastery: MasteryService,
+    private readonly mental: MentalPracticeService,
   ) {}
 
   // ───────── Starting ─────────
@@ -118,7 +130,7 @@ export class MathTestsService {
       if (!this.expired(open)) return this.view(open);
       await this.finish(user, open);
     }
-    if (key === 'review' || key === 'light-review') {
+    if (isDaily(key)) {
       const done = await this.db.client.mathTestAttempt.count({
         where: { studentId: user.id, testKey, submittedAt: { not: null } },
       });
@@ -127,7 +139,7 @@ export class MathTestsService {
           HttpStatus.CONFLICT,
           ErrorCode.VALIDATION_FAILED,
           'Done for today',
-          key === 'review'
+          key === 'review' || key === 'mental-review'
             ? "Today's review is done. Come back tomorrow."
             : 'Light review is done for today.',
         );
@@ -150,7 +162,7 @@ export class MathTestsService {
 
   /** The stored key of an attempt: reviews are one per day. */
   private attemptKey(key: MathStartKey): string {
-    return key === 'review' || key === 'light-review' ? `${key}:${dayOf(new Date())}` : key;
+    return isDaily(key) ? `${key}:${dayOf(new Date())}` : key;
   }
 
   private async plan(
@@ -167,6 +179,31 @@ export class MathTestsService {
       return { kind: 'review', items: await this.reviewItems(user), timeLimitSeconds: null };
     if (key === 'light-review')
       return { kind: 'light-review', items: await this.lightItems(user), timeLimitSeconds: null };
+    if (key === 'mental-review')
+      return {
+        kind: 'mental-review',
+        items: await this.reviewItems(user, 'MENTAL'),
+        timeLimitSeconds: null,
+      };
+    if (key === 'mental-sprint')
+      return {
+        kind: 'mental-sprint',
+        items: await this.mental.sprintItems(user),
+        timeLimitSeconds: MENTAL_SPRINT_SECONDS,
+      };
+    if (key === 'mental-placement')
+      return {
+        kind: 'mental-placement',
+        items: await this.mental.placementItems(),
+        timeLimitSeconds: null,
+      };
+    const level = mentalLevelOf(key);
+    if (level)
+      return {
+        kind: 'mental-level',
+        items: await this.mental.levelItems(user, level),
+        timeLimitSeconds: null,
+      };
 
     const test = await this.content.test(key);
     if (!test) throw notFound(ErrorCode.NOT_FOUND, 'Test not found.');
@@ -256,8 +293,11 @@ export class MathTestsService {
     return options[0] ?? null;
   }
 
-  /** The daily review: due error-log redos first, then due skills (interleaved), about 6. */
-  private async reviewItems(user: AuthUser): Promise<MathTestItem[]> {
+  /**
+   * The daily review: due error-log redos first, then due skills (interleaved), about 6. Math and
+   * Mental Math each review their own lessons and error log.
+   */
+  private async reviewItems(user: AuthUser, track: EngineTrack = 'MATH'): Promise<MathTestItem[]> {
     const now = new Date();
     const today = dayOf(now);
     const items: MathTestItem[] = [];
@@ -266,6 +306,7 @@ export class MathTestsService {
         studentId: user.id,
         resolvedAt: null,
         createdAt: { lt: new Date(`${today}T00:00:00Z`) },
+        ...trackKeyFilter(track),
       },
       orderBy: { createdAt: 'asc' },
       take: 10,
@@ -284,7 +325,7 @@ export class MathTestsService {
       });
     }
 
-    const pool = await this.content.pool(user);
+    const pool = await this.content.pool(user, track);
     const levels = await this.mastery.studentLevels(user.id);
     const states = await this.db.client.mathSkillState.findMany({
       where: { studentId: user.id },
@@ -309,7 +350,7 @@ export class MathTestsService {
         HttpStatus.UNPROCESSABLE_ENTITY,
         ErrorCode.VALIDATION_FAILED,
         'Nothing yet',
-        'Finish a Math lesson first: the review brings back what you have practised.',
+        `Finish a ${track === 'MENTAL' ? 'Mental Math' : 'Math'} lesson first: the review brings back what you have practised.`,
       );
     return items;
   }
@@ -488,7 +529,8 @@ export class MathTestsService {
       };
       if (!instant)
         records.push({
-          source: kind === 'sprint' ? ('sprint' as const) : ('test' as const),
+          source:
+            kind === 'sprint' || kind === 'mental-sprint' ? ('sprint' as const) : ('test' as const),
           lessonId: item.lessonId ?? null,
           activityKey: item.activityKey,
           problemId: item.problemId,
@@ -510,6 +552,16 @@ export class MathTestsService {
       },
     });
     await this.answers.record(user.id, records);
+    if (kind === 'mental-placement')
+      await this.mental.recordPlacement(
+        user.id,
+        await this.mental.placementOutcome(
+          resolved.map(({ item }, i) => ({
+            activityKey: item.activityKey,
+            verdict: answers[String(i)]?.verdict ?? 'blank',
+          })),
+        ),
+      );
     return updated;
   }
 
@@ -647,6 +699,12 @@ export class MathTestsService {
       review,
       focusUnits: kind === 'diagnostic' ? await this.focusUnits(review, skillOf) : [],
       previousPoints: previous?.points ?? null,
+      mental: isMentalKind(kind)
+        ? await this.mental.extras(
+            attempt,
+            review.map((r) => ({ activityKey: r.locator.activityKey, verdict: r.verdict })),
+          )
+        : null,
     };
   }
 
@@ -681,6 +739,12 @@ export class MathTestsService {
   private async titles(attempt: MathTestAttempt): Promise<{ title: string; instructions: string }> {
     const kind = attempt.kind as MathTestKind;
     if (kind === 'sprint' || kind === 'review' || kind === 'light-review') return TITLES[kind];
+    if (isMentalKind(kind))
+      return this.mental.titles(
+        kind,
+        attempt.testKey,
+        await this.mental.levelTitle(attempt.testKey),
+      );
     const test = await this.content.test(attempt.testKey);
     return { title: test?.title ?? 'Test', instructions: test?.instructions ?? '' };
   }
@@ -744,22 +808,8 @@ export class MathTestsService {
     if (user.role !== 'STUDENT') throw forbidden('Tests are for students.');
   }
 
-  /** Review streak: days in a row (to today or yesterday) with the daily review done. */
-  async streak(studentId: string): Promise<number> {
-    const rows = await this.db.client.mathTestAttempt.findMany({
-      where: { studentId, kind: 'review', submittedAt: { not: null } },
-      orderBy: { startedAt: 'desc' },
-      take: 120,
-      select: { testKey: true },
-    });
-    const days = new Set(rows.map((r) => r.testKey.slice('review:'.length)));
-    let streak = 0;
-    let t = Date.now();
-    if (!days.has(dayOf(new Date(t)))) t -= DAY;
-    while (days.has(dayOf(new Date(t)))) {
-      streak += 1;
-      t -= DAY;
-    }
-    return streak;
+  /** Review streak: days in a row (to today or yesterday) with the daily Math review done. */
+  streak(studentId: string): Promise<number> {
+    return reviewStreak(this.db, studentId, 'review');
   }
 }

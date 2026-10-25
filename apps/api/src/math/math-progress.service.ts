@@ -33,7 +33,7 @@ import { ClassAccessService } from '../classes/class-access.service.js';
 import { CurriculumService } from '../curriculum/curriculum.service.js';
 import { DatabaseService } from '../database/database.service.js';
 import { MasteryService } from './mastery.service.js';
-import { MathContentService } from './math-content.service.js';
+import { MathContentService, trackKeyFilter } from './math-content.service.js';
 import { MathTestsService } from './math-tests.service.js';
 import { PastPaperService } from './past-paper.service.js';
 
@@ -148,6 +148,7 @@ export class MathProgressService {
     const dueRedos = await this.db.client.mathErrorLog.count({
       where: {
         studentId: user.id,
+        ...trackKeyFilter('MATH'),
         resolvedAt: null,
         createdAt: { lt: new Date(`${dayOf(now)}T00:00:00Z`) },
       },

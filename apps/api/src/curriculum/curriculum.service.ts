@@ -65,17 +65,21 @@ export const isSelfPaced = (track: Track, classSelfPaced: boolean) =>
 /**
  * Availability of every unit for one class and student, walking each track's units in order.
  * The tracks are separate: finishing Story Writing units never opens Essay Writing ones.
+ * `openThrough` opens a track's units up to a number as if the earlier ones were done (the Mental
+ * Math placement check); later units then open in order from there.
  */
 export function classAvailability(
   units: readonly UnitWithLessons[],
   pacing: ReadonlyMap<string, ClassUnit>,
   selfPaced: boolean,
   completedLessons: ReadonlySet<string>,
+  openThrough: ReadonlyMap<Track, number> = new Map(),
 ): Map<string, Availability> {
   const result = new Map<string, Availability>();
   const previousDone = new Map<Track, boolean>();
   for (const unit of units.toSorted((a, b) => a.number - b.number)) {
-    const done = previousDone.get(unit.track) ?? true;
+    const done =
+      unit.number <= (openThrough.get(unit.track) ?? 0) || (previousDone.get(unit.track) ?? true);
     result.set(
       unit.id,
       unitAvailability(unit, pacing.get(unit.id), {
@@ -156,6 +160,7 @@ export class CurriculumService {
             student?.pacing ?? new Map(),
             student?.selfPaced ?? false,
             completed,
+            await this.openThrough(user),
           ).get(unit.id) ?? { available: false, lockReason: 'LOCKED' as const, dueAt: null })
         : this.teacherPreview(unit);
     const lessonLocks = isSelfPaced(unit.track, !!student?.selfPaced);
@@ -485,11 +490,14 @@ export class CurriculumService {
       include: { lessons: { select: { id: true } } },
     });
     const completed = await this.completedLessonIds(user);
+    const open = await this.openThrough(user);
     let finishPrevious = false;
     for (const e of enrollments) {
       const selfPaced = classSettings(e.class.settings).selfPaced;
       const pacing = new Map(e.class.unitAssignments.map((p) => [p.unitId, p]));
-      const availability = classAvailability(units, pacing, selfPaced, completed).get(unit.id);
+      const availability = classAvailability(units, pacing, selfPaced, completed, open).get(
+        unit.id,
+      );
       if (availability?.available) return { id: e.classId, selfPaced };
       if (availability?.lockReason === 'FINISH_PREVIOUS') finishPrevious = true;
     }
@@ -532,7 +540,15 @@ export class CurriculumService {
       student?.pacing ?? new Map(),
       student?.selfPaced ?? false,
       completed,
+      await this.openThrough(user),
     );
+  }
+
+  /** Units opened ahead of order: the Mental Math placement check's starting unit. */
+  private async openThrough(user: AuthUser): Promise<Map<Track, number>> {
+    if (user.role !== 'STUDENT') return new Map();
+    const start = await this.db.client.mentalStart.findUnique({ where: { studentId: user.id } });
+    return start ? new Map([['MENTAL', start.startUnit]]) : new Map();
   }
   private teacherPreview(unit: Unit): Availability {
     return unit.published

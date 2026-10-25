@@ -97,8 +97,11 @@ export class MathController {
 
   @Roles('STUDENT')
   @Get('math/error-log')
-  errorLogList(@CurrentUser() user: AuthUser): Promise<ErrorLogList> {
-    return this.errorLog.list(user);
+  errorLogList(
+    @CurrentUser() user: AuthUser,
+    @Query('track') track?: string,
+  ): Promise<ErrorLogList> {
+    return this.errorLog.list(user, track === 'mental' ? 'MENTAL' : 'MATH');
   }
 
   @Roles('STUDENT')

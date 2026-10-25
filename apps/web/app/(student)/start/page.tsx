@@ -2,6 +2,7 @@ import { TRACK_HOME, TRACK_NAMES, Track, UnitSummary, unitLabel } from '@storyfo
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { ProgressBar } from '@/components/progress-bar';
+import { currentUnit } from '@/lib/current-unit';
 import { getMe, serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
@@ -14,12 +15,6 @@ const TRACKS: { track: Track; emoji: string }[] = [
 ];
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
-
-/** The first open unit with lessons left; when all are done, the last open one. */
-function currentUnit(units: UnitSummary[]) {
-  const open = units.filter((u) => u.available);
-  return open.find((u) => u.completedLessons < u.lessonCount) ?? open.at(-1);
-}
 
 /**
  * A student's start page (after signing in and the logo, DESIGN.md §6.2): the three tracks with

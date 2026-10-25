@@ -43,6 +43,18 @@ export interface PoolProblem {
   problem: MathProblem;
 }
 
+/** The tracks on the Math engine: Math (AMC 10) and Mental Math. */
+export type EngineTrack = 'MATH' | 'MENTAL';
+
+/** Mental Math activity keys start "n01.", Math ones "m01." (or "test:"). */
+export const isMentalActivityKey = (key: string) => /^ndd./.test(key);
+
+/** A Prisma filter on activityKey: only this track's rows (error log, answer record). */
+export const trackKeyFilter = (track: EngineTrack) =>
+  track === 'MENTAL'
+    ? { activityKey: { startsWith: 'n' } }
+    : { NOT: { activityKey: { startsWith: 'n' } } };
+
 /** "test:diagnostic" → "diagnostic". */
 export const testKeyOf = (activityKey: string) =>
   activityKey.startsWith('test:') ? activityKey.slice(5) : null;
@@ -189,8 +201,8 @@ export class MathContentService {
     };
   }
 
-  /** Problems from the lessons the student has finished (practice and marked sets). */
-  async pool(user: AuthUser): Promise<PoolProblem[]> {
+  /** Problems from the lessons the student has finished in one track (practice and marked sets). */
+  async pool(user: AuthUser, track: EngineTrack = 'MATH'): Promise<PoolProblem[]> {
     const done = [...(await this.curriculum.completedLessons(user))];
     if (done.length === 0) return [];
     const rows = await this.db.client.activity.findMany({
@@ -200,7 +212,7 @@ export class MathContentService {
     return rows.flatMap((row) => {
       const parsed = ActivityContent.safeParse(row.config);
       const a = parsed.success ? parsed.data : null;
-      if (!a || !row.lessonId || row.unit.track !== 'MATH') return [];
+      if (!a || !row.lessonId || row.unit.track !== track) return [];
       if (a.type !== 'PROBLEMS' && a.type !== 'PROBLEM_SET') return [];
       return a.problems.map((problem) => ({
         lessonId: row.lessonId!,

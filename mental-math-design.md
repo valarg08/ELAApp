@@ -60,17 +60,19 @@ The last lesson of each unit is the **⭐ unit check**: a warm-up, then 8 typed 
 ## PART 5 — Gamification and motivation
 
 - Built now: progress bars per unit and level, ✓ Done badges, "Keep going" card, tip of the day, confidence check.
-- Later (MN-later): streaks and the daily review for Mental Math, speed sprints (Unit 15), personal-best times, level badges.
+- Practice (MN-practice): the daily review (up to 6 questions: mistakes to redo and skills that are due, instant verdicts, once a day) with a 🔥 streak of days in a row; speed sprints (10 questions from finished lessons in 3 minutes, easier ones first) with a personal best (most right, then fastest) and a 🏆 when it is beaten; a 🏅 badge for each passed level check.
 - No leaderboards between students: compare only with your own past results.
 
 ## PART 6 — Assessment
 
 - Practice is not marked; the challenge sets and unit checks are (QuizAttempt, like Math problem sets).
 - Unit check: 8 questions drawn from a larger pool, 100% to pass, new numbers on each try.
-- Every answer goes to the answer record (MathAnswerLog) with its skill, so mastery per skill can be shown later.
-- Later: a level check at the end of each level and a placement check to choose a starting level.
+- Every answer goes to the answer record (MathAnswerLog) with its skill; `/mental/progress` shows mastery per skill (New, Learning, Strong, Mastered) by unit.
+- Level check: 10 questions spread over the level's unit checks; it opens when every unit of the level is done; 9 right earns the level badge.
+- Placement check: 12 questions, 3 from each level's unit checks, easiest first. The start level is the first level with fewer than 2 of its 3 right; the units before that level open (it never closes units already open).
+- Mistakes in challenges and checks go to the Mental Math mistakes list (`/mental/mistakes`), kept apart from the AMC error log.
 
-## PART 7 — Parent guide (to be written as a page, MN-later)
+## PART 7 — Parent guide (the page `/mental/parents`)
 
 - 10 minutes a day beats an hour on Sunday.
 - Ask "how did you think it?" rather than "what's the answer?".
@@ -107,7 +109,8 @@ The last lesson of each unit is the **⭐ unit check**: a warm-up, then 8 typed 
 - **Database:** `Unit.tips` (JSON array). Track-wide content in `MathContent` under `mental:skills`, `mental:levels`, `mental:facts:N`.
 - **API:** `MentalModule` — `GET /mental/home` (students: levels, cheat sheets, tips), `GET /mental/cheat-sheets/:unitNumber` (unpublished units for teachers only). Lessons, practice, problem sets and Quill use the Math endpoints.
 - **Quill:** the Math analyzers take an `audience` (`amc` or `mental`); Mental Math gets short sentences and small friendly numbers for ages 7–14.
-- **Web:** `/mental` (CourseShell, levels with unit cards, Keep going, pattern tip), `/mental/cheat-sheets/[unit]` (printable), the unit page shows "💡 Pattern tips", CourseShell's Progress panel shows the tip of the day and the cheat sheets on every Mental Math page. The answer box hides the √ π / ^ helpers in Mental Math lessons (`SimpleAnswers`).
+- **Practice:** the Math test engine (`MathTestAttempt`, `MathTestsService`, TestPlayer and TestResult) with kinds `mental-review`, `mental-sprint`, `mental-placement`, `mental-level` (start keys `mental-review`, `mental-sprint`, `mental-placement`, `mental-level-1`…`4`; the review's key is `mental-review:YYYY-MM-DD`). `MentalPracticeService` (apps/api/src/math) picks the items and works out bests, badges and the placement. `MentalStart` (one row per student: level, startUnit) opens units up to startUnit through `classAvailability`'s `openThrough`. Mental Math activity keys start with `n`; `trackKeyFilter` keeps the error log, redos and review of the two tracks apart (`GET /math/error-log?track=mental`). `GET /mental/progress` (students) gives streak, sprint best, badges and skill mastery; `GET /mental/home` adds `practice`.
+- **Web:** `/mental` (CourseShell, levels with unit cards, Keep going, pattern tip), `/mental/cheat-sheets/[unit]` (printable), the unit page shows "💡 Pattern tips", CourseShell's Progress panel shows the tip of the day and the cheat sheets on every Mental Math page. The answer box hides the √ π / ^ helpers in Mental Math lessons and tests (`SimpleAnswers`). Practice: a Practice section and a level check card after each level on `/mental`, `/mental/tests/[key]` (start pages), `/mental/attempts/[id]` (player and result, no confidence chips), `/mental/progress` (My skills), `/mental/mistakes`, `/mental/parents` (parent guide). `/start` and the home choose the current unit with `currentUnit` (the unit in progress, else the last open unit with lessons left).
 
 ## Phases
 
@@ -119,4 +122,4 @@ The last lesson of each unit is the **⭐ unit check**: a warm-up, then 8 typed 
 - Each of Units 4–15 has the Unit 1 format: 4 lessons (hook, 3 cards with a worked example, 5 typed practice problems with hints and wrong-answer notes, a 5-question challenge without hints, reflection) and the ⭐ check (8 questions, 100%), a cheat sheet and 5 tips.
 - A locked Mental Math card names the last built unit before it ("Finish Mental Math Unit 1 first" on Unit 4) while Units 2–3 are not built.
 - **MN2–MN3 (done):** Level 1 — Unit 2 Doubling & Halving (doubles, near doubles, halves, double one and halve the other), Unit 3 Compensation (add 9 and 19, add near a ten, take away near a ten, same difference), in the same format. All 15 units are now built.
-- **MN-later:** daily review and streaks for Mental Math, speed sprints, level checks and placement, the parent guide page, mastery per Mental Math skill.
+- **MN-practice (done):** the daily review with streaks, speed sprints with personal bests, level checks with badges, the placement check (`MentalStart`), the parent guide page, mastery per Mental Math skill, and a separate Mental Math mistakes list. The Mental Math track is complete.

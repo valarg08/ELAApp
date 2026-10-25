@@ -20,7 +20,12 @@ import type { AuthUser } from '../auth/auth.types.js';
 import { forbidden, notFound } from '../common/app-error.js';
 import { DatabaseService } from '../database/database.service.js';
 import { AnswerLogService } from './answer-log.service.js';
-import { MathContentService, testKeyOf } from './math-content.service.js';
+import {
+  type EngineTrack,
+  MathContentService,
+  testKeyOf,
+  trackKeyFilter,
+} from './math-content.service.js';
 
 /** Calendar day (UTC) of a time, for "one right redo counts per day". */
 const dayOf = (d: Date) => d.toISOString().slice(0, 10);
@@ -47,10 +52,11 @@ export class ErrorLogService {
     private readonly answers: AnswerLogService,
   ) {}
 
-  async list(user: AuthUser): Promise<ErrorLogList> {
+  /** One track's log: Math and Mental Math keep separate error logs. */
+  async list(user: AuthUser, track: EngineTrack = 'MATH'): Promise<ErrorLogList> {
     this.studentOnly(user);
     const rows = await this.db.client.mathErrorLog.findMany({
-      where: { studentId: user.id },
+      where: { studentId: user.id, ...trackKeyFilter(track) },
       orderBy: { createdAt: 'desc' },
       take: 300,
     });

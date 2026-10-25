@@ -6,20 +6,26 @@ import {
   MathSkillsFile,
   type MentalHome,
   MentalLevelsFile,
+  type MentalProgress,
 } from '@storyforge/shared';
 import type { z } from 'zod';
 import type { AuthUser } from '../auth/auth.types.js';
 import { forbidden, notFound } from '../common/app-error.js';
 import { DatabaseService } from '../database/database.service.js';
+import { MentalPracticeService } from '../math/mental-practice.service.js';
 
 /**
  * The Mental Math track (mental-math-design.md): its home (levels, cheat sheets, pattern tips) and
- * the cheat sheets, from the "mental:" rows of MathContent. Lessons, practice and problem sets run
- * on the Math engine.
+ * the cheat sheets, from the "mental:" rows of MathContent, the practice cards (daily review,
+ * sprints, placement, level checks) and mastery per skill. Lessons, practice, problem sets and
+ * those checks run on the Math engine.
  */
 @Injectable()
 export class MentalService {
-  constructor(private readonly db: DatabaseService) {}
+  constructor(
+    private readonly db: DatabaseService,
+    private readonly practice: MentalPracticeService,
+  ) {}
 
   private async content<S extends z.ZodType>(key: string, schema: S): Promise<z.infer<S> | null> {
     const row = await this.db.client.mathContent.findUnique({ where: { key } });
@@ -53,7 +59,14 @@ export class MentalService {
           .filter((t): t is string => typeof t === 'string')
           .map((tip) => ({ unitNumber: u.number, tip })),
       ),
+      practice: await this.practice.practice(user),
     };
+  }
+
+  /** Mastery per skill, the review streak, the sprint best and level badges. */
+  progress(user: AuthUser): Promise<MentalProgress> {
+    if (user.role !== 'STUDENT') throw forbidden('This is for students.');
+    return this.practice.progress(user);
   }
 
   /** A unit's cheat sheet (teachers may see unpublished ones, like the Math fact sheets). */
