@@ -1,0 +1,1516 @@
+[
+  {
+    "key": "n09.last-digit-practice",
+    "type": "PROBLEMS",
+    "title": "Last-Digit Tests: 2, 5 and 10",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "rem10",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $10$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a,10)]]"],
+          "form": "any"
+        },
+        "hints": ["Look at the last digit."],
+        "solution": "The tens divide exactly. The remainder is the last digit: $[[mod(a,10)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 10*floor(a/10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "rem5",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $5$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10),5)]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Only the last digit matters.",
+          "What is left when you take $5$ from the last digit (if you can)?"
+        ],
+        "solution": "The last digit is $[[mod(a,10)]]$, which leaves $[[mod(mod(a,10),5)]]$ when divided by $5$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 5*floor(a/5)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "rem2",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10),2)]]"],
+          "form": "any"
+        },
+        "hints": ["Is the last digit even or odd?"],
+        "solution": "Only the last digit matters: $[[mod(a,10)]]$ divided by $2$ leaves $[[mod(a,2)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 2*floor(a/2)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1001,
+              "to": 9999
+            }
+          }
+        }
+      },
+      {
+        "id": "next5",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $5$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 5 - mod(a,5)]]"],
+          "form": "any"
+        },
+        "hints": ["Multiples of $5$ end in $0$ or $5$."],
+        "solution": "Multiples of $5$ end in $0$ or $5$. The next one after $[[a]]$ is $[[a+5-mod(a,5)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 2,
+        "compute": "5*(floor(a/5)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "ends-in",
+        "prompt": "A number ends in the digit $[[d]]$. What is its remainder when divided by $5$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(d,5)]]"],
+          "form": "any"
+        },
+        "hints": ["The rest of the number is tens, which divide by $5$."],
+        "solution": "Only the last digit matters: $[[d]]$ divided by $5$ leaves $[[mod(d,5)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 2,
+        "compute": "mod(1230+d, 5)",
+        "template": {
+          "vars": {
+            "d": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n09.last-digit-set",
+    "type": "PROBLEM_SET",
+    "title": "Last-Digit Tests: 2, 5 and 10 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-rem10",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $10$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a,10)]]"],
+          "form": "any"
+        },
+        "solution": "The tens divide exactly. The remainder is the last digit: $[[mod(a,10)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 10*floor(a/10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rem5",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $5$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10),5)]]"],
+          "form": "any"
+        },
+        "solution": "The last digit is $[[mod(a,10)]]$, which leaves $[[mod(mod(a,10),5)]]$ when divided by $5$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 5*floor(a/5)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rem2",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10),2)]]"],
+          "form": "any"
+        },
+        "solution": "Only the last digit matters: $[[mod(a,10)]]$ divided by $2$ leaves $[[mod(a,2)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 2*floor(a/2)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1001,
+              "to": 9999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-next5",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $5$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 5 - mod(a,5)]]"],
+          "form": "any"
+        },
+        "solution": "Multiples of $5$ end in $0$ or $5$. The next one after $[[a]]$ is $[[a+5-mod(a,5)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 2,
+        "compute": "5*(floor(a/5)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-ends-in",
+        "prompt": "A number ends in the digit $[[d]]$. What is its remainder when divided by $5$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(d,5)]]"],
+          "form": "any"
+        },
+        "solution": "Only the last digit matters: $[[d]]$ divided by $5$ leaves $[[mod(d,5)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 2,
+        "compute": "mod(1230+d, 5)",
+        "template": {
+          "vars": {
+            "d": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n09.digit-sum-practice",
+    "type": "PROBLEMS",
+    "title": "Digit Sums: 3 and 9",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sum",
+        "prompt": "What is the digit sum of $[[100*x+10*y+z]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x+y+z]]"],
+          "form": "any"
+        },
+        "hints": ["Add the three digits."],
+        "solution": "$[[x]] + [[y]] + [[z]] = [[x+y+z]]$.",
+        "skill": "div-digit-sum",
+        "difficulty": 1,
+        "compute": "x+y+z",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "rem9",
+        "prompt": "What is the remainder when $[[100*x+10*y+z]]$ is divided by $9$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x+y+z,9)]]"],
+          "form": "any"
+        },
+        "hints": ["Add the digits.", "Find the remainder of the digit sum by $9$."],
+        "solution": "Digit sum: $[[x+y+z]]$, which leaves $[[mod(x+y+z,9)]]$ when divided by $9$.",
+        "skill": "div-digit-sum",
+        "difficulty": 2,
+        "compute": "mod(100*x+10*y+z, 9)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "rem3",
+        "prompt": "What is the remainder when $[[100*x+10*y+z]]$ is divided by $3$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x+y+z,3)]]"],
+          "form": "any"
+        },
+        "hints": ["Add the digits, then divide that by $3$."],
+        "solution": "Digit sum: $[[x+y+z]]$, which leaves $[[mod(x+y+z,3)]]$ when divided by $3$.",
+        "skill": "div-digit-sum",
+        "difficulty": 2,
+        "compute": "mod(100*x+10*y+z, 3)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "next3",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $3$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 3 - mod(a,3)]]"],
+          "form": "any"
+        },
+        "hints": ["Try $[[a+1]]$, $[[a+2]]$, $[[a+3]]$: which digit sum divides by $3$?"],
+        "solution": "Test the next numbers by their digit sums: the first one that divides by $3$ is $[[a+3-mod(a,3)]]$.",
+        "skill": "div-digit-sum",
+        "difficulty": 2,
+        "compute": "3*(floor(a/3)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "box9",
+        "prompt": "Which digit from $0$ to $8$ goes in the box to make $[[x]][[y]]\\square$ divisible by $9$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(9 - mod(x+y,9), 9)]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Add the two digits you know.",
+          "What must you add to reach the next multiple of $9$?"
+        ],
+        "solution": "The digits $[[x]] + [[y]] = [[x+y]]$. The digit sum must reach a multiple of $9$, so the box is $[[mod(9-mod(x+y,9),9)]]$.",
+        "skill": "div-digit-sum",
+        "difficulty": 3,
+        "compute": "mod(18 - x - y, 9)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n09.digit-sum-set",
+    "type": "PROBLEM_SET",
+    "title": "Digit Sums: 3 and 9 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-sum",
+        "prompt": "What is the digit sum of $[[100*x+10*y+z]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x+y+z]]"],
+          "form": "any"
+        },
+        "solution": "$[[x]] + [[y]] + [[z]] = [[x+y+z]]$.",
+        "skill": "div-digit-sum",
+        "difficulty": 1,
+        "compute": "x+y+z",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rem9",
+        "prompt": "What is the remainder when $[[100*x+10*y+z]]$ is divided by $9$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x+y+z,9)]]"],
+          "form": "any"
+        },
+        "solution": "Digit sum: $[[x+y+z]]$, which leaves $[[mod(x+y+z,9)]]$ when divided by $9$.",
+        "skill": "div-digit-sum",
+        "difficulty": 2,
+        "compute": "mod(100*x+10*y+z, 9)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rem3",
+        "prompt": "What is the remainder when $[[100*x+10*y+z]]$ is divided by $3$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x+y+z,3)]]"],
+          "form": "any"
+        },
+        "solution": "Digit sum: $[[x+y+z]]$, which leaves $[[mod(x+y+z,3)]]$ when divided by $3$.",
+        "skill": "div-digit-sum",
+        "difficulty": 2,
+        "compute": "mod(100*x+10*y+z, 3)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-next3",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $3$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 3 - mod(a,3)]]"],
+          "form": "any"
+        },
+        "solution": "Test the next numbers by their digit sums: the first one that divides by $3$ is $[[a+3-mod(a,3)]]$.",
+        "skill": "div-digit-sum",
+        "difficulty": 2,
+        "compute": "3*(floor(a/3)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-box9",
+        "prompt": "Which digit from $0$ to $8$ goes in the box to make $[[x]][[y]]\\square$ divisible by $9$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(9 - mod(x+y,9), 9)]]"],
+          "form": "any"
+        },
+        "solution": "The digits $[[x]] + [[y]] = [[x+y]]$. The digit sum must reach a multiple of $9$, so the box is $[[mod(9-mod(x+y,9),9)]]$.",
+        "skill": "div-digit-sum",
+        "difficulty": 3,
+        "compute": "mod(18 - x - y, 9)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n09.last-two-practice",
+    "type": "PROBLEMS",
+    "title": "Last Two Digits: 4 and 8",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "rem4",
+        "prompt": "What is the remainder when $[[100*h+10*t+u]]$ is divided by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(10*t+u,4)]]"],
+          "form": "any"
+        },
+        "hints": ["Look at the last two digits only."],
+        "solution": "Only the last two digits matter: $[[10*t+u]]$ leaves $[[mod(10*t+u,4)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 1,
+        "compute": "mod(100*h+10*t+u, 4)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 9
+            },
+            "t": {
+              "from": 1,
+              "to": 9
+            },
+            "u": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "next4",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 4 - mod(a,4)]]"],
+          "form": "any"
+        },
+        "hints": ["Multiples of $4$ go up in fours. Use the last two digits."],
+        "solution": "Check the last two digits of the next few numbers: $[[a+4-mod(a,4)]]$ is the first that divides by $4$.",
+        "skill": "div-last-two",
+        "difficulty": 2,
+        "compute": "4*(floor(a/4)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "rem4-big",
+        "prompt": "What is the remainder when $[[100*h+n]]$ is divided by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n,4)]]"],
+          "form": "any"
+        },
+        "hints": ["Ignore everything except the last two digits."],
+        "solution": "The hundreds divide by $4$. The last two digits $[[n]]$ leave $[[mod(n,4)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 2,
+        "compute": "mod(100*h+n, 4)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 10,
+              "to": 99
+            },
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "rem8",
+        "prompt": "What is the remainder when $[[1000*k+m]]$ is divided by $8$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(m,8)]]"],
+          "form": "any"
+        },
+        "hints": ["For $8$, look at the last three digits."],
+        "solution": "The thousands divide by $8$. The last three digits $[[m]]$ leave $[[mod(m,8)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 3,
+        "compute": "mod(1000*k+m, 8)",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 9
+            },
+            "m": {
+              "from": 100,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "box4",
+        "prompt": "What is the smallest digit that can go in the box to make $[[h]][[t]]\\square$ divisible by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*mod(t,2)]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Only the last two digits matter: which of $[[10*t]]$, $[[10*t+1]]$, $[[10*t+2]]$… divides by $4$ first?"
+        ],
+        "solution": "The last two digits are $[[t]]\\square$. The smallest that divides by $4$ is $[[10*t+2*mod(t,2)]]$, so the box is $[[2*mod(t,2)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 3,
+        "compute": "mod(100 - 10*t, 4)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 9
+            },
+            "t": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n09.last-two-set",
+    "type": "PROBLEM_SET",
+    "title": "Last Two Digits: 4 and 8 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-rem4",
+        "prompt": "What is the remainder when $[[100*h+10*t+u]]$ is divided by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(10*t+u,4)]]"],
+          "form": "any"
+        },
+        "solution": "Only the last two digits matter: $[[10*t+u]]$ leaves $[[mod(10*t+u,4)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 1,
+        "compute": "mod(100*h+10*t+u, 4)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 9
+            },
+            "t": {
+              "from": 1,
+              "to": 9
+            },
+            "u": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-next4",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 4 - mod(a,4)]]"],
+          "form": "any"
+        },
+        "solution": "Check the last two digits of the next few numbers: $[[a+4-mod(a,4)]]$ is the first that divides by $4$.",
+        "skill": "div-last-two",
+        "difficulty": 2,
+        "compute": "4*(floor(a/4)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rem4-big",
+        "prompt": "What is the remainder when $[[100*h+n]]$ is divided by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n,4)]]"],
+          "form": "any"
+        },
+        "solution": "The hundreds divide by $4$. The last two digits $[[n]]$ leave $[[mod(n,4)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 2,
+        "compute": "mod(100*h+n, 4)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 10,
+              "to": 99
+            },
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rem8",
+        "prompt": "What is the remainder when $[[1000*k+m]]$ is divided by $8$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(m,8)]]"],
+          "form": "any"
+        },
+        "solution": "The thousands divide by $8$. The last three digits $[[m]]$ leave $[[mod(m,8)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 3,
+        "compute": "mod(1000*k+m, 8)",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 1,
+              "to": 9
+            },
+            "m": {
+              "from": 100,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-box4",
+        "prompt": "What is the smallest digit that can go in the box to make $[[h]][[t]]\\square$ divisible by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*mod(t,2)]]"],
+          "form": "any"
+        },
+        "solution": "The last two digits are $[[t]]\\square$. The smallest that divides by $4$ is $[[10*t+2*mod(t,2)]]$, so the box is $[[2*mod(t,2)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 3,
+        "compute": "mod(100 - 10*t, 4)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 9
+            },
+            "t": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n09.six-eleven-practice",
+    "type": "PROBLEMS",
+    "title": "Tests for 6 and 11",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "alt",
+        "prompt": "Work out the alternating digit sum of $[[100*x+10*y+z]]$: first digit, minus the second, plus the third.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x - y + z]]"],
+          "form": "any"
+        },
+        "hints": ["First minus second plus third."],
+        "solution": "$[[x]] - [[y]] + [[z]] = [[x-y+z]]$.",
+        "skill": "div-6-11",
+        "difficulty": 1,
+        "compute": "x-y+z",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          },
+          "where": ["x + z >= y"]
+        }
+      },
+      {
+        "id": "rem11",
+        "prompt": "What is the remainder when $[[100*x+10*y+z]]$ is divided by $11$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x - y + z + 11, 11)]]"],
+          "form": "any"
+        },
+        "hints": ["Work out first $-$ second $+$ third.", "If it is negative, add $11$."],
+        "solution": "Alternating sum: $[[x]] - [[y]] + [[z]] = [[x-y+z]]$. Its remainder by $11$ is $[[mod(x-y+z+11,11)]]$.",
+        "skill": "div-6-11",
+        "difficulty": 2,
+        "compute": "mod(100*x+10*y+z, 11)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "next6",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $6$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 6 - mod(a,6)]]"],
+          "form": "any"
+        },
+        "hints": ["Look at the next even numbers. Which has a digit sum that divides by $3$?"],
+        "solution": "It must be even with a digit sum that divides by $3$: $[[a+6-mod(a,6)]]$.",
+        "skill": "div-6-11",
+        "difficulty": 2,
+        "compute": "6*(floor(a/6)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "rem6",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $6$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a - 6*floor(a/6)]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Find the biggest multiple of $6$ that is not more than $[[a]]$: it is even with a digit sum that divides by $3$."
+        ],
+        "solution": "The multiple of $6$ just below $[[a]]$ is $[[6*floor(a/6)]]$, so the remainder is $[[mod(a,6)]]$.",
+        "skill": "div-6-11",
+        "difficulty": 3,
+        "compute": "mod(a,6)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "box11",
+        "prompt": "Which digit goes in the box to make $[[x]]\\square[[z]]$ divisible by $11$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x + z]]"],
+          "form": "any"
+        },
+        "hints": ["Make $[[x]] - \\square + [[z]] = 0$."],
+        "solution": "The alternating sum $[[x]] - \\square + [[z]]$ must be $0$, so the box is $[[x]] + [[z]] = [[x+z]]$.",
+        "skill": "div-6-11",
+        "difficulty": 3,
+        "compute": "mod(x+z, 11)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 8
+            },
+            "z": {
+              "from": 0,
+              "to": 8
+            }
+          },
+          "where": ["x + z <= 9"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n09.six-eleven-set",
+    "type": "PROBLEM_SET",
+    "title": "Tests for 6 and 11 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-alt",
+        "prompt": "Work out the alternating digit sum of $[[100*x+10*y+z]]$: first digit, minus the second, plus the third.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x - y + z]]"],
+          "form": "any"
+        },
+        "solution": "$[[x]] - [[y]] + [[z]] = [[x-y+z]]$.",
+        "skill": "div-6-11",
+        "difficulty": 1,
+        "compute": "x-y+z",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          },
+          "where": ["x + z >= y"]
+        }
+      },
+      {
+        "id": "s-rem11",
+        "prompt": "What is the remainder when $[[100*x+10*y+z]]$ is divided by $11$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x - y + z + 11, 11)]]"],
+          "form": "any"
+        },
+        "solution": "Alternating sum: $[[x]] - [[y]] + [[z]] = [[x-y+z]]$. Its remainder by $11$ is $[[mod(x-y+z+11,11)]]$.",
+        "skill": "div-6-11",
+        "difficulty": 2,
+        "compute": "mod(100*x+10*y+z, 11)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-next6",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $6$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 6 - mod(a,6)]]"],
+          "form": "any"
+        },
+        "solution": "It must be even with a digit sum that divides by $3$: $[[a+6-mod(a,6)]]$.",
+        "skill": "div-6-11",
+        "difficulty": 2,
+        "compute": "6*(floor(a/6)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rem6",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $6$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a - 6*floor(a/6)]]"],
+          "form": "any"
+        },
+        "solution": "The multiple of $6$ just below $[[a]]$ is $[[6*floor(a/6)]]$, so the remainder is $[[mod(a,6)]]$.",
+        "skill": "div-6-11",
+        "difficulty": 3,
+        "compute": "mod(a,6)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-box11",
+        "prompt": "Which digit goes in the box to make $[[x]]\\square[[z]]$ divisible by $11$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x + z]]"],
+          "form": "any"
+        },
+        "solution": "The alternating sum $[[x]] - \\square + [[z]]$ must be $0$, so the box is $[[x]] + [[z]] = [[x+z]]$.",
+        "skill": "div-6-11",
+        "difficulty": 3,
+        "compute": "mod(x+z, 11)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 8
+            },
+            "z": {
+              "from": 0,
+              "to": 8
+            }
+          },
+          "where": ["x + z <= 9"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n09.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-rem10",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $10$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a,10)]]"],
+          "form": "any"
+        },
+        "hints": ["Look at the last digit."],
+        "solution": "The tens divide exactly. The remainder is the last digit: $[[mod(a,10)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 10*floor(a/10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "r2-sum",
+        "prompt": "What is the digit sum of $[[100*x+10*y+z]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x+y+z]]"],
+          "form": "any"
+        },
+        "hints": ["Add the three digits."],
+        "solution": "$[[x]] + [[y]] + [[z]] = [[x+y+z]]$.",
+        "skill": "div-digit-sum",
+        "difficulty": 1,
+        "compute": "x+y+z",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-rem4",
+        "prompt": "What is the remainder when $[[100*h+10*t+u]]$ is divided by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(10*t+u,4)]]"],
+          "form": "any"
+        },
+        "hints": ["Look at the last two digits only."],
+        "solution": "Only the last two digits matter: $[[10*t+u]]$ leaves $[[mod(10*t+u,4)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 1,
+        "compute": "mod(100*h+10*t+u, 4)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 9
+            },
+            "t": {
+              "from": 1,
+              "to": 9
+            },
+            "u": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-alt",
+        "prompt": "Work out the alternating digit sum of $[[100*x+10*y+z]]$: first digit, minus the second, plus the third.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x - y + z]]"],
+          "form": "any"
+        },
+        "hints": ["First minus second plus third."],
+        "solution": "$[[x]] - [[y]] + [[z]] = [[x-y+z]]$.",
+        "skill": "div-6-11",
+        "difficulty": 1,
+        "compute": "x-y+z",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          },
+          "where": ["x + z >= y"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n09.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 9 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-rem10",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $10$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a,10)]]"],
+          "form": "any"
+        },
+        "solution": "The tens divide exactly. The remainder is the last digit: $[[mod(a,10)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 10*floor(a/10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-rem5",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $5$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10),5)]]"],
+          "form": "any"
+        },
+        "solution": "The last digit is $[[mod(a,10)]]$, which leaves $[[mod(mod(a,10),5)]]$ when divided by $5$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 5*floor(a/5)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-rem2",
+        "prompt": "What is the remainder when $[[a]]$ is divided by $2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10),2)]]"],
+          "form": "any"
+        },
+        "solution": "Only the last digit matters: $[[mod(a,10)]]$ divided by $2$ leaves $[[mod(a,2)]]$.",
+        "skill": "div-last-digit",
+        "difficulty": 1,
+        "compute": "a - 2*floor(a/2)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1001,
+              "to": 9999
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-sum",
+        "prompt": "What is the digit sum of $[[100*x+10*y+z]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x+y+z]]"],
+          "form": "any"
+        },
+        "solution": "$[[x]] + [[y]] + [[z]] = [[x+y+z]]$.",
+        "skill": "div-digit-sum",
+        "difficulty": 1,
+        "compute": "x+y+z",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-rem9",
+        "prompt": "What is the remainder when $[[100*x+10*y+z]]$ is divided by $9$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x+y+z,9)]]"],
+          "form": "any"
+        },
+        "solution": "Digit sum: $[[x+y+z]]$, which leaves $[[mod(x+y+z,9)]]$ when divided by $9$.",
+        "skill": "div-digit-sum",
+        "difficulty": 2,
+        "compute": "mod(100*x+10*y+z, 9)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-rem3",
+        "prompt": "What is the remainder when $[[100*x+10*y+z]]$ is divided by $3$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x+y+z,3)]]"],
+          "form": "any"
+        },
+        "solution": "Digit sum: $[[x+y+z]]$, which leaves $[[mod(x+y+z,3)]]$ when divided by $3$.",
+        "skill": "div-digit-sum",
+        "difficulty": 2,
+        "compute": "mod(100*x+10*y+z, 3)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-rem4",
+        "prompt": "What is the remainder when $[[100*h+10*t+u]]$ is divided by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(10*t+u,4)]]"],
+          "form": "any"
+        },
+        "solution": "Only the last two digits matter: $[[10*t+u]]$ leaves $[[mod(10*t+u,4)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 1,
+        "compute": "mod(100*h+10*t+u, 4)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 9
+            },
+            "t": {
+              "from": 1,
+              "to": 9
+            },
+            "u": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-next4",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 4 - mod(a,4)]]"],
+          "form": "any"
+        },
+        "solution": "Check the last two digits of the next few numbers: $[[a+4-mod(a,4)]]$ is the first that divides by $4$.",
+        "skill": "div-last-two",
+        "difficulty": 2,
+        "compute": "4*(floor(a/4)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-rem4-big",
+        "prompt": "What is the remainder when $[[100*h+n]]$ is divided by $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(n,4)]]"],
+          "form": "any"
+        },
+        "solution": "The hundreds divide by $4$. The last two digits $[[n]]$ leave $[[mod(n,4)]]$.",
+        "skill": "div-last-two",
+        "difficulty": 2,
+        "compute": "mod(100*h+n, 4)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 10,
+              "to": 99
+            },
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-alt",
+        "prompt": "Work out the alternating digit sum of $[[100*x+10*y+z]]$: first digit, minus the second, plus the third.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[x - y + z]]"],
+          "form": "any"
+        },
+        "solution": "$[[x]] - [[y]] + [[z]] = [[x-y+z]]$.",
+        "skill": "div-6-11",
+        "difficulty": 1,
+        "compute": "x-y+z",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          },
+          "where": ["x + z >= y"]
+        }
+      },
+      {
+        "id": "c4-rem11",
+        "prompt": "What is the remainder when $[[100*x+10*y+z]]$ is divided by $11$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x - y + z + 11, 11)]]"],
+          "form": "any"
+        },
+        "solution": "Alternating sum: $[[x]] - [[y]] + [[z]] = [[x-y+z]]$. Its remainder by $11$ is $[[mod(x-y+z+11,11)]]$.",
+        "skill": "div-6-11",
+        "difficulty": 2,
+        "compute": "mod(100*x+10*y+z, 11)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-next6",
+        "prompt": "What is the smallest number bigger than $[[a]]$ that divides exactly by $6$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a + 6 - mod(a,6)]]"],
+          "form": "any"
+        },
+        "solution": "It must be even with a digit sum that divides by $3$: $[[a+6-mod(a,6)]]$.",
+        "skill": "div-6-11",
+        "difficulty": 2,
+        "compute": "6*(floor(a/6)+1)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 999
+            }
+          }
+        }
+      }
+    ]
+  }
+]

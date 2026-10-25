@@ -1,0 +1,56 @@
+{
+  "slug": "mental-smart-multiplication-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Smart Multiplication",
+  "estMinutes": 20,
+  "focusSkills": ["times-99", "times-999", "times-11", "times-101"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Smart Multiplication do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Near a power of ten: quick review",
+          "body": "$\\times 9$, $\\times 99$, $\\times 999$: multiply by $10$, $100$ or $1000$, then take one lot away. $\\times 98$: times $100$, take two lots away."
+        },
+        {
+          "kind": "definition",
+          "title": "Digit patterns: quick review",
+          "body": "$\\times 11$: put the sum of the digits in the middle, carrying if needed. $\\times 101$: write a two-digit number twice. $\\times 1001$: write a three-digit number twice."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n11.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n11.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Smart Multiplication outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

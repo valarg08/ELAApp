@@ -1,0 +1,74 @@
+{
+  "slug": "mental-add-bigger-numbers",
+  "order": 2,
+  "title": "Add Bigger Numbers",
+  "estMinutes": 25,
+  "focusSkills": ["front-add-3"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A shop sells $325$ apples on Saturday and $142$ on Sunday. About how many is that? What exactly?",
+      "placeholder": "About… Exactly…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Hundreds, tens, ones",
+          "body": "Three-digit numbers work the same way. Start with the hundreds, then the tens, then the ones, and keep a running total: $325 + 142$ is $400$, then $460$, then $467$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 256 + 371",
+          "problem": "Work out $256 + 371$ from the left.",
+          "steps": [
+            {
+              "text": "Hundreds: $200 + 300$.",
+              "try": {
+                "prompt": "What is $200 + 300$?",
+                "accepted": ["500"],
+                "compute": "200+300"
+              }
+            },
+            {
+              "text": "Tens: $50 + 70 = 120$. The running total is $500 + 120$.",
+              "try": {
+                "prompt": "What is $500 + 120$?",
+                "accepted": ["620"],
+                "compute": "500+120"
+              }
+            },
+            {
+              "text": "Ones: $6 + 1 = 7$. So $256 + 371 = 627$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Keep the running total",
+          "body": "Say the total after each part, out loud or in your head: \"five hundred… six hundred and twenty… six hundred and twenty-seven\". It stops you losing a part."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n04.add-big-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n04.add-big-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why is it helpful to say the running total as you add each part?"],
+      "confidenceCheck": true
+    }
+  ]
+}

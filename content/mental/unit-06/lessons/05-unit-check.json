@@ -1,0 +1,56 @@
+{
+  "slug": "mental-benchmarks-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Benchmark Numbers",
+  "estMinutes": 20,
+  "focusSkills": ["bench-round", "bench-50", "bench-25", "bench-1000"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Benchmark Numbers do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Rounding and benchmarks: quick review",
+          "body": "Round with the digit to the right: $5$ or more rounds up. Steps to the next ten or hundred are bonds: $47 \\to 50$ is $3$, $370 \\to 400$ is $30$. Bonds to $1000$: $370 + 630$."
+        },
+        {
+          "kind": "definition",
+          "title": "Fifty and twenty-five: quick review",
+          "body": "Times $50$: times $100$, then halve. Times $25$: times $100$, then halve twice. $16 \\times 25 = 1600 \\div 4 = 400$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n06.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n06.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Benchmark Numbers outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

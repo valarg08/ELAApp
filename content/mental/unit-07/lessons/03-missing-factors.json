@@ -1,0 +1,66 @@
+{
+  "slug": "mental-missing-factors",
+  "order": 3,
+  "title": "Missing Factors",
+  "estMinutes": 25,
+  "focusSkills": ["missing-mult"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Chairs go in rows of $6$. There are $42$ chairs. How many rows? Which times fact did you use?",
+      "placeholder": "Rows… I used…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Undo multiplying",
+          "body": "Division undoes multiplication. $6 \\times ? = 42$: think \"six times what is $42$?\", or divide: $42 \\div 6 = 7$. In $? \\div 4 = 9$ the missing number is the whole, so multiply: $9 \\times 4 = 36$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: ? × 8 = 56",
+          "problem": "Find the missing number in $? \\times 8 = 56$.",
+          "steps": [
+            {
+              "text": "Count in eights, or use an anchor: $5 \\times 8 = 40$, and $56 - 40 = 16$ is two more eights.",
+              "try": {
+                "prompt": "What is $5 + 2$?",
+                "accepted": ["7"],
+                "compute": "5+2"
+              }
+            },
+            {
+              "text": "So $7 \\times 8 = 56$. The missing number is $7$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "A fact family",
+          "body": "One fact gives four: $7 \\times 8 = 56$, $8 \\times 7 = 56$, $56 \\div 8 = 7$ and $56 \\div 7 = 8$. Knowing one means you know them all."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n07.miss-mult-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n07.miss-mult-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Write a fact family for one times fact you know well."],
+      "confidenceCheck": true
+    }
+  ]
+}

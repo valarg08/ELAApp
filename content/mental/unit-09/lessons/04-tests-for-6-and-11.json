@@ -1,0 +1,66 @@
+{
+  "slug": "mental-tests-for-6-and-11",
+  "order": 4,
+  "title": "Tests for 6 and 11",
+  "estMinutes": 25,
+  "focusSkills": ["div-6-11"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$473 = 11 \\times 43$. Work out $4 - 7 + 3$. Try it on $572$ too. What do you notice?",
+      "placeholder": "I notice…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Six: two tests together",
+          "body": "$6 = 2 \\times 3$. A number divides by $6$ when it is even and its digit sum divides by $3$. $714$: even, and $7 + 1 + 4 = 12$, so yes."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the test for 11",
+          "problem": "Does $583$ divide by $11$?",
+          "steps": [
+            {
+              "text": "Alternate the signs: first $-$ second $+$ third.",
+              "try": {
+                "prompt": "What is $5 - 8 + 3$?",
+                "accepted": ["0"],
+                "compute": "5-8+3"
+              }
+            },
+            {
+              "text": "The alternating sum is $0$, which divides by $11$, so $583$ does too: $583 = 11 \\times 53$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why the 11 test works",
+          "body": "$10 = 11 - 1$ and $100 = 99 + 1$. So $100x + 10y + z$ is a multiple of $11$ plus $x - y + z$. The remainder by $11$ comes from the alternating sum."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n09.six-eleven-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n09.six-eleven-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which divisibility test do you find most surprising, and why does it work?"],
+      "confidenceCheck": true
+    }
+  ]
+}

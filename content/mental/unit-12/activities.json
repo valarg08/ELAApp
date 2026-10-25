@@ -1,0 +1,1475 @@
+[
+  {
+    "key": "n12.to-15-practice",
+    "type": "PROBLEMS",
+    "title": "Squares to 15",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sq",
+        "prompt": "Work out $[[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n]]",
+              "why": "That is $[[n]] \\times 2$. Squaring is $[[n]] \\times [[n]]$."
+            }
+          ]
+        },
+        "hints": ["$[[n]]^2$ means $[[n]] \\times [[n]]$."],
+        "solution": "$[[n]] \\times [[n]] = [[n*n]]$.",
+        "skill": "squares-15",
+        "difficulty": 1,
+        "compute": "n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "root",
+        "prompt": "Work out $\\sqrt{[[n*n]]}$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "hints": ["Which number times itself makes $[[n*n]]$?"],
+        "solution": "$[[n]]^2 = [[n*n]]$, so $\\sqrt{[[n*n]]} = [[n]]$.",
+        "skill": "squares-15",
+        "difficulty": 1,
+        "compute": "n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "tiles",
+        "prompt": "A square patio is $[[n]]$ tiles long and $[[n]]$ tiles wide. How many tiles does it use?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*n]]"],
+          "form": "any"
+        },
+        "hints": ["It is a square: work out $[[n]]^2$."],
+        "solution": "$[[n]]^2 = [[n*n]]$ tiles.",
+        "skill": "squares-15",
+        "difficulty": 2,
+        "compute": "n*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "sum",
+        "prompt": "Work out $[[a]]^2 + [[b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a + b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(a+b)*(a+b)]]",
+              "why": "You added first, then squared. Square each number first."
+            }
+          ]
+        },
+        "hints": ["Square each number, then add."],
+        "solution": "$[[a*a]] + [[b*b]] = [[a*a+b*b]]$.",
+        "skill": "squares-15",
+        "difficulty": 2,
+        "compute": "a^2 + b^2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 12
+            },
+            "b": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "side",
+        "prompt": "A square has an area of $[[n*n]]$ square centimetres. How long is one side, in centimetres?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n*n/4]]",
+              "why": "Dividing by $4$ gives the side from the perimeter. For area, take the square root."
+            }
+          ]
+        },
+        "hints": ["Which number squared makes $[[n*n]]$?"],
+        "solution": "The side is $\\sqrt{[[n*n]]} = [[n]]$ cm, because $[[n]]^2 = [[n*n]]$.",
+        "skill": "squares-15",
+        "difficulty": 3,
+        "compute": "n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 15
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n12.to-15-set",
+    "type": "PROBLEM_SET",
+    "title": "Squares to 15 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-sq",
+        "prompt": "Work out $[[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n]]",
+              "why": "That is $[[n]] \\times 2$. Squaring is $[[n]] \\times [[n]]$."
+            }
+          ]
+        },
+        "solution": "$[[n]] \\times [[n]] = [[n*n]]$.",
+        "skill": "squares-15",
+        "difficulty": 1,
+        "compute": "n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "s-root",
+        "prompt": "Work out $\\sqrt{[[n*n]]}$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "solution": "$[[n]]^2 = [[n*n]]$, so $\\sqrt{[[n*n]]} = [[n]]$.",
+        "skill": "squares-15",
+        "difficulty": 1,
+        "compute": "n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "s-tiles",
+        "prompt": "A square patio is $[[n]]$ tiles long and $[[n]]$ tiles wide. How many tiles does it use?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*n]]"],
+          "form": "any"
+        },
+        "solution": "$[[n]]^2 = [[n*n]]$ tiles.",
+        "skill": "squares-15",
+        "difficulty": 2,
+        "compute": "n*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "s-sum",
+        "prompt": "Work out $[[a]]^2 + [[b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a + b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(a+b)*(a+b)]]",
+              "why": "You added first, then squared. Square each number first."
+            }
+          ]
+        },
+        "solution": "$[[a*a]] + [[b*b]] = [[a*a+b*b]]$.",
+        "skill": "squares-15",
+        "difficulty": 2,
+        "compute": "a^2 + b^2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 12
+            },
+            "b": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "s-side",
+        "prompt": "A square has an area of $[[n*n]]$ square centimetres. How long is one side, in centimetres?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n*n/4]]",
+              "why": "Dividing by $4$ gives the side from the perimeter. For area, take the square root."
+            }
+          ]
+        },
+        "solution": "The side is $\\sqrt{[[n*n]]} = [[n]]$ cm, because $[[n]]^2 = [[n*n]]$.",
+        "skill": "squares-15",
+        "difficulty": 3,
+        "compute": "n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 15
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n12.ends-5-practice",
+    "type": "PROBLEMS",
+    "title": "Squares Ending in 5",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "two-digit",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*n*n + 25]]",
+              "why": "Times $[[n]]$ by the next number up, $[[n+1]]$, not by itself."
+            }
+          ]
+        },
+        "hints": ["Times $[[n]]$ by $[[n+1]]$.", "Write $25$ after it."],
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "squares-5",
+        "difficulty": 1,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "front",
+        "prompt": "$[[10*n+5]]^2 = \\square 25$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n+1)]]"],
+          "form": "any"
+        },
+        "hints": ["Times the tens digit by the next number up."],
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$.",
+        "skill": "squares-5",
+        "difficulty": 1,
+        "compute": "((10*n+5)^2 - 25)/100",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "three-digit",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any"
+        },
+        "hints": ["The front part is $[[n]]$. Times it by $[[n+1]]$."],
+        "solution": "Here the front part is $[[n]]$: $[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "squares-5",
+        "difficulty": 3,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "half",
+        "prompt": "Work out $[[n+1/2|decimal]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n+1) + 1/4|decimal]]"],
+          "form": "decimal"
+        },
+        "hints": ["Times $[[n]]$ by $[[n+1]]$.", "Then add $0.25$."],
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $.25$: $[[n*(n+1)+1/4|decimal]]$.",
+        "skill": "squares-5",
+        "difficulty": 2,
+        "compute": "(n+1/2)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "garden",
+        "prompt": "A square garden has sides of $[[10*n+5]]$ metres. What is its area in square metres?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[4*(10*n+5)]]",
+              "why": "That is the perimeter. The area is the side squared."
+            }
+          ]
+        },
+        "hints": ["Area of a square: side squared."],
+        "solution": "$[[10*n+5]]^2 = [[100*n*(n+1)+25]]$ square metres.",
+        "skill": "squares-5",
+        "difficulty": 2,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n12.ends-5-set",
+    "type": "PROBLEM_SET",
+    "title": "Squares Ending in 5 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-two-digit",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*n*n + 25]]",
+              "why": "Times $[[n]]$ by the next number up, $[[n+1]]$, not by itself."
+            }
+          ]
+        },
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "squares-5",
+        "difficulty": 1,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-front",
+        "prompt": "$[[10*n+5]]^2 = \\square 25$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n+1)]]"],
+          "form": "any"
+        },
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$.",
+        "skill": "squares-5",
+        "difficulty": 1,
+        "compute": "((10*n+5)^2 - 25)/100",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-three-digit",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any"
+        },
+        "solution": "Here the front part is $[[n]]$: $[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "squares-5",
+        "difficulty": 3,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "s-half",
+        "prompt": "Work out $[[n+1/2|decimal]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n+1) + 1/4|decimal]]"],
+          "form": "decimal"
+        },
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $.25$: $[[n*(n+1)+1/4|decimal]]$.",
+        "skill": "squares-5",
+        "difficulty": 2,
+        "compute": "(n+1/2)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-garden",
+        "prompt": "A square garden has sides of $[[10*n+5]]$ metres. What is its area in square metres?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[4*(10*n+5)]]",
+              "why": "That is the perimeter. The area is the side squared."
+            }
+          ]
+        },
+        "solution": "$[[10*n+5]]^2 = [[100*n*(n+1)+25]]$ square metres.",
+        "skill": "squares-5",
+        "difficulty": 2,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n12.step-practice",
+    "type": "PROBLEMS",
+    "title": "Step to the Next Square",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "up",
+        "prompt": "$[[10*m]]^2 = [[100*m*m]]$. Use it to work out $[[10*m+1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m+1)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*m*m + 1]]",
+              "why": "Adding $1$ is not enough: the square grows by a whole row and column."
+            }
+          ]
+        },
+        "hints": ["Add $[[10*m]]$ and $[[10*m+1]]$ to $[[100*m*m]]$."],
+        "solution": "$[[100*m*m]] + [[10*m]] + [[10*m+1]] = [[(10*m+1)^2]]$.",
+        "skill": "squares-step",
+        "difficulty": 1,
+        "compute": "100*m*m + 10*m + 10*m + 1",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "down",
+        "prompt": "$[[10*m]]^2 = [[100*m*m]]$. Use it to work out $[[10*m-1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m-1)^2]]"],
+          "form": "any"
+        },
+        "hints": ["Take away $[[10*m]]$ and $[[10*m-1]]$."],
+        "solution": "$[[100*m*m]] - [[10*m]] - [[10*m-1]] = [[(10*m-1)^2]]$.",
+        "skill": "squares-step",
+        "difficulty": 2,
+        "compute": "100*m*m - 10*m - (10*m-1)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "gap",
+        "prompt": "How much bigger is $[[n+1]]^2$ than $[[n]]^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "The squares grow faster than that: add $[[n]]$ and $[[n+1]]$."
+            }
+          ]
+        },
+        "hints": ["Add the two numbers."],
+        "solution": "The step is $[[n]] + [[n+1]] = [[2*n+1]]$.",
+        "skill": "squares-step",
+        "difficulty": 2,
+        "compute": "(n+1)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "known",
+        "prompt": "$[[n]]^2 = [[n*n]]$. Work out $[[n+1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(n+1)^2]]"],
+          "form": "any"
+        },
+        "hints": ["Add $[[n]]$ and $[[n+1]]$ to $[[n*n]]$."],
+        "solution": "$[[n*n]] + [[n]] + [[n+1]] = [[(n+1)^2]]$.",
+        "skill": "squares-step",
+        "difficulty": 2,
+        "compute": "n*n + 2*n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "which",
+        "prompt": "Two square numbers next to each other differ by $[[2*n+1]]$. What is the bigger number that was squared?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n+1]]"],
+          "form": "any"
+        },
+        "hints": [
+          "The gap is two numbers next to each other added together.",
+          "Which two numbers next to each other add to $[[2*n+1]]$?"
+        ],
+        "solution": "$n + (n + 1) = [[2*n+1]]$, so the numbers are $[[n]]$ and $[[n+1]]$. The bigger one is $[[n+1]]$.",
+        "skill": "squares-step",
+        "difficulty": 3,
+        "compute": "(2*n+1+1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 50
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n12.step-set",
+    "type": "PROBLEM_SET",
+    "title": "Step to the Next Square challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-up",
+        "prompt": "$[[10*m]]^2 = [[100*m*m]]$. Use it to work out $[[10*m+1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m+1)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*m*m + 1]]",
+              "why": "Adding $1$ is not enough: the square grows by a whole row and column."
+            }
+          ]
+        },
+        "solution": "$[[100*m*m]] + [[10*m]] + [[10*m+1]] = [[(10*m+1)^2]]$.",
+        "skill": "squares-step",
+        "difficulty": 1,
+        "compute": "100*m*m + 10*m + 10*m + 1",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-down",
+        "prompt": "$[[10*m]]^2 = [[100*m*m]]$. Use it to work out $[[10*m-1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m-1)^2]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*m*m]] - [[10*m]] - [[10*m-1]] = [[(10*m-1)^2]]$.",
+        "skill": "squares-step",
+        "difficulty": 2,
+        "compute": "100*m*m - 10*m - (10*m-1)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-gap",
+        "prompt": "How much bigger is $[[n+1]]^2$ than $[[n]]^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "The squares grow faster than that: add $[[n]]$ and $[[n+1]]$."
+            }
+          ]
+        },
+        "solution": "The step is $[[n]] + [[n+1]] = [[2*n+1]]$.",
+        "skill": "squares-step",
+        "difficulty": 2,
+        "compute": "(n+1)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "s-known",
+        "prompt": "$[[n]]^2 = [[n*n]]$. Work out $[[n+1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(n+1)^2]]"],
+          "form": "any"
+        },
+        "solution": "$[[n*n]] + [[n]] + [[n+1]] = [[(n+1)^2]]$.",
+        "skill": "squares-step",
+        "difficulty": 2,
+        "compute": "n*n + 2*n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "s-which",
+        "prompt": "Two square numbers next to each other differ by $[[2*n+1]]$. What is the bigger number that was squared?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n+1]]"],
+          "form": "any"
+        },
+        "solution": "$n + (n + 1) = [[2*n+1]]$, so the numbers are $[[n]]$ and $[[n+1]]$. The bigger one is $[[n+1]]$.",
+        "skill": "squares-step",
+        "difficulty": 3,
+        "compute": "(2*n+1+1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 50
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n12.to-30-practice",
+    "type": "PROBLEMS",
+    "title": "Squares from 16 to 30",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "twenties",
+        "prompt": "Work out $[[20+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(20+b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[400 + b*b]]",
+              "why": "You missed the middle part, $40 \\times [[b]]$."
+            }
+          ]
+        },
+        "hints": ["$400 + 40 \\times [[b]] + [[b]]^2$."],
+        "solution": "$400 + [[40*b]] + [[b*b]] = [[(20+b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 1,
+        "compute": "400 + 40*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "teens",
+        "prompt": "Work out $[[10+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10+b)^2]]"],
+          "form": "any"
+        },
+        "hints": ["$100 + 20 \\times [[b]] + [[b]]^2$."],
+        "solution": "$100 + [[20*b]] + [[b*b]] = [[(10+b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 1,
+        "compute": "100 + 20*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "below30",
+        "prompt": "Work out $[[30-b]]^2$ by counting down from $30^2 = 900$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(30-b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[900 - 60*b - b*b]]",
+              "why": "The $[[b*b]]$ is added, not taken away."
+            }
+          ]
+        },
+        "hints": ["$900 - 60 \\times [[b]] + [[b]]^2$."],
+        "solution": "$900 - [[60*b]] + [[b*b]] = [[(30-b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 2,
+        "compute": "900 - 60*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "last",
+        "prompt": "What is the last digit of $[[10*t+u]]^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(u*u,10)]]"],
+          "form": "any"
+        },
+        "hints": ["Square just the last digit."],
+        "solution": "Only the last digit matters: $[[u]]^2 = [[u*u]]$, which ends in $[[mod(u*u,10)]]$.",
+        "skill": "squares-30",
+        "difficulty": 2,
+        "compute": "mod((10*t+u)^2, 10)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 9
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "rug",
+        "prompt": "A square rug has sides of $[[20+b]]$ decimetres. What is its area in square decimetres?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(20+b)^2]]"],
+          "form": "any"
+        },
+        "hints": ["Split $[[20+b]]$ into $20 + [[b]]$."],
+        "solution": "$[[20+b]]^2 = 400 + [[40*b]] + [[b*b]] = [[(20+b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 3,
+        "compute": "(20+b)*(20+b)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n12.to-30-set",
+    "type": "PROBLEM_SET",
+    "title": "Squares from 16 to 30 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-twenties",
+        "prompt": "Work out $[[20+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(20+b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[400 + b*b]]",
+              "why": "You missed the middle part, $40 \\times [[b]]$."
+            }
+          ]
+        },
+        "solution": "$400 + [[40*b]] + [[b*b]] = [[(20+b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 1,
+        "compute": "400 + 40*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-teens",
+        "prompt": "Work out $[[10+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10+b)^2]]"],
+          "form": "any"
+        },
+        "solution": "$100 + [[20*b]] + [[b*b]] = [[(10+b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 1,
+        "compute": "100 + 20*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-below30",
+        "prompt": "Work out $[[30-b]]^2$ by counting down from $30^2 = 900$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(30-b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[900 - 60*b - b*b]]",
+              "why": "The $[[b*b]]$ is added, not taken away."
+            }
+          ]
+        },
+        "solution": "$900 - [[60*b]] + [[b*b]] = [[(30-b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 2,
+        "compute": "900 - 60*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "s-last",
+        "prompt": "What is the last digit of $[[10*t+u]]^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(u*u,10)]]"],
+          "form": "any"
+        },
+        "solution": "Only the last digit matters: $[[u]]^2 = [[u*u]]$, which ends in $[[mod(u*u,10)]]$.",
+        "skill": "squares-30",
+        "difficulty": 2,
+        "compute": "mod((10*t+u)^2, 10)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 9
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rug",
+        "prompt": "A square rug has sides of $[[20+b]]$ decimetres. What is its area in square decimetres?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(20+b)^2]]"],
+          "form": "any"
+        },
+        "solution": "$[[20+b]]^2 = 400 + [[40*b]] + [[b*b]] = [[(20+b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 3,
+        "compute": "(20+b)*(20+b)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n12.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-sq",
+        "prompt": "Work out $[[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n]]",
+              "why": "That is $[[n]] \\times 2$. Squaring is $[[n]] \\times [[n]]$."
+            }
+          ]
+        },
+        "hints": ["$[[n]]^2$ means $[[n]] \\times [[n]]$."],
+        "solution": "$[[n]] \\times [[n]] = [[n*n]]$.",
+        "skill": "squares-15",
+        "difficulty": 1,
+        "compute": "n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "r2-two-digit",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*n*n + 25]]",
+              "why": "Times $[[n]]$ by the next number up, $[[n+1]]$, not by itself."
+            }
+          ]
+        },
+        "hints": ["Times $[[n]]$ by $[[n+1]]$.", "Write $25$ after it."],
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "squares-5",
+        "difficulty": 1,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-up",
+        "prompt": "$[[10*m]]^2 = [[100*m*m]]$. Use it to work out $[[10*m+1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m+1)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*m*m + 1]]",
+              "why": "Adding $1$ is not enough: the square grows by a whole row and column."
+            }
+          ]
+        },
+        "hints": ["Add $[[10*m]]$ and $[[10*m+1]]$ to $[[100*m*m]]$."],
+        "solution": "$[[100*m*m]] + [[10*m]] + [[10*m+1]] = [[(10*m+1)^2]]$.",
+        "skill": "squares-step",
+        "difficulty": 1,
+        "compute": "100*m*m + 10*m + 10*m + 1",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-twenties",
+        "prompt": "Work out $[[20+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(20+b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[400 + b*b]]",
+              "why": "You missed the middle part, $40 \\times [[b]]$."
+            }
+          ]
+        },
+        "hints": ["$400 + 40 \\times [[b]] + [[b]]^2$."],
+        "solution": "$400 + [[40*b]] + [[b*b]] = [[(20+b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 1,
+        "compute": "400 + 40*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n12.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 12 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-sq",
+        "prompt": "Work out $[[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n]]",
+              "why": "That is $[[n]] \\times 2$. Squaring is $[[n]] \\times [[n]]$."
+            }
+          ]
+        },
+        "solution": "$[[n]] \\times [[n]] = [[n*n]]$.",
+        "skill": "squares-15",
+        "difficulty": 1,
+        "compute": "n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-root",
+        "prompt": "Work out $\\sqrt{[[n*n]]}$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "solution": "$[[n]]^2 = [[n*n]]$, so $\\sqrt{[[n*n]]} = [[n]]$.",
+        "skill": "squares-15",
+        "difficulty": 1,
+        "compute": "n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-tiles",
+        "prompt": "A square patio is $[[n]]$ tiles long and $[[n]]$ tiles wide. How many tiles does it use?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*n]]"],
+          "form": "any"
+        },
+        "solution": "$[[n]]^2 = [[n*n]]$ tiles.",
+        "skill": "squares-15",
+        "difficulty": 2,
+        "compute": "n*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-two-digit",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*n*n + 25]]",
+              "why": "Times $[[n]]$ by the next number up, $[[n+1]]$, not by itself."
+            }
+          ]
+        },
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "squares-5",
+        "difficulty": 1,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-front",
+        "prompt": "$[[10*n+5]]^2 = \\square 25$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*(n+1)]]"],
+          "form": "any"
+        },
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$.",
+        "skill": "squares-5",
+        "difficulty": 1,
+        "compute": "((10*n+5)^2 - 25)/100",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-three-digit",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any"
+        },
+        "solution": "Here the front part is $[[n]]$: $[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "squares-5",
+        "difficulty": 3,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-up",
+        "prompt": "$[[10*m]]^2 = [[100*m*m]]$. Use it to work out $[[10*m+1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m+1)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*m*m + 1]]",
+              "why": "Adding $1$ is not enough: the square grows by a whole row and column."
+            }
+          ]
+        },
+        "solution": "$[[100*m*m]] + [[10*m]] + [[10*m+1]] = [[(10*m+1)^2]]$.",
+        "skill": "squares-step",
+        "difficulty": 1,
+        "compute": "100*m*m + 10*m + 10*m + 1",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-down",
+        "prompt": "$[[10*m]]^2 = [[100*m*m]]$. Use it to work out $[[10*m-1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m-1)^2]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*m*m]] - [[10*m]] - [[10*m-1]] = [[(10*m-1)^2]]$.",
+        "skill": "squares-step",
+        "difficulty": 2,
+        "compute": "100*m*m - 10*m - (10*m-1)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-gap",
+        "prompt": "How much bigger is $[[n+1]]^2$ than $[[n]]^2$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "The squares grow faster than that: add $[[n]]$ and $[[n+1]]$."
+            }
+          ]
+        },
+        "solution": "The step is $[[n]] + [[n+1]] = [[2*n+1]]$.",
+        "skill": "squares-step",
+        "difficulty": 2,
+        "compute": "(n+1)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-twenties",
+        "prompt": "Work out $[[20+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(20+b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[400 + b*b]]",
+              "why": "You missed the middle part, $40 \\times [[b]]$."
+            }
+          ]
+        },
+        "solution": "$400 + [[40*b]] + [[b*b]] = [[(20+b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 1,
+        "compute": "400 + 40*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-teens",
+        "prompt": "Work out $[[10+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10+b)^2]]"],
+          "form": "any"
+        },
+        "solution": "$100 + [[20*b]] + [[b*b]] = [[(10+b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 1,
+        "compute": "100 + 20*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-below30",
+        "prompt": "Work out $[[30-b]]^2$ by counting down from $30^2 = 900$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(30-b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[900 - 60*b - b*b]]",
+              "why": "The $[[b*b]]$ is added, not taken away."
+            }
+          ]
+        },
+        "solution": "$900 - [[60*b]] + [[b*b]] = [[(30-b)^2]]$.",
+        "skill": "squares-30",
+        "difficulty": 2,
+        "compute": "900 - 60*b + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "slug": "mental-multiply-around-a-round-number",
+  "order": 2,
+  "title": "Multiply Around a Round Number",
+  "estMinutes": 25,
+  "focusSkills": ["dos-around"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$48 \\times 52$: both numbers are $2$ away from $50$. Can you use that?",
+      "placeholder": "I can use it by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Find the middle",
+          "body": "If two numbers are the same distance $b$ from a round number $m$, then $(m - b)(m + b) = m^2 - b^2$. $48 \\times 52 = 50^2 - 2^2 = 2500 - 4 = 2496$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 37 × 43",
+          "problem": "Work out $37 \\times 43$.",
+          "steps": [
+            {
+              "text": "The middle is $40$, and each number is $3$ away.",
+              "try": {
+                "prompt": "What is $40^2$?",
+                "accepted": ["1600"],
+                "compute": "40^2"
+              }
+            },
+            {
+              "text": "Take away $3^2 = 9$.",
+              "try": {
+                "prompt": "What is $37 \\times 43$?",
+                "accepted": ["1591"],
+                "compute": "37*43"
+              }
+            },
+            {
+              "text": "So $37 \\times 43 = 1591$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Finding the middle",
+          "body": "The middle is half the sum: $37 + 43 = 80$, half is $40$. It only works neatly when the middle is a round number, or a number whose square you know."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n13.around-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n13.around-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you spot that two numbers are the same distance from a round number?"],
+      "confidenceCheck": true
+    }
+  ]
+}

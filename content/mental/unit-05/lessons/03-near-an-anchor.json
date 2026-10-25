@@ -1,0 +1,87 @@
+{
+  "slug": "mental-near-an-anchor",
+  "order": 3,
+  "title": "Near an Anchor: Times 9, 4 and 8",
+  "estMinutes": 25,
+  "focusSkills": ["anchor-near"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$9$ is one less than $10$. How could that help you with $9 \\times 8$?",
+      "placeholder": "I could…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "One less than ten",
+          "body": "Nine of something is ten of it, take one away. $9 \\times 8 = 10 \\times 8 - 8 = 80 - 8 = 72$. Nineteen works the same with twenty: $19 \\times 4 = 80 - 4 = 76$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 7 × 9",
+          "problem": "Work out $7 \\times 9$ from times $10$.",
+          "steps": [
+            {
+              "text": "Ten sevens first.",
+              "try": {
+                "prompt": "What is $7 \\times 10$?",
+                "accepted": ["70"],
+                "compute": "7*10"
+              }
+            },
+            {
+              "text": "You only want nine sevens, so take one $7$ away.",
+              "try": {
+                "prompt": "What is $70 - 7$?",
+                "accepted": ["63"],
+                "compute": "70-7"
+              }
+            },
+            {
+              "text": "So $7 \\times 9 = 63$."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: doubling for 4 and 8",
+          "problem": "Work out $4 \\times 17$ and $8 \\times 6$.",
+          "steps": [
+            {
+              "text": "Four is two twos, so times $4$ is double, double: double $17$ is $34$.",
+              "try": {
+                "prompt": "What is double $34$?",
+                "accepted": ["68"],
+                "compute": "34*2"
+              }
+            },
+            {
+              "text": "Eight is double, double, double: $6$, $12$, $24$, $48$. So $8 \\times 6 = 48$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n05.near-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n05.near-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain why $9 \\times 8$ is the same as $80 - 8$."],
+      "confidenceCheck": true
+    }
+  ]
+}

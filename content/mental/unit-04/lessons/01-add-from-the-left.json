@@ -1,0 +1,76 @@
+{
+  "slug": "mental-add-from-the-left",
+  "order": 1,
+  "title": "Add from the Left",
+  "estMinutes": 25,
+  "focusSkills": ["front-add"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "How would you work out $47 + 38$ in your head, without writing it down? Which part do you work out first?",
+      "placeholder": "First I… then I…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Biggest part first",
+          "body": "In school you may add from the right, starting with the ones. In your head it is easier to start from the left: the tens tell you most of the answer. $47 + 38$: the tens make $40 + 30 = 70$, the ones make $7 + 8 = 15$, and $70 + 15 = 85$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 56 + 27",
+          "problem": "Work out $56 + 27$ from the left.",
+          "steps": [
+            {
+              "text": "Add the tens: $50 + 20$.",
+              "try": {
+                "prompt": "What is $50 + 20$?",
+                "accepted": ["70"],
+                "compute": "50+20"
+              }
+            },
+            {
+              "text": "Add the ones: $6 + 7$.",
+              "try": {
+                "prompt": "What is $6 + 7$?",
+                "accepted": ["13"],
+                "compute": "6+7"
+              }
+            },
+            {
+              "text": "Join the parts: $70 + 13 = 83$. So $56 + 27 = 83$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap",
+          "body": "When the ones make more than $10$, don’t write the parts side by side. $70$ and $13$ is $83$, not $7013$ or $713$. Say it: seventy… and thirteen more… eighty-three."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n04.add-left-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n04.add-left-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain to a friend why adding from the left is easier in your head than adding from the right."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

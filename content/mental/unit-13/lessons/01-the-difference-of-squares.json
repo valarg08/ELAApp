@@ -1,0 +1,74 @@
+{
+  "slug": "mental-the-difference-of-squares",
+  "order": 1,
+  "title": "The Pattern",
+  "estMinutes": 25,
+  "focusSkills": ["dos-pattern"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Work out $7^2 - 3^2$. Then work out $(7 + 3) \\times (7 - 3)$. What do you notice?",
+      "placeholder": "I notice…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "A square minus a square",
+          "body": "For any two numbers, $a^2 - b^2 = (a + b)(a - b)$. So $47^2 - 43^2 = (47 + 43)(47 - 43) = 90 \\times 4 = 360$: no squaring needed."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 65² − 35²",
+          "problem": "Work out $65^2 - 35^2$.",
+          "steps": [
+            {
+              "text": "Add the numbers.",
+              "try": {
+                "prompt": "What is $65 + 35$?",
+                "accepted": ["100"],
+                "compute": "65+35"
+              }
+            },
+            {
+              "text": "Subtract them: $65 - 35 = 30$.",
+              "try": {
+                "prompt": "What is $100 \\times 30$?",
+                "accepted": ["3000"],
+                "compute": "100*30"
+              }
+            },
+            {
+              "text": "So $65^2 - 35^2 = 3000$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "Cut a $b$ by $b$ square from the corner of an $a$ by $a$ square. The L-shape left can be rearranged into a rectangle $(a + b)$ long and $(a - b)$ wide. In algebra: $(a + b)(a - b) = a^2 - ab + ab - b^2 = a^2 - b^2$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n13.pattern-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n13.pattern-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain with a picture or with algebra why $a^2 - b^2 = (a + b)(a - b)$."],
+      "confidenceCheck": true
+    }
+  ]
+}

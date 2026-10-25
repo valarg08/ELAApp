@@ -1,0 +1,37 @@
+{
+  "sections": [
+    {
+      "skill": "times-99",
+      "title": "Times 9 and 99",
+      "facts": [
+        "$\\times 9 = \\times 10 - \\times 1$: $46 \\times 9 = 460 - 46 = 414$.",
+        "$\\times 99 = \\times 100 - \\times 1$: $37 \\times 99 = 3700 - 37 = 3663$."
+      ]
+    },
+    {
+      "skill": "times-999",
+      "title": "Times 999 and 98",
+      "facts": [
+        "$\\times 999 = \\times 1000 - \\times 1$: $23 \\times 999 = 22977$.",
+        "$\\times 98 = \\times 100 - \\times 2$: $24 \\times 98 = 2400 - 48 = 2352$."
+      ]
+    },
+    {
+      "skill": "times-11",
+      "title": "Times 11",
+      "facts": [
+        "$ab \\times 11$: $a$, then $a + b$, then $b$: $43 \\times 11 = 473$.",
+        "Carry when $a + b \\ge 10$: $87 \\times 11 = 8\\,(15)\\,7 = 957$.",
+        "Why: $\\times 11 = \\times 10 + \\times 1$."
+      ]
+    },
+    {
+      "skill": "times-101",
+      "title": "Times 101 and 1001",
+      "facts": [
+        "$ab \\times 101 = abab$: $47 \\times 101 = 4747$.",
+        "$abc \\times 1001 = abcabc$: $315 \\times 1001 = 315315$."
+      ]
+    }
+  ]
+}

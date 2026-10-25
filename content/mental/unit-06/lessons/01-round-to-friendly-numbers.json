@@ -1,0 +1,87 @@
+{
+  "slug": "mental-round-to-friendly-numbers",
+  "order": 1,
+  "title": "Round to Friendly Numbers",
+  "estMinutes": 25,
+  "focusSkills": ["bench-round"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A newspaper says \"about $500$ people came\" when $487$ came. Why do people round numbers?",
+      "placeholder": "People round because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Nearest ten, nearest hundred",
+          "body": "To round to the nearest ten, look at the ones digit: $0$ to $4$ rounds down, $5$ to $9$ rounds up. $47$ is nearer $50$ than $40$. For the nearest hundred, look at the tens digit: $487 \\to 500$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: round 364",
+          "problem": "Round $364$ to the nearest ten and to the nearest hundred.",
+          "steps": [
+            {
+              "text": "Nearest ten: the ones digit is $4$, so round down.",
+              "try": {
+                "prompt": "What is $364$ to the nearest ten?",
+                "accepted": ["360"],
+                "compute": "360"
+              }
+            },
+            {
+              "text": "Nearest hundred: the tens digit is $6$, so round up.",
+              "try": {
+                "prompt": "What is $364$ to the nearest hundred?",
+                "accepted": ["400"],
+                "compute": "400"
+              }
+            },
+            {
+              "text": "Picture a number line from $300$ to $400$: $364$ is past the middle, $350$."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: step to the next ten",
+          "problem": "How far is $47$ from the next ten?",
+          "steps": [
+            {
+              "text": "The next ten after $47$ is $50$. The ones need a bond to $10$: $7 + 3 = 10$.",
+              "try": {
+                "prompt": "How far is $47$ from $50$?",
+                "accepted": ["3"],
+                "compute": "50-47"
+              }
+            },
+            {
+              "text": "Steps to a benchmark are always bonds: to reach $400$ from $364$ you need $36$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n06.round-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n06.round-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When is it useful to round a number instead of using it exactly?"],
+      "confidenceCheck": true
+    }
+  ]
+}

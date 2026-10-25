@@ -1,0 +1,56 @@
+{
+  "slug": "mental-difference-of-squares-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Difference of Squares",
+  "estMinutes": 20,
+  "focusSkills": ["dos-pattern", "dos-around", "dos-neighbours", "dos-square"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Difference of Squares do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The difference of squares: quick review",
+          "body": "$a^2 - b^2 = (a + b)(a - b)$. Read it both ways: subtract squares by multiplying, or multiply around a middle number by subtracting squares."
+        },
+        {
+          "kind": "definition",
+          "title": "Squaring near a round number: quick review",
+          "body": "$n^2 = (n - b)(n + b) + b^2$. Pick $b$ so one factor is round: $48^2 = 46 \\times 50 + 4 = 2304$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n13.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n13.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Difference of Squares outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

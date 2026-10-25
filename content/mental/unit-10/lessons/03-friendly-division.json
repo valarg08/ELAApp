@@ -1,0 +1,66 @@
+{
+  "slug": "mental-friendly-division",
+  "order": 3,
+  "title": "Friendly Numbers for Division",
+  "estMinutes": 25,
+  "focusSkills": ["est-div"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$247$ pupils share $6$ buses equally. About how many on each bus? Which number is easy to divide by $6$?",
+      "placeholder": "About… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Compatible numbers",
+          "body": "For division, round to a number that is in the times table. $247 \\div 6$: $240$ is $6 \\times 40$, so $247 \\div 6 \\approx 40$. These friendly numbers are called compatible numbers."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 362 ÷ 9",
+          "problem": "Estimate $362 \\div 9$.",
+          "steps": [
+            {
+              "text": "Look for a multiple of $9$ near $362$: $36$ is $9 \\times 4$, so $360 = 9 \\times 40$.",
+              "try": {
+                "prompt": "What is $360 \\div 9$?",
+                "accepted": ["40"],
+                "compute": "360/9"
+              }
+            },
+            {
+              "text": "So $362 \\div 9 \\approx 40$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Rounding up in real life",
+          "body": "$43$ pupils go on a trip in minibuses of $8$. $43 \\div 8$ is $5$ with $3$ left over. Those $3$ pupils still need a bus, so you need $6$ minibuses."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n10.est-div-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n10.est-div-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When do you round a division answer up instead of down?"],
+      "confidenceCheck": true
+    }
+  ]
+}

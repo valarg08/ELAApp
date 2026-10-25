@@ -1,0 +1,18 @@
+{
+  "number": 15,
+  "slug": "mental-speed-accuracy",
+  "title": "Speed & Accuracy",
+  "summary": "Put it all together: check answers with the inverse and with casting out nines, choose the best strategy for each calculation, and build speed with mixed sprints from every level.",
+  "bigIdeas": [
+    "Fast is only useful if it is right: check every answer quickly.",
+    "The best mental mathematicians first choose the right strategy, then calculate."
+  ],
+  "tips": [
+    "Check a subtraction by adding: $83 - 47 = 36$ because $36 + 47 = 83$.",
+    "Casting out nines: digit sums must agree. $47 \\times 38$: $2 \\times 2 = 4$, and $1786$ has digit sum $22 \\to 4$.",
+    "Before you calculate, ask: is there a round number nearby, a pair that makes $100$, or a square?",
+    "$25 \\times 37 \\times 4$: do $25 \\times 4 = 100$ first.",
+    "Slow is smooth, smooth is fast: accuracy first, then speed."
+  ],
+  "published": true
+}

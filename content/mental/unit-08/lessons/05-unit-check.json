@@ -1,0 +1,56 @@
+{
+  "slug": "mental-fractions-decimals-percentages-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Fractions, Decimals & Percentages",
+  "estMinutes": 20,
+  "focusSkills": ["fdp-convert", "percent-10", "percent-bench", "fraction-of"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Fractions, Decimals & Percentages do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Converting: quick review",
+          "body": "Per cent means out of $100$: $35\\% = \\frac{35}{100} = 0.35$. Learn the benchmarks: $\\frac{1}{2} = 50\\%$, $\\frac{1}{4} = 25\\%$, $\\frac{1}{5} = 20\\%$, $\\frac{1}{10} = 10\\%$."
+        },
+        {
+          "kind": "definition",
+          "title": "Percentages and fractions of numbers: quick review",
+          "body": "$10\\%$: divide by $10$. $1\\%$: divide by $100$. $25\\%$: halve twice. $\\frac{3}{5}$ of $40$: one fifth is $8$, three fifths is $24$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n08.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n08.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Fractions, Decimals & Percentages outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

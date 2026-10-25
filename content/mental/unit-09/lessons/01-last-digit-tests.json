@@ -1,0 +1,74 @@
+{
+  "slug": "mental-last-digit-tests",
+  "order": 1,
+  "title": "Last-Digit Tests: 2, 5 and 10",
+  "estMinutes": 25,
+  "focusSkills": ["div-last-digit"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Without dividing, can $4735$ be shared equally into $5$ groups? Into $2$ groups? How do you know?",
+      "placeholder": "Into $5$… into $2$… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Only the last digit matters",
+          "body": "Every number is some tens plus its last digit: $4735 = 4730 + 5$. Tens always divide by $2$, $5$ and $10$, so only the last digit decides. $4735$ ends in $5$: it divides by $5$, but not by $2$ or $10$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: remainders",
+          "problem": "What are the remainders when $638$ is divided by $10$, $5$ and $2$?",
+          "steps": [
+            {
+              "text": "$638 = 630 + 8$. By $10$ the remainder is the last digit.",
+              "try": {
+                "prompt": "What is the remainder by $10$?",
+                "accepted": ["8"],
+                "compute": "mod(638,10)"
+              }
+            },
+            {
+              "text": "By $5$: $8 = 5 + 3$, so the remainder is $3$.",
+              "try": {
+                "prompt": "What is the remainder by $5$?",
+                "accepted": ["3"],
+                "compute": "mod(638,5)"
+              }
+            },
+            {
+              "text": "By $2$: $8$ is even, so the remainder is $0$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "Every ten is $2$ fives, or $5$ twos, so any number of tens shares exactly into $2$s, $5$s or $10$s. Whatever is left over has to come from the last digit."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n09.last-digit-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n09.last-digit-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain why the last digit is all you need to test for $5$."],
+      "confidenceCheck": true
+    }
+  ]
+}

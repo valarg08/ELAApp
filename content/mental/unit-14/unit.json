@@ -1,0 +1,18 @@
+{
+  "number": 14,
+  "slug": "mental-vedic",
+  "title": "Vedic Tricks, Explained",
+  "summary": "Learn four famous shortcuts from Vedic mathematics, and the algebra that makes each one work: \"all from $9$ and the last from $10$\" for subtracting from $1000$, multiplying near a base of $10$ or $100$, \"vertically and crosswise\" for two-digit products, and bases like $50$.",
+  "bigIdeas": [
+    "A trick is only useful if you know when it works, and why.",
+    "Every shortcut here is an ordinary algebra identity in disguise."
+  ],
+  "tips": [
+    "$1000 - 368$: take each digit from $9$, the last from $10$: $632$.",
+    "Near $100$: $97 \\times 94$: $97 - 6 = 91$, and $3 \\times 6 = 18$, so $9118$.",
+    "Crosswise: $23 \\times 41$: $2 \\times 4 = 8$, $2 \\times 1 + 3 \\times 4 = 14$, $3 \\times 1 = 3$, so $800 + 140 + 3 = 943$.",
+    "Same tens, ones add to $10$: $43 \\times 47$: $4 \\times 5 = 20$, $3 \\times 7 = 21$, so $2021$.",
+    "Near $50$: $(50 + a)(50 + b) = 50(50 + a + b) + ab$."
+  ],
+  "published": true
+}

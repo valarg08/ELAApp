@@ -1,0 +1,76 @@
+{
+  "slug": "mental-square-near-a-round-number",
+  "order": 4,
+  "title": "Square Near a Round Number",
+  "estMinutes": 25,
+  "focusSkills": ["dos-square"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$48^2$ looks hard. What if you changed it to $46 \\times 50$? How far off would you be?",
+      "placeholder": "I would be off by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Move one number to the round one",
+          "body": "From the pattern, $n^2 - b^2 = (n - b)(n + b)$, so $n^2 = (n - b)(n + b) + b^2$. Pick $b$ so one factor is round. $48^2$: $b = 2$ gives $46 \\times 50 + 4 = 2300 + 4 = 2304$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 97 squared",
+          "problem": "Work out $97^2$.",
+          "steps": [
+            {
+              "text": "$97$ is $3$ below $100$, so use $94 \\times 100$.",
+              "try": {
+                "prompt": "What is $94 \\times 100$?",
+                "accepted": ["9400"],
+                "compute": "94*100"
+              }
+            },
+            {
+              "text": "Add $3^2 = 9$.",
+              "try": {
+                "prompt": "What is $97^2$?",
+                "accepted": ["9409"],
+                "compute": "97^2"
+              }
+            },
+            {
+              "text": "So $97^2 = 9409$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Above a round number",
+          "body": "$103^2$: move up to $106 \\times 100 = 10600$, then add $3^2$: $10609$. Go one way to the round number, the same amount the other way, then add the distance squared."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n13.near-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n13.near-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which is quicker for you for $98^2$: this method or splitting into $100 - 2$? Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

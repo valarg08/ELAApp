@@ -1,0 +1,37 @@
+{
+  "sections": [
+    {
+      "skill": "front-add",
+      "title": "Add from the left",
+      "facts": [
+        "Tens first, then ones, then join: $47 + 38 = 70 + 15 = 85$.",
+        "If the ones make $10$ or more, the extra ten joins the tens: $70 + 15 = 85$."
+      ]
+    },
+    {
+      "skill": "front-add-3",
+      "title": "Bigger numbers",
+      "facts": [
+        "Hundreds, then tens, then ones: $325 + 142 = 400 + 60 + 7 = 467$.",
+        "Keep a running total in your head: $400$, $460$, $467$."
+      ]
+    },
+    {
+      "skill": "front-sub",
+      "title": "Subtract from the left",
+      "facts": [
+        "When every digit on top is bigger: $86 - 34 = 50 + 2 = 52$.",
+        "$475 - 231 = 200 + 40 + 4 = 244$."
+      ]
+    },
+    {
+      "skill": "jump-sub",
+      "title": "Two jumps back",
+      "facts": [
+        "Jump back the tens, then the ones: $72 - 38 = 72 - 30 - 8 = 34$.",
+        "Cross a ten on the second jump by going back to the ten first: $42 - 8 = 42 - 2 - 6 = 34$.",
+        "Check by adding back: $34 + 38 = 72$."
+      ]
+    }
+  ]
+}

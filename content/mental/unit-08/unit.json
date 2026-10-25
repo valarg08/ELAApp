@@ -1,0 +1,18 @@
+{
+  "number": 8,
+  "slug": "mental-fractions-decimals-percentages",
+  "title": "Fractions, Decimals & Percentages",
+  "summary": "See one amount three ways: $\\frac{1}{2} = 0.5 = 50\\%$. Move between fractions, decimals and percentages, find $10\\%$ and $1\\%$ as building blocks, use the benchmark percentages $50\\%$, $25\\%$, $20\\%$ and $75\\%$, and find a fraction of a number.",
+  "bigIdeas": [
+    "Per cent means \"out of $100$\": $35\\%$ is $\\frac{35}{100} = 0.35$.",
+    "$10\\%$ is a tenth and $1\\%$ is a hundredth: build any percentage from them."
+  ],
+  "tips": [
+    "Per cent means \"out of $100$\": $35\\%$ is $\\frac{35}{100}$, which is $0.35$.",
+    "$10\\%$ is dividing by $10$: $10\\%$ of $340$ is $34$.",
+    "$5\\%$ is half of $10\\%$, and $20\\%$ is double $10\\%$.",
+    "$25\\%$ is a quarter: halve, then halve again.",
+    "To find $\\frac{3}{5}$ of $40$, find $\\frac{1}{5}$ first ($8$), then times $3$: $24$."
+  ],
+  "published": true
+}

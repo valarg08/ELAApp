@@ -1,0 +1,1695 @@
+[
+  {
+    "key": "n14.complement-practice",
+    "type": "PROBLEMS",
+    "title": "All from 9 and the Last from 10",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "thousand",
+        "prompt": "Work out $1000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1010 - x]]",
+              "why": "Only the last digit comes from $10$. The others come from $9$."
+            }
+          ]
+        },
+        "hints": ["Take the first two digits from $9$.", "Take the last digit from $10$."],
+        "solution": "All from $9$, the last from $10$: $[[1000-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 1,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "ten-thousand",
+        "prompt": "Work out $10000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10000 - x]]"],
+          "form": "any"
+        },
+        "hints": ["Four digits: three from $9$, the last from $10$."],
+        "solution": "All from $9$, the last from $10$: $[[10000-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 2,
+        "compute": "10000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1001,
+              "to": 9999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "change",
+        "prompt": "An item costs $[[x]]$ points. You pay with $1000$ points. How much change do you get?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any"
+        },
+        "hints": ["All from $9$, the last from $10$."],
+        "solution": "$1000 - [[x]] = [[1000-x]]$ points.",
+        "skill": "vedic-complement",
+        "difficulty": 2,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "hundred",
+        "prompt": "Work out $100 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100 - x]]"],
+          "form": "any"
+        },
+        "hints": ["The tens digit from $9$, the ones digit from $10$."],
+        "solution": "$9 - [[floor(x/10)]] = [[9-floor(x/10)]]$ and $10 - [[mod(x,10)]] = [[10-mod(x,10)]]$: $[[100-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 1,
+        "compute": "100 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "missing",
+        "prompt": "$[[x]] + \\square = 10000$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10000 - x]]"],
+          "form": "any"
+        },
+        "hints": ["Work out $10000 - [[x]]$: all from $9$, the last from $10$."],
+        "solution": "$10000 - [[x]] = [[10000-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 3,
+        "compute": "10000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1001,
+              "to": 9999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n14.complement-set",
+    "type": "PROBLEM_SET",
+    "title": "All from 9 and the Last from 10 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-thousand",
+        "prompt": "Work out $1000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1010 - x]]",
+              "why": "Only the last digit comes from $10$. The others come from $9$."
+            }
+          ]
+        },
+        "solution": "All from $9$, the last from $10$: $[[1000-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 1,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "s-ten-thousand",
+        "prompt": "Work out $10000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10000 - x]]"],
+          "form": "any"
+        },
+        "solution": "All from $9$, the last from $10$: $[[10000-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 2,
+        "compute": "10000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1001,
+              "to": 9999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "s-change",
+        "prompt": "An item costs $[[x]]$ points. You pay with $1000$ points. How much change do you get?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any"
+        },
+        "solution": "$1000 - [[x]] = [[1000-x]]$ points.",
+        "skill": "vedic-complement",
+        "difficulty": 2,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "s-hundred",
+        "prompt": "Work out $100 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100 - x]]"],
+          "form": "any"
+        },
+        "solution": "$9 - [[floor(x/10)]] = [[9-floor(x/10)]]$ and $10 - [[mod(x,10)]] = [[10-mod(x,10)]]$: $[[100-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 1,
+        "compute": "100 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "s-missing",
+        "prompt": "$[[x]] + \\square = 10000$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10000 - x]]"],
+          "form": "any"
+        },
+        "solution": "$10000 - [[x]] = [[10000-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 3,
+        "compute": "10000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1001,
+              "to": 9999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n14.base-practice",
+    "type": "PROBLEMS",
+    "title": "Multiply Near a Base",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "below100",
+        "prompt": "Work out $[[100-a]] \\times [[100-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100-a-b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*(100-a-b) + a*b]]",
+              "why": "The back part fills two places, not three."
+            }
+          ]
+        },
+        "hints": [
+          "How far below $100$ is each number?",
+          "Front: one number minus the other gap. Back: the gaps multiplied, as two digits."
+        ],
+        "solution": "Gaps $[[a]]$ and $[[b]]$. Front: $[[100-a-b]]$. Back: $[[a*b]]$. So $[[(100-a)*(100-b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 1,
+        "compute": "(100-a)*(100-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*b >= 10"]
+        }
+      },
+      {
+        "id": "above100",
+        "prompt": "Work out $[[100+a]] \\times [[100+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100+a+b) + a*b]]"],
+          "form": "any"
+        },
+        "hints": ["Above $100$, add the gap instead of subtracting."],
+        "solution": "Front: $[[100+a]] + [[b]] = [[100+a+b]]$. Back: $[[a*b]]$ as two digits. So $[[(100+a)*(100+b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 2,
+        "compute": "(100+a)*(100+b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "base10",
+        "prompt": "Use base $10$ to work out $[[10-a]] \\times [[10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(10-a-b) + a*b]]"],
+          "form": "any"
+        },
+        "hints": ["Front: one number minus the other gap, as tens.", "Back: multiply the gaps."],
+        "solution": "Gaps $[[a]]$ and $[[b]]$. Front: $[[10-a-b]]$ tens. Back: $[[a*b]]$. Total $[[(10-a)*(10-b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 1,
+        "compute": "(10-a)*(10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "front",
+        "prompt": "In $[[100-a]] \\times [[100-b]]$, what is the front part (the number of hundreds)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-a-b]]"],
+          "form": "any"
+        },
+        "hints": ["Cross-subtract: one number minus the other number’s gap."],
+        "solution": "Take one gap from the other number: $[[100-a]] - [[b]] = [[100-a-b]]$.",
+        "skill": "vedic-base",
+        "difficulty": 2,
+        "compute": "100 - a - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*b < 100"]
+        }
+      },
+      {
+        "id": "small-back",
+        "prompt": "Work out $[[100-a]] \\times [[100-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100-a-b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*(100-a-b) + a*b]]",
+              "why": "The back part needs two places: write $0[[a*b]]$."
+            }
+          ]
+        },
+        "hints": ["The back part $[[a*b]]$ has only one digit: write it as $0[[a*b]]$."],
+        "solution": "Front: $[[100-a-b]]$. Back: $[[a*b]]$, written as $0[[a*b]]$. So $[[(100-a)*(100-b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 3,
+        "compute": "(100-a)*(100-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*b < 10"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n14.base-set",
+    "type": "PROBLEM_SET",
+    "title": "Multiply Near a Base challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-below100",
+        "prompt": "Work out $[[100-a]] \\times [[100-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100-a-b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*(100-a-b) + a*b]]",
+              "why": "The back part fills two places, not three."
+            }
+          ]
+        },
+        "solution": "Gaps $[[a]]$ and $[[b]]$. Front: $[[100-a-b]]$. Back: $[[a*b]]$. So $[[(100-a)*(100-b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 1,
+        "compute": "(100-a)*(100-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*b >= 10"]
+        }
+      },
+      {
+        "id": "s-above100",
+        "prompt": "Work out $[[100+a]] \\times [[100+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100+a+b) + a*b]]"],
+          "form": "any"
+        },
+        "solution": "Front: $[[100+a]] + [[b]] = [[100+a+b]]$. Back: $[[a*b]]$ as two digits. So $[[(100+a)*(100+b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 2,
+        "compute": "(100+a)*(100+b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-base10",
+        "prompt": "Use base $10$ to work out $[[10-a]] \\times [[10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(10-a-b) + a*b]]"],
+          "form": "any"
+        },
+        "solution": "Gaps $[[a]]$ and $[[b]]$. Front: $[[10-a-b]]$ tens. Back: $[[a*b]]$. Total $[[(10-a)*(10-b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 1,
+        "compute": "(10-a)*(10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-front",
+        "prompt": "In $[[100-a]] \\times [[100-b]]$, what is the front part (the number of hundreds)?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-a-b]]"],
+          "form": "any"
+        },
+        "solution": "Take one gap from the other number: $[[100-a]] - [[b]] = [[100-a-b]]$.",
+        "skill": "vedic-base",
+        "difficulty": 2,
+        "compute": "100 - a - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*b < 100"]
+        }
+      },
+      {
+        "id": "s-small-back",
+        "prompt": "Work out $[[100-a]] \\times [[100-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100-a-b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*(100-a-b) + a*b]]",
+              "why": "The back part needs two places: write $0[[a*b]]$."
+            }
+          ]
+        },
+        "solution": "Front: $[[100-a-b]]$. Back: $[[a*b]]$, written as $0[[a*b]]$. So $[[(100-a)*(100-b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 3,
+        "compute": "(100-a)*(100-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*b < 10"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n14.crosswise-practice",
+    "type": "PROBLEMS",
+    "title": "Vertically and Crosswise",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "cross",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*c+d]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*c + 10*(a*d+b*c) + b*d]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a*c + b*d]]",
+              "why": "You missed the crosswise part."
+            }
+          ]
+        },
+        "hints": [
+          "Left: tens times tens. Right: ones times ones.",
+          "Crosswise: the two outer products added."
+        ],
+        "solution": "Left $[[a*c]]$, crosswise $[[a*d+b*c]]$, right $[[b*d]]$: $[[100*a*c]] + [[10*(a*d+b*c)]] + [[b*d]] = [[(10*a+b)*(10*c+d)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 1,
+        "compute": "(10*a+b)*(10*c+d)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            },
+            "c": {
+              "from": 1,
+              "to": 4
+            },
+            "d": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "middle",
+        "prompt": "In $[[10*a+b]] \\times [[10*c+d]]$, what is the crosswise part, $[[a]] \\times [[d]] + [[b]] \\times [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*d + b*c]]"],
+          "form": "any"
+        },
+        "hints": ["Multiply across the diagonals, then add."],
+        "solution": "$[[a*d]] + [[b*c]] = [[a*d+b*c]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 2,
+        "compute": "a*d + b*c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            },
+            "c": {
+              "from": 1,
+              "to": 9
+            },
+            "d": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "tens-match",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*a+10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*(a+1) + b*(10-b)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a*a + b*(10-b)]]",
+              "why": "Times the tens digit by the next number up, not by itself."
+            }
+          ]
+        },
+        "hints": [
+          "The tens are the same and the ones add to $10$.",
+          "Front: $[[a]] \\times [[a+1]]$. Back: $[[b]] \\times [[10-b]]$, as two digits."
+        ],
+        "solution": "Same tens, ones add to $10$: $[[a]] \\times [[a+1]] = [[a*(a+1)]]$, and $[[b]] \\times [[10-b]] = [[b*(10-b)]]$. So $[[(10*a+b)*(10*a+10-b)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 2,
+        "compute": "(10*a+b)*(10*a+10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["b != 5"]
+        }
+      },
+      {
+        "id": "larger",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*c+d]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*c + 10*(a*d+b*c) + b*d]]"],
+          "form": "any"
+        },
+        "hints": ["Find the three products, then add them with their place values."],
+        "solution": "$[[100*a*c]] + [[10*(a*d+b*c)]] + [[b*d]] = [[(10*a+b)*(10*c+d)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 3,
+        "compute": "(10*a+b)*(10*c+d)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            },
+            "c": {
+              "from": 2,
+              "to": 9
+            },
+            "d": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*d + b*c >= 10"]
+        }
+      },
+      {
+        "id": "ones",
+        "prompt": "What is the last digit of $[[10*a+b]] \\times [[10*c+d]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(b*d,10)]]"],
+          "form": "any"
+        },
+        "hints": ["Only the ones digits decide the last digit."],
+        "solution": "Vertically on the right: $[[b]] \\times [[d]] = [[b*d]]$, which ends in $[[mod(b*d,10)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 1,
+        "compute": "mod((10*a+b)*(10*c+d),10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            },
+            "c": {
+              "from": 1,
+              "to": 9
+            },
+            "d": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n14.crosswise-set",
+    "type": "PROBLEM_SET",
+    "title": "Vertically and Crosswise challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-cross",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*c+d]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*c + 10*(a*d+b*c) + b*d]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a*c + b*d]]",
+              "why": "You missed the crosswise part."
+            }
+          ]
+        },
+        "solution": "Left $[[a*c]]$, crosswise $[[a*d+b*c]]$, right $[[b*d]]$: $[[100*a*c]] + [[10*(a*d+b*c)]] + [[b*d]] = [[(10*a+b)*(10*c+d)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 1,
+        "compute": "(10*a+b)*(10*c+d)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            },
+            "c": {
+              "from": 1,
+              "to": 4
+            },
+            "d": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-middle",
+        "prompt": "In $[[10*a+b]] \\times [[10*c+d]]$, what is the crosswise part, $[[a]] \\times [[d]] + [[b]] \\times [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*d + b*c]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*d]] + [[b*c]] = [[a*d+b*c]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 2,
+        "compute": "a*d + b*c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            },
+            "c": {
+              "from": 1,
+              "to": 9
+            },
+            "d": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-tens-match",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*a+10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*(a+1) + b*(10-b)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a*a + b*(10-b)]]",
+              "why": "Times the tens digit by the next number up, not by itself."
+            }
+          ]
+        },
+        "solution": "Same tens, ones add to $10$: $[[a]] \\times [[a+1]] = [[a*(a+1)]]$, and $[[b]] \\times [[10-b]] = [[b*(10-b)]]$. So $[[(10*a+b)*(10*a+10-b)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 2,
+        "compute": "(10*a+b)*(10*a+10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["b != 5"]
+        }
+      },
+      {
+        "id": "s-larger",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*c+d]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*c + 10*(a*d+b*c) + b*d]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*a*c]] + [[10*(a*d+b*c)]] + [[b*d]] = [[(10*a+b)*(10*c+d)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 3,
+        "compute": "(10*a+b)*(10*c+d)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            },
+            "c": {
+              "from": 2,
+              "to": 9
+            },
+            "d": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*d + b*c >= 10"]
+        }
+      },
+      {
+        "id": "s-ones",
+        "prompt": "What is the last digit of $[[10*a+b]] \\times [[10*c+d]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(b*d,10)]]"],
+          "form": "any"
+        },
+        "solution": "Vertically on the right: $[[b]] \\times [[d]] = [[b*d]]$, which ends in $[[mod(b*d,10)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 1,
+        "compute": "mod((10*a+b)*(10*c+d),10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            },
+            "c": {
+              "from": 1,
+              "to": 9
+            },
+            "d": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n14.why-practice",
+    "type": "PROBLEMS",
+    "title": "Why the Tricks Work: Other Bases",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "base50",
+        "prompt": "Use base $50$ to work out $[[50+a]] \\times [[50+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[50*(50+a+b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*(50+a+b) + a*b]]",
+              "why": "The base is $50$, so the front is times $50$, not $100$."
+            }
+          ]
+        },
+        "hints": ["Front: $[[50+a]] + [[b]]$, then times $50$.", "Add the gaps multiplied."],
+        "solution": "$50 \\times [[50+a+b]] + [[a]] \\times [[b]] = [[50*(50+a+b)]] + [[a*b]] = [[(50+a)*(50+b)]]$.",
+        "skill": "vedic-why",
+        "difficulty": 2,
+        "compute": "(50+a)*(50+b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "below50",
+        "prompt": "Use base $50$ to work out $[[50-a]] \\times [[50-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[50*(50-a-b) + a*b]]"],
+          "form": "any"
+        },
+        "hints": ["Front: $[[50-a]] - [[b]]$, then times $50$.", "Add the gaps multiplied."],
+        "solution": "$50 \\times [[50-a-b]] + [[a*b]] = [[(50-a)*(50-b)]]$.",
+        "skill": "vedic-why",
+        "difficulty": 2,
+        "compute": "(50-a)*(50-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "square100",
+        "prompt": "Work out $[[100-a]]^2$ using $(100 - a)^2 = 100(100 - 2a) + a^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100-2*a) + a*a]]"],
+          "form": "any"
+        },
+        "hints": ["Front: $100 - 2 \\times [[a]]$.", "Back: $[[a]]^2$ as two digits."],
+        "solution": "$100 \\times [[100-2*a]] + [[a*a]] = [[(100-a)^2]]$.",
+        "skill": "vedic-why",
+        "difficulty": 1,
+        "compute": "(100-a)^2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "base1000",
+        "prompt": "Use base $1000$ to work out $[[1000-a]] \\times [[1000-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*(1000-a-b) + a*b]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Gaps below $1000$: $[[a]]$ and $[[b]]$.",
+          "The back part fills three places for base $1000$."
+        ],
+        "solution": "Front: $[[1000-a-b]]$ thousands. Back: $[[a*b]]$, filling three places. So $[[(1000-a)*(1000-b)]]$.",
+        "skill": "vedic-why",
+        "difficulty": 3,
+        "compute": "(1000-a)*(1000-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 20
+            },
+            "b": {
+              "from": 1,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "complement",
+        "prompt": "Work out $999 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[999 - x]]"],
+          "form": "any"
+        },
+        "hints": ["Take each digit from $9$."],
+        "solution": "Every digit from $9$, no borrowing: $[[999-x]]$.",
+        "skill": "vedic-why",
+        "difficulty": 1,
+        "compute": "999 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 998
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n14.why-set",
+    "type": "PROBLEM_SET",
+    "title": "Why the Tricks Work: Other Bases challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-base50",
+        "prompt": "Use base $50$ to work out $[[50+a]] \\times [[50+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[50*(50+a+b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*(50+a+b) + a*b]]",
+              "why": "The base is $50$, so the front is times $50$, not $100$."
+            }
+          ]
+        },
+        "solution": "$50 \\times [[50+a+b]] + [[a]] \\times [[b]] = [[50*(50+a+b)]] + [[a*b]] = [[(50+a)*(50+b)]]$.",
+        "skill": "vedic-why",
+        "difficulty": 2,
+        "compute": "(50+a)*(50+b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-below50",
+        "prompt": "Use base $50$ to work out $[[50-a]] \\times [[50-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[50*(50-a-b) + a*b]]"],
+          "form": "any"
+        },
+        "solution": "$50 \\times [[50-a-b]] + [[a*b]] = [[(50-a)*(50-b)]]$.",
+        "skill": "vedic-why",
+        "difficulty": 2,
+        "compute": "(50-a)*(50-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-square100",
+        "prompt": "Work out $[[100-a]]^2$ using $(100 - a)^2 = 100(100 - 2a) + a^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100-2*a) + a*a]]"],
+          "form": "any"
+        },
+        "solution": "$100 \\times [[100-2*a]] + [[a*a]] = [[(100-a)^2]]$.",
+        "skill": "vedic-why",
+        "difficulty": 1,
+        "compute": "(100-a)^2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-base1000",
+        "prompt": "Use base $1000$ to work out $[[1000-a]] \\times [[1000-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*(1000-a-b) + a*b]]"],
+          "form": "any"
+        },
+        "solution": "Front: $[[1000-a-b]]$ thousands. Back: $[[a*b]]$, filling three places. So $[[(1000-a)*(1000-b)]]$.",
+        "skill": "vedic-why",
+        "difficulty": 3,
+        "compute": "(1000-a)*(1000-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 20
+            },
+            "b": {
+              "from": 1,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "s-complement",
+        "prompt": "Work out $999 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[999 - x]]"],
+          "form": "any"
+        },
+        "solution": "Every digit from $9$, no borrowing: $[[999-x]]$.",
+        "skill": "vedic-why",
+        "difficulty": 1,
+        "compute": "999 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 998
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n14.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-thousand",
+        "prompt": "Work out $1000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1010 - x]]",
+              "why": "Only the last digit comes from $10$. The others come from $9$."
+            }
+          ]
+        },
+        "hints": ["Take the first two digits from $9$.", "Take the last digit from $10$."],
+        "solution": "All from $9$, the last from $10$: $[[1000-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 1,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "r2-below100",
+        "prompt": "Work out $[[100-a]] \\times [[100-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100-a-b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*(100-a-b) + a*b]]",
+              "why": "The back part fills two places, not three."
+            }
+          ]
+        },
+        "hints": [
+          "How far below $100$ is each number?",
+          "Front: one number minus the other gap. Back: the gaps multiplied, as two digits."
+        ],
+        "solution": "Gaps $[[a]]$ and $[[b]]$. Front: $[[100-a-b]]$. Back: $[[a*b]]$. So $[[(100-a)*(100-b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 1,
+        "compute": "(100-a)*(100-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*b >= 10"]
+        }
+      },
+      {
+        "id": "r3-cross",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*c+d]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*c + 10*(a*d+b*c) + b*d]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a*c + b*d]]",
+              "why": "You missed the crosswise part."
+            }
+          ]
+        },
+        "hints": [
+          "Left: tens times tens. Right: ones times ones.",
+          "Crosswise: the two outer products added."
+        ],
+        "solution": "Left $[[a*c]]$, crosswise $[[a*d+b*c]]$, right $[[b*d]]$: $[[100*a*c]] + [[10*(a*d+b*c)]] + [[b*d]] = [[(10*a+b)*(10*c+d)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 1,
+        "compute": "(10*a+b)*(10*c+d)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            },
+            "c": {
+              "from": 1,
+              "to": 4
+            },
+            "d": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-base50",
+        "prompt": "Use base $50$ to work out $[[50+a]] \\times [[50+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[50*(50+a+b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*(50+a+b) + a*b]]",
+              "why": "The base is $50$, so the front is times $50$, not $100$."
+            }
+          ]
+        },
+        "hints": ["Front: $[[50+a]] + [[b]]$, then times $50$.", "Add the gaps multiplied."],
+        "solution": "$50 \\times [[50+a+b]] + [[a]] \\times [[b]] = [[50*(50+a+b)]] + [[a*b]] = [[(50+a)*(50+b)]]$.",
+        "skill": "vedic-why",
+        "difficulty": 2,
+        "compute": "(50+a)*(50+b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n14.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 14 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-thousand",
+        "prompt": "Work out $1000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1010 - x]]",
+              "why": "Only the last digit comes from $10$. The others come from $9$."
+            }
+          ]
+        },
+        "solution": "All from $9$, the last from $10$: $[[1000-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 1,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "c1-ten-thousand",
+        "prompt": "Work out $10000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10000 - x]]"],
+          "form": "any"
+        },
+        "solution": "All from $9$, the last from $10$: $[[10000-x]]$.",
+        "skill": "vedic-complement",
+        "difficulty": 2,
+        "compute": "10000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1001,
+              "to": 9999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "c1-change",
+        "prompt": "An item costs $[[x]]$ points. You pay with $1000$ points. How much change do you get?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any"
+        },
+        "solution": "$1000 - [[x]] = [[1000-x]]$ points.",
+        "skill": "vedic-complement",
+        "difficulty": 2,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "c2-below100",
+        "prompt": "Work out $[[100-a]] \\times [[100-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100-a-b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*(100-a-b) + a*b]]",
+              "why": "The back part fills two places, not three."
+            }
+          ]
+        },
+        "solution": "Gaps $[[a]]$ and $[[b]]$. Front: $[[100-a-b]]$. Back: $[[a*b]]$. So $[[(100-a)*(100-b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 1,
+        "compute": "(100-a)*(100-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a*b >= 10"]
+        }
+      },
+      {
+        "id": "c2-above100",
+        "prompt": "Work out $[[100+a]] \\times [[100+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100+a+b) + a*b]]"],
+          "form": "any"
+        },
+        "solution": "Front: $[[100+a]] + [[b]] = [[100+a+b]]$. Back: $[[a*b]]$ as two digits. So $[[(100+a)*(100+b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 2,
+        "compute": "(100+a)*(100+b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-base10",
+        "prompt": "Use base $10$ to work out $[[10-a]] \\times [[10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(10-a-b) + a*b]]"],
+          "form": "any"
+        },
+        "solution": "Gaps $[[a]]$ and $[[b]]$. Front: $[[10-a-b]]$ tens. Back: $[[a*b]]$. Total $[[(10-a)*(10-b)]]$.",
+        "skill": "vedic-base",
+        "difficulty": 1,
+        "compute": "(10-a)*(10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-cross",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*c+d]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*c + 10*(a*d+b*c) + b*d]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a*c + b*d]]",
+              "why": "You missed the crosswise part."
+            }
+          ]
+        },
+        "solution": "Left $[[a*c]]$, crosswise $[[a*d+b*c]]$, right $[[b*d]]$: $[[100*a*c]] + [[10*(a*d+b*c)]] + [[b*d]] = [[(10*a+b)*(10*c+d)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 1,
+        "compute": "(10*a+b)*(10*c+d)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            },
+            "c": {
+              "from": 1,
+              "to": 4
+            },
+            "d": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-middle",
+        "prompt": "In $[[10*a+b]] \\times [[10*c+d]]$, what is the crosswise part, $[[a]] \\times [[d]] + [[b]] \\times [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*d + b*c]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*d]] + [[b*c]] = [[a*d+b*c]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 2,
+        "compute": "a*d + b*c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            },
+            "c": {
+              "from": 1,
+              "to": 9
+            },
+            "d": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-tens-match",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*a+10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*(a+1) + b*(10-b)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a*a + b*(10-b)]]",
+              "why": "Times the tens digit by the next number up, not by itself."
+            }
+          ]
+        },
+        "solution": "Same tens, ones add to $10$: $[[a]] \\times [[a+1]] = [[a*(a+1)]]$, and $[[b]] \\times [[10-b]] = [[b*(10-b)]]$. So $[[(10*a+b)*(10*a+10-b)]]$.",
+        "skill": "vedic-crosswise",
+        "difficulty": 2,
+        "compute": "(10*a+b)*(10*a+10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["b != 5"]
+        }
+      },
+      {
+        "id": "c4-base50",
+        "prompt": "Use base $50$ to work out $[[50+a]] \\times [[50+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[50*(50+a+b) + a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*(50+a+b) + a*b]]",
+              "why": "The base is $50$, so the front is times $50$, not $100$."
+            }
+          ]
+        },
+        "solution": "$50 \\times [[50+a+b]] + [[a]] \\times [[b]] = [[50*(50+a+b)]] + [[a*b]] = [[(50+a)*(50+b)]]$.",
+        "skill": "vedic-why",
+        "difficulty": 2,
+        "compute": "(50+a)*(50+b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-below50",
+        "prompt": "Use base $50$ to work out $[[50-a]] \\times [[50-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[50*(50-a-b) + a*b]]"],
+          "form": "any"
+        },
+        "solution": "$50 \\times [[50-a-b]] + [[a*b]] = [[(50-a)*(50-b)]]$.",
+        "skill": "vedic-why",
+        "difficulty": 2,
+        "compute": "(50-a)*(50-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-square100",
+        "prompt": "Work out $[[100-a]]^2$ using $(100 - a)^2 = 100(100 - 2a) + a^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(100-2*a) + a*a]]"],
+          "form": "any"
+        },
+        "solution": "$100 \\times [[100-2*a]] + [[a*a]] = [[(100-a)^2]]$.",
+        "skill": "vedic-why",
+        "difficulty": 1,
+        "compute": "(100-a)^2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  }
+]

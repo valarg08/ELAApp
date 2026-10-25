@@ -1,0 +1,74 @@
+{
+  "slug": "mental-squares-16-to-30",
+  "order": 4,
+  "title": "Squares from 16 to 30",
+  "estMinutes": 25,
+  "focusSkills": ["squares-30"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Work out $23^2$ in your head. What did you split $23$ into?",
+      "placeholder": "I split it into…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "A round number plus a bit",
+          "body": "Split the number into tens and ones: $(20 + b)^2 = 400 + 40b + b^2$. $23^2 = 400 + 120 + 9 = 529$. The middle part is \"twice $20$ times $b$\", from the two strips of the square."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 27 squared",
+          "problem": "Work out $27^2$.",
+          "steps": [
+            {
+              "text": "$400 + 40 \\times 7 + 49$.",
+              "try": {
+                "prompt": "What is $40 \\times 7$?",
+                "accepted": ["280"],
+                "compute": "40*7"
+              }
+            },
+            {
+              "text": "$400 + 280 + 49$.",
+              "try": {
+                "prompt": "What is $27^2$?",
+                "accepted": ["729"],
+                "compute": "27^2"
+              }
+            },
+            {
+              "text": "So $27^2 = 729$. Or count down from $30$: $900 - 60 \\times 3 + 9 = 729$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The last-digit check",
+          "body": "The last digit of a square comes from the last digit of the number: $27^2$ ends in the last digit of $7^2 = 49$, so in $9$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n12.to-30-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n12.to-30-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which way do you prefer for $28^2$: up from $20$ or down from $30$? Why?"],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,2211 @@
+[
+  {
+    "key": "n04.add-left-practice",
+    "type": "PROBLEMS",
+    "title": "Add from the Left",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "add",
+        "prompt": "Work out $[[10*t+u]] + [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Add the tens first: $[[10*t]] + [[10*s]]$.",
+          "Now add the ones, $[[u]] + [[r]]$, and join the two parts."
+        ],
+        "solution": "Tens: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$. Ones: $[[u]] + [[r]] = [[u+r]]$. Together: $[[10*(t+s)]] + [[u+r]] = [[10*(t+s)+u+r]]$.",
+        "skill": "front-add",
+        "difficulty": 1,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "u": {
+              "from": 1,
+              "to": 8
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "r": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["u + r < 10"]
+        }
+      },
+      {
+        "id": "add-carry",
+        "prompt": "Work out $[[10*t+u]] + [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*(t+s) + u + r]]",
+              "why": "You wrote the tens and the ones side by side. Add them: $[[10*(t+s)]] + [[u+r]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Tens first: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$.",
+          "The ones make $[[u+r]]$. Add that to $[[10*(t+s)]]$."
+        ],
+        "solution": "Tens: $[[10*(t+s)]]$. Ones: $[[u]] + [[r]] = [[u+r]]$. Join them: $[[10*(t+s)]] + [[u+r]] = [[10*(t+s)+u+r]]$.",
+        "skill": "front-add",
+        "difficulty": 2,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "u": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "r": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["u + r >= 10"]
+        }
+      },
+      {
+        "id": "cans",
+        "prompt": "A class collects $[[10*t+u]]$ cans on Monday and $[[10*s+r]]$ cans on Tuesday. How many cans is that altogether?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "hints": ["Add the tens first, then the ones."],
+        "solution": "Tens: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$. Ones: $[[u+r]]$. Altogether $[[10*(t+s)+u+r]]$ cans.",
+        "skill": "front-add",
+        "difficulty": 2,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 5
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "s": {
+              "from": 2,
+              "to": 4
+            },
+            "r": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "three",
+        "prompt": "Work out $[[10*t+u]] + [[10*s+r]] + [[10*x+y]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s+x) + u + r + y]]"],
+          "form": "any"
+        },
+        "hints": ["Add all the tens first.", "Then add all the ones, and join the parts."],
+        "solution": "Tens: $[[10*t]] + [[10*s]] + [[10*x]] = [[10*(t+s+x)]]$. Ones: $[[u]] + [[r]] + [[y]] = [[u+r+y]]$. Total: $[[10*(t+s+x)+u+r+y]]$.",
+        "skill": "front-add",
+        "difficulty": 3,
+        "compute": "(10*t+u)+(10*s+r)+(10*x+y)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 3
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            },
+            "x": {
+              "from": 1,
+              "to": 3
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "missing",
+        "prompt": "$[[10*t+u]] + ? = [[10*(t+s)+u+r]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*s+r]]"],
+          "form": "any"
+        },
+        "hints": ["How many tens were added? How many ones?"],
+        "solution": "From the left: the tens went from $[[t]]$ to $[[t+s]]$, up $[[s]]$ tens. The ones went from $[[u]]$ to $[[u+r]]$, up $[[r]]$. The missing number is $[[10*s+r]]$.",
+        "skill": "front-add",
+        "difficulty": 3,
+        "compute": "(10*(t+s)+u+r)-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 5
+            },
+            "u": {
+              "from": 1,
+              "to": 5
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n04.add-left-set",
+    "type": "PROBLEM_SET",
+    "title": "Add from the Left challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-add",
+        "prompt": "Work out $[[10*t+u]] + [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "solution": "Tens: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$. Ones: $[[u]] + [[r]] = [[u+r]]$. Together: $[[10*(t+s)]] + [[u+r]] = [[10*(t+s)+u+r]]$.",
+        "skill": "front-add",
+        "difficulty": 1,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "u": {
+              "from": 1,
+              "to": 8
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "r": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["u + r < 10"]
+        }
+      },
+      {
+        "id": "s-add-carry",
+        "prompt": "Work out $[[10*t+u]] + [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*(t+s) + u + r]]",
+              "why": "You wrote the tens and the ones side by side. Add them: $[[10*(t+s)]] + [[u+r]]$."
+            }
+          ]
+        },
+        "solution": "Tens: $[[10*(t+s)]]$. Ones: $[[u]] + [[r]] = [[u+r]]$. Join them: $[[10*(t+s)]] + [[u+r]] = [[10*(t+s)+u+r]]$.",
+        "skill": "front-add",
+        "difficulty": 2,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "u": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "r": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["u + r >= 10"]
+        }
+      },
+      {
+        "id": "s-cans",
+        "prompt": "A class collects $[[10*t+u]]$ cans on Monday and $[[10*s+r]]$ cans on Tuesday. How many cans is that altogether?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "solution": "Tens: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$. Ones: $[[u+r]]$. Altogether $[[10*(t+s)+u+r]]$ cans.",
+        "skill": "front-add",
+        "difficulty": 2,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 5
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "s": {
+              "from": 2,
+              "to": 4
+            },
+            "r": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-three",
+        "prompt": "Work out $[[10*t+u]] + [[10*s+r]] + [[10*x+y]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s+x) + u + r + y]]"],
+          "form": "any"
+        },
+        "solution": "Tens: $[[10*t]] + [[10*s]] + [[10*x]] = [[10*(t+s+x)]]$. Ones: $[[u]] + [[r]] + [[y]] = [[u+r+y]]$. Total: $[[10*(t+s+x)+u+r+y]]$.",
+        "skill": "front-add",
+        "difficulty": 3,
+        "compute": "(10*t+u)+(10*s+r)+(10*x+y)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 3
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            },
+            "x": {
+              "from": 1,
+              "to": 3
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-missing",
+        "prompt": "$[[10*t+u]] + ? = [[10*(t+s)+u+r]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*s+r]]"],
+          "form": "any"
+        },
+        "solution": "From the left: the tens went from $[[t]]$ to $[[t+s]]$, up $[[s]]$ tens. The ones went from $[[u]]$ to $[[u+r]]$, up $[[r]]$. The missing number is $[[10*s+r]]$.",
+        "skill": "front-add",
+        "difficulty": 3,
+        "compute": "(10*(t+s)+u+r)-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 5
+            },
+            "u": {
+              "from": 1,
+              "to": 5
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n04.add-big-practice",
+    "type": "PROBLEMS",
+    "title": "Add Bigger Numbers",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "add3",
+        "prompt": "Work out $[[100*h+10*t+u]] + [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Add the hundreds first: $[[100*h]] + [[100*g]]$.",
+          "Then the tens, then the ones."
+        ],
+        "solution": "Hundreds: $[[100*(h+g)]]$. Tens: $[[10*(t+s)]]$. Ones: $[[u+r]]$. Total: $[[100*(h+g)+10*(t+s)+u+r]]$.",
+        "skill": "front-add-3",
+        "difficulty": 1,
+        "compute": "(100*h+10*t+u)+(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "add3-carry",
+        "prompt": "Work out $[[100*h+10*t+u]] + [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Hundreds first, then add the tens to your running total.",
+          "The tens make $[[10*(t+s)]]$: add that to $[[100*(h+g)]]$."
+        ],
+        "solution": "Running total: $[[100*(h+g)]]$, then add $[[10*(t+s)]]$ to get $[[100*(h+g)+10*(t+s)]]$, then add $[[u+r]]$ to get $[[100*(h+g)+10*(t+s)+u+r]]$.",
+        "skill": "front-add-3",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)+(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 3,
+              "to": 9
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          },
+          "where": ["t + s >= 10"]
+        }
+      },
+      {
+        "id": "tens",
+        "prompt": "Work out $[[100*h+10*t]] + [[100*g+10*s]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s)]]"],
+          "form": "any"
+        },
+        "hints": ["Hundreds first, then tens."],
+        "solution": "Hundreds: $[[100*(h+g)]]$. Tens: $[[10*(t+s)]]$. Total: $[[100*(h+g)+10*(t+s)]]$.",
+        "skill": "front-add-3",
+        "difficulty": 1,
+        "compute": "(100*h+10*t)+(100*g+10*s)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 5
+            },
+            "g": {
+              "from": 1,
+              "to": 3
+            },
+            "t": {
+              "from": 1,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "apples",
+        "prompt": "A shop sells $[[100*h+10*t+u]]$ apples on Saturday and $[[100*g+10*s+r]]$ on Sunday. How many apples is that in total?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "hints": ["Add the hundreds, then the tens, then the ones."],
+        "solution": "$[[100*(h+g)]] + [[10*(t+s)]] + [[u+r]] = [[100*(h+g)+10*(t+s)+u+r]]$ apples.",
+        "skill": "front-add-3",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)+(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 1,
+              "to": 6
+            },
+            "s": {
+              "from": 1,
+              "to": 6
+            },
+            "u": {
+              "from": 5,
+              "to": 9
+            },
+            "r": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "add3-2",
+        "prompt": "Work out $[[100*h+10*t+u]] + [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*h + 10*(t+s) + u + r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*(h+s) + 10*t + u + r]]",
+              "why": "The $[[s]]$ in $[[10*s+r]]$ is tens, not hundreds. Line up the places."
+            }
+          ]
+        },
+        "hints": ["Only the first number has hundreds: keep them, then add the tens and the ones."],
+        "solution": "Keep the $[[100*h]]$. Tens: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$. Ones: $[[u+r]]$. Total: $[[100*h+10*(t+s)+u+r]]$.",
+        "skill": "front-add-3",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 3
+            },
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n04.add-big-set",
+    "type": "PROBLEM_SET",
+    "title": "Add Bigger Numbers challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-add3",
+        "prompt": "Work out $[[100*h+10*t+u]] + [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "solution": "Hundreds: $[[100*(h+g)]]$. Tens: $[[10*(t+s)]]$. Ones: $[[u+r]]$. Total: $[[100*(h+g)+10*(t+s)+u+r]]$.",
+        "skill": "front-add-3",
+        "difficulty": 1,
+        "compute": "(100*h+10*t+u)+(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-add3-carry",
+        "prompt": "Work out $[[100*h+10*t+u]] + [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "solution": "Running total: $[[100*(h+g)]]$, then add $[[10*(t+s)]]$ to get $[[100*(h+g)+10*(t+s)]]$, then add $[[u+r]]$ to get $[[100*(h+g)+10*(t+s)+u+r]]$.",
+        "skill": "front-add-3",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)+(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 3,
+              "to": 9
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          },
+          "where": ["t + s >= 10"]
+        }
+      },
+      {
+        "id": "s-tens",
+        "prompt": "Work out $[[100*h+10*t]] + [[100*g+10*s]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s)]]"],
+          "form": "any"
+        },
+        "solution": "Hundreds: $[[100*(h+g)]]$. Tens: $[[10*(t+s)]]$. Total: $[[100*(h+g)+10*(t+s)]]$.",
+        "skill": "front-add-3",
+        "difficulty": 1,
+        "compute": "(100*h+10*t)+(100*g+10*s)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 5
+            },
+            "g": {
+              "from": 1,
+              "to": 3
+            },
+            "t": {
+              "from": 1,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-apples",
+        "prompt": "A shop sells $[[100*h+10*t+u]]$ apples on Saturday and $[[100*g+10*s+r]]$ on Sunday. How many apples is that in total?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*(h+g)]] + [[10*(t+s)]] + [[u+r]] = [[100*(h+g)+10*(t+s)+u+r]]$ apples.",
+        "skill": "front-add-3",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)+(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 1,
+              "to": 6
+            },
+            "s": {
+              "from": 1,
+              "to": 6
+            },
+            "u": {
+              "from": 5,
+              "to": 9
+            },
+            "r": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-add3-2",
+        "prompt": "Work out $[[100*h+10*t+u]] + [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*h + 10*(t+s) + u + r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*(h+s) + 10*t + u + r]]",
+              "why": "The $[[s]]$ in $[[10*s+r]]$ is tens, not hundreds. Line up the places."
+            }
+          ]
+        },
+        "solution": "Keep the $[[100*h]]$. Tens: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$. Ones: $[[u+r]]$. Total: $[[100*h+10*(t+s)+u+r]]$.",
+        "skill": "front-add-3",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 3
+            },
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n04.sub-left-practice",
+    "type": "PROBLEMS",
+    "title": "Subtract from the Left",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sub",
+        "prompt": "Work out $[[10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Subtract the tens first: $[[10*t]] - [[10*s]]$.",
+          "Then the ones: $[[u]] - [[r]]$."
+        ],
+        "solution": "Tens: $[[10*t]] - [[10*s]] = [[10*(t-s)]]$. Ones: $[[u]] - [[r]] = [[u-r]]$. Answer: $[[10*(t-s)+u-r]]$.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r <= u"]
+        }
+      },
+      {
+        "id": "sub-tens",
+        "prompt": "Work out $[[10*t+u]] - [[10*s]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u]]"],
+          "form": "any"
+        },
+        "hints": ["Take away the tens. The ones stay the same."],
+        "solution": "Only the tens change: $[[10*t]] - [[10*s]] = [[10*(t-s)]]$, and the $[[u]]$ ones stay. Answer: $[[10*(t-s)+u]]$.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-10*s",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t"]
+        }
+      },
+      {
+        "id": "stickers",
+        "prompt": "Ana has $[[10*t+u]]$ stickers and gives away $[[10*s+r]]$. How many does she have left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "hints": ["Subtract the tens, then the ones."],
+        "solution": "Tens: $[[10*(t-s)]]$. Ones: $[[u-r]]$. She has $[[10*(t-s)+u-r]]$ left.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 4,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "u": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "sub3",
+        "prompt": "Work out $[[100*h+10*t+u]] - [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h-g) + 10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "hints": ["Hundreds first, then tens, then ones."],
+        "solution": "Hundreds: $[[100*(h-g)]]$. Tens: $[[10*(t-s)]]$. Ones: $[[u-r]]$. Answer: $[[100*(h-g)+10*(t-s)+u-r]]$.",
+        "skill": "front-sub",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)-(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 5,
+              "to": 9
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 5,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 5,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "missing-start",
+        "prompt": "$? - [[10*s+r]] = [[10*x+y]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(s+x) + r + y]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*(x-s) + y - r]]",
+              "why": "You subtracted again. The missing number is the start, so add back."
+            }
+          ]
+        },
+        "hints": ["Undo the subtraction: add $[[10*s+r]]$ back on."],
+        "solution": "Add back: $[[10*x+y]] + [[10*s+r]] = [[10*(s+x)+r+y]]$. Check: $[[10*(s+x)+r+y]] - [[10*s+r]] = [[10*x+y]]$.",
+        "skill": "front-sub",
+        "difficulty": 3,
+        "compute": "(10*x+y)+(10*s+r)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            },
+            "x": {
+              "from": 1,
+              "to": 4
+            },
+            "y": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n04.sub-left-set",
+    "type": "PROBLEM_SET",
+    "title": "Subtract from the Left challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-sub",
+        "prompt": "Work out $[[10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "solution": "Tens: $[[10*t]] - [[10*s]] = [[10*(t-s)]]$. Ones: $[[u]] - [[r]] = [[u-r]]$. Answer: $[[10*(t-s)+u-r]]$.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r <= u"]
+        }
+      },
+      {
+        "id": "s-sub-tens",
+        "prompt": "Work out $[[10*t+u]] - [[10*s]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u]]"],
+          "form": "any"
+        },
+        "solution": "Only the tens change: $[[10*t]] - [[10*s]] = [[10*(t-s)]]$, and the $[[u]]$ ones stay. Answer: $[[10*(t-s)+u]]$.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-10*s",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t"]
+        }
+      },
+      {
+        "id": "s-stickers",
+        "prompt": "Ana has $[[10*t+u]]$ stickers and gives away $[[10*s+r]]$. How many does she have left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "solution": "Tens: $[[10*(t-s)]]$. Ones: $[[u-r]]$. She has $[[10*(t-s)+u-r]]$ left.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 4,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "u": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "s-sub3",
+        "prompt": "Work out $[[100*h+10*t+u]] - [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h-g) + 10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "solution": "Hundreds: $[[100*(h-g)]]$. Tens: $[[10*(t-s)]]$. Ones: $[[u-r]]$. Answer: $[[100*(h-g)+10*(t-s)+u-r]]$.",
+        "skill": "front-sub",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)-(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 5,
+              "to": 9
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 5,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 5,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-missing-start",
+        "prompt": "$? - [[10*s+r]] = [[10*x+y]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(s+x) + r + y]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*(x-s) + y - r]]",
+              "why": "You subtracted again. The missing number is the start, so add back."
+            }
+          ]
+        },
+        "solution": "Add back: $[[10*x+y]] + [[10*s+r]] = [[10*(s+x)+r+y]]$. Check: $[[10*(s+x)+r+y]] - [[10*s+r]] = [[10*x+y]]$.",
+        "skill": "front-sub",
+        "difficulty": 3,
+        "compute": "(10*x+y)+(10*s+r)",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            },
+            "x": {
+              "from": 1,
+              "to": 4
+            },
+            "y": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n04.jump-practice",
+    "type": "PROBLEMS",
+    "title": "Subtract in Two Jumps",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "jump",
+        "prompt": "Work out $[[10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t + u - 10*s - r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*(t-s) + r - u]]",
+              "why": "You took $[[u]]$ from $[[r]]$ instead of $[[r]]$ from $[[u]]$. Jump back $[[10*s]]$ first, then $[[r]]$."
+            }
+          ]
+        },
+        "hints": [
+          "First take away $[[10*s]]$.",
+          "Now take away $[[r]]$: go back to the ten first."
+        ],
+        "solution": "Jump back the tens: $[[10*t+u]] - [[10*s]] = [[10*(t-s)+u]]$. Then the ones: $[[10*(t-s)+u]] - [[r]] = [[10*(t-s)+u-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 0,
+              "to": 8
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r > u"]
+        }
+      },
+      {
+        "id": "jump-big",
+        "prompt": "Work out $[[100*h+10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*h + 10*t + u - 10*s - r]]"],
+          "form": "any"
+        },
+        "hints": ["Jump back the tens first, then the ones."],
+        "solution": "Jump back $[[10*s]]$: $[[100*h+10*t+u]] - [[10*s]] = [[100*h+10*(t-s)+u]]$. Then jump back $[[r]]$: $[[100*h+10*(t-s)+u-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 0,
+              "to": 7
+            },
+            "r": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r > u"]
+        }
+      },
+      {
+        "id": "pages",
+        "prompt": "A book has $[[10*t+u]]$ pages. Mo has read $[[10*s+r]]$ pages. How many pages are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t + u - 10*s - r]]"],
+          "form": "any"
+        },
+        "hints": ["Jump back the tens, then the ones."],
+        "solution": "$[[10*t+u]] - [[10*s]] = [[10*(t-s)+u]]$, then $- [[r]]$ gives $[[10*(t-s)+u-r]]$ pages.",
+        "skill": "jump-sub",
+        "difficulty": 2,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 5,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 0,
+              "to": 5
+            },
+            "r": {
+              "from": 6,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "difference",
+        "prompt": "What is the difference between $[[10*t+u]]$ and $[[10*s+r]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t + u - 10*s - r]]"],
+          "form": "any"
+        },
+        "hints": ["Difference means bigger minus smaller. Jump back in two steps."],
+        "solution": "The difference is the bigger minus the smaller: $[[10*t+u]] - [[10*s+r]] = [[10*t+u-10*s-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 2,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 4,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "u": {
+              "from": 0,
+              "to": 6
+            },
+            "r": {
+              "from": 7,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "jump3",
+        "prompt": "Work out $[[100*h+10*t+u]] - [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h-g) + 10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Jump back the hundreds and tens first.",
+          "Then jump back the ones, going back to the ten first."
+        ],
+        "solution": "Jump back $[[100*g+10*s]]$: $[[100*(h-g)+10*(t-s)+u]]$. Then jump back $[[r]]$: $[[100*(h-g)+10*(t-s)+u-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 3,
+        "compute": "(100*h+10*t+u)-(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 5,
+              "to": 9
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 5,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 0,
+              "to": 4
+            },
+            "r": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n04.jump-set",
+    "type": "PROBLEM_SET",
+    "title": "Subtract in Two Jumps challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-jump",
+        "prompt": "Work out $[[10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t + u - 10*s - r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*(t-s) + r - u]]",
+              "why": "You took $[[u]]$ from $[[r]]$ instead of $[[r]]$ from $[[u]]$. Jump back $[[10*s]]$ first, then $[[r]]$."
+            }
+          ]
+        },
+        "solution": "Jump back the tens: $[[10*t+u]] - [[10*s]] = [[10*(t-s)+u]]$. Then the ones: $[[10*(t-s)+u]] - [[r]] = [[10*(t-s)+u-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 0,
+              "to": 8
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r > u"]
+        }
+      },
+      {
+        "id": "s-jump-big",
+        "prompt": "Work out $[[100*h+10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*h + 10*t + u - 10*s - r]]"],
+          "form": "any"
+        },
+        "solution": "Jump back $[[10*s]]$: $[[100*h+10*t+u]] - [[10*s]] = [[100*h+10*(t-s)+u]]$. Then jump back $[[r]]$: $[[100*h+10*(t-s)+u-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 0,
+              "to": 7
+            },
+            "r": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r > u"]
+        }
+      },
+      {
+        "id": "s-pages",
+        "prompt": "A book has $[[10*t+u]]$ pages. Mo has read $[[10*s+r]]$ pages. How many pages are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t + u - 10*s - r]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t+u]] - [[10*s]] = [[10*(t-s)+u]]$, then $- [[r]]$ gives $[[10*(t-s)+u-r]]$ pages.",
+        "skill": "jump-sub",
+        "difficulty": 2,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 5,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 0,
+              "to": 5
+            },
+            "r": {
+              "from": 6,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-difference",
+        "prompt": "What is the difference between $[[10*t+u]]$ and $[[10*s+r]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t + u - 10*s - r]]"],
+          "form": "any"
+        },
+        "solution": "The difference is the bigger minus the smaller: $[[10*t+u]] - [[10*s+r]] = [[10*t+u-10*s-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 2,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 4,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "u": {
+              "from": 0,
+              "to": 6
+            },
+            "r": {
+              "from": 7,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-jump3",
+        "prompt": "Work out $[[100*h+10*t+u]] - [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h-g) + 10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "solution": "Jump back $[[100*g+10*s]]$: $[[100*(h-g)+10*(t-s)+u]]$. Then jump back $[[r]]$: $[[100*(h-g)+10*(t-s)+u-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 3,
+        "compute": "(100*h+10*t+u)-(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 5,
+              "to": 9
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 5,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 0,
+              "to": 4
+            },
+            "r": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n04.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-add",
+        "prompt": "Work out $[[10*t+u]] + [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Add the tens first: $[[10*t]] + [[10*s]]$.",
+          "Now add the ones, $[[u]] + [[r]]$, and join the two parts."
+        ],
+        "solution": "Tens: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$. Ones: $[[u]] + [[r]] = [[u+r]]$. Together: $[[10*(t+s)]] + [[u+r]] = [[10*(t+s)+u+r]]$.",
+        "skill": "front-add",
+        "difficulty": 1,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "u": {
+              "from": 1,
+              "to": 8
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "r": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["u + r < 10"]
+        }
+      },
+      {
+        "id": "r2-add3",
+        "prompt": "Work out $[[100*h+10*t+u]] + [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Add the hundreds first: $[[100*h]] + [[100*g]]$.",
+          "Then the tens, then the ones."
+        ],
+        "solution": "Hundreds: $[[100*(h+g)]]$. Tens: $[[10*(t+s)]]$. Ones: $[[u+r]]$. Total: $[[100*(h+g)+10*(t+s)+u+r]]$.",
+        "skill": "front-add-3",
+        "difficulty": 1,
+        "compute": "(100*h+10*t+u)+(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-sub",
+        "prompt": "Work out $[[10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Subtract the tens first: $[[10*t]] - [[10*s]]$.",
+          "Then the ones: $[[u]] - [[r]]$."
+        ],
+        "solution": "Tens: $[[10*t]] - [[10*s]] = [[10*(t-s)]]$. Ones: $[[u]] - [[r]] = [[u-r]]$. Answer: $[[10*(t-s)+u-r]]$.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r <= u"]
+        }
+      },
+      {
+        "id": "r4-jump",
+        "prompt": "Work out $[[10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t + u - 10*s - r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*(t-s) + r - u]]",
+              "why": "You took $[[u]]$ from $[[r]]$ instead of $[[r]]$ from $[[u]]$. Jump back $[[10*s]]$ first, then $[[r]]$."
+            }
+          ]
+        },
+        "hints": [
+          "First take away $[[10*s]]$.",
+          "Now take away $[[r]]$: go back to the ten first."
+        ],
+        "solution": "Jump back the tens: $[[10*t+u]] - [[10*s]] = [[10*(t-s)+u]]$. Then the ones: $[[10*(t-s)+u]] - [[r]] = [[10*(t-s)+u-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 0,
+              "to": 8
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r > u"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n04.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 4 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-add",
+        "prompt": "Work out $[[10*t+u]] + [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "solution": "Tens: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$. Ones: $[[u]] + [[r]] = [[u+r]]$. Together: $[[10*(t+s)]] + [[u+r]] = [[10*(t+s)+u+r]]$.",
+        "skill": "front-add",
+        "difficulty": 1,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "u": {
+              "from": 1,
+              "to": 8
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "r": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["u + r < 10"]
+        }
+      },
+      {
+        "id": "c1-add-carry",
+        "prompt": "Work out $[[10*t+u]] + [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*(t+s) + u + r]]",
+              "why": "You wrote the tens and the ones side by side. Add them: $[[10*(t+s)]] + [[u+r]]$."
+            }
+          ]
+        },
+        "solution": "Tens: $[[10*(t+s)]]$. Ones: $[[u]] + [[r]] = [[u+r]]$. Join them: $[[10*(t+s)]] + [[u+r]] = [[10*(t+s)+u+r]]$.",
+        "skill": "front-add",
+        "difficulty": 2,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "u": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "r": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["u + r >= 10"]
+        }
+      },
+      {
+        "id": "c1-cans",
+        "prompt": "A class collects $[[10*t+u]]$ cans on Monday and $[[10*s+r]]$ cans on Tuesday. How many cans is that altogether?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "solution": "Tens: $[[10*t]] + [[10*s]] = [[10*(t+s)]]$. Ones: $[[u+r]]$. Altogether $[[10*(t+s)+u+r]]$ cans.",
+        "skill": "front-add",
+        "difficulty": 2,
+        "compute": "(10*t+u)+(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 5
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "s": {
+              "from": 2,
+              "to": 4
+            },
+            "r": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-add3",
+        "prompt": "Work out $[[100*h+10*t+u]] + [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "solution": "Hundreds: $[[100*(h+g)]]$. Tens: $[[10*(t+s)]]$. Ones: $[[u+r]]$. Total: $[[100*(h+g)+10*(t+s)+u+r]]$.",
+        "skill": "front-add-3",
+        "difficulty": 1,
+        "compute": "(100*h+10*t+u)+(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-add3-carry",
+        "prompt": "Work out $[[100*h+10*t+u]] + [[100*g+10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s) + u + r]]"],
+          "form": "any"
+        },
+        "solution": "Running total: $[[100*(h+g)]]$, then add $[[10*(t+s)]]$ to get $[[100*(h+g)+10*(t+s)]]$, then add $[[u+r]]$ to get $[[100*(h+g)+10*(t+s)+u+r]]$.",
+        "skill": "front-add-3",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)+(100*g+10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "g": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 3,
+              "to": 9
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          },
+          "where": ["t + s >= 10"]
+        }
+      },
+      {
+        "id": "c2-tens",
+        "prompt": "Work out $[[100*h+10*t]] + [[100*g+10*s]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(h+g) + 10*(t+s)]]"],
+          "form": "any"
+        },
+        "solution": "Hundreds: $[[100*(h+g)]]$. Tens: $[[10*(t+s)]]$. Total: $[[100*(h+g)+10*(t+s)]]$.",
+        "skill": "front-add-3",
+        "difficulty": 1,
+        "compute": "(100*h+10*t)+(100*g+10*s)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 5
+            },
+            "g": {
+              "from": 1,
+              "to": 3
+            },
+            "t": {
+              "from": 1,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-sub",
+        "prompt": "Work out $[[10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "solution": "Tens: $[[10*t]] - [[10*s]] = [[10*(t-s)]]$. Ones: $[[u]] - [[r]] = [[u-r]]$. Answer: $[[10*(t-s)+u-r]]$.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r <= u"]
+        }
+      },
+      {
+        "id": "c3-sub-tens",
+        "prompt": "Work out $[[10*t+u]] - [[10*s]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u]]"],
+          "form": "any"
+        },
+        "solution": "Only the tens change: $[[10*t]] - [[10*s]] = [[10*(t-s)]]$, and the $[[u]]$ ones stay. Answer: $[[10*(t-s)+u]]$.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-10*s",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t"]
+        }
+      },
+      {
+        "id": "c3-stickers",
+        "prompt": "Ana has $[[10*t+u]]$ stickers and gives away $[[10*s+r]]$. How many does she have left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t-s) + u - r]]"],
+          "form": "any"
+        },
+        "solution": "Tens: $[[10*(t-s)]]$. Ones: $[[u-r]]$. She has $[[10*(t-s)+u-r]]$ left.",
+        "skill": "front-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 4,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 3
+            },
+            "u": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-jump",
+        "prompt": "Work out $[[10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t + u - 10*s - r]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*(t-s) + r - u]]",
+              "why": "You took $[[u]]$ from $[[r]]$ instead of $[[r]]$ from $[[u]]$. Jump back $[[10*s]]$ first, then $[[r]]$."
+            }
+          ]
+        },
+        "solution": "Jump back the tens: $[[10*t+u]] - [[10*s]] = [[10*(t-s)+u]]$. Then the ones: $[[10*(t-s)+u]] - [[r]] = [[10*(t-s)+u-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 1,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 0,
+              "to": 8
+            },
+            "r": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r > u"]
+        }
+      },
+      {
+        "id": "c4-jump-big",
+        "prompt": "Work out $[[100*h+10*t+u]] - [[10*s+r]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*h + 10*t + u - 10*s - r]]"],
+          "form": "any"
+        },
+        "solution": "Jump back $[[10*s]]$: $[[100*h+10*t+u]] - [[10*s]] = [[100*h+10*(t-s)+u]]$. Then jump back $[[r]]$: $[[100*h+10*(t-s)+u-r]]$.",
+        "skill": "jump-sub",
+        "difficulty": 2,
+        "compute": "(100*h+10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "h": {
+              "from": 1,
+              "to": 4
+            },
+            "t": {
+              "from": 3,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 0,
+              "to": 7
+            },
+            "r": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["s < t", "r > u"]
+        }
+      },
+      {
+        "id": "c4-pages",
+        "prompt": "A book has $[[10*t+u]]$ pages. Mo has read $[[10*s+r]]$ pages. How many pages are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t + u - 10*s - r]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t+u]] - [[10*s]] = [[10*(t-s)+u]]$, then $- [[r]]$ gives $[[10*(t-s)+u-r]]$ pages.",
+        "skill": "jump-sub",
+        "difficulty": 2,
+        "compute": "(10*t+u)-(10*s+r)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 5,
+              "to": 9
+            },
+            "s": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 0,
+              "to": 5
+            },
+            "r": {
+              "from": 6,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  }
+]

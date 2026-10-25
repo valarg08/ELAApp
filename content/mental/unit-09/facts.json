@@ -1,0 +1,36 @@
+{
+  "sections": [
+    {
+      "skill": "div-last-digit",
+      "title": "2, 5 and 10",
+      "facts": [
+        "$2$: last digit even. $5$: last digit $0$ or $5$. $10$: last digit $0$.",
+        "The remainder by $10$ is the last digit; by $5$ it is the last digit’s remainder by $5$."
+      ]
+    },
+    {
+      "skill": "div-digit-sum",
+      "title": "3 and 9",
+      "facts": [
+        "Add the digits. The number has the same remainder by $3$ (and by $9$) as its digit sum.",
+        "$10 = 9 + 1$ and $100 = 99 + 1$: that is why it works."
+      ]
+    },
+    {
+      "skill": "div-last-two",
+      "title": "4 and 8",
+      "facts": [
+        "$4$: look at the last two digits. $8$: look at the last three digits.",
+        "$100$ divides by $4$ and $1000$ divides by $8$, so the front part never matters."
+      ]
+    },
+    {
+      "skill": "div-6-11",
+      "title": "6 and 11",
+      "facts": [
+        "$6$: even and divisible by $3$.",
+        "$11$: alternating sum $d_1 - d_2 + d_3$ (for a $3$-digit number) divides by $11$."
+      ]
+    }
+  ]
+}

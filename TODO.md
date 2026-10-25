@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-25 (the Mental Math track: MN0 foundation and MN1 Unit 1 Number Bonds).
+Last updated: 2026-10-25 (Mental Math Levels 2–4: MN4–MN15, Units 4–15).
 
 ## Done so far
 
@@ -14,6 +14,7 @@ Last updated: 2026-10-25 (the Mental Math track: MN0 foundation and MN1 Unit 1 N
 - [x] M0: the Math track engine (math-design.md §2)
 - [x] M0.5 and M1–M15: the Math practice upgrade, Math Units 1–15, checkpoint mocks 1 and 2, mocks A–C and the final mock, the AMC-score estimate and the past-paper log (math-design.md §3, §4.1–§4.15)
 - [x] MN0–MN1: the Mental Math track (fourth tab, levels, cheat sheets, tips) and Unit 1 Number Bonds (mental-math-design.md)
+- [x] MN4–MN15: Mental Math Levels 2–4, Units 4–15 (Units 2–3 still to build)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -69,9 +70,9 @@ Number sense for ages 7–14, one unit per phase. Original problems only; typed 
 - [x] **MN1** Unit 1 Number Bonds (4 lessons and the ⭐ check at 100%, published)
 - [ ] **MN2** Unit 2 Doubling & Halving
 - [ ] **MN3** Unit 3 Compensation
-- [ ] **MN4–MN7** Level 2: Front-End, Multiplication Anchors, Benchmarks, Missing Number Thinking
-- [ ] **MN8–MN11** Level 3: Fractions/Decimals/Percentages, Divisibility 2–11, Estimation, Smart Multiplication
-- [ ] **MN12–MN15** Level 4: Squares to 30², Difference of Squares, Vedic Patterns, Speed & Accuracy Systems
+- [x] **MN4–MN7** Level 2: Front-End, Multiplication Anchors, Benchmarks, Missing Number Thinking
+- [x] **MN8–MN11** Level 3: Fractions/Decimals/Percentages, Divisibility 2–11, Estimation, Smart Multiplication
+- [x] **MN12–MN15** Level 4: Squares to 30², Difference of Squares, Vedic Patterns, Speed & Accuracy Systems
 - [ ] MN-later: daily review and streaks, speed sprints, level and placement checks, the parent guide page, mastery per Mental Math skill
 
 ## 2. Teacher dashboard: rest of P5 (§11)
@@ -108,6 +109,7 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
   - `GET /teacher/classes/:classId/progress` and `GET /teacher/classes/:classId/students/:studentId/progress` (students 403; another teacher's class or a student outside the class 404)
   - the Math endpoints: `/lessons/:id/problem-sets/:key` (start/submit student-only; another student's attempt 404), `/math/error-log` (student-only; another student's entry 404), `/ai/math/explain` (student-only; a marked set not explained before a submitted try)
 - [ ] Mental Math: `GET /mental/home` (students only; teachers 403), `GET /mental/cheat-sheets/:unitNumber` (unpublished units 404 for students), the loader checks for `content/mental` (levels order, unknown skills, cheat sheet of a missing unit), the Quill audience line in the three Math analyzers, `SimpleAnswers` in the answer box.
+- [ ] Mental Math Units 4–15: `UnitCard` `previousNumber` (a locked unit names the last built unit before it), one Playwright run through a Level 4 unit check.
 - [ ] Admin: authorisation for every `/admin` endpoint, the AI budget pause on live checks, `estimateCostCents` (DESIGN.md §11.9).
 - [ ] The analyzer, Coach and rubric unit tests listed under each E-phase (E1–E15) and SL-phase.
 - [ ] math-check unit tests (values, parsing, answer forms, TeX choices) and `problemErrors` / figure-sanitiser tests (M0).

@@ -1,0 +1,74 @@
+{
+  "slug": "mental-balance-both-sides",
+  "order": 4,
+  "title": "Balance Both Sides",
+  "estMinutes": 25,
+  "focusSkills": ["balance"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Is $45 + 28 = 47 + 26$ true? How can you tell without working out both sides?",
+      "placeholder": "It is… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The equals sign is a balance",
+          "body": "$=$ means \"is the same as\". Picture a see-saw: both sides must weigh the same. $45 + 28 = ? + 30$: the left side is $73$, so $? = 43$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: shift and balance",
+          "problem": "Find the missing number: $45 + 28 = 47 + ?$.",
+          "steps": [
+            {
+              "text": "Compare the first numbers: $45$ became $47$.",
+              "try": {
+                "prompt": "How much did it go up by?",
+                "accepted": ["2"],
+                "compute": "47-45"
+              }
+            },
+            {
+              "text": "To keep the balance, the second number goes down by the same: $28 - 2$.",
+              "try": {
+                "prompt": "What is the missing number?",
+                "accepted": ["26"],
+                "compute": "28-2"
+              }
+            },
+            {
+              "text": "Check: $45 + 28 = 73$ and $47 + 26 = 73$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap",
+          "body": "Some people see $45 + 28 = ? + 30$ and write $73$, the answer to the left side. But then the right side is $73 + 30 = 103$. The missing number must make the right side $73$ too."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n07.balance-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n07.balance-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain what the equals sign means, using a see-saw."],
+      "confidenceCheck": true
+    }
+  ]
+}

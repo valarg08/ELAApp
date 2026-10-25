@@ -1,0 +1,18 @@
+{
+  "number": 5,
+  "slug": "mental-multiplication-anchors",
+  "title": "Multiplication Anchors",
+  "summary": "Use the facts you are sure of, times $2$, $5$ and $10$, as anchors to build the ones you are not: $7 \\times 6 = 5 \\times 6 + 2 \\times 6$, $9 \\times 8 = 10 \\times 8 - 8$, and $23 \\times 4 = 80 + 12$.",
+  "bigIdeas": [
+    "Times $10$, times $5$ and times $2$ are anchors: build every other fact from them.",
+    "Split a number into parts, multiply each part, then add the answers."
+  ],
+  "tips": [
+    "Times $5$ is half of times $10$: $14 \\times 5$ is half of $140$, so $70$.",
+    "Six of something is five of it and one more: $7 \\times 6 = 35 + 7 = 42$.",
+    "Times $9$ is times $10$ take one away: $9 \\times 8 = 80 - 8 = 72$.",
+    "Times $4$ is double, double: $4 \\times 17 = 34 + 34 = 68$.",
+    "Split the big number: $23 \\times 4 = 20 \\times 4 + 3 \\times 4 = 80 + 12 = 92$."
+  ],
+  "published": true
+}

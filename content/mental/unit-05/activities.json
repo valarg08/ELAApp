@@ -1,0 +1,1513 @@
+[
+  {
+    "key": "n05.anchors-practice",
+    "type": "PROBLEMS",
+    "title": "Anchor Facts: Times 2, 5 and 10",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "times5",
+        "prompt": "Work out $[[a]] \\times 5$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is times $10$. Times $5$ is half of that."
+            }
+          ]
+        },
+        "hints": ["Work out $[[a]] \\times 10$ first.", "Five is half of ten: halve your answer."],
+        "solution": "Times $10$ then halve: $[[a]] \\times 10 = [[10*a]]$, and half of $[[10*a]]$ is $[[5*a]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "a*5",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "times10",
+        "prompt": "Work out $[[a]] \\times 10$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "hints": ["Times $10$ moves each digit one place to the left."],
+        "solution": "Every digit moves one place left: $[[a]] \\times 10 = [[10*a]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "a*10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "double",
+        "prompt": "Work out $[[10*t+u]] \\times 2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20*t + 2*u]]"],
+          "form": "any"
+        },
+        "hints": ["Double the tens, double the ones, then add."],
+        "solution": "Double the tens and the ones: $[[20*t]] + [[2*u]] = [[20*t+2*u]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "(10*t+u)*2",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "times5-even",
+        "prompt": "Work out $[[2*a]] \\times 5$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "hints": ["Halve $[[2*a]]$ first, then multiply by $10$."],
+        "solution": "Halve first: half of $[[2*a]]$ is $[[a]]$. Then times $10$: $[[10*a]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 2,
+        "compute": "2*a*5",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 49
+            }
+          }
+        }
+      },
+      {
+        "id": "pencils",
+        "prompt": "Pencils come in packs of $5$. How many pencils are in $[[a]]$ packs?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a/2]]"],
+          "form": "any"
+        },
+        "hints": ["Work out $[[a]] \\times 10$, then halve."],
+        "solution": "$[[a]] \\times 10 = [[10*a]]$, halved is $[[5*a]]$ pencils.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 2,
+        "compute": "5*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 39
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n05.anchors-set",
+    "type": "PROBLEM_SET",
+    "title": "Anchor Facts: Times 2, 5 and 10 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-times5",
+        "prompt": "Work out $[[a]] \\times 5$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is times $10$. Times $5$ is half of that."
+            }
+          ]
+        },
+        "solution": "Times $10$ then halve: $[[a]] \\times 10 = [[10*a]]$, and half of $[[10*a]]$ is $[[5*a]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "a*5",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times10",
+        "prompt": "Work out $[[a]] \\times 10$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "solution": "Every digit moves one place left: $[[a]] \\times 10 = [[10*a]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "a*10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-double",
+        "prompt": "Work out $[[10*t+u]] \\times 2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20*t + 2*u]]"],
+          "form": "any"
+        },
+        "solution": "Double the tens and the ones: $[[20*t]] + [[2*u]] = [[20*t+2*u]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "(10*t+u)*2",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times5-even",
+        "prompt": "Work out $[[2*a]] \\times 5$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "solution": "Halve first: half of $[[2*a]]$ is $[[a]]$. Then times $10$: $[[10*a]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 2,
+        "compute": "2*a*5",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 49
+            }
+          }
+        }
+      },
+      {
+        "id": "s-pencils",
+        "prompt": "Pencils come in packs of $5$. How many pencils are in $[[a]]$ packs?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a/2]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times 10 = [[10*a]]$, halved is $[[5*a]]$ pencils.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 2,
+        "compute": "5*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 39
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n05.split-practice",
+    "type": "PROBLEMS",
+    "title": "Split a Factor",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "times6",
+        "prompt": "Work out $[[a]] \\times 6$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*a + a]]"],
+          "form": "any"
+        },
+        "hints": ["Work out $[[a]] \\times 5$ first.", "Then add one more $[[a]]$."],
+        "solution": "Six is five and one: $[[a]] \\times 5 = [[5*a]]$, plus $[[a]]$ is $[[6*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 1,
+        "compute": "a*6",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "times7",
+        "prompt": "Work out $[[a]] \\times 7$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*a + 2*a]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Split $7$ into $5$ and $2$.",
+          "Work out $[[a]] \\times 5$ and $[[a]] \\times 2$, then add."
+        ],
+        "solution": "Seven is five and two: $[[5*a]] + [[2*a]] = [[7*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 2,
+        "compute": "a*7",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "times12",
+        "prompt": "Work out $[[a]] \\times 12$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a + 2*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a + 2]]",
+              "why": "You need two lots of $[[a]]$, not just $2$: $[[a]] \\times 2 = [[2*a]]$."
+            }
+          ]
+        },
+        "hints": ["Split $12$ into $10$ and $2$."],
+        "solution": "Twelve is ten and two: $[[10*a]] + [[2*a]] = [[12*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 2,
+        "compute": "a*12",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "seats",
+        "prompt": "A minibus has $[[b]]$ seats. How many seats are there on $[[a]]$ minibuses?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any"
+        },
+        "hints": ["Split $[[b]]$ into numbers you know, like $5$, $2$ or $10$."],
+        "solution": "Split $[[b]]$ into anchors and add the parts: $[[a]] \\times [[b]] = [[a*b]]$.",
+        "skill": "anchor-split",
+        "difficulty": 2,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "choose": [6, 7, 12]
+            }
+          }
+        }
+      },
+      {
+        "id": "times15",
+        "prompt": "Work out $[[a]] \\times 15$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a + 5*a]]"],
+          "form": "any"
+        },
+        "hints": ["Split $15$ into $10$ and $5$.", "Times $5$ is half of times $10$."],
+        "solution": "Fifteen is ten and five: $[[10*a]] + [[5*a]] = [[15*a]]$. The five is half of the ten.",
+        "skill": "anchor-split",
+        "difficulty": 3,
+        "compute": "a*15",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 14
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n05.split-set",
+    "type": "PROBLEM_SET",
+    "title": "Split a Factor challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-times6",
+        "prompt": "Work out $[[a]] \\times 6$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*a + a]]"],
+          "form": "any"
+        },
+        "solution": "Six is five and one: $[[a]] \\times 5 = [[5*a]]$, plus $[[a]]$ is $[[6*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 1,
+        "compute": "a*6",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times7",
+        "prompt": "Work out $[[a]] \\times 7$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*a + 2*a]]"],
+          "form": "any"
+        },
+        "solution": "Seven is five and two: $[[5*a]] + [[2*a]] = [[7*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 2,
+        "compute": "a*7",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times12",
+        "prompt": "Work out $[[a]] \\times 12$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a + 2*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a + 2]]",
+              "why": "You need two lots of $[[a]]$, not just $2$: $[[a]] \\times 2 = [[2*a]]$."
+            }
+          ]
+        },
+        "solution": "Twelve is ten and two: $[[10*a]] + [[2*a]] = [[12*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 2,
+        "compute": "a*12",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "s-seats",
+        "prompt": "A minibus has $[[b]]$ seats. How many seats are there on $[[a]]$ minibuses?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any"
+        },
+        "solution": "Split $[[b]]$ into anchors and add the parts: $[[a]] \\times [[b]] = [[a*b]]$.",
+        "skill": "anchor-split",
+        "difficulty": 2,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "choose": [6, 7, 12]
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times15",
+        "prompt": "Work out $[[a]] \\times 15$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a + 5*a]]"],
+          "form": "any"
+        },
+        "solution": "Fifteen is ten and five: $[[10*a]] + [[5*a]] = [[15*a]]$. The five is half of the ten.",
+        "skill": "anchor-split",
+        "difficulty": 3,
+        "compute": "a*15",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 14
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n05.near-practice",
+    "type": "PROBLEMS",
+    "title": "Near an Anchor: Times 9, 4 and 8",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "times9",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is ten lots. Nine lots is one $[[a]]$ fewer."
+            },
+            {
+              "value": "[[10*a - 1]]",
+              "why": "Take away one $[[a]]$, not one."
+            }
+          ]
+        },
+        "hints": ["Work out $[[a]] \\times 10$.", "Take away one $[[a]]$."],
+        "solution": "Times $10$, take one away: $[[10*a]] - [[a]] = [[9*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 1,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 19
+            }
+          }
+        }
+      },
+      {
+        "id": "times4",
+        "prompt": "Work out $[[a]] \\times 4$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(2*a)]]"],
+          "form": "any"
+        },
+        "hints": ["Double $[[a]]$, then double again."],
+        "solution": "Double, double: $[[a]] \\to [[2*a]] \\to [[4*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 1,
+        "compute": "a*4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 35
+            }
+          }
+        }
+      },
+      {
+        "id": "times8",
+        "prompt": "Work out $[[a]] \\times 8$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(2*(2*a))]]"],
+          "form": "any"
+        },
+        "hints": ["Eight is $2 \\times 2 \\times 2$: double three times."],
+        "solution": "Double three times: $[[2*a]]$, $[[4*a]]$, $[[8*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 2,
+        "compute": "a*8",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "tickets",
+        "prompt": "Tickets cost $9$ points each. How many points do $[[a]]$ tickets cost?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any"
+        },
+        "hints": ["Pretend each ticket costs $10$, then take off the extra."],
+        "solution": "$[[a]]$ tickets at $10$ points would be $[[10*a]]$. Each is one point less: $[[10*a]] - [[a]] = [[9*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 2,
+        "compute": "9*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 25
+            }
+          }
+        }
+      },
+      {
+        "id": "times19",
+        "prompt": "Work out $[[a]] \\times 19$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20*a - a]]"],
+          "form": "any"
+        },
+        "hints": ["$19$ is one less than $20$. Work out $[[a]] \\times 20$ first."],
+        "solution": "Times $20$, take one away: $[[20*a]] - [[a]] = [[19*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 3,
+        "compute": "a*19",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n05.near-set",
+    "type": "PROBLEM_SET",
+    "title": "Near an Anchor: Times 9, 4 and 8 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-times9",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is ten lots. Nine lots is one $[[a]]$ fewer."
+            },
+            {
+              "value": "[[10*a - 1]]",
+              "why": "Take away one $[[a]]$, not one."
+            }
+          ]
+        },
+        "solution": "Times $10$, take one away: $[[10*a]] - [[a]] = [[9*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 1,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 19
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times4",
+        "prompt": "Work out $[[a]] \\times 4$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(2*a)]]"],
+          "form": "any"
+        },
+        "solution": "Double, double: $[[a]] \\to [[2*a]] \\to [[4*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 1,
+        "compute": "a*4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 35
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times8",
+        "prompt": "Work out $[[a]] \\times 8$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(2*(2*a))]]"],
+          "form": "any"
+        },
+        "solution": "Double three times: $[[2*a]]$, $[[4*a]]$, $[[8*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 2,
+        "compute": "a*8",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "s-tickets",
+        "prompt": "Tickets cost $9$ points each. How many points do $[[a]]$ tickets cost?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]]$ tickets at $10$ points would be $[[10*a]]$. Each is one point less: $[[10*a]] - [[a]] = [[9*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 2,
+        "compute": "9*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 25
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times19",
+        "prompt": "Work out $[[a]] \\times 19$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20*a - a]]"],
+          "form": "any"
+        },
+        "solution": "Times $20$, take one away: $[[20*a]] - [[a]] = [[19*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 3,
+        "compute": "a*19",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n05.tens-practice",
+    "type": "PROBLEMS",
+    "title": "Bigger Numbers: Tens and Ones",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "tu",
+        "prompt": "Work out $[[10*t+u]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t*k + u*k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t*k + u]]",
+              "why": "Multiply the ones too: $[[u]] \\times [[k]] = [[u*k]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Multiply the tens: $[[10*t]] \\times [[k]]$.",
+          "Multiply the ones: $[[u]] \\times [[k]]$, then add."
+        ],
+        "solution": "Tens: $[[10*t]] \\times [[k]] = [[10*t*k]]$. Ones: $[[u]] \\times [[k]] = [[u*k]]$. Total: $[[10*t*k+u*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 1,
+        "compute": "(10*t+u)*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "tens",
+        "prompt": "Work out $[[10*t]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t*k)]]"],
+          "form": "any"
+        },
+        "hints": ["Work out $[[t]] \\times [[k]]$, then make it tens."],
+        "solution": "$[[t]] \\times [[k]] = [[t*k]]$, so it is $[[t*k]]$ tens: $[[10*t*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 1,
+        "compute": "10*t*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "tu-big",
+        "prompt": "Work out $[[10*t+u]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t*k + u*k]]"],
+          "form": "any"
+        },
+        "hints": ["Tens times $[[k]]$, ones times $[[k]]$, then add."],
+        "solution": "$[[10*t*k]] + [[u*k]] = [[10*t*k+u*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 2,
+        "compute": "(10*t+u)*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 9
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "eggs",
+        "prompt": "A box holds $[[10*t+u]]$ eggs. How many eggs are in $[[k]]$ boxes?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t*k + u*k]]"],
+          "form": "any"
+        },
+        "hints": ["Split $[[10*t+u]]$ into tens and ones."],
+        "solution": "$[[10*t]] \\times [[k]] = [[10*t*k]]$ and $[[u]] \\times [[k]] = [[u*k]]$: $[[10*t*k+u*k]]$ eggs.",
+        "skill": "anchor-tens",
+        "difficulty": 2,
+        "compute": "(10*t+u)*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 3
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "k": {
+              "from": 3,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "times-tens",
+        "prompt": "Work out $[[a]] \\times [[10*k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(a*k)]]"],
+          "form": "any"
+        },
+        "hints": ["Multiply by $[[k]]$ first, then by $10$."],
+        "solution": "Work out $[[a]] \\times [[k]] = [[a*k]]$, then times $10$: $[[10*a*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 3,
+        "compute": "a*10*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 25
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n05.tens-set",
+    "type": "PROBLEM_SET",
+    "title": "Bigger Numbers: Tens and Ones challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-tu",
+        "prompt": "Work out $[[10*t+u]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t*k + u*k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t*k + u]]",
+              "why": "Multiply the ones too: $[[u]] \\times [[k]] = [[u*k]]$."
+            }
+          ]
+        },
+        "solution": "Tens: $[[10*t]] \\times [[k]] = [[10*t*k]]$. Ones: $[[u]] \\times [[k]] = [[u*k]]$. Total: $[[10*t*k+u*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 1,
+        "compute": "(10*t+u)*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "s-tens",
+        "prompt": "Work out $[[10*t]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t*k)]]"],
+          "form": "any"
+        },
+        "solution": "$[[t]] \\times [[k]] = [[t*k]]$, so it is $[[t*k]]$ tens: $[[10*t*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 1,
+        "compute": "10*t*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-tu-big",
+        "prompt": "Work out $[[10*t+u]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t*k + u*k]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t*k]] + [[u*k]] = [[10*t*k+u*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 2,
+        "compute": "(10*t+u)*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 9
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-eggs",
+        "prompt": "A box holds $[[10*t+u]]$ eggs. How many eggs are in $[[k]]$ boxes?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t*k + u*k]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t]] \\times [[k]] = [[10*t*k]]$ and $[[u]] \\times [[k]] = [[u*k]]$: $[[10*t*k+u*k]]$ eggs.",
+        "skill": "anchor-tens",
+        "difficulty": 2,
+        "compute": "(10*t+u)*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 3
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "k": {
+              "from": 3,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times-tens",
+        "prompt": "Work out $[[a]] \\times [[10*k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(a*k)]]"],
+          "form": "any"
+        },
+        "solution": "Work out $[[a]] \\times [[k]] = [[a*k]]$, then times $10$: $[[10*a*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 3,
+        "compute": "a*10*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 25
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n05.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-times5",
+        "prompt": "Work out $[[a]] \\times 5$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is times $10$. Times $5$ is half of that."
+            }
+          ]
+        },
+        "hints": ["Work out $[[a]] \\times 10$ first.", "Five is half of ten: halve your answer."],
+        "solution": "Times $10$ then halve: $[[a]] \\times 10 = [[10*a]]$, and half of $[[10*a]]$ is $[[5*a]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "a*5",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "r2-times6",
+        "prompt": "Work out $[[a]] \\times 6$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*a + a]]"],
+          "form": "any"
+        },
+        "hints": ["Work out $[[a]] \\times 5$ first.", "Then add one more $[[a]]$."],
+        "solution": "Six is five and one: $[[a]] \\times 5 = [[5*a]]$, plus $[[a]]$ is $[[6*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 1,
+        "compute": "a*6",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-times9",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is ten lots. Nine lots is one $[[a]]$ fewer."
+            },
+            {
+              "value": "[[10*a - 1]]",
+              "why": "Take away one $[[a]]$, not one."
+            }
+          ]
+        },
+        "hints": ["Work out $[[a]] \\times 10$.", "Take away one $[[a]]$."],
+        "solution": "Times $10$, take one away: $[[10*a]] - [[a]] = [[9*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 1,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 19
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-tu",
+        "prompt": "Work out $[[10*t+u]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t*k + u*k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t*k + u]]",
+              "why": "Multiply the ones too: $[[u]] \\times [[k]] = [[u*k]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Multiply the tens: $[[10*t]] \\times [[k]]$.",
+          "Multiply the ones: $[[u]] \\times [[k]]$, then add."
+        ],
+        "solution": "Tens: $[[10*t]] \\times [[k]] = [[10*t*k]]$. Ones: $[[u]] \\times [[k]] = [[u*k]]$. Total: $[[10*t*k+u*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 1,
+        "compute": "(10*t+u)*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n05.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 5 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-times5",
+        "prompt": "Work out $[[a]] \\times 5$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a/2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is times $10$. Times $5$ is half of that."
+            }
+          ]
+        },
+        "solution": "Times $10$ then halve: $[[a]] \\times 10 = [[10*a]]$, and half of $[[10*a]]$ is $[[5*a]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "a*5",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-times10",
+        "prompt": "Work out $[[a]] \\times 10$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "solution": "Every digit moves one place left: $[[a]] \\times 10 = [[10*a]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "a*10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-double",
+        "prompt": "Work out $[[10*t+u]] \\times 2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20*t + 2*u]]"],
+          "form": "any"
+        },
+        "solution": "Double the tens and the ones: $[[20*t]] + [[2*u]] = [[20*t+2*u]]$.",
+        "skill": "anchor-2-5-10",
+        "difficulty": 1,
+        "compute": "(10*t+u)*2",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-times6",
+        "prompt": "Work out $[[a]] \\times 6$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*a + a]]"],
+          "form": "any"
+        },
+        "solution": "Six is five and one: $[[a]] \\times 5 = [[5*a]]$, plus $[[a]]$ is $[[6*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 1,
+        "compute": "a*6",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-times7",
+        "prompt": "Work out $[[a]] \\times 7$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[5*a + 2*a]]"],
+          "form": "any"
+        },
+        "solution": "Seven is five and two: $[[5*a]] + [[2*a]] = [[7*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 2,
+        "compute": "a*7",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-times12",
+        "prompt": "Work out $[[a]] \\times 12$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a + 2*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a + 2]]",
+              "why": "You need two lots of $[[a]]$, not just $2$: $[[a]] \\times 2 = [[2*a]]$."
+            }
+          ]
+        },
+        "solution": "Twelve is ten and two: $[[10*a]] + [[2*a]] = [[12*a]]$.",
+        "skill": "anchor-split",
+        "difficulty": 2,
+        "compute": "a*12",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-times9",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is ten lots. Nine lots is one $[[a]]$ fewer."
+            },
+            {
+              "value": "[[10*a - 1]]",
+              "why": "Take away one $[[a]]$, not one."
+            }
+          ]
+        },
+        "solution": "Times $10$, take one away: $[[10*a]] - [[a]] = [[9*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 1,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 19
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-times4",
+        "prompt": "Work out $[[a]] \\times 4$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(2*a)]]"],
+          "form": "any"
+        },
+        "solution": "Double, double: $[[a]] \\to [[2*a]] \\to [[4*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 1,
+        "compute": "a*4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 35
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-times8",
+        "prompt": "Work out $[[a]] \\times 8$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(2*(2*a))]]"],
+          "form": "any"
+        },
+        "solution": "Double three times: $[[2*a]]$, $[[4*a]]$, $[[8*a]]$.",
+        "skill": "anchor-near",
+        "difficulty": 2,
+        "compute": "a*8",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-tu",
+        "prompt": "Work out $[[10*t+u]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t*k + u*k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t*k + u]]",
+              "why": "Multiply the ones too: $[[u]] \\times [[k]] = [[u*k]]$."
+            }
+          ]
+        },
+        "solution": "Tens: $[[10*t]] \\times [[k]] = [[10*t*k]]$. Ones: $[[u]] \\times [[k]] = [[u*k]]$. Total: $[[10*t*k+u*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 1,
+        "compute": "(10*t+u)*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-tens",
+        "prompt": "Work out $[[10*t]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(t*k)]]"],
+          "form": "any"
+        },
+        "solution": "$[[t]] \\times [[k]] = [[t*k]]$, so it is $[[t*k]]$ tens: $[[10*t*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 1,
+        "compute": "10*t*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-tu-big",
+        "prompt": "Work out $[[10*t+u]] \\times [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t*k + u*k]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t*k]] + [[u*k]] = [[10*t*k+u*k]]$.",
+        "skill": "anchor-tens",
+        "difficulty": 2,
+        "compute": "(10*t+u)*k",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 9
+            },
+            "u": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  }
+]

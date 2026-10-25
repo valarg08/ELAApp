@@ -1,0 +1,74 @@
+{
+  "slug": "mental-times-101-and-1001",
+  "order": 4,
+  "title": "Times 101 and 1001",
+  "estMinutes": 25,
+  "focusSkills": ["times-101"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Work out $47 \\times 101$. Then $23 \\times 101$. What happens to the digits?",
+      "placeholder": "The digits…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Write it twice",
+          "body": "$101 = 100 + 1$, so $47 \\times 101 = 4700 + 47 = 4747$: the two digits appear twice. And $1001 = 1000 + 1$, so a three-digit number times $1001$ is written twice: $315 \\times 1001 = 315315$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 68 × 101",
+          "problem": "Work out $68 \\times 101$.",
+          "steps": [
+            {
+              "text": "Split $101$ into $100 + 1$.",
+              "try": {
+                "prompt": "What is $68 \\times 100$?",
+                "accepted": ["6800"],
+                "compute": "68*100"
+              }
+            },
+            {
+              "text": "Add one more $68$.",
+              "try": {
+                "prompt": "What is $6800 + 68$?",
+                "accepted": ["6868"],
+                "compute": "6800+68"
+              }
+            },
+            {
+              "text": "So $68 \\times 101 = 6868$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Fun fact",
+          "body": "$1001 = 7 \\times 11 \\times 13$. That is why any six-digit number like $315315$ (a three-digit number written twice) divides by $7$, $11$ and $13$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n11.hundred-one-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n11.hundred-one-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why does $\\times 101$ write a two-digit number twice?"],
+      "confidenceCheck": true
+    }
+  ]
+}

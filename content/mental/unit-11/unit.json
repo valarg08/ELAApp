@@ -1,0 +1,18 @@
+{
+  "number": 11,
+  "slug": "mental-smart-multiplication",
+  "title": "Smart Multiplication",
+  "summary": "Multiply fast by numbers near a power of ten: $\\times 9 = \\times 10 - \\times 1$, $\\times 99 = \\times 100 - \\times 1$, $\\times 999 = \\times 1000 - \\times 1$. Spot the digit patterns of $\\times 11$, $\\times 101$ and $\\times 1001$, and see why they work.",
+  "bigIdeas": [
+    "Numbers like $9$, $99$ and $999$ are one less than $10$, $100$ and $1000$: multiply by the round number, then take one lot away.",
+    "Numbers like $11$, $101$ and $1001$ are a round number plus one: they make the digits repeat or add."
+  ],
+  "tips": [
+    "$\\times 99$: times $100$, then take one away: $37 \\times 99 = 3700 - 37 = 3663$.",
+    "$\\times 999$: times $1000$, take one away: $23 \\times 999 = 23000 - 23 = 22977$.",
+    "$\\times 11$ for two digits: split them and put their sum in the middle: $43 \\times 11 = 473$.",
+    "If the middle sum is $10$ or more, carry the $1$: $87 \\times 11 = 957$.",
+    "$\\times 101$ writes a two-digit number twice: $47 \\times 101 = 4747$."
+  ],
+  "published": true
+}

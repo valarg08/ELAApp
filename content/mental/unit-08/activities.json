@@ -1,0 +1,1497 @@
+[
+  {
+    "key": "n08.convert-practice",
+    "type": "PROBLEMS",
+    "title": "Same Amount, Three Ways",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "tenths",
+        "prompt": "Write $\\frac{[[a]]}{10}$ as a decimal.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/10|decimal]]"],
+          "form": "decimal"
+        },
+        "hints": ["Tenths go in the first place after the decimal point."],
+        "solution": "$\\frac{[[a]]}{10}$ is $[[a]]$ tenths: $[[a/10|decimal]]$.",
+        "skill": "fdp-convert",
+        "difficulty": 1,
+        "compute": "a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "pct-to-dec",
+        "prompt": "Write $[[a]]\\%$ as a decimal.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/100|decimal]]"],
+          "form": "decimal"
+        },
+        "hints": ["Per cent means out of $100$: divide by $100$."],
+        "solution": "Divide by $100$: $[[a]]\\% = [[a/100|decimal]]$.",
+        "skill": "fdp-convert",
+        "difficulty": 1,
+        "compute": "a/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "dec-to-pct",
+        "prompt": "Write $[[a/100|decimal]]$ as a percentage. (Type the number without the % sign.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a/10|decimal]]",
+              "why": "Times by $100$, not $10$: the digits move two places."
+            }
+          ]
+        },
+        "hints": ["Times the decimal by $100$."],
+        "solution": "Times $100$: $[[a/100|decimal]] = [[a]]\\%$.",
+        "skill": "fdp-convert",
+        "difficulty": 2,
+        "compute": "a/100*100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "frac-to-pct",
+        "prompt": "Write $\\frac{[[a]]}{[[b]]}$ as a percentage. (Type the number without the % sign.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/b]]"],
+          "form": "any"
+        },
+        "hints": [
+          "What do you times $[[b]]$ by to make $100$?",
+          "Times the top by the same number."
+        ],
+        "solution": "Make the bottom $100$: times top and bottom by $[[100/b]]$. $\\frac{[[a]]}{[[b]]} = \\frac{[[100*a/b]]}{100} = [[100*a/b]]\\%$.",
+        "skill": "fdp-convert",
+        "difficulty": 2,
+        "compute": "a/b*100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 24
+            },
+            "b": {
+              "choose": [2, 4, 5, 10, 20, 25]
+            }
+          },
+          "where": ["a < b"]
+        }
+      },
+      {
+        "id": "frac-to-dec",
+        "prompt": "Write $\\frac{[[a]]}{[[b]]}$ as a decimal.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/b|decimal]]"],
+          "form": "decimal"
+        },
+        "hints": ["Make the bottom $100$ first, then write hundredths as a decimal."],
+        "solution": "$\\frac{[[a]]}{[[b]]} = \\frac{[[100*a/b]]}{100} = [[a/b|decimal]]$.",
+        "skill": "fdp-convert",
+        "difficulty": 3,
+        "compute": "a/b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 24
+            },
+            "b": {
+              "choose": [4, 5, 20, 25]
+            }
+          },
+          "where": ["a < b"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n08.convert-set",
+    "type": "PROBLEM_SET",
+    "title": "Same Amount, Three Ways challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-tenths",
+        "prompt": "Write $\\frac{[[a]]}{10}$ as a decimal.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/10|decimal]]"],
+          "form": "decimal"
+        },
+        "solution": "$\\frac{[[a]]}{10}$ is $[[a]]$ tenths: $[[a/10|decimal]]$.",
+        "skill": "fdp-convert",
+        "difficulty": 1,
+        "compute": "a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-pct-to-dec",
+        "prompt": "Write $[[a]]\\%$ as a decimal.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/100|decimal]]"],
+          "form": "decimal"
+        },
+        "solution": "Divide by $100$: $[[a]]\\% = [[a/100|decimal]]$.",
+        "skill": "fdp-convert",
+        "difficulty": 1,
+        "compute": "a/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-dec-to-pct",
+        "prompt": "Write $[[a/100|decimal]]$ as a percentage. (Type the number without the % sign.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a/10|decimal]]",
+              "why": "Times by $100$, not $10$: the digits move two places."
+            }
+          ]
+        },
+        "solution": "Times $100$: $[[a/100|decimal]] = [[a]]\\%$.",
+        "skill": "fdp-convert",
+        "difficulty": 2,
+        "compute": "a/100*100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-frac-to-pct",
+        "prompt": "Write $\\frac{[[a]]}{[[b]]}$ as a percentage. (Type the number without the % sign.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/b]]"],
+          "form": "any"
+        },
+        "solution": "Make the bottom $100$: times top and bottom by $[[100/b]]$. $\\frac{[[a]]}{[[b]]} = \\frac{[[100*a/b]]}{100} = [[100*a/b]]\\%$.",
+        "skill": "fdp-convert",
+        "difficulty": 2,
+        "compute": "a/b*100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 24
+            },
+            "b": {
+              "choose": [2, 4, 5, 10, 20, 25]
+            }
+          },
+          "where": ["a < b"]
+        }
+      },
+      {
+        "id": "s-frac-to-dec",
+        "prompt": "Write $\\frac{[[a]]}{[[b]]}$ as a decimal.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/b|decimal]]"],
+          "form": "decimal"
+        },
+        "solution": "$\\frac{[[a]]}{[[b]]} = \\frac{[[100*a/b]]}{100} = [[a/b|decimal]]$.",
+        "skill": "fdp-convert",
+        "difficulty": 3,
+        "compute": "a/b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 24
+            },
+            "b": {
+              "choose": [4, 5, 20, 25]
+            }
+          },
+          "where": ["a < b"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n08.ten-pct-practice",
+    "type": "PROBLEMS",
+    "title": "10% and 1%",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "ten",
+        "prompt": "What is $10\\%$ of $[[10*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["$10\\%$ means divide by $10$."],
+        "solution": "$10\\%$ is a tenth: $[[10*a]] \\div 10 = [[a]]$.",
+        "skill": "percent-10",
+        "difficulty": 1,
+        "compute": "10*a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "ten-dec",
+        "prompt": "What is $10\\%$ of $[[a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/10|decimal]]"],
+          "form": "any"
+        },
+        "hints": ["Divide by $10$: the digits move one place right."],
+        "solution": "$[[a]] \\div 10 = [[a/10|decimal]]$.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "one",
+        "prompt": "What is $1\\%$ of $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is $10\\%$. $1\\%$ is ten times smaller."
+            }
+          ]
+        },
+        "hints": ["$1\\%$ means divide by $100$."],
+        "solution": "$1\\%$ is a hundredth: $[[100*a]] \\div 100 = [[a]]$.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "100*a/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 50
+            }
+          }
+        }
+      },
+      {
+        "id": "tens",
+        "prompt": "What is $[[10*k]]\\%$ of $[[10*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k*a]]"],
+          "form": "any"
+        },
+        "hints": ["Find $10\\%$ first.", "Then times by $[[k]]$."],
+        "solution": "$10\\%$ of $[[10*a]]$ is $[[a]]$, so $[[10*k]]\\%$ is $[[k]] \\times [[a]] = [[k*a]]$.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "10*k/100*10*a",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 2,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "save",
+        "prompt": "A jacket costs $[[10*a]]$ points. It is $10\\%$ off. How many points do you save?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Find $10\\%$ of the price."],
+        "solution": "$10\\%$ of $[[10*a]]$ is $[[a]]$ points.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "10*a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 90
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n08.ten-pct-set",
+    "type": "PROBLEM_SET",
+    "title": "10% and 1% challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-ten",
+        "prompt": "What is $10\\%$ of $[[10*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$10\\%$ is a tenth: $[[10*a]] \\div 10 = [[a]]$.",
+        "skill": "percent-10",
+        "difficulty": 1,
+        "compute": "10*a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "s-ten-dec",
+        "prompt": "What is $10\\%$ of $[[a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/10|decimal]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\div 10 = [[a/10|decimal]]$.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-one",
+        "prompt": "What is $1\\%$ of $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is $10\\%$. $1\\%$ is ten times smaller."
+            }
+          ]
+        },
+        "solution": "$1\\%$ is a hundredth: $[[100*a]] \\div 100 = [[a]]$.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "100*a/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 50
+            }
+          }
+        }
+      },
+      {
+        "id": "s-tens",
+        "prompt": "What is $[[10*k]]\\%$ of $[[10*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[k*a]]"],
+          "form": "any"
+        },
+        "solution": "$10\\%$ of $[[10*a]]$ is $[[a]]$, so $[[10*k]]\\%$ is $[[k]] \\times [[a]] = [[k*a]]$.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "10*k/100*10*a",
+        "template": {
+          "vars": {
+            "k": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 2,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "s-save",
+        "prompt": "A jacket costs $[[10*a]]$ points. It is $10\\%$ off. How many points do you save?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$10\\%$ of $[[10*a]]$ is $[[a]]$ points.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "10*a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 90
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n08.bench-pct-practice",
+    "type": "PROBLEMS",
+    "title": "Benchmark Percentages: 50%, 25%, 20%, 75%",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "fifty",
+        "prompt": "What is $50\\%$ of $[[2*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["$50\\%$ means half."],
+        "solution": "$50\\%$ is a half: $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 1,
+        "compute": "2*a/2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 8,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "twentyfive",
+        "prompt": "What is $25\\%$ of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["$25\\%$ is a quarter: halve twice."],
+        "solution": "Halve: $[[2*a]]$. Halve again: $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 1,
+        "compute": "4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "twenty",
+        "prompt": "What is $20\\%$ of $[[5*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["$20\\%$ is one fifth: divide by $5$."],
+        "solution": "$20\\%$ is a fifth: $[[5*a]] \\div 5 = [[a]]$. Or: $10\\%$ is $[[a/2|decimal]]$, doubled is $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 2,
+        "compute": "5*a/5",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "seventyfive",
+        "prompt": "What is $75\\%$ of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[3*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That is $25\\%$. You need three lots of it."
+            }
+          ]
+        },
+        "hints": ["Find $25\\%$ first.", "$75\\%$ is three lots of $25\\%$."],
+        "solution": "$25\\%$ is $[[a]]$, so $75\\%$ is $3 \\times [[a]] = [[3*a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 2,
+        "compute": "4*a*75/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "sale",
+        "prompt": "A game costs $[[4*a]]$ points. In a sale it is $25\\%$ off. What is the sale price?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[3*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That is how much you save. The sale price is what you pay."
+            }
+          ]
+        },
+        "hints": ["How much do you save?", "Take the saving off the price."],
+        "solution": "You save $25\\%$ of $[[4*a]]$, which is $[[a]]$. You pay $[[4*a]] - [[a]] = [[3*a]]$ points.",
+        "skill": "percent-bench",
+        "difficulty": 3,
+        "compute": "4*a - 4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 30
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n08.bench-pct-set",
+    "type": "PROBLEM_SET",
+    "title": "Benchmark Percentages: 50%, 25%, 20%, 75% challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-fifty",
+        "prompt": "What is $50\\%$ of $[[2*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$50\\%$ is a half: $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 1,
+        "compute": "2*a/2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 8,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "s-twentyfive",
+        "prompt": "What is $25\\%$ of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Halve: $[[2*a]]$. Halve again: $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 1,
+        "compute": "4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "s-twenty",
+        "prompt": "What is $20\\%$ of $[[5*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$20\\%$ is a fifth: $[[5*a]] \\div 5 = [[a]]$. Or: $10\\%$ is $[[a/2|decimal]]$, doubled is $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 2,
+        "compute": "5*a/5",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "s-seventyfive",
+        "prompt": "What is $75\\%$ of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[3*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That is $25\\%$. You need three lots of it."
+            }
+          ]
+        },
+        "solution": "$25\\%$ is $[[a]]$, so $75\\%$ is $3 \\times [[a]] = [[3*a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 2,
+        "compute": "4*a*75/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "s-sale",
+        "prompt": "A game costs $[[4*a]]$ points. In a sale it is $25\\%$ off. What is the sale price?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[3*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That is how much you save. The sale price is what you pay."
+            }
+          ]
+        },
+        "solution": "You save $25\\%$ of $[[4*a]]$, which is $[[a]]$. You pay $[[4*a]] - [[a]] = [[3*a]]$ points.",
+        "skill": "percent-bench",
+        "difficulty": 3,
+        "compute": "4*a - 4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 30
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n08.frac-of-practice",
+    "type": "PROBLEMS",
+    "title": "A Fraction of a Number",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "unit",
+        "prompt": "What is $\\frac{1}{[[b]]}$ of $[[a*b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Divide by $[[b]]$."],
+        "solution": "Share into $[[b]]$ parts: $[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "fraction-of",
+        "difficulty": 1,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 10
+            },
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "non-unit",
+        "prompt": "What is $\\frac{[[c]]}{[[b]]}$ of $[[a*b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That is $\\frac{1}{[[b]]}$. You need $[[c]]$ of those parts."
+            }
+          ]
+        },
+        "hints": ["Find $\\frac{1}{[[b]]}$ first.", "Then times by $[[c]]$."],
+        "solution": "$\\frac{1}{[[b]]}$ of $[[a*b]]$ is $[[a]]$, so $\\frac{[[c]]}{[[b]]}$ is $[[c]] \\times [[a]] = [[c*a]]$.",
+        "skill": "fraction-of",
+        "difficulty": 2,
+        "compute": "c/b*a*b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 3,
+              "to": 10
+            },
+            "c": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["c < b"]
+        }
+      },
+      {
+        "id": "walk",
+        "prompt": "A class has $[[a*b]]$ pupils. $\\frac{1}{[[b]]}$ of them walk to school. How many pupils walk?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Divide the class by $[[b]]$."],
+        "solution": "$[[a*b]] \\div [[b]] = [[a]]$ pupils.",
+        "skill": "fraction-of",
+        "difficulty": 2,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 6
+            },
+            "a": {
+              "from": 4,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "whole",
+        "prompt": "$\\frac{1}{[[b]]}$ of a number is $[[a]]$. What is the number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a/b]]",
+              "why": "You divided. The whole is bigger than one part: times by $[[b]]$."
+            }
+          ]
+        },
+        "hints": ["The number is made of $[[b]]$ equal parts."],
+        "solution": "The whole is $[[b]]$ parts of $[[a]]$: $[[a*b]]$.",
+        "skill": "fraction-of",
+        "difficulty": 3,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "left",
+        "prompt": "A pizza has $[[a*b]]$ slices. Tom eats $\\frac{1}{[[b]]}$ of them. How many slices are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That is what Tom ate. The question asks what is left."
+            }
+          ]
+        },
+        "hints": ["How many slices does Tom eat?", "Take them away from the whole pizza."],
+        "solution": "Tom eats $[[a*b]] \\div [[b]] = [[a]]$ slices, so $[[a*b]] - [[a]] = [[a*b-a]]$ are left.",
+        "skill": "fraction-of",
+        "difficulty": 3,
+        "compute": "a*b*(1 - 1/b)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 3,
+              "to": 6
+            },
+            "a": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n08.frac-of-set",
+    "type": "PROBLEM_SET",
+    "title": "A Fraction of a Number challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-unit",
+        "prompt": "What is $\\frac{1}{[[b]]}$ of $[[a*b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Share into $[[b]]$ parts: $[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "fraction-of",
+        "difficulty": 1,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 10
+            },
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "s-non-unit",
+        "prompt": "What is $\\frac{[[c]]}{[[b]]}$ of $[[a*b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That is $\\frac{1}{[[b]]}$. You need $[[c]]$ of those parts."
+            }
+          ]
+        },
+        "solution": "$\\frac{1}{[[b]]}$ of $[[a*b]]$ is $[[a]]$, so $\\frac{[[c]]}{[[b]]}$ is $[[c]] \\times [[a]] = [[c*a]]$.",
+        "skill": "fraction-of",
+        "difficulty": 2,
+        "compute": "c/b*a*b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 3,
+              "to": 10
+            },
+            "c": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["c < b"]
+        }
+      },
+      {
+        "id": "s-walk",
+        "prompt": "A class has $[[a*b]]$ pupils. $\\frac{1}{[[b]]}$ of them walk to school. How many pupils walk?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*b]] \\div [[b]] = [[a]]$ pupils.",
+        "skill": "fraction-of",
+        "difficulty": 2,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 6
+            },
+            "a": {
+              "from": 4,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "s-whole",
+        "prompt": "$\\frac{1}{[[b]]}$ of a number is $[[a]]$. What is the number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a/b]]",
+              "why": "You divided. The whole is bigger than one part: times by $[[b]]$."
+            }
+          ]
+        },
+        "solution": "The whole is $[[b]]$ parts of $[[a]]$: $[[a*b]]$.",
+        "skill": "fraction-of",
+        "difficulty": 3,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 3,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "s-left",
+        "prompt": "A pizza has $[[a*b]]$ slices. Tom eats $\\frac{1}{[[b]]}$ of them. How many slices are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That is what Tom ate. The question asks what is left."
+            }
+          ]
+        },
+        "solution": "Tom eats $[[a*b]] \\div [[b]] = [[a]]$ slices, so $[[a*b]] - [[a]] = [[a*b-a]]$ are left.",
+        "skill": "fraction-of",
+        "difficulty": 3,
+        "compute": "a*b*(1 - 1/b)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 3,
+              "to": 6
+            },
+            "a": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n08.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-tenths",
+        "prompt": "Write $\\frac{[[a]]}{10}$ as a decimal.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/10|decimal]]"],
+          "form": "decimal"
+        },
+        "hints": ["Tenths go in the first place after the decimal point."],
+        "solution": "$\\frac{[[a]]}{10}$ is $[[a]]$ tenths: $[[a/10|decimal]]$.",
+        "skill": "fdp-convert",
+        "difficulty": 1,
+        "compute": "a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "r2-ten",
+        "prompt": "What is $10\\%$ of $[[10*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["$10\\%$ means divide by $10$."],
+        "solution": "$10\\%$ is a tenth: $[[10*a]] \\div 10 = [[a]]$.",
+        "skill": "percent-10",
+        "difficulty": 1,
+        "compute": "10*a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-fifty",
+        "prompt": "What is $50\\%$ of $[[2*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["$50\\%$ means half."],
+        "solution": "$50\\%$ is a half: $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 1,
+        "compute": "2*a/2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 8,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-unit",
+        "prompt": "What is $\\frac{1}{[[b]]}$ of $[[a*b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Divide by $[[b]]$."],
+        "solution": "Share into $[[b]]$ parts: $[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "fraction-of",
+        "difficulty": 1,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 10
+            },
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n08.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 8 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-tenths",
+        "prompt": "Write $\\frac{[[a]]}{10}$ as a decimal.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/10|decimal]]"],
+          "form": "decimal"
+        },
+        "solution": "$\\frac{[[a]]}{10}$ is $[[a]]$ tenths: $[[a/10|decimal]]$.",
+        "skill": "fdp-convert",
+        "difficulty": 1,
+        "compute": "a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-pct-to-dec",
+        "prompt": "Write $[[a]]\\%$ as a decimal.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/100|decimal]]"],
+          "form": "decimal"
+        },
+        "solution": "Divide by $100$: $[[a]]\\% = [[a/100|decimal]]$.",
+        "skill": "fdp-convert",
+        "difficulty": 1,
+        "compute": "a/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "c1-dec-to-pct",
+        "prompt": "Write $[[a/100|decimal]]$ as a percentage. (Type the number without the % sign.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a/10|decimal]]",
+              "why": "Times by $100$, not $10$: the digits move two places."
+            }
+          ]
+        },
+        "solution": "Times $100$: $[[a/100|decimal]] = [[a]]\\%$.",
+        "skill": "fdp-convert",
+        "difficulty": 2,
+        "compute": "a/100*100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "c2-ten",
+        "prompt": "What is $10\\%$ of $[[10*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$10\\%$ is a tenth: $[[10*a]] \\div 10 = [[a]]$.",
+        "skill": "percent-10",
+        "difficulty": 1,
+        "compute": "10*a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-ten-dec",
+        "prompt": "What is $10\\%$ of $[[a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a/10|decimal]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\div 10 = [[a/10|decimal]]$.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "c2-one",
+        "prompt": "What is $1\\%$ of $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*a]]",
+              "why": "That is $10\\%$. $1\\%$ is ten times smaller."
+            }
+          ]
+        },
+        "solution": "$1\\%$ is a hundredth: $[[100*a]] \\div 100 = [[a]]$.",
+        "skill": "percent-10",
+        "difficulty": 2,
+        "compute": "100*a/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 50
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-fifty",
+        "prompt": "What is $50\\%$ of $[[2*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$50\\%$ is a half: $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 1,
+        "compute": "2*a/2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 8,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-twentyfive",
+        "prompt": "What is $25\\%$ of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Halve: $[[2*a]]$. Halve again: $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 1,
+        "compute": "4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-twenty",
+        "prompt": "What is $20\\%$ of $[[5*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$20\\%$ is a fifth: $[[5*a]] \\div 5 = [[a]]$. Or: $10\\%$ is $[[a/2|decimal]]$, doubled is $[[a]]$.",
+        "skill": "percent-bench",
+        "difficulty": 2,
+        "compute": "5*a/5",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-unit",
+        "prompt": "What is $\\frac{1}{[[b]]}$ of $[[a*b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Share into $[[b]]$ parts: $[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "fraction-of",
+        "difficulty": 1,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 10
+            },
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-non-unit",
+        "prompt": "What is $\\frac{[[c]]}{[[b]]}$ of $[[a*b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That is $\\frac{1}{[[b]]}$. You need $[[c]]$ of those parts."
+            }
+          ]
+        },
+        "solution": "$\\frac{1}{[[b]]}$ of $[[a*b]]$ is $[[a]]$, so $\\frac{[[c]]}{[[b]]}$ is $[[c]] \\times [[a]] = [[c*a]]$.",
+        "skill": "fraction-of",
+        "difficulty": 2,
+        "compute": "c/b*a*b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 3,
+              "to": 10
+            },
+            "c": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          },
+          "where": ["c < b"]
+        }
+      },
+      {
+        "id": "c4-walk",
+        "prompt": "A class has $[[a*b]]$ pupils. $\\frac{1}{[[b]]}$ of them walk to school. How many pupils walk?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*b]] \\div [[b]] = [[a]]$ pupils.",
+        "skill": "fraction-of",
+        "difficulty": 2,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 2,
+              "to": 6
+            },
+            "a": {
+              "from": 4,
+              "to": 8
+            }
+          }
+        }
+      }
+    ]
+  }
+]

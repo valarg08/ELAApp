@@ -1,0 +1,74 @@
+{
+  "slug": "mental-sprints",
+  "order": 4,
+  "title": "Mixed Sprints",
+  "estMinutes": 25,
+  "focusSkills": ["speed-mixed"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Set yourself a target: how many of these can you get right in a row? What is your plan for staying accurate?",
+      "placeholder": "My target is… my plan is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Speed comes from facts",
+          "body": "Speed is not rushing. It comes from knowing facts by heart (bonds, squares, times tables) and seeing the pattern straight away. Every sprint question uses a pattern from this course."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: three quick ones",
+          "problem": "Work out $1000 - 637$, $45^2$ and $25\\%$ of $96$.",
+          "steps": [
+            {
+              "text": "All from $9$, the last from $10$.",
+              "try": {
+                "prompt": "What is $1000 - 637$?",
+                "accepted": ["363"],
+                "compute": "1000-637"
+              }
+            },
+            {
+              "text": "$4 \\times 5 = 20$, then $25$.",
+              "try": {
+                "prompt": "What is $45^2$?",
+                "accepted": ["2025"],
+                "compute": "45^2"
+              }
+            },
+            {
+              "text": "Halve twice: $48$, $24$. So $25\\%$ of $96$ is $24$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Accuracy first",
+          "body": "If you make a mistake, slow down a little for the next few questions. Getting them all right at a steady pace beats getting half wrong in a rush."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n15.sprint-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n15.sprint-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["What helped you stay accurate when you went faster?"],
+      "confidenceCheck": true
+    }
+  ]
+}

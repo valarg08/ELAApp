@@ -1,0 +1,66 @@
+{
+  "slug": "mental-missing-numbers-in-subtraction",
+  "order": 2,
+  "title": "Missing Numbers in Subtraction",
+  "estMinutes": 25,
+  "focusSkills": ["missing-sub"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$? - 18 = 25$. Is the missing number bigger or smaller than $25$? Why?",
+      "placeholder": "It is… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Which part is missing?",
+          "body": "A subtraction has a whole, a part taken away, and a part left. In $52 - ? = 37$ the part taken away is missing: $52 - 37 = 15$. In $? - 18 = 25$ the whole is missing: add the parts, $25 + 18 = 43$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: ? − 26 = 38",
+          "problem": "Find the missing number in $? - 26 = 38$.",
+          "steps": [
+            {
+              "text": "The missing number is the whole. Add the two parts.",
+              "try": {
+                "prompt": "What is $38 + 26$?",
+                "accepted": ["64"],
+                "compute": "38+26"
+              }
+            },
+            {
+              "text": "So $64 - 26 = 38$. The missing number is $64$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap",
+          "body": "In $? - 18 = 25$, some people work out $25 - 18 = 7$. Check: $7 - 18$ isn’t $25$. If the missing number comes first, it is the whole, so add."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n07.miss-sub-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n07.miss-sub-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How can you tell whether to add or subtract to find a missing number?"],
+      "confidenceCheck": true
+    }
+  ]
+}

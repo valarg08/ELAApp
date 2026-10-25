@@ -1,0 +1,1507 @@
+[
+  {
+    "key": "n11.nine-practice",
+    "type": "PROBLEMS",
+    "title": "Times 9 and 99",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "nine",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any"
+        },
+        "hints": ["Times $10$, then take one $[[a]]$ away."],
+        "solution": "$[[a]] \\times 10 = [[10*a]]$, take away $[[a]]$: $[[9*a]]$.",
+        "skill": "times-99",
+        "difficulty": 1,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "ninetynine",
+        "prompt": "Work out $[[a]] \\times 99$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a - 1]]",
+              "why": "Take away one lot of $[[a]]$, not $1$."
+            },
+            {
+              "value": "[[100*a]]",
+              "why": "That is times $100$. Take one $[[a]]$ away."
+            }
+          ]
+        },
+        "hints": ["Times $100$ first.", "Take away one lot of $[[a]]$."],
+        "solution": "$[[a]] \\times 100 = [[100*a]]$, take away $[[a]]$: $[[99*a]]$.",
+        "skill": "times-99",
+        "difficulty": 2,
+        "compute": "a*99",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "small",
+        "prompt": "Work out $[[a]] \\times 99$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - a]]"],
+          "form": "any"
+        },
+        "hints": ["$99$ is $100 - 1$."],
+        "solution": "$[[100*a]] - [[a]] = [[99*a]]$.",
+        "skill": "times-99",
+        "difficulty": 1,
+        "compute": "a*99",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "boxes",
+        "prompt": "A box holds $99$ pencils. How many pencils are in $[[a]]$ boxes?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - a]]"],
+          "form": "any"
+        },
+        "hints": ["Pretend each box holds $100$, then fix it."],
+        "solution": "If each box held $100$: $[[100*a]]$. Each holds one less, so take away $[[a]]$: $[[99*a]]$.",
+        "skill": "times-99",
+        "difficulty": 2,
+        "compute": "99*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "three-digit",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any"
+        },
+        "hints": ["Times $10$, take one $[[a]]$ away."],
+        "solution": "$[[10*a]] - [[a]] = [[9*a]]$.",
+        "skill": "times-99",
+        "difficulty": 3,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n11.nine-set",
+    "type": "PROBLEM_SET",
+    "title": "Times 9 and 99 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-nine",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times 10 = [[10*a]]$, take away $[[a]]$: $[[9*a]]$.",
+        "skill": "times-99",
+        "difficulty": 1,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-ninetynine",
+        "prompt": "Work out $[[a]] \\times 99$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a - 1]]",
+              "why": "Take away one lot of $[[a]]$, not $1$."
+            },
+            {
+              "value": "[[100*a]]",
+              "why": "That is times $100$. Take one $[[a]]$ away."
+            }
+          ]
+        },
+        "solution": "$[[a]] \\times 100 = [[100*a]]$, take away $[[a]]$: $[[99*a]]$.",
+        "skill": "times-99",
+        "difficulty": 2,
+        "compute": "a*99",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-small",
+        "prompt": "Work out $[[a]] \\times 99$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - a]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*a]] - [[a]] = [[99*a]]$.",
+        "skill": "times-99",
+        "difficulty": 1,
+        "compute": "a*99",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-boxes",
+        "prompt": "A box holds $99$ pencils. How many pencils are in $[[a]]$ boxes?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - a]]"],
+          "form": "any"
+        },
+        "solution": "If each box held $100$: $[[100*a]]$. Each holds one less, so take away $[[a]]$: $[[99*a]]$.",
+        "skill": "times-99",
+        "difficulty": 2,
+        "compute": "99*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "s-three-digit",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*a]] - [[a]] = [[9*a]]$.",
+        "skill": "times-99",
+        "difficulty": 3,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n11.thousand-practice",
+    "type": "PROBLEMS",
+    "title": "Times 999 and 98",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "n999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*a - 1]]",
+              "why": "Take away one lot of $[[a]]$, not $1$."
+            }
+          ]
+        },
+        "hints": ["Times $1000$, take away one $[[a]]$."],
+        "solution": "$[[1000*a]] - [[a]] = [[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 2,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "small999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a - a]]"],
+          "form": "any"
+        },
+        "hints": ["$999$ is $1000 - 1$."],
+        "solution": "$[[1000*a]] - [[a]] = [[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 1,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "big999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*(a-1) + 1000 - a]]"],
+          "form": "any"
+        },
+        "hints": ["Times $1000$, take away $[[a]]$.", "Or: write $[[a-1]]$, then $1000 - [[a]]$."],
+        "solution": "Write $[[a]] - 1 = [[a-1]]$, then $1000 - [[a]] = [[1000-a]]$: $[[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 3,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "cartons",
+        "prompt": "A carton holds $999$ grains of rice. How many grains in $[[a]]$ cartons?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a - a]]"],
+          "form": "any"
+        },
+        "hints": ["Pretend each carton holds $1000$."],
+        "solution": "$[[a]] \\times 1000 = [[1000*a]]$, minus $[[a]]$: $[[999*a]]$ grains.",
+        "skill": "times-999",
+        "difficulty": 2,
+        "compute": "999*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 50
+            }
+          }
+        }
+      },
+      {
+        "id": "n98",
+        "prompt": "Work out $[[a]] \\times 98$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - 2*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a - a]]",
+              "why": "That is $\\times 99$. For $\\times 98$ take away two lots."
+            }
+          ]
+        },
+        "hints": ["$98$ is $100 - 2$.", "Take away two lots of $[[a]]$."],
+        "solution": "$98 = 100 - 2$: $[[100*a]] - [[2*a]] = [[98*a]]$.",
+        "skill": "times-999",
+        "difficulty": 3,
+        "compute": "a*98",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 49
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n11.thousand-set",
+    "type": "PROBLEM_SET",
+    "title": "Times 999 and 98 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-n999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*a - 1]]",
+              "why": "Take away one lot of $[[a]]$, not $1$."
+            }
+          ]
+        },
+        "solution": "$[[1000*a]] - [[a]] = [[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 2,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-small999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a - a]]"],
+          "form": "any"
+        },
+        "solution": "$[[1000*a]] - [[a]] = [[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 1,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-big999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*(a-1) + 1000 - a]]"],
+          "form": "any"
+        },
+        "solution": "Write $[[a]] - 1 = [[a-1]]$, then $1000 - [[a]] = [[1000-a]]$: $[[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 3,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "s-cartons",
+        "prompt": "A carton holds $999$ grains of rice. How many grains in $[[a]]$ cartons?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a - a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times 1000 = [[1000*a]]$, minus $[[a]]$: $[[999*a]]$ grains.",
+        "skill": "times-999",
+        "difficulty": 2,
+        "compute": "999*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 50
+            }
+          }
+        }
+      },
+      {
+        "id": "s-n98",
+        "prompt": "Work out $[[a]] \\times 98$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - 2*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a - a]]",
+              "why": "That is $\\times 99$. For $\\times 98$ take away two lots."
+            }
+          ]
+        },
+        "solution": "$98 = 100 - 2$: $[[100*a]] - [[2*a]] = [[98*a]]$.",
+        "skill": "times-999",
+        "difficulty": 3,
+        "compute": "a*98",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 49
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n11.eleven-practice",
+    "type": "PROBLEMS",
+    "title": "Times 11",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "eleven",
+        "prompt": "Work out $[[10*x+y]] \\times 11$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any"
+        },
+        "hints": ["Add the two digits: that goes in the middle."],
+        "solution": "First digit $[[x]]$, middle $[[x]] + [[y]] = [[x+y]]$, last digit $[[y]]$: $[[11*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 1,
+        "compute": "(10*x+y)*11",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 8
+            },
+            "y": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["x + y < 10"]
+        }
+      },
+      {
+        "id": "carry",
+        "prompt": "Work out $[[10*x+y]] \\times 11$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*x + 10*(x+y) + y]]",
+              "why": "You wrote the whole middle sum. Carry its $1$ onto the first digit."
+            }
+          ]
+        },
+        "hints": ["The middle sum is $10$ or more: carry the $1$ to the first digit."],
+        "solution": "The middle sum is $[[x+y]]$: carry the $1$. First digit $[[x+1]]$, middle $[[x+y-10]]$, last $[[y]]$: $[[11*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 2,
+        "compute": "(10*x+y)*11",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 2,
+              "to": 9
+            },
+            "y": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["x + y >= 10"]
+        }
+      },
+      {
+        "id": "team",
+        "prompt": "A football team has $11$ players. How many players are in $[[10*x+y]]$ teams?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any"
+        },
+        "hints": ["Use the times $11$ pattern."],
+        "solution": "$[[10*x+y]] \\times 11 = [[10*(10*x+y)]] + [[10*x+y]] = [[11*(10*x+y)]]$ players.",
+        "skill": "times-11",
+        "difficulty": 2,
+        "compute": "11*(10*x+y)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "n22",
+        "prompt": "Work out $[[10*x+y]] \\times 22$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(100*x + 10*(x+y) + y)]]"],
+          "form": "any"
+        },
+        "hints": ["Times $11$ first, then double."],
+        "solution": "$\\times 22 = \\times 11 \\times 2$. $[[10*x+y]] \\times 11 = [[11*(10*x+y)]]$, doubled is $[[22*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 3,
+        "compute": "(10*x+y)*22",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 4
+            },
+            "y": {
+              "from": 1,
+              "to": 5
+            }
+          },
+          "where": ["x + y < 10"]
+        }
+      },
+      {
+        "id": "n110",
+        "prompt": "Work out $[[10*x+y]] \\times 110$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(100*x + 10*(x+y) + y)]]"],
+          "form": "any"
+        },
+        "hints": ["Times $11$, then times $10$."],
+        "solution": "$\\times 110 = \\times 11 \\times 10$: $[[11*(10*x+y)]] \\times 10 = [[110*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 2,
+        "compute": "(10*x+y)*110",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 8
+            },
+            "y": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["x + y < 10"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n11.eleven-set",
+    "type": "PROBLEM_SET",
+    "title": "Times 11 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-eleven",
+        "prompt": "Work out $[[10*x+y]] \\times 11$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any"
+        },
+        "solution": "First digit $[[x]]$, middle $[[x]] + [[y]] = [[x+y]]$, last digit $[[y]]$: $[[11*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 1,
+        "compute": "(10*x+y)*11",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 8
+            },
+            "y": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["x + y < 10"]
+        }
+      },
+      {
+        "id": "s-carry",
+        "prompt": "Work out $[[10*x+y]] \\times 11$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*x + 10*(x+y) + y]]",
+              "why": "You wrote the whole middle sum. Carry its $1$ onto the first digit."
+            }
+          ]
+        },
+        "solution": "The middle sum is $[[x+y]]$: carry the $1$. First digit $[[x+1]]$, middle $[[x+y-10]]$, last $[[y]]$: $[[11*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 2,
+        "compute": "(10*x+y)*11",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 2,
+              "to": 9
+            },
+            "y": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["x + y >= 10"]
+        }
+      },
+      {
+        "id": "s-team",
+        "prompt": "A football team has $11$ players. How many players are in $[[10*x+y]]$ teams?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*x+y]] \\times 11 = [[10*(10*x+y)]] + [[10*x+y]] = [[11*(10*x+y)]]$ players.",
+        "skill": "times-11",
+        "difficulty": 2,
+        "compute": "11*(10*x+y)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-n22",
+        "prompt": "Work out $[[10*x+y]] \\times 22$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(100*x + 10*(x+y) + y)]]"],
+          "form": "any"
+        },
+        "solution": "$\\times 22 = \\times 11 \\times 2$. $[[10*x+y]] \\times 11 = [[11*(10*x+y)]]$, doubled is $[[22*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 3,
+        "compute": "(10*x+y)*22",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 4
+            },
+            "y": {
+              "from": 1,
+              "to": 5
+            }
+          },
+          "where": ["x + y < 10"]
+        }
+      },
+      {
+        "id": "s-n110",
+        "prompt": "Work out $[[10*x+y]] \\times 110$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*(100*x + 10*(x+y) + y)]]"],
+          "form": "any"
+        },
+        "solution": "$\\times 110 = \\times 11 \\times 10$: $[[11*(10*x+y)]] \\times 10 = [[110*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 2,
+        "compute": "(10*x+y)*110",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 8
+            },
+            "y": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["x + y < 10"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n11.hundred-one-practice",
+    "type": "PROBLEMS",
+    "title": "Times 101 and 1001",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "n101",
+        "prompt": "Work out $[[10*x+y]] \\times 101$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*x + 100*y + 10*x + y]]"],
+          "form": "any"
+        },
+        "hints": ["$101 = 100 + 1$.", "The two digits appear twice."],
+        "solution": "$[[10*x+y]] \\times 100 + [[10*x+y]] = [[100*(10*x+y)]] + [[10*x+y]] = [[101*(10*x+y)]]$.",
+        "skill": "times-101",
+        "difficulty": 1,
+        "compute": "(10*x+y)*101",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "n1001",
+        "prompt": "Work out $[[100*x+10*y+z]] \\times 1001$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*(100*x+10*y+z) + 100*x+10*y+z]]"],
+          "form": "any"
+        },
+        "hints": ["$1001 = 1000 + 1$: the three digits appear twice."],
+        "solution": "$1001 = 1000 + 1$: $[[1000*(100*x+10*y+z)]] + [[100*x+10*y+z]] = [[1001*(100*x+10*y+z)]]$.",
+        "skill": "times-101",
+        "difficulty": 2,
+        "compute": "(100*x+10*y+z)*1001",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "one-digit",
+        "prompt": "Work out $[[a]] \\times 101$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a + a]]"],
+          "form": "any"
+        },
+        "hints": ["$101 = 100 + 1$."],
+        "solution": "$[[100*a]] + [[a]] = [[101*a]]$.",
+        "skill": "times-101",
+        "difficulty": 1,
+        "compute": "a*101",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "rows",
+        "prompt": "A hall has $[[10*x+y]]$ rows of $101$ seats. How many seats is that?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*x + 100*y + 10*x + y]]"],
+          "form": "any"
+        },
+        "hints": ["Use the times $101$ pattern."],
+        "solution": "$[[10*x+y]] \\times 101 = [[101*(10*x+y)]]$ seats.",
+        "skill": "times-101",
+        "difficulty": 2,
+        "compute": "101*(10*x+y)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "n102",
+        "prompt": "Work out $[[10*x+y]] \\times 102$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(10*x+y) + 2*(10*x+y)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[101*(10*x+y)]]",
+              "why": "That is $\\times 101$. For $\\times 102$, add two lots."
+            }
+          ]
+        },
+        "hints": ["$102 = 100 + 2$."],
+        "solution": "$102 = 100 + 2$: $[[100*(10*x+y)]] + [[2*(10*x+y)]] = [[102*(10*x+y)]]$.",
+        "skill": "times-101",
+        "difficulty": 3,
+        "compute": "(10*x+y)*102",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n11.hundred-one-set",
+    "type": "PROBLEM_SET",
+    "title": "Times 101 and 1001 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-n101",
+        "prompt": "Work out $[[10*x+y]] \\times 101$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*x + 100*y + 10*x + y]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*x+y]] \\times 100 + [[10*x+y]] = [[100*(10*x+y)]] + [[10*x+y]] = [[101*(10*x+y)]]$.",
+        "skill": "times-101",
+        "difficulty": 1,
+        "compute": "(10*x+y)*101",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-n1001",
+        "prompt": "Work out $[[100*x+10*y+z]] \\times 1001$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*(100*x+10*y+z) + 100*x+10*y+z]]"],
+          "form": "any"
+        },
+        "solution": "$1001 = 1000 + 1$: $[[1000*(100*x+10*y+z)]] + [[100*x+10*y+z]] = [[1001*(100*x+10*y+z)]]$.",
+        "skill": "times-101",
+        "difficulty": 2,
+        "compute": "(100*x+10*y+z)*1001",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-one-digit",
+        "prompt": "Work out $[[a]] \\times 101$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a + a]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*a]] + [[a]] = [[101*a]]$.",
+        "skill": "times-101",
+        "difficulty": 1,
+        "compute": "a*101",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rows",
+        "prompt": "A hall has $[[10*x+y]]$ rows of $101$ seats. How many seats is that?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*x + 100*y + 10*x + y]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*x+y]] \\times 101 = [[101*(10*x+y)]]$ seats.",
+        "skill": "times-101",
+        "difficulty": 2,
+        "compute": "101*(10*x+y)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-n102",
+        "prompt": "Work out $[[10*x+y]] \\times 102$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(10*x+y) + 2*(10*x+y)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[101*(10*x+y)]]",
+              "why": "That is $\\times 101$. For $\\times 102$, add two lots."
+            }
+          ]
+        },
+        "solution": "$102 = 100 + 2$: $[[100*(10*x+y)]] + [[2*(10*x+y)]] = [[102*(10*x+y)]]$.",
+        "skill": "times-101",
+        "difficulty": 3,
+        "compute": "(10*x+y)*102",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n11.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-nine",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any"
+        },
+        "hints": ["Times $10$, then take one $[[a]]$ away."],
+        "solution": "$[[a]] \\times 10 = [[10*a]]$, take away $[[a]]$: $[[9*a]]$.",
+        "skill": "times-99",
+        "difficulty": 1,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "r2-n999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*a - 1]]",
+              "why": "Take away one lot of $[[a]]$, not $1$."
+            }
+          ]
+        },
+        "hints": ["Times $1000$, take away one $[[a]]$."],
+        "solution": "$[[1000*a]] - [[a]] = [[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 2,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-eleven",
+        "prompt": "Work out $[[10*x+y]] \\times 11$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any"
+        },
+        "hints": ["Add the two digits: that goes in the middle."],
+        "solution": "First digit $[[x]]$, middle $[[x]] + [[y]] = [[x+y]]$, last digit $[[y]]$: $[[11*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 1,
+        "compute": "(10*x+y)*11",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 8
+            },
+            "y": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["x + y < 10"]
+        }
+      },
+      {
+        "id": "r4-n101",
+        "prompt": "Work out $[[10*x+y]] \\times 101$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*x + 100*y + 10*x + y]]"],
+          "form": "any"
+        },
+        "hints": ["$101 = 100 + 1$.", "The two digits appear twice."],
+        "solution": "$[[10*x+y]] \\times 100 + [[10*x+y]] = [[100*(10*x+y)]] + [[10*x+y]] = [[101*(10*x+y)]]$.",
+        "skill": "times-101",
+        "difficulty": 1,
+        "compute": "(10*x+y)*101",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n11.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 11 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-nine",
+        "prompt": "Work out $[[a]] \\times 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a - a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times 10 = [[10*a]]$, take away $[[a]]$: $[[9*a]]$.",
+        "skill": "times-99",
+        "difficulty": 1,
+        "compute": "a*9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-ninetynine",
+        "prompt": "Work out $[[a]] \\times 99$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*a - 1]]",
+              "why": "Take away one lot of $[[a]]$, not $1$."
+            },
+            {
+              "value": "[[100*a]]",
+              "why": "That is times $100$. Take one $[[a]]$ away."
+            }
+          ]
+        },
+        "solution": "$[[a]] \\times 100 = [[100*a]]$, take away $[[a]]$: $[[99*a]]$.",
+        "skill": "times-99",
+        "difficulty": 2,
+        "compute": "a*99",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-small",
+        "prompt": "Work out $[[a]] \\times 99$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a - a]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*a]] - [[a]] = [[99*a]]$.",
+        "skill": "times-99",
+        "difficulty": 1,
+        "compute": "a*99",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-n999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a - a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*a - 1]]",
+              "why": "Take away one lot of $[[a]]$, not $1$."
+            }
+          ]
+        },
+        "solution": "$[[1000*a]] - [[a]] = [[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 2,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-small999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a - a]]"],
+          "form": "any"
+        },
+        "solution": "$[[1000*a]] - [[a]] = [[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 1,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-big999",
+        "prompt": "Work out $[[a]] \\times 999$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*(a-1) + 1000 - a]]"],
+          "form": "any"
+        },
+        "solution": "Write $[[a]] - 1 = [[a-1]]$, then $1000 - [[a]] = [[1000-a]]$: $[[999*a]]$.",
+        "skill": "times-999",
+        "difficulty": 3,
+        "compute": "a*999",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 999
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-eleven",
+        "prompt": "Work out $[[10*x+y]] \\times 11$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any"
+        },
+        "solution": "First digit $[[x]]$, middle $[[x]] + [[y]] = [[x+y]]$, last digit $[[y]]$: $[[11*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 1,
+        "compute": "(10*x+y)*11",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 8
+            },
+            "y": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["x + y < 10"]
+        }
+      },
+      {
+        "id": "c3-carry",
+        "prompt": "Work out $[[10*x+y]] \\times 11$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*x + 10*(x+y) + y]]",
+              "why": "You wrote the whole middle sum. Carry its $1$ onto the first digit."
+            }
+          ]
+        },
+        "solution": "The middle sum is $[[x+y]]$: carry the $1$. First digit $[[x+1]]$, middle $[[x+y-10]]$, last $[[y]]$: $[[11*(10*x+y)]]$.",
+        "skill": "times-11",
+        "difficulty": 2,
+        "compute": "(10*x+y)*11",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 2,
+              "to": 9
+            },
+            "y": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["x + y >= 10"]
+        }
+      },
+      {
+        "id": "c3-team",
+        "prompt": "A football team has $11$ players. How many players are in $[[10*x+y]]$ teams?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*x + 10*(x+y) + y]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*x+y]] \\times 11 = [[10*(10*x+y)]] + [[10*x+y]] = [[11*(10*x+y)]]$ players.",
+        "skill": "times-11",
+        "difficulty": 2,
+        "compute": "11*(10*x+y)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-n101",
+        "prompt": "Work out $[[10*x+y]] \\times 101$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*x + 100*y + 10*x + y]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*x+y]] \\times 100 + [[10*x+y]] = [[100*(10*x+y)]] + [[10*x+y]] = [[101*(10*x+y)]]$.",
+        "skill": "times-101",
+        "difficulty": 1,
+        "compute": "(10*x+y)*101",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-n1001",
+        "prompt": "Work out $[[100*x+10*y+z]] \\times 1001$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*(100*x+10*y+z) + 100*x+10*y+z]]"],
+          "form": "any"
+        },
+        "solution": "$1001 = 1000 + 1$: $[[1000*(100*x+10*y+z)]] + [[100*x+10*y+z]] = [[1001*(100*x+10*y+z)]]$.",
+        "skill": "times-101",
+        "difficulty": 2,
+        "compute": "(100*x+10*y+z)*1001",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-one-digit",
+        "prompt": "Work out $[[a]] \\times 101$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a + a]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*a]] + [[a]] = [[101*a]]$.",
+        "skill": "times-101",
+        "difficulty": 1,
+        "compute": "a*101",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "sections": [
+    {
+      "skill": "fdp-convert",
+      "title": "Same amount, three ways",
+      "facts": [
+        "$\\frac{1}{2} = 0.5 = 50\\%$, $\\frac{1}{4} = 0.25 = 25\\%$, $\\frac{3}{4} = 0.75 = 75\\%$.",
+        "$\\frac{1}{5} = 0.2 = 20\\%$, $\\frac{1}{10} = 0.1 = 10\\%$, $\\frac{1}{100} = 0.01 = 1\\%$.",
+        "Percentage to decimal: divide by $100$. Decimal to percentage: times $100$."
+      ]
+    },
+    {
+      "skill": "percent-10",
+      "title": "10% and 1%",
+      "facts": [
+        "$10\\%$: divide by $10$. $1\\%$: divide by $100$.",
+        "$30\\% = 3 \\times 10\\%$. $5\\% = $ half of $10\\%$."
+      ]
+    },
+    {
+      "skill": "percent-bench",
+      "title": "Benchmark percentages",
+      "facts": [
+        "$50\\%$: halve. $25\\%$: halve twice. $75\\% = 3 \\times 25\\%$.",
+        "$20\\%$: divide by $5$ (or double $10\\%$)."
+      ]
+    },
+    {
+      "skill": "fraction-of",
+      "title": "A fraction of a number",
+      "facts": [
+        "$\\frac{1}{4}$ of $36$: divide by $4$, so $9$.",
+        "$\\frac{3}{4}$ of $36$: one quarter is $9$, three quarters is $27$."
+      ]
+    }
+  ]
+}

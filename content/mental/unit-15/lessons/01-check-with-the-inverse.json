@@ -1,0 +1,76 @@
+{
+  "slug": "mental-check-with-the-inverse",
+  "order": 1,
+  "title": "Check with the Inverse",
+  "estMinutes": 25,
+  "focusSkills": ["check-inverse"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Sam says $83 - 47 = 46$. How could you check it with an addition?",
+      "placeholder": "I would add…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Undo it",
+          "body": "Every calculation has an inverse that undoes it. Subtraction is undone by adding: if $83 - 47 = 36$, then $36 + 47$ must give $83$. Division is undone by multiplying: if $96 \\div 8 = 12$, then $12 \\times 8$ must give $96$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: check Sam",
+          "problem": "Sam says $83 - 47 = 46$. Check it.",
+          "steps": [
+            {
+              "text": "Add back: $46 + 47$.",
+              "try": {
+                "prompt": "What is $46 + 47$?",
+                "accepted": ["93"],
+                "compute": "46+47"
+              }
+            },
+            {
+              "text": "$93$ is not $83$, so Sam is wrong.",
+              "try": {
+                "prompt": "What is $83 - 47$?",
+                "accepted": ["36"],
+                "compute": "83-47"
+              }
+            },
+            {
+              "text": "Check: $36 + 47 = 83$. ✓"
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Check a different way",
+          "body": "The check is best when it uses a different calculation from the one you did. If you subtracted by counting up, check by adding from the left."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n15.inverse-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n15.inverse-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Why is checking with a different calculation better than doing the same one again?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

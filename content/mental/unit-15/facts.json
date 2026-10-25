@@ -1,0 +1,37 @@
+{
+  "sections": [
+    {
+      "skill": "check-inverse",
+      "title": "The inverse",
+      "facts": [
+        "Subtraction is checked by adding; division by multiplying.",
+        "$a - b = c$ means $c + b = a$. $a \\div b = c$ means $c \\times b = a$."
+      ]
+    },
+    {
+      "skill": "check-nines",
+      "title": "Casting out nines",
+      "facts": [
+        "Replace each number by its digit sum remainder by $9$.",
+        "The remainders of a sum add; the remainders of a product multiply.",
+        "If the check fails, the answer is wrong. If it passes, it is probably right."
+      ]
+    },
+    {
+      "skill": "pick-strategy",
+      "title": "Strategy menu",
+      "facts": [
+        "Near a round number: compensate. Times $9$, $99$: $\\times 10$ or $\\times 100$, take one away.",
+        "Pairs: $25 \\times 4 = 100$, $5 \\times 2 = 10$. Middle number: $(m - b)(m + b) = m^2 - b^2$."
+      ]
+    },
+    {
+      "skill": "speed-mixed",
+      "title": "Speed facts",
+      "facts": [
+        "Squares to $15$, ending-in-$5$ squares, and complements to $100$ and $1000$.",
+        "$10\\%$, $25\\%$ and $50\\%$ of any number."
+      ]
+    }
+  ]
+}

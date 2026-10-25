@@ -1,0 +1,1366 @@
+[
+  {
+    "key": "n06.round-practice",
+    "type": "PROBLEMS",
+    "title": "Round to Friendly Numbers",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "round10",
+        "prompt": "Round $[[a]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)]]"],
+          "form": "any"
+        },
+        "hints": ["Look at the ones digit. Is it $5$ or more?"],
+        "solution": "The ones digit is $[[mod(a,10)]]$, so $[[a]]$ rounds to $[[10*floor((a+5)/10)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "a - mod(a,10) + 10*floor(mod(a,10)/5)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "round100",
+        "prompt": "Round $[[a]]$ to the nearest hundred.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((a+50)/100)]]"],
+          "form": "any"
+        },
+        "hints": ["Look at the tens digit. Is it $5$ or more?"],
+        "solution": "The tens digit is $[[floor(mod(a,100)/10)]]$, so $[[a]]$ rounds to $[[100*floor((a+50)/100)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "a - mod(a,100) + 100*floor(mod(a,100)/50)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 989
+            }
+          },
+          "where": ["mod(a,100) >= 10"]
+        }
+      },
+      {
+        "id": "next-ten",
+        "prompt": "How far is $[[a]]$ from the next ten up?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*ceil(a/10) - a]]"],
+          "form": "any"
+        },
+        "hints": ["What is the next ten after $[[a]]$?", "Use a bond to $10$ with the ones digit."],
+        "solution": "The next ten is $[[10*ceil(a/10)]]$. The ones need a bond to $10$: $[[mod(a,10)]] + [[10-mod(a,10)]] = 10$. So $[[10-mod(a,10)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "10 - mod(a,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "next-hundred",
+        "prompt": "How much must you add to $[[a]]$ to reach the next hundred?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*ceil(a/100) - a]]"],
+          "form": "any"
+        },
+        "hints": ["Look only at the last two digits: what makes them up to $100$?"],
+        "solution": "The next hundred is $[[100*ceil(a/100)]]$. The last two digits $[[mod(a,100)]]$ need a bond to $100$: $[[100-mod(a,100)]]$.",
+        "skill": "bench-round",
+        "difficulty": 2,
+        "compute": "100 - mod(a,100)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 989
+            }
+          },
+          "where": ["mod(a,100) != 0"]
+        }
+      },
+      {
+        "id": "crowd",
+        "prompt": "A crowd of $[[a]]$ people is reported to the nearest hundred. What number is reported?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((a+50)/100)]]"],
+          "form": "any"
+        },
+        "hints": ["Round to the nearest hundred: look at the tens digit."],
+        "solution": "The tens digit decides: $[[a]]$ rounds to $[[100*floor((a+50)/100)]]$.",
+        "skill": "bench-round",
+        "difficulty": 2,
+        "compute": "a - mod(a,100) + 100*floor(mod(a,100)/50)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1010,
+              "to": 9890
+            }
+          },
+          "where": ["mod(a,100) >= 10", "mod(a,100) != 50"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n06.round-set",
+    "type": "PROBLEM_SET",
+    "title": "Round to Friendly Numbers challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-round10",
+        "prompt": "Round $[[a]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)]]"],
+          "form": "any"
+        },
+        "solution": "The ones digit is $[[mod(a,10)]]$, so $[[a]]$ rounds to $[[10*floor((a+5)/10)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "a - mod(a,10) + 10*floor(mod(a,10)/5)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-round100",
+        "prompt": "Round $[[a]]$ to the nearest hundred.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((a+50)/100)]]"],
+          "form": "any"
+        },
+        "solution": "The tens digit is $[[floor(mod(a,100)/10)]]$, so $[[a]]$ rounds to $[[100*floor((a+50)/100)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "a - mod(a,100) + 100*floor(mod(a,100)/50)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 989
+            }
+          },
+          "where": ["mod(a,100) >= 10"]
+        }
+      },
+      {
+        "id": "s-next-ten",
+        "prompt": "How far is $[[a]]$ from the next ten up?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*ceil(a/10) - a]]"],
+          "form": "any"
+        },
+        "solution": "The next ten is $[[10*ceil(a/10)]]$. The ones need a bond to $10$: $[[mod(a,10)]] + [[10-mod(a,10)]] = 10$. So $[[10-mod(a,10)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "10 - mod(a,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-next-hundred",
+        "prompt": "How much must you add to $[[a]]$ to reach the next hundred?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*ceil(a/100) - a]]"],
+          "form": "any"
+        },
+        "solution": "The next hundred is $[[100*ceil(a/100)]]$. The last two digits $[[mod(a,100)]]$ need a bond to $100$: $[[100-mod(a,100)]]$.",
+        "skill": "bench-round",
+        "difficulty": 2,
+        "compute": "100 - mod(a,100)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 989
+            }
+          },
+          "where": ["mod(a,100) != 0"]
+        }
+      },
+      {
+        "id": "s-crowd",
+        "prompt": "A crowd of $[[a]]$ people is reported to the nearest hundred. What number is reported?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((a+50)/100)]]"],
+          "form": "any"
+        },
+        "solution": "The tens digit decides: $[[a]]$ rounds to $[[100*floor((a+50)/100)]]$.",
+        "skill": "bench-round",
+        "difficulty": 2,
+        "compute": "a - mod(a,100) + 100*floor(mod(a,100)/50)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1010,
+              "to": 9890
+            }
+          },
+          "where": ["mod(a,100) >= 10", "mod(a,100) != 50"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n06.fifty-practice",
+    "type": "PROBLEMS",
+    "title": "Fifty Is Half of a Hundred",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "times50",
+        "prompt": "Work out $[[2*a]] \\times 50$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*a]]",
+              "why": "Check the size: half of $[[2*a]]$ is $[[a]]$, and $[[a]] \\times 100 = [[100*a]]$."
+            }
+          ]
+        },
+        "hints": ["Halve $[[2*a]]$ first.", "Then multiply by $100$."],
+        "solution": "Halve $[[2*a]]$ to get $[[a]]$, then times $100$: $[[100*a]]$.",
+        "skill": "bench-50",
+        "difficulty": 1,
+        "compute": "2*a*50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 24
+            }
+          }
+        }
+      },
+      {
+        "id": "times50-odd",
+        "prompt": "Work out $[[2*a+1]] \\times 50$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(2*a+1)/2]]"],
+          "form": "any"
+        },
+        "hints": ["Times $100$ first, then halve."],
+        "solution": "$[[2*a+1]] \\times 100 = [[100*(2*a+1)]]$, and half of that is $[[50*(2*a+1)]]$.",
+        "skill": "bench-50",
+        "difficulty": 2,
+        "compute": "(2*a+1)*50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "how-many-50",
+        "prompt": "How many $50$s make $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*a]]"],
+          "form": "any"
+        },
+        "hints": ["How many $50$s make $100$?"],
+        "solution": "Each hundred has two $50$s. $[[100*a]]$ has $[[a]]$ hundreds, so $[[2*a]]$ fifties.",
+        "skill": "bench-50",
+        "difficulty": 2,
+        "compute": "100*a/50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "sticker-cost",
+        "prompt": "Stickers cost $50$ cents each. How many cents do $[[a]]$ stickers cost?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/2]]"],
+          "form": "any"
+        },
+        "hints": ["Work out $[[a]] \\times 100$, then halve."],
+        "solution": "$[[a]] \\times 100 = [[100*a]]$, halved is $[[50*a]]$ cents.",
+        "skill": "bench-50",
+        "difficulty": 2,
+        "compute": "50*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "add50s",
+        "prompt": "Work out $[[50*a]] + [[50*b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[50*(a+b)]]"],
+          "form": "any"
+        },
+        "hints": ["Count in $50$s: how many fifties are there altogether?"],
+        "solution": "That is $[[a]] + [[b]] = [[a+b]]$ fifties: $[[50*(a+b)]]$.",
+        "skill": "bench-50",
+        "difficulty": 1,
+        "compute": "50*a+50*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n06.fifty-set",
+    "type": "PROBLEM_SET",
+    "title": "Fifty Is Half of a Hundred challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-times50",
+        "prompt": "Work out $[[2*a]] \\times 50$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*a]]",
+              "why": "Check the size: half of $[[2*a]]$ is $[[a]]$, and $[[a]] \\times 100 = [[100*a]]$."
+            }
+          ]
+        },
+        "solution": "Halve $[[2*a]]$ to get $[[a]]$, then times $100$: $[[100*a]]$.",
+        "skill": "bench-50",
+        "difficulty": 1,
+        "compute": "2*a*50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 24
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times50-odd",
+        "prompt": "Work out $[[2*a+1]] \\times 50$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(2*a+1)/2]]"],
+          "form": "any"
+        },
+        "solution": "$[[2*a+1]] \\times 100 = [[100*(2*a+1)]]$, and half of that is $[[50*(2*a+1)]]$.",
+        "skill": "bench-50",
+        "difficulty": 2,
+        "compute": "(2*a+1)*50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "s-how-many-50",
+        "prompt": "How many $50$s make $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*a]]"],
+          "form": "any"
+        },
+        "solution": "Each hundred has two $50$s. $[[100*a]]$ has $[[a]]$ hundreds, so $[[2*a]]$ fifties.",
+        "skill": "bench-50",
+        "difficulty": 2,
+        "compute": "100*a/50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "s-sticker-cost",
+        "prompt": "Stickers cost $50$ cents each. How many cents do $[[a]]$ stickers cost?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/2]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times 100 = [[100*a]]$, halved is $[[50*a]]$ cents.",
+        "skill": "bench-50",
+        "difficulty": 2,
+        "compute": "50*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "s-add50s",
+        "prompt": "Work out $[[50*a]] + [[50*b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[50*(a+b)]]"],
+          "form": "any"
+        },
+        "solution": "That is $[[a]] + [[b]] = [[a+b]]$ fifties: $[[50*(a+b)]]$.",
+        "skill": "bench-50",
+        "difficulty": 1,
+        "compute": "50*a+50*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n06.quarter-practice",
+    "type": "PROBLEMS",
+    "title": "Twenty-Five Is a Quarter of a Hundred",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "times25",
+        "prompt": "Work out $[[4*a]] \\times 25$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "hints": ["Every $4$ lots of $25$ make $100$.", "How many fours are in $[[4*a]]$?"],
+        "solution": "A quarter of $[[4*a]]$ is $[[a]]$, so it is $[[a]]$ hundreds: $[[100*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 1,
+        "compute": "4*a*25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "times25-any",
+        "prompt": "Work out $[[a]] \\times 25$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/4]]"],
+          "form": "any"
+        },
+        "hints": ["Times $100$, then halve twice."],
+        "solution": "$[[a]] \\times 100 = [[100*a]]$. Halve: $[[50*a]]$. Halve again: $[[25*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 2,
+        "compute": "a*25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 19
+            }
+          },
+          "where": ["mod(a,4) != 0"]
+        }
+      },
+      {
+        "id": "quarters-in",
+        "prompt": "How many $25$s make $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*a]]"],
+          "form": "any"
+        },
+        "hints": ["How many $25$s are in $100$?"],
+        "solution": "There are four $25$s in each $100$, and $[[a]]$ hundreds, so $[[4*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 2,
+        "compute": "100*a/25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "quarter-of",
+        "prompt": "What is a quarter of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a]]",
+              "why": "That is a half. Halve once more for a quarter."
+            }
+          ]
+        },
+        "hints": ["Halve it, then halve again."],
+        "solution": "Halve: $[[2*a]]$. Halve again: $[[a]]$.",
+        "skill": "bench-25",
+        "difficulty": 1,
+        "compute": "4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "marbles",
+        "prompt": "A bag holds $25$ marbles. How many marbles are in $[[a]]$ bags?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/4]]"],
+          "form": "any"
+        },
+        "hints": ["Times $100$, then find a quarter."],
+        "solution": "$[[a]] \\times 100 = [[100*a]]$, then a quarter of that is $[[25*a]]$ marbles.",
+        "skill": "bench-25",
+        "difficulty": 2,
+        "compute": "25*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 24
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n06.quarter-set",
+    "type": "PROBLEM_SET",
+    "title": "Twenty-Five Is a Quarter of a Hundred challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-times25",
+        "prompt": "Work out $[[4*a]] \\times 25$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "solution": "A quarter of $[[4*a]]$ is $[[a]]$, so it is $[[a]]$ hundreds: $[[100*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 1,
+        "compute": "4*a*25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "s-times25-any",
+        "prompt": "Work out $[[a]] \\times 25$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/4]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times 100 = [[100*a]]$. Halve: $[[50*a]]$. Halve again: $[[25*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 2,
+        "compute": "a*25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 19
+            }
+          },
+          "where": ["mod(a,4) != 0"]
+        }
+      },
+      {
+        "id": "s-quarters-in",
+        "prompt": "How many $25$s make $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*a]]"],
+          "form": "any"
+        },
+        "solution": "There are four $25$s in each $100$, and $[[a]]$ hundreds, so $[[4*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 2,
+        "compute": "100*a/25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "s-quarter-of",
+        "prompt": "What is a quarter of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a]]",
+              "why": "That is a half. Halve once more for a quarter."
+            }
+          ]
+        },
+        "solution": "Halve: $[[2*a]]$. Halve again: $[[a]]$.",
+        "skill": "bench-25",
+        "difficulty": 1,
+        "compute": "4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 40
+            }
+          }
+        }
+      },
+      {
+        "id": "s-marbles",
+        "prompt": "A bag holds $25$ marbles. How many marbles are in $[[a]]$ bags?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/4]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times 100 = [[100*a]]$, then a quarter of that is $[[25*a]]$ marbles.",
+        "skill": "bench-25",
+        "difficulty": 2,
+        "compute": "25*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 24
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n06.thousand-practice",
+    "type": "PROBLEMS",
+    "title": "Benchmarks 100 and 1000",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "times100",
+        "prompt": "Work out $[[a]] \\times 100$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "hints": ["Times $100$ is times $10$, twice."],
+        "solution": "Every digit moves two places left: $[[100*a]]$.",
+        "skill": "bench-1000",
+        "difficulty": 1,
+        "compute": "a*100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "div10",
+        "prompt": "Work out $[[10*a]] \\div 10$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Undo times $10$."],
+        "solution": "Dividing by $10$ moves every digit one place right: $[[a]]$.",
+        "skill": "bench-1000",
+        "difficulty": 1,
+        "compute": "10*a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "bond1000",
+        "prompt": "What goes with $[[100*a]]$ to make $1000$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(10-a)]]"],
+          "form": "any"
+        },
+        "hints": ["Think in hundreds: $[[a]]$ hundreds need how many more to make ten hundreds?"],
+        "solution": "$[[a]] + [[10-a]] = 10$, so $[[100*a]] + [[100*(10-a)]] = 1000$.",
+        "skill": "bench-1000",
+        "difficulty": 2,
+        "compute": "1000-100*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "bond1000-tens",
+        "prompt": "What goes with $[[10*a]]$ to make $1000$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000-10*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1100-10*a]]",
+              "why": "Check: that makes $1100$. The tens already make a hundred, so the hundreds make $9$."
+            }
+          ]
+        },
+        "hints": [
+          "Start with the tens: what makes them up to $100$?",
+          "Then the hundreds only need to make $9$."
+        ],
+        "solution": "The tens make a hundred and the hundreds make $9$: $[[10*a]] + [[1000-10*a]] = 1000$.",
+        "skill": "bench-1000",
+        "difficulty": 3,
+        "compute": "1000-10*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "how-many-hundreds",
+        "prompt": "How many hundreds are in $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Divide by $100$."],
+        "solution": "Divide by $100$: the digits move two places right. $[[a]]$ hundreds.",
+        "skill": "bench-1000",
+        "difficulty": 2,
+        "compute": "100*a/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n06.thousand-set",
+    "type": "PROBLEM_SET",
+    "title": "Benchmarks 100 and 1000 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-times100",
+        "prompt": "Work out $[[a]] \\times 100$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "solution": "Every digit moves two places left: $[[100*a]]$.",
+        "skill": "bench-1000",
+        "difficulty": 1,
+        "compute": "a*100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-div10",
+        "prompt": "Work out $[[10*a]] \\div 10$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Dividing by $10$ moves every digit one place right: $[[a]]$.",
+        "skill": "bench-1000",
+        "difficulty": 1,
+        "compute": "10*a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-bond1000",
+        "prompt": "What goes with $[[100*a]]$ to make $1000$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(10-a)]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[10-a]] = 10$, so $[[100*a]] + [[100*(10-a)]] = 1000$.",
+        "skill": "bench-1000",
+        "difficulty": 2,
+        "compute": "1000-100*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-bond1000-tens",
+        "prompt": "What goes with $[[10*a]]$ to make $1000$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000-10*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1100-10*a]]",
+              "why": "Check: that makes $1100$. The tens already make a hundred, so the hundreds make $9$."
+            }
+          ]
+        },
+        "solution": "The tens make a hundred and the hundreds make $9$: $[[10*a]] + [[1000-10*a]] = 1000$.",
+        "skill": "bench-1000",
+        "difficulty": 3,
+        "compute": "1000-10*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-how-many-hundreds",
+        "prompt": "How many hundreds are in $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Divide by $100$: the digits move two places right. $[[a]]$ hundreds.",
+        "skill": "bench-1000",
+        "difficulty": 2,
+        "compute": "100*a/100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n06.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-round10",
+        "prompt": "Round $[[a]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)]]"],
+          "form": "any"
+        },
+        "hints": ["Look at the ones digit. Is it $5$ or more?"],
+        "solution": "The ones digit is $[[mod(a,10)]]$, so $[[a]]$ rounds to $[[10*floor((a+5)/10)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "a - mod(a,10) + 10*floor(mod(a,10)/5)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "r2-times50",
+        "prompt": "Work out $[[2*a]] \\times 50$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*a]]",
+              "why": "Check the size: half of $[[2*a]]$ is $[[a]]$, and $[[a]] \\times 100 = [[100*a]]$."
+            }
+          ]
+        },
+        "hints": ["Halve $[[2*a]]$ first.", "Then multiply by $100$."],
+        "solution": "Halve $[[2*a]]$ to get $[[a]]$, then times $100$: $[[100*a]]$.",
+        "skill": "bench-50",
+        "difficulty": 1,
+        "compute": "2*a*50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 24
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-times25",
+        "prompt": "Work out $[[4*a]] \\times 25$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "hints": ["Every $4$ lots of $25$ make $100$.", "How many fours are in $[[4*a]]$?"],
+        "solution": "A quarter of $[[4*a]]$ is $[[a]]$, so it is $[[a]]$ hundreds: $[[100*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 1,
+        "compute": "4*a*25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-times100",
+        "prompt": "Work out $[[a]] \\times 100$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "hints": ["Times $100$ is times $10$, twice."],
+        "solution": "Every digit moves two places left: $[[100*a]]$.",
+        "skill": "bench-1000",
+        "difficulty": 1,
+        "compute": "a*100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 99
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n06.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 6 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-round10",
+        "prompt": "Round $[[a]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)]]"],
+          "form": "any"
+        },
+        "solution": "The ones digit is $[[mod(a,10)]]$, so $[[a]]$ rounds to $[[10*floor((a+5)/10)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "a - mod(a,10) + 10*floor(mod(a,10)/5)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "c1-round100",
+        "prompt": "Round $[[a]]$ to the nearest hundred.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((a+50)/100)]]"],
+          "form": "any"
+        },
+        "solution": "The tens digit is $[[floor(mod(a,100)/10)]]$, so $[[a]]$ rounds to $[[100*floor((a+50)/100)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "a - mod(a,100) + 100*floor(mod(a,100)/50)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 101,
+              "to": 989
+            }
+          },
+          "where": ["mod(a,100) >= 10"]
+        }
+      },
+      {
+        "id": "c1-next-ten",
+        "prompt": "How far is $[[a]]$ from the next ten up?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*ceil(a/10) - a]]"],
+          "form": "any"
+        },
+        "solution": "The next ten is $[[10*ceil(a/10)]]$. The ones need a bond to $10$: $[[mod(a,10)]] + [[10-mod(a,10)]] = 10$. So $[[10-mod(a,10)]]$.",
+        "skill": "bench-round",
+        "difficulty": 1,
+        "compute": "10 - mod(a,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "c2-times50",
+        "prompt": "Work out $[[2*a]] \\times 50$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[1000*a]]",
+              "why": "Check the size: half of $[[2*a]]$ is $[[a]]$, and $[[a]] \\times 100 = [[100*a]]$."
+            }
+          ]
+        },
+        "solution": "Halve $[[2*a]]$ to get $[[a]]$, then times $100$: $[[100*a]]$.",
+        "skill": "bench-50",
+        "difficulty": 1,
+        "compute": "2*a*50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 24
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-times50-odd",
+        "prompt": "Work out $[[2*a+1]] \\times 50$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(2*a+1)/2]]"],
+          "form": "any"
+        },
+        "solution": "$[[2*a+1]] \\times 100 = [[100*(2*a+1)]]$, and half of that is $[[50*(2*a+1)]]$.",
+        "skill": "bench-50",
+        "difficulty": 2,
+        "compute": "(2*a+1)*50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-how-many-50",
+        "prompt": "How many $50$s make $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*a]]"],
+          "form": "any"
+        },
+        "solution": "Each hundred has two $50$s. $[[100*a]]$ has $[[a]]$ hundreds, so $[[2*a]]$ fifties.",
+        "skill": "bench-50",
+        "difficulty": 2,
+        "compute": "100*a/50",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-times25",
+        "prompt": "Work out $[[4*a]] \\times 25$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "solution": "A quarter of $[[4*a]]$ is $[[a]]$, so it is $[[a]]$ hundreds: $[[100*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 1,
+        "compute": "4*a*25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-times25-any",
+        "prompt": "Work out $[[a]] \\times 25$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a/4]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times 100 = [[100*a]]$. Halve: $[[50*a]]$. Halve again: $[[25*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 2,
+        "compute": "a*25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 19
+            }
+          },
+          "where": ["mod(a,4) != 0"]
+        }
+      },
+      {
+        "id": "c3-quarters-in",
+        "prompt": "How many $25$s make $[[100*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*a]]"],
+          "form": "any"
+        },
+        "solution": "There are four $25$s in each $100$, and $[[a]]$ hundreds, so $[[4*a]]$.",
+        "skill": "bench-25",
+        "difficulty": 2,
+        "compute": "100*a/25",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-times100",
+        "prompt": "Work out $[[a]] \\times 100$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "solution": "Every digit moves two places left: $[[100*a]]$.",
+        "skill": "bench-1000",
+        "difficulty": 1,
+        "compute": "a*100",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 13,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-div10",
+        "prompt": "Work out $[[10*a]] \\div 10$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Dividing by $10$ moves every digit one place right: $[[a]]$.",
+        "skill": "bench-1000",
+        "difficulty": 1,
+        "compute": "10*a/10",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-bond1000",
+        "prompt": "What goes with $[[100*a]]$ to make $1000$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(10-a)]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[10-a]] = 10$, so $[[100*a]] + [[100*(10-a)]] = 1000$.",
+        "skill": "bench-1000",
+        "difficulty": 2,
+        "compute": "1000-100*a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  }
+]

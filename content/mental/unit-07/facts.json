@@ -1,0 +1,36 @@
+{
+  "sections": [
+    {
+      "skill": "missing-add",
+      "title": "Missing addends",
+      "facts": [
+        "$37 + ? = 52$: subtract, $52 - 37 = 15$, or count up from $37$ to $52$.",
+        "Check by putting your number back in."
+      ]
+    },
+    {
+      "skill": "missing-sub",
+      "title": "Missing numbers in subtraction",
+      "facts": [
+        "$52 - ? = 37$: the missing number is the difference, $15$.",
+        "$? - 18 = 25$: the missing number is the whole, $25 + 18 = 43$."
+      ]
+    },
+    {
+      "skill": "missing-mult",
+      "title": "Missing factors",
+      "facts": [
+        "$6 \\times ? = 42$: divide, $42 \\div 6 = 7$.",
+        "$? \\div 4 = 9$: multiply, $9 \\times 4 = 36$."
+      ]
+    },
+    {
+      "skill": "balance",
+      "title": "Balance",
+      "facts": [
+        "Both sides of $=$ are equal: $45 + 28 = 47 + 26$.",
+        "If one number goes up, the other must go down by the same amount."
+      ]
+    }
+  ]
+}

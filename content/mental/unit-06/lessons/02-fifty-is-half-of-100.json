@@ -1,0 +1,69 @@
+{
+  "slug": "mental-fifty-is-half-of-100",
+  "order": 2,
+  "title": "Fifty Is Half of a Hundred",
+  "estMinutes": 25,
+  "focusSkills": ["bench-50"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Stickers cost $50$ cents each. How much do $14$ stickers cost? Is there a quick way?",
+      "placeholder": "A quick way is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Use a hundred, then halve",
+          "body": "Multiplying by $100$ is easy: the digits move two places left. $50$ is half of $100$, so times $50$ is times $100$, halved. $14 \\times 50$: $14 \\times 100 = 1400$, half is $700$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 18 × 50",
+          "problem": "Work out $18 \\times 50$.",
+          "steps": [
+            {
+              "text": "Halve the $18$ first: half of $18$ is $9$."
+            },
+            {
+              "text": "Now times $100$.",
+              "try": {
+                "prompt": "What is $9 \\times 100$?",
+                "accepted": ["900"],
+                "compute": "9*100"
+              }
+            },
+            {
+              "text": "So $18 \\times 50 = 900$. Halve-then-times-$100$ is quick when the number is even."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Odd numbers",
+          "body": "For an odd number like $7 \\times 50$: $7 \\times 100 = 700$, and half of $700$ is $350$. Halving last always works."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n06.fifty-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n06.fifty-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why is $\\times 50$ the same as $\\times 100$ and then halving?"],
+      "confidenceCheck": true
+    }
+  ]
+}

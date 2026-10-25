@@ -1,0 +1,76 @@
+{
+  "slug": "mental-multiply-near-a-base",
+  "order": 2,
+  "title": "Multiply Near a Base",
+  "estMinutes": 25,
+  "focusSkills": ["vedic-base"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$97 \\times 94$: both numbers are just under $100$. How far under is each one?",
+      "placeholder": "$97$ is… under, $94$ is… under"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Cross-subtract, then multiply the gaps",
+          "body": "For two numbers just below $100$, find each gap: $97$ is $3$ under, $94$ is $6$ under. Front part: take one gap from the other number, $97 - 6 = 91$ (or $94 - 3$). Back part: multiply the gaps, $3 \\times 6 = 18$. So $97 \\times 94 = 9118$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 96 × 98",
+          "problem": "Work out $96 \\times 98$.",
+          "steps": [
+            {
+              "text": "Gaps: $4$ and $2$. Front: $96 - 2$.",
+              "try": {
+                "prompt": "What is $96 - 2$?",
+                "accepted": ["94"],
+                "compute": "96-2"
+              }
+            },
+            {
+              "text": "Back: $4 \\times 2 = 8$, written as two digits: $08$.",
+              "try": {
+                "prompt": "What is $96 \\times 98$?",
+                "accepted": ["9408"],
+                "compute": "96*98"
+              }
+            },
+            {
+              "text": "So $96 \\times 98 = 9408$. The back part always has two digits for base $100$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "$(100 - a)(100 - b) = 10000 - 100a - 100b + ab = 100(100 - a - b) + ab$. The front part $100 - a - b$ counts hundreds, and $ab$ fills the last two places. Above $100$ the gaps are added: $(100 + a)(100 + b) = 100(100 + a + b) + ab$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n14.base-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n14.base-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Use $(100 - a)(100 - b) = 100(100 - a - b) + ab$ to explain why the back part has two digits."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

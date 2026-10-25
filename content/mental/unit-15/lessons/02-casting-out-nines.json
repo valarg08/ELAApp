@@ -1,0 +1,76 @@
+{
+  "slug": "mental-casting-out-nines",
+  "order": 2,
+  "title": "Casting Out Nines",
+  "estMinutes": 25,
+  "focusSkills": ["check-nines"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A calculator says $47 \\times 38 = 1786$. Add the digits of each number. Is there a link?",
+      "placeholder": "The digit sums are…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Digit sums keep score",
+          "body": "From Unit 9, a number has the same remainder by $9$ as its digit sum. That remainder is the number’s \"nine-score\". Nine-scores add for sums and multiply for products, so you can check an answer by checking its nine-score."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 47 × 38",
+          "problem": "Check $47 \\times 38 = 1786$ by casting out nines.",
+          "steps": [
+            {
+              "text": "$47 \\to 4 + 7 = 11 \\to 2$, and $38 \\to 3 + 8 = 11 \\to 2$.",
+              "try": {
+                "prompt": "What is $2 \\times 2$?",
+                "accepted": ["4"],
+                "compute": "2*2"
+              }
+            },
+            {
+              "text": "$1786 \\to 1 + 7 + 8 + 6 = 22 \\to 4$.",
+              "try": {
+                "prompt": "What is the remainder when $22$ is divided by $9$?",
+                "accepted": ["4"],
+                "compute": "mod(22,9)"
+              }
+            },
+            {
+              "text": "Both are $4$, so the answer passes. (Swapped digits still pass, so it is a quick check, not a proof.)"
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "When it fails",
+          "body": "If the nine-scores don’t match, the answer is certainly wrong. $47 \\times 38 = 1796$? $1796 \\to 23 \\to 5$, not $4$: wrong."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n15.nines-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n15.nines-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Casting out nines can say \"wrong\" for sure, but only \"probably right\". Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

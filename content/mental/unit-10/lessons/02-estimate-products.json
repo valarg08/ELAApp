@@ -1,0 +1,71 @@
+{
+  "slug": "mental-estimate-products",
+  "order": 2,
+  "title": "Estimate Products",
+  "estMinutes": 25,
+  "focusSkills": ["est-mult"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A ticket costs $48$ points. Is $21$ tickets more or less than $1000$ points? How can you tell fast?",
+      "placeholder": "More/less, because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Round, then multiply",
+          "body": "Round each number to one friendly number, then multiply: $48 \\times 21 \\approx 50 \\times 20 = 1000$. The exact answer is $1008$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: tens times tens",
+          "problem": "Estimate $38 \\times 62$.",
+          "steps": [
+            {
+              "text": "Round: $38 \\approx 40$ and $62 \\approx 60$."
+            },
+            {
+              "text": "$4 \\times 6 = 24$, and tens times tens makes hundreds.",
+              "try": {
+                "prompt": "What is $40 \\times 60$?",
+                "accepted": ["2400"],
+                "compute": "40*60"
+              }
+            },
+            {
+              "text": "So $38 \\times 62 \\approx 2400$. (Exactly, it is $2356$.)"
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Count the zeros",
+          "body": "$40 \\times 60$: multiply $4 \\times 6 = 24$, then add the two zeros: $2400$. Counting zeros is where most estimates go wrong: check the size makes sense."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n10.est-mult-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n10.est-mult-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Why is it easy to lose or gain a zero when estimating products? How do you check?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "slug": "mental-tens-and-ones",
+  "order": 4,
+  "title": "Bigger Numbers: Tens and Ones",
+  "estMinutes": 25,
+  "focusSkills": ["anchor-tens"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A box holds $23$ eggs. How would you work out how many eggs are in $4$ boxes?",
+      "placeholder": "I would…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Split into tens and ones",
+          "body": "To multiply a two-digit number, split it into tens and ones, multiply each part, then add. $23 \\times 4$: $20 \\times 4 = 80$ and $3 \\times 4 = 12$, so $92$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 36 × 3",
+          "problem": "Work out $36 \\times 3$.",
+          "steps": [
+            {
+              "text": "Tens: $30 \\times 3$. That is $3 \\times 3 = 9$ tens.",
+              "try": {
+                "prompt": "What is $30 \\times 3$?",
+                "accepted": ["90"],
+                "compute": "30*3"
+              }
+            },
+            {
+              "text": "Ones: $6 \\times 3 = 18$.",
+              "try": {
+                "prompt": "What is $90 + 18$?",
+                "accepted": ["108"],
+                "compute": "90+18"
+              }
+            },
+            {
+              "text": "So $36 \\times 3 = 108$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Multiplying tens",
+          "body": "$30 \\times 6$ is $3 \\times 6 = 18$ tens, which is $180$. Work out the small fact, then make it tens."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n05.tens-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n05.tens-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Show how you would work out $47 \\times 3$ in your head."],
+      "confidenceCheck": true
+    }
+  ]
+}

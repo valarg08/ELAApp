@@ -1,0 +1,18 @@
+{
+  "number": 13,
+  "slug": "mental-difference-of-squares",
+  "title": "Difference of Squares",
+  "summary": "Use $a^2 - b^2 = (a + b)(a - b)$ to subtract squares in one step, multiply two numbers either side of a round number, find the gap between neighbouring squares, and square numbers near a round number.",
+  "bigIdeas": [
+    "$a^2 - b^2 = (a + b)(a - b)$: a big subtraction becomes an easy multiplication.",
+    "Two numbers the same distance from a round number multiply to the round number squared, minus the distance squared."
+  ],
+  "tips": [
+    "$a^2 - b^2 = (a + b)(a - b)$: $47^2 - 43^2 = 90 \\times 4 = 360$.",
+    "$48 \\times 52 = 50^2 - 2^2 = 2500 - 4 = 2496$.",
+    "Two squares next to each other differ by the sum of the numbers: $31^2 - 30^2 = 61$.",
+    "$48^2 = 46 \\times 50 + 2^2 = 2300 + 4 = 2304$.",
+    "Look for a middle number: $37 \\times 43$ has middle $40$ and distance $3$."
+  ],
+  "published": true
+}

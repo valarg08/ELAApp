@@ -1,0 +1,76 @@
+{
+  "slug": "mental-vertically-and-crosswise",
+  "order": 3,
+  "title": "Vertically and Crosswise",
+  "estMinutes": 25,
+  "focusSkills": ["vedic-crosswise"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$43 \\times 47 = 2021$ and $62 \\times 68 = 4216$. What do the pairs have in common? Can you see the pattern?",
+      "placeholder": "They have… the pattern is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Three products",
+          "body": "To multiply $23 \\times 41$, find three products. Vertically on the left: $2 \\times 4 = 8$ (hundreds). Crosswise: $2 \\times 1 + 3 \\times 4 = 14$ (tens). Vertically on the right: $3 \\times 1 = 3$ (ones). Total: $800 + 140 + 3 = 943$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 32 × 21",
+          "problem": "Work out $32 \\times 21$.",
+          "steps": [
+            {
+              "text": "Left: $3 \\times 2 = 6$ hundreds. Right: $2 \\times 1 = 2$ ones."
+            },
+            {
+              "text": "Crosswise: $3 \\times 1 + 2 \\times 2$.",
+              "try": {
+                "prompt": "What is $3 \\times 1 + 2 \\times 2$?",
+                "accepted": ["7"],
+                "compute": "3*1+2*2"
+              }
+            },
+            {
+              "text": "$600 + 70 + 2$.",
+              "try": {
+                "prompt": "What is $32 \\times 21$?",
+                "accepted": ["672"],
+                "compute": "32*21"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Same tens, ones add to 10",
+          "body": "When the tens digits match and the ones add to $10$, the crosswise part becomes $10a$, and the product is $a(a + 1)$ hundreds plus the ones multiplied. $43 \\times 47$: $4 \\times 5 = 20$, $3 \\times 7 = 21$, so $2021$. Algebra: $(10a + b)(10a + 10 - b) = 100a(a + 1) + b(10 - b)$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n14.crosswise-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n14.crosswise-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Expand $(10a + b)(10c + d)$ and show where each of the three products comes from."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

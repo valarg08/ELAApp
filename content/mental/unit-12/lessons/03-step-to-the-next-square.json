@@ -1,0 +1,76 @@
+{
+  "slug": "mental-step-to-the-next-square",
+  "order": 3,
+  "title": "Step to the Next Square",
+  "estMinutes": 25,
+  "focusSkills": ["squares-step"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You know $20^2 = 400$. How could you get $21^2$ without multiplying $21 \\times 21$?",
+      "placeholder": "I would…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Add the two numbers",
+          "body": "To go from $n^2$ to $(n + 1)^2$, add $n$ and $n + 1$. From $20^2 = 400$: $400 + 20 + 21 = 441 = 21^2$. Picture it: a square grows by one row and one column."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 31 squared",
+          "problem": "Use $30^2 = 900$ to find $31^2$.",
+          "steps": [
+            {
+              "text": "Add $30$ and $31$.",
+              "try": {
+                "prompt": "What is $30 + 31$?",
+                "accepted": ["61"],
+                "compute": "30+31"
+              }
+            },
+            {
+              "text": "Add that to $900$.",
+              "try": {
+                "prompt": "What is $31^2$?",
+                "accepted": ["961"],
+                "compute": "31^2"
+              }
+            },
+            {
+              "text": "So $31^2 = 961$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Stepping down",
+          "body": "To go down from $n^2$ to $(n - 1)^2$, take away $n$ and $n - 1$. From $50^2 = 2500$: $2500 - 50 - 49 = 2401 = 49^2$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n12.step-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n12.step-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Draw or describe why a square grows by $n + (n + 1)$ when the side goes from $n$ to $n + 1$."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

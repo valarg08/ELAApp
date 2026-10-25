@@ -1,0 +1,76 @@
+{
+  "slug": "mental-times-11",
+  "order": 3,
+  "title": "Times 11",
+  "estMinutes": 25,
+  "focusSkills": ["times-11"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Work out $11 \\times 11$, $12 \\times 11$, $13 \\times 11$. What pattern do you see in the digits?",
+      "placeholder": "The pattern is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Split the digits, sum in the middle",
+          "body": "For a two-digit number times $11$, keep the first digit, put the sum of the two digits in the middle, and keep the last digit. $43 \\times 11$: $4$, $4 + 3 = 7$, $3$, so $473$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 87 × 11",
+          "problem": "Work out $87 \\times 11$.",
+          "steps": [
+            {
+              "text": "The middle is $8 + 7$.",
+              "try": {
+                "prompt": "What is $8 + 7$?",
+                "accepted": ["15"],
+                "compute": "8+7"
+              }
+            },
+            {
+              "text": "$15$ is too big for one place: keep the $5$ in the middle and carry the $1$ to the $8$, making $9$.",
+              "try": {
+                "prompt": "What is $87 \\times 11$?",
+                "accepted": ["957"],
+                "compute": "87*11"
+              }
+            },
+            {
+              "text": "So $87 \\times 11 = 957$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "$\\times 11 = \\times 10 + \\times 1$. $43 \\times 11 = 430 + 43$. The tens digit of $430$ ($3$) and of $43$ ($4$) land in the same place and add: that is the middle sum."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n11.eleven-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n11.eleven-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Use $\\times 11 = \\times 10 + \\times 1$ to explain the carry in $87 \\times 11$."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

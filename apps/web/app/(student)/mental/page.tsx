@@ -24,6 +24,14 @@ export default async function MentalHome() {
   if (!me) redirect('/join');
   const current = units?.find((u) => u.available && u.completedLessons < u.lessonCount);
   const byNumber = new Map((units ?? []).map((u) => [u.number, u]));
+  // Units 2–3 are not built yet, so a locked unit waits for the last open unit before it.
+  const previousOpen = (n: number) =>
+    Math.max(
+      0,
+      ...(units ?? [])
+        .filter((p) => p.number < n && p.lockReason !== 'COMING_SOON')
+        .map((p) => p.number),
+    ) || undefined;
   const tip = home ? tipOfTheDay(home.tips, 1) : null;
 
   return (
@@ -92,7 +100,7 @@ export default async function MentalHome() {
                 return (
                   <li key={planned.number}>
                     {u ? (
-                      <UnitCard unit={u} />
+                      <UnitCard unit={u} previousNumber={previousOpen(u.number)} />
                     ) : (
                       <div
                         className="block h-full rounded-2xl border border-border bg-card p-5 opacity-60 shadow-sm"

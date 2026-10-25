@@ -1,0 +1,66 @@
+{
+  "slug": "mental-last-two-digits",
+  "order": 3,
+  "title": "Last Two Digits: 4 and 8",
+  "estMinutes": 25,
+  "focusSkills": ["div-last-two"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Does $7316$ divide by $4$? Can you tell without dividing the whole number?",
+      "placeholder": "Yes/No, because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Look at the end",
+          "body": "$100$ divides by $4$, so all the hundreds in a number divide by $4$. Only the last two digits decide: $7316$ divides by $4$ because $16$ does. For $8$, $1000$ divides by $8$, so look at the last three digits."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: remainder by 4",
+          "problem": "What is the remainder when $5338$ is divided by $4$?",
+          "steps": [
+            {
+              "text": "Only the last two digits matter: $38$.",
+              "try": {
+                "prompt": "What is the remainder when $38$ is divided by $4$?",
+                "accepted": ["2"],
+                "compute": "mod(38,4)"
+              }
+            },
+            {
+              "text": "$38 = 36 + 2$, so $5338$ leaves $2$ as well."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Halve twice",
+          "body": "To test the last two digits for $4$, halve them twice: $16 \\to 8 \\to 4$, a whole number, so yes. $38 \\to 19 \\to 9.5$: no."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n09.last-two-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n09.last-two-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why don’t the hundreds matter when testing for $4$?"],
+      "confidenceCheck": true
+    }
+  ]
+}

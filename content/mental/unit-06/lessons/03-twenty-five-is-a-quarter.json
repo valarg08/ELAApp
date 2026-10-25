@@ -1,0 +1,74 @@
+{
+  "slug": "mental-twenty-five-is-a-quarter",
+  "order": 3,
+  "title": "Twenty-Five Is a Quarter of a Hundred",
+  "estMinutes": 25,
+  "focusSkills": ["bench-25"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "How many $25$s are in $100$? How many in $300$?",
+      "placeholder": "In $100$… in $300$…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Four quarters make a hundred",
+          "body": "Four $25$s make $100$, so $25$ is a quarter of $100$. To multiply by $25$, multiply by $100$ and then share by $4$: halve, then halve again. $12 \\times 25$: $1200$, halve to $600$, halve to $300$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 16 × 25",
+          "problem": "Work out $16 \\times 25$.",
+          "steps": [
+            {
+              "text": "Share the $16$ by $4$ first: a quarter of $16$ is $4$.",
+              "try": {
+                "prompt": "What is a quarter of $16$?",
+                "accepted": ["4"],
+                "compute": "16/4"
+              }
+            },
+            {
+              "text": "Each $4$ lots of $25$ make $100$, so it is $4$ hundreds.",
+              "try": {
+                "prompt": "What is $4 \\times 100$?",
+                "accepted": ["400"],
+                "compute": "4*100"
+              }
+            },
+            {
+              "text": "So $16 \\times 25 = 400$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "A quarter of a number",
+          "body": "To find a quarter, halve and halve again: a quarter of $60$ is half of $30$, which is $15$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n06.quarter-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n06.quarter-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain how $25$ and $100$ are linked, and how that helps with $\\times 25$."],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "sections": [
+    {
+      "skill": "est-add",
+      "title": "Estimating sums",
+      "facts": [
+        "Round each number to the nearest ten (or hundred), then add or subtract.",
+        "$473 - 218 \\approx 500 - 200 = 300$."
+      ]
+    },
+    {
+      "skill": "est-mult",
+      "title": "Estimating products",
+      "facts": [
+        "Round each number, then multiply: $48 \\times 21 \\approx 50 \\times 20 = 1000$.",
+        "Tens times tens is hundreds: $40 \\times 30 = 1200$."
+      ]
+    },
+    {
+      "skill": "est-div",
+      "title": "Compatible numbers",
+      "facts": [
+        "Change the number being divided to a nearby multiple: $247 \\div 6 \\approx 240 \\div 6 = 40$.",
+        "To share into groups with some left over, the number of groups needed rounds up."
+      ]
+    },
+    {
+      "skill": "est-check",
+      "title": "Checking",
+      "facts": [
+        "Last digit of a product: multiply the last digits. Last digit of a sum: add the last digits.",
+        "Compare the answer with an estimate: is it about the right size?"
+      ]
+    }
+  ]
+}

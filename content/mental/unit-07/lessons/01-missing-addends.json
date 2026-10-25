@@ -1,0 +1,69 @@
+{
+  "slug": "mental-missing-addends",
+  "order": 1,
+  "title": "Missing Numbers in Addition",
+  "estMinutes": 25,
+  "focusSkills": ["missing-add"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$37 + ? = 52$. What is the missing number? Did you count up or subtract?",
+      "placeholder": "The missing number is… I…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Count up or subtract",
+          "body": "When a number is missing from an addition, you can count up from the number you have, or undo the adding by subtracting. For $37 + ? = 52$: count up $3$ to $40$, then $12$ to $52$: $15$. Or $52 - 37 = 15$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 48 + ? = 75",
+          "problem": "Find the missing number in $48 + ? = 75$.",
+          "steps": [
+            {
+              "text": "Count up to the next ten: $48 + 2 = 50$."
+            },
+            {
+              "text": "From $50$ to $75$ is $25$.",
+              "try": {
+                "prompt": "What is $2 + 25$?",
+                "accepted": ["27"],
+                "compute": "2+25"
+              }
+            },
+            {
+              "text": "The missing number is $27$. Check: $48 + 27 = 75$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Check it",
+          "body": "Always put your number back into the sum. If $48 + 27$ really is $75$, you are right."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n07.miss-add-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n07.miss-add-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which do you prefer for a missing number: counting up or subtracting? When?"],
+      "confidenceCheck": true
+    }
+  ]
+}

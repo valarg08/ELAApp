@@ -5,8 +5,11 @@ import { ProgressBar } from '@/components/progress-bar';
 const dueLabel = (iso: string) =>
   new Date(iso).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
 
-/** One unit on a journey page: open (a link with progress), locked, or coming soon. */
-export function UnitCard({ unit }: { unit: UnitSummary }) {
+/**
+ * One unit on a journey page: open (a link with progress), locked, or coming soon.
+ * `previousNumber` names the unit to finish when the one before is not built yet.
+ */
+export function UnitCard({ unit, previousNumber }: { unit: UnitSummary; previousNumber?: number }) {
   const label = unitLabel(unit.track, unit.number);
   const body = (
     <>
@@ -21,7 +24,7 @@ export function UnitCard({ unit }: { unit: UnitSummary }) {
             {unit.lockReason === 'COMING_SOON'
               ? '⏳ Coming soon'
               : unit.lockReason === 'FINISH_PREVIOUS'
-                ? `🔒 Finish ${unitLabel(unit.track, unit.number - 1)} first`
+                ? `🔒 Finish ${unitLabel(unit.track, previousNumber ?? unit.number - 1)} first`
                 : '🔒 Locked'}
           </span>
         )}

@@ -1,0 +1,74 @@
+{
+  "slug": "mental-all-from-9-last-from-10",
+  "order": 1,
+  "title": "All from 9 and the Last from 10",
+  "estMinutes": 25,
+  "focusSkills": ["vedic-complement"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You pay for a $368$-point item with $1000$ points. How much change? Try it without borrowing.",
+      "placeholder": "Change:… I did it by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "No borrowing",
+          "body": "To take a number away from $1000$, take each digit from $9$, and the last digit from $10$. $1000 - 368$: $9 - 3 = 6$, $9 - 6 = 3$, $10 - 8 = 2$, so $632$. For $10000$, do the same with four digits."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 1000 − 476",
+          "problem": "Work out $1000 - 476$.",
+          "steps": [
+            {
+              "text": "From $9$: $9 - 4 = 5$, $9 - 7 = 2$."
+            },
+            {
+              "text": "The last from $10$: $10 - 6$.",
+              "try": {
+                "prompt": "What is $10 - 6$?",
+                "accepted": ["4"],
+                "compute": "10-6"
+              }
+            },
+            {
+              "text": "So $1000 - 476 = 524$.",
+              "try": {
+                "prompt": "Check: what is $476 + 524$?",
+                "accepted": ["1000"],
+                "compute": "476+524"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "$1000 = 999 + 1$. Taking a number from $999$ never needs borrowing, because every digit is $9$. Then add the $1$ back at the end, which is the same as taking the last digit from $10$. (It only works when the last digit isn’t $0$.)"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n14.complement-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n14.complement-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain why \"all from $9$ and the last from $10$\" never needs borrowing."],
+      "confidenceCheck": true
+    }
+  ]
+}

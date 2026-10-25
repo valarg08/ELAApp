@@ -1,0 +1,18 @@
+{
+  "number": 10,
+  "slug": "mental-estimation",
+  "title": "Estimation",
+  "summary": "Estimate before you calculate: round to friendly numbers, add or multiply the rounded numbers, and use compatible numbers for division. Then use the estimate and the last digit to check that an exact answer makes sense.",
+  "bigIdeas": [
+    "An estimate tells you roughly how big the answer should be, before you work it out.",
+    "If an exact answer is far from your estimate, check it again."
+  ],
+  "tips": [
+    "Round first, then add: $47 + 38 \\approx 50 + 40 = 90$.",
+    "For products, round each number: $48 \\times 21 \\approx 50 \\times 20 = 1000$.",
+    "For division, change the number to one in the times table: $247 \\div 6 \\approx 240 \\div 6 = 40$.",
+    "The last digit of a product only depends on the last digits: $47 \\times 38$ ends in $6$, because $7 \\times 8 = 56$.",
+    "If the answer is ten times bigger or smaller than your estimate, a zero went missing."
+  ],
+  "published": true
+}

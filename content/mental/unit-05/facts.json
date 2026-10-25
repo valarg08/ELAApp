@@ -1,0 +1,39 @@
+{
+  "sections": [
+    {
+      "skill": "anchor-2-5-10",
+      "title": "The anchors",
+      "facts": [
+        "$\\times 10$: the digits move one place left: $37 \\times 10 = 370$.",
+        "$\\times 5$: times $10$, then halve: $18 \\times 5 = 180 \\div 2 = 90$.",
+        "$\\times 2$: double: $36 \\times 2 = 72$."
+      ]
+    },
+    {
+      "skill": "anchor-split",
+      "title": "Split a factor",
+      "facts": [
+        "$\\times 6 = \\times 5 + \\times 1$: $8 \\times 6 = 40 + 8 = 48$.",
+        "$\\times 7 = \\times 5 + \\times 2$: $8 \\times 7 = 40 + 16 = 56$.",
+        "$\\times 12 = \\times 10 + \\times 2$: $7 \\times 12 = 70 + 14 = 84$."
+      ]
+    },
+    {
+      "skill": "anchor-near",
+      "title": "Near an anchor",
+      "facts": [
+        "$\\times 9 = \\times 10 - \\times 1$: $9 \\times 7 = 70 - 7 = 63$.",
+        "$\\times 4$ = double, double. $\\times 8$ = double, double, double.",
+        "$\\times 19 = \\times 20 - \\times 1$."
+      ]
+    },
+    {
+      "skill": "anchor-tens",
+      "title": "Tens and ones",
+      "facts": [
+        "$23 \\times 4 = 20 \\times 4 + 3 \\times 4 = 80 + 12 = 92$.",
+        "$30 \\times 6$: $3 \\times 6 = 18$ tens, so $180$."
+      ]
+    }
+  ]
+}

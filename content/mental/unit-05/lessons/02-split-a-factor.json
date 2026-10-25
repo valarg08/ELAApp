@@ -1,0 +1,74 @@
+{
+  "slug": "mental-split-a-factor",
+  "order": 2,
+  "title": "Split a Factor",
+  "estMinutes": 25,
+  "focusSkills": ["anchor-split"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "If you forget $7 \\times 6$, which facts you do know could help?",
+      "placeholder": "I know… so…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Break it into anchors",
+          "body": "Six of something is five of it and one more. So $7 \\times 6 = 7 \\times 5 + 7 \\times 1 = 35 + 7 = 42$. Seven is five and two: $8 \\times 7 = 40 + 16 = 56$. Twelve is ten and two: $7 \\times 12 = 70 + 14 = 84$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 8 × 7",
+          "problem": "Work out $8 \\times 7$ by splitting the $7$.",
+          "steps": [
+            {
+              "text": "Split $7$ into $5$ and $2$. Five eights first.",
+              "try": {
+                "prompt": "What is $8 \\times 5$?",
+                "accepted": ["40"],
+                "compute": "8*5"
+              }
+            },
+            {
+              "text": "Two eights is a double.",
+              "try": {
+                "prompt": "What is $8 \\times 2$?",
+                "accepted": ["16"],
+                "compute": "8*2"
+              }
+            },
+            {
+              "text": "Add the parts: $40 + 16 = 56$. So $8 \\times 7 = 56$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "Picture $7$ rows of $8$ dots. Cover the top $5$ rows: that is $40$ dots. The $2$ rows left are $16$ dots. All the dots are still there: $40 + 16 = 56$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n05.split-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n05.split-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Pick a times fact you find hard. Which anchors would you split it into?"],
+      "confidenceCheck": true
+    }
+  ]
+}

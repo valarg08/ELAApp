@@ -1,0 +1,66 @@
+{
+  "slug": "mental-neighbouring-squares",
+  "order": 3,
+  "title": "Neighbouring Squares",
+  "estMinutes": 25,
+  "focusSkills": ["dos-neighbours"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Write the square numbers $1, 4, 9, 16, 25, \\ldots$ and the gaps between them. What do you see?",
+      "placeholder": "The gaps are…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The odd-number gaps",
+          "body": "The gaps between square numbers are $3, 5, 7, 9, \\ldots$: the odd numbers. With the pattern, $(n + 1)^2 - n^2 = (n + 1 + n)(1) = 2n + 1$, the two numbers added."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 41² − 40²",
+          "problem": "Work out $41^2 - 40^2$.",
+          "steps": [
+            {
+              "text": "The numbers are next to each other: add them.",
+              "try": {
+                "prompt": "What is $41 + 40$?",
+                "accepted": ["81"],
+                "compute": "41+40"
+              }
+            },
+            {
+              "text": "So $41^2 - 40^2 = 81$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Two apart",
+          "body": "For numbers two apart, $(n + 2)^2 - n^2 = (2n + 2) \\times 2$: double their sum. $52^2 - 50^2 = 102 \\times 2 = 204$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n13.neighbours-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n13.neighbours-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why must the gaps between squares be odd numbers?"],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,1535 @@
+[
+  {
+    "key": "n15.inverse-practice",
+    "type": "PROBLEMS",
+    "title": "Check with the Inverse",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "sub",
+        "prompt": "Sam says $[[a+b]] - [[b]] = [[a+10]]$. Add back to check, then type the right answer to $[[a+b]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+10]]",
+              "why": "That is Sam’s answer. Add back to check it."
+            }
+          ]
+        },
+        "hints": [
+          "Add $[[a+10]] + [[b]]$: do you get $[[a+b]]$?",
+          "Work out $[[a+b]] - [[b]]$ yourself."
+        ],
+        "solution": "$[[a+10]] + [[b]] = [[a+b+10]]$, not $[[a+b]]$, so Sam is wrong. The answer is $[[a]]$: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "check-inverse",
+        "difficulty": 1,
+        "compute": "(a+b) - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 13,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "add-back",
+        "prompt": "$[[a+b]] - [[b]] = [[a]]$. To check, what is $[[a]] + [[b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "hints": ["Add the two numbers."],
+        "solution": "$[[a]] + [[b]] = [[a+b]]$: the check works.",
+        "skill": "check-inverse",
+        "difficulty": 1,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            },
+            "b": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "div",
+        "prompt": "Ella says $[[q*k]] \\div [[k]] = [[q+1]]$. Multiply to check, then type the right answer.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[q]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[q+1]]",
+              "why": "That is Ella’s answer. Multiply it by $[[k]]$ to check."
+            }
+          ]
+        },
+        "hints": [
+          "Work out $[[q+1]] \\times [[k]]$.",
+          "Which number times $[[k]]$ makes $[[q*k]]$?"
+        ],
+        "solution": "$[[q+1]] \\times [[k]] = [[(q+1)*k]]$, not $[[q*k]]$. The answer is $[[q]]$: $[[q]] \\times [[k]] = [[q*k]]$.",
+        "skill": "check-inverse",
+        "difficulty": 2,
+        "compute": "q*k/k",
+        "template": {
+          "vars": {
+            "q": {
+              "from": 6,
+              "to": 25
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "missing",
+        "prompt": "$\\square - [[b]] = [[a]]$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[abs(a-b)]]",
+              "why": "Undo the subtraction with an addition."
+            }
+          ]
+        },
+        "hints": ["Use the inverse: add."],
+        "solution": "Undo the subtraction by adding: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "check-inverse",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            },
+            "b": {
+              "from": 12,
+              "to": 99
+            }
+          },
+          "where": ["a != b"]
+        }
+      },
+      {
+        "id": "mult-box",
+        "prompt": "$\\square \\div [[k]] = [[q]]$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[q*k]]"],
+          "form": "any"
+        },
+        "hints": ["Use the inverse: multiply."],
+        "solution": "Undo the division by multiplying: $[[q]] \\times [[k]] = [[q*k]]$.",
+        "skill": "check-inverse",
+        "difficulty": 3,
+        "compute": "q*k",
+        "template": {
+          "vars": {
+            "q": {
+              "from": 12,
+              "to": 49
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n15.inverse-set",
+    "type": "PROBLEM_SET",
+    "title": "Check with the Inverse challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-sub",
+        "prompt": "Sam says $[[a+b]] - [[b]] = [[a+10]]$. Add back to check, then type the right answer to $[[a+b]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+10]]",
+              "why": "That is Sam’s answer. Add back to check it."
+            }
+          ]
+        },
+        "solution": "$[[a+10]] + [[b]] = [[a+b+10]]$, not $[[a+b]]$, so Sam is wrong. The answer is $[[a]]$: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "check-inverse",
+        "difficulty": 1,
+        "compute": "(a+b) - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 13,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "s-add-back",
+        "prompt": "$[[a+b]] - [[b]] = [[a]]$. To check, what is $[[a]] + [[b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[b]] = [[a+b]]$: the check works.",
+        "skill": "check-inverse",
+        "difficulty": 1,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            },
+            "b": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-div",
+        "prompt": "Ella says $[[q*k]] \\div [[k]] = [[q+1]]$. Multiply to check, then type the right answer.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[q]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[q+1]]",
+              "why": "That is Ella’s answer. Multiply it by $[[k]]$ to check."
+            }
+          ]
+        },
+        "solution": "$[[q+1]] \\times [[k]] = [[(q+1)*k]]$, not $[[q*k]]$. The answer is $[[q]]$: $[[q]] \\times [[k]] = [[q*k]]$.",
+        "skill": "check-inverse",
+        "difficulty": 2,
+        "compute": "q*k/k",
+        "template": {
+          "vars": {
+            "q": {
+              "from": 6,
+              "to": 25
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-missing",
+        "prompt": "$\\square - [[b]] = [[a]]$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[abs(a-b)]]",
+              "why": "Undo the subtraction with an addition."
+            }
+          ]
+        },
+        "solution": "Undo the subtraction by adding: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "check-inverse",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            },
+            "b": {
+              "from": 12,
+              "to": 99
+            }
+          },
+          "where": ["a != b"]
+        }
+      },
+      {
+        "id": "s-mult-box",
+        "prompt": "$\\square \\div [[k]] = [[q]]$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[q*k]]"],
+          "form": "any"
+        },
+        "solution": "Undo the division by multiplying: $[[q]] \\times [[k]] = [[q*k]]$.",
+        "skill": "check-inverse",
+        "difficulty": 3,
+        "compute": "q*k",
+        "template": {
+          "vars": {
+            "q": {
+              "from": 12,
+              "to": 49
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n15.nines-practice",
+    "type": "PROBLEMS",
+    "title": "Casting Out Nines",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "score",
+        "prompt": "What is the nine-score (the remainder when divided by $9$) of $[[x]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x,9)]]"],
+          "form": "any"
+        },
+        "hints": ["Add the digits.", "If the sum is $9$ or more, take away nines."],
+        "solution": "Add the digits and find the remainder by $9$: $[[mod(x,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 1,
+        "compute": "x - 9*floor(x/9)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 100,
+              "to": 9999
+            }
+          },
+          "where": ["x < 10000"]
+        }
+      },
+      {
+        "id": "sum",
+        "prompt": "What is the nine-score of $[[a]] + [[b]]$? (Add the nine-scores of the two numbers.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a+b,9)]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Find each number’s score from its digit sum.",
+          "Add the scores and take away $9$ if needed."
+        ],
+        "solution": "Scores $[[mod(a,9)]]$ and $[[mod(b,9)]]$ add to $[[mod(a,9)+mod(b,9)]]$, which scores $[[mod(a+b,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 2,
+        "compute": "mod(mod(a,9) + mod(b,9), 9)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 199
+            },
+            "b": {
+              "from": 100,
+              "to": 199
+            }
+          }
+        }
+      },
+      {
+        "id": "product",
+        "prompt": "What is the nine-score of $[[a]] \\times [[b]]$? (Multiply the nine-scores.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a*b,9)]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Find each score from the digit sum.",
+          "Multiply the scores, then find the score of that."
+        ],
+        "solution": "Scores $[[mod(a,9)]]$ and $[[mod(b,9)]]$ multiply to $[[mod(a,9)*mod(b,9)]]$, which scores $[[mod(a*b,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 2,
+        "compute": "mod(mod(a,9) * mod(b,9), 9)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "wrong",
+        "prompt": "Tom says $[[a]] \\times [[b]] = [[a*b+9*k+1]]$. The nine-scores don’t match. What is the right answer?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a*b+9*k+1]]",
+              "why": "That is Tom’s answer, and its nine-score does not match."
+            }
+          ]
+        },
+        "hints": ["Work out $[[a]] \\times [[b]]$ by splitting one number into tens and ones."],
+        "solution": "The product should score $[[mod(a*b,9)]]$, but Tom’s answer scores $[[mod(a*b+1,9)]]$. The right answer is $[[a*b]]$.",
+        "skill": "check-nines",
+        "difficulty": 3,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 39
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            },
+            "k": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "digit-sum",
+        "prompt": "Add the digits of $[[1000*w+100*x+10*y+z]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[w+x+y+z]]"],
+          "form": "any"
+        },
+        "hints": ["Add all four digits."],
+        "solution": "$[[w]] + [[x]] + [[y]] + [[z]] = [[w+x+y+z]]$.",
+        "skill": "check-nines",
+        "difficulty": 1,
+        "compute": "w+x+y+z",
+        "template": {
+          "vars": {
+            "w": {
+              "from": 1,
+              "to": 9
+            },
+            "x": {
+              "from": 0,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n15.nines-set",
+    "type": "PROBLEM_SET",
+    "title": "Casting Out Nines challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-score",
+        "prompt": "What is the nine-score (the remainder when divided by $9$) of $[[x]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x,9)]]"],
+          "form": "any"
+        },
+        "solution": "Add the digits and find the remainder by $9$: $[[mod(x,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 1,
+        "compute": "x - 9*floor(x/9)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 100,
+              "to": 9999
+            }
+          },
+          "where": ["x < 10000"]
+        }
+      },
+      {
+        "id": "s-sum",
+        "prompt": "What is the nine-score of $[[a]] + [[b]]$? (Add the nine-scores of the two numbers.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a+b,9)]]"],
+          "form": "any"
+        },
+        "solution": "Scores $[[mod(a,9)]]$ and $[[mod(b,9)]]$ add to $[[mod(a,9)+mod(b,9)]]$, which scores $[[mod(a+b,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 2,
+        "compute": "mod(mod(a,9) + mod(b,9), 9)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 199
+            },
+            "b": {
+              "from": 100,
+              "to": 199
+            }
+          }
+        }
+      },
+      {
+        "id": "s-product",
+        "prompt": "What is the nine-score of $[[a]] \\times [[b]]$? (Multiply the nine-scores.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a*b,9)]]"],
+          "form": "any"
+        },
+        "solution": "Scores $[[mod(a,9)]]$ and $[[mod(b,9)]]$ multiply to $[[mod(a,9)*mod(b,9)]]$, which scores $[[mod(a*b,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 2,
+        "compute": "mod(mod(a,9) * mod(b,9), 9)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-wrong",
+        "prompt": "Tom says $[[a]] \\times [[b]] = [[a*b+9*k+1]]$. The nine-scores don’t match. What is the right answer?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a*b+9*k+1]]",
+              "why": "That is Tom’s answer, and its nine-score does not match."
+            }
+          ]
+        },
+        "solution": "The product should score $[[mod(a*b,9)]]$, but Tom’s answer scores $[[mod(a*b+1,9)]]$. The right answer is $[[a*b]]$.",
+        "skill": "check-nines",
+        "difficulty": 3,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 39
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            },
+            "k": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "s-digit-sum",
+        "prompt": "Add the digits of $[[1000*w+100*x+10*y+z]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[w+x+y+z]]"],
+          "form": "any"
+        },
+        "solution": "$[[w]] + [[x]] + [[y]] + [[z]] = [[w+x+y+z]]$.",
+        "skill": "check-nines",
+        "difficulty": 1,
+        "compute": "w+x+y+z",
+        "template": {
+          "vars": {
+            "w": {
+              "from": 1,
+              "to": 9
+            },
+            "x": {
+              "from": 0,
+              "to": 9
+            },
+            "y": {
+              "from": 0,
+              "to": 9
+            },
+            "z": {
+              "from": 0,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n15.strategy-practice",
+    "type": "PROBLEMS",
+    "title": "Pick the Best Strategy",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "pairs",
+        "prompt": "Work out $25 \\times [[a]] \\times 4$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "hints": ["Which two numbers make $100$?"],
+        "solution": "$25 \\times 4 = 100$, so $100 \\times [[a]] = [[100*a]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 1,
+        "compute": "25*a*4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "nine9",
+        "prompt": "Work out $[[a]] \\times 99$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[99*a]]"],
+          "form": "any"
+        },
+        "hints": ["$99 = 100 - 1$."],
+        "solution": "$[[100*a]] - [[a]] = [[99*a]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 2,
+        "compute": "a*99",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "middle",
+        "prompt": "Work out $[[10*m-b]] \\times [[10*m+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*m*m - b*b]]"],
+          "form": "any"
+        },
+        "hints": ["Find the middle number."],
+        "solution": "Middle $[[10*m]]$: $[[100*m*m]] - [[b*b]] = [[100*m*m-b*b]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 2,
+        "compute": "(10*m-b)*(10*m+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "eight",
+        "prompt": "Work out $125 \\times [[a]] \\times 8$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a]]"],
+          "form": "any"
+        },
+        "hints": ["Which pair makes $1000$?"],
+        "solution": "$125 \\times 8 = 1000$, so $[[1000*a]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 3,
+        "compute": "125*a*8",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "tens-match",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*a+10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*(a+1) + b*(10-b)]]"],
+          "form": "any"
+        },
+        "hints": ["Look at the tens and the ones: anything special?"],
+        "solution": "Same tens, ones add to $10$: $[[a*(a+1)]]$ then $[[b*(10-b)]]$ as two digits: $[[(10*a+b)*(10*a+10-b)]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 3,
+        "compute": "(10*a+b)*(10*a+10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n15.strategy-set",
+    "type": "PROBLEM_SET",
+    "title": "Pick the Best Strategy challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-pairs",
+        "prompt": "Work out $25 \\times [[a]] \\times 4$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "solution": "$25 \\times 4 = 100$, so $100 \\times [[a]] = [[100*a]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 1,
+        "compute": "25*a*4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-nine9",
+        "prompt": "Work out $[[a]] \\times 99$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[99*a]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*a]] - [[a]] = [[99*a]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 2,
+        "compute": "a*99",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-middle",
+        "prompt": "Work out $[[10*m-b]] \\times [[10*m+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*m*m - b*b]]"],
+          "form": "any"
+        },
+        "solution": "Middle $[[10*m]]$: $[[100*m*m]] - [[b*b]] = [[100*m*m-b*b]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 2,
+        "compute": "(10*m-b)*(10*m+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "s-eight",
+        "prompt": "Work out $125 \\times [[a]] \\times 8$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000*a]]"],
+          "form": "any"
+        },
+        "solution": "$125 \\times 8 = 1000$, so $[[1000*a]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 3,
+        "compute": "125*a*8",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-tens-match",
+        "prompt": "Work out $[[10*a+b]] \\times [[10*a+10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*(a+1) + b*(10-b)]]"],
+          "form": "any"
+        },
+        "solution": "Same tens, ones add to $10$: $[[a*(a+1)]]$ then $[[b*(10-b)]]$ as two digits: $[[(10*a+b)*(10*a+10-b)]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 3,
+        "compute": "(10*a+b)*(10*a+10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n15.sprint-practice",
+    "type": "PROBLEMS",
+    "title": "Mixed Sprints",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "complement",
+        "prompt": "Work out $1000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any"
+        },
+        "hints": ["All from $9$, the last from $10$."],
+        "solution": "All from $9$, the last from $10$: $[[1000-x]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 1,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "five-sq",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any"
+        },
+        "hints": ["Times the tens digit by the next number up, then write $25$."],
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 1,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "quarter",
+        "prompt": "What is $25\\%$ of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Halve, then halve again."],
+        "solution": "Halve twice: $[[2*a]]$, then $[[a]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 2,
+        "compute": "4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "eleven",
+        "prompt": "Work out $[[10*x+y]] \\times 11$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[11*(10*x+y)]]"],
+          "form": "any"
+        },
+        "hints": ["Put the sum of the digits in the middle (carry if needed)."],
+        "solution": "$[[10*(10*x+y)]] + [[10*x+y]] = [[11*(10*x+y)]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 2,
+        "compute": "(10*x+y)*11",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "near100",
+        "prompt": "Work out $[[100-a]] \\times [[100-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(100-a)*(100-b)]]"],
+          "form": "any"
+        },
+        "hints": ["Gaps below $100$: $[[a]]$ and $[[b]]$."],
+        "solution": "Front $[[100-a-b]]$, back $[[a*b]]$ as two digits: $[[(100-a)*(100-b)]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 3,
+        "compute": "100*(100-a-b) + a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n15.sprint-set",
+    "type": "PROBLEM_SET",
+    "title": "Mixed Sprints challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-complement",
+        "prompt": "Work out $1000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any"
+        },
+        "solution": "All from $9$, the last from $10$: $[[1000-x]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 1,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "s-five-sq",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any"
+        },
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 1,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-quarter",
+        "prompt": "What is $25\\%$ of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Halve twice: $[[2*a]]$, then $[[a]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 2,
+        "compute": "4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "s-eleven",
+        "prompt": "Work out $[[10*x+y]] \\times 11$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[11*(10*x+y)]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*(10*x+y)]] + [[10*x+y]] = [[11*(10*x+y)]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 2,
+        "compute": "(10*x+y)*11",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 1,
+              "to": 9
+            },
+            "y": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-near100",
+        "prompt": "Work out $[[100-a]] \\times [[100-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(100-a)*(100-b)]]"],
+          "form": "any"
+        },
+        "solution": "Front $[[100-a-b]]$, back $[[a*b]]$ as two digits: $[[(100-a)*(100-b)]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 3,
+        "compute": "100*(100-a-b) + a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n15.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-sub",
+        "prompt": "Sam says $[[a+b]] - [[b]] = [[a+10]]$. Add back to check, then type the right answer to $[[a+b]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+10]]",
+              "why": "That is Sam’s answer. Add back to check it."
+            }
+          ]
+        },
+        "hints": [
+          "Add $[[a+10]] + [[b]]$: do you get $[[a+b]]$?",
+          "Work out $[[a+b]] - [[b]]$ yourself."
+        ],
+        "solution": "$[[a+10]] + [[b]] = [[a+b+10]]$, not $[[a+b]]$, so Sam is wrong. The answer is $[[a]]$: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "check-inverse",
+        "difficulty": 1,
+        "compute": "(a+b) - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 13,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "r2-score",
+        "prompt": "What is the nine-score (the remainder when divided by $9$) of $[[x]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x,9)]]"],
+          "form": "any"
+        },
+        "hints": ["Add the digits.", "If the sum is $9$ or more, take away nines."],
+        "solution": "Add the digits and find the remainder by $9$: $[[mod(x,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 1,
+        "compute": "x - 9*floor(x/9)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 100,
+              "to": 9999
+            }
+          },
+          "where": ["x < 10000"]
+        }
+      },
+      {
+        "id": "r3-pairs",
+        "prompt": "Work out $25 \\times [[a]] \\times 4$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "hints": ["Which two numbers make $100$?"],
+        "solution": "$25 \\times 4 = 100$, so $100 \\times [[a]] = [[100*a]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 1,
+        "compute": "25*a*4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-complement",
+        "prompt": "Work out $1000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any"
+        },
+        "hints": ["All from $9$, the last from $10$."],
+        "solution": "All from $9$, the last from $10$: $[[1000-x]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 1,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n15.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 15 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-sub",
+        "prompt": "Sam says $[[a+b]] - [[b]] = [[a+10]]$. Add back to check, then type the right answer to $[[a+b]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+10]]",
+              "why": "That is Sam’s answer. Add back to check it."
+            }
+          ]
+        },
+        "solution": "$[[a+10]] + [[b]] = [[a+b+10]]$, not $[[a+b]]$, so Sam is wrong. The answer is $[[a]]$: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "check-inverse",
+        "difficulty": 1,
+        "compute": "(a+b) - b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 13,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-add-back",
+        "prompt": "$[[a+b]] - [[b]] = [[a]]$. To check, what is $[[a]] + [[b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[b]] = [[a+b]]$: the check works.",
+        "skill": "check-inverse",
+        "difficulty": 1,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            },
+            "b": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-div",
+        "prompt": "Ella says $[[q*k]] \\div [[k]] = [[q+1]]$. Multiply to check, then type the right answer.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[q]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[q+1]]",
+              "why": "That is Ella’s answer. Multiply it by $[[k]]$ to check."
+            }
+          ]
+        },
+        "solution": "$[[q+1]] \\times [[k]] = [[(q+1)*k]]$, not $[[q*k]]$. The answer is $[[q]]$: $[[q]] \\times [[k]] = [[q*k]]$.",
+        "skill": "check-inverse",
+        "difficulty": 2,
+        "compute": "q*k/k",
+        "template": {
+          "vars": {
+            "q": {
+              "from": 6,
+              "to": 25
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-score",
+        "prompt": "What is the nine-score (the remainder when divided by $9$) of $[[x]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(x,9)]]"],
+          "form": "any"
+        },
+        "solution": "Add the digits and find the remainder by $9$: $[[mod(x,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 1,
+        "compute": "x - 9*floor(x/9)",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 100,
+              "to": 9999
+            }
+          },
+          "where": ["x < 10000"]
+        }
+      },
+      {
+        "id": "c2-sum",
+        "prompt": "What is the nine-score of $[[a]] + [[b]]$? (Add the nine-scores of the two numbers.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a+b,9)]]"],
+          "form": "any"
+        },
+        "solution": "Scores $[[mod(a,9)]]$ and $[[mod(b,9)]]$ add to $[[mod(a,9)+mod(b,9)]]$, which scores $[[mod(a+b,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 2,
+        "compute": "mod(mod(a,9) + mod(b,9), 9)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 100,
+              "to": 199
+            },
+            "b": {
+              "from": 100,
+              "to": 199
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-product",
+        "prompt": "What is the nine-score of $[[a]] \\times [[b]]$? (Multiply the nine-scores.)",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(a*b,9)]]"],
+          "form": "any"
+        },
+        "solution": "Scores $[[mod(a,9)]]$ and $[[mod(b,9)]]$ multiply to $[[mod(a,9)*mod(b,9)]]$, which scores $[[mod(a*b,9)]]$.",
+        "skill": "check-nines",
+        "difficulty": 2,
+        "compute": "mod(mod(a,9) * mod(b,9), 9)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-pairs",
+        "prompt": "Work out $25 \\times [[a]] \\times 4$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a]]"],
+          "form": "any"
+        },
+        "solution": "$25 \\times 4 = 100$, so $100 \\times [[a]] = [[100*a]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 1,
+        "compute": "25*a*4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-nine9",
+        "prompt": "Work out $[[a]] \\times 99$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[99*a]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*a]] - [[a]] = [[99*a]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 2,
+        "compute": "a*99",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-middle",
+        "prompt": "Work out $[[10*m-b]] \\times [[10*m+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*m*m - b*b]]"],
+          "form": "any"
+        },
+        "solution": "Middle $[[10*m]]$: $[[100*m*m]] - [[b*b]] = [[100*m*m-b*b]]$.",
+        "skill": "pick-strategy",
+        "difficulty": 2,
+        "compute": "(10*m-b)*(10*m+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-complement",
+        "prompt": "Work out $1000 - [[x]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[1000 - x]]"],
+          "form": "any"
+        },
+        "solution": "All from $9$, the last from $10$: $[[1000-x]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 1,
+        "compute": "1000 - x",
+        "template": {
+          "vars": {
+            "x": {
+              "from": 101,
+              "to": 999
+            }
+          },
+          "where": ["mod(x,10) != 0"]
+        }
+      },
+      {
+        "id": "c4-five-sq",
+        "prompt": "Work out $[[10*n+5]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*n*(n+1) + 25]]"],
+          "form": "any"
+        },
+        "solution": "$[[n]] \\times [[n+1]] = [[n*(n+1)]]$, then $25$: $[[100*n*(n+1)+25]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 1,
+        "compute": "(10*n+5)^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-quarter",
+        "prompt": "What is $25\\%$ of $[[4*a]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Halve twice: $[[2*a]]$, then $[[a]]$.",
+        "skill": "speed-mixed",
+        "difficulty": 2,
+        "compute": "4*a/4",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 60
+            }
+          }
+        }
+      }
+    ]
+  }
+]

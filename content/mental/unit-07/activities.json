@@ -1,0 +1,1695 @@
+[
+  {
+    "key": "n07.miss-add-practice",
+    "type": "PROBLEMS",
+    "title": "Missing Numbers in Addition",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "miss",
+        "prompt": "$[[a]] + ? = [[a+b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a+b]]",
+              "why": "You added. The missing number is what you add to $[[a]]$ to reach $[[a+b]]$."
+            }
+          ]
+        },
+        "hints": ["Count up from $[[a]]$ to $[[a+b]]$, or work out $[[a+b]] - [[a]]$."],
+        "solution": "$[[a+b]] - [[a]] = [[b]]$. Check: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-add",
+        "difficulty": 1,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "miss-front",
+        "prompt": "$? + [[b]] = [[a+b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Subtract $[[b]]$ from $[[a+b]]$."],
+        "solution": "$[[a+b]] - [[b]] = [[a]]$.",
+        "skill": "missing-add",
+        "difficulty": 1,
+        "compute": "(a+b)-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "cards",
+        "prompt": "Leo had some cards. He got $[[b]]$ more and now has $[[a+b]]$. How many cards did he have at the start?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Write it as $? + [[b]] = [[a+b]]$."],
+        "solution": "Start $+ [[b]] = [[a+b]]$, so the start is $[[a+b]] - [[b]] = [[a]]$.",
+        "skill": "missing-add",
+        "difficulty": 2,
+        "compute": "(a+b)-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 15,
+              "to": 70
+            },
+            "b": {
+              "from": 6,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "to-ten",
+        "prompt": "$[[a]] + ? = [[10*c]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*c - a]]"],
+          "form": "any"
+        },
+        "hints": ["Count up to the next ten first."],
+        "solution": "Count up: $[[a]]$ to $[[10*ceil(a/10)]]$, then on to $[[10*c]]$. Altogether $[[10*c-a]]$.",
+        "skill": "missing-add",
+        "difficulty": 2,
+        "compute": "10*c-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 79
+            },
+            "c": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["10*c > a"]
+        }
+      },
+      {
+        "id": "three",
+        "prompt": "$[[a]] + [[b]] + ? = [[a+b+c]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c]]"],
+          "form": "any"
+        },
+        "hints": ["Add the numbers you know first."],
+        "solution": "$[[a]] + [[b]] = [[a+b]]$, and $[[a+b+c]] - [[a+b]] = [[c]]$.",
+        "skill": "missing-add",
+        "difficulty": 3,
+        "compute": "(a+b+c)-a-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 30
+            },
+            "b": {
+              "from": 5,
+              "to": 30
+            },
+            "c": {
+              "from": 5,
+              "to": 30
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n07.miss-add-set",
+    "type": "PROBLEM_SET",
+    "title": "Missing Numbers in Addition challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-miss",
+        "prompt": "$[[a]] + ? = [[a+b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a+b]]",
+              "why": "You added. The missing number is what you add to $[[a]]$ to reach $[[a+b]]$."
+            }
+          ]
+        },
+        "solution": "$[[a+b]] - [[a]] = [[b]]$. Check: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-add",
+        "difficulty": 1,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "s-miss-front",
+        "prompt": "$? + [[b]] = [[a+b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a+b]] - [[b]] = [[a]]$.",
+        "skill": "missing-add",
+        "difficulty": 1,
+        "compute": "(a+b)-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "s-cards",
+        "prompt": "Leo had some cards. He got $[[b]]$ more and now has $[[a+b]]$. How many cards did he have at the start?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Start $+ [[b]] = [[a+b]]$, so the start is $[[a+b]] - [[b]] = [[a]]$.",
+        "skill": "missing-add",
+        "difficulty": 2,
+        "compute": "(a+b)-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 15,
+              "to": 70
+            },
+            "b": {
+              "from": 6,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "s-to-ten",
+        "prompt": "$[[a]] + ? = [[10*c]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*c - a]]"],
+          "form": "any"
+        },
+        "solution": "Count up: $[[a]]$ to $[[10*ceil(a/10)]]$, then on to $[[10*c]]$. Altogether $[[10*c-a]]$.",
+        "skill": "missing-add",
+        "difficulty": 2,
+        "compute": "10*c-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 79
+            },
+            "c": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["10*c > a"]
+        }
+      },
+      {
+        "id": "s-three",
+        "prompt": "$[[a]] + [[b]] + ? = [[a+b+c]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[c]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[b]] = [[a+b]]$, and $[[a+b+c]] - [[a+b]] = [[c]]$.",
+        "skill": "missing-add",
+        "difficulty": 3,
+        "compute": "(a+b+c)-a-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 5,
+              "to": 30
+            },
+            "b": {
+              "from": 5,
+              "to": 30
+            },
+            "c": {
+              "from": 5,
+              "to": 30
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n07.miss-sub-practice",
+    "type": "PROBLEMS",
+    "title": "Missing Numbers in Subtraction",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "part",
+        "prompt": "$[[a+b]] - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a+b]]",
+              "why": "You added. Take $[[a]]$ from $[[a+b]]$."
+            }
+          ]
+        },
+        "hints": ["What do you take from $[[a+b]]$ to leave $[[a]]$?"],
+        "solution": "The part taken away is $[[a+b]] - [[a]] = [[b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 1,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "whole",
+        "prompt": "$? - [[b]] = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-b]]",
+              "why": "That is too small: $[[a-b]] - [[b]]$ isn’t $[[a]]$. Add the parts."
+            }
+          ]
+        },
+        "hints": ["The missing number comes first: it is the whole.", "Add the two parts."],
+        "solution": "The missing number is the whole: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 20,
+              "to": 70
+            },
+            "b": {
+              "from": 6,
+              "to": 19
+            }
+          }
+        }
+      },
+      {
+        "id": "points",
+        "prompt": "After spending $[[b]]$ points, Zara has $[[a]]$ points left. How many points did she start with?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "hints": ["Write it as $? - [[b]] = [[a]]$."],
+        "solution": "Start $- [[b]] = [[a]]$, so start $= [[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 15,
+              "to": 70
+            },
+            "b": {
+              "from": 6,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "from100",
+        "prompt": "$100 - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-a]]"],
+          "form": "any"
+        },
+        "hints": ["Which number goes with $[[a]]$ to make $100$?"],
+        "solution": "A bond to $100$: $[[a]] + [[100-a]] = 100$.",
+        "skill": "missing-sub",
+        "difficulty": 2,
+        "compute": "100-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 89
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "big",
+        "prompt": "$[[a+b]] - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "hints": ["Count up from $[[a]]$ to $[[a+b]]$."],
+        "solution": "Count up from $[[a]]$ to $[[a+b]]$: $[[b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 3,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 120,
+              "to": 199
+            },
+            "b": {
+              "from": 25,
+              "to": 99
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n07.miss-sub-set",
+    "type": "PROBLEM_SET",
+    "title": "Missing Numbers in Subtraction challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-part",
+        "prompt": "$[[a+b]] - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a+b]]",
+              "why": "You added. Take $[[a]]$ from $[[a+b]]$."
+            }
+          ]
+        },
+        "solution": "The part taken away is $[[a+b]] - [[a]] = [[b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 1,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "s-whole",
+        "prompt": "$? - [[b]] = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-b]]",
+              "why": "That is too small: $[[a-b]] - [[b]]$ isn’t $[[a]]$. Add the parts."
+            }
+          ]
+        },
+        "solution": "The missing number is the whole: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 20,
+              "to": 70
+            },
+            "b": {
+              "from": 6,
+              "to": 19
+            }
+          }
+        }
+      },
+      {
+        "id": "s-points",
+        "prompt": "After spending $[[b]]$ points, Zara has $[[a]]$ points left. How many points did she start with?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "solution": "Start $- [[b]] = [[a]]$, so start $= [[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 15,
+              "to": 70
+            },
+            "b": {
+              "from": 6,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "s-from100",
+        "prompt": "$100 - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-a]]"],
+          "form": "any"
+        },
+        "solution": "A bond to $100$: $[[a]] + [[100-a]] = 100$.",
+        "skill": "missing-sub",
+        "difficulty": 2,
+        "compute": "100-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 89
+            }
+          },
+          "where": ["mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-big",
+        "prompt": "$[[a+b]] - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "solution": "Count up from $[[a]]$ to $[[a+b]]$: $[[b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 3,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 120,
+              "to": 199
+            },
+            "b": {
+              "from": 25,
+              "to": 99
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n07.miss-mult-practice",
+    "type": "PROBLEMS",
+    "title": "Missing Factors",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "mult",
+        "prompt": "$[[a]] \\times ? = [[a*b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "hints": ["Count in $[[a]]$s to $[[a*b]]$, or divide."],
+        "solution": "$[[a*b]] \\div [[a]] = [[b]]$, because $[[a]] \\times [[b]] = [[a*b]]$.",
+        "skill": "missing-mult",
+        "difficulty": 1,
+        "compute": "a*b/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "mult-front",
+        "prompt": "$? \\times [[b]] = [[a*b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Which number times $[[b]]$ is $[[a*b]]$?"],
+        "solution": "$[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "missing-mult",
+        "difficulty": 1,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            },
+            "b": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "div",
+        "prompt": "$[[a*b]] \\div ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "hints": ["What times $[[a]]$ gives $[[a*b]]$?"],
+        "solution": "$[[a]] \\times [[b]] = [[a*b]]$, so $[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "missing-mult",
+        "difficulty": 2,
+        "compute": "a*b/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "div-whole",
+        "prompt": "$? \\div [[b]] = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "Check: $[[a]] \\div [[b]]$ isn’t $[[a]]$. Multiply instead."
+            }
+          ]
+        },
+        "hints": ["Undo the division: multiply."],
+        "solution": "The missing number is the whole: $[[a]] \\times [[b]] = [[a*b]]$.",
+        "skill": "missing-mult",
+        "difficulty": 2,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "rows",
+        "prompt": "Chairs are put in rows of $[[a]]$. There are $[[a*b]]$ chairs. How many rows are there?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "hints": ["How many $[[a]]$s make $[[a*b]]$?"],
+        "solution": "$[[a]] \\times ? = [[a*b]]$: $[[b]]$ rows.",
+        "skill": "missing-mult",
+        "difficulty": 2,
+        "compute": "a*b/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "from": 4,
+              "to": 12
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n07.miss-mult-set",
+    "type": "PROBLEM_SET",
+    "title": "Missing Factors challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-mult",
+        "prompt": "$[[a]] \\times ? = [[a*b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*b]] \\div [[a]] = [[b]]$, because $[[a]] \\times [[b]] = [[a*b]]$.",
+        "skill": "missing-mult",
+        "difficulty": 1,
+        "compute": "a*b/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "s-mult-front",
+        "prompt": "$? \\times [[b]] = [[a*b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "missing-mult",
+        "difficulty": 1,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            },
+            "b": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "s-div",
+        "prompt": "$[[a*b]] \\div ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times [[b]] = [[a*b]]$, so $[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "missing-mult",
+        "difficulty": 2,
+        "compute": "a*b/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "s-div-whole",
+        "prompt": "$? \\div [[b]] = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "Check: $[[a]] \\div [[b]]$ isn’t $[[a]]$. Multiply instead."
+            }
+          ]
+        },
+        "solution": "The missing number is the whole: $[[a]] \\times [[b]] = [[a*b]]$.",
+        "skill": "missing-mult",
+        "difficulty": 2,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-rows",
+        "prompt": "Chairs are put in rows of $[[a]]$. There are $[[a*b]]$ chairs. How many rows are there?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times ? = [[a*b]]$: $[[b]]$ rows.",
+        "skill": "missing-mult",
+        "difficulty": 2,
+        "compute": "a*b/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "from": 4,
+              "to": 12
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n07.balance-practice",
+    "type": "PROBLEMS",
+    "title": "Balance Both Sides",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "add",
+        "prompt": "$[[a]] + [[b]] = ? + [[c]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b-c]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+b]]",
+              "why": "That is the left side. With $[[c]]$ added, the right side would be too big."
+            }
+          ]
+        },
+        "hints": ["Work out the left side first.", "What adds to $[[c]]$ to make the same?"],
+        "solution": "The left side is $[[a+b]]$. The right side must be $[[a+b]]$ too: $[[a+b]] - [[c]] = [[a+b-c]]$.",
+        "skill": "balance",
+        "difficulty": 1,
+        "compute": "a+b-c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 40
+            },
+            "b": {
+              "from": 10,
+              "to": 40
+            },
+            "c": {
+              "from": 5,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "shift",
+        "prompt": "$[[a]] + [[b]] = [[a+k]] + ?$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b-k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b+k]]",
+              "why": "Both sides would not balance. When one number goes up, the other goes down."
+            }
+          ]
+        },
+        "hints": [
+          "How much bigger is $[[a+k]]$ than $[[a]]$?",
+          "The other number must go down by the same amount."
+        ],
+        "solution": "$[[a]]$ went up by $[[k]]$ to $[[a+k]]$, so $[[b]]$ goes down by $[[k]]$: $[[b-k]]$.",
+        "skill": "balance",
+        "difficulty": 2,
+        "compute": "(a+b)-(a+k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 20,
+              "to": 60
+            },
+            "b": {
+              "from": 15,
+              "to": 40
+            },
+            "k": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["b > k"]
+        }
+      },
+      {
+        "id": "sub",
+        "prompt": "$[[a]] - [[b]] = ? - [[b+k]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+k]]"],
+          "form": "any"
+        },
+        "hints": ["Work out $[[a]] - [[b]]$ first.", "Then the missing number is a whole: add."],
+        "solution": "The left side is $[[a-b]]$. So $? - [[b+k]] = [[a-b]]$, and $? = [[a-b]] + [[b+k]] = [[a+k]]$.",
+        "skill": "balance",
+        "difficulty": 2,
+        "compute": "(a-b)+(b+k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 30,
+              "to": 90
+            },
+            "b": {
+              "from": 5,
+              "to": 20
+            },
+            "k": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a > b"]
+        }
+      },
+      {
+        "id": "mult",
+        "prompt": "$[[a]] \\times [[2*b]] = [[2*a]] \\times ?$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "hints": ["What happened to $[[a]]$? Do the opposite to the other number."],
+        "solution": "$[[a]]$ doubled to $[[2*a]]$, so $[[2*b]]$ halves to $[[b]]$. Both sides are $[[2*a*b]]$.",
+        "skill": "balance",
+        "difficulty": 3,
+        "compute": "a*2*b/(2*a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 12
+            },
+            "b": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "beads",
+        "prompt": "Mia has $[[a]]$ red beads and $[[b]]$ blue beads. Sam has $[[c]]$ red beads. How many blue beads does Sam need to have as many beads as Mia?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b-c]]"],
+          "form": "any"
+        },
+        "hints": ["How many beads does Mia have altogether?"],
+        "solution": "Mia has $[[a+b]]$ beads. $[[c]] + ? = [[a+b]]$, so Sam needs $[[a+b-c]]$ blue beads.",
+        "skill": "balance",
+        "difficulty": 2,
+        "compute": "a+b-c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 30
+            },
+            "b": {
+              "from": 10,
+              "to": 30
+            },
+            "c": {
+              "from": 5,
+              "to": 25
+            }
+          },
+          "where": ["a + b > c"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n07.balance-set",
+    "type": "PROBLEM_SET",
+    "title": "Balance Both Sides challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-add",
+        "prompt": "$[[a]] + [[b]] = ? + [[c]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b-c]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+b]]",
+              "why": "That is the left side. With $[[c]]$ added, the right side would be too big."
+            }
+          ]
+        },
+        "solution": "The left side is $[[a+b]]$. The right side must be $[[a+b]]$ too: $[[a+b]] - [[c]] = [[a+b-c]]$.",
+        "skill": "balance",
+        "difficulty": 1,
+        "compute": "a+b-c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 40
+            },
+            "b": {
+              "from": 10,
+              "to": 40
+            },
+            "c": {
+              "from": 5,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "s-shift",
+        "prompt": "$[[a]] + [[b]] = [[a+k]] + ?$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b-k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b+k]]",
+              "why": "Both sides would not balance. When one number goes up, the other goes down."
+            }
+          ]
+        },
+        "solution": "$[[a]]$ went up by $[[k]]$ to $[[a+k]]$, so $[[b]]$ goes down by $[[k]]$: $[[b-k]]$.",
+        "skill": "balance",
+        "difficulty": 2,
+        "compute": "(a+b)-(a+k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 20,
+              "to": 60
+            },
+            "b": {
+              "from": 15,
+              "to": 40
+            },
+            "k": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["b > k"]
+        }
+      },
+      {
+        "id": "s-sub",
+        "prompt": "$[[a]] - [[b]] = ? - [[b+k]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+k]]"],
+          "form": "any"
+        },
+        "solution": "The left side is $[[a-b]]$. So $? - [[b+k]] = [[a-b]]$, and $? = [[a-b]] + [[b+k]] = [[a+k]]$.",
+        "skill": "balance",
+        "difficulty": 2,
+        "compute": "(a-b)+(b+k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 30,
+              "to": 90
+            },
+            "b": {
+              "from": 5,
+              "to": 20
+            },
+            "k": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a > b"]
+        }
+      },
+      {
+        "id": "s-mult",
+        "prompt": "$[[a]] \\times [[2*b]] = [[2*a]] \\times ?$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]]$ doubled to $[[2*a]]$, so $[[2*b]]$ halves to $[[b]]$. Both sides are $[[2*a*b]]$.",
+        "skill": "balance",
+        "difficulty": 3,
+        "compute": "a*2*b/(2*a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 12
+            },
+            "b": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "s-beads",
+        "prompt": "Mia has $[[a]]$ red beads and $[[b]]$ blue beads. Sam has $[[c]]$ red beads. How many blue beads does Sam need to have as many beads as Mia?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b-c]]"],
+          "form": "any"
+        },
+        "solution": "Mia has $[[a+b]]$ beads. $[[c]] + ? = [[a+b]]$, so Sam needs $[[a+b-c]]$ blue beads.",
+        "skill": "balance",
+        "difficulty": 2,
+        "compute": "a+b-c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 30
+            },
+            "b": {
+              "from": 10,
+              "to": 30
+            },
+            "c": {
+              "from": 5,
+              "to": 25
+            }
+          },
+          "where": ["a + b > c"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n07.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-miss",
+        "prompt": "$[[a]] + ? = [[a+b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a+b]]",
+              "why": "You added. The missing number is what you add to $[[a]]$ to reach $[[a+b]]$."
+            }
+          ]
+        },
+        "hints": ["Count up from $[[a]]$ to $[[a+b]]$, or work out $[[a+b]] - [[a]]$."],
+        "solution": "$[[a+b]] - [[a]] = [[b]]$. Check: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-add",
+        "difficulty": 1,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "r2-part",
+        "prompt": "$[[a+b]] - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a+b]]",
+              "why": "You added. Take $[[a]]$ from $[[a+b]]$."
+            }
+          ]
+        },
+        "hints": ["What do you take from $[[a+b]]$ to leave $[[a]]$?"],
+        "solution": "The part taken away is $[[a+b]] - [[a]] = [[b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 1,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-mult",
+        "prompt": "$[[a]] \\times ? = [[a*b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "hints": ["Count in $[[a]]$s to $[[a*b]]$, or divide."],
+        "solution": "$[[a*b]] \\div [[a]] = [[b]]$, because $[[a]] \\times [[b]] = [[a*b]]$.",
+        "skill": "missing-mult",
+        "difficulty": 1,
+        "compute": "a*b/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-add",
+        "prompt": "$[[a]] + [[b]] = ? + [[c]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b-c]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+b]]",
+              "why": "That is the left side. With $[[c]]$ added, the right side would be too big."
+            }
+          ]
+        },
+        "hints": ["Work out the left side first.", "What adds to $[[c]]$ to make the same?"],
+        "solution": "The left side is $[[a+b]]$. The right side must be $[[a+b]]$ too: $[[a+b]] - [[c]] = [[a+b-c]]$.",
+        "skill": "balance",
+        "difficulty": 1,
+        "compute": "a+b-c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 40
+            },
+            "b": {
+              "from": 10,
+              "to": 40
+            },
+            "c": {
+              "from": 5,
+              "to": 20
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n07.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 7 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-miss",
+        "prompt": "$[[a]] + ? = [[a+b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a+b]]",
+              "why": "You added. The missing number is what you add to $[[a]]$ to reach $[[a+b]]$."
+            }
+          ]
+        },
+        "solution": "$[[a+b]] - [[a]] = [[b]]$. Check: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-add",
+        "difficulty": 1,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-miss-front",
+        "prompt": "$? + [[b]] = [[a+b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a+b]] - [[b]] = [[a]]$.",
+        "skill": "missing-add",
+        "difficulty": 1,
+        "compute": "(a+b)-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-cards",
+        "prompt": "Leo had some cards. He got $[[b]]$ more and now has $[[a+b]]$. How many cards did he have at the start?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "Start $+ [[b]] = [[a+b]]$, so the start is $[[a+b]] - [[b]] = [[a]]$.",
+        "skill": "missing-add",
+        "difficulty": 2,
+        "compute": "(a+b)-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 15,
+              "to": 70
+            },
+            "b": {
+              "from": 6,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-part",
+        "prompt": "$[[a+b]] - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*a+b]]",
+              "why": "You added. Take $[[a]]$ from $[[a+b]]$."
+            }
+          ]
+        },
+        "solution": "The part taken away is $[[a+b]] - [[a]] = [[b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 1,
+        "compute": "(a+b)-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            },
+            "b": {
+              "from": 5,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-whole",
+        "prompt": "$? - [[b]] = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-b]]",
+              "why": "That is too small: $[[a-b]] - [[b]]$ isn’t $[[a]]$. Add the parts."
+            }
+          ]
+        },
+        "solution": "The missing number is the whole: $[[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 20,
+              "to": 70
+            },
+            "b": {
+              "from": 6,
+              "to": 19
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-points",
+        "prompt": "After spending $[[b]]$ points, Zara has $[[a]]$ points left. How many points did she start with?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "solution": "Start $- [[b]] = [[a]]$, so start $= [[a]] + [[b]] = [[a+b]]$.",
+        "skill": "missing-sub",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 15,
+              "to": 70
+            },
+            "b": {
+              "from": 6,
+              "to": 29
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-mult",
+        "prompt": "$[[a]] \\times ? = [[a*b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*b]] \\div [[a]] = [[b]]$, because $[[a]] \\times [[b]] = [[a*b]]$.",
+        "skill": "missing-mult",
+        "difficulty": 1,
+        "compute": "a*b/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-mult-front",
+        "prompt": "$? \\times [[b]] = [[a*b]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "missing-mult",
+        "difficulty": 1,
+        "compute": "a*b/b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 12
+            },
+            "b": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-div",
+        "prompt": "$[[a*b]] \\div ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times [[b]] = [[a*b]]$, so $[[a*b]] \\div [[b]] = [[a]]$.",
+        "skill": "missing-mult",
+        "difficulty": 2,
+        "compute": "a*b/a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 10
+            },
+            "b": {
+              "from": 3,
+              "to": 12
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-add",
+        "prompt": "$[[a]] + [[b]] = ? + [[c]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b-c]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+b]]",
+              "why": "That is the left side. With $[[c]]$ added, the right side would be too big."
+            }
+          ]
+        },
+        "solution": "The left side is $[[a+b]]$. The right side must be $[[a+b]]$ too: $[[a+b]] - [[c]] = [[a+b-c]]$.",
+        "skill": "balance",
+        "difficulty": 1,
+        "compute": "a+b-c",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 40
+            },
+            "b": {
+              "from": 10,
+              "to": 40
+            },
+            "c": {
+              "from": 5,
+              "to": 20
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-shift",
+        "prompt": "$[[a]] + [[b]] = [[a+k]] + ?$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b-k]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b+k]]",
+              "why": "Both sides would not balance. When one number goes up, the other goes down."
+            }
+          ]
+        },
+        "solution": "$[[a]]$ went up by $[[k]]$ to $[[a+k]]$, so $[[b]]$ goes down by $[[k]]$: $[[b-k]]$.",
+        "skill": "balance",
+        "difficulty": 2,
+        "compute": "(a+b)-(a+k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 20,
+              "to": 60
+            },
+            "b": {
+              "from": 15,
+              "to": 40
+            },
+            "k": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["b > k"]
+        }
+      },
+      {
+        "id": "c4-sub",
+        "prompt": "$[[a]] - [[b]] = ? - [[b+k]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+k]]"],
+          "form": "any"
+        },
+        "solution": "The left side is $[[a-b]]$. So $? - [[b+k]] = [[a-b]]$, and $? = [[a-b]] + [[b+k]] = [[a+k]]$.",
+        "skill": "balance",
+        "difficulty": 2,
+        "compute": "(a-b)+(b+k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 30,
+              "to": 90
+            },
+            "b": {
+              "from": 5,
+              "to": 20
+            },
+            "k": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a > b"]
+        }
+      }
+    ]
+  }
+]

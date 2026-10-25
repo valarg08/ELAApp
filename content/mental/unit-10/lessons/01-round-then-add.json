@@ -1,0 +1,66 @@
+{
+  "slug": "mental-round-then-add",
+  "order": 1,
+  "title": "Round, Then Add or Subtract",
+  "estMinutes": 25,
+  "focusSkills": ["est-add"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$218$ children and $173$ adults go to a show. About how many people is that? You have $5$ seconds.",
+      "placeholder": "About…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Round first",
+          "body": "An estimate is a quick, close answer. Round each number to a friendly number, then add or subtract: $218 + 173 \\approx 200 + 200 = 400$. The exact answer is $391$, close to $400$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 47 + 38",
+          "problem": "Estimate $47 + 38$ by rounding each number to the nearest ten.",
+          "steps": [
+            {
+              "text": "$47$ rounds to $50$ and $38$ rounds to $40$.",
+              "try": {
+                "prompt": "What is $50 + 40$?",
+                "accepted": ["90"],
+                "compute": "50+40"
+              }
+            },
+            {
+              "text": "The estimate is $90$. The exact answer, $85$, is close, so it is sensible."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "How close?",
+          "body": "Each number moves a little when you round. $47 \\to 50$ moves up $3$, $38 \\to 40$ moves up $2$: the estimate is $5$ too big. When both round up, the estimate is too big; when both round down, too small."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n10.est-add-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n10.est-add-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When would an estimate be good enough, and when do you need the exact answer?"],
+      "confidenceCheck": true
+    }
+  ]
+}

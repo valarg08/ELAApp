@@ -1,0 +1,74 @@
+{
+  "slug": "mental-hundreds-and-thousands",
+  "order": 4,
+  "title": "Benchmarks 100 and 1000",
+  "estMinutes": 25,
+  "focusSkills": ["bench-1000"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You have $1000$ points and spend $370$. How many are left? How did you work it out?",
+      "placeholder": "Left… I worked it out by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Times 100 and bonds to 1000",
+          "body": "Times $100$ moves every digit two places left: $37 \\times 100 = 3700$. Bonds to $1000$ work like bonds to $100$, one place bigger: $370 + 630 = 1000$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: what goes with 370?",
+          "problem": "What goes with $370$ to make $1000$?",
+          "steps": [
+            {
+              "text": "The tens: $7$ tens need $3$ more tens to make a hundred.",
+              "try": {
+                "prompt": "What goes with $70$ to make $100$?",
+                "accepted": ["30"],
+                "compute": "100-70"
+              }
+            },
+            {
+              "text": "That makes a new hundred, so the hundreds make $9$, not $10$: $3 + 6 = 9$.",
+              "try": {
+                "prompt": "What goes with $370$ to make $1000$?",
+                "accepted": ["630"],
+                "compute": "1000-370"
+              }
+            },
+            {
+              "text": "Check: $370 + 630 = 1000$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap",
+          "body": "For $370$, some people answer $730$: they make the hundreds $10$ and the tens $10$. That adds to $1100$. The tens already make a hundred, so the hundreds make $9$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n06.thousand-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n06.thousand-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How is a bond to $1000$ like a bond to $100$?"],
+      "confidenceCheck": true
+    }
+  ]
+}

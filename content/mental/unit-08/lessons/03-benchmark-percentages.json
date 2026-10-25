@@ -1,0 +1,74 @@
+{
+  "slug": "mental-benchmark-percentages",
+  "order": 3,
+  "title": "Benchmark Percentages: 50%, 25%, 20%, 75%",
+  "estMinutes": 25,
+  "focusSkills": ["percent-bench"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A game costs $80$ points. In a sale it is $25\\%$ off. What is the sale price?",
+      "placeholder": "The sale price is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Percentages you can halve",
+          "body": "$50\\%$ is a half: halve. $25\\%$ is a quarter: halve, then halve again. $75\\%$ is three quarters: find $25\\%$ and times by $3$. $20\\%$ is a fifth: divide by $5$, or double $10\\%$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 75% of 60",
+          "problem": "Work out $75\\%$ of $60$.",
+          "steps": [
+            {
+              "text": "$25\\%$ first: halve $60$ to $30$, halve again.",
+              "try": {
+                "prompt": "What is $25\\%$ of $60$?",
+                "accepted": ["15"],
+                "compute": "60/4"
+              }
+            },
+            {
+              "text": "$75\\%$ is three lots of $25\\%$.",
+              "try": {
+                "prompt": "What is $3 \\times 15$?",
+                "accepted": ["45"],
+                "compute": "3*15"
+              }
+            },
+            {
+              "text": "So $75\\%$ of $60$ is $45$. Check: $60 - 15 = 45$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap: sale price",
+          "body": "$25\\%$ off $80$ means you save $20$. The sale price is what you pay: $80 - 20 = 60$. Read the question: does it ask how much you save, or what you pay?"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n08.bench-pct-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n08.bench-pct-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain why $75\\%$ off leaves you paying $25\\%$."],
+      "confidenceCheck": true
+    }
+  ]
+}

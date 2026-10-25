@@ -1,0 +1,18 @@
+{
+  "number": 12,
+  "slug": "mental-squares",
+  "title": "Squares",
+  "summary": "Know the squares to $15^2$ by heart, square any number ending in $5$ in one step, step from one square to the next, and build the squares from $16^2$ to $30^2$ from a round number.",
+  "bigIdeas": [
+    "A square number is a number times itself: $7^2 = 7 \\times 7 = 49$.",
+    "Squares follow patterns, so you can build new squares from ones you know."
+  ],
+  "tips": [
+    "Learn $11^2 = 121$, $12^2 = 144$, $13^2 = 169$, $14^2 = 196$, $15^2 = 225$ by heart.",
+    "Ending in $5$: times the tens digit by the next number up, then write $25$. $35^2$: $3 \\times 4 = 12$, so $1225$.",
+    "Next square: $n^2 + n + (n + 1)$. From $12^2 = 144$: $144 + 12 + 13 = 169 = 13^2$.",
+    "Near $20$: $(20 + b)^2 = 400 + 40b + b^2$. $23^2 = 400 + 120 + 9 = 529$.",
+    "Squares only end in $0$, $1$, $4$, $5$, $6$ or $9$. A number ending in $7$ is never a square."
+  ],
+  "published": true
+}

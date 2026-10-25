@@ -1,0 +1,18 @@
+{
+  "number": 4,
+  "slug": "mental-front-end",
+  "title": "Front-End Adding & Subtracting",
+  "summary": "Add and subtract in your head by working from the left: the biggest place first (hundreds, then tens, then ones), then put the parts together. When the ones are too small to subtract, jump back in two steps.",
+  "bigIdeas": [
+    "Start with the biggest part of each number: it gives you most of the answer straight away.",
+    "Split a number into hundreds, tens and ones, work with each part, then join them."
+  ],
+  "tips": [
+    "Add from the left: $47 + 38$ is $70$ and $15$, so $85$.",
+    "Say the tens first, then the ones: you hear most of the answer straight away.",
+    "Bigger numbers work the same: $325 + 142$ is $400 + 60 + 7 = 467$.",
+    "Subtract in two jumps: $72 - 38$ is $72 - 30 = 42$, then $42 - 8 = 34$.",
+    "Check a subtraction by adding back: $34 + 38 = 72$."
+  ],
+  "published": true
+}

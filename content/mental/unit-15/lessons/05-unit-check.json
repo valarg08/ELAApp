@@ -1,0 +1,56 @@
+{
+  "slug": "mental-speed-accuracy-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Speed & Accuracy",
+  "estMinutes": 20,
+  "focusSkills": ["check-inverse", "check-nines", "pick-strategy", "speed-mixed"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Speed & Accuracy do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Checking: quick review",
+          "body": "Use the inverse ($c + b = a$) or casting out nines: the digit-sum remainders must match. A failed check means the answer is wrong."
+        },
+        {
+          "kind": "definition",
+          "title": "Choosing a strategy: quick review",
+          "body": "Look first: a round number nearby, a pair that makes $10$ or $100$, a middle number, or a square ending in $5$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n15.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n15.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Speed & Accuracy outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

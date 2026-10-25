@@ -1,0 +1,18 @@
+{
+  "number": 9,
+  "slug": "mental-divisibility",
+  "title": "Divisibility Rules 2–11",
+  "summary": "Tell whether a number divides exactly without dividing: look at the last digit for $2$, $5$ and $10$, the digit sum for $3$ and $9$, the last two digits for $4$, the last three for $8$, and the alternating digit sum for $11$. Use the same tests to find remainders.",
+  "bigIdeas": [
+    "Only part of a number decides whether it divides by $2$, $4$, $5$, $8$ or $10$: the end.",
+    "For $3$ and $9$ the digit sum decides, because $10$, $100$, $1000$… are each one more than a multiple of $9$."
+  ],
+  "tips": [
+    "Even numbers end in $0$, $2$, $4$, $6$ or $8$, and divide by $2$.",
+    "Add the digits: if the sum divides by $3$ (or $9$), so does the number. $471$: $4 + 7 + 1 = 12$, so $3$ divides it.",
+    "Only the last two digits decide $4$: $7316$ divides by $4$ because $16$ does.",
+    "Divisible by $6$ means even and divisible by $3$.",
+    "For $11$, alternate: $\\text{first} - \\text{second} + \\text{third}$. $473$: $4 - 7 + 3 = 0$, so $11$ divides it."
+  ],
+  "published": true
+}

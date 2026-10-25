@@ -1,0 +1,56 @@
+{
+  "slug": "mental-vedic-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Vedic Tricks, Explained",
+  "estMinutes": 20,
+  "focusSkills": ["vedic-complement", "vedic-base", "vedic-crosswise", "vedic-why"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Vedic Tricks, Explained do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Complements and bases: quick review",
+          "body": "$1000 - x$: all digits from $9$, the last from $10$. Near $100$: cross-subtract for the front, multiply the distances for the back."
+        },
+        {
+          "kind": "definition",
+          "title": "Crosswise: quick review",
+          "body": "$(10a + b)(10c + d) = 100ac + 10(ad + bc) + bd$. When the tens match and the ones add to $10$: $a(a + 1)$, then $b(10 - b)$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n14.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n14.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Vedic Tricks, Explained outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

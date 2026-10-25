@@ -1,0 +1,18 @@
+{
+  "number": 6,
+  "slug": "mental-benchmarks",
+  "title": "Benchmark Numbers",
+  "summary": "Think with friendly benchmark numbers: $10$, $25$, $50$, $100$ and $1000$. Round to them, step to them, and use them to multiply: $50$ is half of $100$ and $25$ is a quarter of $100$.",
+  "bigIdeas": [
+    "Benchmarks are friendly numbers that make other numbers easy to think about.",
+    "$50$ is half of $100$ and $25$ is a quarter of $100$: use $100$ and then share."
+  ],
+  "tips": [
+    "Round to the nearest ten by looking at the ones: $5$ or more rounds up.",
+    "Times $50$ is times $100$, halved: $18 \\times 50 = 1800 \\div 2 = 900$.",
+    "Times $25$ is times $100$, quartered: $12 \\times 25 = 1200 \\div 4 = 300$.",
+    "Four $25$s make $100$, so $8$ quarters of a hundred make $200$.",
+    "Bonds to $1000$ work like bonds to $100$: $370 + 630 = 1000$."
+  ],
+  "published": true
+}

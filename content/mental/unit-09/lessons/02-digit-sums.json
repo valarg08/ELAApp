@@ -1,0 +1,74 @@
+{
+  "slug": "mental-digit-sums",
+  "order": 2,
+  "title": "Digit Sums: 3 and 9",
+  "estMinutes": 25,
+  "focusSkills": ["div-digit-sum"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$471$: add its digits. Now try dividing $471$ by $3$. What do you notice?",
+      "placeholder": "Digit sum… divided by $3$…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Add the digits",
+          "body": "A number divides by $3$ exactly when its digit sum does, and the same for $9$. $471$: $4 + 7 + 1 = 12$, and $12$ divides by $3$, so $471$ does too ($471 = 3 \\times 157$). Even better: the remainder of the number is the remainder of its digit sum."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: remainder by 9",
+          "problem": "What is the remainder when $583$ is divided by $9$?",
+          "steps": [
+            {
+              "text": "Add the digits.",
+              "try": {
+                "prompt": "What is $5 + 8 + 3$?",
+                "accepted": ["16"],
+                "compute": "5+8+3"
+              }
+            },
+            {
+              "text": "$16 = 9 + 7$, so the remainder is $7$.",
+              "try": {
+                "prompt": "What is the remainder when $16$ is divided by $9$?",
+                "accepted": ["7"],
+                "compute": "mod(16,9)"
+              }
+            },
+            {
+              "text": "So $583$ leaves $7$. Check: $9 \\times 64 = 576$ and $583 - 576 = 7$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "$10 = 9 + 1$, $100 = 99 + 1$, $1000 = 999 + 1$. So $583 = 5 \\times 99 + 8 \\times 9 + (5 + 8 + 3)$. The $99$s and $9$s divide by $9$ (and by $3$), so only the digit sum is left."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n09.digit-sum-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n09.digit-sum-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain in your own words why the digit-sum test works for $9$."],
+      "confidenceCheck": true
+    }
+  ]
+}

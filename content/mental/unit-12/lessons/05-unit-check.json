@@ -1,0 +1,56 @@
+{
+  "slug": "mental-squares-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Squares",
+  "estMinutes": 20,
+  "focusSkills": ["squares-15", "squares-5", "squares-step", "squares-30"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Squares do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Squares: quick review",
+          "body": "Know the squares to $15^2$. Ending in $5$: $n \\times (n + 1)$, then $25$. Next square: add $n$ and $n + 1$."
+        },
+        {
+          "kind": "definition",
+          "title": "Building squares: quick review",
+          "body": "Split into a round number and a small one: $(20 + b)^2 = 400 + 40b + b^2$. Check the last digit: $b^2$ decides it."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n12.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n12.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Squares outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "slug": "mental-times-999-and-98",
+  "order": 2,
+  "title": "Times 999 and 98",
+  "estMinutes": 25,
+  "focusSkills": ["times-999"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "If $\\times 99$ is $\\times 100 - \\times 1$, what do you think $\\times 999$ and $\\times 98$ are?",
+      "placeholder": "$\\times 999$ is… $\\times 98$ is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "The same idea, bigger",
+          "body": "$999 = 1000 - 1$, so $23 \\times 999 = 23000 - 23 = 22977$. And $98 = 100 - 2$, so $24 \\times 98 = 2400 - 48 = 2352$: take away two lots."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 46 × 999",
+          "problem": "Work out $46 \\times 999$.",
+          "steps": [
+            {
+              "text": "Times $1000$.",
+              "try": {
+                "prompt": "What is $46 \\times 1000$?",
+                "accepted": ["46000"],
+                "compute": "46*1000"
+              }
+            },
+            {
+              "text": "Take away one $46$. Use a bond: $46000 - 46 = 45954$.",
+              "try": {
+                "prompt": "What is $46000 - 46$?",
+                "accepted": ["45954"],
+                "compute": "46000-46"
+              }
+            },
+            {
+              "text": "So $46 \\times 999 = 45954$. Notice $46 - 1 = 45$, then $1000 - 46 = 954$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "A shortcut pattern",
+          "body": "$a \\times 999$ for $a$ up to $999$: write $a - 1$, then $1000 - a$. $46 \\times 999$: $45$ and $954$, so $45954$. It comes from $1000a - a = 1000(a - 1) + (1000 - a)$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n11.thousand-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n11.thousand-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How would you work out $\\times 997$ in your head?"],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "mental-divisibility-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Divisibility Rules 2–11",
+  "estMinutes": 20,
+  "focusSkills": ["div-last-digit", "div-digit-sum", "div-last-two", "div-6-11"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Divisibility Rules 2–11 do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "End-digit tests: quick review",
+          "body": "$2$, $5$, $10$: the last digit. $4$: the last two digits. $8$: the last three digits. The remainder of the whole number is the remainder of that end part."
+        },
+        {
+          "kind": "definition",
+          "title": "Digit-sum tests: quick review",
+          "body": "$3$ and $9$: add the digits; the remainder of the digit sum is the remainder of the number. $6$: even and divisible by $3$. $11$: first $-$ second $+$ third."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n09.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n09.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Divisibility Rules 2–11 outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

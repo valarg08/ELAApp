@@ -1,0 +1,30 @@
+{
+  "sections": [
+    {
+      "skill": "dos-pattern",
+      "title": "The pattern",
+      "facts": ["$a^2 - b^2 = (a + b)(a - b)$.", "$65^2 - 35^2 = 100 \\times 30 = 3000$."]
+    },
+    {
+      "skill": "dos-around",
+      "title": "Around a round number",
+      "facts": ["$(m - b)(m + b) = m^2 - b^2$.", "$97 \\times 103 = 10000 - 9 = 9991$."]
+    },
+    {
+      "skill": "dos-neighbours",
+      "title": "Neighbouring squares",
+      "facts": [
+        "$(n + 1)^2 - n^2 = 2n + 1$, which is $n + (n + 1)$.",
+        "The gaps between squares are the odd numbers $3, 5, 7, 9, \\ldots$"
+      ]
+    },
+    {
+      "skill": "dos-square",
+      "title": "Square near a round number",
+      "facts": [
+        "$n^2 = (n - b)(n + b) + b^2$: move one number to the round number.",
+        "$97^2 = 94 \\times 100 + 9 = 9409$."
+      ]
+    }
+  ]
+}

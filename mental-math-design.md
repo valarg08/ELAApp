@@ -113,5 +113,10 @@ The last lesson of each unit is the **⭐ unit check**: a warm-up, then 8 typed 
 
 - **MN0 (done):** the track, tab, `/mental` home, levels, cheat sheets, tips, loader/sync, API, Quill audience.
 - **MN1 (done):** Unit 1 Number Bonds — 5 lessons (Bonds to 10, Bonds to 20, Make 10 First, Bonds to 100, ⭐ Unit Check), 10 activities, cheat sheet, 5 tips.
-- **MN2…MN15:** one unit per phase, in order (Unit 2 Doubling & Halving next).
+- **MN4–MN7 (done):** Level 2 — Unit 4 Front-End Adding & Subtracting, Unit 5 Multiplication Anchors, Unit 6 Benchmark Numbers, Unit 7 Missing Number Thinking.
+- **MN8–MN11 (done):** Level 3 — Unit 8 Fractions, Decimals & Percentages, Unit 9 Divisibility Rules 2–11, Unit 10 Estimation, Unit 11 Smart Multiplication (×9, ×99, ×999, ×98, ×11, ×101, ×1001).
+- **MN12–MN15 (done):** Level 4 — Unit 12 Squares (to $15^2$, ending in $5$, next square, $16^2$–$30^2$), Unit 13 Difference of Squares, Unit 14 Vedic Tricks, Explained (complements, near a base, vertically and crosswise, other bases, each with its algebra), Unit 15 Speed & Accuracy (inverse checks, casting out nines, picking a strategy, mixed sprints).
+- Each of Units 4–15 has the Unit 1 format: 4 lessons (hook, 3 cards with a worked example, 5 typed practice problems with hints and wrong-answer notes, a 5-question challenge without hints, reflection) and the ⭐ check (8 questions, 100%), a cheat sheet and 5 tips.
+- A locked Mental Math card names the last built unit before it ("Finish Mental Math Unit 1 first" on Unit 4) while Units 2–3 are not built.
+- **MN2–MN3 (next):** Unit 2 Doubling & Halving, Unit 3 Compensation.
 - **MN-later:** daily review and streaks for Mental Math, speed sprints, level checks and placement, the parent guide page, mastery per Mental Math skill.

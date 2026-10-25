@@ -1,0 +1,74 @@
+{
+  "slug": "mental-subtract-from-the-left",
+  "order": 3,
+  "title": "Subtract from the Left",
+  "estMinutes": 25,
+  "focusSkills": ["front-sub"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Work out $86 - 34$ in your head. Did you start with the tens or the ones?",
+      "placeholder": "I started with…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Place by place",
+          "body": "When every digit of the top number is at least as big as the digit below it, subtract place by place from the left: $86 - 34$ is $80 - 30 = 50$ and $6 - 4 = 2$, so $52$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 475 − 231",
+          "problem": "Work out $475 - 231$ from the left.",
+          "steps": [
+            {
+              "text": "Hundreds: $400 - 200$.",
+              "try": {
+                "prompt": "What is $400 - 200$?",
+                "accepted": ["200"],
+                "compute": "400-200"
+              }
+            },
+            {
+              "text": "Tens: $70 - 30 = 40$.",
+              "try": {
+                "prompt": "What is the running total, $200 + 40$?",
+                "accepted": ["240"],
+                "compute": "200+40"
+              }
+            },
+            {
+              "text": "Ones: $5 - 1 = 4$. So $475 - 231 = 244$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Check by adding back",
+          "body": "Subtraction undoes adding. Check $86 - 34 = 52$ by adding back: $52 + 34 = 86$. If you get the top number, you are right."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n04.sub-left-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n04.sub-left-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How can you check a subtraction without doing it again?"],
+      "confidenceCheck": true
+    }
+  ]
+}

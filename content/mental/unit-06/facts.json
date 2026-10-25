@@ -1,0 +1,36 @@
+{
+  "sections": [
+    {
+      "skill": "bench-round",
+      "title": "Rounding",
+      "facts": [
+        "Nearest ten: look at the ones digit. $0$–$4$ round down, $5$–$9$ round up: $47 \\to 50$, $43 \\to 40$.",
+        "Nearest hundred: look at the tens digit: $650 \\to 700$, $649 \\to 600$."
+      ]
+    },
+    {
+      "skill": "bench-50",
+      "title": "Fifty",
+      "facts": [
+        "$50 = 100 \\div 2$, so $\\times 50 = \\times 100 \\div 2$: $14 \\times 50 = 700$.",
+        "Two $50$s make $100$."
+      ]
+    },
+    {
+      "skill": "bench-25",
+      "title": "Twenty-five",
+      "facts": [
+        "$25 = 100 \\div 4$, so $\\times 25 = \\times 100 \\div 4$: $16 \\times 25 = 400$.",
+        "Four $25$s make $100$. A quarter of a number: halve it, then halve again."
+      ]
+    },
+    {
+      "skill": "bench-1000",
+      "title": "Hundreds and thousands",
+      "facts": [
+        "$\\times 100$ moves the digits two places left: $37 \\times 100 = 3700$.",
+        "Bonds to $1000$: the hundreds make $9$ and the tens make $10$: $370 + 630 = 1000$."
+      ]
+    }
+  ]
+}

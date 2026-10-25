@@ -1,0 +1,1644 @@
+[
+  {
+    "key": "n10.est-add-practice",
+    "type": "PROBLEMS",
+    "title": "Round, Then Add or Subtract",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "add10",
+        "prompt": "Estimate $[[a]] + [[b]]$ by rounding each number to the nearest ten first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]"],
+          "form": "any"
+        },
+        "hints": ["Round $[[a]]$ and $[[b]]$ to the nearest ten.", "Add the rounded numbers."],
+        "solution": "$[[a]] \\approx [[10*floor((a+5)/10)]]$ and $[[b]] \\approx [[10*floor((b+5)/10)]]$, so the estimate is $[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]$.",
+        "skill": "est-add",
+        "difficulty": 1,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5)) + (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "add100",
+        "prompt": "Estimate $[[10*m]] + [[10*n]]$ by rounding each number to the nearest hundred first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((10*m+50)/100) + 100*floor((10*n+50)/100)]]"],
+          "form": "any"
+        },
+        "hints": ["Round each number to the nearest hundred: look at the tens digit."],
+        "solution": "The rounded numbers are $[[100*floor((10*m+50)/100)]]$ and $[[100*floor((10*n+50)/100)]]$, so about $[[100*floor((10*m+50)/100) + 100*floor((10*n+50)/100)]]$.",
+        "skill": "est-add",
+        "difficulty": 2,
+        "compute": "(10*m - mod(10*m,100) + 100*floor(mod(10*m,100)/50)) + (10*n - mod(10*n,100) + 100*floor(mod(10*n,100)/50))",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 11,
+              "to": 99
+            },
+            "n": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(m,10) != 5", "mod(m,10) != 0"]
+        }
+      },
+      {
+        "id": "sub100",
+        "prompt": "Estimate $[[10*m]] - [[10*n]]$ by rounding each number to the nearest hundred first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((10*m+50)/100) - 100*floor((10*n+50)/100)]]"],
+          "form": "any"
+        },
+        "hints": ["Round both numbers to the nearest hundred, then subtract."],
+        "solution": "$[[100*floor((10*m+50)/100)]] - [[100*floor((10*n+50)/100)]] = [[100*floor((10*m+50)/100) - 100*floor((10*n+50)/100)]]$.",
+        "skill": "est-add",
+        "difficulty": 2,
+        "compute": "(10*m - mod(10*m,100) + 100*floor(mod(10*m,100)/50)) - (10*n - mod(10*n,100) + 100*floor(mod(10*n,100)/50))",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 50,
+              "to": 99
+            },
+            "n": {
+              "from": 11,
+              "to": 45
+            }
+          },
+          "where": ["mod(m,10) != 5", "mod(n,10) != 5"]
+        }
+      },
+      {
+        "id": "trip",
+        "prompt": "On a trip there are $[[a]]$ pupils and $[[b]]$ adults. Round each number to the nearest ten. About how many people are on the trip?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]"],
+          "form": "any"
+        },
+        "hints": ["Round each number to the nearest ten, then add."],
+        "solution": "About $[[10*floor((a+5)/10)]] + [[10*floor((b+5)/10)]] = [[10*floor((a+5)/10) + 10*floor((b+5)/10)]]$ people.",
+        "skill": "est-add",
+        "difficulty": 2,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5)) + (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 41,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 39
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5"]
+        }
+      },
+      {
+        "id": "gap",
+        "prompt": "Work out $[[a]] + [[b]]$ exactly, and estimate it by rounding each number to the nearest ten. How far apart are the two answers?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[abs(a + b - 10*floor((a+5)/10) - 10*floor((b+5)/10))]]"],
+          "form": "any"
+        },
+        "hints": ["How far did each number move when you rounded it?", "Combine the two moves."],
+        "solution": "Exact: $[[a+b]]$. Estimate: $[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]$. They are $[[abs(a + b - 10*floor((a+5)/10) - 10*floor((b+5)/10))]]$ apart.",
+        "skill": "est-add",
+        "difficulty": 3,
+        "compute": "abs(mod(a+5,10) - 5 + mod(b+5,10) - 5)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n10.est-add-set",
+    "type": "PROBLEM_SET",
+    "title": "Round, Then Add or Subtract challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-add10",
+        "prompt": "Estimate $[[a]] + [[b]]$ by rounding each number to the nearest ten first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\approx [[10*floor((a+5)/10)]]$ and $[[b]] \\approx [[10*floor((b+5)/10)]]$, so the estimate is $[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]$.",
+        "skill": "est-add",
+        "difficulty": 1,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5)) + (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-add100",
+        "prompt": "Estimate $[[10*m]] + [[10*n]]$ by rounding each number to the nearest hundred first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((10*m+50)/100) + 100*floor((10*n+50)/100)]]"],
+          "form": "any"
+        },
+        "solution": "The rounded numbers are $[[100*floor((10*m+50)/100)]]$ and $[[100*floor((10*n+50)/100)]]$, so about $[[100*floor((10*m+50)/100) + 100*floor((10*n+50)/100)]]$.",
+        "skill": "est-add",
+        "difficulty": 2,
+        "compute": "(10*m - mod(10*m,100) + 100*floor(mod(10*m,100)/50)) + (10*n - mod(10*n,100) + 100*floor(mod(10*n,100)/50))",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 11,
+              "to": 99
+            },
+            "n": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(m,10) != 5", "mod(m,10) != 0"]
+        }
+      },
+      {
+        "id": "s-sub100",
+        "prompt": "Estimate $[[10*m]] - [[10*n]]$ by rounding each number to the nearest hundred first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((10*m+50)/100) - 100*floor((10*n+50)/100)]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*floor((10*m+50)/100)]] - [[100*floor((10*n+50)/100)]] = [[100*floor((10*m+50)/100) - 100*floor((10*n+50)/100)]]$.",
+        "skill": "est-add",
+        "difficulty": 2,
+        "compute": "(10*m - mod(10*m,100) + 100*floor(mod(10*m,100)/50)) - (10*n - mod(10*n,100) + 100*floor(mod(10*n,100)/50))",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 50,
+              "to": 99
+            },
+            "n": {
+              "from": 11,
+              "to": 45
+            }
+          },
+          "where": ["mod(m,10) != 5", "mod(n,10) != 5"]
+        }
+      },
+      {
+        "id": "s-trip",
+        "prompt": "On a trip there are $[[a]]$ pupils and $[[b]]$ adults. Round each number to the nearest ten. About how many people are on the trip?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]"],
+          "form": "any"
+        },
+        "solution": "About $[[10*floor((a+5)/10)]] + [[10*floor((b+5)/10)]] = [[10*floor((a+5)/10) + 10*floor((b+5)/10)]]$ people.",
+        "skill": "est-add",
+        "difficulty": 2,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5)) + (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 41,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 39
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5"]
+        }
+      },
+      {
+        "id": "s-gap",
+        "prompt": "Work out $[[a]] + [[b]]$ exactly, and estimate it by rounding each number to the nearest ten. How far apart are the two answers?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[abs(a + b - 10*floor((a+5)/10) - 10*floor((b+5)/10))]]"],
+          "form": "any"
+        },
+        "solution": "Exact: $[[a+b]]$. Estimate: $[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]$. They are $[[abs(a + b - 10*floor((a+5)/10) - 10*floor((b+5)/10))]]$ apart.",
+        "skill": "est-add",
+        "difficulty": 3,
+        "compute": "abs(mod(a+5,10) - 5 + mod(b+5,10) - 5)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n10.est-mult-practice",
+    "type": "PROBLEMS",
+    "title": "Estimate Products",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "one",
+        "prompt": "Estimate $[[a]] \\times [[k]]$ by rounding $[[a]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)*k]]"],
+          "form": "any"
+        },
+        "hints": ["Round $[[a]]$ to the nearest ten.", "Multiply the rounded number by $[[k]]$."],
+        "solution": "$[[a]] \\approx [[10*floor((a+5)/10)]]$, and $[[10*floor((a+5)/10)]] \\times [[k]] = [[10*floor((a+5)/10)*k]]$.",
+        "skill": "est-mult",
+        "difficulty": 1,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5))*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "two",
+        "prompt": "Estimate $[[a]] \\times [[b]]$ by rounding both numbers to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10) * 10*floor((b+5)/10)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[floor((a+5)/10) * 10*floor((b+5)/10)]]",
+              "why": "Check the zeros: tens times tens makes hundreds."
+            }
+          ]
+        },
+        "hints": [
+          "Round both numbers to the nearest ten.",
+          "Multiply the tens digits, then add two zeros."
+        ],
+        "solution": "$[[10*floor((a+5)/10)]] \\times [[10*floor((b+5)/10)]] = [[10*floor((a+5)/10) * 10*floor((b+5)/10)]]$.",
+        "skill": "est-mult",
+        "difficulty": 2,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5)) * (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 49
+            },
+            "b": {
+              "from": 11,
+              "to": 49
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5"]
+        }
+      },
+      {
+        "id": "tens",
+        "prompt": "Work out $[[10*a]] \\times [[10*b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*b]]"],
+          "form": "any"
+        },
+        "hints": ["Multiply $[[a]] \\times [[b]]$, then add the zeros."],
+        "solution": "$[[a]] \\times [[b]] = [[a*b]]$, then two zeros: $[[100*a*b]]$.",
+        "skill": "est-mult",
+        "difficulty": 1,
+        "compute": "10*a*10*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "tickets",
+        "prompt": "A ticket costs $[[a]]$ points. About how many points do $[[k]]$ tickets cost? Round the price to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)*k]]"],
+          "form": "any"
+        },
+        "hints": ["Round the price, then multiply."],
+        "solution": "About $[[10*floor((a+5)/10)]] \\times [[k]] = [[10*floor((a+5)/10)*k]]$ points.",
+        "skill": "est-mult",
+        "difficulty": 2,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5))*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 99
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "hundreds",
+        "prompt": "Estimate $[[10*m]] \\times [[b]]$, rounding $[[10*m]]$ to the nearest hundred and $[[b]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((10*m+50)/100) * 10*floor((b+5)/10)]]"],
+          "form": "any"
+        },
+        "hints": ["Round each number.", "Multiply the non-zero digits, then count the zeros."],
+        "solution": "$[[100*floor((10*m+50)/100)]] \\times [[10*floor((b+5)/10)]] = [[100*floor((10*m+50)/100) * 10*floor((b+5)/10)]]$.",
+        "skill": "est-mult",
+        "difficulty": 3,
+        "compute": "(10*m - mod(10*m,100) + 100*floor(mod(10*m,100)/50)) * (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 11,
+              "to": 89
+            },
+            "b": {
+              "from": 11,
+              "to": 49
+            }
+          },
+          "where": ["mod(m,10) != 5", "mod(b,10) != 5"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n10.est-mult-set",
+    "type": "PROBLEM_SET",
+    "title": "Estimate Products challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-one",
+        "prompt": "Estimate $[[a]] \\times [[k]]$ by rounding $[[a]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)*k]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\approx [[10*floor((a+5)/10)]]$, and $[[10*floor((a+5)/10)]] \\times [[k]] = [[10*floor((a+5)/10)*k]]$.",
+        "skill": "est-mult",
+        "difficulty": 1,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5))*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-two",
+        "prompt": "Estimate $[[a]] \\times [[b]]$ by rounding both numbers to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10) * 10*floor((b+5)/10)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[floor((a+5)/10) * 10*floor((b+5)/10)]]",
+              "why": "Check the zeros: tens times tens makes hundreds."
+            }
+          ]
+        },
+        "solution": "$[[10*floor((a+5)/10)]] \\times [[10*floor((b+5)/10)]] = [[10*floor((a+5)/10) * 10*floor((b+5)/10)]]$.",
+        "skill": "est-mult",
+        "difficulty": 2,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5)) * (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 49
+            },
+            "b": {
+              "from": 11,
+              "to": 49
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5"]
+        }
+      },
+      {
+        "id": "s-tens",
+        "prompt": "Work out $[[10*a]] \\times [[10*b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times [[b]] = [[a*b]]$, then two zeros: $[[100*a*b]]$.",
+        "skill": "est-mult",
+        "difficulty": 1,
+        "compute": "10*a*10*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-tickets",
+        "prompt": "A ticket costs $[[a]]$ points. About how many points do $[[k]]$ tickets cost? Round the price to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)*k]]"],
+          "form": "any"
+        },
+        "solution": "About $[[10*floor((a+5)/10)]] \\times [[k]] = [[10*floor((a+5)/10)*k]]$ points.",
+        "skill": "est-mult",
+        "difficulty": 2,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5))*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 99
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "s-hundreds",
+        "prompt": "Estimate $[[10*m]] \\times [[b]]$, rounding $[[10*m]]$ to the nearest hundred and $[[b]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((10*m+50)/100) * 10*floor((b+5)/10)]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*floor((10*m+50)/100)]] \\times [[10*floor((b+5)/10)]] = [[100*floor((10*m+50)/100) * 10*floor((b+5)/10)]]$.",
+        "skill": "est-mult",
+        "difficulty": 3,
+        "compute": "(10*m - mod(10*m,100) + 100*floor(mod(10*m,100)/50)) * (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 11,
+              "to": 89
+            },
+            "b": {
+              "from": 11,
+              "to": 49
+            }
+          },
+          "where": ["mod(m,10) != 5", "mod(b,10) != 5"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n10.est-div-practice",
+    "type": "PROBLEMS",
+    "title": "Friendly Numbers for Division",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "compat",
+        "prompt": "Estimate $[[a*k+r]] \\div [[k]]$ by using the nearby multiple $[[a*k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["$[[a*k]]$ is in the $[[k]]$ times table. Which fact?"],
+        "solution": "$[[a*k]] = [[k]] \\times [[a]]$, so $[[a*k+r]] \\div [[k]] \\approx [[a]]$.",
+        "skill": "est-div",
+        "difficulty": 1,
+        "compute": "a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "compat-big",
+        "prompt": "Estimate $[[10*a*k + r]] \\div [[k]]$ by using a friendly number from the $[[k]]$ times table.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "hints": ["Find a multiple of $[[k]]$ close to $[[10*a*k+r]]$ that ends in $0$."],
+        "solution": "$[[10*a*k]] = [[k]] \\times [[10*a]]$, so the estimate is $[[10*a]]$.",
+        "skill": "est-div",
+        "difficulty": 2,
+        "compute": "10*a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "fits",
+        "prompt": "How many whole times does $[[k]]$ go into $[[a*k+r]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Find the biggest multiple of $[[k]]$ that is not more than $[[a*k+r]]$."],
+        "solution": "$[[k]] \\times [[a]] = [[a*k]]$ and $[[k]] \\times [[a+1]] = [[(a+1)*k]]$ is too big, so $[[a]]$ times, with $[[r]]$ left over.",
+        "skill": "est-div",
+        "difficulty": 2,
+        "compute": "floor((a*k+r)/k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["r < k"]
+        }
+      },
+      {
+        "id": "div-tens",
+        "prompt": "Work out $[[a*k*10]] \\div [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "hints": ["Use the fact $[[a*k]] \\div [[k]] = [[a]]$."],
+        "solution": "$[[a*k]] \\div [[k]] = [[a]]$, so $[[10*a*k]] \\div [[k]] = [[10*a]]$.",
+        "skill": "est-div",
+        "difficulty": 1,
+        "compute": "10*a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "buses",
+        "prompt": "$[[a*k+r]]$ pupils go on a trip in minibuses that seat $[[k]]$. How many minibuses are needed?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That leaves $[[r]]$ pupils without a seat. They need one more bus."
+            }
+          ]
+        },
+        "hints": ["How many full buses? How many pupils are left over?"],
+        "solution": "$[[k]] \\times [[a]] = [[a*k]]$ seats $[[a*k]]$ pupils, and $[[r]]$ are left. They need one more bus: $[[a+1]]$.",
+        "skill": "est-div",
+        "difficulty": 3,
+        "compute": "ceil((a*k+r)/k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 9
+            },
+            "k": {
+              "from": 5,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n10.est-div-set",
+    "type": "PROBLEM_SET",
+    "title": "Friendly Numbers for Division challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-compat",
+        "prompt": "Estimate $[[a*k+r]] \\div [[k]]$ by using the nearby multiple $[[a*k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*k]] = [[k]] \\times [[a]]$, so $[[a*k+r]] \\div [[k]] \\approx [[a]]$.",
+        "skill": "est-div",
+        "difficulty": 1,
+        "compute": "a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "s-compat-big",
+        "prompt": "Estimate $[[10*a*k + r]] \\div [[k]]$ by using a friendly number from the $[[k]]$ times table.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*a*k]] = [[k]] \\times [[10*a]]$, so the estimate is $[[10*a]]$.",
+        "skill": "est-div",
+        "difficulty": 2,
+        "compute": "10*a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "s-fits",
+        "prompt": "How many whole times does $[[k]]$ go into $[[a*k+r]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[k]] \\times [[a]] = [[a*k]]$ and $[[k]] \\times [[a+1]] = [[(a+1)*k]]$ is too big, so $[[a]]$ times, with $[[r]]$ left over.",
+        "skill": "est-div",
+        "difficulty": 2,
+        "compute": "floor((a*k+r)/k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["r < k"]
+        }
+      },
+      {
+        "id": "s-div-tens",
+        "prompt": "Work out $[[a*k*10]] \\div [[k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*k]] \\div [[k]] = [[a]]$, so $[[10*a*k]] \\div [[k]] = [[10*a]]$.",
+        "skill": "est-div",
+        "difficulty": 1,
+        "compute": "10*a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-buses",
+        "prompt": "$[[a*k+r]]$ pupils go on a trip in minibuses that seat $[[k]]$. How many minibuses are needed?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a]]",
+              "why": "That leaves $[[r]]$ pupils without a seat. They need one more bus."
+            }
+          ]
+        },
+        "solution": "$[[k]] \\times [[a]] = [[a*k]]$ seats $[[a*k]]$ pupils, and $[[r]]$ are left. They need one more bus: $[[a+1]]$.",
+        "skill": "est-div",
+        "difficulty": 3,
+        "compute": "ceil((a*k+r)/k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 3,
+              "to": 9
+            },
+            "k": {
+              "from": 5,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n10.check-practice",
+    "type": "PROBLEMS",
+    "title": "Is the Answer Sensible?",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "last-prod",
+        "prompt": "What is the last digit of $[[a]] \\times [[b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10)*mod(b,10),10)]]"],
+          "form": "any"
+        },
+        "hints": ["Multiply just the last digits."],
+        "solution": "Only the last digits decide: $[[mod(a,10)]] \\times [[mod(b,10)]] = [[mod(a,10)*mod(b,10)]]$, which ends in $[[mod(mod(a,10)*mod(b,10),10)]]$.",
+        "skill": "est-check",
+        "difficulty": 1,
+        "compute": "mod(a*b,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "last-sum",
+        "prompt": "What is the last digit of $[[a]] + [[b]] + [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10)+mod(b,10)+mod(c,10),10)]]"],
+          "form": "any"
+        },
+        "hints": ["Add just the last digits."],
+        "solution": "Add the last digits: $[[mod(a,10)]] + [[mod(b,10)]] + [[mod(c,10)]] = [[mod(a,10)+mod(b,10)+mod(c,10)]]$, which ends in $[[mod(mod(a,10)+mod(b,10)+mod(c,10),10)]]$.",
+        "skill": "est-check",
+        "difficulty": 1,
+        "compute": "mod(a+b+c,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 49
+            },
+            "b": {
+              "from": 11,
+              "to": 49
+            },
+            "c": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "zero",
+        "prompt": "Ella says $[[a]] \\times [[k]] = [[10*a*k]]$. Estimate to find her mistake. What is the right answer?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*k]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Estimate the product first.",
+          "Then work it out exactly by splitting $[[a]]$ into tens and ones."
+        ],
+        "solution": "Estimate: about $[[10*floor((a+5)/10)*k]]$. Her answer is ten times too big. The right answer is $[[a*k]]$.",
+        "skill": "est-check",
+        "difficulty": 2,
+        "compute": "a*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 49
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 0", "mod(a,10) != 5"]
+        }
+      },
+      {
+        "id": "div-check",
+        "prompt": "Tom works out $[[a*k]] \\div [[k]]$ and gets $[[10*a]]$. Estimate to check. What is the right answer?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["Multiply Tom’s answer by $[[k]]$: do you get $[[a*k]]$?"],
+        "solution": "$[[k]] \\times [[10*a]] = [[10*a*k]]$, which is ten times $[[a*k]]$. The right answer is $[[a]]$.",
+        "skill": "est-check",
+        "difficulty": 3,
+        "compute": "a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 49
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "est-first",
+        "prompt": "Estimate $[[a]] \\times [[b]]$ by rounding both to the nearest ten. Then work out the exact answer. Type the exact answer.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Split one number into tens and ones to work it out exactly.",
+          "Check your answer is close to the estimate."
+        ],
+        "solution": "Estimate: $[[10*floor((a+5)/10)]] \\times [[10*floor((b+5)/10)]] = [[100*floor((a+5)/10)*floor((b+5)/10)]]$. Exact: $[[a*b]]$, close to the estimate.",
+        "skill": "est-check",
+        "difficulty": 2,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 29
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 5"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n10.check-set",
+    "type": "PROBLEM_SET",
+    "title": "Is the Answer Sensible? challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-last-prod",
+        "prompt": "What is the last digit of $[[a]] \\times [[b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10)*mod(b,10),10)]]"],
+          "form": "any"
+        },
+        "solution": "Only the last digits decide: $[[mod(a,10)]] \\times [[mod(b,10)]] = [[mod(a,10)*mod(b,10)]]$, which ends in $[[mod(mod(a,10)*mod(b,10),10)]]$.",
+        "skill": "est-check",
+        "difficulty": 1,
+        "compute": "mod(a*b,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-last-sum",
+        "prompt": "What is the last digit of $[[a]] + [[b]] + [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10)+mod(b,10)+mod(c,10),10)]]"],
+          "form": "any"
+        },
+        "solution": "Add the last digits: $[[mod(a,10)]] + [[mod(b,10)]] + [[mod(c,10)]] = [[mod(a,10)+mod(b,10)+mod(c,10)]]$, which ends in $[[mod(mod(a,10)+mod(b,10)+mod(c,10),10)]]$.",
+        "skill": "est-check",
+        "difficulty": 1,
+        "compute": "mod(a+b+c,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 49
+            },
+            "b": {
+              "from": 11,
+              "to": 49
+            },
+            "c": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-zero",
+        "prompt": "Ella says $[[a]] \\times [[k]] = [[10*a*k]]$. Estimate to find her mistake. What is the right answer?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*k]]"],
+          "form": "any"
+        },
+        "solution": "Estimate: about $[[10*floor((a+5)/10)*k]]$. Her answer is ten times too big. The right answer is $[[a*k]]$.",
+        "skill": "est-check",
+        "difficulty": 2,
+        "compute": "a*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 49
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 0", "mod(a,10) != 5"]
+        }
+      },
+      {
+        "id": "s-div-check",
+        "prompt": "Tom works out $[[a*k]] \\div [[k]]$ and gets $[[10*a]]$. Estimate to check. What is the right answer?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[k]] \\times [[10*a]] = [[10*a*k]]$, which is ten times $[[a*k]]$. The right answer is $[[a]]$.",
+        "skill": "est-check",
+        "difficulty": 3,
+        "compute": "a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 49
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-est-first",
+        "prompt": "Estimate $[[a]] \\times [[b]]$ by rounding both to the nearest ten. Then work out the exact answer. Type the exact answer.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*b]]"],
+          "form": "any"
+        },
+        "solution": "Estimate: $[[10*floor((a+5)/10)]] \\times [[10*floor((b+5)/10)]] = [[100*floor((a+5)/10)*floor((b+5)/10)]]$. Exact: $[[a*b]]$, close to the estimate.",
+        "skill": "est-check",
+        "difficulty": 2,
+        "compute": "a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 29
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 5"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n10.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-add10",
+        "prompt": "Estimate $[[a]] + [[b]]$ by rounding each number to the nearest ten first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]"],
+          "form": "any"
+        },
+        "hints": ["Round $[[a]]$ and $[[b]]$ to the nearest ten.", "Add the rounded numbers."],
+        "solution": "$[[a]] \\approx [[10*floor((a+5)/10)]]$ and $[[b]] \\approx [[10*floor((b+5)/10)]]$, so the estimate is $[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]$.",
+        "skill": "est-add",
+        "difficulty": 1,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5)) + (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "r2-one",
+        "prompt": "Estimate $[[a]] \\times [[k]]$ by rounding $[[a]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)*k]]"],
+          "form": "any"
+        },
+        "hints": ["Round $[[a]]$ to the nearest ten.", "Multiply the rounded number by $[[k]]$."],
+        "solution": "$[[a]] \\approx [[10*floor((a+5)/10)]]$, and $[[10*floor((a+5)/10)]] \\times [[k]] = [[10*floor((a+5)/10)*k]]$.",
+        "skill": "est-mult",
+        "difficulty": 1,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5))*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "r3-compat",
+        "prompt": "Estimate $[[a*k+r]] \\div [[k]]$ by using the nearby multiple $[[a*k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "hints": ["$[[a*k]]$ is in the $[[k]]$ times table. Which fact?"],
+        "solution": "$[[a*k]] = [[k]] \\times [[a]]$, so $[[a*k+r]] \\div [[k]] \\approx [[a]]$.",
+        "skill": "est-div",
+        "difficulty": 1,
+        "compute": "a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-last-prod",
+        "prompt": "What is the last digit of $[[a]] \\times [[b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10)*mod(b,10),10)]]"],
+          "form": "any"
+        },
+        "hints": ["Multiply just the last digits."],
+        "solution": "Only the last digits decide: $[[mod(a,10)]] \\times [[mod(b,10)]] = [[mod(a,10)*mod(b,10)]]$, which ends in $[[mod(mod(a,10)*mod(b,10),10)]]$.",
+        "skill": "est-check",
+        "difficulty": 1,
+        "compute": "mod(a*b,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n10.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 10 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-add10",
+        "prompt": "Estimate $[[a]] + [[b]]$ by rounding each number to the nearest ten first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\approx [[10*floor((a+5)/10)]]$ and $[[b]] \\approx [[10*floor((b+5)/10)]]$, so the estimate is $[[10*floor((a+5)/10) + 10*floor((b+5)/10)]]$.",
+        "skill": "est-add",
+        "difficulty": 1,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5)) + (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "c1-add100",
+        "prompt": "Estimate $[[10*m]] + [[10*n]]$ by rounding each number to the nearest hundred first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((10*m+50)/100) + 100*floor((10*n+50)/100)]]"],
+          "form": "any"
+        },
+        "solution": "The rounded numbers are $[[100*floor((10*m+50)/100)]]$ and $[[100*floor((10*n+50)/100)]]$, so about $[[100*floor((10*m+50)/100) + 100*floor((10*n+50)/100)]]$.",
+        "skill": "est-add",
+        "difficulty": 2,
+        "compute": "(10*m - mod(10*m,100) + 100*floor(mod(10*m,100)/50)) + (10*n - mod(10*n,100) + 100*floor(mod(10*n,100)/50))",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 11,
+              "to": 99
+            },
+            "n": {
+              "from": 11,
+              "to": 99
+            }
+          },
+          "where": ["mod(m,10) != 5", "mod(m,10) != 0"]
+        }
+      },
+      {
+        "id": "c1-sub100",
+        "prompt": "Estimate $[[10*m]] - [[10*n]]$ by rounding each number to the nearest hundred first.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*floor((10*m+50)/100) - 100*floor((10*n+50)/100)]]"],
+          "form": "any"
+        },
+        "solution": "$[[100*floor((10*m+50)/100)]] - [[100*floor((10*n+50)/100)]] = [[100*floor((10*m+50)/100) - 100*floor((10*n+50)/100)]]$.",
+        "skill": "est-add",
+        "difficulty": 2,
+        "compute": "(10*m - mod(10*m,100) + 100*floor(mod(10*m,100)/50)) - (10*n - mod(10*n,100) + 100*floor(mod(10*n,100)/50))",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 50,
+              "to": 99
+            },
+            "n": {
+              "from": 11,
+              "to": 45
+            }
+          },
+          "where": ["mod(m,10) != 5", "mod(n,10) != 5"]
+        }
+      },
+      {
+        "id": "c2-one",
+        "prompt": "Estimate $[[a]] \\times [[k]]$ by rounding $[[a]]$ to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10)*k]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\approx [[10*floor((a+5)/10)]]$, and $[[10*floor((a+5)/10)]] \\times [[k]] = [[10*floor((a+5)/10)*k]]$.",
+        "skill": "est-mult",
+        "difficulty": 1,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5))*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(a,10) != 0"]
+        }
+      },
+      {
+        "id": "c2-two",
+        "prompt": "Estimate $[[a]] \\times [[b]]$ by rounding both numbers to the nearest ten.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*floor((a+5)/10) * 10*floor((b+5)/10)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[floor((a+5)/10) * 10*floor((b+5)/10)]]",
+              "why": "Check the zeros: tens times tens makes hundreds."
+            }
+          ]
+        },
+        "solution": "$[[10*floor((a+5)/10)]] \\times [[10*floor((b+5)/10)]] = [[10*floor((a+5)/10) * 10*floor((b+5)/10)]]$.",
+        "skill": "est-mult",
+        "difficulty": 2,
+        "compute": "(a - mod(a,10) + 10*floor(mod(a,10)/5)) * (b - mod(b,10) + 10*floor(mod(b,10)/5))",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 49
+            },
+            "b": {
+              "from": 11,
+              "to": 49
+            }
+          },
+          "where": ["mod(a,10) != 5", "mod(b,10) != 5"]
+        }
+      },
+      {
+        "id": "c2-tens",
+        "prompt": "Work out $[[10*a]] \\times [[10*b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*a*b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times [[b]] = [[a*b]]$, then two zeros: $[[100*a*b]]$.",
+        "skill": "est-mult",
+        "difficulty": 1,
+        "compute": "10*a*10*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-compat",
+        "prompt": "Estimate $[[a*k+r]] \\div [[k]]$ by using the nearby multiple $[[a*k]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a*k]] = [[k]] \\times [[a]]$, so $[[a*k+r]] \\div [[k]] \\approx [[a]]$.",
+        "skill": "est-div",
+        "difficulty": 1,
+        "compute": "a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-compat-big",
+        "prompt": "Estimate $[[10*a*k + r]] \\div [[k]]$ by using a friendly number from the $[[k]]$ times table.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*a]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*a*k]] = [[k]] \\times [[10*a]]$, so the estimate is $[[10*a]]$.",
+        "skill": "est-div",
+        "difficulty": 2,
+        "compute": "10*a*k/k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 2
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-fits",
+        "prompt": "How many whole times does $[[k]]$ go into $[[a*k+r]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a]]"],
+          "form": "any"
+        },
+        "solution": "$[[k]] \\times [[a]] = [[a*k]]$ and $[[k]] \\times [[a+1]] = [[(a+1)*k]]$ is too big, so $[[a]]$ times, with $[[r]]$ left over.",
+        "skill": "est-div",
+        "difficulty": 2,
+        "compute": "floor((a*k+r)/k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 4,
+              "to": 12
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            },
+            "r": {
+              "from": 1,
+              "to": 8
+            }
+          },
+          "where": ["r < k"]
+        }
+      },
+      {
+        "id": "c4-last-prod",
+        "prompt": "What is the last digit of $[[a]] \\times [[b]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10)*mod(b,10),10)]]"],
+          "form": "any"
+        },
+        "solution": "Only the last digits decide: $[[mod(a,10)]] \\times [[mod(b,10)]] = [[mod(a,10)*mod(b,10)]]$, which ends in $[[mod(mod(a,10)*mod(b,10),10)]]$.",
+        "skill": "est-check",
+        "difficulty": 1,
+        "compute": "mod(a*b,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 99
+            },
+            "b": {
+              "from": 11,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-last-sum",
+        "prompt": "What is the last digit of $[[a]] + [[b]] + [[c]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[mod(mod(a,10)+mod(b,10)+mod(c,10),10)]]"],
+          "form": "any"
+        },
+        "solution": "Add the last digits: $[[mod(a,10)]] + [[mod(b,10)]] + [[mod(c,10)]] = [[mod(a,10)+mod(b,10)+mod(c,10)]]$, which ends in $[[mod(mod(a,10)+mod(b,10)+mod(c,10),10)]]$.",
+        "skill": "est-check",
+        "difficulty": 1,
+        "compute": "mod(a+b+c,10)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 49
+            },
+            "b": {
+              "from": 11,
+              "to": 49
+            },
+            "c": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-zero",
+        "prompt": "Ella says $[[a]] \\times [[k]] = [[10*a*k]]$. Estimate to find her mistake. What is the right answer?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*k]]"],
+          "form": "any"
+        },
+        "solution": "Estimate: about $[[10*floor((a+5)/10)*k]]$. Her answer is ten times too big. The right answer is $[[a*k]]$.",
+        "skill": "est-check",
+        "difficulty": 2,
+        "compute": "a*k",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 49
+            },
+            "k": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["mod(a,10) != 0", "mod(a,10) != 5"]
+        }
+      }
+    ]
+  }
+]

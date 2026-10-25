@@ -2,5 +2,133 @@
   { "id": "bonds-10", "label": "Bonds to 10", "strand": "strategy", "units": [1] },
   { "id": "bonds-20", "label": "Bonds to 20", "strand": "strategy", "units": [1] },
   { "id": "bridge-10", "label": "Make 10 to add and subtract", "strand": "strategy", "units": [1] },
-  { "id": "bonds-100", "label": "Bonds to 100", "strand": "strategy", "units": [1] }
+  { "id": "bonds-100", "label": "Bonds to 100", "strand": "strategy", "units": [1] },
+  {
+    "id": "front-add",
+    "label": "Add 2-digit numbers from the left",
+    "strand": "strategy",
+    "units": [4]
+  },
+  {
+    "id": "front-add-3",
+    "label": "Add 3-digit numbers from the left",
+    "strand": "strategy",
+    "units": [4]
+  },
+  { "id": "front-sub", "label": "Subtract from the left", "strand": "strategy", "units": [4] },
+  { "id": "jump-sub", "label": "Subtract in two jumps", "strand": "strategy", "units": [4] },
+  { "id": "anchor-2-5-10", "label": "Times 2, 5 and 10", "strand": "strategy", "units": [5] },
+  { "id": "anchor-split", "label": "Split a factor", "strand": "strategy", "units": [5] },
+  {
+    "id": "anchor-near",
+    "label": "Near an anchor: times 9, 4 and 8",
+    "strand": "strategy",
+    "units": [5]
+  },
+  {
+    "id": "anchor-tens",
+    "label": "Tens and ones times a number",
+    "strand": "strategy",
+    "units": [5]
+  },
+  {
+    "id": "bench-round",
+    "label": "Round to the nearest 10 or 100",
+    "strand": "strategy",
+    "units": [6]
+  },
+  { "id": "bench-50", "label": "Use 50 as half of 100", "strand": "strategy", "units": [6] },
+  { "id": "bench-25", "label": "Use 25 as a quarter of 100", "strand": "strategy", "units": [6] },
+  { "id": "bench-1000", "label": "Benchmarks 100 and 1000", "strand": "strategy", "units": [6] },
+  {
+    "id": "missing-add",
+    "label": "Missing numbers in addition",
+    "strand": "strategy",
+    "units": [7]
+  },
+  {
+    "id": "missing-sub",
+    "label": "Missing numbers in subtraction",
+    "strand": "strategy",
+    "units": [7]
+  },
+  { "id": "missing-mult", "label": "Missing factors", "strand": "strategy", "units": [7] },
+  { "id": "balance", "label": "Balance both sides", "strand": "strategy", "units": [7] },
+  {
+    "id": "fdp-convert",
+    "label": "Fractions, decimals and percentages",
+    "strand": "strategy",
+    "units": [8]
+  },
+  { "id": "percent-10", "label": "10% and 1%", "strand": "strategy", "units": [8] },
+  { "id": "percent-bench", "label": "Benchmark percentages", "strand": "strategy", "units": [8] },
+  { "id": "fraction-of", "label": "A fraction of a number", "strand": "strategy", "units": [8] },
+  { "id": "div-last-digit", "label": "Tests for 2, 5 and 10", "strand": "strategy", "units": [9] },
+  { "id": "div-digit-sum", "label": "Tests for 3 and 9", "strand": "strategy", "units": [9] },
+  { "id": "div-last-two", "label": "Tests for 4 and 8", "strand": "strategy", "units": [9] },
+  { "id": "div-6-11", "label": "Tests for 6 and 11", "strand": "strategy", "units": [9] },
+  {
+    "id": "est-add",
+    "label": "Estimate sums and differences",
+    "strand": "strategy",
+    "units": [10]
+  },
+  { "id": "est-mult", "label": "Estimate products", "strand": "strategy", "units": [10] },
+  {
+    "id": "est-div",
+    "label": "Compatible numbers for division",
+    "strand": "strategy",
+    "units": [10]
+  },
+  {
+    "id": "est-check",
+    "label": "Check an answer is sensible",
+    "strand": "strategy",
+    "units": [10]
+  },
+  { "id": "times-99", "label": "Times 9 and 99", "strand": "strategy", "units": [11] },
+  { "id": "times-999", "label": "Times 999 and 98", "strand": "strategy", "units": [11] },
+  { "id": "times-11", "label": "Times 11", "strand": "strategy", "units": [11] },
+  { "id": "times-101", "label": "Times 101 and 1001", "strand": "strategy", "units": [11] },
+  { "id": "squares-15", "label": "Squares to 15", "strand": "strategy", "units": [12] },
+  { "id": "squares-5", "label": "Squares ending in 5", "strand": "strategy", "units": [12] },
+  { "id": "squares-step", "label": "Step to the next square", "strand": "strategy", "units": [12] },
+  { "id": "squares-30", "label": "Squares from 16 to 30", "strand": "strategy", "units": [12] },
+  {
+    "id": "dos-pattern",
+    "label": "The difference of squares",
+    "strand": "strategy",
+    "units": [13]
+  },
+  {
+    "id": "dos-around",
+    "label": "Multiply around a round number",
+    "strand": "strategy",
+    "units": [13]
+  },
+  { "id": "dos-neighbours", "label": "Neighbouring squares", "strand": "strategy", "units": [13] },
+  {
+    "id": "dos-square",
+    "label": "Square near a round number",
+    "strand": "strategy",
+    "units": [13]
+  },
+  {
+    "id": "vedic-complement",
+    "label": "All from 9 and the last from 10",
+    "strand": "strategy",
+    "units": [14]
+  },
+  { "id": "vedic-base", "label": "Multiply near a base", "strand": "strategy", "units": [14] },
+  {
+    "id": "vedic-crosswise",
+    "label": "Vertically and crosswise",
+    "strand": "strategy",
+    "units": [14]
+  },
+  { "id": "vedic-why", "label": "Other bases", "strand": "strategy", "units": [14] },
+  { "id": "check-inverse", "label": "Check with the inverse", "strand": "strategy", "units": [15] },
+  { "id": "check-nines", "label": "Casting out nines", "strand": "strategy", "units": [15] },
+  { "id": "pick-strategy", "label": "Pick the best strategy", "strand": "strategy", "units": [15] },
+  { "id": "speed-mixed", "label": "Mixed sprints", "strand": "strategy", "units": [15] }
 ]

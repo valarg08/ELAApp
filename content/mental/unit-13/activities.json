@@ -1,0 +1,1571 @@
+[
+  {
+    "key": "n13.pattern-practice",
+    "type": "PROBLEMS",
+    "title": "The Pattern",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "small",
+        "prompt": "Work out $[[a]]^2 - [[b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a - b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(a-b)*(a-b)]]",
+              "why": "$a^2 - b^2$ is not $(a - b)^2$. Use $(a + b)(a - b)$."
+            }
+          ]
+        },
+        "hints": ["Add the numbers, subtract the numbers, then multiply."],
+        "solution": "$([[a]] + [[b]])([[a]] - [[b]]) = [[a+b]] \\times [[a-b]] = [[a*a-b*b]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 1,
+        "compute": "(a+b)*(a-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 15
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a > b + 1"]
+        }
+      },
+      {
+        "id": "big",
+        "prompt": "Work out $[[a]]^2 - [[b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a - b*b]]"],
+          "form": "any"
+        },
+        "hints": ["Add the numbers: $[[a+b]]$.", "Subtract them, then multiply."],
+        "solution": "$[[a+b]] \\times [[a-b]] = [[a*a-b*b]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 2,
+        "compute": "(a+b)*(a-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 60
+            },
+            "b": {
+              "from": 11,
+              "to": 40
+            }
+          },
+          "where": ["a > b", "mod(a + b, 10) == 0"]
+        }
+      },
+      {
+        "id": "hundred",
+        "prompt": "Work out $[[a]]^2 - [[100-a]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(2*a-100)]]"],
+          "form": "any"
+        },
+        "hints": ["$[[a]] + [[100-a]] = 100$."],
+        "solution": "The numbers add to $100$ and differ by $[[2*a-100]]$: $100 \\times [[2*a-100]] = [[100*(2*a-100)]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 2,
+        "compute": "a^2 - (100-a)^2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 95
+            }
+          }
+        }
+      },
+      {
+        "id": "gap",
+        "prompt": "Two numbers add to $[[s]]$ and differ by $[[d]]$. What is the difference of their squares?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*d]]"],
+          "form": "any"
+        },
+        "hints": ["$a^2 - b^2 = (a + b)(a - b)$."],
+        "solution": "$a^2 - b^2 = (a + b)(a - b) = [[s]] \\times [[d]] = [[s*d]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 3,
+        "compute": "s*d",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 10,
+              "to": 90
+            },
+            "d": {
+              "from": 2,
+              "to": 8
+            }
+          },
+          "where": ["mod(s - d, 2) == 0", "mod(s, 10) == 0"]
+        }
+      },
+      {
+        "id": "tiles",
+        "prompt": "A $[[b]]$ by $[[b]]$ square is cut from the corner of a $[[a]]$ by $[[a]]$ square of tiles. How many tiles are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a - b*b]]"],
+          "form": "any"
+        },
+        "hints": ["Work out $[[a]]^2 - [[b]]^2$ with the pattern."],
+        "solution": "$[[a]]^2 - [[b]]^2 = [[a+b]] \\times [[a-b]] = [[a*a-b*b]]$ tiles.",
+        "skill": "dos-pattern",
+        "difficulty": 2,
+        "compute": "(a+b)*(a-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 20
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["a > b + 1"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n13.pattern-set",
+    "type": "PROBLEM_SET",
+    "title": "The Pattern challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-small",
+        "prompt": "Work out $[[a]]^2 - [[b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a - b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(a-b)*(a-b)]]",
+              "why": "$a^2 - b^2$ is not $(a - b)^2$. Use $(a + b)(a - b)$."
+            }
+          ]
+        },
+        "solution": "$([[a]] + [[b]])([[a]] - [[b]]) = [[a+b]] \\times [[a-b]] = [[a*a-b*b]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 1,
+        "compute": "(a+b)*(a-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 15
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a > b + 1"]
+        }
+      },
+      {
+        "id": "s-big",
+        "prompt": "Work out $[[a]]^2 - [[b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a - b*b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a+b]] \\times [[a-b]] = [[a*a-b*b]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 2,
+        "compute": "(a+b)*(a-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 60
+            },
+            "b": {
+              "from": 11,
+              "to": 40
+            }
+          },
+          "where": ["a > b", "mod(a + b, 10) == 0"]
+        }
+      },
+      {
+        "id": "s-hundred",
+        "prompt": "Work out $[[a]]^2 - [[100-a]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(2*a-100)]]"],
+          "form": "any"
+        },
+        "solution": "The numbers add to $100$ and differ by $[[2*a-100]]$: $100 \\times [[2*a-100]] = [[100*(2*a-100)]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 2,
+        "compute": "a^2 - (100-a)^2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 95
+            }
+          }
+        }
+      },
+      {
+        "id": "s-gap",
+        "prompt": "Two numbers add to $[[s]]$ and differ by $[[d]]$. What is the difference of their squares?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[s*d]]"],
+          "form": "any"
+        },
+        "solution": "$a^2 - b^2 = (a + b)(a - b) = [[s]] \\times [[d]] = [[s*d]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 3,
+        "compute": "s*d",
+        "template": {
+          "vars": {
+            "s": {
+              "from": 10,
+              "to": 90
+            },
+            "d": {
+              "from": 2,
+              "to": 8
+            }
+          },
+          "where": ["mod(s - d, 2) == 0", "mod(s, 10) == 0"]
+        }
+      },
+      {
+        "id": "s-tiles",
+        "prompt": "A $[[b]]$ by $[[b]]$ square is cut from the corner of a $[[a]]$ by $[[a]]$ square of tiles. How many tiles are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a - b*b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]]^2 - [[b]]^2 = [[a+b]] \\times [[a-b]] = [[a*a-b*b]]$ tiles.",
+        "skill": "dos-pattern",
+        "difficulty": 2,
+        "compute": "(a+b)*(a-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 10,
+              "to": 20
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["a > b + 1"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n13.around-practice",
+    "type": "PROBLEMS",
+    "title": "Multiply Around a Round Number",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "around",
+        "prompt": "Work out $[[10*m-b]] \\times [[10*m+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*m*m - b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*m*m + b*b]]",
+              "why": "Take $[[b]]^2$ away, don’t add it."
+            },
+            {
+              "value": "[[100*m*m]]",
+              "why": "That is the middle squared. Take away $[[b]]^2$."
+            }
+          ]
+        },
+        "hints": [
+          "What number is in the middle?",
+          "Square the middle, take away the distance squared."
+        ],
+        "solution": "Middle $[[10*m]]$, distance $[[b]]$: $[[100*m*m]] - [[b*b]] = [[100*m*m-b*b]]$.",
+        "skill": "dos-around",
+        "difficulty": 1,
+        "compute": "(10*m-b)*(10*m+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "hundred",
+        "prompt": "Work out $[[100-b]] \\times [[100+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10000 - b*b]]"],
+          "form": "any"
+        },
+        "hints": ["The middle is $100$."],
+        "solution": "$100^2 - [[b]]^2 = 10000 - [[b*b]] = [[10000-b*b]]$.",
+        "skill": "dos-around",
+        "difficulty": 2,
+        "compute": "(100-b)*(100+b)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "middle",
+        "prompt": "$[[10*m-b]] \\times [[10*m+b]] = \\square^2 - [[b]]^2$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*m]]"],
+          "form": "any"
+        },
+        "hints": ["The middle is half of the two numbers added."],
+        "solution": "The middle is half the sum: $[[20*m]] \\div 2 = [[10*m]]$.",
+        "skill": "dos-around",
+        "difficulty": 2,
+        "compute": "((10*m-b)+(10*m+b))/2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "fives",
+        "prompt": "Work out $[[10*m+5-b]] \\times [[10*m+5+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m+5)^2 - b*b]]"],
+          "form": "any"
+        },
+        "hints": [
+          "The middle ends in $5$: square it with the Unit 12 pattern.",
+          "Take away $[[b]]^2$."
+        ],
+        "solution": "Middle $[[10*m+5]]$, and $[[10*m+5]]^2 = [[(10*m+5)^2]]$. Take away $[[b*b]]$: $[[(10*m+5)^2-b*b]]$.",
+        "skill": "dos-around",
+        "difficulty": 3,
+        "compute": "(10*m+5-b)*(10*m+5+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "hall",
+        "prompt": "A hall has $[[10*m-b]]$ rows of $[[10*m+b]]$ seats. How many seats is that?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*m*m - b*b]]"],
+          "form": "any"
+        },
+        "hints": ["Both numbers are $[[b]]$ away from $[[10*m]]$."],
+        "solution": "$[[10*m]]^2 - [[b]]^2 = [[100*m*m-b*b]]$ seats.",
+        "skill": "dos-around",
+        "difficulty": 2,
+        "compute": "(10*m-b)*(10*m+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n13.around-set",
+    "type": "PROBLEM_SET",
+    "title": "Multiply Around a Round Number challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-around",
+        "prompt": "Work out $[[10*m-b]] \\times [[10*m+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*m*m - b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*m*m + b*b]]",
+              "why": "Take $[[b]]^2$ away, don’t add it."
+            },
+            {
+              "value": "[[100*m*m]]",
+              "why": "That is the middle squared. Take away $[[b]]^2$."
+            }
+          ]
+        },
+        "solution": "Middle $[[10*m]]$, distance $[[b]]$: $[[100*m*m]] - [[b*b]] = [[100*m*m-b*b]]$.",
+        "skill": "dos-around",
+        "difficulty": 1,
+        "compute": "(10*m-b)*(10*m+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-hundred",
+        "prompt": "Work out $[[100-b]] \\times [[100+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10000 - b*b]]"],
+          "form": "any"
+        },
+        "solution": "$100^2 - [[b]]^2 = 10000 - [[b*b]] = [[10000-b*b]]$.",
+        "skill": "dos-around",
+        "difficulty": 2,
+        "compute": "(100-b)*(100+b)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-middle",
+        "prompt": "$[[10*m-b]] \\times [[10*m+b]] = \\square^2 - [[b]]^2$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*m]]"],
+          "form": "any"
+        },
+        "solution": "The middle is half the sum: $[[20*m]] \\div 2 = [[10*m]]$.",
+        "skill": "dos-around",
+        "difficulty": 2,
+        "compute": "((10*m-b)+(10*m+b))/2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-fives",
+        "prompt": "Work out $[[10*m+5-b]] \\times [[10*m+5+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m+5)^2 - b*b]]"],
+          "form": "any"
+        },
+        "solution": "Middle $[[10*m+5]]$, and $[[10*m+5]]^2 = [[(10*m+5)^2]]$. Take away $[[b*b]]$: $[[(10*m+5)^2-b*b]]$.",
+        "skill": "dos-around",
+        "difficulty": 3,
+        "compute": "(10*m+5-b)*(10*m+5+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-hall",
+        "prompt": "A hall has $[[10*m-b]]$ rows of $[[10*m+b]]$ seats. How many seats is that?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*m*m - b*b]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*m]]^2 - [[b]]^2 = [[100*m*m-b*b]]$ seats.",
+        "skill": "dos-around",
+        "difficulty": 2,
+        "compute": "(10*m-b)*(10*m+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n13.neighbours-practice",
+    "type": "PROBLEMS",
+    "title": "Neighbouring Squares",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "next",
+        "prompt": "Work out $[[n+1]]^2 - [[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "The difference of the numbers is $1$, but you need the sum times the difference."
+            }
+          ]
+        },
+        "hints": ["For neighbours, the difference of squares is the sum."],
+        "solution": "Add the numbers: $[[n+1]] + [[n]] = [[2*n+1]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 1,
+        "compute": "(n+1)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "two-apart",
+        "prompt": "Work out $[[n+2]]^2 - [[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(2*n+2)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n+2]]",
+              "why": "That is the sum. Times it by the difference, $2$."
+            }
+          ]
+        },
+        "hints": ["Sum times difference: the difference is $2$."],
+        "solution": "$([[n+2]] + [[n]]) \\times 2 = [[2*n+2]] \\times 2 = [[4*n+4]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 2,
+        "compute": "(n+2)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "find",
+        "prompt": "$(n + 1)^2 - n^2 = [[2*n+1]]$. What is $n$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "hints": [
+          "The two numbers add to $[[2*n+1]]$.",
+          "They are next to each other: take $1$ off, then halve."
+        ],
+        "solution": "$n + (n + 1) = [[2*n+1]]$, so $2n = [[2*n]]$ and $n = [[n]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 3,
+        "compute": "(2*n + 1 - 1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "step",
+        "prompt": "$[[n]]^2 = [[n*n]]$. Use it to work out $[[n+1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(n+1)^2]]"],
+          "form": "any"
+        },
+        "hints": ["The gap is $[[n]] + [[n+1]]$."],
+        "solution": "Add the gap $[[2*n+1]]$: $[[n*n]] + [[2*n+1]] = [[(n+1)^2]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 2,
+        "compute": "n*n + 2*n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "odd",
+        "prompt": "Add the first $[[n]]$ odd numbers: $1 + 3 + 5 + \\cdots + [[2*n-1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*n]]"],
+          "form": "any"
+        },
+        "hints": ["Try $1$, $1 + 3$, $1 + 3 + 5$: what kind of numbers do you get?"],
+        "solution": "Each odd number is a gap between squares, so they stack up to $[[n]]^2 = [[n*n]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 3,
+        "compute": "n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 20
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n13.neighbours-set",
+    "type": "PROBLEM_SET",
+    "title": "Neighbouring Squares challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-next",
+        "prompt": "Work out $[[n+1]]^2 - [[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "The difference of the numbers is $1$, but you need the sum times the difference."
+            }
+          ]
+        },
+        "solution": "Add the numbers: $[[n+1]] + [[n]] = [[2*n+1]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 1,
+        "compute": "(n+1)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-two-apart",
+        "prompt": "Work out $[[n+2]]^2 - [[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(2*n+2)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n+2]]",
+              "why": "That is the sum. Times it by the difference, $2$."
+            }
+          ]
+        },
+        "solution": "$([[n+2]] + [[n]]) \\times 2 = [[2*n+2]] \\times 2 = [[4*n+4]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 2,
+        "compute": "(n+2)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-find",
+        "prompt": "$(n + 1)^2 - n^2 = [[2*n+1]]$. What is $n$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "solution": "$n + (n + 1) = [[2*n+1]]$, so $2n = [[2*n]]$ and $n = [[n]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 3,
+        "compute": "(2*n + 1 - 1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "s-step",
+        "prompt": "$[[n]]^2 = [[n*n]]$. Use it to work out $[[n+1]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(n+1)^2]]"],
+          "form": "any"
+        },
+        "solution": "Add the gap $[[2*n+1]]$: $[[n*n]] + [[2*n+1]] = [[(n+1)^2]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 2,
+        "compute": "n*n + 2*n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 30
+            }
+          }
+        }
+      },
+      {
+        "id": "s-odd",
+        "prompt": "Add the first $[[n]]$ odd numbers: $1 + 3 + 5 + \\cdots + [[2*n-1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n*n]]"],
+          "form": "any"
+        },
+        "solution": "Each odd number is a gap between squares, so they stack up to $[[n]]^2 = [[n*n]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 3,
+        "compute": "n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 20
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n13.near-practice",
+    "type": "PROBLEMS",
+    "title": "Square Near a Round Number",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "below",
+        "prompt": "Work out $[[10*m-b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m-b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*m*(10*m-2*b)]]",
+              "why": "Add $[[b]]^2$ at the end."
+            }
+          ]
+        },
+        "hints": [
+          "Move up $[[b]]$ to $[[10*m]]$ and down $[[b]]$ to $[[10*m-2*b]]$.",
+          "Multiply, then add $[[b]]^2$."
+        ],
+        "solution": "$[[10*m-2*b]] \\times [[10*m]] + [[b]]^2 = [[10*m*(10*m-2*b)]] + [[b*b]] = [[(10*m-b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 1,
+        "compute": "(10*m - 2*b)*(10*m) + b^2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "above",
+        "prompt": "Work out $[[10*m+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m+b)^2]]"],
+          "form": "any"
+        },
+        "hints": ["Move down $[[b]]$ to $[[10*m]]$ and up $[[b]]$ to $[[10*m+2*b]]$."],
+        "solution": "$[[10*m+2*b]] \\times [[10*m]] + [[b*b]] = [[(10*m+b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 2,
+        "compute": "(10*m + 2*b)*(10*m) + b^2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "hundred",
+        "prompt": "Work out $[[100-b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(100-b)^2]]"],
+          "form": "any"
+        },
+        "hints": ["Use $[[100-2*b]] \\times 100$, then add $[[b]]^2$."],
+        "solution": "$[[100-2*b]] \\times 100 + [[b*b]] = [[(100-b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 2,
+        "compute": "(100 - 2*b)*100 + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "over100",
+        "prompt": "Work out $[[100+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(100+b)^2]]"],
+          "form": "any"
+        },
+        "hints": ["Use $[[100+2*b]] \\times 100$, then add $[[b]]^2$."],
+        "solution": "$[[100+2*b]] \\times 100 + [[b*b]] = [[(100+b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 3,
+        "compute": "(100 + 2*b)*100 + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "box",
+        "prompt": "$[[10*m-b]]^2 = [[10*m-2*b]] \\times [[10*m]] + \\square$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b*b]]"],
+          "form": "any"
+        },
+        "hints": ["How far is $[[10*m-b]]$ from $[[10*m]]$? Square that."],
+        "solution": "The extra is the distance squared: $[[b]]^2 = [[b*b]]$.",
+        "skill": "dos-square",
+        "difficulty": 2,
+        "compute": "(10*m-b)^2 - (10*m-2*b)*10*m",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n13.near-set",
+    "type": "PROBLEM_SET",
+    "title": "Square Near a Round Number challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-below",
+        "prompt": "Work out $[[10*m-b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m-b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*m*(10*m-2*b)]]",
+              "why": "Add $[[b]]^2$ at the end."
+            }
+          ]
+        },
+        "solution": "$[[10*m-2*b]] \\times [[10*m]] + [[b]]^2 = [[10*m*(10*m-2*b)]] + [[b*b]] = [[(10*m-b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 1,
+        "compute": "(10*m - 2*b)*(10*m) + b^2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "s-above",
+        "prompt": "Work out $[[10*m+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m+b)^2]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*m+2*b]] \\times [[10*m]] + [[b*b]] = [[(10*m+b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 2,
+        "compute": "(10*m + 2*b)*(10*m) + b^2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "s-hundred",
+        "prompt": "Work out $[[100-b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(100-b)^2]]"],
+          "form": "any"
+        },
+        "solution": "$[[100-2*b]] \\times 100 + [[b*b]] = [[(100-b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 2,
+        "compute": "(100 - 2*b)*100 + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-over100",
+        "prompt": "Work out $[[100+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(100+b)^2]]"],
+          "form": "any"
+        },
+        "solution": "$[[100+2*b]] \\times 100 + [[b*b]] = [[(100+b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 3,
+        "compute": "(100 + 2*b)*100 + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-box",
+        "prompt": "$[[10*m-b]]^2 = [[10*m-2*b]] \\times [[10*m]] + \\square$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[b*b]]"],
+          "form": "any"
+        },
+        "solution": "The extra is the distance squared: $[[b]]^2 = [[b*b]]$.",
+        "skill": "dos-square",
+        "difficulty": 2,
+        "compute": "(10*m-b)^2 - (10*m-2*b)*10*m",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n13.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-small",
+        "prompt": "Work out $[[a]]^2 - [[b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a - b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(a-b)*(a-b)]]",
+              "why": "$a^2 - b^2$ is not $(a - b)^2$. Use $(a + b)(a - b)$."
+            }
+          ]
+        },
+        "hints": ["Add the numbers, subtract the numbers, then multiply."],
+        "solution": "$([[a]] + [[b]])([[a]] - [[b]]) = [[a+b]] \\times [[a-b]] = [[a*a-b*b]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 1,
+        "compute": "(a+b)*(a-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 15
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a > b + 1"]
+        }
+      },
+      {
+        "id": "r2-around",
+        "prompt": "Work out $[[10*m-b]] \\times [[10*m+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*m*m - b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*m*m + b*b]]",
+              "why": "Take $[[b]]^2$ away, don’t add it."
+            },
+            {
+              "value": "[[100*m*m]]",
+              "why": "That is the middle squared. Take away $[[b]]^2$."
+            }
+          ]
+        },
+        "hints": [
+          "What number is in the middle?",
+          "Square the middle, take away the distance squared."
+        ],
+        "solution": "Middle $[[10*m]]$, distance $[[b]]$: $[[100*m*m]] - [[b*b]] = [[100*m*m-b*b]]$.",
+        "skill": "dos-around",
+        "difficulty": 1,
+        "compute": "(10*m-b)*(10*m+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-next",
+        "prompt": "Work out $[[n+1]]^2 - [[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "The difference of the numbers is $1$, but you need the sum times the difference."
+            }
+          ]
+        },
+        "hints": ["For neighbours, the difference of squares is the sum."],
+        "solution": "Add the numbers: $[[n+1]] + [[n]] = [[2*n+1]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 1,
+        "compute": "(n+1)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-below",
+        "prompt": "Work out $[[10*m-b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m-b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*m*(10*m-2*b)]]",
+              "why": "Add $[[b]]^2$ at the end."
+            }
+          ]
+        },
+        "hints": [
+          "Move up $[[b]]$ to $[[10*m]]$ and down $[[b]]$ to $[[10*m-2*b]]$.",
+          "Multiply, then add $[[b]]^2$."
+        ],
+        "solution": "$[[10*m-2*b]] \\times [[10*m]] + [[b]]^2 = [[10*m*(10*m-2*b)]] + [[b*b]] = [[(10*m-b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 1,
+        "compute": "(10*m - 2*b)*(10*m) + b^2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n13.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 13 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-small",
+        "prompt": "Work out $[[a]]^2 - [[b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a - b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[(a-b)*(a-b)]]",
+              "why": "$a^2 - b^2$ is not $(a - b)^2$. Use $(a + b)(a - b)$."
+            }
+          ]
+        },
+        "solution": "$([[a]] + [[b]])([[a]] - [[b]]) = [[a+b]] \\times [[a-b]] = [[a*a-b*b]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 1,
+        "compute": "(a+b)*(a-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 15
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          },
+          "where": ["a > b + 1"]
+        }
+      },
+      {
+        "id": "c1-big",
+        "prompt": "Work out $[[a]]^2 - [[b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a*a - b*b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a+b]] \\times [[a-b]] = [[a*a-b*b]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 2,
+        "compute": "(a+b)*(a-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 60
+            },
+            "b": {
+              "from": 11,
+              "to": 40
+            }
+          },
+          "where": ["a > b", "mod(a + b, 10) == 0"]
+        }
+      },
+      {
+        "id": "c1-hundred",
+        "prompt": "Work out $[[a]]^2 - [[100-a]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*(2*a-100)]]"],
+          "form": "any"
+        },
+        "solution": "The numbers add to $100$ and differ by $[[2*a-100]]$: $100 \\times [[2*a-100]] = [[100*(2*a-100)]]$.",
+        "skill": "dos-pattern",
+        "difficulty": 2,
+        "compute": "a^2 - (100-a)^2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 95
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-around",
+        "prompt": "Work out $[[10*m-b]] \\times [[10*m+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100*m*m - b*b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[100*m*m + b*b]]",
+              "why": "Take $[[b]]^2$ away, don’t add it."
+            },
+            {
+              "value": "[[100*m*m]]",
+              "why": "That is the middle squared. Take away $[[b]]^2$."
+            }
+          ]
+        },
+        "solution": "Middle $[[10*m]]$, distance $[[b]]$: $[[100*m*m]] - [[b*b]] = [[100*m*m-b*b]]$.",
+        "skill": "dos-around",
+        "difficulty": 1,
+        "compute": "(10*m-b)*(10*m+b)",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-hundred",
+        "prompt": "Work out $[[100-b]] \\times [[100+b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10000 - b*b]]"],
+          "form": "any"
+        },
+        "solution": "$100^2 - [[b]]^2 = 10000 - [[b*b]] = [[10000-b*b]]$.",
+        "skill": "dos-around",
+        "difficulty": 2,
+        "compute": "(100-b)*(100+b)",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-middle",
+        "prompt": "$[[10*m-b]] \\times [[10*m+b]] = \\square^2 - [[b]]^2$. Which number goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*m]]"],
+          "form": "any"
+        },
+        "solution": "The middle is half the sum: $[[20*m]] \\div 2 = [[10*m]]$.",
+        "skill": "dos-around",
+        "difficulty": 2,
+        "compute": "((10*m-b)+(10*m+b))/2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-next",
+        "prompt": "Work out $[[n+1]]^2 - [[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "1",
+              "why": "The difference of the numbers is $1$, but you need the sum times the difference."
+            }
+          ]
+        },
+        "solution": "Add the numbers: $[[n+1]] + [[n]] = [[2*n+1]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 1,
+        "compute": "(n+1)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-two-apart",
+        "prompt": "Work out $[[n+2]]^2 - [[n]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(2*n+2)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n+2]]",
+              "why": "That is the sum. Times it by the difference, $2$."
+            }
+          ]
+        },
+        "solution": "$([[n+2]] + [[n]]) \\times 2 = [[2*n+2]] \\times 2 = [[4*n+4]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 2,
+        "compute": "(n+2)^2 - n^2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-find",
+        "prompt": "$(n + 1)^2 - n^2 = [[2*n+1]]$. What is $n$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "solution": "$n + (n + 1) = [[2*n+1]]$, so $2n = [[2*n]]$ and $n = [[n]]$.",
+        "skill": "dos-neighbours",
+        "difficulty": 3,
+        "compute": "(2*n + 1 - 1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 10,
+              "to": 99
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-below",
+        "prompt": "Work out $[[10*m-b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m-b)^2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*m*(10*m-2*b)]]",
+              "why": "Add $[[b]]^2$ at the end."
+            }
+          ]
+        },
+        "solution": "$[[10*m-2*b]] \\times [[10*m]] + [[b]]^2 = [[10*m*(10*m-2*b)]] + [[b*b]] = [[(10*m-b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 1,
+        "compute": "(10*m - 2*b)*(10*m) + b^2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 3,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-above",
+        "prompt": "Work out $[[10*m+b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(10*m+b)^2]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*m+2*b]] \\times [[10*m]] + [[b*b]] = [[(10*m+b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 2,
+        "compute": "(10*m + 2*b)*(10*m) + b^2",
+        "template": {
+          "vars": {
+            "m": {
+              "from": 2,
+              "to": 9
+            },
+            "b": {
+              "from": 1,
+              "to": 3
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-hundred",
+        "prompt": "Work out $[[100-b]]^2$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[(100-b)^2]]"],
+          "form": "any"
+        },
+        "solution": "$[[100-2*b]] \\times 100 + [[b*b]] = [[(100-b)^2]]$.",
+        "skill": "dos-square",
+        "difficulty": 2,
+        "compute": "(100 - 2*b)*100 + b^2",
+        "template": {
+          "vars": {
+            "b": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  }
+]

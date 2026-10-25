@@ -1,0 +1,68 @@
+{
+  "slug": "mental-same-amount-three-ways",
+  "order": 1,
+  "title": "Same Amount, Three Ways",
+  "estMinutes": 25,
+  "focusSkills": ["fdp-convert"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Which is bigger: $\\frac{3}{4}$, $0.7$ or $72\\%$? How did you compare them?",
+      "placeholder": "Biggest is… I compared by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Per cent means out of 100",
+          "body": "$35\\%$ means $35$ out of $100$: the fraction $\\frac{35}{100}$, or the decimal $0.35$. So to change a percentage to a decimal, divide by $100$; to change a decimal to a percentage, times $100$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 3/4 as a decimal and a percentage",
+          "problem": "Write $\\frac{3}{4}$ as a percentage and as a decimal.",
+          "steps": [
+            {
+              "text": "Make the bottom $100$: $4 \\times 25 = 100$, so times the top by $25$ too.",
+              "try": {
+                "prompt": "What is $3 \\times 25$?",
+                "accepted": ["75"],
+                "compute": "3*25"
+              }
+            },
+            {
+              "text": "$\\frac{3}{4} = \\frac{75}{100} = 75\\%$, and as a decimal $0.75$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Benchmarks to know by heart",
+          "body": "$\\frac{1}{2} = 0.5 = 50\\%$, $\\frac{1}{4} = 0.25 = 25\\%$, $\\frac{3}{4} = 0.75 = 75\\%$, $\\frac{1}{5} = 0.2 = 20\\%$, $\\frac{1}{10} = 0.1 = 10\\%$. Everything else can be built from these."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n08.convert-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n08.convert-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which is easiest for you to picture: a fraction, a decimal or a percentage? Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

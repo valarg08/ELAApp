@@ -1,0 +1,76 @@
+{
+  "slug": "mental-squares-to-15",
+  "order": 1,
+  "title": "Squares to 15",
+  "estMinutes": 25,
+  "focusSkills": ["squares-15"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A square patio is $13$ tiles long and $13$ tiles wide. How many tiles? Can you see a quick way?",
+      "placeholder": "Tiles:… quick way:…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Square numbers",
+          "body": "A square number is a number times itself: $n^2 = n \\times n$. It counts the tiles in an $n$ by $n$ square. Know these by heart: $11^2 = 121$, $12^2 = 144$, $13^2 = 169$, $14^2 = 196$, $15^2 = 225$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 14 squared",
+          "problem": "Work out $14^2$.",
+          "steps": [
+            {
+              "text": "Split $14 \\times 14$ into $14 \\times 10 + 14 \\times 4$.",
+              "try": {
+                "prompt": "What is $14 \\times 4$?",
+                "accepted": ["56"],
+                "compute": "14*4"
+              }
+            },
+            {
+              "text": "$140 + 56$.",
+              "try": {
+                "prompt": "What is $14^2$?",
+                "accepted": ["196"],
+                "compute": "14*14"
+              }
+            },
+            {
+              "text": "So $14^2 = 196$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Square roots",
+          "body": "The square root undoes squaring: $\\sqrt{169} = 13$ because $13^2 = 169$. If you know the squares, you know the roots."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n12.to-15-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n12.to-15-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which squares to $15$ do you still have to work out, and which do you just know?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

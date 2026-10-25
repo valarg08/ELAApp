@@ -1,0 +1,74 @@
+{
+  "slug": "mental-times-9-and-99",
+  "order": 1,
+  "title": "Times 9 and 99",
+  "estMinutes": 25,
+  "focusSkills": ["times-99"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A box holds $99$ pencils. How many pencils are in $37$ boxes? Is there a fast way?",
+      "placeholder": "A fast way is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "One less than a round number",
+          "body": "$99$ is $100 - 1$. So $37 \\times 99$ is $37$ hundreds take away one $37$: $3700 - 37 = 3663$. It works the same for $9 = 10 - 1$: $46 \\times 9 = 460 - 46 = 414$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 24 × 99",
+          "problem": "Work out $24 \\times 99$.",
+          "steps": [
+            {
+              "text": "Times $100$ first.",
+              "try": {
+                "prompt": "What is $24 \\times 100$?",
+                "accepted": ["2400"],
+                "compute": "24*100"
+              }
+            },
+            {
+              "text": "Take one $24$ away.",
+              "try": {
+                "prompt": "What is $2400 - 24$?",
+                "accepted": ["2376"],
+                "compute": "2400-24"
+              }
+            },
+            {
+              "text": "So $24 \\times 99 = 2376$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap",
+          "body": "Take away the number, not $1$: $24 \\times 99$ is $2400 - 24$, not $2400 - 1$. You are removing one lot of $24$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n11.nine-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n11.nine-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain why $\\times 99$ is the same as $\\times 100$ take away one lot."],
+      "confidenceCheck": true
+    }
+  ]
+}

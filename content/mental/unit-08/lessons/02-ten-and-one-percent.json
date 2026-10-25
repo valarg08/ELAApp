@@ -1,0 +1,74 @@
+{
+  "slug": "mental-ten-and-one-percent",
+  "order": 2,
+  "title": "10% and 1%",
+  "estMinutes": 25,
+  "focusSkills": ["percent-10"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A jacket costs $340$ points and is $10\\%$ off. How much do you save? How about $30\\%$ off?",
+      "placeholder": "$10\\%$ off saves… $30\\%$ off saves…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Building blocks",
+          "body": "$10\\%$ is one tenth, so divide by $10$: $10\\%$ of $340$ is $34$. $1\\%$ is one hundredth, so divide by $100$: $1\\%$ of $340$ is $3.4$. Build other percentages from these: $30\\%$ is three lots of $10\\%$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 30% of 340",
+          "problem": "Work out $30\\%$ of $340$.",
+          "steps": [
+            {
+              "text": "Find $10\\%$ first: $340 \\div 10$.",
+              "try": {
+                "prompt": "What is $10\\%$ of $340$?",
+                "accepted": ["34"],
+                "compute": "340/10"
+              }
+            },
+            {
+              "text": "$30\\%$ is three lots of $10\\%$.",
+              "try": {
+                "prompt": "What is $3 \\times 34$?",
+                "accepted": ["102"],
+                "compute": "3*34"
+              }
+            },
+            {
+              "text": "So $30\\%$ of $340$ is $102$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "5% and 15%",
+          "body": "$5\\%$ is half of $10\\%$: $5\\%$ of $340$ is $17$. Then $15\\% = 10\\% + 5\\% = 34 + 17 = 51$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n08.ten-pct-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n08.ten-pct-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How would you find $15\\%$ of a price using $10\\%$?"],
+      "confidenceCheck": true
+    }
+  ]
+}

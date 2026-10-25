@@ -1,0 +1,18 @@
+{
+  "number": 7,
+  "slug": "mental-missing-numbers",
+  "title": "Missing Number Thinking",
+  "summary": "Find the missing number in a sum by thinking about balance: an equals sign means both sides are the same. Undo an addition with a subtraction, a multiplication with a division, and keep both sides balanced.",
+  "bigIdeas": [
+    "The equals sign means \"is the same as\": both sides balance.",
+    "Every operation has an inverse that undoes it: add and subtract, multiply and divide."
+  ],
+  "tips": [
+    "$= $ means \"is the same as\", not \"the answer comes next\".",
+    "Undo adding by subtracting: $37 + ? = 52$, so $? = 52 - 37 = 15$.",
+    "In $? - 18 = 25$, the missing number is the whole: $25 + 18 = 43$.",
+    "Undo multiplying by dividing: $? \\times 6 = 42$, so $? = 7$.",
+    "Balance: $45 + 28 = 47 + ?$. The $45$ went up by $2$, so the $28$ goes down by $2$: $26$."
+  ],
+  "published": true
+}

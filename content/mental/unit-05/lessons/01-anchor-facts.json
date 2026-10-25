@@ -1,0 +1,90 @@
+{
+  "slug": "mental-anchor-facts",
+  "order": 1,
+  "title": "Anchor Facts: Times 2, 5 and 10",
+  "estMinutes": 25,
+  "focusSkills": ["anchor-2-5-10"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Which times tables are you sure of without thinking? Which ones do you still have to work out?",
+      "placeholder": "I am sure of… I work out…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Three anchors",
+          "body": "Times $10$, times $5$ and times $2$ are the easiest facts. Times $10$ moves every digit one place to the left: $37 \\times 10 = 370$. Times $2$ is a double. And times $5$ is half of times $10$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 14 × 5",
+          "problem": "Work out $14 \\times 5$ using the times $10$ anchor.",
+          "steps": [
+            {
+              "text": "Times $10$ first: $14 \\times 10$.",
+              "try": {
+                "prompt": "What is $14 \\times 10$?",
+                "accepted": ["140"],
+                "compute": "14*10"
+              }
+            },
+            {
+              "text": "Five is half of ten, so halve it.",
+              "try": {
+                "prompt": "What is half of $140$?",
+                "accepted": ["70"],
+                "compute": "140/2"
+              }
+            },
+            {
+              "text": "So $14 \\times 5 = 70$."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: halve first",
+          "problem": "Work out $18 \\times 5$ another way.",
+          "steps": [
+            {
+              "text": "When the number is even, you can halve it first: half of $18$ is $9$."
+            },
+            {
+              "text": "Then times $10$.",
+              "try": {
+                "prompt": "What is $9 \\times 10$?",
+                "accepted": ["90"],
+                "compute": "9*10"
+              }
+            },
+            {
+              "text": "$18 \\times 5 = 90$. Halving first or last gives the same answer."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n05.anchors-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n05.anchors-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why does halving give you times $5$ from times $10$?"],
+      "confidenceCheck": true
+    }
+  ]
+}

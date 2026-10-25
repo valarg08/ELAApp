@@ -1,0 +1,69 @@
+{
+  "slug": "mental-pick-the-best-strategy",
+  "order": 3,
+  "title": "Pick the Best Strategy",
+  "estMinutes": 25,
+  "focusSkills": ["pick-strategy"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$25 \\times 37 \\times 4$. Which order would you multiply in, and why?",
+      "placeholder": "I would do… first because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Look before you calculate",
+          "body": "Before you start, take two seconds to look. Is there a round number nearby ($\\times 99$)? A pair that makes $100$ ($25 \\times 4$)? Two numbers either side of a middle ($48 \\times 52$)? A square ending in $5$? The right strategy turns a hard sum into an easy one."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 25 × 37 × 4",
+          "problem": "Work out $25 \\times 37 \\times 4$.",
+          "steps": [
+            {
+              "text": "Spot the pair: $25 \\times 4 = 100$."
+            },
+            {
+              "text": "Now multiply $37$ by $100$.",
+              "try": {
+                "prompt": "What is $25 \\times 37 \\times 4$?",
+                "accepted": ["3700"],
+                "compute": "25*37*4"
+              }
+            },
+            {
+              "text": "Going left to right, $25 \\times 37 = 925$ first, is much harder."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Strategy menu",
+          "body": "Near a round number: compensate. Times $9$, $99$, $999$: times the round number, take one lot away. Pairs: $2 \\times 5$, $4 \\times 25$, $8 \\times 125$. Middle number: $m^2 - b^2$. Same tens, ones make $10$: $a(a + 1)$ then $b(10 - b)$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n15.strategy-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n15.strategy-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which strategy from the whole course do you use most often, and why?"],
+      "confidenceCheck": true
+    }
+  ]
+}

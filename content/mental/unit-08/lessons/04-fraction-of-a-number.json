@@ -1,0 +1,74 @@
+{
+  "slug": "mental-fraction-of-a-number",
+  "order": 4,
+  "title": "A Fraction of a Number",
+  "estMinutes": 25,
+  "focusSkills": ["fraction-of"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "There are $30$ pupils in a class and $\\frac{2}{5}$ walk to school. How many walk?",
+      "placeholder": "Walk:…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Divide by the bottom, times by the top",
+          "body": "To find $\\frac{1}{5}$ of $30$, share $30$ into $5$ equal parts: $6$. For $\\frac{2}{5}$ take two of those parts: $12$. Divide by the bottom number, then times by the top number."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 3/4 of 36",
+          "problem": "Work out $\\frac{3}{4}$ of $36$.",
+          "steps": [
+            {
+              "text": "One quarter: $36 \\div 4$.",
+              "try": {
+                "prompt": "What is $\\frac{1}{4}$ of $36$?",
+                "accepted": ["9"],
+                "compute": "36/4"
+              }
+            },
+            {
+              "text": "Three quarters is three of those.",
+              "try": {
+                "prompt": "What is $3 \\times 9$?",
+                "accepted": ["27"],
+                "compute": "3*9"
+              }
+            },
+            {
+              "text": "So $\\frac{3}{4}$ of $36$ is $27$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Working backwards",
+          "body": "If $\\frac{1}{4}$ of a number is $9$, the whole is four of those: $36$. To go from a part back to the whole, times by the bottom number."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n08.frac-of-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n08.frac-of-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How is finding $\\frac{3}{4}$ of a number like finding $75\\%$ of it?"],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "sections": [
+    {
+      "skill": "vedic-complement",
+      "title": "All from 9, the last from 10",
+      "facts": [
+        "$1000 - 368 = 632$: $9 - 3$, $9 - 6$, $10 - 8$.",
+        "Why: $1000 = 999 + 1$, and $999 - 368$ never needs borrowing."
+      ]
+    },
+    {
+      "skill": "vedic-base",
+      "title": "Near a base",
+      "facts": [
+        "$(100 - a)(100 - b) = 100(100 - a - b) + ab$.",
+        "$(100 + a)(100 + b) = 100(100 + a + b) + ab$.",
+        "$(10 - a)(10 - b) = 10(10 - a - b) + ab$."
+      ]
+    },
+    {
+      "skill": "vedic-crosswise",
+      "title": "Vertically and crosswise",
+      "facts": [
+        "$(10a + b)(10c + d) = 100ac + 10(ad + bc) + bd$.",
+        "Same tens, ones add to $10$: $100a(a + 1) + b(10 - b)$."
+      ]
+    },
+    {
+      "skill": "vedic-why",
+      "title": "Other bases",
+      "facts": ["$(50 + a)(50 + b) = 50(50 + a + b) + ab$.", "$(100 - a)^2 = 100(100 - 2a) + a^2$."]
+    }
+  ]
+}

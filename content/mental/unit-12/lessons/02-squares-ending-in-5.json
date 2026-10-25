@@ -1,0 +1,74 @@
+{
+  "slug": "mental-squares-ending-in-5",
+  "order": 2,
+  "title": "Squares Ending in 5",
+  "estMinutes": 25,
+  "focusSkills": ["squares-5"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$15^2 = 225$, $25^2 = 625$, $35^2 = 1225$. Look at the digits before the $25$. What is the pattern?",
+      "placeholder": "The pattern is…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Times the next number, then write 25",
+          "body": "To square a number ending in $5$, take the tens digit $n$, times it by the next number up, $n + 1$, and write $25$ after it. $65^2$: $6 \\times 7 = 42$, so $65^2 = 4225$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 85 squared",
+          "problem": "Work out $85^2$.",
+          "steps": [
+            {
+              "text": "The tens digit is $8$; the next number up is $9$.",
+              "try": {
+                "prompt": "What is $8 \\times 9$?",
+                "accepted": ["72"],
+                "compute": "8*9"
+              }
+            },
+            {
+              "text": "Write $25$ after it.",
+              "try": {
+                "prompt": "What is $85^2$?",
+                "accepted": ["7225"],
+                "compute": "85^2"
+              }
+            },
+            {
+              "text": "So $85^2 = 7225$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "$(10n + 5)^2 = 100n^2 + 100n + 25 = 100n(n + 1) + 25$. The same idea squares halves: $7.5^2 = 7 \\times 8 + 0.25 = 56.25$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n12.ends-5-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n12.ends-5-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Use $(10n + 5)^2 = 100n(n + 1) + 25$ to explain the pattern in your own words."],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "slug": "mental-other-bases",
+  "order": 4,
+  "title": "Why the Tricks Work: Other Bases",
+  "estMinutes": 25,
+  "focusSkills": ["vedic-why"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$52 \\times 54$: there is no $100$ nearby. Is there another friendly base you could use?",
+      "placeholder": "I could use…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Any friendly base",
+          "body": "The base trick works for any base $B$: $(B + a)(B + b) = B(B + a + b) + ab$. With base $50$: $52 \\times 54 = 50 \\times 56 + 2 \\times 4 = 2800 + 8 = 2808$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 47 × 46 with base 50",
+          "problem": "Work out $47 \\times 46$ using base $50$.",
+          "steps": [
+            {
+              "text": "Gaps below $50$: $3$ and $4$. Front: $47 - 4 = 43$.",
+              "try": {
+                "prompt": "What is $50 \\times 43$?",
+                "accepted": ["2150"],
+                "compute": "50*43"
+              }
+            },
+            {
+              "text": "Add the gaps multiplied: $3 \\times 4 = 12$.",
+              "try": {
+                "prompt": "What is $47 \\times 46$?",
+                "accepted": ["2162"],
+                "compute": "47*46"
+              }
+            },
+            {
+              "text": "So $47 \\times 46 = 2162$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Squares near a base",
+          "body": "Put $a = b$: $(100 - a)^2 = 100(100 - 2a) + a^2$. $96^2 = 100 \\times 92 + 16 = 9216$. Every trick is the same identity: expand the brackets and see."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n14.why-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n14.why-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Pick one trick from this unit and prove it works with algebra."],
+      "confidenceCheck": true
+    }
+  ]
+}

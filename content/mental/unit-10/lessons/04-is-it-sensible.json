@@ -1,0 +1,69 @@
+{
+  "slug": "mental-is-it-sensible",
+  "order": 4,
+  "title": "Is the Answer Sensible?",
+  "estMinutes": 25,
+  "focusSkills": ["est-check"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A friend says $47 \\times 38 = 1796$. Without working it out, can you tell if it is wrong?",
+      "placeholder": "It is right/wrong because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Two quick checks",
+          "body": "First, the size: estimate $47 \\times 38 \\approx 50 \\times 40 = 2000$. Second, the last digit: only the last digits decide it, and $7 \\times 8 = 56$, so the answer must end in $6$. $1796$ passes both checks (it is right)."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: spot the mistake",
+          "problem": "Tom says $36 \\times 7 = 2520$. Check it.",
+          "steps": [
+            {
+              "text": "Estimate: $36 \\approx 40$, and $40 \\times 7 = 280$. $2520$ is about ten times too big."
+            },
+            {
+              "text": "Work it out: $30 \\times 7 = 210$ and $6 \\times 7 = 42$.",
+              "try": {
+                "prompt": "What is $36 \\times 7$?",
+                "accepted": ["252"],
+                "compute": "36*7"
+              }
+            },
+            {
+              "text": "Tom added an extra zero. The estimate caught it."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Last digits of sums",
+          "body": "The last digit of a sum comes from the last digits: $47 + 38 + 29$ ends in the last digit of $7 + 8 + 9 = 24$, which is $4$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n10.check-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n10.check-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Describe the two checks you can do on any multiplication answer."],
+      "confidenceCheck": true
+    }
+  ]
+}
