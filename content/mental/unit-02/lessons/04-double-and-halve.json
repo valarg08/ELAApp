@@ -1,0 +1,76 @@
+{
+  "slug": "mental-double-and-halve",
+  "order": 4,
+  "title": "Double One, Halve the Other",
+  "estMinutes": 25,
+  "focusSkills": ["double-halve"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$5 \\times 14$ and $10 \\times 7$: work out both. What do you notice?",
+      "placeholder": "I notice…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Same answer, easier sum",
+          "body": "If you double one number and halve the other, the answer stays the same. $5 \\times 14$: double $5$ to $10$, halve $14$ to $7$. Now it is $10 \\times 7 = 70$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 5 × 16",
+          "problem": "Work out $5 \\times 16$.",
+          "steps": [
+            {
+              "text": "Double $5$ to make $10$. Halve $16$.",
+              "try": {
+                "prompt": "What is half of $16$?",
+                "accepted": ["8"],
+                "compute": "16/2"
+              }
+            },
+            {
+              "text": "Now multiply.",
+              "try": {
+                "prompt": "What is $10 \\times 8$?",
+                "accepted": ["80"],
+                "compute": "10*8"
+              }
+            },
+            {
+              "text": "So $5 \\times 16 = 80$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "Picture $5 \\times 14$ as $5$ rows of $14$ dots. Cut each row in half and put the halves underneath: now there are $10$ rows of $7$. The number of dots did not change. Times $4$ is double, double again: $4 \\times 13 = 26 \\times 2 = 52$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n02.double-halve-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n02.double-halve-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Draw or explain why doubling one number and halving the other gives the same answer."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

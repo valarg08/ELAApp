@@ -1,0 +1,56 @@
+{
+  "slug": "mental-compensation-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Compensation",
+  "estMinutes": 20,
+  "focusSkills": ["add-9", "add-near", "sub-near", "same-diff"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Compensation do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Adding with compensation: quick review",
+          "body": "Round to a ten, add, then fix: $46 + 9 = 56 - 1$, and $38 + 27 = 40 + 27 - 2$."
+        },
+        {
+          "kind": "definition",
+          "title": "Taking away with compensation: quick review",
+          "body": "Take away the ten, then add back the extra: $53 - 9 = 43 + 1$. Or move both numbers the same amount: $62 - 38 = 64 - 40$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n03.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n03.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Compensation outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

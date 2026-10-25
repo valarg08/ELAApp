@@ -3,6 +3,19 @@
   { "id": "bonds-20", "label": "Bonds to 20", "strand": "strategy", "units": [1] },
   { "id": "bridge-10", "label": "Make 10 to add and subtract", "strand": "strategy", "units": [1] },
   { "id": "bonds-100", "label": "Bonds to 100", "strand": "strategy", "units": [1] },
+  { "id": "doubles", "label": "Doubles", "strand": "strategy", "units": [2] },
+  { "id": "near-doubles", "label": "Near doubles", "strand": "strategy", "units": [2] },
+  { "id": "halves", "label": "Halves", "strand": "strategy", "units": [2] },
+  {
+    "id": "double-halve",
+    "label": "Double one, halve the other",
+    "strand": "strategy",
+    "units": [2]
+  },
+  { "id": "add-9", "label": "Add 9 and 19", "strand": "strategy", "units": [3] },
+  { "id": "add-near", "label": "Add numbers near a ten", "strand": "strategy", "units": [3] },
+  { "id": "sub-near", "label": "Take away numbers near a ten", "strand": "strategy", "units": [3] },
+  { "id": "same-diff", "label": "Same difference", "strand": "strategy", "units": [3] },
   {
     "id": "front-add",
     "label": "Add 2-digit numbers from the left",

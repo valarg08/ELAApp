@@ -1,0 +1,18 @@
+{
+  "number": 3,
+  "slug": "mental-compensation",
+  "title": "Compensation",
+  "summary": "Turn a hard sum into an easy one: round a number to the nearest ten, work it out, then fix the answer. $38 + 27 = 40 + 27 - 2$. Use it for adding and taking away $9$, $19$ and numbers near a ten.",
+  "bigIdeas": [
+    "Round a number to a friendly ten, calculate, then fix what you changed.",
+    "If you added too much, take it away; if you took away too much, add it back."
+  ],
+  "tips": [
+    "Add $9$ by adding $10$, then taking $1$ away: $46 + 9 = 56 - 1 = 55$.",
+    "Add $19$ by adding $20$, then taking $1$ away: $34 + 19 = 54 - 1 = 53$.",
+    "$38 + 27$: $38$ is $2$ less than $40$, so $40 + 27 = 67$, then take $2$ away: $65$.",
+    "Take away $9$ by taking away $10$, then adding $1$ back: $53 - 9 = 43 + 1 = 44$.",
+    "Move both numbers the same way and the difference stays the same: $62 - 38 = 64 - 40 = 24$."
+  ],
+  "published": true
+}

@@ -1,0 +1,74 @@
+{
+  "slug": "mental-add-near-a-ten",
+  "order": 2,
+  "title": "Add Numbers Near a Ten",
+  "estMinutes": 25,
+  "focusSkills": ["add-near"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$38 + 27$ looks tricky. Which number is close to a ten? How could that help?",
+      "placeholder": "… is close to …, so…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Round, add, fix",
+          "body": "Find a number close to a ten. $38$ is $2$ less than $40$. Add $40$ instead, then take the $2$ away: $40 + 27 = 67$, and $67 - 2 = 65$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 47 + 28",
+          "problem": "Work out $47 + 28$.",
+          "steps": [
+            {
+              "text": "$28$ is $2$ less than $30$. Add $30$ first.",
+              "try": {
+                "prompt": "What is $47 + 30$?",
+                "accepted": ["77"],
+                "compute": "47+30"
+              }
+            },
+            {
+              "text": "You added $2$ too many. Take them away.",
+              "try": {
+                "prompt": "What is $77 - 2$?",
+                "accepted": ["75"],
+                "compute": "77-2"
+              }
+            },
+            {
+              "text": "So $47 + 28 = 75$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Which number to round?",
+          "body": "Round the number that is closest to a ten. In $38 + 27$, $38$ is only $2$ away from $40$, so it is the easy one to round."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n03.add-near-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n03.add-near-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you choose which number to round to a ten?"],
+      "confidenceCheck": true
+    }
+  ]
+}

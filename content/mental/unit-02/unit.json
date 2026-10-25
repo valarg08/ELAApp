@@ -1,0 +1,18 @@
+{
+  "number": 2,
+  "slug": "mental-doubling-halving",
+  "title": "Doubling & Halving",
+  "summary": "Double and halve numbers in your head, use doubles you know for near doubles like $6 + 7$, and make multiplying easier by doubling one number and halving the other.",
+  "bigIdeas": [
+    "Doubling means adding a number to itself: double $8$ is $8 + 8 = 16$.",
+    "Halving undoes doubling: half of $16$ is $8$."
+  ],
+  "tips": [
+    "Double tens and ones separately: double $34$ is double $30$ and double $4$: $60 + 8 = 68$.",
+    "$6 + 7$ is a near double: double $6$ is $12$, and one more is $13$.",
+    "Half of $70$: half of $60$ is $30$, half of $10$ is $5$, so $35$.",
+    "$5 \\times 14$: halve $14$ and double $5$: $10 \\times 7 = 70$.",
+    "Times $4$ is double, then double again: $4 \\times 13 = 26$ doubled $= 52$."
+  ],
+  "published": true
+}

@@ -24,7 +24,7 @@ export default async function MentalHome() {
   if (!me) redirect('/join');
   const current = units?.find((u) => u.available && u.completedLessons < u.lessonCount);
   const byNumber = new Map((units ?? []).map((u) => [u.number, u]));
-  // Units 2–3 are not built yet, so a locked unit waits for the last open unit before it.
+  // A locked unit waits for the last built unit before it (a planned unit may not be built yet).
   const previousOpen = (n: number) =>
     Math.max(
       0,

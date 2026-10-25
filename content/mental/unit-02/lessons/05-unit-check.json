@@ -1,0 +1,56 @@
+{
+  "slug": "mental-doubling-halving-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Doubling & Halving",
+  "estMinutes": 20,
+  "focusSkills": ["doubles", "near-doubles", "halves", "double-halve"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which pattern from Doubling & Halving do you use most, and which do you still have to think about?",
+      "placeholder": "I use… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Doubles and near doubles: quick review",
+          "body": "Double a number by doubling its tens and its ones: double $34$ is $68$. For a near double like $6 + 7$, double the smaller number and add one."
+        },
+        {
+          "kind": "definition",
+          "title": "Halves and double-halve: quick review",
+          "body": "Halve the tens and the ones: half of $68$ is $34$. To multiply, you can double one number and halve the other: $5 \\times 14 = 10 \\times 7$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you’ll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n02.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n02.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a pattern from Doubling & Halving outside school?",
+        "Which pattern will you keep practising until it is automatic?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

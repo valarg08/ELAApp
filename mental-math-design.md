@@ -118,5 +118,5 @@ The last lesson of each unit is the **⭐ unit check**: a warm-up, then 8 typed 
 - **MN12–MN15 (done):** Level 4 — Unit 12 Squares (to $15^2$, ending in $5$, next square, $16^2$–$30^2$), Unit 13 Difference of Squares, Unit 14 Vedic Tricks, Explained (complements, near a base, vertically and crosswise, other bases, each with its algebra), Unit 15 Speed & Accuracy (inverse checks, casting out nines, picking a strategy, mixed sprints).
 - Each of Units 4–15 has the Unit 1 format: 4 lessons (hook, 3 cards with a worked example, 5 typed practice problems with hints and wrong-answer notes, a 5-question challenge without hints, reflection) and the ⭐ check (8 questions, 100%), a cheat sheet and 5 tips.
 - A locked Mental Math card names the last built unit before it ("Finish Mental Math Unit 1 first" on Unit 4) while Units 2–3 are not built.
-- **MN2–MN3 (next):** Unit 2 Doubling & Halving, Unit 3 Compensation.
+- **MN2–MN3 (done):** Level 1 — Unit 2 Doubling & Halving (doubles, near doubles, halves, double one and halve the other), Unit 3 Compensation (add 9 and 19, add near a ten, take away near a ten, same difference), in the same format. All 15 units are now built.
 - **MN-later:** daily review and streaks for Mental Math, speed sprints, level checks and placement, the parent guide page, mastery per Mental Math skill.

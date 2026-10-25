@@ -1,0 +1,74 @@
+{
+  "slug": "mental-doubles",
+  "order": 1,
+  "title": "Doubles",
+  "estMinutes": 25,
+  "focusSkills": ["doubles"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You have $24$ stickers and your friend has the same. How many stickers do you have together?",
+      "placeholder": "Together we have…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What is a double?",
+          "body": "To double a number, add it to itself: double $7$ is $7 + 7 = 14$. Know the doubles from $1$ to $10$ by heart: $2, 4, 6, 8, 10, 12, 14, 16, 18, 20$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: double 34",
+          "problem": "Double $34$.",
+          "steps": [
+            {
+              "text": "Split $34$ into $30$ and $4$. Double the tens.",
+              "try": {
+                "prompt": "What is double $30$?",
+                "accepted": ["60"],
+                "compute": "2*30"
+              }
+            },
+            {
+              "text": "Double the ones: double $4$ is $8$.",
+              "try": {
+                "prompt": "What is $60 + 8$?",
+                "accepted": ["68"],
+                "compute": "60+8"
+              }
+            },
+            {
+              "text": "So double $34$ is $68$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "When the ones make a ten",
+          "body": "Double $37$: double $30$ is $60$ and double $7$ is $14$. Then $60 + 14 = 74$. When the ones double to $10$ or more, add the extra ten."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n02.doubles-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n02.doubles-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Which doubles do you just know, and which do you still work out?"],
+      "confidenceCheck": true
+    }
+  ]
+}

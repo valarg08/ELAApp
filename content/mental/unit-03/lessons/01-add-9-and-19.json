@@ -1,0 +1,74 @@
+{
+  "slug": "mental-add-9-and-19",
+  "order": 1,
+  "title": "Add 9 and 19",
+  "estMinutes": 25,
+  "focusSkills": ["add-9"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Adding $10$ is easy. How could adding $10$ help you work out $46 + 9$?",
+      "placeholder": "It helps because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Add 10, take 1",
+          "body": "$9$ is $1$ less than $10$. So to add $9$, add $10$ and then take $1$ away: $46 + 9 = 56 - 1 = 55$. Changing a number to a friendly one and fixing it after is called compensation."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 34 + 19",
+          "problem": "Work out $34 + 19$.",
+          "steps": [
+            {
+              "text": "$19$ is $1$ less than $20$. Add $20$ first.",
+              "try": {
+                "prompt": "What is $34 + 20$?",
+                "accepted": ["54"],
+                "compute": "34+20"
+              }
+            },
+            {
+              "text": "You added $1$ too many, so take it away.",
+              "try": {
+                "prompt": "What is $54 - 1$?",
+                "accepted": ["53"],
+                "compute": "54-1"
+              }
+            },
+            {
+              "text": "So $34 + 19 = 53$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap",
+          "body": "After adding $10$, take $1$ away, not add it. You added one too many, so the answer must come down by $1$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n03.add9-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n03.add9-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain why you take $1$ away after adding $10$ when you want to add $9$."],
+      "confidenceCheck": true
+    }
+  ]
+}

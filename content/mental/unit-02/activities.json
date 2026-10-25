@@ -1,0 +1,1442 @@
+[
+  {
+    "key": "n02.doubles-practice",
+    "type": "PROBLEMS",
+    "title": "Doubles",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "small",
+        "prompt": "What is double $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n+2]]",
+              "why": "Doubling is adding the number to itself, not adding $2$."
+            }
+          ]
+        },
+        "hints": ["Add $[[n]]$ to itself."],
+        "solution": "$[[n]] + [[n]] = [[2*n]]$.",
+        "skill": "doubles",
+        "difficulty": 1,
+        "compute": "n + n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "tens",
+        "prompt": "What is double $[[10*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20*n]]"],
+          "form": "any"
+        },
+        "hints": ["Double $[[n]]$ first, then think in tens."],
+        "solution": "Double $[[n]]$ is $[[2*n]]$, so double $[[10*n]]$ is $[[20*n]]$.",
+        "skill": "doubles",
+        "difficulty": 1,
+        "compute": "10*n + 10*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "no-carry",
+        "prompt": "What is double $[[10*t+u]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(10*t+u)]]"],
+          "form": "any"
+        },
+        "hints": ["Split into $[[10*t]]$ and $[[u]]$.", "Double each part, then add."],
+        "solution": "Double $[[10*t]]$ is $[[20*t]]$ and double $[[u]]$ is $[[2*u]]$: $[[2*(10*t+u)]]$.",
+        "skill": "doubles",
+        "difficulty": 2,
+        "compute": "2*(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "carry",
+        "prompt": "What is double $[[10*t+u]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(10*t+u)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20*t + 2*u - 10]]",
+              "why": "Double $[[u]]$ is $[[2*u]]$: remember the extra ten."
+            }
+          ]
+        },
+        "hints": [
+          "Split into $[[10*t]]$ and $[[u]]$.",
+          "Double $[[u]]$ makes more than $10$: add the extra ten."
+        ],
+        "solution": "Double $[[10*t]]$ is $[[20*t]]$ and double $[[u]]$ is $[[2*u]]$: $[[20*t]] + [[2*u]] = [[2*(10*t+u)]]$.",
+        "skill": "doubles",
+        "difficulty": 3,
+        "compute": "2*(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "stickers",
+        "prompt": "You have $[[10*t+u]]$ stickers and your friend has the same number. How many stickers do you have together?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(10*t+u)]]"],
+          "form": "any"
+        },
+        "hints": ["The same number twice: that is a double."],
+        "solution": "Double $[[10*t+u]]$: $[[20*t]] + [[2*u]] = [[2*(10*t+u)]]$.",
+        "skill": "doubles",
+        "difficulty": 2,
+        "compute": "2*(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n02.doubles-set",
+    "type": "PROBLEM_SET",
+    "title": "Doubles challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-small",
+        "prompt": "What is double $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n+2]]",
+              "why": "Doubling is adding the number to itself, not adding $2$."
+            }
+          ]
+        },
+        "solution": "$[[n]] + [[n]] = [[2*n]]$.",
+        "skill": "doubles",
+        "difficulty": 1,
+        "compute": "n + n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "s-tens",
+        "prompt": "What is double $[[10*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20*n]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, so double $[[10*n]]$ is $[[20*n]]$.",
+        "skill": "doubles",
+        "difficulty": 1,
+        "compute": "10*n + 10*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-no-carry",
+        "prompt": "What is double $[[10*t+u]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(10*t+u)]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[10*t]]$ is $[[20*t]]$ and double $[[u]]$ is $[[2*u]]$: $[[2*(10*t+u)]]$.",
+        "skill": "doubles",
+        "difficulty": 2,
+        "compute": "2*(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-carry",
+        "prompt": "What is double $[[10*t+u]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(10*t+u)]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20*t + 2*u - 10]]",
+              "why": "Double $[[u]]$ is $[[2*u]]$: remember the extra ten."
+            }
+          ]
+        },
+        "solution": "Double $[[10*t]]$ is $[[20*t]]$ and double $[[u]]$ is $[[2*u]]$: $[[20*t]] + [[2*u]] = [[2*(10*t+u)]]$.",
+        "skill": "doubles",
+        "difficulty": 3,
+        "compute": "2*(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-stickers",
+        "prompt": "You have $[[10*t+u]]$ stickers and your friend has the same number. How many stickers do you have together?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(10*t+u)]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[10*t+u]]$: $[[20*t]] + [[2*u]] = [[2*(10*t+u)]]$.",
+        "skill": "doubles",
+        "difficulty": 2,
+        "compute": "2*(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n02.near-practice",
+    "type": "PROBLEMS",
+    "title": "Near Doubles",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "plus-one",
+        "prompt": "Work out $[[n]] + [[n+1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n]]",
+              "why": "That is double $[[n]]$. Add $1$ more."
+            }
+          ]
+        },
+        "hints": ["Double $[[n]]$, then add $1$."],
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and one more is $[[2*n+1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 1,
+        "compute": "n + n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "minus-one",
+        "prompt": "Work out $[[n]] + [[n-1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n-1]]"],
+          "form": "any"
+        },
+        "hints": ["Double $[[n]]$, then take $1$ away."],
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and one less is $[[2*n-1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 1,
+        "compute": "n + n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "two-apart",
+        "prompt": "Work out $[[n-1]] + [[n+1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Which number is in the middle of $[[n-1]]$ and $[[n+1]]$?",
+          "Double the middle number."
+        ],
+        "solution": "The middle number is $[[n]]$: double $[[n]]$ is $[[2*n]]$.",
+        "skill": "near-doubles",
+        "difficulty": 2,
+        "compute": "(n-1) + (n+1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "bigger",
+        "prompt": "Work out $[[n]] + [[n+1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any"
+        },
+        "hints": ["Double $[[n]]$ by doubling the tens and the ones.", "Then add $1$."],
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and one more is $[[2*n+1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 3,
+        "compute": "n + n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 25
+            }
+          }
+        }
+      },
+      {
+        "id": "cars",
+        "prompt": "Ali has $[[n]]$ toy cars. Ben has $[[n+1]]$. How many cars do they have together?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any"
+        },
+        "hints": ["The numbers are next to each other: use a double."],
+        "solution": "$[[n]] + [[n+1]]$ is a near double: $[[2*n]] + 1 = [[2*n+1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 2,
+        "compute": "n + n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 15
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n02.near-set",
+    "type": "PROBLEM_SET",
+    "title": "Near Doubles challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-plus-one",
+        "prompt": "Work out $[[n]] + [[n+1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n]]",
+              "why": "That is double $[[n]]$. Add $1$ more."
+            }
+          ]
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and one more is $[[2*n+1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 1,
+        "compute": "n + n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-minus-one",
+        "prompt": "Work out $[[n]] + [[n-1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n-1]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and one less is $[[2*n-1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 1,
+        "compute": "n + n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "s-two-apart",
+        "prompt": "Work out $[[n-1]] + [[n+1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n]]"],
+          "form": "any"
+        },
+        "solution": "The middle number is $[[n]]$: double $[[n]]$ is $[[2*n]]$.",
+        "skill": "near-doubles",
+        "difficulty": 2,
+        "compute": "(n-1) + (n+1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "s-bigger",
+        "prompt": "Work out $[[n]] + [[n+1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and one more is $[[2*n+1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 3,
+        "compute": "n + n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 25
+            }
+          }
+        }
+      },
+      {
+        "id": "s-cars",
+        "prompt": "Ali has $[[n]]$ toy cars. Ben has $[[n+1]]$. How many cars do they have together?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any"
+        },
+        "solution": "$[[n]] + [[n+1]]$ is a near double: $[[2*n]] + 1 = [[2*n+1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 2,
+        "compute": "n + n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 5,
+              "to": 15
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n02.halves-practice",
+    "type": "PROBLEMS",
+    "title": "Halves",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "small",
+        "prompt": "What is half of $[[2*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "hints": ["Which number doubles to make $[[2*n]]$?"],
+        "solution": "Double $[[n]]$ is $[[2*n]]$, so half of $[[2*n]]$ is $[[n]]$.",
+        "skill": "halves",
+        "difficulty": 1,
+        "compute": "2*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "even-tens",
+        "prompt": "What is half of $[[20*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n]]"],
+          "form": "any"
+        },
+        "hints": ["Think: half of $[[2*n]]$, then in tens."],
+        "solution": "Half of $[[2*n]]$ is $[[n]]$, so half of $[[20*n]]$ is $[[10*n]]$.",
+        "skill": "halves",
+        "difficulty": 1,
+        "compute": "20*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "two-digit",
+        "prompt": "What is half of $[[20*t+2*u]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*(20*t+2*u)]]",
+              "why": "You doubled. Halving makes the number smaller."
+            }
+          ]
+        },
+        "hints": ["Halve the tens and the ones separately."],
+        "solution": "Half of $[[20*t]]$ is $[[10*t]]$ and half of $[[2*u]]$ is $[[u]]$: $[[10*t+u]]$.",
+        "skill": "halves",
+        "difficulty": 2,
+        "compute": "(20*t+2*u)/2",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "odd-tens",
+        "prompt": "What is half of $[[10*(2*n+1)]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n+5]]"],
+          "form": "any"
+        },
+        "hints": ["Split into $[[20*n]]$ and $10$.", "Halve each part."],
+        "solution": "Half of $[[20*n]]$ is $[[10*n]]$ and half of $10$ is $5$: $[[10*n+5]]$.",
+        "skill": "halves",
+        "difficulty": 3,
+        "compute": "10*(2*n+1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "teams",
+        "prompt": "$[[2*n]]$ children split into two equal teams. How many children are in each team?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "hints": ["Two equal teams: find half."],
+        "solution": "Half of $[[2*n]]$ is $[[n]]$.",
+        "skill": "halves",
+        "difficulty": 2,
+        "compute": "2*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 24
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n02.halves-set",
+    "type": "PROBLEM_SET",
+    "title": "Halves challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-small",
+        "prompt": "What is half of $[[2*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, so half of $[[2*n]]$ is $[[n]]$.",
+        "skill": "halves",
+        "difficulty": 1,
+        "compute": "2*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "s-even-tens",
+        "prompt": "What is half of $[[20*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n]]"],
+          "form": "any"
+        },
+        "solution": "Half of $[[2*n]]$ is $[[n]]$, so half of $[[20*n]]$ is $[[10*n]]$.",
+        "skill": "halves",
+        "difficulty": 1,
+        "compute": "20*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-two-digit",
+        "prompt": "What is half of $[[20*t+2*u]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*(20*t+2*u)]]",
+              "why": "You doubled. Halving makes the number smaller."
+            }
+          ]
+        },
+        "solution": "Half of $[[20*t]]$ is $[[10*t]]$ and half of $[[2*u]]$ is $[[u]]$: $[[10*t+u]]$.",
+        "skill": "halves",
+        "difficulty": 2,
+        "compute": "(20*t+2*u)/2",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-odd-tens",
+        "prompt": "What is half of $[[10*(2*n+1)]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n+5]]"],
+          "form": "any"
+        },
+        "solution": "Half of $[[20*n]]$ is $[[10*n]]$ and half of $10$ is $5$: $[[10*n+5]]$.",
+        "skill": "halves",
+        "difficulty": 3,
+        "compute": "10*(2*n+1)/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-teams",
+        "prompt": "$[[2*n]]$ children split into two equal teams. How many children are in each team?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "solution": "Half of $[[2*n]]$ is $[[n]]$.",
+        "skill": "halves",
+        "difficulty": 2,
+        "compute": "2*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 24
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n02.double-halve-practice",
+    "type": "PROBLEMS",
+    "title": "Double One, Halve the Other",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "five",
+        "prompt": "Work out $5 \\times [[2*n]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[5*2*n*2]]",
+              "why": "Double one number but halve the other."
+            }
+          ]
+        },
+        "hints": ["Double $5$ to make $10$.", "Halve $[[2*n]]$."],
+        "solution": "Double $5$ and halve $[[2*n]]$: $10 \\times [[n]] = [[10*n]]$.",
+        "skill": "double-halve",
+        "difficulty": 1,
+        "compute": "5*2*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "box",
+        "prompt": "$5 \\times [[2*n]] = 10 \\times \\square$. What goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "hints": ["$5$ was doubled. What happens to $[[2*n]]$?"],
+        "solution": "$5$ doubles to $10$, so $[[2*n]]$ halves to $[[n]]$.",
+        "skill": "double-halve",
+        "difficulty": 1,
+        "compute": "5*2*n/10",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "four",
+        "prompt": "Work out $4 \\times [[n]]$ by doubling twice.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*n]]"],
+          "form": "any"
+        },
+        "hints": ["Double $[[n]]$.", "Double the answer again."],
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and double again is $[[4*n]]$.",
+        "skill": "double-halve",
+        "difficulty": 2,
+        "compute": "4*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 25
+            }
+          }
+        }
+      },
+      {
+        "id": "two",
+        "prompt": "Work out $[[2*a]] \\times [[b]]$ by halving $[[2*a]]$ and doubling $[[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*a*b]]"],
+          "form": "any"
+        },
+        "hints": ["Halve $[[2*a]]$ and double $[[b]]$.", "Multiply the new numbers."],
+        "solution": "$[[a]] \\times [[2*b]] = [[2*a*b]]$.",
+        "skill": "double-halve",
+        "difficulty": 3,
+        "compute": "2*a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 5
+            },
+            "b": {
+              "choose": [5, 15, 25, 35]
+            }
+          }
+        }
+      },
+      {
+        "id": "packs",
+        "prompt": "There are $5$ packs with $[[2*n]]$ pencils in each. How many pencils are there?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n]]"],
+          "form": "any"
+        },
+        "hints": ["Double $5$, halve $[[2*n]]$."],
+        "solution": "$5 \\times [[2*n]] = 10 \\times [[n]] = [[10*n]]$ pencils.",
+        "skill": "double-halve",
+        "difficulty": 2,
+        "compute": "5*2*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n02.double-halve-set",
+    "type": "PROBLEM_SET",
+    "title": "Double One, Halve the Other challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-five",
+        "prompt": "Work out $5 \\times [[2*n]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[5*2*n*2]]",
+              "why": "Double one number but halve the other."
+            }
+          ]
+        },
+        "solution": "Double $5$ and halve $[[2*n]]$: $10 \\times [[n]] = [[10*n]]$.",
+        "skill": "double-halve",
+        "difficulty": 1,
+        "compute": "5*2*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-box",
+        "prompt": "$5 \\times [[2*n]] = 10 \\times \\square$. What goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "solution": "$5$ doubles to $10$, so $[[2*n]]$ halves to $[[n]]$.",
+        "skill": "double-halve",
+        "difficulty": 1,
+        "compute": "5*2*n/10",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-four",
+        "prompt": "Work out $4 \\times [[n]]$ by doubling twice.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*n]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and double again is $[[4*n]]$.",
+        "skill": "double-halve",
+        "difficulty": 2,
+        "compute": "4*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 25
+            }
+          }
+        }
+      },
+      {
+        "id": "s-two",
+        "prompt": "Work out $[[2*a]] \\times [[b]]$ by halving $[[2*a]]$ and doubling $[[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*a*b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] \\times [[2*b]] = [[2*a*b]]$.",
+        "skill": "double-halve",
+        "difficulty": 3,
+        "compute": "2*a*b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 5
+            },
+            "b": {
+              "choose": [5, 15, 25, 35]
+            }
+          }
+        }
+      },
+      {
+        "id": "s-packs",
+        "prompt": "There are $5$ packs with $[[2*n]]$ pencils in each. How many pencils are there?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n]]"],
+          "form": "any"
+        },
+        "solution": "$5 \\times [[2*n]] = 10 \\times [[n]] = [[10*n]]$ pencils.",
+        "skill": "double-halve",
+        "difficulty": 2,
+        "compute": "5*2*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n02.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-small",
+        "prompt": "What is double $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n+2]]",
+              "why": "Doubling is adding the number to itself, not adding $2$."
+            }
+          ]
+        },
+        "hints": ["Add $[[n]]$ to itself."],
+        "solution": "$[[n]] + [[n]] = [[2*n]]$.",
+        "skill": "doubles",
+        "difficulty": 1,
+        "compute": "n + n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "r2-plus-one",
+        "prompt": "Work out $[[n]] + [[n+1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n]]",
+              "why": "That is double $[[n]]$. Add $1$ more."
+            }
+          ]
+        },
+        "hints": ["Double $[[n]]$, then add $1$."],
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and one more is $[[2*n+1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 1,
+        "compute": "n + n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-small",
+        "prompt": "What is half of $[[2*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "hints": ["Which number doubles to make $[[2*n]]$?"],
+        "solution": "Double $[[n]]$ is $[[2*n]]$, so half of $[[2*n]]$ is $[[n]]$.",
+        "skill": "halves",
+        "difficulty": 1,
+        "compute": "2*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-five",
+        "prompt": "Work out $5 \\times [[2*n]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[5*2*n*2]]",
+              "why": "Double one number but halve the other."
+            }
+          ]
+        },
+        "hints": ["Double $5$ to make $10$.", "Halve $[[2*n]]$."],
+        "solution": "Double $5$ and halve $[[2*n]]$: $10 \\times [[n]] = [[10*n]]$.",
+        "skill": "double-halve",
+        "difficulty": 1,
+        "compute": "5*2*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n02.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 2 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-small",
+        "prompt": "What is double $[[n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[n+2]]",
+              "why": "Doubling is adding the number to itself, not adding $2$."
+            }
+          ]
+        },
+        "solution": "$[[n]] + [[n]] = [[2*n]]$.",
+        "skill": "doubles",
+        "difficulty": 1,
+        "compute": "n + n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-tens",
+        "prompt": "What is double $[[10*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20*n]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, so double $[[10*n]]$ is $[[20*n]]$.",
+        "skill": "doubles",
+        "difficulty": 1,
+        "compute": "10*n + 10*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-no-carry",
+        "prompt": "What is double $[[10*t+u]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*(10*t+u)]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[10*t]]$ is $[[20*t]]$ and double $[[u]]$ is $[[2*u]]$: $[[2*(10*t+u)]]$.",
+        "skill": "doubles",
+        "difficulty": 2,
+        "compute": "2*(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-plus-one",
+        "prompt": "Work out $[[n]] + [[n+1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n+1]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*n]]",
+              "why": "That is double $[[n]]$. Add $1$ more."
+            }
+          ]
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and one more is $[[2*n+1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 1,
+        "compute": "n + n + 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-minus-one",
+        "prompt": "Work out $[[n]] + [[n-1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n-1]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and one less is $[[2*n-1]]$.",
+        "skill": "near-doubles",
+        "difficulty": 1,
+        "compute": "n + n - 1",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-two-apart",
+        "prompt": "Work out $[[n-1]] + [[n+1]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[2*n]]"],
+          "form": "any"
+        },
+        "solution": "The middle number is $[[n]]$: double $[[n]]$ is $[[2*n]]$.",
+        "skill": "near-doubles",
+        "difficulty": 2,
+        "compute": "(n-1) + (n+1)",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 4,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-small",
+        "prompt": "What is half of $[[2*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, so half of $[[2*n]]$ is $[[n]]$.",
+        "skill": "halves",
+        "difficulty": 1,
+        "compute": "2*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 2,
+              "to": 10
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-even-tens",
+        "prompt": "What is half of $[[20*n]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n]]"],
+          "form": "any"
+        },
+        "solution": "Half of $[[2*n]]$ is $[[n]]$, so half of $[[20*n]]$ is $[[10*n]]$.",
+        "skill": "halves",
+        "difficulty": 1,
+        "compute": "20*n/2",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-two-digit",
+        "prompt": "What is half of $[[20*t+2*u]]$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[2*(20*t+2*u)]]",
+              "why": "You doubled. Halving makes the number smaller."
+            }
+          ]
+        },
+        "solution": "Half of $[[20*t]]$ is $[[10*t]]$ and half of $[[2*u]]$ is $[[u]]$: $[[10*t+u]]$.",
+        "skill": "halves",
+        "difficulty": 2,
+        "compute": "(20*t+2*u)/2",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 4
+            },
+            "u": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-five",
+        "prompt": "Work out $5 \\times [[2*n]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*n]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[5*2*n*2]]",
+              "why": "Double one number but halve the other."
+            }
+          ]
+        },
+        "solution": "Double $5$ and halve $[[2*n]]$: $10 \\times [[n]] = [[10*n]]$.",
+        "skill": "double-halve",
+        "difficulty": 1,
+        "compute": "5*2*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-box",
+        "prompt": "$5 \\times [[2*n]] = 10 \\times \\square$. What goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[n]]"],
+          "form": "any"
+        },
+        "solution": "$5$ doubles to $10$, so $[[2*n]]$ halves to $[[n]]$.",
+        "skill": "double-halve",
+        "difficulty": 1,
+        "compute": "5*2*n/10",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 3,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-four",
+        "prompt": "Work out $4 \\times [[n]]$ by doubling twice.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[4*n]]"],
+          "form": "any"
+        },
+        "solution": "Double $[[n]]$ is $[[2*n]]$, and double again is $[[4*n]]$.",
+        "skill": "double-halve",
+        "difficulty": 2,
+        "compute": "4*n",
+        "template": {
+          "vars": {
+            "n": {
+              "from": 11,
+              "to": 25
+            }
+          }
+        }
+      }
+    ]
+  }
+]

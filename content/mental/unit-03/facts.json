@@ -1,0 +1,36 @@
+{
+  "sections": [
+    {
+      "skill": "add-9",
+      "title": "Add 9 and 19",
+      "facts": [
+        "$+ 9$ is $+ 10$, then $- 1$.",
+        "$+ 19$ is $+ 20$, then $- 1$. $+ 29$ is $+ 30$, then $- 1$."
+      ]
+    },
+    {
+      "skill": "add-near",
+      "title": "Add near a ten",
+      "facts": [
+        "Round up to the ten, add, then take away what you added.",
+        "$38 + 27 = 40 + 27 - 2 = 65$."
+      ]
+    },
+    {
+      "skill": "sub-near",
+      "title": "Take away near a ten",
+      "facts": [
+        "$- 9$ is $- 10$, then $+ 1$.",
+        "You took away too much, so add the extra back: $72 - 28 = 72 - 30 + 2 = 44$."
+      ]
+    },
+    {
+      "skill": "same-diff",
+      "title": "Same difference",
+      "facts": [
+        "Add the same to both numbers: the difference does not change.",
+        "$62 - 38 = 64 - 40 = 24$."
+      ]
+    }
+  ]
+}

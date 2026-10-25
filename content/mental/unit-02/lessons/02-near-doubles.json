@@ -1,0 +1,76 @@
+{
+  "slug": "mental-near-doubles",
+  "order": 2,
+  "title": "Near Doubles",
+  "estMinutes": 25,
+  "focusSkills": ["near-doubles"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You know $6 + 6 = 12$. How could that help you work out $6 + 7$?",
+      "placeholder": "It helps because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "One more than a double",
+          "body": "When two numbers are next to each other, like $6$ and $7$, double the smaller one and add $1$: $6 + 7 = 12 + 1 = 13$. These are called near doubles."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 8 + 9",
+          "problem": "Work out $8 + 9$.",
+          "steps": [
+            {
+              "text": "$8$ and $9$ are next to each other. Double the smaller one.",
+              "try": {
+                "prompt": "What is double $8$?",
+                "accepted": ["16"],
+                "compute": "2*8"
+              }
+            },
+            {
+              "text": "Add $1$ more.",
+              "try": {
+                "prompt": "What is $16 + 1$?",
+                "accepted": ["17"],
+                "compute": "16+1"
+              }
+            },
+            {
+              "text": "So $8 + 9 = 17$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Or one less",
+          "body": "You can also double the bigger number and take $1$ away: $8 + 9 = 18 - 1 = 17$. For numbers two apart, like $6 + 8$, double the middle number: double $7$ is $14$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n02.near-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n02.near-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Do you prefer \"double the smaller and add one\" or \"double the bigger and take one away\"? Why?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

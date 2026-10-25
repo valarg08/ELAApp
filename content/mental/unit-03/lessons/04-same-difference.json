@@ -1,0 +1,76 @@
+{
+  "slug": "mental-same-difference",
+  "order": 4,
+  "title": "Same Difference",
+  "estMinutes": 25,
+  "focusSkills": ["same-diff"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Tom is $8$ and his sister is $5$. How many years older is Tom? In $2$ years, how many years older will he be?",
+      "placeholder": "Now… in two years…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Move both numbers",
+          "body": "The difference between two numbers stays the same if you add the same amount to both. $62 - 38$: add $2$ to both to get $64 - 40 = 24$. Now the sum is easy."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 53 − 29",
+          "problem": "Work out $53 - 29$.",
+          "steps": [
+            {
+              "text": "Add $1$ to both numbers so $29$ becomes $30$.",
+              "try": {
+                "prompt": "What is $53 + 1$?",
+                "accepted": ["54"],
+                "compute": "53+1"
+              }
+            },
+            {
+              "text": "Now take away the round number.",
+              "try": {
+                "prompt": "What is $54 - 30$?",
+                "accepted": ["24"],
+                "compute": "54-30"
+              }
+            },
+            {
+              "text": "So $53 - 29 = 24$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "Picture the two numbers on a number line. Sliding both the same distance along the line keeps the gap between them the same, like two people the same distance apart walking together."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n03.same-diff-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n03.same-diff-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Explain why adding the same number to both numbers keeps the difference the same."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

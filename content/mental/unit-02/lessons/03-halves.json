@@ -1,0 +1,74 @@
+{
+  "slug": "mental-halves",
+  "order": 3,
+  "title": "Halves",
+  "estMinutes": 25,
+  "focusSkills": ["halves"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$46$ children split into two equal teams. How many are in each team?",
+      "placeholder": "Each team has…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Halving undoes doubling",
+          "body": "Half of a number is what you double to get it. Double $8$ is $16$, so half of $16$ is $8$. Halving means sharing into two equal parts."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: half of 68",
+          "problem": "Work out half of $68$.",
+          "steps": [
+            {
+              "text": "Split $68$ into $60$ and $8$. Halve the tens.",
+              "try": {
+                "prompt": "What is half of $60$?",
+                "accepted": ["30"],
+                "compute": "60/2"
+              }
+            },
+            {
+              "text": "Halve the ones: half of $8$ is $4$.",
+              "try": {
+                "prompt": "What is $30 + 4$?",
+                "accepted": ["34"],
+                "compute": "30+4"
+              }
+            },
+            {
+              "text": "So half of $68$ is $34$. Check: double $34$ is $68$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Odd tens",
+          "body": "Half of $70$: split it into $60$ and $10$. Half of $60$ is $30$, half of $10$ is $5$, so half of $70$ is $35$. Half of an odd number of tens ends in $5$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n02.halves-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n02.halves-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How can doubling help you check a half?"],
+      "confidenceCheck": true
+    }
+  ]
+}

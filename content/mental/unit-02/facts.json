@@ -1,0 +1,37 @@
+{
+  "sections": [
+    {
+      "skill": "doubles",
+      "title": "Doubles",
+      "facts": [
+        "Double $1$ to $10$: $2, 4, 6, 8, 10, 12, 14, 16, 18, 20$.",
+        "Double the tens and the ones separately: double $34 = 60 + 8 = 68$."
+      ]
+    },
+    {
+      "skill": "near-doubles",
+      "title": "Near doubles",
+      "facts": [
+        "$6 + 7$: double $6$ and one more, $13$.",
+        "$8 + 7$: double $8$ and one less, $15$ (or double $7$ and one more)."
+      ]
+    },
+    {
+      "skill": "halves",
+      "title": "Halves",
+      "facts": [
+        "Half of $2, 4, 6, 8, 10, \\ldots, 20$: $1, 2, 3, 4, 5, \\ldots, 10$.",
+        "Halve the tens and the ones separately: half of $68 = 30 + 4 = 34$.",
+        "Half of an odd number of tens ends in $5$: half of $70$ is $35$."
+      ]
+    },
+    {
+      "skill": "double-halve",
+      "title": "Double and halve",
+      "facts": [
+        "Double one number and halve the other: the answer stays the same.",
+        "$5 \\times 16 = 10 \\times 8 = 80$. $4 \\times 15 = 2 \\times 30 = 60$."
+      ]
+    }
+  ]
+}

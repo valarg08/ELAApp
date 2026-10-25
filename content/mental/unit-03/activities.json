@@ -1,0 +1,1569 @@
+[
+  {
+    "key": "n03.add9-practice",
+    "type": "PROBLEMS",
+    "title": "Add 9 and 19",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "nine",
+        "prompt": "Work out $[[a]] + 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+9]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+11]]",
+              "why": "You added $10$ and then $1$ more. Take $1$ away instead."
+            }
+          ]
+        },
+        "hints": ["Add $10$, then take $1$ away."],
+        "solution": "$[[a]] + 10 = [[a+10]]$, then take $1$ away: $[[a+9]]$.",
+        "skill": "add-9",
+        "difficulty": 1,
+        "compute": "a + 10 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 80
+            }
+          }
+        }
+      },
+      {
+        "id": "nineteen",
+        "prompt": "Work out $[[a]] + 19$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+19]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+21]]",
+              "why": "Take $1$ away after adding $20$, don’t add it."
+            }
+          ]
+        },
+        "hints": ["Add $20$, then take $1$ away."],
+        "solution": "$[[a]] + 20 = [[a+20]]$, then take $1$ away: $[[a+19]]$.",
+        "skill": "add-9",
+        "difficulty": 2,
+        "compute": "a + 20 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 70
+            }
+          }
+        }
+      },
+      {
+        "id": "twentynine",
+        "prompt": "Work out $[[a]] + 29$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+29]]"],
+          "form": "any"
+        },
+        "hints": ["Add $30$, then take $1$ away."],
+        "solution": "$[[a]] + 30 = [[a+30]]$, then take $1$ away: $[[a+29]]$.",
+        "skill": "add-9",
+        "difficulty": 2,
+        "compute": "a + 30 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "eight",
+        "prompt": "Work out $[[a]] + 8$ by adding $10$ and then fixing it.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+8]]"],
+          "form": "any"
+        },
+        "hints": ["$8$ is how far from $10$?", "Add $10$, then take that much away."],
+        "solution": "$8$ is $2$ less than $10$: $[[a+10]] - 2 = [[a+8]]$.",
+        "skill": "add-9",
+        "difficulty": 3,
+        "compute": "a + 10 - 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 80
+            }
+          }
+        }
+      },
+      {
+        "id": "shells",
+        "prompt": "Mia has $[[a]]$ shells. She finds $9$ more. How many shells does she have now?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+9]]"],
+          "form": "any"
+        },
+        "hints": ["Add $10$, then take $1$ away."],
+        "solution": "$[[a]] + 10 - 1 = [[a+9]]$ shells.",
+        "skill": "add-9",
+        "difficulty": 2,
+        "compute": "a + 9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 15,
+              "to": 60
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n03.add9-set",
+    "type": "PROBLEM_SET",
+    "title": "Add 9 and 19 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-nine",
+        "prompt": "Work out $[[a]] + 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+9]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+11]]",
+              "why": "You added $10$ and then $1$ more. Take $1$ away instead."
+            }
+          ]
+        },
+        "solution": "$[[a]] + 10 = [[a+10]]$, then take $1$ away: $[[a+9]]$.",
+        "skill": "add-9",
+        "difficulty": 1,
+        "compute": "a + 10 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 80
+            }
+          }
+        }
+      },
+      {
+        "id": "s-nineteen",
+        "prompt": "Work out $[[a]] + 19$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+19]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+21]]",
+              "why": "Take $1$ away after adding $20$, don’t add it."
+            }
+          ]
+        },
+        "solution": "$[[a]] + 20 = [[a+20]]$, then take $1$ away: $[[a+19]]$.",
+        "skill": "add-9",
+        "difficulty": 2,
+        "compute": "a + 20 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 70
+            }
+          }
+        }
+      },
+      {
+        "id": "s-twentynine",
+        "prompt": "Work out $[[a]] + 29$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+29]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + 30 = [[a+30]]$, then take $1$ away: $[[a+29]]$.",
+        "skill": "add-9",
+        "difficulty": 2,
+        "compute": "a + 30 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "s-eight",
+        "prompt": "Work out $[[a]] + 8$ by adding $10$ and then fixing it.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+8]]"],
+          "form": "any"
+        },
+        "solution": "$8$ is $2$ less than $10$: $[[a+10]] - 2 = [[a+8]]$.",
+        "skill": "add-9",
+        "difficulty": 3,
+        "compute": "a + 10 - 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 80
+            }
+          }
+        }
+      },
+      {
+        "id": "s-shells",
+        "prompt": "Mia has $[[a]]$ shells. She finds $9$ more. How many shells does she have now?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+9]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + 10 - 1 = [[a+9]]$ shells.",
+        "skill": "add-9",
+        "difficulty": 2,
+        "compute": "a + 9",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 15,
+              "to": 60
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n03.add-near-practice",
+    "type": "PROBLEMS",
+    "title": "Add Numbers Near a Ten",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "add8",
+        "prompt": "Work out $[[a]] + [[10*t-2]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+10*t-2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+10*t+2]]",
+              "why": "You added too much, so take the $2$ away."
+            }
+          ]
+        },
+        "hints": ["Add $[[10*t]]$, then take $2$ away."],
+        "solution": "$[[10*t-2]]$ is $2$ less than $[[10*t]]$: $[[a+10*t]] - 2 = [[a+10*t-2]]$.",
+        "skill": "add-near",
+        "difficulty": 1,
+        "compute": "a + 10*t - 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "add7",
+        "prompt": "Work out $[[a]] + [[10*t-3]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+10*t-3]]"],
+          "form": "any"
+        },
+        "hints": ["$[[10*t-3]]$ is $3$ less than $[[10*t]]$."],
+        "solution": "$[[a]] + [[10*t]] = [[a+10*t]]$, then take $3$ away: $[[a+10*t-3]]$.",
+        "skill": "add-near",
+        "difficulty": 2,
+        "compute": "a + 10*t - 3",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "first",
+        "prompt": "Work out $[[10*t-1]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t-1+b]]"],
+          "form": "any"
+        },
+        "hints": ["$[[10*t-1]]$ is $1$ less than $[[10*t]]$."],
+        "solution": "$[[10*t]] + [[b]] = [[10*t+b]]$, then take $1$ away: $[[10*t-1+b]]$.",
+        "skill": "add-near",
+        "difficulty": 2,
+        "compute": "10*t - 1 + b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 12,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "box",
+        "prompt": "$[[a]] + [[10*t-2]] = [[a]] + [[10*t]] - \\square$. What goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["2"],
+          "form": "any"
+        },
+        "hints": ["How far is $[[10*t-2]]$ from $[[10*t]]$?"],
+        "solution": "$[[10*t-2]]$ is $2$ less than $[[10*t]]$, so take $2$ away.",
+        "skill": "add-near",
+        "difficulty": 3,
+        "compute": "10*t - (10*t - 2)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "points",
+        "prompt": "Sam scores $[[a]]$ points, then $[[10*t-1]]$ more. How many points is that?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+10*t-1]]"],
+          "form": "any"
+        },
+        "hints": ["Add $[[10*t]]$, then take $1$ away."],
+        "solution": "$[[a]] + [[10*t]] - 1 = [[a+10*t-1]]$ points.",
+        "skill": "add-near",
+        "difficulty": 2,
+        "compute": "a + 10*t - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n03.add-near-set",
+    "type": "PROBLEM_SET",
+    "title": "Add Numbers Near a Ten challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-add8",
+        "prompt": "Work out $[[a]] + [[10*t-2]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+10*t-2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+10*t+2]]",
+              "why": "You added too much, so take the $2$ away."
+            }
+          ]
+        },
+        "solution": "$[[10*t-2]]$ is $2$ less than $[[10*t]]$: $[[a+10*t]] - 2 = [[a+10*t-2]]$.",
+        "skill": "add-near",
+        "difficulty": 1,
+        "compute": "a + 10*t - 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-add7",
+        "prompt": "Work out $[[a]] + [[10*t-3]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+10*t-3]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[10*t]] = [[a+10*t]]$, then take $3$ away: $[[a+10*t-3]]$.",
+        "skill": "add-near",
+        "difficulty": 2,
+        "compute": "a + 10*t - 3",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-first",
+        "prompt": "Work out $[[10*t-1]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t-1+b]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t]] + [[b]] = [[10*t+b]]$, then take $1$ away: $[[10*t-1+b]]$.",
+        "skill": "add-near",
+        "difficulty": 2,
+        "compute": "10*t - 1 + b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 12,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "s-box",
+        "prompt": "$[[a]] + [[10*t-2]] = [[a]] + [[10*t]] - \\square$. What goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["2"],
+          "form": "any"
+        },
+        "solution": "$[[10*t-2]]$ is $2$ less than $[[10*t]]$, so take $2$ away.",
+        "skill": "add-near",
+        "difficulty": 3,
+        "compute": "10*t - (10*t - 2)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      },
+      {
+        "id": "s-points",
+        "prompt": "Sam scores $[[a]]$ points, then $[[10*t-1]]$ more. How many points is that?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+10*t-1]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[10*t]] - 1 = [[a+10*t-1]]$ points.",
+        "skill": "add-near",
+        "difficulty": 2,
+        "compute": "a + 10*t - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n03.sub-near-practice",
+    "type": "PROBLEMS",
+    "title": "Take Away Numbers Near a Ten",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "nine",
+        "prompt": "Work out $[[a]] - 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-9]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-11]]",
+              "why": "You took away too much, so add $1$ back instead."
+            }
+          ]
+        },
+        "hints": ["Take away $10$, then add $1$ back."],
+        "solution": "$[[a]] - 10 = [[a-10]]$, then add $1$ back: $[[a-9]]$.",
+        "skill": "sub-near",
+        "difficulty": 1,
+        "compute": "a - 10 + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "nineteen",
+        "prompt": "Work out $[[a]] - 19$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-19]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-21]]",
+              "why": "Add the $1$ back, don’t take it away."
+            }
+          ]
+        },
+        "hints": ["Take away $20$, then add $1$ back."],
+        "solution": "$[[a]] - 20 = [[a-20]]$, then add $1$ back: $[[a-19]]$.",
+        "skill": "sub-near",
+        "difficulty": 2,
+        "compute": "a - 20 + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 31,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "near",
+        "prompt": "Work out $[[a]] - [[10*t-2]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+2]]"],
+          "form": "any"
+        },
+        "hints": [
+          "$[[10*t-2]]$ is $2$ less than $[[10*t]]$.",
+          "Take away $[[10*t]]$, then add $2$ back."
+        ],
+        "solution": "$[[a]] - [[10*t]] = [[a-10*t]]$, then add $2$ back: $[[a-10*t+2]]$.",
+        "skill": "sub-near",
+        "difficulty": 2,
+        "compute": "a - 10*t + 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 99
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "eight",
+        "prompt": "Work out $[[a]] - 8$ by taking away $10$ and fixing it.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-8]]"],
+          "form": "any"
+        },
+        "hints": ["You take away $2$ too many. Add them back."],
+        "solution": "$[[a-10]] + 2 = [[a-8]]$.",
+        "skill": "sub-near",
+        "difficulty": 3,
+        "compute": "a - 10 + 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "sweets",
+        "prompt": "There are $[[a]]$ sweets in a jar. Children eat $[[10*t-1]]$. How many sweets are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+1]]"],
+          "form": "any"
+        },
+        "hints": ["Take away $[[10*t]]$, then add $1$ back."],
+        "solution": "$[[a]] - [[10*t]] + 1 = [[a-10*t+1]]$ sweets.",
+        "skill": "sub-near",
+        "difficulty": 2,
+        "compute": "a - 10*t + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 99
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n03.sub-near-set",
+    "type": "PROBLEM_SET",
+    "title": "Take Away Numbers Near a Ten challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-nine",
+        "prompt": "Work out $[[a]] - 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-9]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-11]]",
+              "why": "You took away too much, so add $1$ back instead."
+            }
+          ]
+        },
+        "solution": "$[[a]] - 10 = [[a-10]]$, then add $1$ back: $[[a-9]]$.",
+        "skill": "sub-near",
+        "difficulty": 1,
+        "compute": "a - 10 + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "s-nineteen",
+        "prompt": "Work out $[[a]] - 19$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-19]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-21]]",
+              "why": "Add the $1$ back, don’t take it away."
+            }
+          ]
+        },
+        "solution": "$[[a]] - 20 = [[a-20]]$, then add $1$ back: $[[a-19]]$.",
+        "skill": "sub-near",
+        "difficulty": 2,
+        "compute": "a - 20 + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 31,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "s-near",
+        "prompt": "Work out $[[a]] - [[10*t-2]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+2]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] - [[10*t]] = [[a-10*t]]$, then add $2$ back: $[[a-10*t+2]]$.",
+        "skill": "sub-near",
+        "difficulty": 2,
+        "compute": "a - 10*t + 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 99
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-eight",
+        "prompt": "Work out $[[a]] - 8$ by taking away $10$ and fixing it.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-8]]"],
+          "form": "any"
+        },
+        "solution": "$[[a-10]] + 2 = [[a-8]]$.",
+        "skill": "sub-near",
+        "difficulty": 3,
+        "compute": "a - 10 + 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "s-sweets",
+        "prompt": "There are $[[a]]$ sweets in a jar. Children eat $[[10*t-1]]$. How many sweets are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+1]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] - [[10*t]] + 1 = [[a-10*t+1]]$ sweets.",
+        "skill": "sub-near",
+        "difficulty": 2,
+        "compute": "a - 10*t + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 99
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n03.same-diff-practice",
+    "type": "PROBLEMS",
+    "title": "Same Difference",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "slide",
+        "prompt": "Work out $[[a]] - [[10*t-1]]$ by adding $1$ to both numbers.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+1]]"],
+          "form": "any"
+        },
+        "hints": ["Add $1$ to both: $[[a+1]] - [[10*t]]$."],
+        "solution": "$[[a+1]] - [[10*t]] = [[a-10*t+1]]$.",
+        "skill": "same-diff",
+        "difficulty": 1,
+        "compute": "(a+1) - 10*t",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 98
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "slide2",
+        "prompt": "Work out $[[a]] - [[10*t-2]]$ by adding $2$ to both numbers.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-10*t-2]]",
+              "why": "Add $2$ to both numbers: $[[a+2]] - [[10*t]]$."
+            }
+          ]
+        },
+        "hints": ["Add $2$ to both numbers."],
+        "solution": "$[[a+2]] - [[10*t]] = [[a-10*t+2]]$.",
+        "skill": "same-diff",
+        "difficulty": 2,
+        "compute": "(a+2) - 10*t",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 97
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "box",
+        "prompt": "$[[a]] - [[10*t-2]] = \\square - [[10*t]]$. What goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+2]]"],
+          "form": "any"
+        },
+        "hints": ["How much was added to $[[10*t-2]]$?", "Add the same to $[[a]]$."],
+        "solution": "$[[10*t-2]]$ went up by $2$, so $[[a]]$ goes up by $2$ too: $[[a+2]]$.",
+        "skill": "same-diff",
+        "difficulty": 2,
+        "compute": "a + 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 97
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "down",
+        "prompt": "Work out $[[a]] - [[10*t+1]]$ by taking $1$ from both numbers.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t-1]]"],
+          "form": "any"
+        },
+        "hints": ["Take $1$ from both: $[[a-1]] - [[10*t]]$."],
+        "solution": "$[[a-1]] - [[10*t]] = [[a-10*t-1]]$.",
+        "skill": "same-diff",
+        "difficulty": 3,
+        "compute": "(a-1) - 10*t",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 99
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "ages",
+        "prompt": "Tom is $[[a]]$ and his sister is $[[b]]$. How many years older will Tom be in $[[k]]$ years?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-b+k]]",
+              "why": "Both of them get older, so the gap stays the same."
+            }
+          ]
+        },
+        "hints": ["Both ages go up by the same amount."],
+        "solution": "Both get $[[k]]$ years older, so the difference stays $[[a]] - [[b]] = [[a-b]]$.",
+        "skill": "same-diff",
+        "difficulty": 2,
+        "compute": "(a+k) - (b+k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 8,
+              "to": 12
+            },
+            "b": {
+              "from": 3,
+              "to": 7
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n03.same-diff-set",
+    "type": "PROBLEM_SET",
+    "title": "Same Difference challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-slide",
+        "prompt": "Work out $[[a]] - [[10*t-1]]$ by adding $1$ to both numbers.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+1]]"],
+          "form": "any"
+        },
+        "solution": "$[[a+1]] - [[10*t]] = [[a-10*t+1]]$.",
+        "skill": "same-diff",
+        "difficulty": 1,
+        "compute": "(a+1) - 10*t",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 98
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-slide2",
+        "prompt": "Work out $[[a]] - [[10*t-2]]$ by adding $2$ to both numbers.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-10*t-2]]",
+              "why": "Add $2$ to both numbers: $[[a+2]] - [[10*t]]$."
+            }
+          ]
+        },
+        "solution": "$[[a+2]] - [[10*t]] = [[a-10*t+2]]$.",
+        "skill": "same-diff",
+        "difficulty": 2,
+        "compute": "(a+2) - 10*t",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 97
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-box",
+        "prompt": "$[[a]] - [[10*t-2]] = \\square - [[10*t]]$. What goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+2]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t-2]]$ went up by $2$, so $[[a]]$ goes up by $2$ too: $[[a+2]]$.",
+        "skill": "same-diff",
+        "difficulty": 2,
+        "compute": "a + 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 97
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-down",
+        "prompt": "Work out $[[a]] - [[10*t+1]]$ by taking $1$ from both numbers.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t-1]]"],
+          "form": "any"
+        },
+        "solution": "$[[a-1]] - [[10*t]] = [[a-10*t-1]]$.",
+        "skill": "same-diff",
+        "difficulty": 3,
+        "compute": "(a-1) - 10*t",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 99
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-ages",
+        "prompt": "Tom is $[[a]]$ and his sister is $[[b]]$. How many years older will Tom be in $[[k]]$ years?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-b+k]]",
+              "why": "Both of them get older, so the gap stays the same."
+            }
+          ]
+        },
+        "solution": "Both get $[[k]]$ years older, so the difference stays $[[a]] - [[b]] = [[a-b]]$.",
+        "skill": "same-diff",
+        "difficulty": 2,
+        "compute": "(a+k) - (b+k)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 8,
+              "to": 12
+            },
+            "b": {
+              "from": 3,
+              "to": 7
+            },
+            "k": {
+              "from": 2,
+              "to": 5
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n03.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: the whole unit",
+    "instructions": "Type each answer and press Check. Use the pattern from the lesson in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "r1-nine",
+        "prompt": "Work out $[[a]] + 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+9]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+11]]",
+              "why": "You added $10$ and then $1$ more. Take $1$ away instead."
+            }
+          ]
+        },
+        "hints": ["Add $10$, then take $1$ away."],
+        "solution": "$[[a]] + 10 = [[a+10]]$, then take $1$ away: $[[a+9]]$.",
+        "skill": "add-9",
+        "difficulty": 1,
+        "compute": "a + 10 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 80
+            }
+          }
+        }
+      },
+      {
+        "id": "r2-add8",
+        "prompt": "Work out $[[a]] + [[10*t-2]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+10*t-2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+10*t+2]]",
+              "why": "You added too much, so take the $2$ away."
+            }
+          ]
+        },
+        "hints": ["Add $[[10*t]]$, then take $2$ away."],
+        "solution": "$[[10*t-2]]$ is $2$ less than $[[10*t]]$: $[[a+10*t]] - 2 = [[a+10*t-2]]$.",
+        "skill": "add-near",
+        "difficulty": 1,
+        "compute": "a + 10*t - 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "r3-nine",
+        "prompt": "Work out $[[a]] - 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-9]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-11]]",
+              "why": "You took away too much, so add $1$ back instead."
+            }
+          ]
+        },
+        "hints": ["Take away $10$, then add $1$ back."],
+        "solution": "$[[a]] - 10 = [[a-10]]$, then add $1$ back: $[[a-9]]$.",
+        "skill": "sub-near",
+        "difficulty": 1,
+        "compute": "a - 10 + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "r4-slide",
+        "prompt": "Work out $[[a]] - [[10*t-1]]$ by adding $1$ to both numbers.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+1]]"],
+          "form": "any"
+        },
+        "hints": ["Add $1$ to both: $[[a+1]] - [[10*t]]$."],
+        "solution": "$[[a+1]] - [[10*t]] = [[a-10*t+1]]$.",
+        "skill": "same-diff",
+        "difficulty": 1,
+        "compute": "(a+1) - 10*t",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 98
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n03.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 3 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c1-nine",
+        "prompt": "Work out $[[a]] + 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+9]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+11]]",
+              "why": "You added $10$ and then $1$ more. Take $1$ away instead."
+            }
+          ]
+        },
+        "solution": "$[[a]] + 10 = [[a+10]]$, then take $1$ away: $[[a+9]]$.",
+        "skill": "add-9",
+        "difficulty": 1,
+        "compute": "a + 10 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 80
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-nineteen",
+        "prompt": "Work out $[[a]] + 19$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+19]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+21]]",
+              "why": "Take $1$ away after adding $20$, don’t add it."
+            }
+          ]
+        },
+        "solution": "$[[a]] + 20 = [[a+20]]$, then take $1$ away: $[[a+19]]$.",
+        "skill": "add-9",
+        "difficulty": 2,
+        "compute": "a + 20 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 70
+            }
+          }
+        }
+      },
+      {
+        "id": "c1-twentynine",
+        "prompt": "Work out $[[a]] + 29$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+29]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + 30 = [[a+30]]$, then take $1$ away: $[[a+29]]$.",
+        "skill": "add-9",
+        "difficulty": 2,
+        "compute": "a + 30 - 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 12,
+              "to": 60
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-add8",
+        "prompt": "Work out $[[a]] + [[10*t-2]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+10*t-2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a+10*t+2]]",
+              "why": "You added too much, so take the $2$ away."
+            }
+          ]
+        },
+        "solution": "$[[10*t-2]]$ is $2$ less than $[[10*t]]$: $[[a+10*t]] - 2 = [[a+10*t-2]]$.",
+        "skill": "add-near",
+        "difficulty": 1,
+        "compute": "a + 10*t - 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-add7",
+        "prompt": "Work out $[[a]] + [[10*t-3]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+10*t-3]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[10*t]] = [[a+10*t]]$, then take $3$ away: $[[a+10*t-3]]$.",
+        "skill": "add-near",
+        "difficulty": 2,
+        "compute": "a + 10*t - 3",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 11,
+              "to": 50
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c2-first",
+        "prompt": "Work out $[[10*t-1]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t-1+b]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t]] + [[b]] = [[10*t+b]]$, then take $1$ away: $[[10*t-1+b]]$.",
+        "skill": "add-near",
+        "difficulty": 2,
+        "compute": "10*t - 1 + b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "b": {
+              "from": 12,
+              "to": 39
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-nine",
+        "prompt": "Work out $[[a]] - 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-9]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-11]]",
+              "why": "You took away too much, so add $1$ back instead."
+            }
+          ]
+        },
+        "solution": "$[[a]] - 10 = [[a-10]]$, then add $1$ back: $[[a-9]]$.",
+        "skill": "sub-near",
+        "difficulty": 1,
+        "compute": "a - 10 + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 21,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-nineteen",
+        "prompt": "Work out $[[a]] - 19$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-19]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-21]]",
+              "why": "Add the $1$ back, don’t take it away."
+            }
+          ]
+        },
+        "solution": "$[[a]] - 20 = [[a-20]]$, then add $1$ back: $[[a-19]]$.",
+        "skill": "sub-near",
+        "difficulty": 2,
+        "compute": "a - 20 + 1",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 31,
+              "to": 90
+            }
+          }
+        }
+      },
+      {
+        "id": "c3-near",
+        "prompt": "Work out $[[a]] - [[10*t-2]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+2]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] - [[10*t]] = [[a-10*t]]$, then add $2$ back: $[[a-10*t+2]]$.",
+        "skill": "sub-near",
+        "difficulty": 2,
+        "compute": "a - 10*t + 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 99
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-slide",
+        "prompt": "Work out $[[a]] - [[10*t-1]]$ by adding $1$ to both numbers.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+1]]"],
+          "form": "any"
+        },
+        "solution": "$[[a+1]] - [[10*t]] = [[a-10*t+1]]$.",
+        "skill": "same-diff",
+        "difficulty": 1,
+        "compute": "(a+1) - 10*t",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 98
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-slide2",
+        "prompt": "Work out $[[a]] - [[10*t-2]]$ by adding $2$ to both numbers.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a-10*t+2]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[a-10*t-2]]",
+              "why": "Add $2$ to both numbers: $[[a+2]] - [[10*t]]$."
+            }
+          ]
+        },
+        "solution": "$[[a+2]] - [[10*t]] = [[a-10*t+2]]$.",
+        "skill": "same-diff",
+        "difficulty": 2,
+        "compute": "(a+2) - 10*t",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 97
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "c4-box",
+        "prompt": "$[[a]] - [[10*t-2]] = \\square - [[10*t]]$. What goes in the box?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+2]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t-2]]$ went up by $2$, so $[[a]]$ goes up by $2$ too: $[[a+2]]$.",
+        "skill": "same-diff",
+        "difficulty": 2,
+        "compute": "a + 2",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 51,
+              "to": 97
+            },
+            "t": {
+              "from": 2,
+              "to": 4
+            }
+          }
+        }
+      }
+    ]
+  }
+]

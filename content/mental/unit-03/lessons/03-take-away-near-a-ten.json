@@ -1,0 +1,74 @@
+{
+  "slug": "mental-take-away-near-a-ten",
+  "order": 3,
+  "title": "Take Away Numbers Near a Ten",
+  "estMinutes": 25,
+  "focusSkills": ["sub-near"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "$53 - 9$: taking away $10$ is easy. What would you do after that?",
+      "placeholder": "After taking away $10$, I would…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Take 10, add 1 back",
+          "body": "To take away $9$, take away $10$, then add $1$ back: $53 - 9 = 43 + 1 = 44$. You took away one too many, so give it back."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 72 − 28",
+          "problem": "Work out $72 - 28$.",
+          "steps": [
+            {
+              "text": "$28$ is $2$ less than $30$. Take away $30$.",
+              "try": {
+                "prompt": "What is $72 - 30$?",
+                "accepted": ["42"],
+                "compute": "72-30"
+              }
+            },
+            {
+              "text": "You took away $2$ too many. Add them back.",
+              "try": {
+                "prompt": "What is $42 + 2$?",
+                "accepted": ["44"],
+                "compute": "42+2"
+              }
+            },
+            {
+              "text": "So $72 - 28 = 44$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap",
+          "body": "When you take away too much, the fix is to add back. $53 - 9$ is $43 + 1 = 44$, not $43 - 1$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n03.sub-near-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n03.sub-near-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why do you add back after taking away a round number?"],
+      "confidenceCheck": true
+    }
+  ]
+}
