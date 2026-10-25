@@ -14,7 +14,7 @@ export default async function LessonPage({ params }: PageProps<'/lessons/[lesson
   if (lesson) {
     return (
       <CourseShell track={lesson.unit.track} unitSlug={lesson.unit.slug} lessonId={lesson.id}>
-        <div className="mx-auto max-w-3xl">
+        <div>
           {/* Remount when switching lessons so step state starts fresh. */}
           <LessonPlayer key={lesson.id} lesson={lesson} />
         </div>

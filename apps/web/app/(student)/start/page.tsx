@@ -36,9 +36,9 @@ export default async function Start({ searchParams }: PageProps<'/start'>) {
   if (!me) redirect('/join');
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-8 px-4 py-6 md:py-10">
+    <div className="flex w-full flex-1 flex-col gap-8 px-4 py-6 md:px-6">
       <h1 className="text-4xl font-bold">Welcome, {me.displayName}! 👋</h1>
-      <ul aria-label="Learning tracks" className="grid gap-4 md:grid-cols-3">
+      <ul aria-label="Learning tracks" className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {TRACKS.map(({ track, emoji }, i) => {
           const units = lists[i] ?? [];
           const done = units.reduce((n, u) => n + u.completedLessons, 0);

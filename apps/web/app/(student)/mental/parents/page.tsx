@@ -5,7 +5,7 @@ import { CourseShell } from '@/components/course-shell';
 export default function MentalParentGuide() {
   return (
     <CourseShell track="MENTAL">
-      <article className="flex max-w-3xl flex-col gap-6">
+      <article className="flex flex-col gap-6">
         <Link href="/mental" className="text-brand underline">
           ← Mental Math
         </Link>

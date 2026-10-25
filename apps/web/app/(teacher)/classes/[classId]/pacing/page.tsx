@@ -16,7 +16,7 @@ export default async function PacingPage({ params }: PageProps<'/classes/[classI
   if (!klass || !units) notFound();
 
   return (
-    <PageShell width="max-w-5xl">
+    <PageShell full>
       <div className="flex flex-col gap-6">
         <div>
           <Link href={`/classes/${classId}`} className="text-brand underline">

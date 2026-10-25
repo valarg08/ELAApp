@@ -45,7 +45,7 @@ export default async function StudentProgressPage({
   const low = confidence.filter((c) => c.confidence <= LOW_CONFIDENCE);
 
   return (
-    <PageShell width="max-w-5xl">
+    <PageShell full>
       <div className="flex flex-col gap-8">
         <div>
           <Link

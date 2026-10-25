@@ -24,7 +24,7 @@ export default async function AdminLayout({ children }: LayoutProps<'/'>) {
     <>
       <AppHeader me={me} home="/admin" />
       <nav aria-label="Admin" className="border-b border-border bg-card">
-        <ul className="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-1 px-4 py-2">
+        <ul className="flex flex-wrap gap-x-6 gap-y-1 px-4 py-2 md:px-6">
           {links.map((l) => (
             <li key={l.href}>
               <Link

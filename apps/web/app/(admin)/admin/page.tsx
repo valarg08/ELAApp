@@ -17,7 +17,7 @@ export default async function AdminOverviewPage() {
   ] as const;
 
   return (
-    <PageShell width="max-w-5xl">
+    <PageShell full>
       <div className="flex flex-col gap-8">
         <h1 className="text-3xl font-bold">Platform overview</h1>
         <dl className="grid grid-cols-2 gap-4 sm:grid-cols-5">

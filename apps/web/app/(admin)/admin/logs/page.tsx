@@ -58,7 +58,7 @@ export default async function LogsPage({ searchParams }: PageProps<'/admin/logs'
   };
 
   return (
-    <PageShell width="max-w-6xl">
+    <PageShell full>
       <div className="flex flex-col gap-6">
         <div>
           <h1 className="text-3xl font-bold">Logs</h1>

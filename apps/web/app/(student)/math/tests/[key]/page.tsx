@@ -59,7 +59,7 @@ export default async function MathTestPage({ params }: PageProps<'/math/tests/[k
   }
 
   return (
-    <PageShell width="max-w-4xl">
+    <PageShell full>
       <div className="flex flex-col gap-6">
         <Link href="/math" className="text-brand underline">
           ← Math

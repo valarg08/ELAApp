@@ -19,7 +19,7 @@ export default async function ContentPage() {
   const pending = data.units.filter((u) => u.state !== 'in-sync').length;
 
   return (
-    <PageShell width="max-w-5xl">
+    <PageShell full>
       <div className="flex flex-col gap-8">
         <div>
           <h1 className="text-3xl font-bold">Curriculum</h1>

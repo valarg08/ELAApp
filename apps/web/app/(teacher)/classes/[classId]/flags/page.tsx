@@ -16,7 +16,7 @@ export default async function FlagsPage({ params }: PageProps<'/classes/[classId
   if (!klass || !flags) notFound();
 
   return (
-    <PageShell width="max-w-4xl">
+    <PageShell full>
       <div className="flex flex-col gap-6">
         <div>
           <Link href={`/classes/${classId}`} className="text-brand underline">

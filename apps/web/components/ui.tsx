@@ -84,12 +84,22 @@ export function ErrorMessage({ message }: { message: string | null }) {
   );
 }
 
+/**
+ * A page's main area: `full` spans the window's width (signed-in pages: teacher, admin, tests),
+ * otherwise a centred column `width` wide (sign-in forms, short notices).
+ */
 export function PageShell({
   children,
   width = 'max-w-3xl',
+  full = false,
 }: {
   children: ReactNode;
   width?: string;
+  full?: boolean;
 }) {
-  return <main className={`mx-auto w-full ${width} flex-1 px-4 py-10`}>{children}</main>;
+  return (
+    <main className={`mx-auto w-full flex-1 ${full ? 'px-4 py-6 md:px-6' : `${width} px-4 py-10`}`}>
+      {children}
+    </main>
+  );
 }

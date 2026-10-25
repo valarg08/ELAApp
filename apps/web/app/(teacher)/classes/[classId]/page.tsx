@@ -19,7 +19,7 @@ export default async function ClassPage({ params }: PageProps<'/classes/[classId
   if (!klass || !students) notFound();
 
   return (
-    <PageShell width="max-w-5xl">
+    <PageShell full>
       <div className="flex flex-col gap-8">
         <div>
           <Link href="/classes" className="text-brand underline">

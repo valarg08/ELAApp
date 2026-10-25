@@ -12,7 +12,7 @@ export default async function AiUsagePage() {
   const total = data.days.reduce((n, d) => n + d.costCents, 0);
 
   return (
-    <PageShell width="max-w-5xl">
+    <PageShell full>
       <div className="flex flex-col gap-8">
         <div>
           <h1 className="text-3xl font-bold">AI usage</h1>

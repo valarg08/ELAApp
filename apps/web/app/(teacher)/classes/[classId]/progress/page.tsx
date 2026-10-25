@@ -79,7 +79,7 @@ export default async function ClassProgressPage({
   const { week } = progress;
 
   return (
-    <PageShell width="max-w-6xl">
+    <PageShell full>
       <div className="flex flex-col gap-8">
         <div>
           <Link href={`/classes/${classId}`} className="text-brand underline">
