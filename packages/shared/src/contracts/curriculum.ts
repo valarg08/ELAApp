@@ -35,6 +35,7 @@ export type LessonSummary = z.infer<typeof LessonSummary>;
 
 export const UnitDetail = UnitSummary.extend({
   bigIdeas: z.array(z.string()),
+  tips: z.array(z.string()),
   lessons: z.array(LessonSummary),
 });
 export type UnitDetail = z.infer<typeof UnitDetail>;

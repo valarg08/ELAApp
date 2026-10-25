@@ -25,6 +25,7 @@ export async function syncContent(
   db: PrismaClient,
   units: LoadedUnit[],
   math?: LoadResult['math'],
+  mental?: LoadResult['mental'],
 ): Promise<SyncReport> {
   const report: SyncReport = { units: 0, lessons: 0, activities: 0, orphans: [] };
 
@@ -35,6 +36,7 @@ export async function syncContent(
         title: unit.title,
         summary: unit.summary,
         bigIdeas: unit.bigIdeas,
+        tips: unit.tips,
         published: unit.published,
         contentHash,
         projectSpec: unit.projectSpec ?? undefined,
@@ -110,7 +112,26 @@ export async function syncContent(
     });
   }
   if (math) await syncMathContent(db, math);
+  if (mental) await syncMentalContent(db, mental);
   return report;
+}
+
+/** Mental Math's track-wide content into MathContent, under "mental:" keys (mental-math-design.md). */
+async function syncMentalContent(db: PrismaClient, mental: NonNullable<LoadResult['mental']>) {
+  const rows: [string, unknown][] = [
+    ['mental:skills', mental.skills],
+    ...(mental.levels ? [['mental:levels', mental.levels] as [string, unknown]] : []),
+    ...Object.entries(mental.facts).map(([n, f]): [string, unknown] => [`mental:facts:${n}`, f]),
+  ];
+  await db.$transaction(
+    rows.map(([key, value]) =>
+      db.mathContent.upsert({
+        where: { key },
+        create: { key, data: toJson(value), contentHash: mental.contentHash },
+        update: { data: toJson(value), contentHash: mental.contentHash },
+      }),
+    ),
+  );
 }
 
 /** Math-wide content into MathContent, one row per file (math-design.md §3). */

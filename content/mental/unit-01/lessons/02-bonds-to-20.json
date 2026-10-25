@@ -1,0 +1,84 @@
+{
+  "slug": "mental-bonds-to-20",
+  "order": 2,
+  "title": "Bonds to 20",
+  "estMinutes": 20,
+  "focusSkills": ["bonds-20"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You know $4 + 6 = 10$. What do you think $14 + 6$ is? Why?",
+      "placeholder": "I think… because…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "A bond to 10 with an extra ten",
+          "body": "$13$ is $10$ and $3$. To make $20$ it needs another ten: the $3$ needs $7$ to make a ten, and the $10$ is already there. So $13 + 7 = 20$. Every bond to $20$ is a bond to $10$ with an extra ten on one side."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: what goes with 16?",
+          "problem": "What number goes with $16$ to make $20$?",
+          "steps": [
+            {
+              "text": "Split $16$ into $10$ and $6$. Look only at the $6$.",
+              "try": {
+                "prompt": "What goes with $6$ to make $10$?",
+                "accepted": ["4"],
+                "compute": "10-6"
+              }
+            },
+            {
+              "text": "$6 + 4 = 10$, so $16 + 4 = 20$. The answer is $4$, not $14$: the $10$ in $16$ is already one of the two tens."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: take away from 20",
+          "problem": "Work out $20 - 12$.",
+          "steps": [
+            {
+              "text": "Think of it as a missing bond: $12 + ? = 20$.",
+              "try": {
+                "prompt": "What goes with $2$ to make $10$?",
+                "accepted": ["8"],
+                "compute": "10-2"
+              }
+            },
+            {
+              "text": "$12 + 8 = 20$, so $20 - 12 = 8$. Turning a take-away into a missing bond is often quicker than counting back."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap",
+          "body": "With $15 + ? = 20$, some people answer $15$ because $5 + 15 = 20$ looks right. Check: $15 + 15 = 30$. The missing number is $5$. Always ask: how many tens do I have, and how many do I need?"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n01.bonds20-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n01.bonds20-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How does knowing $3 + 7 = 10$ help you with $13 + 7$ and with $20 - 13$?"],
+      "confidenceCheck": true
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "number": 1,
+    "title": "Number Friends",
+    "ages": "7–8",
+    "focus": "Pairs that make 10, 20 and 100, doubles and halves, and rounding to a friendly number and fixing it after.",
+    "units": [
+      { "number": 1, "title": "Number Bonds" },
+      { "number": 2, "title": "Doubling & Halving" },
+      { "number": 3, "title": "Compensation" }
+    ]
+  },
+  {
+    "number": 2,
+    "title": "Pattern Spotters",
+    "ages": "9–10",
+    "focus": "Work from the left, use the times-table facts you know to build the ones you don't, and think with friendly benchmarks.",
+    "units": [
+      { "number": 4, "title": "Front-End Adding & Subtracting" },
+      { "number": 5, "title": "Multiplication Anchors" },
+      { "number": 6, "title": "Benchmark Numbers" },
+      { "number": 7, "title": "Missing Number Thinking" }
+    ]
+  },
+  {
+    "number": 3,
+    "title": "Number Sense Builders",
+    "ages": "11–12",
+    "focus": "Move between fractions, decimals and percentages, test divisibility from 2 to 11, estimate first and multiply smartly by 9, 11, 99 and 999.",
+    "units": [
+      { "number": 8, "title": "Fractions, Decimals & Percentages" },
+      { "number": 9, "title": "Divisibility Rules 2–11" },
+      { "number": 10, "title": "Estimation" },
+      { "number": 11, "title": "Smart Multiplication" }
+    ]
+  },
+  {
+    "number": 4,
+    "title": "Pattern Masters",
+    "ages": "13–14",
+    "focus": "Squares from 1 to 30, the difference of squares, Vedic patterns explained with algebra, and a practice system for speed with accuracy.",
+    "units": [
+      { "number": 12, "title": "Squares 1² to 30²" },
+      { "number": 13, "title": "Difference of Squares" },
+      { "number": 14, "title": "Vedic Patterns" },
+      { "number": 15, "title": "Speed & Accuracy Systems" }
+    ]
+  }
+]

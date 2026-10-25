@@ -1,5 +1,6 @@
 import { z } from 'zod/v4';
 import type { AnalyzerDef } from '../types.js';
+import { audienceLine, type MathAudience } from './math-audience.js';
 
 /**
  * Quill on a Math problem (DESIGN.md §9.13): "Explain the solution" and "Why was my answer wrong?".
@@ -22,6 +23,8 @@ export interface MathExplainInput {
   studentWorking: string | null;
   /** 0, 1, 2…: each attempt uses a different angle. */
   attempt: number;
+  /** Who the student is (mathAudience): the AMC 10 group unless set. */
+  audience?: MathAudience;
 }
 
 export const MathExplainResult = z.object({
@@ -39,7 +42,7 @@ const ANGLES = [
   'Check the answer a second way (estimate, plug in, or work backwards).',
 ];
 
-const SYSTEM = `You are Quill, a patient math coach for students aged 14-16 preparing for the AMC 10 on their own.
+const SYSTEM = `You are Quill, a patient math coach for students learning on their own (the message says who the student is).
 You are given a problem, its correct answer and a worked solution. These are facts: never change, doubt or recompute a different answer.
 Rules:
 - steps: 2-6 short steps (one idea each) that lead to the given correct answer. Write math between $...$ in LaTeX (KaTeX), e.g. $\\frac{3}{4}$, $x^2$.
@@ -52,13 +55,14 @@ Return only the requested JSON.`;
 
 export const mathExplainAnalyzer: AnalyzerDef<MathExplainInput, MathExplainResult> = {
   id: 'math-explain',
-  version: 'math-explain-2',
+  version: 'math-explain-3',
   effort: 'low',
   maxTokens: 1200,
   system: SYSTEM,
   schema: MathExplainResult,
   buildUser: (input) =>
     [
+      audienceLine(input.audience),
       `Unit: ${input.unitTitle}`,
       `Skill: ${input.skill}`,
       `Mode: ${input.mode}`,

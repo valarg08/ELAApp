@@ -20,6 +20,8 @@ import {
   type MathNudgeResponse,
   type MathProblem,
   answerLabel,
+  isMathTrack,
+  trackOfActivityKey,
   markAnswer,
   splitMath,
 } from '@storyforge/shared';
@@ -31,6 +33,10 @@ import { CurriculumService } from '../curriculum/curriculum.service.js';
 import { SafetyService } from '../safety/safety.service.js';
 import { MathContentService } from './math-content.service.js';
 import { aiDeclined, aiFailure } from '../ai/ai-error.js';
+
+/** Quill's student group for a problem: Mental Math keys start with "n" (tests are Math). */
+const audienceOf = (activityKey: string) =>
+  trackOfActivityKey(activityKey) === 'MENTAL' ? ('mental' as const) : ('amc' as const);
 
 const unavailable = () =>
   new AppError(
@@ -171,6 +177,7 @@ export class MathTutorService {
           studentAnswer: req.mode === 'mistake' ? studentAnswer : null,
           studentWorking: working || null,
           attempt: req.attempt,
+          audience: audienceOf(req.activityKey),
         },
         {
           kind: 'tutor',
@@ -230,6 +237,7 @@ export class MathTutorService {
             solution: problem.solution,
             studentAnswer: req.answer,
             attempt: req.attempt,
+            audience: audienceOf(req.activityKey),
             strict,
           },
           {
@@ -252,7 +260,7 @@ export class MathTutorService {
   /** "Explain it another way" on a Math Learn card (the writing tutor stays for Story and Essay). */
   async card(user: AuthUser, req: MathCardRequest): Promise<MathCardResponse> {
     const { lesson, unit, classId } = await this.curriculum.openLesson(user, req.lessonId);
-    if (unit.track !== 'MATH') throw notFound(ErrorCode.NOT_FOUND, 'Card not found.');
+    if (!isMathTrack(unit.track)) throw notFound(ErrorCode.NOT_FOUND, 'Card not found.');
     const card = LessonSteps.parse(lesson.steps)[1].cards[req.cardIndex];
     if (!card || !cardText(card)) throw notFound(ErrorCode.NOT_FOUND, 'Card not found.');
     const remaining = await this.tutor.checkLimit(user.id, classId);
@@ -265,6 +273,7 @@ export class MathTutorService {
           cardTitle: card.title,
           cardText: cardText(card),
           attempt: req.attempt,
+          audience: unit.track === 'MENTAL' ? 'mental' : 'amc',
         },
         {
           kind: 'tutor',

@@ -1,5 +1,6 @@
 import { z } from 'zod/v4';
 import type { AnalyzerDef } from '../types.js';
+import { audienceLine, type MathAudience } from './math-audience.js';
 
 /**
  * Quill's nudge on a Math practice problem (math-design.md §3.3 C1): after a wrong try, one
@@ -18,12 +19,14 @@ export interface MathNudgeInput {
   attempt: number;
   /** A retry after a nudge was dropped: be stricter. */
   strict: boolean;
+  /** Who the student is (mathAudience): the AMC 10 group unless set. */
+  audience?: MathAudience;
 }
 
 export const MathNudgeResult = z.object({ question: z.string() });
 export type MathNudgeResult = z.infer<typeof MathNudgeResult>;
 
-const SYSTEM = `You are Quill, a math coach for students aged 14-16 practising for the AMC 10 on their own.
+const SYSTEM = `You are Quill, a math coach for students practising on their own (the message says who the student is).
 The student gave a wrong answer to a practice problem. Ask ONE short guiding question (at most 25 words) that helps them find their own mistake or the next step.
 Rules:
 - Never give the answer, any number that is not already in the problem, or an answer letter.
@@ -34,13 +37,14 @@ Return only the requested JSON.`;
 
 export const mathNudgeAnalyzer: AnalyzerDef<MathNudgeInput, MathNudgeResult> = {
   id: 'math-nudge',
-  version: 'math-nudge-1',
+  version: 'math-nudge-2',
   effort: 'low',
   maxTokens: 300,
   system: SYSTEM,
   schema: MathNudgeResult,
   buildUser: (input) =>
     [
+      audienceLine(input.audience),
       `Skill: ${input.skill}`,
       `Nudge number: ${input.attempt + 1}`,
       ...(input.strict

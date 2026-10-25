@@ -1,0 +1,56 @@
+{
+  "slug": "mental-number-bonds-check",
+  "order": 5,
+  "title": "⭐ Unit Check: Number Bonds",
+  "estMinutes": 20,
+  "focusSkills": ["bonds-10", "bonds-20", "bridge-10", "bonds-100"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Before the check: which bonds do you know by heart now, and which do you still have to think about?",
+      "placeholder": "I know… I still think about…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Bonds: quick review",
+          "body": "Bonds to $10$: $1 + 9$, $2 + 8$, $3 + 7$, $4 + 6$, $5 + 5$. Bonds to $20$ add a ten: $13 + 7 = 20$. Bonds to $100$: the tens make $9$ and the ones make $10$, so $37 + 63 = 100$."
+        },
+        {
+          "kind": "definition",
+          "title": "Make 10 first: quick review",
+          "body": "Crossing a ten? Fill up to the ten, then add the rest: $8 + 5 = 8 + 2 + 3 = 13$. Taking away across a ten? Go back to the ten, then take the rest: $13 - 5 = 13 - 3 - 2 = 8$."
+        },
+        {
+          "kind": "definition",
+          "title": "How the check works",
+          "body": "First a short warm-up. Then the check: $8$ questions, easiest first, no hints. Type each answer. You need all $8$ right to pass. If you miss one, you'll see how to do it, and the next try gives you new numbers."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n01.review-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n01.unit-check"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Where could you use a bond to $100$ outside school?",
+        "Which bond will you practise until you know it by heart?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

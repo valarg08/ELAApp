@@ -3,10 +3,7 @@
   "order": 3,
   "title": "Work Backwards & Test the Choices",
   "estMinutes": 50,
-  "focusSkills": [
-    "work-backwards",
-    "test-choices"
-  ],
+  "focusSkills": ["work-backwards", "test-choices"],
   "steps": [
     {
       "id": "hook",
@@ -36,9 +33,7 @@
               "text": "The last step was $\\times 3$, so undo it first by dividing by $3$: $27 \\div 3 = 9$.",
               "try": {
                 "prompt": "What is $27 \\div 3$?",
-                "accepted": [
-                  "9"
-                ],
+                "accepted": ["9"],
                 "compute": "27/3"
               }
             },
@@ -46,9 +41,7 @@
               "text": "Before that she added $4$. Undo it by subtracting $4$: $9 - 4 = 5$.",
               "try": {
                 "prompt": "What is $9 - 4$?",
-                "accepted": [
-                  "5"
-                ],
+                "accepted": ["5"],
                 "compute": "9-4"
               }
             },
@@ -72,9 +65,7 @@
               "text": "First he doubled. Undo it: $\\frac{20}{2} = 10$. Check: $10 \\to 20 \\to 27 \\to 9$. ✓",
               "try": {
                 "prompt": "Undo the doubling: what is $\\frac{20}{2}$?",
-                "accepted": [
-                  "10"
-                ],
+                "accepted": ["10"],
                 "compute": "20/2"
               }
             }
@@ -97,9 +88,7 @@
               "text": "Try (D), $30$: the numbers are $26$, $28$ and $30$.",
               "try": {
                 "prompt": "What do $26$, $28$ and $30$ add up to?",
-                "accepted": [
-                  "84"
-                ],
+                "accepted": ["84"],
                 "compute": "26+28+30"
               }
             },
@@ -118,11 +107,7 @@
     {
       "id": "practice",
       "type": "guided_practice",
-      "activityKeys": [
-        "m01.backwards-starter",
-        "m01.backwards-practice",
-        "m01.backwards-amc"
-      ]
+      "activityKeys": ["m01.backwards-starter", "m01.backwards-practice", "m01.backwards-amc"]
     },
     {
       "id": "challenge",
@@ -132,9 +117,7 @@
     {
       "id": "reflect",
       "type": "reflection",
-      "prompts": [
-        "When would you test the choices instead of solving the problem directly?"
-      ],
+      "prompts": ["When would you test the choices instead of solving the problem directly?"],
       "confidenceCheck": true,
       "trapPicker": true
     }

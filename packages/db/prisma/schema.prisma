@@ -118,11 +118,13 @@ enum ActivityType {
   REFLECTION
 }
 
-// The learning tracks (DESIGN.md §9.12, §9.13): creative writing, essay writing and math (AMC 10).
+// The learning tracks (DESIGN.md §9.12, §9.13, mental-math-design.md): creative writing, essay
+// writing, math (AMC 10) and mental math (number sense, ages 7–14).
 enum Track {
   STORY
   ESSAY
   MATH
+  MENTAL
 }
 
 enum ArtifactType {
@@ -271,6 +273,7 @@ model Unit {
   title       String
   summary     String
   bigIdeas    Json // string[]
+  tips        Json        @default("[]") // string[] (Mental Math pattern tips)
   projectSpec Json? // min/max words, rubricKey, portfolio slot
   lessons     Lesson[]
   activities  Activity[]

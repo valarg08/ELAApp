@@ -2,6 +2,7 @@ import {
   ESSAY_STRANDS,
   type LessonProgressRow,
   MATH_STRANDS,
+  isMathTrack,
   type TrackProgress,
   UNIT_WORD,
 } from '@storyforge/shared';
@@ -22,8 +23,9 @@ export function TrackProgressView({
   linkUnits?: boolean;
 }) {
   const { totals, units } = progress;
-  const math = progress.track === 'MATH';
-  const strands = progress.track === 'ESSAY' ? ESSAY_STRANDS : math ? MATH_STRANDS : null;
+  const math = isMathTrack(progress.track);
+  const strands =
+    progress.track === 'ESSAY' ? ESSAY_STRANDS : progress.track === 'MATH' ? MATH_STRANDS : null;
   const unitName = UNIT_WORD[progress.track];
   const doneUnits = new Set(
     units

@@ -1,0 +1,6 @@
+[
+  { "id": "bonds-10", "label": "Bonds to 10", "strand": "strategy", "units": [1] },
+  { "id": "bonds-20", "label": "Bonds to 20", "strand": "strategy", "units": [1] },
+  { "id": "bridge-10", "label": "Make 10 to add and subtract", "strand": "strategy", "units": [1] },
+  { "id": "bonds-100", "label": "Bonds to 100", "strand": "strategy", "units": [1] }
+]

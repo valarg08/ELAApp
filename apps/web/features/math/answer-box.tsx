@@ -2,6 +2,7 @@
 
 import { type AnswerForm, FORM_LABELS, approx, format, readAnswer } from '@storyforge/math-check';
 import { useId, useRef } from 'react';
+import { useSimpleAnswers } from './simple-answers';
 
 /** A plain number like "100.5" or "-3": echoed as a decimal, not as 201/2. */
 const PLAIN_NUMBER = /^\s*-?(\d+\.?\d*|\.\d+)\s*$/;
@@ -19,6 +20,7 @@ const HELPERS: { insert: string; label: string; name: string }[] = [
 /**
  * A typed answer: a plain box, helper buttons for √ π / ^ and brackets, and a live "We read…"
  * preview from math-check so the student sees how their answer is understood before checking.
+ * Mental Math (SimpleAnswers) shows only the box: its answers are plain numbers.
  */
 export function AnswerBox({
   value,
@@ -36,6 +38,7 @@ export function AnswerBox({
   label?: string;
 }) {
   const id = useId();
+  const simple = useSimpleAnswers();
   const input = useRef<HTMLInputElement>(null);
   const read = value.trim() ? readAnswer(value) : null;
 
@@ -79,28 +82,32 @@ export function AnswerBox({
           aria-describedby={`${id}-read`}
           className="min-h-11 w-56 rounded-xl border-2 border-border bg-background px-3 py-2 font-mono text-lg focus-visible:border-brand focus-visible:outline-3 focus-visible:outline-brand"
         />
-        <fieldset className="flex flex-wrap gap-1">
-          <legend className="sr-only">Insert a symbol</legend>
-          {HELPERS.map((h) => (
-            <button
-              key={h.name}
-              type="button"
-              disabled={disabled}
-              aria-label={`Insert ${h.name}`}
-              onClick={() => insert(h.insert)}
-              className="min-h-11 min-w-11 rounded-lg border border-border bg-card px-2 font-mono hover:border-brand focus-visible:outline-3 focus-visible:outline-brand disabled:opacity-50"
-            >
-              {h.label}
-            </button>
-          ))}
-        </fieldset>
+        {!simple && (
+          <fieldset className="flex flex-wrap gap-1">
+            <legend className="sr-only">Insert a symbol</legend>
+            {HELPERS.map((h) => (
+              <button
+                key={h.name}
+                type="button"
+                disabled={disabled}
+                aria-label={`Insert ${h.name}`}
+                onClick={() => insert(h.insert)}
+                className="min-h-11 min-w-11 rounded-lg border border-border bg-card px-2 font-mono hover:border-brand focus-visible:outline-3 focus-visible:outline-brand disabled:opacity-50"
+              >
+                {h.label}
+              </button>
+            ))}
+          </fieldset>
+        )}
       </div>
       <p id={`${id}-read`} className="min-h-6 text-sm text-muted" aria-live="polite">
         {read
           ? read.ok
             ? `We read: ${PLAIN_NUMBER.test(value) ? String(approx(read.value)) : format(read.value)}`
             : `${read.message}.`
-          : 'Type a number, a fraction like 3/4, or something like 2√3 or 4π.'}
+          : simple
+            ? 'Type a number.'
+            : 'Type a number, a fraction like 3/4, or something like 2√3 or 4π.'}
       </p>
     </div>
   );

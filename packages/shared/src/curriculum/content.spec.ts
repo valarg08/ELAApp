@@ -43,6 +43,7 @@ const bundle = (): UnitBundle => ({
     title: 'Foundations',
     summary: 'Basics',
     bigIdeas: [],
+    tips: [],
     published: true,
   },
   lessons: [lesson()],

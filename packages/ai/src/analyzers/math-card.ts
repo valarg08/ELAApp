@@ -1,5 +1,6 @@
 import { z } from 'zod/v4';
 import type { AnalyzerDef } from '../types.js';
+import { audienceLine, type MathAudience } from './math-audience.js';
 
 /**
  * "Explain it another way" on a Math Learn card (math-design.md §3.3 C2). The writing tutor
@@ -13,6 +14,8 @@ export interface MathCardInput {
   cardText: string;
   /** 0, 1, 2…: each attempt uses a different angle. */
   attempt: number;
+  /** Who the student is (mathAudience): the AMC 10 group unless set. */
+  audience?: MathAudience;
 }
 
 export const MathCardResult = z.object({
@@ -26,10 +29,10 @@ const ANGLES = [
   'Say it as a picture or table in words.',
   'Start from why the idea works, then how to use it.',
   'Show the common trap first, then the right way.',
-  'Connect it to an idea a 9th grader already knows.',
+  'Connect it to an idea the student already knows.',
 ];
 
-const SYSTEM = `You are Quill, a math coach for students aged 14-16 preparing for the AMC 10 on their own.
+const SYSTEM = `You are Quill, a math coach for students learning on their own (the message says who the student is).
 Explain the lesson card's idea another way, in 2-5 short steps (one idea each), then one sentence with the key idea to remember.
 Rules:
 - The card is correct: never contradict it or state a different result for its example.
@@ -39,13 +42,14 @@ Return only the requested JSON.`;
 
 export const mathCardAnalyzer: AnalyzerDef<MathCardInput, MathCardResult> = {
   id: 'math-card',
-  version: 'math-card-1',
+  version: 'math-card-2',
   effort: 'low',
   maxTokens: 900,
   system: SYSTEM,
   schema: MathCardResult,
   buildUser: (input) =>
     [
+      audienceLine(input.audience),
       `Unit: ${input.unitTitle}`,
       `Lesson: ${input.lessonTitle}`,
       `Angle for this attempt: ${ANGLES[input.attempt % ANGLES.length]}`,

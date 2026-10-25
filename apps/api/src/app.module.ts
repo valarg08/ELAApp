@@ -11,6 +11,7 @@ import { LiveChecksModule } from './ai/live-checks.module.js';
 import { FeedbackModule } from './feedback/feedback.module.js';
 import { SafetyModule } from './safety/safety.module.js';
 import { MathModule } from './math/math.module.js';
+import { MentalModule } from './mental/mental.module.js';
 import { AdminModule } from './admin/admin.module.js';
 
 @Module({
@@ -27,6 +28,7 @@ import { AdminModule } from './admin/admin.module.js';
     FeedbackModule,
     LiveChecksModule,
     MathModule,
+    MentalModule,
     AdminModule,
   ],
 })

@@ -220,3 +220,41 @@ export function stageOf(stages: MathStagesFile, unit: number, lessonOrder?: numb
         return stage.number;
   return null;
 }
+
+// ───────── Mental Math levels (mental-math-design.md) ─────────
+
+/**
+ * content/mental/levels.json: the four age levels in order, each with its planned units. A unit
+ * that isn't written yet shows as "coming soon" on the Mental Math home.
+ */
+export const MentalLevelsFile = z
+  .array(
+    z.object({
+      number: z.number().int().min(1).max(4),
+      title: text(80),
+      ages: text(20),
+      focus: text(300),
+      units: z
+        .array(z.object({ number: z.number().int().min(1).max(40), title: text(80) }))
+        .min(1)
+        .max(12),
+    }),
+  )
+  .length(4);
+export type MentalLevelsFile = z.infer<typeof MentalLevelsFile>;
+
+/** Cross-checks for levels.json: levels 1–4 in order, each unit planned once, in order. */
+export function mentalLevelErrors(
+  levels: MentalLevelsFile,
+  unitNumbers: readonly number[],
+): string[] {
+  const errors: string[] = [];
+  if (levels.some((l, i) => l.number !== i + 1))
+    errors.push('levels.json: levels must be numbered 1–4');
+  const planned = levels.flatMap((l) => l.units.map((u) => u.number));
+  if (planned.some((n, i) => n !== i + 1))
+    errors.push('levels.json: units must be numbered 1, 2, 3… in order across the levels');
+  for (const n of unitNumbers)
+    if (!planned.includes(n)) errors.push(`levels.json: unit ${n} is not in any level`);
+  return errors;
+}

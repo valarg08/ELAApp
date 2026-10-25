@@ -368,13 +368,13 @@ export class AdminService {
 
   /** Validate /content and, unless it is a dry run, load it into the database (DESIGN.md §9.4). */
   async syncContent(admin: AuthUser, dryRun: boolean): Promise<ContentSyncResponse> {
-    const { units, errors, math } = await loadContent();
+    const { units, errors, math, mental } = await loadContent();
     const lessons = units.reduce((n, u) => n + u.lessons.length, 0);
     const activities = units.reduce((n, u) => n + u.activities.length, 0);
     if (errors.length > 0 || dryRun) {
       return { dryRun: true, units: units.length, lessons, activities, orphans: [], errors };
     }
-    const report = await syncContent(this.db.client, units, math);
+    const report = await syncContent(this.db.client, units, math, mental);
     await this.audit.record(admin.id, 'content.sync', 'content', {
       units: report.units,
       lessons: report.lessons,

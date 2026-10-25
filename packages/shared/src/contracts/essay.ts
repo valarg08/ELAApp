@@ -134,6 +134,7 @@ export const UNIT_WORD: Record<Track, string> = {
   STORY: 'Unit',
   ESSAY: 'Essay Unit',
   MATH: 'Math Unit',
+  MENTAL: 'Mental Math Unit',
 };
 
 /** "Unit 3" in Story Writing, "Essay Unit 3" in Essay Writing, "Math Unit 3" in Math. */
@@ -144,6 +145,7 @@ export const TRACK_HOME: Record<Track, string> = {
   STORY: '/home',
   ESSAY: '/essays',
   MATH: '/math',
+  MENTAL: '/mental',
 };
 
 /** Each track's name, as on its tab. */
@@ -151,4 +153,5 @@ export const TRACK_NAMES: Record<Track, string> = {
   STORY: 'Story Writing',
   ESSAY: 'Essay Writing',
   MATH: 'Math (AMC 10)',
+  MENTAL: 'Mental Math',
 };

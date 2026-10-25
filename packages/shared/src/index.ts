@@ -24,5 +24,6 @@ export * from './contracts/word-bank.js';
 export * from './contracts/essay.js';
 export * from './contracts/teacher-progress.js';
 export * from './contracts/math.js';
+export * from './contracts/mental.js';
 export * from './contracts/admin.js';
 export * from './writing/diff.js';

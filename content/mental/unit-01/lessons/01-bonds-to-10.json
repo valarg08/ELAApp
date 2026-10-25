@@ -1,0 +1,94 @@
+{
+  "slug": "mental-bonds-to-10",
+  "order": 1,
+  "title": "Bonds to 10",
+  "estMinutes": 20,
+  "focusSkills": ["bonds-10"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Hold up all ten fingers and fold down $3$. How many are still up? How many ways can you split your $10$ fingers into two groups?",
+      "placeholder": "Still up… Ways to split…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "What is a number bond?",
+          "body": "A number bond is two numbers that make a whole. $3$ and $7$ are a bond to $10$ because $3 + 7 = 10$. There are only five bonds to $10$: $1 + 9$, $2 + 8$, $3 + 7$, $4 + 6$ and $5 + 5$. Learn them like your name: they are the building blocks of all mental math."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the ten frame",
+          "problem": "A ten frame has $10$ boxes. $6$ boxes have a counter. How many are empty?",
+          "steps": [
+            {
+              "text": "Picture the frame: two rows of $5$. The top row is full and $1$ box in the bottom row has a counter.",
+              "try": {
+                "prompt": "How many empty boxes are in the bottom row?",
+                "accepted": ["4"],
+                "compute": "5-1"
+              }
+            },
+            {
+              "text": "So $4$ boxes are empty. $6$ and $4$ are a bond to $10$: $6 + 4 = 10$."
+            },
+            {
+              "text": "The bond also gives you a take-away fact for free: $10 - 6 = 4$.",
+              "try": {
+                "prompt": "What is $10 - 4$?",
+                "accepted": ["6"],
+                "compute": "10-4"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: hunt for the pairs",
+          "problem": "Work out $7 + 5 + 3$ in your head.",
+          "steps": [
+            {
+              "text": "Look before you add: $7$ and $3$ are a bond to $10$.",
+              "try": {
+                "prompt": "What is $7 + 3$?",
+                "accepted": ["10"],
+                "compute": "7+3"
+              }
+            },
+            {
+              "text": "Add them first: $7 + 3 = 10$. Then $10 + 5 = 15$. Adding a number to $10$ is easy, so pairs that make $10$ save you work."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Why it works",
+          "body": "You can add numbers in any order and get the same total: $7 + 5 + 3$ is the same as $7 + 3 + 5$. So you are allowed to pick the pairs that make $10$ first. That is a pattern, not a trick: it works every time."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n01.bonds10-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n01.bonds10-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which bond to $10$ do you find hardest to remember? Make up a way to remember it."
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

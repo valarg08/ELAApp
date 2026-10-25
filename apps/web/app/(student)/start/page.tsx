@@ -10,6 +10,7 @@ const TRACKS: { track: Track; emoji: string }[] = [
   { track: 'STORY', emoji: '✍️' },
   { track: 'ESSAY', emoji: '📝' },
   { track: 'MATH', emoji: '📐' },
+  { track: 'MENTAL', emoji: '🧠' },
 ];
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));

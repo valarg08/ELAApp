@@ -1,0 +1,92 @@
+{
+  "slug": "mental-bonds-to-100",
+  "order": 4,
+  "title": "Bonds to 100",
+  "estMinutes": 25,
+  "focusSkills": ["bonds-100"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "You have $100$ cents and buy a snack for $35$ cents. How much change do you get? How did you work it out?",
+      "placeholder": "My change… I worked it out by…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Tens that make 100",
+          "body": "$100$ is ten tens. So the bonds to $10$ give bonds to $100$ in tens: $3 + 7 = 10$, so $30 + 70 = 100$. The five tens bonds are $10 + 90$, $20 + 80$, $30 + 70$, $40 + 60$ and $50 + 50$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: what goes with 37?",
+          "problem": "What number goes with $37$ to make $100$?",
+          "steps": [
+            {
+              "text": "Start with the ones: $7$ needs $3$ to make a ten.",
+              "try": {
+                "prompt": "What goes with $7$ to make $10$?",
+                "accepted": ["3"],
+                "compute": "10-7"
+              }
+            },
+            {
+              "text": "Those ones make a new ten, so the tens only need to make $9$, not $10$: $3$ tens need $6$ more tens.",
+              "try": {
+                "prompt": "What goes with $3$ to make $9$?",
+                "accepted": ["6"],
+                "compute": "9-3"
+              }
+            },
+            {
+              "text": "So the answer is $63$. Check: $37 + 63 = 100$. The pattern: the tens make $9$ and the ones make $10$."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: change from 100",
+          "problem": "Work out $100 - 46$.",
+          "steps": [
+            {
+              "text": "Think: $46 + ? = 100$. The ones: $6 + 4 = 10$. The tens: $4 + 5 = 9$.",
+              "try": {
+                "prompt": "What is $100 - 46$?",
+                "accepted": ["54"],
+                "compute": "100-46"
+              }
+            },
+            {
+              "text": "So $100 - 46 = 54$. No borrowing, no counting back: just two bonds."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "The common trap",
+          "body": "For $37$, some people answer $73$: they make the tens $10$ and the ones $10$. Check: $37 + 73 = 110$, one ten too many. The ones already make a ten, so the tens make $9$. Only a number that ends in $0$, like $40 + 60$, has tens that make $10$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n01.bonds100-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n01.bonds100-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why do the tens make $9$, and not $10$, in $37 + 63 = 100$?"],
+      "confidenceCheck": true
+    }
+  ]
+}

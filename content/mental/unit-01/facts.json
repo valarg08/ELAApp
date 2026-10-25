@@ -1,0 +1,40 @@
+{
+  "sections": [
+    {
+      "skill": "bonds-10",
+      "title": "Bonds to 10",
+      "facts": [
+        "$1 + 9$, $2 + 8$, $3 + 7$, $4 + 6$, $5 + 5$: the five pairs that make $10$.",
+        "Turn them round and they still make $10$: $9 + 1$, $8 + 2$, $7 + 3$, $6 + 4$.",
+        "Each pair gives a take-away fact too: $3 + 7 = 10$, so $10 - 3 = 7$ and $10 - 7 = 3$."
+      ]
+    },
+    {
+      "skill": "bonds-20",
+      "title": "Bonds to 20",
+      "facts": [
+        "Add a ten to a bond to $10$: $4 + 6 = 10$, so $14 + 6 = 20$.",
+        "$11 + 9$, $12 + 8$, $13 + 7$, $14 + 6$, $15 + 5$, $16 + 4$, $17 + 3$, $18 + 2$, $19 + 1$, $10 + 10$.",
+        "$20 - 13 = 7$ because $13 + 7 = 20$."
+      ]
+    },
+    {
+      "skill": "bridge-10",
+      "title": "Make 10 first",
+      "facts": [
+        "Adding across a ten: fill up to the ten, then add the rest. $8 + 5 = 8 + 2 + 3 = 13$.",
+        "It works for bigger numbers: $47 + 8 = 47 + 3 + 5 = 55$.",
+        "Taking away across a ten: go back to the ten, then take the rest. $13 - 5 = 13 - 3 - 2 = 8$."
+      ]
+    },
+    {
+      "skill": "bonds-100",
+      "title": "Bonds to 100",
+      "facts": [
+        "Tens that make $100$: $10 + 90$, $20 + 80$, $30 + 70$, $40 + 60$, $50 + 50$.",
+        "For other numbers the tens make $9$ and the ones make $10$: $37 + 63$ ($3 + 6 = 9$ tens, $7 + 3 = 10$ ones).",
+        "$100 - 28 = 72$ because $28 + 72 = 100$."
+      ]
+    }
+  ]
+}

@@ -34,24 +34,39 @@ const id = z.string().regex(/^[a-z0-9][a-z0-9-]*$/, 'Use lowercase letters, numb
 
 // ───────── Activities ─────────
 
-/** The learning tracks (DESIGN.md §9.12, §9.13). */
-export const TRACKS = ['STORY', 'ESSAY', 'MATH'] as const;
+/** The learning tracks (DESIGN.md §9.12, §9.13, mental-math-design.md). */
+export const TRACKS = ['STORY', 'ESSAY', 'MATH', 'MENTAL'] as const;
 export const Track = z.enum(TRACKS);
 export type Track = z.infer<typeof Track>;
 
-/** Activity keys start with the unit: "u01." in Story Writing, "e01." in Essay Writing, "m01." in Math. */
+/**
+ * Tracks built on the Math engine (problems checked with math-check, worked examples, fact sheets):
+ * Math (AMC 10) and Mental Math.
+ */
+export const isMathTrack = (track: Track): boolean => track === 'MATH' || track === 'MENTAL';
+
+/**
+ * Activity keys start with the unit: "u01." in Story Writing, "e01." in Essay Writing, "m01." in
+ * Math, "n01." in Mental Math (number sense).
+ */
 export const ActivityKey = z
   .string()
   .regex(
-    /^[uem]\d{2}\.[a-z0-9][a-z0-9-]*$/,
-    'Activity keys look like "u01.sort-show-tell" (or "e01.…" in Essay Writing, "m01.…" in Math)',
+    /^[uemn]\d{2}\.[a-z0-9][a-z0-9-]*$/,
+    'Activity keys look like "u01.sort-show-tell" (or "e01.…" in Essay Writing, "m01.…" in Math, "n01.…" in Mental Math)',
   );
 
-const KEY_LETTER: Record<Track, string> = { STORY: 'u', ESSAY: 'e', MATH: 'm' };
+const KEY_LETTER: Record<Track, string> = { STORY: 'u', ESSAY: 'e', MATH: 'm', MENTAL: 'n' };
 
-/** The track an activity belongs to, from its key ("e01." is Essay Writing, "m01." Math). */
+/** The track an activity belongs to, from its key ("e01." is Essay Writing, "m01." Math, "n01." Mental Math). */
 export const trackOfActivityKey = (key: string): Track =>
-  key.startsWith('e') ? 'ESSAY' : key.startsWith('m') ? 'MATH' : 'STORY';
+  key.startsWith('e')
+    ? 'ESSAY'
+    : key.startsWith('m')
+      ? 'MATH'
+      : key.startsWith('n')
+        ? 'MENTAL'
+        : 'STORY';
 
 /** The prefix every activity key of a unit starts with. */
 export const activityKeyPrefix = (track: Track, unitNumber: number) =>
@@ -1010,7 +1025,7 @@ export type LessonContent = z.infer<typeof LessonContent>;
 // ───────── Units ─────────
 
 /** Story Writing has 12 units, Essay Writing and Math 15. */
-export const MAX_UNITS: Record<Track, number> = { STORY: 12, ESSAY: 15, MATH: 15 };
+export const MAX_UNITS: Record<Track, number> = { STORY: 12, ESSAY: 15, MATH: 15, MENTAL: 15 };
 
 export const UnitContent = z.object({
   number: z.number().int().min(1).max(15),
@@ -1018,6 +1033,8 @@ export const UnitContent = z.object({
   title: text(120),
   summary: text(500),
   bigIdeas: z.array(text(200)).max(6).default([]),
+  /** Mental Math: short pattern tips, shown in a tip box on the unit page and the track home. */
+  tips: z.array(text(300)).max(12).default([]),
   published: z.boolean(),
   projectSpec: z
     .object({
@@ -1083,7 +1100,7 @@ export function validateUnitBundle({
         errors.push(`${a.key}: questionsPerAttempt is more than the number of questions`);
     }
     if (a.type === 'PROBLEMS' || a.type === 'PROBLEM_SET') {
-      if (track !== 'MATH') errors.push(`${a.key}: problems belong to the Math track`);
+      if (!isMathTrack(track)) errors.push(`${a.key}: problems belong to the Math tracks`);
       const ids = a.problems.map((p) => p.id);
       if (new Set(ids).size !== ids.length) errors.push(`${a.key}: duplicate problem ids`);
       for (const p of a.problems) errors.push(...problemErrors(a.key, p));
@@ -1271,8 +1288,8 @@ export function validateUnitBundle({
       );
     for (const card of learn.cards) {
       if (card.kind === 'worked-example') {
-        if (track !== 'MATH')
-          errors.push(`${where}: worked-example cards belong to the Math track`);
+        if (!isMathTrack(track))
+          errors.push(`${where}: worked-example cards belong to the Math tracks`);
         for (const [i, s] of card.steps.entries()) {
           if (!s.try) continue;
           const at = `${where}: worked example "${card.title}" step ${i + 1}`;
@@ -1313,10 +1330,12 @@ export function validateUnitBundle({
     const c = byKey.get(challenge.activityKey);
     if (!c) errors.push(`${where}: challenge activity "${challenge.activityKey}" does not exist`);
     else if (
-      track === 'MATH' ? c.type !== 'PROBLEM_SET' && c.type !== 'MOCK_TEST' : !isWritingActivity(c)
+      isMathTrack(track)
+        ? c.type !== 'PROBLEM_SET' && c.type !== 'MOCK_TEST'
+        : !isWritingActivity(c)
     )
       errors.push(
-        `${where}: challenge activity "${challenge.activityKey}" must be a ${track === 'MATH' ? 'problem set or a mock test' : 'writing activity'}`,
+        `${where}: challenge activity "${challenge.activityKey}" must be a ${isMathTrack(track) ? 'problem set or a mock test' : 'writing activity'}`,
       );
   }
 

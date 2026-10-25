@@ -7,10 +7,12 @@ import {
   STEP_LABELS,
   type StepId,
   unitLabel,
+  isMathTrack,
 } from '@storyforge/shared';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { SimpleAnswers } from '@/features/math/simple-answers';
 import { ButtonLink, Card, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
 import { ChallengeStep } from './steps/challenge-step';
@@ -68,127 +70,130 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
   const done = (id: StepId) => completed.includes(id);
 
   return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <Link href={`/units/${lesson.unit.slug}`} className="text-brand underline">
-          ← {unitLabel(lesson.unit.track, lesson.unit.number)}: {lesson.unit.title}
-        </Link>
-        <h1 className="mt-3 text-3xl font-bold">
-          Lesson {lesson.order}: {lesson.title}
-        </h1>
-      </div>
+    <SimpleAnswers value={lesson.unit.track === 'MENTAL'}>
+      <div className="flex flex-col gap-6">
+        <div>
+          <Link href={`/units/${lesson.unit.slug}`} className="text-brand underline">
+            ← {unitLabel(lesson.unit.track, lesson.unit.number)}: {lesson.unit.title}
+          </Link>
+          <h1 className="mt-3 text-3xl font-bold">
+            Lesson {lesson.order}: {lesson.title}
+          </h1>
+        </div>
 
-      <nav aria-label="Lesson steps">
-        <ol className="grid grid-cols-5 gap-2">
-          {STEP_IDS.map((id, i) => {
-            const current = view === i;
-            return (
-              <li key={id}>
-                <button
-                  type="button"
-                  onClick={() => setView(i)}
-                  disabled={!canOpen(i)}
-                  aria-current={current ? 'step' : undefined}
-                  className={`flex w-full flex-col items-center gap-1 rounded-xl px-1 py-2 text-xs font-semibold transition focus-visible:outline-3 focus-visible:outline-brand sm:text-sm ${
-                    current
-                      ? 'bg-brand text-white'
-                      : done(id)
-                        ? 'bg-card text-ok'
-                        : 'bg-card text-muted'
-                  } disabled:opacity-50`}
-                >
-                  <span aria-hidden="true">{done(id) ? '✓' : i + 1}</span>
-                  {STEP_LABELS[id]}
-                  <span className="sr-only">
-                    {done(id) ? ' (done)' : canOpen(i) ? '' : ' (locked)'}
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ol>
-      </nav>
+        <nav aria-label="Lesson steps">
+          <ol className="grid grid-cols-5 gap-2">
+            {STEP_IDS.map((id, i) => {
+              const current = view === i;
+              return (
+                <li key={id}>
+                  <button
+                    type="button"
+                    onClick={() => setView(i)}
+                    disabled={!canOpen(i)}
+                    aria-current={current ? 'step' : undefined}
+                    className={`flex w-full flex-col items-center gap-1 rounded-xl px-1 py-2 text-xs font-semibold transition focus-visible:outline-3 focus-visible:outline-brand sm:text-sm ${
+                      current
+                        ? 'bg-brand text-white'
+                        : done(id)
+                          ? 'bg-card text-ok'
+                          : 'bg-card text-muted'
+                    } disabled:opacity-50`}
+                  >
+                    <span aria-hidden="true">{done(id) ? '✓' : i + 1}</span>
+                    {STEP_LABELS[id]}
+                    <span className="sr-only">
+                      {done(id) ? ' (done)' : canOpen(i) ? '' : ' (locked)'}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+        </nav>
 
-      <ErrorMessage message={error} />
+        <ErrorMessage message={error} />
 
-      <Card>
-        {view === 0 && (
-          <HookStep
-            step={hook}
-            math={lesson.unit.track === 'MATH'}
-            done={done('hook')}
-            busy={busy}
-            onComplete={completeOrReport('hook')}
-          />
-        )}
-        {view === 1 && (
-          <LearnStep
-            lessonId={lesson.id}
-            math={lesson.unit.track === 'MATH'}
-            step={learn}
-            done={done('learn')}
-            busy={busy}
-            onComplete={completeOrReport('learn')}
-          />
-        )}
-        {view === 2 && (
-          <PracticeStep
-            lessonId={lesson.id}
-            step={practice}
-            activities={lesson.activities}
-            done={done('practice')}
-            busy={busy}
-            onComplete={(b) => complete('practice', b)}
-          />
-        )}
-        {view === 3 && (
-          <ChallengeStep
-            lessonId={lesson.id}
-            step={challenge}
-            activities={lesson.activities}
-            activityId={lesson.challengeActivityId}
-            done={done('challenge')}
-            onComplete={(b) => complete('challenge', b)}
-            onSubmitted={({ lessonProgress }) => {
-              // Stay on the challenge: Quill's feedback appears below, and the student may revise.
-              if (lessonProgress) setCompleted(lessonProgress.completedSteps);
-            }}
-            onContinue={() => {
-              setView(STEP_IDS.indexOf('reflect'));
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        )}
-        {view === 4 && (
-          <ReflectStep
-            step={reflect}
-            lessonId={lesson.id}
-            math={lesson.unit.track === 'MATH'}
-            done={done('reflect')}
-            busy={busy}
-            onComplete={(b) => complete('reflect', b)}
-          />
-        )}
-        {view === FINISHED && (
-          <div className="flex flex-col items-start gap-4" aria-live="polite">
-            <p className="text-5xl" aria-hidden="true">
-              🎉
-            </p>
-            <h2 className="text-3xl font-bold">Lesson complete!</h2>
-            <p className="text-lg text-muted">
-              Great work on “{lesson.title}”. You can look back at any step using the buttons above.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {lesson.nextLessonId ? (
-                <ButtonLink href={`/lessons/${lesson.nextLessonId}`}>Next lesson →</ButtonLink>
-              ) : null}
-              <ButtonLink href={`/units/${lesson.unit.slug}`} variant="secondary">
-                Back to the unit
-              </ButtonLink>
+        <Card>
+          {view === 0 && (
+            <HookStep
+              step={hook}
+              math={isMathTrack(lesson.unit.track)}
+              done={done('hook')}
+              busy={busy}
+              onComplete={completeOrReport('hook')}
+            />
+          )}
+          {view === 1 && (
+            <LearnStep
+              lessonId={lesson.id}
+              math={isMathTrack(lesson.unit.track)}
+              step={learn}
+              done={done('learn')}
+              busy={busy}
+              onComplete={completeOrReport('learn')}
+            />
+          )}
+          {view === 2 && (
+            <PracticeStep
+              lessonId={lesson.id}
+              step={practice}
+              activities={lesson.activities}
+              done={done('practice')}
+              busy={busy}
+              onComplete={(b) => complete('practice', b)}
+            />
+          )}
+          {view === 3 && (
+            <ChallengeStep
+              lessonId={lesson.id}
+              step={challenge}
+              activities={lesson.activities}
+              activityId={lesson.challengeActivityId}
+              done={done('challenge')}
+              onComplete={(b) => complete('challenge', b)}
+              onSubmitted={({ lessonProgress }) => {
+                // Stay on the challenge: Quill's feedback appears below, and the student may revise.
+                if (lessonProgress) setCompleted(lessonProgress.completedSteps);
+              }}
+              onContinue={() => {
+                setView(STEP_IDS.indexOf('reflect'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            />
+          )}
+          {view === 4 && (
+            <ReflectStep
+              step={reflect}
+              lessonId={lesson.id}
+              math={isMathTrack(lesson.unit.track)}
+              done={done('reflect')}
+              busy={busy}
+              onComplete={(b) => complete('reflect', b)}
+            />
+          )}
+          {view === FINISHED && (
+            <div className="flex flex-col items-start gap-4" aria-live="polite">
+              <p className="text-5xl" aria-hidden="true">
+                🎉
+              </p>
+              <h2 className="text-3xl font-bold">Lesson complete!</h2>
+              <p className="text-lg text-muted">
+                Great work on “{lesson.title}”. You can look back at any step using the buttons
+                above.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {lesson.nextLessonId ? (
+                  <ButtonLink href={`/lessons/${lesson.nextLessonId}`}>Next lesson →</ButtonLink>
+                ) : null}
+                <ButtonLink href={`/units/${lesson.unit.slug}`} variant="secondary">
+                  Back to the unit
+                </ButtonLink>
+              </div>
             </div>
-          </div>
-        )}
-      </Card>
-    </div>
+          )}
+        </Card>
+      </div>
+    </SimpleAnswers>
   );
 }

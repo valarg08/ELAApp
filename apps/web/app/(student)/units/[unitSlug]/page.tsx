@@ -1,6 +1,7 @@
 import { UnitDetail, unitLabel } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { MathText } from '@/components/math-text';
 import { ProgressBar } from '@/components/progress-bar';
 import { CourseShell } from '@/components/course-shell';
 import { Card } from '@/components/ui';
@@ -45,6 +46,24 @@ export default async function UnitPage({ params }: PageProps<'/units/[unitSlug]'
                   ))}
                 </ul>
               </Card>
+            )}
+
+            {unit.tips.length > 0 && (
+              <section
+                aria-labelledby="pattern-tips"
+                className="rounded-2xl border-2 border-accent bg-card p-5 shadow-sm"
+              >
+                <h2 id="pattern-tips" className="text-xl font-semibold">
+                  <span aria-hidden="true">💡 </span>Pattern tips
+                </h2>
+                <ul className="mt-3 list-disc space-y-1 pl-5">
+                  {unit.tips.map((tip) => (
+                    <li key={tip}>
+                      <MathText text={tip} />
+                    </li>
+                  ))}
+                </ul>
+              </section>
             )}
 
             {/* From md up the lessons are listed in the Chapters panel (DESIGN.md §6.2); phones fold it. */}

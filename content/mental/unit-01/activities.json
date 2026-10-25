@@ -1,0 +1,1992 @@
+[
+  {
+    "key": "n01.bonds10-practice",
+    "type": "PROBLEMS",
+    "title": "Bonds to 10",
+    "instructions": "Type each answer and press Check. Say the bond in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "partner",
+        "prompt": "What number goes with $[[a]]$ to make $10$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Picture $10$ fingers with $[[a]]$ folded down. How many are still up?",
+          "Which bond to $10$ starts with $[[a]]$?"
+        ],
+        "solution": "$[[a]] + [[10-a]] = 10$, so the answer is $[[10-a]]$.",
+        "skill": "bonds-10",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "missing",
+        "prompt": "$[[a]] + ? = 10$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any"
+        },
+        "hints": ["Count on from $[[a]]$ to $10$, or use the bond you know."],
+        "solution": "$[[a]]$ and $[[10-a]]$ are a bond to $10$: $[[a]] + [[10-a]] = 10$.",
+        "skill": "bonds-10",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "take-away",
+        "prompt": "Work out $10 - [[a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any"
+        },
+        "hints": ["Turn it round: $[[a]] + ? = 10$."],
+        "solution": "$[[a]] + [[10-a]] = 10$, so $10 - [[a]] = [[10-a]]$.",
+        "skill": "bonds-10",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "birds",
+        "prompt": "Ten birds sit on a wire. $[[a]]$ fly away. How many are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any"
+        },
+        "hints": ["Which number goes with $[[a]]$ to make $10$?"],
+        "solution": "$10 - [[a]] = [[10-a]]$, because $[[a]] + [[10-a]] = 10$.",
+        "skill": "bonds-10",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "stickers",
+        "prompt": "Ella needs $10$ stickers to fill a page. She has $[[a]]$. How many more does she need?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any"
+        },
+        "hints": ["This is a bond to $10$: $[[a]] + ? = 10$."],
+        "solution": "She needs the number that goes with $[[a]]$ to make $10$: $[[a]] + [[10-a]] = 10$, so $[[10-a]]$ more.",
+        "skill": "bonds-10",
+        "difficulty": 2,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "three-numbers",
+        "prompt": "Work out $[[a]] + [[b]] + [[10-a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b]]",
+              "why": "You found the pair that makes $10$: don’t forget to add the $10$ to the $[[b]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Which two numbers make $10$? Add them first.",
+          "$[[a]] + [[10-a]] = 10$. Now add $[[b]]$."
+        ],
+        "solution": "$[[a]]$ and $[[10-a]]$ make $10$. Add them first: $10 + [[b]] = [[10+b]]$.",
+        "skill": "bonds-10",
+        "difficulty": 2,
+        "compute": "a+b+(10-a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b != 10 - a"]
+        }
+      },
+      {
+        "id": "missing-of-three",
+        "prompt": "$[[a]] + [[b]] + ? = 10$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a-b]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Add the two numbers you have first: $[[a]] + [[b]] = [[a+b]]$.",
+          "What goes with $[[a+b]]$ to make $10$?"
+        ],
+        "solution": "$[[a]] + [[b]] = [[a+b]]$, and $[[a+b]] + [[10-a-b]] = 10$, so the missing number is $[[10-a-b]]$.",
+        "skill": "bonds-10",
+        "difficulty": 3,
+        "compute": "10-a-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 5
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "two-pairs",
+        "prompt": "Work out $[[a]] + [[b]] + [[10-a]] + [[10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["20"],
+          "form": "any"
+        },
+        "hints": ["There are two pairs that make $10$. Find them."],
+        "solution": "$[[a]] + [[10-a]] = 10$ and $[[b]] + [[10-b]] = 10$, so the total is $10 + 10 = 20$.",
+        "skill": "bonds-10",
+        "difficulty": 3,
+        "compute": "a+b+(10-a)+(10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 6,
+              "to": 9
+            }
+          },
+          "where": ["b != 10 - a"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n01.bonds10-set",
+    "type": "PROBLEM_SET",
+    "title": "Bonds to 10 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-partner",
+        "prompt": "What number goes with $[[a]]$ to make $10$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[10-a]] = 10$, so the answer is $[[10-a]]$.",
+        "skill": "bonds-10",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-take-away",
+        "prompt": "Work out $10 - [[a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[10-a]] = 10$, so $10 - [[a]] = [[10-a]]$.",
+        "skill": "bonds-10",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-stickers",
+        "prompt": "Ella needs $10$ stickers to fill a page. She has $[[a]]$. How many more does she need?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any"
+        },
+        "solution": "She needs the number that goes with $[[a]]$ to make $10$: $[[a]] + [[10-a]] = 10$, so $[[10-a]]$ more.",
+        "skill": "bonds-10",
+        "difficulty": 2,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-three-numbers",
+        "prompt": "Work out $[[a]] + [[b]] + [[10-a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b]]",
+              "why": "You found the pair that makes $10$: don’t forget to add the $10$ to the $[[b]]$."
+            }
+          ]
+        },
+        "solution": "$[[a]]$ and $[[10-a]]$ make $10$. Add them first: $10 + [[b]] = [[10+b]]$.",
+        "skill": "bonds-10",
+        "difficulty": 2,
+        "compute": "a+b+(10-a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b != 10 - a"]
+        }
+      },
+      {
+        "id": "s-missing-of-three",
+        "prompt": "$[[a]] + [[b]] + ? = 10$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a-b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[b]] = [[a+b]]$, and $[[a+b]] + [[10-a-b]] = 10$, so the missing number is $[[10-a-b]]$.",
+        "skill": "bonds-10",
+        "difficulty": 3,
+        "compute": "10-a-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 5
+            },
+            "b": {
+              "from": 1,
+              "to": 4
+            }
+          }
+        }
+      },
+      {
+        "id": "s-two-pairs",
+        "prompt": "Work out $[[a]] + [[b]] + [[10-a]] + [[10-b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["20"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[10-a]] = 10$ and $[[b]] + [[10-b]] = 10$, so the total is $10 + 10 = 20$.",
+        "skill": "bonds-10",
+        "difficulty": 3,
+        "compute": "a+b+(10-a)+(10-b)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 6,
+              "to": 9
+            }
+          },
+          "where": ["b != 10 - a"]
+        }
+      }
+    ]
+  },
+  {
+    "key": "n01.bonds20-practice",
+    "type": "PROBLEMS",
+    "title": "Bonds to 20",
+    "instructions": "Type each answer and press Check. Say the bond in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "pair",
+        "prompt": "Work out $[[10+a]] + [[10-a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["20"],
+          "form": "any"
+        },
+        "hints": ["Look at the ones: $[[a]] + [[10-a]]$."],
+        "solution": "$[[a]] + [[10-a]] = 10$, and the extra ten makes $20$.",
+        "skill": "bonds-20",
+        "difficulty": 1,
+        "compute": "(10+a)+(10-a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "partner",
+        "prompt": "What number goes with $[[10+a]]$ to make $20$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20-a]]",
+              "why": "That makes $30$. The $10$ in $[[10+a]]$ is already one ten: look only at the $[[a]]$."
+            }
+          ]
+        },
+        "hints": ["Split $[[10+a]]$ into $10$ and $[[a]]$. What goes with $[[a]]$ to make $10$?"],
+        "solution": "$[[a]] + [[10-a]] = 10$, so $[[10+a]] + [[10-a]] = 20$.",
+        "skill": "bonds-20",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "take-away",
+        "prompt": "Work out $20 - [[10+a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20-a]]",
+              "why": "That makes $30$. The $10$ in $[[10+a]]$ is already one ten: look only at the $[[a]]$."
+            }
+          ]
+        },
+        "hints": ["Turn it round: $[[10+a]] + ? = 20$."],
+        "solution": "$[[10+a]] + [[10-a]] = 20$, so $20 - [[10+a]] = [[10-a]]$.",
+        "skill": "bonds-20",
+        "difficulty": 1,
+        "compute": "20-(10+a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "small-to-20",
+        "prompt": "$[[a]] + ? = 20$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10-a]]",
+              "why": "That only gets you to $10$. You need another ten to reach $20$."
+            }
+          ]
+        },
+        "hints": ["$[[a]]$ needs $[[10-a]]$ to make $10$. How much more to reach $20$?"],
+        "solution": "$[[a]]$ needs $[[10-a]]$ to make $10$, and then another $10$: $[[10-a]] + 10 = [[20-a]]$.",
+        "skill": "bonds-20",
+        "difficulty": 2,
+        "compute": "20-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "crayons",
+        "prompt": "A box holds $20$ crayons. $[[10+a]]$ crayons are in the box. How many more will fit?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20-a]]",
+              "why": "That makes $30$. The $10$ in $[[10+a]]$ is already one ten: look only at the $[[a]]$."
+            }
+          ]
+        },
+        "hints": ["This is a bond to $20$: $[[10+a]] + ? = 20$."],
+        "solution": "$[[10+a]] + [[10-a]] = 20$, so $[[10-a]]$ more crayons fit.",
+        "skill": "bonds-20",
+        "difficulty": 2,
+        "compute": "20-(10+a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "three-numbers",
+        "prompt": "Work out $[[10+a]] + [[b]] + [[10-a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20+b]]"],
+          "form": "any"
+        },
+        "hints": ["Two of the numbers make $20$. Which two?"],
+        "solution": "$[[10+a]] + [[10-a]] = 20$. Add them first: $20 + [[b]] = [[20+b]]$.",
+        "skill": "bonds-20",
+        "difficulty": 3,
+        "compute": "(10+a)+b+(10-a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b != 10 - a"]
+        }
+      },
+      {
+        "id": "missing-take-away",
+        "prompt": "$20 - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20-a]]"],
+          "form": "any"
+        },
+        "hints": ["Which number goes with $[[a]]$ to make $20$?"],
+        "solution": "The missing number goes with $[[a]]$ to make $20$: $[[a]] + [[20-a]] = 20$, so it is $[[20-a]]$.",
+        "skill": "bonds-20",
+        "difficulty": 3,
+        "compute": "20-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 18
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n01.bonds20-set",
+    "type": "PROBLEM_SET",
+    "title": "Bonds to 20 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-partner",
+        "prompt": "What number goes with $[[10+a]]$ to make $20$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20-a]]",
+              "why": "That makes $30$. The $10$ in $[[10+a]]$ is already one ten: look only at the $[[a]]$."
+            }
+          ]
+        },
+        "solution": "$[[a]] + [[10-a]] = 10$, so $[[10+a]] + [[10-a]] = 20$.",
+        "skill": "bonds-20",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-take-away",
+        "prompt": "Work out $20 - [[10+a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20-a]]",
+              "why": "That makes $30$. The $10$ in $[[10+a]]$ is already one ten: look only at the $[[a]]$."
+            }
+          ]
+        },
+        "solution": "$[[10+a]] + [[10-a]] = 20$, so $20 - [[10+a]] = [[10-a]]$.",
+        "skill": "bonds-20",
+        "difficulty": 1,
+        "compute": "20-(10+a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-small-to-20",
+        "prompt": "$[[a]] + ? = 20$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10-a]]",
+              "why": "That only gets you to $10$. You need another ten to reach $20$."
+            }
+          ]
+        },
+        "solution": "$[[a]]$ needs $[[10-a]]$ to make $10$, and then another $10$: $[[10-a]] + 10 = [[20-a]]$.",
+        "skill": "bonds-20",
+        "difficulty": 2,
+        "compute": "20-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-crayons",
+        "prompt": "A box holds $20$ crayons. $[[10+a]]$ crayons are in the box. How many more will fit?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20-a]]",
+              "why": "That makes $30$. The $10$ in $[[10+a]]$ is already one ten: look only at the $[[a]]$."
+            }
+          ]
+        },
+        "solution": "$[[10+a]] + [[10-a]] = 20$, so $[[10-a]]$ more crayons fit.",
+        "skill": "bonds-20",
+        "difficulty": 2,
+        "compute": "20-(10+a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-three-numbers",
+        "prompt": "Work out $[[10+a]] + [[b]] + [[10-a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20+b]]"],
+          "form": "any"
+        },
+        "solution": "$[[10+a]] + [[10-a]] = 20$. Add them first: $20 + [[b]] = [[20+b]]$.",
+        "skill": "bonds-20",
+        "difficulty": 3,
+        "compute": "(10+a)+b+(10-a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b != 10 - a"]
+        }
+      },
+      {
+        "id": "s-missing-take-away",
+        "prompt": "$20 - ? = [[a]]$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20-a]]"],
+          "form": "any"
+        },
+        "solution": "The missing number goes with $[[a]]$ to make $20$: $[[a]] + [[20-a]] = 20$, so it is $[[20-a]]$.",
+        "skill": "bonds-20",
+        "difficulty": 3,
+        "compute": "20-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 2,
+              "to": 18
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n01.bridge-practice",
+    "type": "PROBLEMS",
+    "title": "Make 10 first",
+    "instructions": "Type each answer and press Check. Make the $10$ first in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "add",
+        "prompt": "Work out $[[a]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "hints": [
+          "How much does $[[a]]$ need to make $10$?",
+          "Split $[[b]]$ into $[[10-a]]$ and $[[a+b-10]]$."
+        ],
+        "solution": "$[[a]]$ needs $[[10-a]]$ to make $10$. Split $[[b]]$ into $[[10-a]]$ and $[[a+b-10]]$: $[[a]] + [[10-a]] = 10$, then $10 + [[a+b-10]] = [[a+b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 1,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 9
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a + b > 10"]
+        }
+      },
+      {
+        "id": "bus",
+        "prompt": "A bus has $[[a]]$ people on it. At the stop, $[[b]]$ more get on. How many people are on the bus now?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "hints": ["How many does $[[a]]$ need to make $10$?"],
+        "solution": "$[[a]] + [[b]]$: make $10$ first with $[[10-a]]$, then add the $[[a+b-10]]$ left. $[[a+b]]$ people.",
+        "skill": "bridge-10",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 9
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a + b > 10"]
+        }
+      },
+      {
+        "id": "take-away",
+        "prompt": "Work out $[[10+a]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10+a-b]]"],
+          "form": "any"
+        },
+        "hints": [
+          "Take away $[[a]]$ first to get back to $10$.",
+          "How much of the $[[b]]$ is left to take away?"
+        ],
+        "solution": "Go back to $10$ first: $[[10+a]] - [[a]] = 10$. That leaves $[[b-a]]$ to take away: $10 - [[b-a]] = [[10+a-b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 2,
+        "compute": "10+a-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 5
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b > a"]
+        }
+      },
+      {
+        "id": "add-bigger",
+        "prompt": "Work out $[[10*t+a]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+a+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t+a+b-10]]",
+              "why": "You crossed into the next ten, so the tens digit goes up by $1$."
+            }
+          ]
+        },
+        "hints": [
+          "What is the next ten after $[[10*t+a]]$?",
+          "$[[10*t+a]] + [[10-a]] = [[10*t+10]]$. How much of the $[[b]]$ is left?"
+        ],
+        "solution": "The next ten is $[[10*t+10]]$, and $[[10*t+a]]$ needs $[[10-a]]$ to get there. Then add the $[[a+b-10]]$ left: $[[10*t+10]] + [[a+b-10]] = [[10*t+a+b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 2,
+        "compute": "10*t+a+b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "a": {
+              "from": 5,
+              "to": 9
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a + b > 10"]
+        }
+      },
+      {
+        "id": "take-away-bigger",
+        "prompt": "Work out $[[10*t+a]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+a-b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t+a-b+10]]",
+              "why": "You went back past $[[10*t]]$, so the tens digit goes down by $1$."
+            }
+          ]
+        },
+        "hints": [
+          "Take away $[[a]]$ first to get back to $[[10*t]]$.",
+          "Now take away the rest of the $[[b]]$."
+        ],
+        "solution": "Go back to $[[10*t]]$ first: $[[10*t+a]] - [[a]] = [[10*t]]$. Then take the $[[b-a]]$ left: $[[10*t]] - [[b-a]] = [[10*t+a-b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 3,
+        "compute": "10*t+a-b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 1,
+              "to": 5
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b > a"]
+        }
+      },
+      {
+        "id": "marbles",
+        "prompt": "Max has $[[10*t+a]]$ marbles and gives $[[b]]$ to a friend. How many marbles does he have left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+a-b]]"],
+          "form": "any"
+        },
+        "hints": ["Go back to $[[10*t]]$ first."],
+        "solution": "$[[10*t+a]] - [[a]] = [[10*t]]$, then $[[10*t]] - [[b-a]] = [[10*t+a-b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 3,
+        "compute": "10*t+a-b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n01.bridge-set",
+    "type": "PROBLEM_SET",
+    "title": "Make 10 first challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-add",
+        "prompt": "Work out $[[a]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]]$ needs $[[10-a]]$ to make $10$. Split $[[b]]$ into $[[10-a]]$ and $[[a+b-10]]$: $[[a]] + [[10-a]] = 10$, then $10 + [[a+b-10]] = [[a+b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 1,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 9
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a + b > 10"]
+        }
+      },
+      {
+        "id": "s-take-away",
+        "prompt": "Work out $[[10+a]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10+a-b]]"],
+          "form": "any"
+        },
+        "solution": "Go back to $10$ first: $[[10+a]] - [[a]] = 10$. That leaves $[[b-a]]$ to take away: $10 - [[b-a]] = [[10+a-b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 2,
+        "compute": "10+a-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 5
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b > a"]
+        }
+      },
+      {
+        "id": "s-add-bigger",
+        "prompt": "Work out $[[10*t+a]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+a+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t+a+b-10]]",
+              "why": "You crossed into the next ten, so the tens digit goes up by $1$."
+            }
+          ]
+        },
+        "solution": "The next ten is $[[10*t+10]]$, and $[[10*t+a]]$ needs $[[10-a]]$ to get there. Then add the $[[a+b-10]]$ left: $[[10*t+10]] + [[a+b-10]] = [[10*t+a+b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 2,
+        "compute": "10*t+a+b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "a": {
+              "from": 5,
+              "to": 9
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a + b > 10"]
+        }
+      },
+      {
+        "id": "s-bus",
+        "prompt": "A bus has $[[a]]$ people on it. At the stop, $[[b]]$ more get on. How many people are on the bus now?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[b]]$: make $10$ first with $[[10-a]]$, then add the $[[a+b-10]]$ left. $[[a+b]]$ people.",
+        "skill": "bridge-10",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 9
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a + b > 10"]
+        }
+      },
+      {
+        "id": "s-take-away-bigger",
+        "prompt": "Work out $[[10*t+a]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+a-b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t+a-b+10]]",
+              "why": "You went back past $[[10*t]]$, so the tens digit goes down by $1$."
+            }
+          ]
+        },
+        "solution": "Go back to $[[10*t]]$ first: $[[10*t+a]] - [[a]] = [[10*t]]$. Then take the $[[b-a]]$ left: $[[10*t]] - [[b-a]] = [[10*t+a-b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 3,
+        "compute": "10*t+a-b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 1,
+              "to": 5
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b > a"]
+        }
+      },
+      {
+        "id": "s-marbles",
+        "prompt": "Max has $[[10*t+a]]$ marbles and gives $[[b]]$ to a friend. How many marbles does he have left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+a-b]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t+a]] - [[a]] = [[10*t]]$, then $[[10*t]] - [[b-a]] = [[10*t+a-b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 3,
+        "compute": "10*t+a-b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 6
+            },
+            "a": {
+              "from": 1,
+              "to": 4
+            },
+            "b": {
+              "from": 5,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n01.bonds100-practice",
+    "type": "PROBLEMS",
+    "title": "Bonds to 100",
+    "instructions": "Type each answer and press Check. Say the bond in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "tens",
+        "prompt": "What number goes with $[[10*t]]$ to make $100$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t]]"],
+          "form": "any"
+        },
+        "hints": ["$[[10*t]]$ is $[[t]]$ tens. How many more tens make ten tens?"],
+        "solution": "$[[t]] + [[10-t]] = 10$, so $[[10*t]] + [[100-10*t]] = 100$.",
+        "skill": "bonds-100",
+        "difficulty": 1,
+        "compute": "100-10*t",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "partner",
+        "prompt": "What number goes with $[[10*t+u]]$ to make $100$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "hints": [
+          "Start with the ones: what goes with $[[u]]$ to make $10$?",
+          "The tens only need to make $9$. What goes with $[[t]]$ to make $9$?"
+        ],
+        "solution": "The ones: $[[u]] + [[10-u]] = 10$. The tens make $9$: $[[t]] + [[9-t]] = 9$. So $[[10*t+u]] + [[100-10*t-u]] = 100$.",
+        "skill": "bonds-100",
+        "difficulty": 2,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "missing",
+        "prompt": "$[[10*t+u]] + ? = 100$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "hints": ["Ones make $10$, tens make $9$."],
+        "solution": "Ones: $[[u]] + [[10-u]] = 10$. Tens: $[[t]] + [[9-t]] = 9$. The missing number is $[[100-10*t-u]]$.",
+        "skill": "bonds-100",
+        "difficulty": 2,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "take-away",
+        "prompt": "Work out $100 - [[10*t+u]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "hints": ["Turn it round: $[[10*t+u]] + ? = 100$.", "Ones make $10$, tens make $9$."],
+        "solution": "Think $[[10*t+u]] + ? = 100$: the ones make $10$ and the tens make $9$, so the answer is $[[100-10*t-u]]$.",
+        "skill": "bonds-100",
+        "difficulty": 2,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "cents",
+        "prompt": "You have $100$ cents and spend $[[10*t+u]]$ cents. How many cents are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "hints": ["This is a bond to $100$: $[[10*t+u]] + ? = 100$."],
+        "solution": "$[[10*t+u]] + [[100-10*t-u]] = 100$ (ones make $10$, tens make $9$), so $[[100-10*t-u]]$ cents are left.",
+        "skill": "bonds-100",
+        "difficulty": 3,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "three-numbers",
+        "prompt": "Work out $[[10*t+u]] + [[m]] + [[100-10*t-u]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100+m]]"],
+          "form": "any"
+        },
+        "hints": ["Two of the numbers make $100$. Which two?"],
+        "solution": "$[[10*t+u]] + [[100-10*t-u]] = 100$. Add them first: $100 + [[m]] = [[100+m]]$.",
+        "skill": "bonds-100",
+        "difficulty": 3,
+        "compute": "(10*t+u)+m+(100-10*t-u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n01.bonds100-set",
+    "type": "PROBLEM_SET",
+    "title": "Bonds to 100 challenge",
+    "instructions": "5 questions, no hints. Type each answer. Each try gives you new numbers.",
+    "problemsPerAttempt": 5,
+    "problems": [
+      {
+        "id": "s-tens",
+        "prompt": "What number goes with $[[10*t]]$ to make $100$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t]]"],
+          "form": "any"
+        },
+        "solution": "$[[t]] + [[10-t]] = 10$, so $[[10*t]] + [[100-10*t]] = 100$.",
+        "skill": "bonds-100",
+        "difficulty": 1,
+        "compute": "100-10*t",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-partner",
+        "prompt": "What number goes with $[[10*t+u]]$ to make $100$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "solution": "The ones: $[[u]] + [[10-u]] = 10$. The tens make $9$: $[[t]] + [[9-t]] = 9$. So $[[10*t+u]] + [[100-10*t-u]] = 100$.",
+        "skill": "bonds-100",
+        "difficulty": 2,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-take-away",
+        "prompt": "Work out $100 - [[10*t+u]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "solution": "Think $[[10*t+u]] + ? = 100$: the ones make $10$ and the tens make $9$, so the answer is $[[100-10*t-u]]$.",
+        "skill": "bonds-100",
+        "difficulty": 2,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-cents",
+        "prompt": "You have $100$ cents and spend $[[10*t+u]]$ cents. How many cents are left?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "solution": "$[[10*t+u]] + [[100-10*t-u]] = 100$ (ones make $10$, tens make $9$), so $[[100-10*t-u]]$ cents are left.",
+        "skill": "bonds-100",
+        "difficulty": 3,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-three-numbers",
+        "prompt": "Work out $[[10*t+u]] + [[m]] + [[100-10*t-u]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100+m]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t+u]] + [[100-10*t-u]] = 100$. Add them first: $100 + [[m]] = [[100+m]]$.",
+        "skill": "bonds-100",
+        "difficulty": 3,
+        "compute": "(10*t+u)+m+(100-10*t-u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "s-missing",
+        "prompt": "$[[10*t+u]] + ? = 100$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "solution": "Ones: $[[u]] + [[10-u]] = 10$. Tens: $[[t]] + [[9-t]] = 9$. The missing number is $[[100-10*t-u]]$.",
+        "skill": "bonds-100",
+        "difficulty": 2,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n01.review-practice",
+    "type": "PROBLEMS",
+    "title": "Warm-up: all the bonds",
+    "instructions": "Type each answer and press Check. Say the bond in your head before you type. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "bonds-10",
+        "prompt": "Work out $[[a]] + [[b]] + [[10-a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b]]",
+              "why": "You found the pair that makes $10$: don’t forget to add the $10$ to the $[[b]]$."
+            }
+          ]
+        },
+        "hints": [
+          "Which two numbers make $10$? Add them first.",
+          "$[[a]] + [[10-a]] = 10$. Now add $[[b]]$."
+        ],
+        "solution": "$[[a]]$ and $[[10-a]]$ make $10$. Add them first: $10 + [[b]] = [[10+b]]$.",
+        "skill": "bonds-10",
+        "difficulty": 2,
+        "compute": "a+b+(10-a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b != 10 - a"]
+        }
+      },
+      {
+        "id": "bonds-20",
+        "prompt": "What number goes with $[[10+a]]$ to make $20$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20-a]]",
+              "why": "That makes $30$. The $10$ in $[[10+a]]$ is already one ten: look only at the $[[a]]$."
+            }
+          ]
+        },
+        "hints": ["Split $[[10+a]]$ into $10$ and $[[a]]$. What goes with $[[a]]$ to make $10$?"],
+        "solution": "$[[a]] + [[10-a]] = 10$, so $[[10+a]] + [[10-a]] = 20$.",
+        "skill": "bonds-20",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "make-10",
+        "prompt": "Work out $[[10*t+a]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+a+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t+a+b-10]]",
+              "why": "You crossed into the next ten, so the tens digit goes up by $1$."
+            }
+          ]
+        },
+        "hints": [
+          "What is the next ten after $[[10*t+a]]$?",
+          "$[[10*t+a]] + [[10-a]] = [[10*t+10]]$. How much of the $[[b]]$ is left?"
+        ],
+        "solution": "The next ten is $[[10*t+10]]$, and $[[10*t+a]]$ needs $[[10-a]]$ to get there. Then add the $[[a+b-10]]$ left: $[[10*t+10]] + [[a+b-10]] = [[10*t+a+b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 2,
+        "compute": "10*t+a+b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "a": {
+              "from": 5,
+              "to": 9
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a + b > 10"]
+        }
+      },
+      {
+        "id": "bonds-100",
+        "prompt": "What number goes with $[[10*t+u]]$ to make $100$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "hints": [
+          "Start with the ones: what goes with $[[u]]$ to make $10$?",
+          "The tens only need to make $9$. What goes with $[[t]]$ to make $9$?"
+        ],
+        "solution": "The ones: $[[u]] + [[10-u]] = 10$. The tens make $9$: $[[t]] + [[9-t]] = 9$. So $[[10*t+u]] + [[100-10*t-u]] = 100$.",
+        "skill": "bonds-100",
+        "difficulty": 2,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "key": "n01.unit-check",
+    "type": "PROBLEM_SET",
+    "title": "⭐ Unit 1 check",
+    "instructions": "Eight questions, easiest first, no hints. Type each answer. You need all 8 right to pass. Each try gives you new numbers.",
+    "passPercent": 100,
+    "problemsPerAttempt": 8,
+    "problems": [
+      {
+        "id": "c-bonds-10",
+        "prompt": "What number goes with $[[a]]$ to make $10$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]] + [[10-a]] = 10$, so the answer is $[[10-a]]$.",
+        "skill": "bonds-10",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c-three-numbers",
+        "prompt": "Work out $[[a]] + [[b]] + [[10-a]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[b]]",
+              "why": "You found the pair that makes $10$: don’t forget to add the $10$ to the $[[b]]$."
+            }
+          ]
+        },
+        "solution": "$[[a]]$ and $[[10-a]]$ make $10$. Add them first: $10 + [[b]] = [[10+b]]$.",
+        "skill": "bonds-10",
+        "difficulty": 1,
+        "compute": "a+b+(10-a)",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b != 10 - a"]
+        }
+      },
+      {
+        "id": "c-bonds-20",
+        "prompt": "What number goes with $[[10+a]]$ to make $20$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[20-a]]",
+              "why": "That makes $30$. The $10$ in $[[10+a]]$ is already one ten: look only at the $[[a]]$."
+            }
+          ]
+        },
+        "solution": "$[[a]] + [[10-a]] = 10$, so $[[10+a]] + [[10-a]] = 20$.",
+        "skill": "bonds-20",
+        "difficulty": 1,
+        "compute": "10-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c-small-to-20",
+        "prompt": "$[[a]] + ? = 20$. What is the missing number?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[20-a]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10-a]]",
+              "why": "That only gets you to $10$. You need another ten to reach $20$."
+            }
+          ]
+        },
+        "solution": "$[[a]]$ needs $[[10-a]]$ to make $10$, and then another $10$: $[[10-a]] + 10 = [[20-a]]$.",
+        "skill": "bonds-20",
+        "difficulty": 2,
+        "compute": "20-a",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c-add",
+        "prompt": "Work out $[[a]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[a+b]]"],
+          "form": "any"
+        },
+        "solution": "$[[a]]$ needs $[[10-a]]$ to make $10$. Split $[[b]]$ into $[[10-a]]$ and $[[a+b-10]]$: $[[a]] + [[10-a]] = 10$, then $10 + [[a+b-10]] = [[a+b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 2,
+        "compute": "a+b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 6,
+              "to": 9
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a + b > 10"]
+        }
+      },
+      {
+        "id": "c-take-away",
+        "prompt": "Work out $[[10+a]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10+a-b]]"],
+          "form": "any"
+        },
+        "solution": "Go back to $10$ first: $[[10+a]] - [[a]] = 10$. That leaves $[[b-a]]$ to take away: $10 - [[b-a]] = [[10+a-b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 2,
+        "compute": "10+a-b",
+        "template": {
+          "vars": {
+            "a": {
+              "from": 1,
+              "to": 5
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b > a"]
+        }
+      },
+      {
+        "id": "c-add-bigger",
+        "prompt": "Work out $[[10*t+a]] + [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+a+b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t+a+b-10]]",
+              "why": "You crossed into the next ten, so the tens digit goes up by $1$."
+            }
+          ]
+        },
+        "solution": "The next ten is $[[10*t+10]]$, and $[[10*t+a]]$ needs $[[10-a]]$ to get there. Then add the $[[a+b-10]]$ left: $[[10*t+10]] + [[a+b-10]] = [[10*t+a+b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 3,
+        "compute": "10*t+a+b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "a": {
+              "from": 5,
+              "to": 9
+            },
+            "b": {
+              "from": 3,
+              "to": 9
+            }
+          },
+          "where": ["a + b > 10"]
+        }
+      },
+      {
+        "id": "c-take-away-bigger",
+        "prompt": "Work out $[[10*t+a]] - [[b]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[10*t+a-b]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[10*t+a-b+10]]",
+              "why": "You went back past $[[10*t]]$, so the tens digit goes down by $1$."
+            }
+          ]
+        },
+        "solution": "Go back to $[[10*t]]$ first: $[[10*t+a]] - [[a]] = [[10*t]]$. Then take the $[[b-a]]$ left: $[[10*t]] - [[b-a]] = [[10*t+a-b]]$.",
+        "skill": "bridge-10",
+        "difficulty": 3,
+        "compute": "10*t+a-b",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 2,
+              "to": 9
+            },
+            "a": {
+              "from": 1,
+              "to": 5
+            },
+            "b": {
+              "from": 2,
+              "to": 9
+            }
+          },
+          "where": ["b > a"]
+        }
+      },
+      {
+        "id": "c-tens",
+        "prompt": "What number goes with $[[10*t]]$ to make $100$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t]]"],
+          "form": "any"
+        },
+        "solution": "$[[t]] + [[10-t]] = 10$, so $[[10*t]] + [[100-10*t]] = 100$.",
+        "skill": "bonds-100",
+        "difficulty": 1,
+        "compute": "100-10*t",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c-bonds-100",
+        "prompt": "What number goes with $[[10*t+u]]$ to make $100$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "solution": "The ones: $[[u]] + [[10-u]] = 10$. The tens make $9$: $[[t]] + [[9-t]] = 9$. So $[[10*t+u]] + [[100-10*t-u]] = 100$.",
+        "skill": "bonds-100",
+        "difficulty": 3,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c-take-away-100",
+        "prompt": "Work out $100 - [[10*t+u]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100-10*t-u]]"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "[[110-10*t-u]]",
+              "why": "Check: that makes $110$. The ones already make a ten, so the tens make $9$, not $10$."
+            }
+          ]
+        },
+        "solution": "Think $[[10*t+u]] + ? = 100$: the ones make $10$ and the tens make $9$, so the answer is $[[100-10*t-u]]$.",
+        "skill": "bonds-100",
+        "difficulty": 3,
+        "compute": "100-(10*t+u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            }
+          }
+        }
+      },
+      {
+        "id": "c-three-to-100",
+        "prompt": "Work out $[[10*t+u]] + [[m]] + [[100-10*t-u]]$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["[[100+m]]"],
+          "form": "any"
+        },
+        "solution": "$[[10*t+u]] + [[100-10*t-u]] = 100$. Add them first: $100 + [[m]] = [[100+m]]$.",
+        "skill": "bonds-100",
+        "difficulty": 3,
+        "compute": "(10*t+u)+m+(100-10*t-u)",
+        "template": {
+          "vars": {
+            "t": {
+              "from": 1,
+              "to": 8
+            },
+            "u": {
+              "from": 1,
+              "to": 9
+            },
+            "m": {
+              "from": 2,
+              "to": 9
+            }
+          }
+        }
+      }
+    ]
+  }
+]

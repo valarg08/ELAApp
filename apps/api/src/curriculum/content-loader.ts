@@ -12,10 +12,13 @@ import {
   MathSkillsFile,
   MathStagesFile,
   MathTestFile,
+  MentalLevelsFile,
   type Track,
   type UnitBundle,
   UnitContent,
   checkedVariants,
+  isMathTrack,
+  mentalLevelErrors,
   splitMath,
   validateMathContent,
   validateUnitBundle,
@@ -38,6 +41,16 @@ export interface LoadResult {
   errors: string[];
   /** Math-wide content (skills, stages, tests, fact sheets), when content/math exists. */
   math?: MathContentBundle & { contentHash: string };
+  /** Mental Math track-wide content (skills, levels, cheat sheets), when content/mental exists. */
+  mental?: MentalBundle & { contentHash: string };
+}
+
+/** Mental Math's own track-wide files (mental-math-design.md). */
+export interface MentalBundle {
+  skills: z.infer<typeof MathSkillsFile>;
+  levels?: MentalLevelsFile;
+  /** Cheat sheets by unit number (the Math fact sheet format). */
+  facts: Record<number, MathFactsFile>;
 }
 
 const formatIssues = (file: string, error: z.ZodError) =>
@@ -48,6 +61,7 @@ const TRACK_FOLDERS: { folder: string; track: Track; required: boolean }[] = [
   { folder: 'units', track: 'STORY', required: true },
   { folder: 'essay', track: 'ESSAY', required: false },
   { folder: 'math', track: 'MATH', required: false },
+  { folder: 'mental', track: 'MENTAL', required: false },
 ];
 
 /** Figures are drawn SVG only: no scripts, event handlers, links, embedded HTML or outside files. */
@@ -233,6 +247,75 @@ async function loadMathExtras(
 }
 
 /**
+ * Mental Math's track-wide files (mental-math-design.md): content/mental/skills.json,
+ * levels.json and each unit's facts.json (its cheat sheet), cross-checked against the units.
+ */
+async function loadMentalExtras(
+  root: string,
+  units: LoadedUnit[],
+): Promise<{ mental: NonNullable<LoadResult['mental']>; errors: string[] }> {
+  const dir = path.join(root, 'mental');
+  const errors: string[] = [];
+  const hash = createHash('sha256');
+  const mentalUnits = units.filter((u) => u.track === 'MENTAL');
+
+  const skills =
+    (await readJson(
+      path.join(dir, 'skills.json'),
+      'mental/skills.json',
+      MathSkillsFile,
+      errors,
+      hash,
+    )) ?? [];
+  if (skills.length === 0 && !errors.some((e) => e.startsWith('mental/skills.json')))
+    errors.push('mental/skills.json: missing (Mental Math names its skills there)');
+  const levels = await readJson(
+    path.join(dir, 'levels.json'),
+    'mental/levels.json',
+    MentalLevelsFile,
+    errors,
+    hash,
+  );
+  if (!levels && !errors.some((e) => e.startsWith('mental/levels.json')))
+    errors.push('mental/levels.json: missing (the four age levels and their units)');
+
+  const facts: Record<number, MathFactsFile> = {};
+  for (const u of mentalUnits) {
+    const rel = `mental/${path.basename(u.dir)}/facts.json`;
+    const sheet = await readJson(path.join(u.dir, 'facts.json'), rel, MathFactsFile, errors, hash);
+    if (!sheet) continue;
+    for (const sec of sheet.sections)
+      for (const t of [sec.title, ...sec.facts]) errors.push(...texErrors(rel, t));
+    facts[u.unit.number] = sheet;
+  }
+  for (const u of mentalUnits)
+    for (const tip of u.unit.tips)
+      errors.push(...texErrors(`mental/${path.basename(u.dir)}: tips`, tip));
+
+  // The Math checks (skills known, no duplicates), with the Mental Math folder names.
+  errors.push(
+    ...validateMathContent(
+      { skills, tests: [], facts },
+      mentalUnits.map((u) => ({
+        number: u.unit.number,
+        lessonCount: u.lessons.length,
+        problems: problemsOf(u.activities).map(({ p }) => p),
+        focusSkills: u.lessons.flatMap((l) => l.focusSkills),
+        mockTests: [],
+      })),
+    ).map((e) => e.replace(/^math\//, 'mental/')),
+  );
+  if (levels)
+    errors.push(
+      ...mentalLevelErrors(
+        levels,
+        mentalUnits.map((u) => u.unit.number),
+      ).map((e) => `mental/${e}`),
+    );
+  return { mental: { skills, levels, facts, contentHash: hash.digest('hex') }, errors };
+}
+
+/**
  * Read and validate every unit under `<root>/units/unit-XX/` (Story Writing),
  * `<root>/essay/unit-XX/` (Essay Writing) and `<root>/math/unit-XX/` (Math):
  *   unit.json (required), activities.json (optional), lessons/*.json (optional),
@@ -259,9 +342,18 @@ export async function loadContent(root = defaultContentDir()): Promise<LoadResul
   }
   const slugs = units.map((u) => u.unit.slug);
   if (new Set(slugs).size !== slugs.length) errors.push('Two units share the same slug');
-  if (!units.some((u) => u.track === 'MATH')) return { units, errors };
-  const extras = await loadMathExtras(root, units);
-  return { units, errors: [...errors, ...extras.errors], math: extras.math };
+  const result: LoadResult = { units, errors };
+  if (units.some((u) => u.track === 'MATH')) {
+    const extras = await loadMathExtras(root, units);
+    result.errors.push(...extras.errors);
+    result.math = extras.math;
+  }
+  if (units.some((u) => u.track === 'MENTAL')) {
+    const extras = await loadMentalExtras(root, units);
+    result.errors.push(...extras.errors);
+    result.mental = extras.mental;
+  }
+  return result;
 }
 
 /** One track's folder; null when the folder doesn't exist. */
@@ -331,7 +423,7 @@ async function loadTrack(root: string, folder: string, track: Track): Promise<Lo
       if (lesson) lessons.push(lesson);
     }
 
-    if (track === 'MATH') {
+    if (isMathTrack(track)) {
       // Math lessons render $…$ in the hook question, the Learn cards and the reflect prompts.
       for (const lesson of lessons) {
         const [hook, learn, , , reflect] = lesson.steps;

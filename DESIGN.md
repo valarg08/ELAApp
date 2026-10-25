@@ -1676,6 +1676,10 @@ Later tools (built in the first unit that needs them): fill-the-blank and error-
 
 The Math track (AMC 10 practice, grades 9–10) has its own design file: **[math-design.md](math-design.md)**. It holds the plan (15 units), the engine as built in M0, the M0.5 practice upgrade and the Math phases. The Math track never changes how the Story Writing and Essay Writing tracks behave.
 
+### 9.14 Mental Math track: number sense for ages 7–14
+
+The fourth track (`MENTAL`, tab "🧠 Mental Math", `/mental`) has its own design file: **[mental-math-design.md](mental-math-design.md)**. It holds the 15-unit curriculum in four levels by age, the lesson structure, assessment, the parent and teacher guides and the MN phases. It runs on the Math engine (`isMathTrack`) with its own levels, cheat sheets and pattern tips, and never changes the Story, Essay or Math (AMC 10) tracks.
+
 ## 10. Unit-by-unit interactive tool designs (Deliverable 8)
 
 Every tool follows the same pattern: a React feature folder under `apps/web/features/tools/<tool>`, optional `Artifact` persistence with autosave, deterministic checks in the browser, and optional LLM analyzers through `/ai/*`. Every tool MUST be usable by keyboard only and by screen readers.
@@ -1976,6 +1980,8 @@ AI calls in unit, API, and E2E tests are replaced by a fake `AiGateway` that ret
 | **M13 Math Unit 13** ✅ | Geometry III: Coordinates & Solids: 6 lessons, the ⭐ check at 100%, published, plus checkpoint mock 2 (math-design.md §4.13) | Played end to end |
 | **M14 Math Unit 14** ✅ | Logic & Mixed Strategies: 6 lessons, the ⭐ check at 100%, published (math-design.md §4.14) | Each unit playable end to end; every computable answer verified by `content:check` |
 | **M15 Mock exams & final prep** ✅ | Unit 15's 10 lessons (pacing and the 2-minute rule, mocks A–C with mistake analysis, algebra, geometry and counting & number theory refreshes, danger zones, light review & confidence, the final mock), the AMC-score estimate, the past-paper log (math-design.md §1, §4) | A mock submits itself when time runs out; scores match AMC scoring; the past-paper log stores no problem text |
+| **MN0 Mental Math foundation** ✅ | Track `MENTAL` (`content/mental`, `n01.` keys, `/mental`, a fourth track tab, `/start` card), `levels.json` (4 levels by age), cheat sheets (`facts.json`, `/mental/cheat-sheets/[unit]`), pattern tips (`Unit.tips`, unit page, tip of the day), `MentalModule`, Quill audience (mental-math-design.md) | The home shows 4 levels with planned units as coming soon; axe passes; Math, Story and Essay unchanged |
+| **MN1 Mental Math Unit 1** ✅ | Number Bonds: 4 lessons and the ⭐ check (100%), typed answers, cheat sheet and tips, published | A marked set with typed answers is marked on the server |
 | **P5 Teacher dashboard** (P5a progress views ✅, the rest deferred; §11.3) | Class overview, heatmap, roster, student profile, review queue, submission review with approve/override/hide/return, rubric builder, flags inbox | E2E: teacher overrides an AI score; the student sees only the teacher version; audit log entry exists |
 | **P6 Gamification** | XP events, levels, streaks with freezes, badge engine + seed catalogue, missions, unlocks, dashboard widgets, optional leaderboard | Unit tests for XP caps, idempotency, streak edge cases (timezones, weekends, freezes); badge unlock modal appears in E2E |
 | **P7 Unit tools 1–6** | All tools in §10 for Units 1–6 + remaining LLM analyzers they need | Each tool has a component test and one E2E happy path; keyboard-only walkthrough passes |

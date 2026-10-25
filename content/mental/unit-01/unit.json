@@ -1,0 +1,18 @@
+{
+  "number": 1,
+  "slug": "mental-number-bonds",
+  "title": "Number Bonds",
+  "summary": "Know the pairs that make 10, 20 and 100 by heart, then use them to add and subtract in your head: look for pairs that make 10, and make 10 first when you cross a ten.",
+  "bigIdeas": [
+    "Pairs that make 10 are the building blocks of mental math.",
+    "When a sum crosses a ten, make the 10 first, then add the rest."
+  ],
+  "tips": [
+    "Adding a list? Hunt for pairs that make $10$ first: $7 + 4 + 3 = 10 + 4 = 14$.",
+    "Bonds to $20$ are bonds to $10$ with an extra ten: $3 + 7 = 10$, so $13 + 7 = 20$.",
+    "To work out $8 + 5$, give $8$ the $2$ it needs to make $10$, then add the $3$ left over: $13$.",
+    "For a bond to $100$, the tens make $9$ and the ones make $10$: $37 + 63 = 100$.",
+    "Check a subtraction with a bond: $100 - 46 = 54$ because $46 + 54 = 100$."
+  ],
+  "published": true
+}

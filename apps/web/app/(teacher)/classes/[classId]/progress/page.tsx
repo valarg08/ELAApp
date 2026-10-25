@@ -7,6 +7,7 @@ import {
   type StudentProgressRow,
   Track,
   UNIT_WORD,
+  isMathTrack,
 } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -199,7 +200,7 @@ export default async function ClassProgressPage({
               </ul>
             </nav>
 
-            <Legend math={track === 'MATH'} />
+            <Legend math={isMathTrack(track)} />
 
             {students.length === 0 ? (
               <p className="text-muted">
@@ -371,7 +372,7 @@ function StudentRow({
             {describe(
               c,
               `Lesson ${lessons[i]?.order ?? i + 1}`,
-              track === 'MATH' ? 'problem set' : 'quiz',
+              isMathTrack(track) ? 'problem set' : 'quiz',
             )}
           </span>
           <span aria-hidden="true" className="flex flex-col items-center gap-0.5">

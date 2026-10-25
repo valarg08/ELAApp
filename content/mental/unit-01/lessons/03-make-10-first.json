@@ -1,0 +1,105 @@
+{
+  "slug": "mental-make-10-first",
+  "order": 3,
+  "title": "Make 10 First",
+  "estMinutes": 25,
+  "focusSkills": ["bridge-10"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "How do you work out $8 + 5$ without counting on your fingers? Write how you think it.",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Fill up to the ten",
+          "body": "When a sum crosses a ten, stop at the ten on the way. In $8 + 5$, the $8$ needs $2$ to make $10$. Split the $5$ into $2$ and $3$: $8 + 2 = 10$, then $10 + 3 = 13$. You only use bonds to $10$ and adding to $10$, which you already know."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: 9 + 6",
+          "problem": "Work out $9 + 6$ by making $10$ first.",
+          "steps": [
+            {
+              "text": "How much does $9$ need to make $10$?",
+              "try": {
+                "prompt": "What goes with $9$ to make $10$?",
+                "accepted": ["1"],
+                "compute": "10-9"
+              }
+            },
+            {
+              "text": "Split $6$ into $1$ and $5$. Then $9 + 1 = 10$.",
+              "try": {
+                "prompt": "What is $10 + 5$?",
+                "accepted": ["15"],
+                "compute": "10+5"
+              }
+            },
+            {
+              "text": "So $9 + 6 = 15$."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: bigger numbers",
+          "problem": "Work out $47 + 8$.",
+          "steps": [
+            {
+              "text": "The next ten after $47$ is $50$. $47$ needs $3$ to get there.",
+              "try": {
+                "prompt": "What is $47 + 3$?",
+                "accepted": ["50"],
+                "compute": "47+3"
+              }
+            },
+            {
+              "text": "Split $8$ into $3$ and $5$: $47 + 3 = 50$, then $50 + 5 = 55$. The pattern is the same as $7 + 8$: only the tens change."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: taking away across a ten",
+          "problem": "Work out $13 - 5$.",
+          "steps": [
+            {
+              "text": "Go back to the ten first: $13 - 3 = 10$. That uses $3$ of the $5$.",
+              "try": {
+                "prompt": "How much of the $5$ is left to take away?",
+                "accepted": ["2"],
+                "compute": "5-3"
+              }
+            },
+            {
+              "text": "Then $10 - 2 = 8$. So $13 - 5 = 8$. Check with a bond: $8 + 5 = 13$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["n01.bridge-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "n01.bridge-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Explain to a friend how to work out $7 + 6$ by making $10$ first."],
+      "confidenceCheck": true
+    }
+  ]
+}

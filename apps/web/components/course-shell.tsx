@@ -12,6 +12,7 @@ import { serverApi } from '@/lib/server-api';
 import { SidePanel } from './course-frame';
 import { navFocus } from './course-styles';
 import { MathFactSheets } from './math-fact-sheets';
+import { MentalCheatSheets } from './mental-cheat-sheets';
 import { ProgressBar } from './progress-bar';
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
@@ -216,6 +217,7 @@ export async function CourseShell({
           {progress}
           {extra}
           {track === 'MATH' && <MathFactSheets />}
+          {track === 'MENTAL' && <MentalCheatSheets />}
         </SidePanel>
       </aside>
     </div>

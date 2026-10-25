@@ -168,6 +168,7 @@ export class CurriculumService {
       ...this.summaryBase(unit),
       ...availability,
       bigIdeas: stringArray(unit.bigIdeas),
+      tips: stringArray(unit.tips),
       lessonCount: unit.lessons.length,
       completedLessons: unit.lessons.filter((l) => progress.get(l.id)?.completedAt).length,
       lessons: availability.available
