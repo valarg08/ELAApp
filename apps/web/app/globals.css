@@ -64,3 +64,17 @@ body {
   overflow-y: hidden;
   text-align: center;
 }
+
+/*
+ * The student course frame (CourseShell, data-course-shell): from md up it fills the window below
+ * the header and each of its three columns scrolls on its own; the header spans the full width.
+ */
+body:has([data-course-shell]) > header > div {
+  max-width: none;
+}
+@media (width >= 48rem) {
+  body:has([data-course-shell]) {
+    height: 100dvh;
+    overflow: hidden;
+  }
+}

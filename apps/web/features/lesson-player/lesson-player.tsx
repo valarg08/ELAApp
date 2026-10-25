@@ -13,6 +13,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SimpleAnswers } from '@/features/math/simple-answers';
+import { scrollPageTop } from '@/components/course-scroll';
 import { ButtonLink, Card, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
 import { ChallengeStep } from './steps/challenge-step';
@@ -49,7 +50,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
       );
       setCompleted(progress.completedSteps);
       setView(STEP_IDS.indexOf(stepId) + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollPageTop();
       // Keeps the course progress panel (and, after reflect, the next lesson) up to date.
       router.refresh();
     } finally {
@@ -158,7 +159,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
               }}
               onContinue={() => {
                 setView(STEP_IDS.indexOf('reflect'));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                scrollPageTop();
               }}
             />
           )}

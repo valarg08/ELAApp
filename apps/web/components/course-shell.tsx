@@ -19,8 +19,9 @@ const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done
 
 /**
  * The course frame around a track's home, unit and lesson pages: the track's chapters (units) and
- * the current unit's lessons on the left, progress on the right. Below the md breakpoint both
- * collapse above and below the page.
+ * the current unit's lessons on the left, progress on the right. From md up the frame spans the
+ * window's width and fills its height below the header (globals.css, data-course-shell): each
+ * column scrolls on its own. Below md both panels collapse above and below the page.
  */
 export async function CourseShell({
   track,
@@ -34,7 +35,7 @@ export async function CourseShell({
   /** The open unit; omitted on the track's home page. */
   unitSlug?: string;
   lessonId?: string;
-  /** A wider frame for pages that need room, like the writing workspace. */
+  /** Pages that need room, like the writing workspace: both side panels fold. */
   wide?: boolean;
   /** More for the Progress panel, below the progress bars (the Math home's fact sheets). */
   extra?: ReactNode;
@@ -197,21 +198,25 @@ export async function CourseShell({
   // A folded panel carries data-folded, and the grid narrows its column with :has().
   return (
     <div
-      className={`mx-auto grid w-full ${wide ? 'max-w-[100rem]' : 'max-w-7xl'} flex-1 gap-6 px-4 py-6 [--left:13rem] [--right:12rem] md:grid-cols-[var(--left)_minmax(0,1fr)_var(--right)] md:py-10 lg:[--left:16rem] lg:[--right:15rem] has-[[data-folded=chapters]]:[--left:3.75rem] has-[[data-folded=progress]]:[--right:3.75rem]`}
+      data-course-shell
+      className="grid w-full flex-1 gap-4 px-4 py-6 [--left:13rem] [--right:12rem] md:min-h-0 md:grid-cols-[var(--left)_minmax(0,1fr)_var(--right)] md:grid-rows-[minmax(0,1fr)] md:px-3 md:py-3 lg:[--left:16rem] lg:[--right:15rem] has-[[data-folded=chapters]]:[--left:3.75rem] has-[[data-folded=progress]]:[--right:3.75rem]"
     >
-      <aside className="md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto">
+      <aside className="md:overflow-y-auto md:[&>div]:min-h-full">
         <SidePanel name="chapters" title="Chapters" side="left" collapsible={wide} mobileFold>
           {chapterNav}
         </SidePanel>
       </aside>
 
-      <main className="min-w-0 rounded-2xl border border-border bg-page-panel p-4 shadow-sm md:p-6">
+      <main
+        id="course-main"
+        className="min-w-0 rounded-2xl border border-border bg-page-panel p-4 shadow-sm md:overflow-y-auto md:p-6"
+      >
         {children}
       </main>
 
       <aside
         aria-label="Progress"
-        className="order-last md:order-none md:sticky md:top-6 md:max-h-[calc(100vh-3rem)] md:self-start md:overflow-y-auto"
+        className="order-last md:order-none md:overflow-y-auto md:[&>div]:min-h-full"
       >
         <SidePanel name="progress" title="Progress" side="right" tone="cyan" collapsible={wide}>
           {progress}
