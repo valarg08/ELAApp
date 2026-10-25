@@ -10,7 +10,9 @@
         "prompt": "Priya answers $[[r]]$ questions correctly, leaves $[[b]]$ blank and gets $[[w]]$ wrong. What is her score?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[6*r + 1.5*b|decimal]]"],
+          "accepted": [
+            "[[6*r + 1.5*b|decimal]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -46,7 +48,9 @@
               "let": "25 - r - b"
             }
           },
-          "where": ["w >= 1"]
+          "where": [
+            "w >= 1"
+          ]
         }
       },
       {
@@ -54,7 +58,9 @@
         "prompt": "What score would you get if you left all $25$ questions blank?",
         "answer": {
           "kind": "value",
-          "accepted": ["37.5"],
+          "accepted": [
+            "37.5"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -67,7 +73,10 @@
             }
           ]
         },
-        "hints": ["Each blank is worth $1.5$ points.", "$25 \\times 1.5 = ?$"],
+        "hints": [
+          "Each blank is worth $1.5$ points.",
+          "$25 \\times 1.5 = ?$"
+        ],
         "solution": "Each of the $25$ blanks earns $1.5$ points, so the score is $25 \\times 1.5 = 37.5$.",
         "skill": "amc-scoring",
         "difficulty": 1,
@@ -78,7 +87,9 @@
         "prompt": "You guess at random on a question with five choices. On average, how many points is the guess worth? Give your answer as a common fraction.",
         "answer": {
           "kind": "value",
-          "accepted": ["6/5"],
+          "accepted": [
+            "6/5"
+          ],
           "form": "fraction"
         },
         "hints": [
@@ -96,10 +107,15 @@
         "prompt": "You rule out $3$ of the $5$ choices and guess between the other $2$. On average, how many points is that guess worth?",
         "answer": {
           "kind": "value",
-          "accepted": ["3"],
+          "accepted": [
+            "3"
+          ],
           "form": "any"
         },
-        "hints": ["Now the guess is right $1$ time in $2$.", "$\\frac{1}{2} \\times 6 = ?$"],
+        "hints": [
+          "Now the guess is right $1$ time in $2$.",
+          "$\\frac{1}{2} \\times 6 = ?$"
+        ],
         "solution": "The guess is right half the time, so it is worth $\\frac{1}{2} \\times 6 = 3$ points on average: double the $1.5$ points of a blank. Once you can rule out choices, guessing pays.",
         "skill": "guessing",
         "difficulty": 2,
@@ -110,7 +126,10 @@
         "prompt": "You have $75$ minutes for $25$ questions. You want to keep the last $15$ minutes to check your work. On average, how many minutes can you spend on each question?",
         "answer": {
           "kind": "value",
-          "accepted": ["12/5", "2.4"],
+          "accepted": [
+            "12/5",
+            "2.4"
+          ],
           "form": "any"
         },
         "hints": [
@@ -135,7 +154,13 @@
         "prompt": "Sam answers $20$ questions correctly and leaves the other $5$ blank. What is Sam's score?",
         "answer": {
           "kind": "choice",
-          "choices": ["$120$", "$125$", "$127.5$", "$130$", "$150$"],
+          "choices": [
+            "$120$",
+            "$125$",
+            "$127.5$",
+            "$130$",
+            "$150$"
+          ],
           "correct": "C",
           "why": {
             "A": "That counts only the right answers. The $5$ blanks earn $1.5$ points each.",
@@ -153,7 +178,13 @@
         "prompt": "A student answers some questions correctly and leaves every other question blank (no wrong answers). What is the least number of correct answers that gives a score greater than $100$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$11$", "$12$", "$13$", "$14$", "$15$"],
+          "choices": [
+            "$11$",
+            "$12$",
+            "$13$",
+            "$14$",
+            "$15$"
+          ],
           "correct": "D",
           "why": {
             "C": "$13$ right gives $78 + 18 = 96$, which is not more than $100$.",
@@ -174,7 +205,13 @@
         },
         "answer": {
           "kind": "choice",
-          "choices": ["$12$", "$18$", "$24$", "$27$", "$36$"],
+          "choices": [
+            "$12$",
+            "$18$",
+            "$24$",
+            "$27$",
+            "$36$"
+          ],
           "correct": "B",
           "why": {
             "E": "That is the whole square. The triangle is half of it.",
@@ -191,7 +228,13 @@
         "prompt": "Ana plans to spend $15$ minutes on the last $5$ (hardest) questions and $10$ minutes checking. If she shares the rest of the $75$ minutes equally among the first $20$ questions, how many minutes does each of those get?",
         "answer": {
           "kind": "choice",
-          "choices": ["$1.75$", "$2$", "$2.25$", "$2.5$", "$3$"],
+          "choices": [
+            "$1.75$",
+            "$2$",
+            "$2.25$",
+            "$2.5$",
+            "$3$"
+          ],
           "correct": "D"
         },
         "solution": "The first $20$ questions get $75 - 15 - 10 = 50$ minutes, so each gets $\\frac{50}{20} = 2.5$ minutes, choice (D).",
@@ -204,7 +247,13 @@
         "prompt": "On one question you can rule out exactly $k$ of the five choices, then guess at random among the rest. What is the least $k$ for which the guess is worth more points on average than a blank?",
         "answer": {
           "kind": "choice",
-          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "choices": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$",
+            "$4$"
+          ],
           "correct": "C",
           "why": {
             "B": "With $k = 1$ the guess is worth $\\frac{6}{4} = 1.5$: only equal to a blank, not more.",
@@ -229,7 +278,9 @@
         "prompt": "A straight fence is $[[g*d]]$ metres long, with a post at each end and a post every $[[d]]$ metres. How many posts are there?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[g+1]]"],
+          "accepted": [
+            "[[g+1]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -249,8 +300,18 @@
         "compute": "g+1",
         "template": {
           "vars": {
-            "g": { "from": 4, "to": 15 },
-            "d": { "choose": [2, 3, 4, 5] }
+            "g": {
+              "from": 4,
+              "to": 15
+            },
+            "d": {
+              "choose": [
+                2,
+                3,
+                4,
+                5
+              ]
+            }
           }
         }
       },
@@ -259,7 +320,9 @@
         "prompt": "A chapter of a book starts on page $[[a]]$ and ends on page $[[b]]$. Both of those pages are part of the chapter. How many pages long is the chapter?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[b-a+1]]"],
+          "accepted": [
+            "[[b-a+1]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -278,9 +341,17 @@
         "compute": "b-a+1",
         "template": {
           "vars": {
-            "a": { "from": 12, "to": 40 },
-            "k": { "from": 10, "to": 30 },
-            "b": { "let": "a+k" }
+            "a": {
+              "from": 12,
+              "to": 40
+            },
+            "k": {
+              "from": 10,
+              "to": 30
+            },
+            "b": {
+              "let": "a+k"
+            }
           }
         }
       },
@@ -289,7 +360,9 @@
         "prompt": "Theo walks $9$ km east, then $5$ km north, then $3$ km west, then $3$ km north. How far is he from where he started, in a straight line, in km?",
         "answer": {
           "kind": "value",
-          "accepted": ["10"],
+          "accepted": [
+            "10"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -317,7 +390,9 @@
         "prompt": "In a class of $30$ students, $\\frac{2}{5}$ walk to school and the rest come by bus. How many more students come by bus than walk?",
         "answer": {
           "kind": "value",
-          "accepted": ["6"],
+          "accepted": [
+            "6"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -348,7 +423,9 @@
         },
         "answer": {
           "kind": "value",
-          "accepted": ["36"],
+          "accepted": [
+            "36"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -384,7 +461,13 @@
         "prompt": "A building has floors numbered $1$ to $10$. Climbing the stairs from one floor to the next takes $15$ seconds. How many seconds does it take to climb from floor $1$ to floor $7$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$75$", "$90$", "$100$", "$105$", "$120$"],
+          "choices": [
+            "$75$",
+            "$90$",
+            "$100$",
+            "$105$",
+            "$120$"
+          ],
           "correct": "B",
           "why": {
             "D": "That counts $7$ flights of stairs. From floor $1$ to floor $7$ there are only $6$."
@@ -400,7 +483,13 @@
         "prompt": "A clock chimes once at $1$ o'clock, twice at $2$ o'clock, and so on, up to $12$ times at $12$ o'clock. How many times does it chime from just after noon up to and including midnight?",
         "answer": {
           "kind": "choice",
-          "choices": ["$66$", "$72$", "$78$", "$90$", "$156$"],
+          "choices": [
+            "$66$",
+            "$72$",
+            "$78$",
+            "$90$",
+            "$156$"
+          ],
           "correct": "C",
           "why": {
             "A": "That leaves out the $12$ chimes at midnight, which the question includes.",
@@ -417,7 +506,13 @@
         "prompt": "Points $A$, $B$, $C$ and $D$ lie on a line in that order. $AC = 10$, $BD = 12$ and $AD = 18$. What is $BC$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$2$", "$4$", "$6$", "$8$", "$10$"],
+          "choices": [
+            "$2$",
+            "$4$",
+            "$6$",
+            "$8$",
+            "$10$"
+          ],
           "correct": "B",
           "why": {
             "C": "$6 = AD - BD$ is the length $AB$, not $BC$. Draw the four points and mark each length.",
@@ -434,7 +529,13 @@
         "prompt": "How many of the whole numbers from $1$ to $50$ are NOT multiples of $3$ and NOT multiples of $5$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$23$", "$24$", "$26$", "$27$", "$34$"],
+          "choices": [
+            "$23$",
+            "$24$",
+            "$26$",
+            "$27$",
+            "$34$"
+          ],
           "correct": "D",
           "why": {
             "A": "$23$ is how many ARE multiples of $3$ or $5$. The question asks for the others.",
@@ -452,7 +553,13 @@
         "prompt": "A $4$ by $6$ rectangle is divided into $1$ by $1$ squares. A diagonal is drawn from one corner of the rectangle to the opposite corner. How many of the small squares does the diagonal pass through the inside of?",
         "answer": {
           "kind": "choice",
-          "choices": ["$6$", "$8$", "$9$", "$10$", "$12$"],
+          "choices": [
+            "$6$",
+            "$8$",
+            "$9$",
+            "$10$",
+            "$12$"
+          ],
           "correct": "B",
           "why": {
             "D": "The diagonal passes exactly through a grid corner halfway along, where it enters a new square by crossing two lines at once. Draw it to see."
@@ -462,6 +569,188 @@
         "skill": "read-and-draw",
         "difficulty": 4,
         "compute": "4 + 6 - gcd(4, 6)"
+      }
+    ]
+  },
+  {
+    "key": "m01.backwards-starter",
+    "type": "PROBLEMS",
+    "title": "First steps: undo one step at a time",
+    "instructions": "Never tried this before? Start here. Write the steps as a chain, start at the end and undo the last step first. Type each answer and press Check. Stuck? Open a hint.",
+    "problems": [
+      {
+        "id": "add-eight",
+        "prompt": "I think of a number and add $8$. I get $20$. What was my number?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "12"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "28",
+              "why": "Adding $8$ again goes forwards. To undo adding, subtract."
+            }
+          ]
+        },
+        "hints": [
+          "The machine is $n \\to +8 \\to 20$. Undo adding $8$ by subtracting $8$."
+        ],
+        "solution": "Undo $+8$ with $-8$: $20 - 8 = 12$. Check: $12 + 8 = 20$ ✓.",
+        "skill": "work-backwards",
+        "difficulty": 1,
+        "compute": "20-8"
+      },
+      {
+        "id": "times-six",
+        "prompt": "I multiply a number by $6$ and get $42$. What was the number?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "7"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "252",
+              "why": "Multiplying again goes forwards. To undo multiplying, divide."
+            }
+          ]
+        },
+        "hints": [
+          "The machine is $n \\to \\times 6 \\to 42$. What undoes multiplying?"
+        ],
+        "solution": "Undo $\\times 6$ with $\\div 6$: $42 \\div 6 = 7$. Check: $7 \\times 6 = 42$ ✓.",
+        "skill": "work-backwards",
+        "difficulty": 1,
+        "compute": "42/6"
+      },
+      {
+        "id": "double-add-three",
+        "prompt": "I double a number, then add $3$. I get $17$. What was my number?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "7"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "5.5",
+              "why": "That halves first. Undo the last step ($+3$) first, then halve."
+            }
+          ]
+        },
+        "hints": [
+          "Write the chain: $n \\to \\times 2 \\to +3 \\to 17$.",
+          "Undo the last step first: $17 - 3 = 14$.",
+          "Now undo the doubling: halve $14$."
+        ],
+        "solution": "Undo the last step first: $17 - 3 = 14$. Then undo doubling: $14 \\div 2 = 7$. Check: $7 \\times 2 + 3 = 17$ ✓.",
+        "skill": "work-backwards",
+        "difficulty": 1,
+        "compute": "(17-3)/2"
+      },
+      {
+        "id": "machine-four-six",
+        "prompt": "A number goes through a machine: $\\times 4$, then $-6$. The machine gives out $30$. What number went in?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "9"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "6",
+              "why": "Undo subtracting $6$ by adding it back: $30 + 6$, not $30 - 6$."
+            }
+          ]
+        },
+        "hints": [
+          "Start at $30$. The last step was $-6$, so add $6$ back.",
+          "$30 + 6 = 36$. Now undo $\\times 4$."
+        ],
+        "solution": "Undo $-6$: $30 + 6 = 36$. Undo $\\times 4$: $36 \\div 4 = 9$. Check: $9 \\times 4 - 6 = 30$ ✓.",
+        "skill": "work-backwards",
+        "difficulty": 1,
+        "compute": "(30+6)/4"
+      },
+      {
+        "id": "ella-money",
+        "prompt": "Ella had some money. Her gran gave her $\\$5$, then she spent $\\$12$. Now she has $\\$9$. How many dollars did she have at the start?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "16"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "26",
+              "why": "The gift added $\\$5$, so undo it by subtracting $5$, not adding."
+            }
+          ]
+        },
+        "hints": [
+          "Chain: start $\\to +5 \\to -12 \\to 9$. Undo the spending first.",
+          "Before spending she had $9 + 12 = 21$ dollars. Now undo the gift."
+        ],
+        "solution": "Undo spending $\\$12$: $9 + 12 = 21$. Undo the $\\$5$ gift: $21 - 5 = 16$. Check: $16 + 5 - 12 = 9$ ✓.",
+        "skill": "work-backwards",
+        "difficulty": 1,
+        "compute": "9+12-5"
+      },
+      {
+        "id": "test-three-n",
+        "prompt": "Test the values $3$, $4$, $5$ and $6$. Which one makes $3n + 2 = 17$ true?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "5"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "4",
+              "why": "Test it: $3 \\times 4 + 2 = 14$, not $17$."
+            }
+          ]
+        },
+        "hints": [
+          "Put each value in for $n$ and work out $3n + 2$.",
+          "Try $n = 4$: $3 \\times 4 + 2 = 14$, too small. Try a bigger value."
+        ],
+        "solution": "Test: $n = 4$ gives $14$, too small; $n = 5$ gives $3 \\times 5 + 2 = 17$ ✓.",
+        "skill": "test-choices",
+        "difficulty": 1,
+        "compute": "5"
+      },
+      {
+        "id": "sum-and-difference",
+        "prompt": "Two whole numbers add up to $15$ and one is $3$ more than the other. Test some pairs: what is the larger number?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "9"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "12",
+              "why": "$12 + 3 = 15$, but $12$ and $3$ differ by $9$, not $3$."
+            }
+          ]
+        },
+        "hints": [
+          "List pairs that add up to $15$: $8 + 7$, $9 + 6$, $10 + 5$…",
+          "Which pair has a difference of $3$?"
+        ],
+        "solution": "Test pairs that add up to $15$: $8$ and $7$ differ by $1$; $9$ and $6$ differ by $3$ ✓. The larger number is $9$.",
+        "skill": "test-choices",
+        "difficulty": 1,
+        "compute": "(15+3)/2"
       }
     ]
   },
@@ -476,7 +765,9 @@
         "prompt": "Zara thinks of a number, multiplies it by $[[m]]$, then subtracts $[[s]]$. The result is $[[r]]$. What was her number?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[n]]"],
+          "accepted": [
+            "[[n]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -496,10 +787,25 @@
         "compute": "(r+s)/m",
         "template": {
           "vars": {
-            "n": { "from": 3, "to": 20 },
-            "m": { "choose": [2, 3, 4, 5] },
-            "s": { "from": 1, "to": 9 },
-            "r": { "let": "n*m - s" }
+            "n": {
+              "from": 3,
+              "to": 20
+            },
+            "m": {
+              "choose": [
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            "s": {
+              "from": 1,
+              "to": 9
+            },
+            "r": {
+              "let": "n*m - s"
+            }
           }
         }
       },
@@ -508,7 +814,9 @@
         "prompt": "Kai spent half of his money on a game, then spent $\\$4$ on lunch. He had $\\$11$ left. How many dollars did he start with?",
         "answer": {
           "kind": "value",
-          "accepted": ["30"],
+          "accepted": [
+            "30"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -535,7 +843,9 @@
         "prompt": "The lily pads on a pond double in area every day. On day $[[d]]$ they cover the whole pond. On which day did they cover a quarter of the pond?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[d-2]]"],
+          "accepted": [
+            "[[d-2]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -554,7 +864,10 @@
         "compute": "d-2",
         "template": {
           "vars": {
-            "d": { "from": 10, "to": 30 }
+            "d": {
+              "from": 10,
+              "to": 30
+            }
           }
         }
       },
@@ -563,7 +876,9 @@
         "prompt": "Five consecutive whole numbers add up to $[[5*m]]$. What is the largest of them?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[m+2]]"],
+          "accepted": [
+            "[[m+2]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -582,7 +897,10 @@
         "compute": "m+2",
         "template": {
           "vars": {
-            "m": { "from": 5, "to": 40 }
+            "m": {
+              "from": 5,
+              "to": 40
+            }
           }
         }
       },
@@ -591,7 +909,9 @@
         "prompt": "Test some values: which positive whole number $n$ makes $n^2 + n = 156$?",
         "answer": {
           "kind": "value",
-          "accepted": ["12"],
+          "accepted": [
+            "12"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -612,6 +932,164 @@
     ]
   },
   {
+    "key": "m01.backwards-amc",
+    "type": "PROBLEMS",
+    "title": "AMC-style practice",
+    "instructions": "Contest-style problems, harder than before. Work backwards or test values, and check your answer forwards. Type each answer; hints are here to help, but the marked challenge next has none.",
+    "problems": [
+      {
+        "id": "baker-loaves",
+        "prompt": "A baker sells half of her loaves plus $2$ more in the morning. In the afternoon she sells half of the loaves left plus $2$ more. She has $4$ loaves left. How many loaves did she start with?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "28"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "24",
+              "why": "Undo in reverse order: add the $2$ back first, then double."
+            }
+          ]
+        },
+        "hints": [
+          "Selling half plus $2$ leaves half minus $2$. So before a sale she had $2 \\times (\\text{left} + 2)$.",
+          "Before the afternoon: $2 \\times (4 + 2) = 12$ loaves."
+        ],
+        "solution": "Before the afternoon: $2 \\times (4 + 2) = 12$. Before the morning: $2 \\times (12 + 2) = 28$. Check: the morning sells $14 + 2 = 16$, leaving $12$; the afternoon sells $6 + 2 = 8$, leaving $4$ ✓.",
+        "skill": "work-backwards",
+        "difficulty": 3,
+        "compute": "((4+2)*2+2)*2"
+      },
+      {
+        "id": "amir-bea",
+        "prompt": "Amir and Bea play two rounds. In round 1, Amir gives Bea as many dollars as Bea has. In round 2, Bea gives Amir as many dollars as Amir has. At the end each of them has $\\$24$. How many dollars did Amir have at the start?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "30"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "12",
+              "why": "$\\$12$ is what Amir had before round 2. Undo round 1 too."
+            }
+          ]
+        },
+        "hints": [
+          "Undo round 2 first. Bea doubled Amir’s money, so before round 2 Amir had $12$.",
+          "Bea gave Amir $\\$12$, so before round 2 Bea had $24 + 12 = 36$. Now undo round 1."
+        ],
+        "solution": "Before round 2: Amir $12$, Bea $24 + 12 = 36$. Before round 1, Amir doubled Bea’s money: Bea $18$, Amir $12 + 18 = 30$. Check: $30, 18 \\to 12, 36 \\to 24, 24$ ✓.",
+        "skill": "work-backwards",
+        "difficulty": 4,
+        "compute": "24/2+(24+24/2)/2"
+      },
+      {
+        "id": "cube-plus-n",
+        "prompt": "Which positive whole number $n$ makes $n^3 + n = 222$?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "6"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "7",
+              "why": "Test it: $7^3 + 7 = 350$, too big."
+            }
+          ]
+        },
+        "hints": [
+          "$n^3 + n$ is a little more than $n^3$. Which cube is just below $222$?",
+          "$6^3 = 216$. Test $n = 6$."
+        ],
+        "solution": "Since $n^3 + n$ is a bit more than $n^3$, test $n = 6$ ($6^3 = 216$): $216 + 6 = 222$ ✓.",
+        "skill": "test-choices",
+        "difficulty": 3,
+        "compute": "6"
+      },
+      {
+        "id": "consecutive-product",
+        "prompt": "The product of three consecutive whole numbers is $504$. What is their sum?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "24"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "8",
+              "why": "$8$ is the middle number. The question asks for the sum of all three."
+            }
+          ]
+        },
+        "hints": [
+          "The middle number is close to the cube root of $504$. Since $8^3 = 512$, try numbers near $8$.",
+          "Test $7 \\times 8 \\times 9$."
+        ],
+        "solution": "Three consecutive numbers multiply to about the middle number cubed, and $8^3 = 512$. Test $7 \\times 8 \\times 9 = 504$ ✓. Their sum is $7 + 8 + 9 = 24$.",
+        "skill": "test-choices",
+        "difficulty": 3,
+        "compute": "7+8+9"
+      },
+      {
+        "id": "price-up-down",
+        "prompt": "A price is raised by $25\\%$, then the new price is lowered by $\\$10$. The final price is $\\$90$. What was the original price, in dollars?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "80"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "75",
+              "why": "Taking $25\\%$ off $100$ doesn’t undo a $25\\%$ rise. Divide by $1.25$ instead."
+            }
+          ]
+        },
+        "hints": [
+          "Undo the last step first: before the $\\$10$ cut the price was $\\$100$.",
+          "Raising by $25\\%$ multiplies by $1.25$. Undo it by dividing by $1.25$."
+        ],
+        "solution": "Undo the cut: $90 + 10 = 100$. Undo $\\times 1.25$: $100 \\div 1.25 = 80$. Check: $80 \\times 1.25 = 100$, and $100 - 10 = 90$ ✓.",
+        "skill": "work-backwards",
+        "difficulty": 3,
+        "compute": "(90+10)/1.25"
+      },
+      {
+        "id": "sequence-back",
+        "prompt": "In a sequence, each term after the first is $3$ more than twice the term before it. The fifth term is $109$. What is the first term?",
+        "answer": {
+          "kind": "value",
+          "accepted": [
+            "4"
+          ],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "11",
+              "why": "$11$ is the second term. Go back one more step."
+            }
+          ]
+        },
+        "hints": [
+          "Each step is $\\times 2$, then $+3$. Undo it: subtract $3$, then halve.",
+          "The fourth term is $\\frac{109 - 3}{2} = 53$. Keep going back."
+        ],
+        "solution": "Undo each step (subtract $3$, then halve): $109 \\to 53 \\to 25 \\to 11 \\to 4$. Check: $4 \\to 11 \\to 25 \\to 53 \\to 109$ ✓.",
+        "skill": "work-backwards",
+        "difficulty": 4,
+        "compute": "((((109-3)/2-3)/2-3)/2-3)/2"
+      }
+    ]
+  },
+  {
     "key": "m01.backwards-set",
     "type": "PROBLEM_SET",
     "title": "Work backwards challenge",
@@ -622,7 +1100,13 @@
         "prompt": "A number is tripled, then $5$ is subtracted, and the result is $40$. What is the number?",
         "answer": {
           "kind": "choice",
-          "choices": ["$11$", "$13$", "$15$", "$35$", "$45$"],
+          "choices": [
+            "$11$",
+            "$13$",
+            "$15$",
+            "$35$",
+            "$45$"
+          ],
           "correct": "C",
           "why": {
             "D": "$35 = 40 - 5$: undo subtracting by adding $5$ back, not subtracting again.",
@@ -639,7 +1123,13 @@
         "prompt": "For which whole number $x$ is $2^x + x = 37$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$3$", "$4$", "$5$", "$6$", "$7$"],
+          "choices": [
+            "$3$",
+            "$4$",
+            "$5$",
+            "$6$",
+            "$7$"
+          ],
           "correct": "C",
           "why": {
             "D": "Test it: $2^6 + 6 = 70$, too big."
@@ -655,7 +1145,13 @@
         "prompt": "Lena gave away a third of her stickers, then gave away $6$ more. She had $18$ left. How many stickers did she start with?",
         "answer": {
           "kind": "choice",
-          "choices": ["$30$", "$36$", "$42$", "$48$", "$72$"],
+          "choices": [
+            "$30$",
+            "$36$",
+            "$42$",
+            "$48$",
+            "$72$"
+          ],
           "correct": "B",
           "why": {
             "D": "After giving away a third she had two-thirds left, not half.",
@@ -672,7 +1168,13 @@
         "prompt": "A two-digit number is $4$ times the sum of its digits. Adding $27$ to it swaps its two digits. What is the number?",
         "answer": {
           "kind": "choice",
-          "choices": ["$12$", "$24$", "$36$", "$48$", "$63$"],
+          "choices": [
+            "$12$",
+            "$24$",
+            "$36$",
+            "$48$",
+            "$63$"
+          ],
           "correct": "C",
           "why": {
             "A": "$12 = 4 \\times 3$ works for the first rule, but $12 + 27 = 39$, not $21$.",
@@ -690,7 +1192,13 @@
         "prompt": "A bag of marbles is shared. Ana takes half the marbles plus $1$ more. Ben takes half of what is left plus $1$ more. Cy takes half of what is left plus $1$ more, and the bag is empty. How many marbles were in the bag?",
         "answer": {
           "kind": "choice",
-          "choices": ["$10$", "$12$", "$14$", "$16$", "$22$"],
+          "choices": [
+            "$10$",
+            "$12$",
+            "$14$",
+            "$16$",
+            "$22$"
+          ],
           "correct": "C",
           "why": {
             "B": "Test it: Ana takes $7$, leaving $5$; then Ben would take $3.5$ marbles.",
@@ -715,7 +1223,9 @@
         "prompt": "$\\sqrt{[[n]]}$ lies between two consecutive whole numbers. What is the smaller one?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[k]]"],
+          "accepted": [
+            "[[k]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -734,11 +1244,21 @@
         "compute": "k",
         "template": {
           "vars": {
-            "k": { "from": 4, "to": 11 },
-            "d": { "from": 1, "to": 22 },
-            "n": { "let": "k*k + d" }
+            "k": {
+              "from": 4,
+              "to": 11
+            },
+            "d": {
+              "from": 1,
+              "to": 22
+            },
+            "n": {
+              "let": "k*k + d"
+            }
           },
-          "where": ["d <= 2*k"]
+          "where": [
+            "d <= 2*k"
+          ]
         }
       },
       {
@@ -746,7 +1266,9 @@
         "prompt": "What is the units digit (last digit) of $[[a]] \\times [[b]] \\times [[c]]$?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[mod(a*b*c, 10)]]"],
+          "accepted": [
+            "[[mod(a*b*c, 10)]]"
+          ],
           "form": "any"
         },
         "hints": [
@@ -759,9 +1281,21 @@
         "compute": "mod(a*b*c, 10)",
         "template": {
           "vars": {
-            "a": { "from": 13, "to": 49 },
-            "b": { "from": 13, "to": 49 },
-            "c": { "choose": [17, 23, 29] }
+            "a": {
+              "from": 13,
+              "to": 49
+            },
+            "b": {
+              "from": 13,
+              "to": 49
+            },
+            "c": {
+              "choose": [
+                17,
+                23,
+                29
+              ]
+            }
           }
         }
       },
@@ -770,7 +1304,9 @@
         "prompt": "Pens cost $\\$1.98$ each. To the nearest dollar, how many dollars do $49$ pens cost?",
         "answer": {
           "kind": "value",
-          "accepted": ["97"],
+          "accepted": [
+            "97"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -797,7 +1333,9 @@
         "prompt": "What is $\\frac{0.0048 \\times 5000}{0.24}$?",
         "answer": {
           "kind": "value",
-          "accepted": ["100"],
+          "accepted": [
+            "100"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -824,7 +1362,9 @@
         "prompt": "Which whole number is closest to $\\frac{1}{0.0196}$?",
         "answer": {
           "kind": "value",
-          "accepted": ["51"],
+          "accepted": [
+            "51"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -855,7 +1395,13 @@
         "prompt": "Which is closest to $\\frac{601 \\times 0.49}{2.98}$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$10$", "$50$", "$100$", "$300$", "$1000$"],
+          "choices": [
+            "$10$",
+            "$50$",
+            "$100$",
+            "$300$",
+            "$1000$"
+          ],
           "correct": "C",
           "why": {
             "D": "That forgets to divide by about $3$.",
@@ -872,7 +1418,13 @@
         "prompt": "What is $1234 \\times 5678$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$7006648$", "$7006652$", "$7006654$", "$7006656$", "$7006658$"],
+          "choices": [
+            "$7006648$",
+            "$7006652$",
+            "$7006654$",
+            "$7006656$",
+            "$7006658$"
+          ],
           "correct": "B",
           "why": {
             "A": "The last digits give $4 \\times 8 = 32$, so the product ends in $2$.",
@@ -891,7 +1443,13 @@
         "prompt": "Whole numbers $a$ and $b$ add up to $21$. Which of these could be $a \\times b$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$55$", "$77$", "$91$", "$98$", "$99$"],
+          "choices": [
+            "$55$",
+            "$77$",
+            "$91$",
+            "$98$",
+            "$99$"
+          ],
           "correct": "D",
           "why": {
             "A": "$55$ is odd. Since $a + b = 21$ is odd, one of $a$ and $b$ is even, so the product is even.",
@@ -910,7 +1468,13 @@
         "prompt": "Which is the largest?",
         "answer": {
           "kind": "choice",
-          "choices": ["$2^{40}$", "$3^{30}$", "$4^{19}$", "$5^{15}$", "$6^{14}$"],
+          "choices": [
+            "$2^{40}$",
+            "$3^{30}$",
+            "$4^{19}$",
+            "$5^{15}$",
+            "$6^{14}$"
+          ],
           "correct": "B",
           "why": {
             "A": "$2^{40} = 16^{10}$ and $3^{30} = 27^{10}$, so $3^{30}$ is bigger."
@@ -926,7 +1490,13 @@
         "prompt": "What is the smallest whole number greater than $1$ that leaves a remainder of $1$ when divided by each of $2$, $3$, $4$, $5$ and $6$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$31$", "$41$", "$61$", "$121$", "$721$"],
+          "choices": [
+            "$31$",
+            "$41$",
+            "$61$",
+            "$121$",
+            "$721$"
+          ],
           "correct": "C",
           "why": {
             "A": "Test it: $31 = 4 \\times 7 + 3$, remainder $3$ when divided by $4$.",
@@ -953,7 +1523,9 @@
         "prompt": "On $[[q]]$ questions you can rule out $[[k]]$ of the $5$ choices each, and you guess among the rest. On average, how many points do you expect from these $[[q]]$ questions in total?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[6*q/(5-k)|decimal]]"],
+          "accepted": [
+            "[[6*q/(5-k)|decimal]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -972,8 +1544,14 @@
         "compute": "6*q/(5-k)",
         "template": {
           "vars": {
-            "q": { "from": 2, "to": 6 },
-            "k": { "from": 0, "to": 3 }
+            "q": {
+              "from": 2,
+              "to": 6
+            },
+            "k": {
+              "from": 0,
+              "to": 3
+            }
           }
         }
       },
@@ -982,7 +1560,9 @@
         "prompt": "Your answers marked \"Guessing\" are right $[[p]]\\%$ of the time. On average, how many points is one of those answers worth? (Compare it with a blank's $1.5$.)",
         "answer": {
           "kind": "value",
-          "accepted": ["[[6*p/100|decimal]]"],
+          "accepted": [
+            "[[6*p/100|decimal]]"
+          ],
           "form": "any"
         },
         "hints": [
@@ -995,7 +1575,11 @@
         "compute": "6*p/100",
         "template": {
           "vars": {
-            "p": { "from": 10, "to": 40, "step": 5 }
+            "p": {
+              "from": 10,
+              "to": 40,
+              "step": 5
+            }
           }
         }
       },
@@ -1004,7 +1588,9 @@
         "prompt": "On a $75$-minute test you finish questions $1$–$10$ in $[[t]]$ minutes. You want to keep $5$ minutes at the end to check. On average, how many minutes can you spend on each of the other $15$ questions? (A fraction is fine.)",
         "answer": {
           "kind": "value",
-          "accepted": ["[[(70-t)/15]]"],
+          "accepted": [
+            "[[(70-t)/15]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -1023,7 +1609,16 @@
         "compute": "(75-t-5)/15",
         "template": {
           "vars": {
-            "t": { "choose": [10, 15, 20, 25, 30, 35] }
+            "t": {
+              "choose": [
+                10,
+                15,
+                20,
+                25,
+                30,
+                35
+              ]
+            }
           }
         }
       },
@@ -1032,10 +1627,14 @@
         "prompt": "On a $75$-minute test you spend $12$ minutes on question $14$ and still get it wrong. At $3$ minutes per question (the average pace for $25$ questions in $75$ minutes), how many other questions could those $12$ minutes have paid for?",
         "answer": {
           "kind": "value",
-          "accepted": ["4"],
+          "accepted": [
+            "4"
+          ],
           "form": "any"
         },
-        "hints": ["How many $3$-minute blocks fit into $12$ minutes?"],
+        "hints": [
+          "How many $3$-minute blocks fit into $12$ minutes?"
+        ],
         "solution": "$\\frac{12}{3} = 4$ questions. The 2-minute rule exists to stop one stuck question from eating the time for several others.",
         "skill": "pacing",
         "difficulty": 1,
@@ -1046,7 +1645,9 @@
         "prompt": "You aim for at least $[[g]]$ points with no wrong answers: every question is either right or blank. What is the least number of questions you need right?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[-floor(-(g-37.5)/4.5)]]"],
+          "accepted": [
+            "[[-floor(-(g-37.5)/4.5)]]"
+          ],
           "form": "any"
         },
         "hints": [
@@ -1059,7 +1660,17 @@
         "compute": "-floor(-(g-37.5)/4.5)",
         "template": {
           "vars": {
-            "g": { "choose": [60, 75, 84, 90, 100, 105, 120] }
+            "g": {
+              "choose": [
+                60,
+                75,
+                84,
+                90,
+                100,
+                105,
+                120
+              ]
+            }
           }
         }
       }
@@ -1076,7 +1687,13 @@
         "prompt": "On a question you can rule out $3$ of the $5$ choices and guess between the other two. On average, how many points is the guess worth?",
         "answer": {
           "kind": "choice",
-          "choices": ["$1.2$", "$1.5$", "$2$", "$3$", "$6$"],
+          "choices": [
+            "$1.2$",
+            "$1.5$",
+            "$2$",
+            "$3$",
+            "$6$"
+          ],
           "correct": "D",
           "why": {
             "B": "$1.5$ is what a blank is worth.",
@@ -1093,7 +1710,13 @@
         "prompt": "Kim leaves $5$ questions blank, gets $3$ wrong and gets the rest of the $25$ right. What is her score?",
         "answer": {
           "kind": "choice",
-          "choices": ["$102$", "$106.5$", "$109.5$", "$111$", "$115.5$"],
+          "choices": [
+            "$102$",
+            "$106.5$",
+            "$109.5$",
+            "$111$",
+            "$115.5$"
+          ],
           "correct": "C",
           "why": {
             "A": "That counts only the right answers. The $5$ blanks earn $1.5$ each.",
@@ -1110,7 +1733,13 @@
         "prompt": "Theo spends $2$ minutes on each of questions $1$–$10$ and $3$ minutes on each of questions $11$–$20$, and keeps $10$ minutes at the end to check. How many minutes per question are left for questions $21$–$25$ in the $75$ minutes?",
         "answer": {
           "kind": "choice",
-          "choices": ["$1$", "$2$", "$2.5$", "$3$", "$5$"],
+          "choices": [
+            "$1$",
+            "$2$",
+            "$2.5$",
+            "$3$",
+            "$5$"
+          ],
           "correct": "D",
           "why": {
             "E": "That forgets the $10$ minutes kept for checking."
@@ -1126,7 +1755,13 @@
         "prompt": "A student guesses blindly on some questions; each blind guess is worth $1.2$ points on average. Leaving a blind guess blank instead raises the expected score by $0.3$. What is the least number of blind guesses that, left blank, would raise the expected score by at least $3$ points?",
         "answer": {
           "kind": "choice",
-          "choices": ["$3$", "$5$", "$8$", "$10$", "$15$"],
+          "choices": [
+            "$3$",
+            "$5$",
+            "$8$",
+            "$10$",
+            "$15$"
+          ],
           "correct": "D",
           "why": {
             "A": "$3$ blanks raise it by only $3 \\times 0.3 = 0.9$ points.",
@@ -1143,7 +1778,13 @@
         "prompt": "On each of $4$ questions Mira can rule out $1$ choice, and on each of $3$ other questions she can rule out $2$ choices. For each question she either guesses among the rest or leaves it blank, whichever is worth more on average. What score does she expect from these $7$ questions?",
         "answer": {
           "kind": "choice",
-          "choices": ["$10.5$", "$11.4$", "$12$", "$12.6$", "$14$"],
+          "choices": [
+            "$10.5$",
+            "$11.4$",
+            "$12$",
+            "$12.6$",
+            "$14$"
+          ],
           "correct": "C",
           "why": {
             "A": "That leaves all $7$ blank. On the $3$ questions with $2$ choices ruled out, a guess is worth $2$, more than a blank.",
@@ -1168,7 +1809,9 @@
         "prompt": "A ribbon $[[p*k]]$ cm long is cut into pieces $[[p]]$ cm long. How many cuts are needed?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[k-1]]"],
+          "accepted": [
+            "[[k-1]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -1187,8 +1830,18 @@
         "compute": "k-1",
         "template": {
           "vars": {
-            "k": { "from": 4, "to": 15 },
-            "p": { "choose": [3, 4, 5, 6] }
+            "k": {
+              "from": 4,
+              "to": 15
+            },
+            "p": {
+              "choose": [
+                3,
+                4,
+                5,
+                6
+              ]
+            }
           }
         }
       },
@@ -1197,7 +1850,9 @@
         "prompt": "Half of a number, plus $8$, is $[[h+8]]$. What is the number?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[2*h]]"],
+          "accepted": [
+            "[[2*h]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -1216,7 +1871,10 @@
         "compute": "2*h",
         "template": {
           "vars": {
-            "h": { "from": 2, "to": 30 }
+            "h": {
+              "from": 2,
+              "to": 30
+            }
           }
         }
       },
@@ -1225,7 +1883,9 @@
         "prompt": "Which whole number is closest to $\\frac{3}{0.0997}$?",
         "answer": {
           "kind": "value",
-          "accepted": ["30"],
+          "accepted": [
+            "30"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -1234,7 +1894,9 @@
             }
           ]
         },
-        "hints": ["$0.0997$ is very close to $0.1$, and dividing by $0.1$ multiplies by $10$."],
+        "hints": [
+          "$0.0997$ is very close to $0.1$, and dividing by $0.1$ multiplies by $10$."
+        ],
         "solution": "$0.0997 \\approx 0.1$, so $\\frac{3}{0.0997} \\approx \\frac{3}{0.1} = 30$. (Exactly, it is about $30.09$.)",
         "skill": "estimate-eliminate",
         "difficulty": 1,
@@ -1245,7 +1907,9 @@
         "prompt": "On $[[q]]$ questions you can rule out $2$ choices each, and you guess among the other $3$. How many points do you expect from them on average?",
         "answer": {
           "kind": "value",
-          "accepted": ["[[2*q]]"],
+          "accepted": [
+            "[[2*q]]"
+          ],
           "form": "any",
           "mistakes": [
             {
@@ -1254,14 +1918,19 @@
             }
           ]
         },
-        "hints": ["A guess among $3$ choices is worth $\\frac{6}{3}$ points on average."],
+        "hints": [
+          "A guess among $3$ choices is worth $\\frac{6}{3}$ points on average."
+        ],
         "solution": "Each guess is worth $\\frac{6}{3} = 2$ points on average, so $[[q]]$ guesses are worth $[[2*q]]$ points: more than the $[[1.5*q|decimal]]$ of leaving them blank.",
         "skill": "guessing",
         "difficulty": 1,
         "compute": "2*q",
         "template": {
           "vars": {
-            "q": { "from": 3, "to": 12 }
+            "q": {
+              "from": 3,
+              "to": 12
+            }
           }
         }
       }
@@ -1300,10 +1969,18 @@
         "compute": "6*r + 1.5*(25-r-w)",
         "template": {
           "vars": {
-            "r": { "from": 10, "to": 20 },
-            "w": { "from": 1, "to": 3 }
+            "r": {
+              "from": 10,
+              "to": 20
+            },
+            "w": {
+              "from": 1,
+              "to": 3
+            }
           },
-          "where": ["25 - r - w >= 1"]
+          "where": [
+            "25 - r - w >= 1"
+          ]
         }
       },
       {
@@ -1311,7 +1988,13 @@
         "prompt": "On a question you can rule out exactly $1$ of the $5$ choices and guess among the rest. On average, how many points is the guess worth?",
         "answer": {
           "kind": "choice",
-          "choices": ["$1.2$", "$1.5$", "$2$", "$3$", "$4.8$"],
+          "choices": [
+            "$1.2$",
+            "$1.5$",
+            "$2$",
+            "$3$",
+            "$4.8$"
+          ],
           "correct": "B",
           "why": {
             "A": "$1.2$ is a blind guess among all $5$. With $1$ ruled out, you guess among $4$.",
@@ -1328,7 +2011,13 @@
         "prompt": "Another test gives $5$ points for a right answer, $2$ for a blank and $0$ for a wrong answer, with $5$ choices per question. What is the least number of choices you must rule out before a guess is worth more on average than a blank?",
         "answer": {
           "kind": "choice",
-          "choices": ["$0$", "$1$", "$2$", "$3$", "$4$"],
+          "choices": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$",
+            "$4$"
+          ],
           "correct": "D",
           "why": {
             "C": "With $2$ ruled out, a guess among $3$ is worth $\\frac{5}{3} \\approx 1.67$: less than $2$.",
@@ -1345,7 +2034,13 @@
         "prompt": "On a $75$-minute test, Dev finishes questions $1$–$15$ in $30$ minutes. He wants $5$ minutes at the end to check. How many minutes per question can he spend on the other $10$ questions?",
         "answer": {
           "kind": "choice",
-          "choices": ["$3$", "$3.5$", "$4$", "$4.5$", "$5$"],
+          "choices": [
+            "$3$",
+            "$3.5$",
+            "$4$",
+            "$4.5$",
+            "$5$"
+          ],
           "correct": "C",
           "why": {
             "D": "That forgets the $5$ minutes for checking."
@@ -1361,7 +2056,13 @@
         "prompt": "Ella uses the 2-minute rule and skips $4$ questions. She comes back to them with $12$ minutes left. To share that time equally, how many minutes can she give each?",
         "answer": {
           "kind": "choice",
-          "choices": ["$2$", "$2.5$", "$3$", "$4$", "$6$"],
+          "choices": [
+            "$2$",
+            "$2.5$",
+            "$3$",
+            "$4$",
+            "$6$"
+          ],
           "correct": "C",
           "why": {
             "D": "$4$ minutes each needs $16$ minutes."
@@ -1396,8 +2097,19 @@
         "compute": "(n-1)*d",
         "template": {
           "vars": {
-            "n": { "from": 6, "to": 20 },
-            "d": { "choose": [2, 3, 4, 5, 6] }
+            "n": {
+              "from": 6,
+              "to": 20
+            },
+            "d": {
+              "choose": [
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
           }
         }
       },
@@ -1406,7 +2118,13 @@
         "prompt": "How many whole numbers are there from $[[a]]$ to $[[b]]$, including both?",
         "answer": {
           "kind": "choice",
-          "choices": ["$[[b-a-1]]$", "$[[b-a]]$", "$[[b-a+1]]$", "$[[b-a+2]]$", "$[[a+b]]$"],
+          "choices": [
+            "$[[b-a-1]]$",
+            "$[[b-a]]$",
+            "$[[b-a+1]]$",
+            "$[[b-a+2]]$",
+            "$[[a+b]]$"
+          ],
           "correct": "C",
           "why": {
             "A": "That leaves out both ends. The question includes them.",
@@ -1419,9 +2137,17 @@
         "compute": "b-a+1",
         "template": {
           "vars": {
-            "a": { "from": 15, "to": 60 },
-            "k": { "from": 20, "to": 80 },
-            "b": { "let": "a+k" }
+            "a": {
+              "from": 15,
+              "to": 60
+            },
+            "k": {
+              "from": 20,
+              "to": 80
+            },
+            "b": {
+              "let": "a+k"
+            }
           }
         }
       },
@@ -1430,7 +2156,13 @@
         "prompt": "Points $P$, $Q$, $R$ and $S$ lie on a line in that order. $PR = 9$, $QS = 11$ and $PS = 15$. What is $QR$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$4$", "$5$", "$6$", "$7$", "$9$"],
+          "choices": [
+            "$4$",
+            "$5$",
+            "$6$",
+            "$7$",
+            "$9$"
+          ],
           "correct": "B",
           "why": {
             "A": "$4 = PS - QS$ is the length $PQ$, not $QR$.",
@@ -1447,7 +2179,13 @@
         "prompt": "A $3$ by $5$ rectangle is divided into $1$ by $1$ squares. A diagonal is drawn from one corner of the rectangle to the opposite corner. How many of the small squares does the diagonal pass through the inside of?",
         "answer": {
           "kind": "choice",
-          "choices": ["$5$", "$6$", "$7$", "$8$", "$15$"],
+          "choices": [
+            "$5$",
+            "$6$",
+            "$7$",
+            "$8$",
+            "$15$"
+          ],
           "correct": "C",
           "why": {
             "D": "Draw it: the diagonal starts in one square and enters a new one each time it crosses an inside grid line. It crosses $2 + 4 = 6$ lines.",
@@ -1464,7 +2202,13 @@
         "prompt": "I think of a number, add $[[a]]$, then multiply by $[[m]]$. The result is $[[(n+a)*m]]$. What was my number?",
         "answer": {
           "kind": "choice",
-          "choices": ["$[[n-1]]$", "$[[n]]$", "$[[n+1]]$", "$[[n+a]]$", "$[[(n+a)*m-a]]$"],
+          "choices": [
+            "$[[n-1]]$",
+            "$[[n]]$",
+            "$[[n+1]]$",
+            "$[[n+a]]$",
+            "$[[(n+a)*m-a]]$"
+          ],
           "correct": "B",
           "why": {
             "D": "That undoes the multiplying but not the adding.",
@@ -1477,9 +2221,21 @@
         "compute": "((n+a)*m)/m - a",
         "template": {
           "vars": {
-            "n": { "from": 2, "to": 15 },
-            "a": { "from": 2, "to": 9 },
-            "m": { "choose": [2, 3, 4] }
+            "n": {
+              "from": 2,
+              "to": 15
+            },
+            "a": {
+              "from": 2,
+              "to": 9
+            },
+            "m": {
+              "choose": [
+                2,
+                3,
+                4
+              ]
+            }
           }
         }
       },
@@ -1488,7 +2244,13 @@
         "prompt": "Tom spent a quarter of his money on a book and then $\\$12$ on a meal. He had $\\$24$ left. How many dollars did he start with?",
         "answer": {
           "kind": "choice",
-          "choices": ["$36$", "$44$", "$48$", "$60$", "$144$"],
+          "choices": [
+            "$36$",
+            "$44$",
+            "$48$",
+            "$60$",
+            "$144$"
+          ],
           "correct": "C",
           "why": {
             "A": "$\\$36$ is what he had after the book, before the meal.",
@@ -1505,7 +2267,13 @@
         "prompt": "A positive number is doubled, and then the result is squared. The final result is $196$. What was the number?",
         "answer": {
           "kind": "choice",
-          "choices": ["$3.5$", "$7$", "$14$", "$49$", "$98$"],
+          "choices": [
+            "$3.5$",
+            "$7$",
+            "$14$",
+            "$49$",
+            "$98$"
+          ],
           "correct": "B",
           "why": {
             "C": "$14$ undoes the squaring but not the doubling.",
@@ -1522,7 +2290,13 @@
         "prompt": "For which whole number $n$ is $n(n+1) = 132$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$10$", "$11$", "$12$", "$13$", "$66$"],
+          "choices": [
+            "$10$",
+            "$11$",
+            "$12$",
+            "$13$",
+            "$66$"
+          ],
           "correct": "B",
           "why": {
             "C": "Test it: $12 \\times 13 = 156$.",
@@ -1539,7 +2313,13 @@
         "prompt": "Which number leaves a remainder of $1$ when divided by $2$, a remainder of $2$ when divided by $3$, and a remainder of $3$ when divided by $4$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$17$", "$23$", "$29$", "$31$", "$38$"],
+          "choices": [
+            "$17$",
+            "$23$",
+            "$29$",
+            "$31$",
+            "$38$"
+          ],
           "correct": "B",
           "why": {
             "A": "Test it: $17$ divided by $4$ leaves $1$, not $3$.",
@@ -1558,7 +2338,13 @@
         "prompt": "Which is closest to $\\frac{49.7 \\times 8.1}{0.199}$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$20$", "$200$", "$400$", "$2000$", "$4000$"],
+          "choices": [
+            "$20$",
+            "$200$",
+            "$400$",
+            "$2000$",
+            "$4000$"
+          ],
           "correct": "D",
           "why": {
             "C": "That forgets to divide by $0.199$. Dividing by about $0.2$ multiplies by about $5$.",
@@ -1575,7 +2361,13 @@
         "prompt": "What is $999 \\times 1001$?",
         "answer": {
           "kind": "choice",
-          "choices": ["$998999$", "$999001$", "$999999$", "$1000001$", "$1009999$"],
+          "choices": [
+            "$998999$",
+            "$999001$",
+            "$999999$",
+            "$1000001$",
+            "$1009999$"
+          ],
           "correct": "C",
           "why": {
             "B": "The last digits give $9 \\times 1 = 9$, so the product ends in $9$.",
@@ -1593,7 +2385,13 @@
         "prompt": "Which is the largest?",
         "answer": {
           "kind": "choice",
-          "choices": ["$2^{50}$", "$3^{30}$", "$5^{20}$", "$7^{18}$", "$10^{14}$"],
+          "choices": [
+            "$2^{50}$",
+            "$3^{30}$",
+            "$5^{20}$",
+            "$7^{18}$",
+            "$10^{14}$"
+          ],
           "correct": "D",
           "why": {
             "A": "Close. Compare $7^{18} = 49^{9}$ with $2^{50} = 32 \\times 32^{9}$: $\\left(\\frac{49}{32}\\right)^{9} > 1.5^{9} > 32$."

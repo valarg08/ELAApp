@@ -466,7 +466,7 @@ Unit 1 Problem Solving & the AMC 10 is published, with 6 lessons. Every lesson h
 |---|---|---|---|
 | 1 | The AMC 10: Format, Scoring & Timing (from M0) | `m01.scoring-practice` | `m01.amc-rules-set` |
 | 2 | Read Carefully & Draw It | `m01.read-draw-practice` (fence posts, inclusive counting, a walk, "how many more", the garden path figure) | `m01.read-draw-set` |
-| 3 | Work Backwards & Test the Choices | `m01.backwards-practice` | `m01.backwards-set` |
+| 3 | Work Backwards & Test the Choices (beginner-first: the "number machine" card and a first worked example where the student does each step, then the AMC-style examples) | `m01.backwards-starter` (7 one- and two-step warm-ups for students who have never done this), `m01.backwards-practice`, then `m01.backwards-amc` (6 contest-style typed problems with hints: repeated "half plus 2", money rounds, $n^3 + n$, consecutive products, a percent rise, a sequence run backwards) | `m01.backwards-set` |
 | 4 | Estimate & Eliminate | `m01.estimate-practice` (squares, last digits, rounding, decimal size) | `m01.estimate-set` |
 | 5 | Smart Guessing & the 2-Minute Rule | `m01.guessing-practice` (expected points, the guessing record, pacing, goal scores) | `m01.guessing-set` |
 | 6 | ⭐ Unit Check | `m01.review-practice` (4-problem warm-up) | `m01.unit-check`: 8 of 17 problems per try, pass at 100% |

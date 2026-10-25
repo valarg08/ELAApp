@@ -2,8 +2,11 @@
   "slug": "math-work-backwards",
   "order": 3,
   "title": "Work Backwards & Test the Choices",
-  "estMinutes": 35,
-  "focusSkills": ["work-backwards", "test-choices"],
+  "estMinutes": 50,
+  "focusSkills": [
+    "work-backwards",
+    "test-choices"
+  ],
   "steps": [
     {
       "id": "hook",
@@ -18,8 +21,41 @@
       "cards": [
         {
           "kind": "definition",
-          "title": "Work backwards",
-          "body": "When a problem gives you the end and asks for the start, begin at the end and undo each step in reverse order. Undo adding by subtracting, multiplying by dividing, squaring by taking the square root."
+          "title": "New to this? Think of a number machine",
+          "body": "A number goes into a machine, the machine does some steps, and a number comes out. Working backwards means running the machine in reverse: start with what came out and undo each step, last step first. Every step has an opposite that undoes it: $+$ and $-$, $\\times$ and $\\div$, squaring and the square root. Four moves: (1) write the steps as a chain, like $n \\to \\times 2 \\to +3 \\to 17$; (2) start at the end; (3) undo the last step first, then the one before it; (4) check by running your answer forwards through the steps."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Your first one: two steps back",
+          "problem": "Mia thinks of a number, adds $4$, then multiplies by $3$. She gets $27$. What was her number?",
+          "steps": [
+            {
+              "text": "Write the chain: $n \\to +4 \\to \\times 3 \\to 27$. Start at the end, $27$."
+            },
+            {
+              "text": "The last step was $\\times 3$, so undo it first by dividing by $3$: $27 \\div 3 = 9$.",
+              "try": {
+                "prompt": "What is $27 \\div 3$?",
+                "accepted": [
+                  "9"
+                ],
+                "compute": "27/3"
+              }
+            },
+            {
+              "text": "Before that she added $4$. Undo it by subtracting $4$: $9 - 4 = 5$.",
+              "try": {
+                "prompt": "What is $9 - 4$?",
+                "accepted": [
+                  "5"
+                ],
+                "compute": "9-4"
+              }
+            },
+            {
+              "text": "Check forwards: $5 + 4 = 9$ and $9 \\times 3 = 27$ ✓. Her number is $5$."
+            }
+          ]
         },
         {
           "kind": "worked-example",
@@ -33,14 +69,21 @@
               "text": "Before that he added $7$. Undo it: $27 - 7 = 20$."
             },
             {
-              "text": "First he doubled. Undo it: $\\frac{20}{2} = 10$. Check: $10 \\to 20 \\to 27 \\to 9$. ✓"
+              "text": "First he doubled. Undo it: $\\frac{20}{2} = 10$. Check: $10 \\to 20 \\to 27 \\to 9$. ✓",
+              "try": {
+                "prompt": "Undo the doubling: what is $\\frac{20}{2}$?",
+                "accepted": [
+                  "10"
+                ],
+                "compute": "20/2"
+              }
             }
           ]
         },
         {
           "kind": "definition",
           "title": "Test the choices",
-          "body": "On a multiple-choice question, the answer is one of five numbers, so you can plug a choice in and check it. Start with (C): the choices are usually in order, so if (C) is too small, only (D) or (E) can work, and if it is too big, only (A) or (B)."
+          "body": "On a multiple-choice question the answer is one of the five choices, so you can put a choice into the problem and check it. How: (1) start with (C), the middle choice; (2) put it into the problem and work out the result; (3) compare with what the problem says; (4) if the result is too small, only (D) or (E) can work, and if it is too big, only (A) or (B); (5) try the next choice. Use it when an equation is hard to set up or solve but checking a number is quick."
         },
         {
           "kind": "worked-example",
@@ -54,7 +97,9 @@
               "text": "Try (D), $30$: the numbers are $26$, $28$ and $30$.",
               "try": {
                 "prompt": "What do $26$, $28$ and $30$ add up to?",
-                "accepted": ["84"],
+                "accepted": [
+                  "84"
+                ],
                 "compute": "26+28+30"
               }
             },
@@ -73,7 +118,11 @@
     {
       "id": "practice",
       "type": "guided_practice",
-      "activityKeys": ["m01.backwards-practice"]
+      "activityKeys": [
+        "m01.backwards-starter",
+        "m01.backwards-practice",
+        "m01.backwards-amc"
+      ]
     },
     {
       "id": "challenge",
@@ -83,7 +132,9 @@
     {
       "id": "reflect",
       "type": "reflection",
-      "prompts": ["When would you test the choices instead of solving the problem directly?"],
+      "prompts": [
+        "When would you test the choices instead of solving the problem directly?"
+      ],
       "confidenceCheck": true,
       "trapPicker": true
     }
