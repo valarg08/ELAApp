@@ -1,4 +1,11 @@
-import { type ClassMathSkills, MASTERY_LABELS, type MasteryLevel } from '@storyforge/shared';
+import { MASTERY_LABELS, type MasteryLevel } from '@storyforge/shared';
+
+/** What the grid needs: Math (ClassMathSkills) and Mental Math (ClassMentalSkills) both fit. */
+type SkillsGridData = {
+  skills: { skill: string; label: string; unit?: number }[];
+  students: { studentId: string; displayName: string; levels: Record<string, MasteryLevel> }[];
+  weakest: { skill: string; label: string; struggling: number }[];
+};
 
 const CELL: Record<MasteryLevel, { mark: string; style: string }> = {
   new: { mark: '', style: 'border-2 border-border' },
@@ -7,8 +14,17 @@ const CELL: Record<MasteryLevel, { mark: string; style: string }> = {
   mastered: { mark: 'M', style: 'bg-ok text-white' },
 };
 
-/** The teacher's Math skills view (math-design.md §3.3 C5): the class's weakest skills, then skills × students. */
-export function ClassSkillsGrid({ data }: { data: ClassMathSkills }) {
+/**
+ * The teacher's skills view (math-design.md §3.3 C5; Mental Math uses it too): the class's
+ * weakest skills, then skills × students.
+ */
+export function ClassSkillsGrid({
+  data,
+  trackName = 'Math',
+}: {
+  data: SkillsGridData;
+  trackName?: string;
+}) {
   // Only skills someone in the class has met, so the grid stays readable.
   const skills = data.skills.filter((s) =>
     data.students.some((st) => (st.levels[s.skill] ?? 'new') !== 'new'),
@@ -16,7 +32,7 @@ export function ClassSkillsGrid({ data }: { data: ClassMathSkills }) {
   return (
     <section aria-labelledby="skills-heading" className="flex flex-col gap-5">
       <h2 id="skills-heading" className="text-xl font-semibold">
-        Math skills
+        {trackName} skills
       </h2>
       {data.weakest.length > 0 && (
         <div className="rounded-2xl border border-border bg-card p-4">
@@ -48,7 +64,7 @@ export function ClassSkillsGrid({ data }: { data: ClassMathSkills }) {
         <p className="text-muted">
           {data.students.length === 0
             ? 'No students yet. Add them on the class page.'
-            : 'No Math answers yet: the grid fills in as students practise.'}
+            : `No ${trackName} answers yet: the grid fills in as students practise.`}
         </p>
       ) : (
         <section
@@ -59,7 +75,7 @@ export function ClassSkillsGrid({ data }: { data: ClassMathSkills }) {
         >
           <table className="w-full text-left text-sm">
             <caption className="sr-only">
-              Math skill mastery: one row per student, one column per skill
+              {trackName} skill mastery: one row per student, one column per skill
             </caption>
             <thead>
               <tr className="border-b border-border">
@@ -68,6 +84,9 @@ export function ClassSkillsGrid({ data }: { data: ClassMathSkills }) {
                 </th>
                 {skills.map((s) => (
                   <th key={s.skill} scope="col" className="max-w-24 p-2 text-xs font-semibold">
+                    {s.unit !== undefined && (
+                      <span className="block font-normal text-muted">Unit {s.unit}</span>
+                    )}
                     {s.label}
                   </th>
                 ))}

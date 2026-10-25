@@ -1,5 +1,6 @@
 import {
   ClassMathSkills,
+  ClassMentalSkills,
   ClassProgress,
   ClassSummary,
   INACTIVE_DAYS,
@@ -13,6 +14,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { TrackTabs } from '@/components/track-tabs';
 import { Card, PageShell } from '@/components/ui';
+import { ClassMentalPractice } from '@/features/math/class-mental-practice';
 import { ClassSkillsGrid } from '@/features/math/class-skills-grid';
 import { serverApi } from '@/lib/server-api';
 
@@ -37,15 +39,21 @@ export default async function ClassProgressPage({
   const track = Track.catch('STORY').parse(one(query.track)?.toUpperCase());
   const unitParam = one(query.unit);
   const filter: Filter = FILTERS.find((f) => f.id === one(query.show))?.id ?? 'all';
-  // Math only: the skills × students grid (math-design.md §3.3 C5) instead of the lesson heatmap.
-  const skillsView = track === 'MATH' && one(query.view) === 'skills';
-  const [klass, progress, mathSkills] = await Promise.all([
+  // Math and Mental Math: the skills × students grid (math-design.md §3.3 C5) instead of the
+  // lesson heatmap; Mental Math adds each student's practice (mental-math-design.md Part 9).
+  const skillsView = isMathTrack(track) && one(query.view) === 'skills';
+  const [klass, progress, mathSkills, mentalSkills] = await Promise.all([
     serverApi(`/teacher/classes/${classId}`, ClassSummary),
     serverApi(
       `/teacher/classes/${classId}/progress?track=${track}${unitParam ? `&unit=${encodeURIComponent(unitParam)}` : ''}`,
       ClassProgress,
     ),
-    skillsView ? serverApi(`/teacher/classes/${classId}/math-skills`, ClassMathSkills) : null,
+    skillsView && track === 'MATH'
+      ? serverApi(`/teacher/classes/${classId}/math-skills`, ClassMathSkills)
+      : null,
+    skillsView && track === 'MENTAL'
+      ? serverApi(`/teacher/classes/${classId}/mental-skills`, ClassMentalSkills)
+      : null,
   ]);
   if (!klass || !progress) notFound();
 
@@ -104,12 +112,16 @@ export default async function ClassProgressPage({
 
         <TrackTabs current={track} hrefFor={(t) => href({ track: t })} />
 
-        {track === 'MATH' && (
-          <nav aria-label="Math view">
+        {isMathTrack(track) && (
+          <nav aria-label={track === 'MATH' ? 'Math view' : 'Mental Math view'}>
             <ul className="flex flex-wrap gap-2">
               {[
                 { id: 'lessons', label: 'Lessons', to: href({}) },
-                { id: 'skills', label: 'Skills', to: `${base}?track=math&view=skills` },
+                {
+                  id: 'skills',
+                  label: track === 'MATH' ? 'Skills' : 'Skills & practice',
+                  to: `${base}?track=${track.toLowerCase()}&view=skills`,
+                },
               ].map((v) => {
                 const active = (v.id === 'skills') === skillsView;
                 return (
@@ -132,7 +144,16 @@ export default async function ClassProgressPage({
           </nav>
         )}
 
-        {skillsView ? (
+        {skillsView && track === 'MENTAL' ? (
+          mentalSkills ? (
+            <>
+              <ClassMentalPractice data={mentalSkills} />
+              <ClassSkillsGrid data={mentalSkills} trackName="Mental Math" />
+            </>
+          ) : (
+            <p className="text-muted">Could not load the skills.</p>
+          )
+        ) : skillsView ? (
           mathSkills ? (
             <ClassSkillsGrid data={mathSkills} />
           ) : (

@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-25 (Mental Math practice: daily review, sprints, level and placement checks, parent guide, skill mastery; the Mental Math track is complete).
+Last updated: 2026-10-25 (Mental Math teacher view: skills & practice on the class progress page).
 
 ## Done so far
 
@@ -74,6 +74,7 @@ Number sense for ages 7–14, one unit per phase. Original problems only; typed 
 - [x] **MN4–MN7** Level 2: Front-End, Multiplication Anchors, Benchmarks, Missing Number Thinking
 - [x] **MN8–MN11** Level 3: Fractions/Decimals/Percentages, Divisibility 2–11, Estimation, Smart Multiplication
 - [x] **MN12–MN15** Level 4: Squares to 30², Difference of Squares, Vedic Patterns, Speed & Accuracy Systems
+- [x] **MN-teacher** The teacher's Mental Math skills & practice view (class progress page: practice table, weakest skills, skills grid)
 - [x] **MN-practice** Daily review and streaks, speed sprints with personal bests, level checks with badges, the placement check, the parent guide page, mastery per Mental Math skill, a separate Mental Math mistakes list
 
 ## 2. Teacher dashboard: rest of P5 (§11)
@@ -112,6 +113,7 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
 - [ ] Mental Math: `GET /mental/home` (students only; teachers 403), `GET /mental/cheat-sheets/:unitNumber` (unpublished units 404 for students), the loader checks for `content/mental` (levels order, unknown skills, cheat sheet of a missing unit), the Quill audience line in the three Math analyzers, `SimpleAnswers` in the answer box.
 - [ ] Mental Math Units 4–15: `UnitCard` `previousNumber` (a locked unit names the last built unit before it), one Playwright run through a Level 4 unit check.
 - [ ] Mental Math practice: `GET /mental/progress` (students only; teachers 403), the `mental-*` start keys on `/math/tests` (level check 403 until the level is done; review 409 on a second try the same day), `placementOutcome` and `MentalStart` (startUnit only goes up; `classAvailability` `openThrough`), `trackKeyFilter` (Mental Math mistakes never in the AMC error log or review, and the other way round), sprint best (most right, then fastest), `reviewStreak`, `currentUnit`; one Playwright run through a sprint and the placement check.
+- [ ] Mental Math teacher view: `GET /teacher/classes/:classId/mental-skills` (students 403; another teacher's class 404; only skills with answers; badges, streak, sprint best and start level per student), the class progress page's Mental Math "Skills & practice" view (axe).
 - [ ] Admin: authorisation for every `/admin` endpoint, the AI budget pause on live checks, `estimateCostCents` (DESIGN.md §11.9).
 - [ ] The analyzer, Coach and rubric unit tests listed under each E-phase (E1–E15) and SL-phase.
 - [ ] math-check unit tests (values, parsing, answer forms, TeX choices) and `problemErrors` / figure-sanitiser tests (M0).

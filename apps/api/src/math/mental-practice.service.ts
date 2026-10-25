@@ -1,6 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import type { MathTestAttempt } from '@storyforge/db';
 import {
+  type ClassMentalSkills,
   ErrorCode,
   MENTAL_LEVEL_CHECK_SIZE,
   MENTAL_LEVEL_PASS,
@@ -22,6 +23,7 @@ import {
   newSeed,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
+import { ClassAccessService } from '../classes/class-access.service.js';
 import { AppError, notFound } from '../common/app-error.js';
 import { CurriculumService } from '../curriculum/curriculum.service.js';
 import { DatabaseService } from '../database/database.service.js';
@@ -72,6 +74,7 @@ export class MentalPracticeService {
     private readonly content: MathContentService,
     private readonly mastery: MasteryService,
     private readonly curriculum: CurriculumService,
+    private readonly access: ClassAccessService,
   ) {}
 
   private async file<T>(key: string, schema: { safeParse(v: unknown): { data?: T } }) {
@@ -418,6 +421,101 @@ export class MentalPracticeService {
             };
           }),
       })),
+    };
+  }
+
+  // ───────── Teacher ─────────
+
+  /**
+   * The class's Mental Math skills view (another teacher's class answers 404): each student's
+   * placement, badges, review streak and sprint best, mastery per skill and the weakest skills.
+   */
+  async classSkills(teacher: AuthUser, classId: string): Promise<ClassMentalSkills> {
+    await this.access.ownedClass(teacher, classId, { allowArchived: true });
+    const enrollments = await this.db.client.enrollment.findMany({
+      where: { classId, student: { deletedAt: null } },
+      include: { student: { select: { id: true, displayName: true } } },
+      orderBy: { student: { displayName: 'asc' } },
+    });
+    const ids = enrollments.map((e) => e.studentId);
+    const [skills, rows, starts, attempts, last] = await Promise.all([
+      this.skills(),
+      this.mastery.rows(ids),
+      this.db.client.mentalStart.findMany({ where: { studentId: { in: ids } } }),
+      this.db.client.mathTestAttempt.findMany({
+        where: {
+          studentId: { in: ids },
+          kind: { in: ['mental-sprint', 'mental-level'] },
+          submittedAt: { not: null },
+        },
+      }),
+      this.db.client.mathAnswerLog.groupBy({
+        by: ['studentId'],
+        where: { studentId: { in: ids }, ...trackKeyFilter('MENTAL') },
+        _max: { createdAt: true },
+      }),
+    ]);
+    const used = new Set([...rows.values()].flatMap((list) => list.map((r) => r.skill)));
+    const shown = skills
+      .filter((s) => used.has(s.id))
+      .map((s) => ({ skill: s.id, label: s.label, unit: s.units[0] ?? 0 }))
+      .toSorted((a, b) => a.unit - b.unit);
+    const startOf = new Map(starts.map((s) => [s.studentId, s.level]));
+    const lastOf = new Map(last.map((l) => [l.studentId, l._max.createdAt]));
+    const students: (ClassMentalSkills['students'][number] & { answered: Set<string> })[] = [];
+    for (const e of enrollments) {
+      const mine = rows.get(e.studentId) ?? [];
+      const levels = this.mastery.levels(mine);
+      const sprints = attempts.filter(
+        (a) => a.studentId === e.studentId && a.kind === 'mental-sprint',
+      );
+      const top = sprints.reduce<MathTestAttempt | null>(
+        (b, a) => (!b || better(a, b) > 0 ? a : b),
+        null,
+      );
+      const badges = [
+        ...new Set(
+          attempts
+            .filter(
+              (a) =>
+                a.studentId === e.studentId &&
+                a.kind === 'mental-level' &&
+                (a.correct ?? 0) >= MENTAL_LEVEL_PASS,
+            )
+            .map((a) => mentalLevelOf(a.testKey))
+            .filter((l): l is number => l !== null),
+        ),
+      ].toSorted((a, b) => a - b);
+      students.push({
+        studentId: e.studentId,
+        displayName: e.student.displayName,
+        levels: Object.fromEntries(
+          shown.map((s) => [s.skill, levels.get(s.skill)?.level ?? 'new']),
+        ),
+        answered: new Set(mine.map((r) => r.skill)),
+        startLevel: startOf.get(e.studentId) ?? null,
+        badges,
+        streak: await reviewStreak(this.db, e.studentId, 'mental-review'),
+        sprintBest: top ? { correct: top.correct ?? 0, seconds: elapsed(top) } : null,
+        lastPracticeAt: lastOf.get(e.studentId)?.toISOString() ?? null,
+      });
+    }
+    const weakest = shown
+      .map((s) => ({
+        skill: s.skill,
+        label: s.label,
+        struggling: students.filter(
+          (st) => st.answered.has(s.skill) && st.levels[s.skill] === 'learning',
+        ).length,
+      }))
+      .filter((w) => w.struggling > 0)
+      .toSorted((a, b) => b.struggling - a.struggling)
+      .slice(0, 5);
+    return {
+      classId,
+      skills: shown,
+      students: students.map(({ answered: _answered, ...s }) => s),
+      weakest,
     };
   }
 }

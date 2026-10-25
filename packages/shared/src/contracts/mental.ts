@@ -83,3 +83,28 @@ export const MentalProgress = z.object({
   ),
 });
 export type MentalProgress = z.infer<typeof MentalProgress>;
+
+/** The teacher's Mental Math skills view: practice per student, then skills × students. */
+export const ClassMentalSkills = z.object({
+  classId: z.string(),
+  /** Skills someone in the class has answered, in unit order. */
+  skills: z.array(z.object({ skill: z.string(), label: z.string(), unit: z.number() })),
+  students: z.array(
+    z.object({
+      studentId: z.string(),
+      displayName: z.string(),
+      levels: z.record(z.string(), MasteryLevel),
+      /** The placement check's starting level (null: not taken). */
+      startLevel: z.number().nullable(),
+      /** Levels whose check is passed. */
+      badges: z.array(z.number()),
+      streak: z.number(),
+      sprintBest: z.object({ correct: z.number(), seconds: z.number() }).nullable(),
+      /** The last Mental Math answer (null: none yet). */
+      lastPracticeAt: z.string().nullable(),
+    }),
+  ),
+  /** The class's five weakest skills (most students at Learning, with answers). */
+  weakest: z.array(z.object({ skill: z.string(), label: z.string(), struggling: z.number() })),
+});
+export type ClassMentalSkills = z.infer<typeof ClassMentalSkills>;
