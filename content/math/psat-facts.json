@@ -2,117 +2,141 @@
   "sections": [
     {
       "skill": "linear-equations",
-      "title": "Lines & linear equations",
+      "title": "Linear equations & lines",
       "facts": [
-        "Slope-intercept form $y = mx + b$: $m$ is the slope (the change in $y$ for each $1$ added to $x$) and $b$ is the $y$-intercept (the value when $x = 0$).",
-        "Slope through $(x_1, y_1)$ and $(x_2, y_2)$: $m = \\frac{y_2 - y_1}{x_2 - x_1}$. Point-slope form: $y - y_1 = m(x - x_1)$.",
-        "Parallel lines have equal slopes; perpendicular slopes multiply to $-1$, so $m = 2$ pairs with $-\\frac{1}{2}$.",
-        "Standard form $Ax + By = C$ has slope $-\\frac{A}{B}$, $x$-intercept $\\frac{C}{A}$ and $y$-intercept $\\frac{C}{B}$.",
-        "In a word problem, the slope is the rate (per hour, per item) and the intercept is the starting amount or fixed fee.",
-        "$ax + b = cx + d$ has no solution when $a = c$ and $b \\ne d$, and infinitely many when $a = c$ and $b = d$."
+        "Slope-intercept form $y = mx + b$: the slope $m$ is the change in $y$ for each $1$ added to $x$, and $b$ is the $y$-intercept (the value of $y$ when $x = 0$).",
+        "Slope through two points: $m = \\frac{y_2 - y_1}{x_2 - x_1}$. Point-slope form: $y - y_1 = m(x - x_1)$.",
+        "In context, the slope is a rate (dollars per hour, litres per minute) and the intercept is the starting amount or fixed fee. Read the units: they tell you what each number means.",
+        "A table is linear when $y$ changes by the same amount each time $x$ goes up by the same step; that change divided by the step is the slope.",
+        "Standard form $Ax + By = C$: slope $-\\frac{A}{B}$, $x$-intercept $\\frac{C}{A}$, $y$-intercept $\\frac{C}{B}$.",
+        "Parallel lines have equal slopes. Perpendicular slopes are negative reciprocals: they multiply to $-1$, so $\\frac{2}{3}$ pairs with $-\\frac{3}{2}$.",
+        "Horizontal line $y = k$: slope $0$. Vertical line $x = h$: slope undefined.",
+        "$ax + b = cx + d$ has exactly one solution when $a \\ne c$, no solution when $a = c$ and $b \\ne d$, and infinitely many when $a = c$ and $b = d$.",
+        "Watch out: when the question asks for an expression such as $2x + 1$, look for a shortcut. If $4x + 2 = 18$, then $2x + 1 = 9$ without finding $x$."
       ]
     },
     {
       "skill": "systems",
       "title": "Systems & inequalities",
       "facts": [
-        "Solve a system by substitution, or by elimination: scale the equations so one variable cancels when you add or subtract them.",
-        "Two lines: one solution when the slopes differ, none when they are parallel (same slope, different intercepts), infinitely many when they are the same line.",
+        "Substitution: solve one equation for a variable and put it into the other. Elimination: scale the equations so one variable cancels when you add or subtract them.",
+        "The solution of a system is the point where the graphs meet: read it from the intersection when you graph both on the calculator.",
+        "For $ax + by = c$ and $dx + ey = f$: no solution when $\\frac{a}{d} = \\frac{b}{e} \\ne \\frac{c}{f}$ (parallel lines); infinitely many when $\\frac{a}{d} = \\frac{b}{e} = \\frac{c}{f}$ (the same line); otherwise exactly one.",
+        "Asked for $x + y$ or $x - y$? Adding or subtracting the two equations often gives it directly.",
+        "Word problems: two unknowns need two equations, usually one count (tickets, coins) and one total (cost, value). Define both variables in words first.",
         "Multiplying or dividing an inequality by a negative number flips the sign: $-2x < 6$ gives $x > -3$.",
-        "Graphing $y > mx + b$: a dashed line and the region above it; $\\ge$ or $\\le$ uses a solid line.",
-        "To check whether a point satisfies a system, substitute it into every equation or inequality."
+        "Graphing $y > mx + b$: a dashed line, shaded above. $\\ge$ or $\\le$ uses a solid line. A point is in the solution region when it makes every inequality true.",
+        "\"At least\" means $\\ge$; \"at most\" and \"no more than\" mean $\\le$."
       ]
     },
     {
       "skill": "quadratic-formula",
       "title": "Quadratics & parabolas",
       "facts": [
-        "$ax^2 + bx + c = 0$ has $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$.",
-        "Discriminant $b^2 - 4ac$: positive means two real solutions, zero means one, negative means none.",
-        "The vertex of $y = ax^2 + bx + c$ is at $x = -\\frac{b}{2a}$; the parabola opens up when $a > 0$ and down when $a < 0$.",
-        "Vertex form $y = a(x - h)^2 + k$ has vertex $(h, k)$. Factored form $y = a(x - p)(x - q)$ has $x$-intercepts $p$ and $q$.",
-        "The roots of $ax^2 + bx + c$ add up to $-\\frac{b}{a}$ and multiply to $\\frac{c}{a}$.",
-        "Patterns to spot: $a^2 - b^2 = (a - b)(a + b)$ and $(a \\pm b)^2 = a^2 \\pm 2ab + b^2$."
+        "Solve $ax^2 + bx + c = 0$ by factoring, by graphing, or with $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$. Get $0$ on one side first.",
+        "Discriminant $b^2 - 4ac$: positive gives two real solutions, zero gives one, negative gives none (the parabola misses the $x$-axis).",
+        "Three forms, three facts. Standard $y = ax^2 + bx + c$: $y$-intercept $c$. Vertex $y = a(x - h)^2 + k$: vertex $(h, k)$. Factored $y = a(x - p)(x - q)$: $x$-intercepts $p$ and $q$.",
+        "The vertex is at $x = -\\frac{b}{2a}$, halfway between the $x$-intercepts. It is a minimum when $a > 0$ (opens up) and a maximum when $a < 0$.",
+        "The solutions of $ax^2 + bx + c = 0$ add up to $-\\frac{b}{a}$ and multiply to $\\frac{c}{a}$.",
+        "Patterns to spot: $a^2 - b^2 = (a - b)(a + b)$ and $(a \\pm b)^2 = a^2 \\pm 2ab + b^2$.",
+        "Projectile models $h(t) = -16t^2 + v_0 t + h_0$ (feet) or $-4.9t^2 + v_0 t + h_0$ (metres): $h_0$ is the starting height, the vertex is the highest point, and it lands when $h = 0$.",
+        "Watch out: $x^2 = 9$ has two solutions, $x = 3$ and $x = -3$."
+      ]
+    },
+    {
+      "skill": "polynomial-remainders",
+      "title": "Polynomials & nonlinear equations",
+      "facts": [
+        "If $p(k) = 0$, then $(x - k)$ is a factor of $p(x)$, and $k$ is an $x$-intercept of its graph. A factor $(x + 3)$ means a zero at $x = -3$.",
+        "Dividing $p(x)$ by $(x - k)$ leaves the remainder $p(k)$.",
+        "Square root equations: get the root alone, square both sides, then check every answer in the original equation; squaring can add false solutions.",
+        "Rational equations: multiply by the common denominator, then reject any answer that makes a denominator $0$.",
+        "Absolute value: $|x - a| = b$ (with $b > 0$) gives $x = a + b$ or $x = a - b$. $|x - a| < b$ means $x$ is within $b$ of $a$.",
+        "Combine like terms only: $3x^2$ and $2x$ do not combine. Expand with care: $(x + 3)^2 = x^2 + 6x + 9$, not $x^2 + 9$."
       ]
     },
     {
       "skill": "functions",
       "title": "Functions & exponential models",
       "facts": [
-        "$f(3)$ means: put $3$ in for $x$. \"Where is $f(x) = 3$?\" means: solve for $x$.",
-        "Linear growth adds the same amount each step; exponential growth multiplies by the same factor each step.",
-        "Growth by $r$ per period: $A = P(1 + r)^t$. Decay by $r$: $A = P(1 - r)^t$. So $y = 500(0.92)^t$ loses $8\\%$ each period.",
-        "In $y = a \\cdot b^t$, $a$ is the starting value ($t = 0$) and $b$ is the factor each period: growth when $b > 1$, decay when $0 < b < 1$.",
-        "$y = f(x) + k$ moves the graph up $k$; $y = f(x - h)$ moves it right $h$; $y = -f(x)$ reflects it in the $x$-axis.",
-        "The $x$-intercepts of $y = f(x)$ are the solutions of $f(x) = 0$, also called its zeros."
+        "$f(3)$ means: put $3$ in for $x$. \"For what $x$ is $f(x) = 3$?\" means: solve. On the graph, $f(a) = b$ is the point $(a, b)$.",
+        "Linear change adds the same amount each step; exponential change multiplies by the same factor each step.",
+        "$y = a \\cdot b^t$: $a$ is the starting value (at $t = 0$) and $b$ the factor per period. Growth by $r$: $b = 1 + r$. Decay by $r$: $b = 1 - r$. So $500(0.92)^t$ loses $8\\%$ each period.",
+        "When the period is not $1$: $P(2)^{t/5}$ doubles every $5$ units of time, and $P(1.03)^{12t}$ grows $3\\%$ each month when $t$ is in years.",
+        "Exponent rules: $a^m a^n = a^{m+n}$, $\\frac{a^m}{a^n} = a^{m-n}$, $(a^m)^n = a^{mn}$, $a^0 = 1$, $a^{-n} = \\frac{1}{a^n}$, $a^{\\frac{m}{n}} = \\sqrt[n]{a^m}$.",
+        "Solve $8^x = 32$ with a common base: $2^{3x} = 2^5$, so $x = \\frac{5}{3}$.",
+        "$f(x) + k$ moves the graph up $k$; $f(x - h)$ moves it right $h$ (the sign is opposite to what you see); $-f(x)$ reflects it in the $x$-axis.",
+        "Composition $f(g(x))$: work from the inside out. Find $g(x)$ first, then put that into $f$."
       ]
     },
     {
       "skill": "fractions-percents",
-      "title": "Percents, ratios & units",
+      "title": "Percents, ratios, rates & units",
       "facts": [
-        "Percent change $= \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100\\%$: always divide by the original amount.",
-        "$p\\%$ more multiplies by $1 + \\frac{p}{100}$; $p\\%$ less multiplies by $1 - \\frac{p}{100}$. Two changes multiply: $+10\\%$ then $-10\\%$ is $\\times 0.99$.",
-        "Proportions: if $\\frac{a}{b} = \\frac{c}{d}$ then $ad = bc$.",
-        "Convert units by multiplying by fractions equal to $1$, such as $\\frac{60 \\text{ min}}{1 \\text{ h}}$, so the unwanted units cancel.",
-        "Square and cube units scale too: $1$ ft $= 12$ in, so $1$ ft$^2 = 144$ in$^2$ and $1$ ft$^3 = 1728$ in$^3$."
+        "$p\\%$ of $x$ is $\\frac{p}{100}x$. \"$a$ is what percent of $b$?\" is $\\frac{a}{b} \\times 100\\%$.",
+        "Percent change $= \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100\\%$: always divide by the ORIGINAL amount.",
+        "An increase of $p\\%$ multiplies by $1 + \\frac{p}{100}$, a decrease by $1 - \\frac{p}{100}$. Changes multiply: $+20\\%$ then $-20\\%$ is $\\times 0.96$, a $4\\%$ loss.",
+        "Reverse a percent by dividing: if $\\$36$ is the price after $20\\%$ off, the original is $\\frac{36}{0.8} = \\$45$.",
+        "A ratio $a : b$ splits a total into $a + b$ equal parts. In a proportion $\\frac{a}{b} = \\frac{c}{d}$, cross-multiply: $ad = bc$.",
+        "Convert units by multiplying by fractions equal to $1$, such as $\\frac{60 \\text{ min}}{1 \\text{ h}}$, so the units you don't want cancel.",
+        "Area and volume units scale too: $1$ ft $= 12$ in, so $1$ ft$^2 = 144$ in$^2$ and $1$ ft$^3 = 1728$ in$^3$.",
+        "Density $= \\frac{\\text{mass}}{\\text{volume}}$; population density $= \\frac{\\text{people}}{\\text{area}}$; speed $= \\frac{\\text{distance}}{\\text{time}}$."
       ]
     },
     {
       "skill": "averages",
-      "title": "Statistics & data",
+      "title": "Statistics, data & probability",
       "facts": [
-        "Mean $=$ sum $\\div$ count. Median: the middle value in order (the mean of the two middle values when the count is even). Range: largest minus smallest.",
-        "An outlier pulls the mean toward it but barely moves the median.",
-        "Standard deviation measures spread: data bunched near the mean has a smaller one. Adding the same number to every value doesn't change it.",
-        "A line of best fit predicts values; its slope is the predicted change in $y$ for each $1$ added to $x$.",
-        "A random sample lets results be generalised to the population it was drawn from. A larger sample gives a smaller margin of error.",
-        "Correlation is not causation: only a randomised experiment supports a cause-and-effect conclusion."
-      ]
-    },
-    {
-      "skill": "probability",
-      "title": "Probability & two-way tables",
-      "facts": [
-        "Probability $=$ favourable outcomes $\\div$ all equally likely outcomes.",
-        "In a two-way table, \"given\" chooses the row or column you divide by: $P(A \\mid B) = \\frac{\\text{count in both } A \\text{ and } B}{\\text{count in } B}$.",
-        "$P(\\text{not } A) = 1 - P(A)$.",
-        "For independent events, $P(A \\text{ and } B) = P(A) \\cdot P(B)$."
+        "Mean $=$ sum $\\div$ count, so sum $=$ mean $\\times$ count: turn every mean into a total to find a missing value.",
+        "Median: the middle value in order (the mean of the two middle values when the count is even). Mode: the most common value. Range: largest minus smallest.",
+        "An outlier pulls the mean toward it but barely moves the median. Skewed right (a long tail of high values): mean $>$ median.",
+        "Standard deviation measures spread around the mean: bunched data has a smaller one. Adding the same number to every value changes the mean but not the standard deviation or range.",
+        "Box plot: the box runs from $Q_1$ to $Q_3$ (the middle $50\\%$ of the data) with the median inside; the whiskers reach the least and greatest values.",
+        "A line of best fit predicts: its slope is the predicted change in $y$ for each $1$ added to $x$. Predictions far outside the data are unreliable.",
+        "A random sample lets you generalise only to the population it was drawn from; a larger sample gives a smaller margin of error. Only a randomised experiment shows cause and effect.",
+        "Probability $=$ favourable $\\div$ all equally likely outcomes, and $P(\\text{not } A) = 1 - P(A)$. For independent events, multiply.",
+        "Two-way tables: \"given\" or \"of those who\" picks the row or column you divide by. $P(A \\mid B) = \\frac{\\text{count in both } A \\text{ and } B}{\\text{count in } B}$.",
+        "Expected count $=$ probability $\\times$ number of trials: $2\\%$ faulty in $1500$ items means about $30$ faulty."
       ]
     },
     {
       "skill": "pythagoras",
-      "title": "Triangles & trigonometry",
+      "title": "Lines, angles, triangles & trigonometry",
       "facts": [
-        "Pythagoras: $a^2 + b^2 = c^2$. Common triples: $3, 4, 5$; $5, 12, 13$; $8, 15, 17$; $7, 24, 25$ (and their multiples).",
-        "Special right triangles: $45$-$45$-$90$ sides $x, x, x\\sqrt{2}$; $30$-$60$-$90$ sides $x, x\\sqrt{3}, 2x$.",
+        "Angles on a line add to $180^\\circ$; vertical angles are equal; a transversal across parallel lines makes equal corresponding and alternate angles. A triangle's angles add to $180^\\circ$, an $n$-gon's to $(n - 2) \\cdot 180^\\circ$.",
+        "An exterior angle of a triangle equals the sum of the two interior angles not next to it. Equal sides face equal angles (isosceles).",
+        "Pythagoras: $a^2 + b^2 = c^2$, with $c$ the hypotenuse. Triples: $3, 4, 5$; $5, 12, 13$; $8, 15, 17$; $7, 24, 25$ and their multiples.",
+        "Special right triangles: $45^\\circ$-$45^\\circ$-$90^\\circ$ has sides $x, x, x\\sqrt{2}$; $30^\\circ$-$60^\\circ$-$90^\\circ$ has sides $x, x\\sqrt{3}, 2x$ (the shortest side faces $30^\\circ$).",
+        "Similar triangles have equal angles and proportional sides. If lengths scale by $k$, areas scale by $k^2$ and volumes by $k^3$.",
         "SOH CAH TOA: $\\sin\\theta = \\frac{\\text{opposite}}{\\text{hypotenuse}}$, $\\cos\\theta = \\frac{\\text{adjacent}}{\\text{hypotenuse}}$, $\\tan\\theta = \\frac{\\text{opposite}}{\\text{adjacent}}$.",
-        "Complementary angles: $\\sin x^\\circ = \\cos(90 - x)^\\circ$.",
-        "Similar triangles have equal angles and proportional sides; if the sides scale by $k$, the area scales by $k^2$.",
-        "A triangle's angles add up to $180^\\circ$; an $n$-sided polygon's add up to $(n - 2) \\cdot 180^\\circ$."
+        "The two acute angles of a right triangle are complementary, so $\\sin x^\\circ = \\cos(90 - x)^\\circ$.",
+        "Given one trig ratio, draw the triangle: $\\tan\\theta = \\frac{3}{4}$ means sides $3$ and $4$, hypotenuse $5$, so $\\sin\\theta = \\frac{3}{5}$."
       ]
     },
     {
-      "skill": "coordinate-geometry",
+      "skill": "circle-areas",
       "title": "Circles, area & volume",
       "facts": [
-        "A circle with centre $(h, k)$ and radius $r$: $(x - h)^2 + (y - k)^2 = r^2$. Complete the square to find the centre and radius.",
-        "Area $\\pi r^2$, circumference $2\\pi r$. An arc of central angle $\\theta^\\circ$ has length $\\frac{\\theta}{360} \\cdot 2\\pi r$; its sector has area $\\frac{\\theta}{360} \\cdot \\pi r^2$.",
-        "Radians: $180^\\circ = \\pi$ radians, so multiply degrees by $\\frac{\\pi}{180}$.",
-        "Volumes: box $lwh$, cylinder $\\pi r^2 h$, sphere $\\frac{4}{3}\\pi r^3$, cone $\\frac{1}{3}\\pi r^2 h$, pyramid $\\frac{1}{3} lwh$.",
-        "Distance between two points: $\\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$. Midpoint: $\\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$."
+        "Area $\\pi r^2$, circumference $2\\pi r = \\pi d$. Read whether you are given the radius or the diameter.",
+        "Radians: $180^\\circ = \\pi$ radians, so multiply degrees by $\\frac{\\pi}{180}$. Arc length with the angle in radians is $s = r\\theta$.",
+        "An arc or sector with central angle $\\theta^\\circ$ is $\\frac{\\theta}{360}$ of the circle: arc length $\\frac{\\theta}{360} \\cdot 2\\pi r$, sector area $\\frac{\\theta}{360} \\cdot \\pi r^2$.",
+        "An inscribed angle is half the central angle on the same arc; an angle inscribed in a semicircle is $90^\\circ$. A tangent is perpendicular to the radius at the point of contact.",
+        "Circle with centre $(h, k)$ and radius $r$: $(x - h)^2 + (y - k)^2 = r^2$. Watch the signs: $(x + 2)^2$ means $h = -2$. Complete the square to find the centre and radius.",
+        "Distance between two points: $\\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$. Midpoint: $\\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$.",
+        "Areas: rectangle $lw$, triangle $\\frac{1}{2}bh$, trapezoid $\\frac{1}{2}(b_1 + b_2)h$. Volumes: box $lwh$, cylinder $\\pi r^2 h$, cone $\\frac{1}{3}\\pi r^2 h$, pyramid $\\frac{1}{3}lwh$, sphere $\\frac{4}{3}\\pi r^3$."
       ]
     },
     {
       "skill": "test-choices",
       "title": "PSAT test-day strategy",
       "facts": [
-        "The digital PSAT/NMSQT Math section has two modules, $44$ questions in all and $70$ minutes. A calculator (including the built-in Desmos one) is allowed on every question.",
-        "A formula reference sheet is available during the test, but knowing these facts saves time.",
-        "There is no penalty for a wrong answer: never leave a question blank.",
-        "Student-produced answers: enter a fraction or a decimal, not a mixed number. A positive answer fits in $5$ characters, a negative one in $6$.",
-        "Graph both sides of an equation in Desmos and read the intersection, or test the answer choices by plugging them in.",
-        "Read what the question asks for at the end: the value of $2x$ or $x + y$, not just $x$."
+        "The digital PSAT/NMSQT Math section has two modules of $22$ questions and $35$ minutes each: $44$ questions in $70$ minutes, so about $1.5$ minutes a question. The second module adapts to how the first went.",
+        "A calculator, including the built-in Desmos one, is allowed on every question, and a reference sheet of formulas is available. Knowing the facts by heart still saves time.",
+        "There is no penalty for a wrong answer: answer every question, and flag hard ones to come back to.",
+        "Typed answers: enter a fraction or a decimal, never a mixed number ($3\\frac{1}{2}$ is typed as $7/2$ or $3.5$). A positive answer fits in $5$ characters, a negative one in $6$ including the sign.",
+        "Use Desmos: graph both sides of an equation and read the intersection, or type a system and read the point where the lines meet.",
+        "Stuck? Test the answer choices in the equation, or pick simple numbers for the variables and see which choice matches.",
+        "Underline what the question asks for: the value of $2x$, $x + y$ or a percent, not just $x$. Check the units of your answer."
       ]
     }
   ]
