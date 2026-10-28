@@ -16,6 +16,11 @@ export async function MathFactSheets() {
         <p className="mt-1 text-sm">None yet</p>
       ) : (
         <ul className="mt-1 flex flex-col gap-1">
+          <li>
+            <Link href="/math/facts/psat" className={`text-sm text-brand underline ${cyanFocus}`}>
+              PSAT review
+            </Link>
+          </li>
           {home.factSheets.map((f) => (
             <li key={f.number}>
               <Link

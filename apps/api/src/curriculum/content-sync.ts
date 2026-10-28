@@ -141,6 +141,7 @@ async function syncMathContent(db: PrismaClient, math: NonNullable<LoadResult['m
     ...(math.stages ? [['stages', math.stages] as [string, unknown]] : []),
     ...math.tests.map((t): [string, unknown] => [`test:${t.key}`, t]),
     ...Object.entries(math.facts).map(([n, f]): [string, unknown] => [`facts:${n}`, f]),
+    ...(math.psatFacts ? [['psat-facts', math.psatFacts] as [string, unknown]] : []),
   ];
   await db.$transaction(
     rows.map(([key, value]) =>

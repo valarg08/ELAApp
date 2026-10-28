@@ -7,6 +7,7 @@ import {
   type ErrorLogList,
   ErrorCode,
   type FactSheetView,
+  type PsatFactSheetView,
   MathCardRequest,
   type MathCardResponse,
   MathExplainRequest,
@@ -182,6 +183,11 @@ export class MathController {
     const n = Number(unitNumber);
     if (!Number.isInteger(n) || n < 1 || n > 15) throw notFound(ErrorCode.NOT_FOUND, 'Not found.');
     return this.progress.facts(user, n);
+  }
+
+  @Get('math/psat-facts')
+  psatFacts(@CurrentUser() user: AuthUser): Promise<PsatFactSheetView> {
+    return this.progress.psatFacts(user);
   }
 
   /** "Try a similar one" for a practice problem without a template. */

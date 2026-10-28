@@ -6,6 +6,7 @@ import {
   type DangerZone,
   ErrorCode,
   type FactSheetView,
+  type PsatFactSheetView,
   MATH_TEST_KEYS,
   type MathHome,
   MathTestAnswer,
@@ -373,6 +374,17 @@ export class MathProgressService {
       sheet,
       skillLabels: Object.fromEntries(skills.map((s) => [s.id, s.label])),
     };
+  }
+
+  /** The PSAT review fact sheet; students see it once any Math unit is published. */
+  async psatFacts(user: AuthUser): Promise<PsatFactSheetView> {
+    const published = await this.db.client.unit.count({
+      where: { track: 'MATH', published: true },
+    });
+    const sheet = user.role !== 'STUDENT' || published > 0 ? await this.content.psatFacts() : null;
+    if (!sheet) throw notFound(ErrorCode.NOT_FOUND, 'Fact sheet not found.');
+    const skills = await this.content.skills();
+    return { sheet, skillLabels: Object.fromEntries(skills.map((s) => [s.id, s.label])) };
   }
 
   /**

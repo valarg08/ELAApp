@@ -40,7 +40,7 @@ Each mock lesson includes its mistake analysis: the review by question, strand a
 Strands (progress badges): **Strategy** (1, 14, 15), **Algebra** (2–6), **Number Theory** (7–8), **Counting & Probability** (9–10), **Geometry** (11–13).
 
 **Tests outside the units** (all original problems, the `MOCK_TEST` engine from M0.5 Part D):
-- **Diagnostic test:** 25 mixed problems, untimed, on `/math` before Unit 1, and retakable any time to show growth. Its report (by strand, skill and difficulty) sets each skill's starting level and suggests the units to focus on. Units still unlock in order.
+- **Diagnostic test:** 25 mixed problems, untimed, on `/math` before Unit 1, and retakable any time to show growth. Its report (by strand, skill and difficulty) sets each skill's starting level and suggests the units to focus on. All published units are open, so a student can go straight to them.
 - **Checkpoint mock 1** after Unit 8 (algebra and number theory) and **checkpoint mock 2** after Unit 13 (everything so far): full 25-problem, 75-minute timed tests with mistake analysis, so full timed tests start well before Unit 15. They unlock with the unit before them and don't block the next unit.
 
 **Stages** (labels only; the unit order stays as above). `/math` groups the units and tests under four stage headings, so students see where they are in the preparation:
@@ -66,7 +66,7 @@ Geometry basics come in Stage 3 because the unit order is kept; the diagnostic s
 **The engine (M0, built before the first unit):**
 - **Track `MATH`:**
   - content in `content/math/unit-XX`, activity keys `m01.`, slugs starting `math-`;
-  - always self-paced, like Essay;
+  - always self-paced, like Essay, but every published unit is open from the start (students pick any unit; lessons inside a unit still open in order; a teacher can still hide a unit or schedule it);
   - a third tab, "Math (AMC 10)", in `TrackTabs`;
   - `/math` (Keep going, the 15 unit cards, My progress) and the progress tracker with the five strand badges.
 - **Math rendering:** content and solutions use TeX between `$…$` / `$$…$$`, rendered with **KaTeX** (MathML output for screen readers; content:check rejects TeX that doesn't parse). Answers are typed in a plain box with helper buttons (√, π, fraction bar, ^) and a live typeset preview.
@@ -374,6 +374,7 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 - Each unit may have `facts.json`: a one-page summary of formulas, identities, shortcuts and patterns, written in TeX, grouped by skill (content:check: the TeX parses and the skill ids exist).
 - `/math/facts/[unit]` shows it (by unit number), printable (print styles: no navigation, one page where possible). `/math` lists the units that have one in the Progress panel, below the progress bar.
 - The fact sheets are written with each unit (M1–M14); the Unit 15 refresh lessons link to them.
+- **PSAT review sheet:** `content/math/psat-facts.json` (same format, skills checked the same way) is the PSAT/NMSQT math summary: lines, systems, quadratics, functions and exponential models, percents and units, statistics, probability and two-way tables, triangles and trigonometry, circles and volume, and test-day strategy. `GET /math/psat-facts` serves it (students once a Math unit is published) and `/math/facts/psat` shows it, printable; it is the first link under "Fact sheets" in the Progress panel. Stored in `MathContent` as `psat-facts`.
 
 **D6. Light review mode**
 - "Light review" (`/math/tests/light-review`): 4 easy problems from Strong and Mastered skills (no new or weak skills, no timer), plus 3 fact-sheet cards. It is meant for the last days before the test and builds confidence without fatigue.
@@ -389,7 +390,7 @@ M0.5 has four parts, built in order. Each part is usable on its own.
 | New | What |
 |---|---|
 | `content/math/skills.json` | Skill list (A1) |
-| `content/math/tests/<key>.json` (`diagnostic`, later `checkpoint-1`, `checkpoint-2`), `stages.json`, `unit-XX/facts.json` | Diagnostic (D2), checkpoint mocks (D3), stages (D7), fact sheets (D5). content:sync stores them in `MathContent` (`skills`, `stages`, `test:<key>`, `facts:<n>`) |
+| `content/math/tests/<key>.json` (`diagnostic`, later `checkpoint-1`, `checkpoint-2`), `stages.json`, `unit-XX/facts.json` | Diagnostic (D2), checkpoint mocks (D3), stages (D7), fact sheets (D5). content:sync stores them in `MathContent` (`skills`, `stages`, `test:<key>`, `facts:<n>`, `psat-facts`) |
 | Problem fields | `template`, `answer.why`, `answer.mistakes`, `figure.scale` (A2, A3, A5) |
 | Learn card | `worked-example` (Math only, A4) |
 | Reflect | `trapPicker` (Math only, C3) |

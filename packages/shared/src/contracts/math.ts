@@ -590,6 +590,13 @@ export const FactSheetView = z.object({
 });
 export type FactSheetView = z.infer<typeof FactSheetView>;
 
+/** The PSAT review fact sheet (math-design.md §3.4 D5). */
+export const PsatFactSheetView = z.object({
+  sheet: MathFactsFile,
+  skillLabels: z.record(z.string(), z.string()),
+});
+export type PsatFactSheetView = z.infer<typeof PsatFactSheetView>;
+
 /** "Try a similar one" for a problem without a template: another of the same skill and difficulty. */
 export const SimilarProblemResponse = z.object({
   locator: ProblemLocator.nullable(),

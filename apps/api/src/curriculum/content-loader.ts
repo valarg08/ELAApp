@@ -176,7 +176,7 @@ async function readJson<S extends z.ZodType>(
 /**
  * The Math-wide content (math-design.md §3): content/math/skills.json (required once there are
  * Math units), stages.json, tests/<key>.json (with figures in tests/figures/) and each unit's
- * facts.json, cross-checked against the Math units.
+ * facts.json (and psat-facts.json, the PSAT review sheet), cross-checked against the Math units.
  */
 async function loadMathExtras(
   root: string,
@@ -229,7 +229,17 @@ async function loadMathExtras(
     facts[u.unit.number] = sheet;
   }
 
-  const bundle: MathContentBundle = { skills: skills ?? [], stages, tests, facts };
+  const psatFacts = await readJson(
+    path.join(dir, 'psat-facts.json'),
+    'math/psat-facts.json',
+    MathFactsFile,
+    errors,
+    hash,
+  );
+  for (const s of psatFacts?.sections ?? [])
+    for (const t of [s.title, ...s.facts]) errors.push(...texErrors('math/psat-facts.json', t));
+
+  const bundle: MathContentBundle = { skills: skills ?? [], stages, tests, facts, psatFacts };
   if (skills)
     errors.push(
       ...validateMathContent(

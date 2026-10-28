@@ -1,0 +1,119 @@
+{
+  "sections": [
+    {
+      "skill": "linear-equations",
+      "title": "Lines & linear equations",
+      "facts": [
+        "Slope-intercept form $y = mx + b$: $m$ is the slope (the change in $y$ for each $1$ added to $x$) and $b$ is the $y$-intercept (the value when $x = 0$).",
+        "Slope through $(x_1, y_1)$ and $(x_2, y_2)$: $m = \\frac{y_2 - y_1}{x_2 - x_1}$. Point-slope form: $y - y_1 = m(x - x_1)$.",
+        "Parallel lines have equal slopes; perpendicular slopes multiply to $-1$, so $m = 2$ pairs with $-\\frac{1}{2}$.",
+        "Standard form $Ax + By = C$ has slope $-\\frac{A}{B}$, $x$-intercept $\\frac{C}{A}$ and $y$-intercept $\\frac{C}{B}$.",
+        "In a word problem, the slope is the rate (per hour, per item) and the intercept is the starting amount or fixed fee.",
+        "$ax + b = cx + d$ has no solution when $a = c$ and $b \\ne d$, and infinitely many when $a = c$ and $b = d$."
+      ]
+    },
+    {
+      "skill": "systems",
+      "title": "Systems & inequalities",
+      "facts": [
+        "Solve a system by substitution, or by elimination: scale the equations so one variable cancels when you add or subtract them.",
+        "Two lines: one solution when the slopes differ, none when they are parallel (same slope, different intercepts), infinitely many when they are the same line.",
+        "Multiplying or dividing an inequality by a negative number flips the sign: $-2x < 6$ gives $x > -3$.",
+        "Graphing $y > mx + b$: a dashed line and the region above it; $\\ge$ or $\\le$ uses a solid line.",
+        "To check whether a point satisfies a system, substitute it into every equation or inequality."
+      ]
+    },
+    {
+      "skill": "quadratic-formula",
+      "title": "Quadratics & parabolas",
+      "facts": [
+        "$ax^2 + bx + c = 0$ has $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$.",
+        "Discriminant $b^2 - 4ac$: positive means two real solutions, zero means one, negative means none.",
+        "The vertex of $y = ax^2 + bx + c$ is at $x = -\\frac{b}{2a}$; the parabola opens up when $a > 0$ and down when $a < 0$.",
+        "Vertex form $y = a(x - h)^2 + k$ has vertex $(h, k)$. Factored form $y = a(x - p)(x - q)$ has $x$-intercepts $p$ and $q$.",
+        "The roots of $ax^2 + bx + c$ add up to $-\\frac{b}{a}$ and multiply to $\\frac{c}{a}$.",
+        "Patterns to spot: $a^2 - b^2 = (a - b)(a + b)$ and $(a \\pm b)^2 = a^2 \\pm 2ab + b^2$."
+      ]
+    },
+    {
+      "skill": "functions",
+      "title": "Functions & exponential models",
+      "facts": [
+        "$f(3)$ means: put $3$ in for $x$. \"Where is $f(x) = 3$?\" means: solve for $x$.",
+        "Linear growth adds the same amount each step; exponential growth multiplies by the same factor each step.",
+        "Growth by $r$ per period: $A = P(1 + r)^t$. Decay by $r$: $A = P(1 - r)^t$. So $y = 500(0.92)^t$ loses $8\\%$ each period.",
+        "In $y = a \\cdot b^t$, $a$ is the starting value ($t = 0$) and $b$ is the factor each period: growth when $b > 1$, decay when $0 < b < 1$.",
+        "$y = f(x) + k$ moves the graph up $k$; $y = f(x - h)$ moves it right $h$; $y = -f(x)$ reflects it in the $x$-axis.",
+        "The $x$-intercepts of $y = f(x)$ are the solutions of $f(x) = 0$, also called its zeros."
+      ]
+    },
+    {
+      "skill": "fractions-percents",
+      "title": "Percents, ratios & units",
+      "facts": [
+        "Percent change $= \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100\\%$: always divide by the original amount.",
+        "$p\\%$ more multiplies by $1 + \\frac{p}{100}$; $p\\%$ less multiplies by $1 - \\frac{p}{100}$. Two changes multiply: $+10\\%$ then $-10\\%$ is $\\times 0.99$.",
+        "Proportions: if $\\frac{a}{b} = \\frac{c}{d}$ then $ad = bc$.",
+        "Convert units by multiplying by fractions equal to $1$, such as $\\frac{60 \\text{ min}}{1 \\text{ h}}$, so the unwanted units cancel.",
+        "Square and cube units scale too: $1$ ft $= 12$ in, so $1$ ft$^2 = 144$ in$^2$ and $1$ ft$^3 = 1728$ in$^3$."
+      ]
+    },
+    {
+      "skill": "averages",
+      "title": "Statistics & data",
+      "facts": [
+        "Mean $=$ sum $\\div$ count. Median: the middle value in order (the mean of the two middle values when the count is even). Range: largest minus smallest.",
+        "An outlier pulls the mean toward it but barely moves the median.",
+        "Standard deviation measures spread: data bunched near the mean has a smaller one. Adding the same number to every value doesn't change it.",
+        "A line of best fit predicts values; its slope is the predicted change in $y$ for each $1$ added to $x$.",
+        "A random sample lets results be generalised to the population it was drawn from. A larger sample gives a smaller margin of error.",
+        "Correlation is not causation: only a randomised experiment supports a cause-and-effect conclusion."
+      ]
+    },
+    {
+      "skill": "probability",
+      "title": "Probability & two-way tables",
+      "facts": [
+        "Probability $=$ favourable outcomes $\\div$ all equally likely outcomes.",
+        "In a two-way table, \"given\" chooses the row or column you divide by: $P(A \\mid B) = \\frac{\\text{count in both } A \\text{ and } B}{\\text{count in } B}$.",
+        "$P(\\text{not } A) = 1 - P(A)$.",
+        "For independent events, $P(A \\text{ and } B) = P(A) \\cdot P(B)$."
+      ]
+    },
+    {
+      "skill": "pythagoras",
+      "title": "Triangles & trigonometry",
+      "facts": [
+        "Pythagoras: $a^2 + b^2 = c^2$. Common triples: $3, 4, 5$; $5, 12, 13$; $8, 15, 17$; $7, 24, 25$ (and their multiples).",
+        "Special right triangles: $45$-$45$-$90$ sides $x, x, x\\sqrt{2}$; $30$-$60$-$90$ sides $x, x\\sqrt{3}, 2x$.",
+        "SOH CAH TOA: $\\sin\\theta = \\frac{\\text{opposite}}{\\text{hypotenuse}}$, $\\cos\\theta = \\frac{\\text{adjacent}}{\\text{hypotenuse}}$, $\\tan\\theta = \\frac{\\text{opposite}}{\\text{adjacent}}$.",
+        "Complementary angles: $\\sin x^\\circ = \\cos(90 - x)^\\circ$.",
+        "Similar triangles have equal angles and proportional sides; if the sides scale by $k$, the area scales by $k^2$.",
+        "A triangle's angles add up to $180^\\circ$; an $n$-sided polygon's add up to $(n - 2) \\cdot 180^\\circ$."
+      ]
+    },
+    {
+      "skill": "coordinate-geometry",
+      "title": "Circles, area & volume",
+      "facts": [
+        "A circle with centre $(h, k)$ and radius $r$: $(x - h)^2 + (y - k)^2 = r^2$. Complete the square to find the centre and radius.",
+        "Area $\\pi r^2$, circumference $2\\pi r$. An arc of central angle $\\theta^\\circ$ has length $\\frac{\\theta}{360} \\cdot 2\\pi r$; its sector has area $\\frac{\\theta}{360} \\cdot \\pi r^2$.",
+        "Radians: $180^\\circ = \\pi$ radians, so multiply degrees by $\\frac{\\pi}{180}$.",
+        "Volumes: box $lwh$, cylinder $\\pi r^2 h$, sphere $\\frac{4}{3}\\pi r^3$, cone $\\frac{1}{3}\\pi r^2 h$, pyramid $\\frac{1}{3} lwh$.",
+        "Distance between two points: $\\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$. Midpoint: $\\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$."
+      ]
+    },
+    {
+      "skill": "test-choices",
+      "title": "PSAT test-day strategy",
+      "facts": [
+        "The digital PSAT/NMSQT Math section has two modules, $44$ questions in all and $70$ minutes. A calculator (including the built-in Desmos one) is allowed on every question.",
+        "A formula reference sheet is available during the test, but knowing these facts saves time.",
+        "There is no penalty for a wrong answer: never leave a question blank.",
+        "Student-produced answers: enter a fraction or a decimal, not a mixed number. A positive answer fits in $5$ characters, a negative one in $6$.",
+        "Graph both sides of an equation in Desmos and read the intersection, or test the answer choices by plugging them in.",
+        "Read what the question asks for at the end: the value of $2x$ or $x + y$, not just $x$."
+      ]
+    }
+  ]
+}

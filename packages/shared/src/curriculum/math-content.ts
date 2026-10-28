@@ -96,6 +96,8 @@ export interface MathContentBundle {
   tests: MathTestFile[];
   /** Fact sheets by unit number. */
   facts: Record<number, MathFactsFile>;
+  /** content/math/psat-facts.json: the PSAT review fact sheet. */
+  psatFacts?: MathFactsFile;
 }
 
 /** What the units look like, for the cross-checks below. */
@@ -137,6 +139,7 @@ export function validateMathContent(
     if (!units.some((u) => u.number === Number(n)))
       errors.push(`math/unit-${n.padStart(2, '0')}/facts.json: the unit doesn't exist`);
   }
+  for (const s of bundle.psatFacts?.sections ?? []) known('math/psat-facts.json', s.skill);
 
   const testKeys = new Set<string>();
   for (const t of bundle.tests) {

@@ -135,6 +135,11 @@ export class MathContentService {
     return this.content(`facts:${unitNumber}`, MathFactsFile);
   }
 
+  /** The PSAT review fact sheet (content/math/psat-facts.json). */
+  psatFacts() {
+    return this.content('psat-facts', MathFactsFile);
+  }
+
   /** Unit numbers with a fact sheet. */
   async factUnits(): Promise<number[]> {
     const rows = await this.db.client.mathContent.findMany({

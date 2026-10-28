@@ -78,8 +78,11 @@ export function classAvailability(
   const result = new Map<string, Availability>();
   const previousDone = new Map<Track, boolean>();
   for (const unit of units.toSorted((a, b) => a.number - b.number)) {
+    // Math (AMC 10) units are all open: students pick any unit (math-design.md).
     const done =
-      unit.number <= (openThrough.get(unit.track) ?? 0) || (previousDone.get(unit.track) ?? true);
+      unit.track === 'MATH' ||
+      unit.number <= (openThrough.get(unit.track) ?? 0) ||
+      (previousDone.get(unit.track) ?? true);
     result.set(
       unit.id,
       unitAvailability(unit, pacing.get(unit.id), {
