@@ -1,0 +1,492 @@
+[
+  {
+    "key": "p02.quadratics-practice",
+    "type": "PROBLEMS",
+    "title": "Quadratics",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "factor",
+        "prompt": "What is the positive solution of $x^2 + 3x - 28 = 0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["4"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "7",
+              "why": "Check the signs: $(x + 7)(x - 4) = 0$ gives $x = -7$ or $x = 4$."
+            }
+          ]
+        },
+        "hints": ["Find two numbers that multiply to $-28$ and add to $3$.", "$7$ and $-4$."],
+        "solution": "$(x + 7)(x - 4) = 0$, so $x = -7$ or $x = 4$. The positive one is $4$.",
+        "skill": "quadratics",
+        "difficulty": 1,
+        "compute": "(-3+11)/2"
+      },
+      {
+        "id": "vertex",
+        "prompt": "What is the $x$-coordinate of the vertex of $y = 3x^2 - 18x + 7$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["3"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "-3",
+              "why": "In $-\\frac{b}{2a}$, $b = -18$, so it is $+\\frac{18}{6}$."
+            }
+          ]
+        },
+        "hints": ["Use $x = -\\frac{b}{2a}$.", "$a = 3$ and $b = -18$."],
+        "solution": "$x = -\\frac{-18}{2 \\times 3} = 3$.",
+        "skill": "quadratics",
+        "difficulty": 1,
+        "compute": "18/(2*3)"
+      },
+      {
+        "id": "sum-roots",
+        "prompt": "What is the sum of the solutions of $2x^2 - 14x + 9 = 0$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["7"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "14",
+              "why": "Divide by $a$: the sum of the roots is $-\\frac{b}{a}$."
+            }
+          ]
+        },
+        "hints": ["The solutions of $ax^2 + bx + c = 0$ add up to $-\\frac{b}{a}$."],
+        "solution": "The sum is $-\\frac{b}{a} = -\\frac{-14}{2} = 7$, without solving.",
+        "skill": "quadratics",
+        "difficulty": 2,
+        "compute": "14/2"
+      },
+      {
+        "id": "one-solution",
+        "prompt": "For what value of $c$ does $x^2 + 10x + c = 0$ have exactly one real solution?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["25"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "5",
+              "why": "The discriminant $100 - 4c$ must be $0$, so $c = 25$."
+            }
+          ]
+        },
+        "hints": ["Exactly one solution means the discriminant is $0$.", "$10^2 - 4c = 0$."],
+        "solution": "$b^2 - 4ac = 100 - 4c = 0$, so $c = 25$. Then $x^2 + 10x + 25 = (x + 5)^2$.",
+        "skill": "quadratics",
+        "difficulty": 2,
+        "compute": "100/4"
+      }
+    ]
+  },
+  {
+    "key": "p02.quadratics-set",
+    "type": "PROBLEM_SET",
+    "title": "Quadratics: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "solutions",
+        "prompt": "What are the solutions of $x^2 - 9x + 20 = 0$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$x = -5$ and $x = -4$",
+            "$x = 4$ and $x = 5$",
+            "$x = 2$ and $x = 10$",
+            "$x = -4$ and $x = 5$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "From $(x - 4)(x - 5) = 0$ the solutions are positive.",
+            "C": "These multiply to $20$ but add to $12$, not $9$."
+          }
+        },
+        "solution": "$(x - 4)(x - 5) = 0$, so $x = 4$ or $x = 5$, choice (B).",
+        "skill": "quadratics",
+        "difficulty": 1
+      },
+      {
+        "id": "minimum",
+        "prompt": "For $f(x) = (x - 3)^2 + 8$, what is the minimum value of $f$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-3$", "$3$", "$8$", "$11$"],
+          "correct": "C",
+          "why": {
+            "B": "That is the $x$-value where the minimum happens."
+          }
+        },
+        "solution": "A square is never negative, so $f$ is smallest when $(x - 3)^2 = 0$: the minimum is $8$, choice (C).",
+        "skill": "quadratics",
+        "difficulty": 1,
+        "compute": "8"
+      },
+      {
+        "id": "how-many",
+        "prompt": "How many real solutions does $x^2 - 6x + 9 = 0$ have?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0$", "$1$", "$2$", "$3$"],
+          "correct": "B",
+          "why": {
+            "C": "$x^2 - 6x + 9 = (x - 3)^2$: both factors give the same $x = 3$."
+          }
+        },
+        "solution": "The discriminant is $36 - 36 = 0$, so there is exactly $1$ solution, $x = 3$, choice (B).",
+        "skill": "quadratics",
+        "difficulty": 1,
+        "compute": "1"
+      },
+      {
+        "id": "rectangle",
+        "prompt": "A rectangle’s length is $3$ more than its width, and its area is $70$. What is its width?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7$", "$10$", "$\\sqrt{70}$", "$35$"],
+          "correct": "A",
+          "why": {
+            "B": "That is the length.",
+            "C": "That would make a square."
+          }
+        },
+        "solution": "$w(w + 3) = 70$, so $w^2 + 3w - 70 = 0$ and $(w + 10)(w - 7) = 0$. The width is $7$, choice (A).",
+        "skill": "quadratics",
+        "difficulty": 2,
+        "compute": "(-3+17)/2"
+      }
+    ]
+  },
+  {
+    "key": "p02.exponential-practice",
+    "type": "PROBLEMS",
+    "title": "Exponential models",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "rules",
+        "prompt": "If $\\frac{x^{10}}{x^4} \\cdot x^3 = x^n$ for all $x > 0$, what is $n$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["9"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "13",
+              "why": "Dividing powers SUBTRACTS the exponents: $10 - 4 + 3$."
+            }
+          ]
+        },
+        "hints": ["Dividing subtracts exponents; multiplying adds them."],
+        "solution": "$x^{10 - 4} = x^6$, then $x^6 \\cdot x^3 = x^9$, so $n = 9$.",
+        "skill": "exponential-models",
+        "difficulty": 1,
+        "compute": "10-4+3"
+      },
+      {
+        "id": "growth",
+        "prompt": "A town of $8000$ people grows by $5\\%$ each year. What is the population after $2$ years?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["8820"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "8800",
+              "why": "Each year’s $5\\%$ is of the NEW population: multiply by $1.05$ twice."
+            }
+          ]
+        },
+        "hints": ["Growing $5\\%$ multiplies by $1.05$.", "$8000 \\times 1.05^2$."],
+        "solution": "$8000 \\times 1.05 = 8400$, then $8400 \\times 1.05 = 8820$.",
+        "skill": "exponential-models",
+        "difficulty": 2,
+        "compute": "8000*1.05^2"
+      },
+      {
+        "id": "half-life",
+        "prompt": "The amount of a medicine in the blood halves every $6$ hours. A patient has $400$ mg. How many milligrams are left after $18$ hours?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["50"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "100",
+              "why": "$18$ hours is THREE halvings: $400 \\to 200 \\to 100 \\to 50$."
+            }
+          ]
+        },
+        "hints": ["How many $6$-hour periods are in $18$ hours?", "Halve $400$ three times."],
+        "solution": "$18 \\div 6 = 3$ halvings: $400 \\times \\left(\\frac{1}{2}\\right)^3 = 50$ mg.",
+        "skill": "exponential-models",
+        "difficulty": 2,
+        "compute": "400*(1/2)^3"
+      },
+      {
+        "id": "same-base",
+        "prompt": "If $9^{x + 1} = 27^x$, what is $x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["2"],
+          "form": "any",
+          "mistakes": []
+        },
+        "hints": ["Write both sides as powers of $3$.", "$3^{2x + 2} = 3^{3x}$."],
+        "solution": "$9^{x+1} = 3^{2x+2}$ and $27^x = 3^{3x}$, so $2x + 2 = 3x$ and $x = 2$.",
+        "skill": "exponential-models",
+        "difficulty": 3,
+        "compute": "2"
+      }
+    ]
+  },
+  {
+    "key": "p02.exponential-set",
+    "type": "PROBLEM_SET",
+    "title": "Exponential models: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "power-of-product",
+        "prompt": "Which expression is equivalent to $(2x^3)^4$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8x^7$", "$8x^{12}$", "$16x^7$", "$16x^{12}$"],
+          "correct": "D",
+          "why": {
+            "A": "A power of a power multiplies the exponents, and the $2$ is raised to the $4$th power too.",
+            "B": "The $2$ is raised to the $4$th power too: $2^4 = 16$.",
+            "C": "A power of a power multiplies the exponents: $3 \\times 4 = 12$."
+          }
+        },
+        "solution": "$(2x^3)^4 = 2^4 \\cdot x^{12} = 16x^{12}$, choice (D).",
+        "skill": "exponential-models",
+        "difficulty": 1
+      },
+      {
+        "id": "bacteria",
+        "prompt": "The number of bacteria is $N = 300(2)^{t/4}$, where $t$ is in hours. How many bacteria are there after $12$ hours?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$900$", "$1200$", "$2400$", "$7200$"],
+          "correct": "C",
+          "why": {
+            "B": "$\\frac{12}{4} = 3$ doublings, not $2$.",
+            "A": "Doubling multiplies by $2$ each time; it doesn’t add $300$."
+          }
+        },
+        "solution": "$N = 300 \\times 2^{3} = 2400$, choice (C).",
+        "skill": "exponential-models",
+        "difficulty": 1,
+        "compute": "300*2^3"
+      },
+      {
+        "id": "savings",
+        "prompt": "A savings account starts with $\\$500$ and earns $3\\%$ interest a year, added each year. Which function gives the balance after $t$ years?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$B = 500 + 0.03t$",
+            "$B = 500(0.03)^t$",
+            "$B = 500(1.03)^t$",
+            "$B = 500(1.3)^t$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "Interest on interest makes it exponential, and $0.03t$ is far too small.",
+            "B": "Multiplying by $0.03$ keeps only $3\\%$ each year.",
+            "D": "$1.3$ is $30\\%$ growth."
+          }
+        },
+        "solution": "Each year multiplies the balance by $1 + 0.03 = 1.03$: $B = 500(1.03)^t$, choice (C).",
+        "skill": "exponential-models",
+        "difficulty": 1
+      },
+      {
+        "id": "decay",
+        "prompt": "Which equation shows exponential decay?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$y = 40 - 3x$", "$y = 40(1.2)^x$", "$y = 40(0.8)^x$", "$y = 40x^2$"],
+          "correct": "C",
+          "why": {
+            "A": "This is linear: it falls by the same amount each step.",
+            "B": "A factor of $1.2$ is growth."
+          }
+        },
+        "solution": "Decay multiplies by a factor between $0$ and $1$ each step: $0.8$, choice (C).",
+        "skill": "exponential-models",
+        "difficulty": 1
+      }
+    ]
+  },
+  {
+    "key": "p02.functions-practice",
+    "type": "PROBLEMS",
+    "title": "Functions",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "evaluate",
+        "prompt": "If $g(x) = 3x^2 - 4$, what is $g(-2)$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["8"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "-16",
+              "why": "Square $-2$ first: $(-2)^2 = +4$, then multiply by $3$."
+            }
+          ]
+        },
+        "hints": ["Replace $x$ with $-2$.", "$(-2)^2 = 4$."],
+        "solution": "$g(-2) = 3(4) - 4 = 8$.",
+        "skill": "functions-equations",
+        "difficulty": 1,
+        "compute": "3*(-2)^2-4"
+      },
+      {
+        "id": "composition",
+        "prompt": "If $f(x) = 2x + 1$ and $g(x) = x^2$, what is $f(g(3))$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["19"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "49",
+              "why": "That is $g(f(3))$. Work from the inside out: $g(3)$ first."
+            }
+          ]
+        },
+        "hints": ["Start inside: $g(3) = 9$.", "Now find $f(9)$."],
+        "solution": "$g(3) = 9$, then $f(9) = 2(9) + 1 = 19$.",
+        "skill": "functions-equations",
+        "difficulty": 1,
+        "compute": "2*3^2+1"
+      },
+      {
+        "id": "radical",
+        "prompt": "Solve $\\sqrt{x - 2} + 4 = 9$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["27"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "7",
+              "why": "Square both sides: $\\sqrt{x - 2} = 5$ means $x - 2 = 25$."
+            }
+          ]
+        },
+        "hints": ["Get the square root alone: $\\sqrt{x - 2} = 5$.", "Square both sides."],
+        "solution": "$\\sqrt{x - 2} = 5$, so $x - 2 = 25$ and $x = 27$. Check: $\\sqrt{25} + 4 = 9$ ✓.",
+        "skill": "functions-equations",
+        "difficulty": 2,
+        "compute": "(9-4)^2+2"
+      },
+      {
+        "id": "rational",
+        "prompt": "Solve $\\frac{12}{x + 1} = 3$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["3"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "4",
+              "why": "That is $x + 1$. Subtract $1$."
+            }
+          ]
+        },
+        "hints": ["Multiply both sides by $x + 1$.", "$12 = 3(x + 1)$."],
+        "solution": "$12 = 3(x + 1)$, so $x + 1 = 4$ and $x = 3$.",
+        "skill": "functions-equations",
+        "difficulty": 1,
+        "compute": "12/3-1"
+      }
+    ]
+  },
+  {
+    "key": "p02.functions-set",
+    "type": "PROBLEM_SET",
+    "title": "Functions: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "evaluate-h",
+        "prompt": "The function $h$ is defined by $h(x) = 5 - x^2$. What is $h(3)$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-4$", "$-1$", "$4$", "$14$"],
+          "correct": "A",
+          "why": {
+            "C": "Mind the sign: $5 - 9$ is negative.",
+            "D": "Subtract the square: $5 - 9$, not $5 + 9$."
+          }
+        },
+        "solution": "$h(3) = 5 - 3^2 = 5 - 9 = -4$, choice (A).",
+        "skill": "functions-equations",
+        "difficulty": 1,
+        "compute": "5-3^2"
+      },
+      {
+        "id": "shift",
+        "prompt": "The graph of $y = f(x)$ passes through $(2, 7)$. Which point is on the graph of $y = f(x) - 4$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$(2, 3)$", "$(2, 11)$", "$(-2, 7)$", "$(6, 7)$"],
+          "correct": "A",
+          "why": {
+            "B": "Subtracting $4$ moves the graph DOWN.",
+            "D": "Subtracting outside $f$ moves the graph up or down, not sideways."
+          }
+        },
+        "solution": "Every $y$-value drops by $4$: $(2, 7)$ moves to $(2, 3)$, choice (A).",
+        "skill": "functions-equations",
+        "difficulty": 1
+      },
+      {
+        "id": "sqrt-solutions",
+        "prompt": "Which gives all the solutions of $x = \\sqrt{x + 6}$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-2$ only", "$3$ only", "$-2$ and $3$", "There are no real solutions."],
+          "correct": "B",
+          "why": {
+            "C": "Check $-2$: $\\sqrt{4} = 2$, not $-2$. Squaring added a false answer."
+          }
+        },
+        "solution": "Square: $x^2 = x + 6$, so $(x - 3)(x + 2) = 0$. Check: $3 = \\sqrt{9}$ ✓ but $-2 \\ne \\sqrt{4}$. Only $3$, choice (B).",
+        "skill": "functions-equations",
+        "difficulty": 2
+      },
+      {
+        "id": "solve-f",
+        "prompt": "If $f(x) = \\frac{x + 6}{2}$, for what value of $x$ is $f(x) = 10$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8$", "$13$", "$14$", "$26$"],
+          "correct": "C",
+          "why": {
+            "A": "That is $f(10)$. The question gives the output, $10$, and asks for the input.",
+            "D": "Multiply by $2$, then SUBTRACT $6$."
+          }
+        },
+        "solution": "$\\frac{x + 6}{2} = 10$, so $x + 6 = 20$ and $x = 14$, choice (C).",
+        "skill": "functions-equations",
+        "difficulty": 1,
+        "compute": "2*10-6"
+      }
+    ]
+  }
+]

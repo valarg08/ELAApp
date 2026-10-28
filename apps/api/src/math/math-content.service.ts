@@ -43,17 +43,22 @@ export interface PoolProblem {
   problem: MathProblem;
 }
 
-/** The tracks on the Math engine: Math (AMC 10) and Mental Math. */
-export type EngineTrack = 'MATH' | 'MENTAL';
+/** The tracks on the Math engine: Math (AMC 10), Mental Math and PSAT Math. */
+export type EngineTrack = 'MATH' | 'MENTAL' | 'PSAT';
 
 /** Mental Math activity keys start "n01.", Math ones "m01." (or "test:"). */
 export const isMentalActivityKey = (key: string) => /^ndd./.test(key);
 
-/** A Prisma filter on activityKey: only this track's rows (error log, answer record). */
+/**
+ * A Prisma filter on activityKey: only this track's rows (error log, answer record). Mental Math
+ * keys start "n", PSAT Math ones "p"; the rest (including "test:") are Math.
+ */
 export const trackKeyFilter = (track: EngineTrack) =>
   track === 'MENTAL'
     ? { activityKey: { startsWith: 'n' } }
-    : { NOT: { activityKey: { startsWith: 'n' } } };
+    : track === 'PSAT'
+      ? { activityKey: { startsWith: 'p' } }
+      : { NOT: [{ activityKey: { startsWith: 'n' } }, { activityKey: { startsWith: 'p' } }] };
 
 /** "test:diagnostic" → "diagnostic". */
 export const testKeyOf = (activityKey: string) =>

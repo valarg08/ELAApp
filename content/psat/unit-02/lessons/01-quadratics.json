@@ -1,0 +1,94 @@
+{
+  "slug": "psat-quadratics",
+  "order": 1,
+  "title": "Quadratics",
+  "estMinutes": 30,
+  "focusSkills": ["quadratics"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A ball’s height is $h = -5t^2 + 20t$ metres after $t$ seconds. When do you think it lands, and how high does it go?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Three ways to solve a quadratic",
+          "body": "Get $0$ on one side first. Factor: $x^2 - 5x + 6 = (x - 2)(x - 3)$, so $x = 2$ or $x = 3$. The quadratic formula $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$ always works. Or graph it on the calculator and read the $x$-intercepts."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the ball",
+          "problem": "A ball’s height is $h = -5t^2 + 20t$ metres after $t$ seconds. When does it land, and what is its greatest height?",
+          "steps": [
+            {
+              "text": "It lands when $h = 0$: $-5t(t - 4) = 0$, so $t = 0$ or $t = 4$.",
+              "try": {
+                "prompt": "After how many seconds does it land?",
+                "accepted": ["4"],
+                "compute": "20/5"
+              }
+            },
+            {
+              "text": "The top is halfway between the zeros, at $t = 2$ (or use $t = -\\frac{b}{2a} = -\\frac{20}{-10}$).",
+              "try": {
+                "prompt": "What is the greatest height, $h$ at $t = 2$?",
+                "accepted": ["20"],
+                "compute": "-5*2^2+20*2"
+              }
+            },
+            {
+              "text": "It reaches $20$ m after $2$ seconds and lands after $4$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Vertex and discriminant",
+          "body": "The vertex of $y = ax^2 + bx + c$ is at $x = -\\frac{b}{2a}$; in vertex form $y = a(x - h)^2 + k$ it is $(h, k)$. The discriminant $b^2 - 4ac$ counts the real solutions: positive gives $2$, zero gives $1$, negative gives none."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: how many solutions?",
+          "problem": "How many real solutions does $2x^2 - 4x + 5 = 0$ have?",
+          "steps": [
+            {
+              "text": "Here $a = 2$, $b = -4$ and $c = 5$.",
+              "try": {
+                "prompt": "What is $b^2 - 4ac$?",
+                "accepted": ["-24"],
+                "compute": "(-4)^2-4*2*5"
+              }
+            },
+            {
+              "text": "It is negative, so there are no real solutions: the parabola never touches the $x$-axis."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p02.quadratics-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p02.quadratics-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which way of solving a quadratic do you find quickest, and when would you switch to another?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

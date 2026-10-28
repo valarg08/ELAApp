@@ -1,0 +1,95 @@
+{
+  "slug": "psat-linear-functions",
+  "order": 2,
+  "title": "Linear Functions & Graphs",
+  "estMinutes": 30,
+  "focusSkills": ["linear-functions"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A candle is $20$ cm tall and burns down $2$ cm every hour. What would a graph of its height over time look like?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Slope and intercept",
+          "body": "In $y = mx + b$, the slope $m$ is how much $y$ changes when $x$ goes up by $1$, and $b$ is the value of $y$ when $x = 0$ (the $y$-intercept). The slope through two points is $m = \\frac{y_2 - y_1}{x_2 - x_1}$. In a real situation, $m$ is the rate and $b$ the starting amount."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the line through two points",
+          "problem": "Find the equation of the line through $(2, 5)$ and $(6, 13)$.",
+          "steps": [
+            {
+              "text": "Slope: the change in $y$ over the change in $x$.",
+              "try": {
+                "prompt": "What is the slope $m$?",
+                "accepted": ["2"],
+                "compute": "(13-5)/(6-2)"
+              }
+            },
+            {
+              "text": "Put a point into $y = 2x + b$: $5 = 2(2) + b$.",
+              "try": {
+                "prompt": "What is $b$?",
+                "accepted": ["1"],
+                "compute": "5-4"
+              }
+            },
+            {
+              "text": "So the line is $y = 2x + 1$. Check the other point: $2(6) + 1 = 13$ ✓."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: reading a model",
+          "problem": "The value $V$, in dollars, of a laptop $t$ years after it was bought is $V = 1200 - 150t$. What do $1200$ and $150$ mean, and when is it worth $\\$450$?",
+          "steps": [
+            {
+              "text": "$1200$ is the value at $t = 0$, the price paid. $150$ is how much value it loses each year."
+            },
+            {
+              "text": "Set $1200 - 150t = 450$, so $150t = 750$.",
+              "try": {
+                "prompt": "What is $t$?",
+                "accepted": ["5"],
+                "compute": "750/150"
+              }
+            },
+            {
+              "text": "After $5$ years the laptop is worth $\\$450$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Parallel and perpendicular lines",
+          "body": "Parallel lines have the same slope. Perpendicular lines have slopes that multiply to $-1$: a line with slope $\\frac{2}{3}$ is perpendicular to one with slope $-\\frac{3}{2}$. A horizontal line $y = k$ has slope $0$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p01.functions-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p01.functions-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["What does the slope mean in a real situation? Give your own example."],
+      "confidenceCheck": true
+    }
+  ]
+}

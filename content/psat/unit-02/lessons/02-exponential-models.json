@@ -1,0 +1,94 @@
+{
+  "slug": "psat-exponential-models",
+  "order": 2,
+  "title": "Exponents & Exponential Models",
+  "estMinutes": 30,
+  "focusSkills": ["exponential-models"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A video has $1000$ views and the views double every day. How many views after a week? Is that more or less than you expected?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Exponent rules",
+          "body": "$a^m \\cdot a^n = a^{m+n}$, $\\frac{a^m}{a^n} = a^{m-n}$, $(a^m)^n = a^{mn}$, $a^0 = 1$, $a^{-n} = \\frac{1}{a^n}$ and $a^{\\frac{1}{2}} = \\sqrt{a}$."
+        },
+        {
+          "kind": "definition",
+          "title": "Linear or exponential?",
+          "body": "Linear growth adds the same amount each step: $y = 50 + 4t$. Exponential growth multiplies by the same factor each step: $y = 50(1.04)^t$ grows $4\\%$ a step. In $y = a \\cdot b^t$, $a$ is the starting value; $b > 1$ is growth and $0 < b < 1$ is decay. Growth of $r\\%$ means $b = 1 + \\frac{r}{100}$; decay of $r\\%$ means $b = 1 - \\frac{r}{100}$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a car loses value",
+          "problem": "A car worth $\\$20{,}000$ loses $15\\%$ of its value each year. Write its value after $t$ years and find it after $2$ years.",
+          "steps": [
+            {
+              "text": "Losing $15\\%$ leaves $85\\%$ each year.",
+              "try": {
+                "prompt": "What is the yearly factor $b$?",
+                "accepted": ["0.85", "17/20"],
+                "compute": "1-15/100"
+              }
+            },
+            {
+              "text": "So $V = 20000(0.85)^t$. After $2$ years: $20000 \\times 0.85^2$.",
+              "try": {
+                "prompt": "What is $V$ after $2$ years?",
+                "accepted": ["14450"],
+                "compute": "20000*0.85^2"
+              }
+            },
+            {
+              "text": "The car is worth $\\$14{,}450$, not $\\$14{,}000$: the second year’s loss is $15\\%$ of a smaller value."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the same base",
+          "problem": "Solve $8^x = 32$.",
+          "steps": [
+            {
+              "text": "Write both as powers of $2$: $8 = 2^3$ and $32 = 2^5$, so $2^{3x} = 2^5$."
+            },
+            {
+              "text": "The bases match, so the exponents match: $3x = 5$.",
+              "try": {
+                "prompt": "What is $x$?",
+                "accepted": ["5/3"],
+                "compute": "5/3"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p02.exponential-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p02.exponential-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "How can you tell from a table of values whether growth is linear or exponential?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

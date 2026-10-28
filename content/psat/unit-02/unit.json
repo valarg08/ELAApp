@@ -1,0 +1,12 @@
+{
+  "number": 2,
+  "slug": "psat-advanced-math",
+  "title": "Advanced Math",
+  "summary": "Quadratics and parabolas, exponents and exponential growth and decay, and functions with nonlinear equations.",
+  "bigIdeas": [
+    "A quadratic can be solved by factoring, the quadratic formula or a graph.",
+    "Linear growth adds the same amount each step; exponential growth multiplies by the same factor.",
+    "$f(a) = b$ means the point $(a, b)$ is on the graph of $f$."
+  ],
+  "published": true
+}

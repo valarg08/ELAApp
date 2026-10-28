@@ -1,0 +1,92 @@
+{
+  "slug": "psat-ratios-percents",
+  "order": 1,
+  "title": "Ratios, Rates & Percents",
+  "estMinutes": 30,
+  "focusSkills": ["ratios-percents"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A $\\$60$ jacket is $25\\%$ off, then a further $10\\%$ off the sale price. Is that the same as $35\\%$ off? Why or why not?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Percent as a multiplier",
+          "body": "$p\\%$ of a number is $\\frac{p}{100}$ times it. A $p\\%$ increase multiplies by $1 + \\frac{p}{100}$ and a $p\\%$ decrease by $1 - \\frac{p}{100}$. Percent change $= \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100\\%$: always divide by the original."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: two discounts",
+          "problem": "A $\\$60$ jacket is $25\\%$ off, then a further $10\\%$ off the sale price. What is the final price, and what single discount is that?",
+          "steps": [
+            {
+              "text": "After $25\\%$ off: $60 \\times 0.75 = 45$. Then $10\\%$ off: $45 \\times 0.9$.",
+              "try": {
+                "prompt": "What is the final price, in dollars?",
+                "accepted": ["40.5", "81/2"],
+                "compute": "60*0.75*0.9"
+              }
+            },
+            {
+              "text": "The price fell by $60 - 40.5 = 19.5$ dollars out of $60$.",
+              "try": {
+                "prompt": "What single percent discount is that?",
+                "accepted": ["32.5", "65/2"],
+                "compute": "(60-40.5)/60*100"
+              }
+            },
+            {
+              "text": "So it is $32.5\\%$ off, not $35\\%$: the $10\\%$ is taken from a smaller price."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: converting units",
+          "problem": "A car uses $6$ litres of fuel per $100$ km. How many litres does it need for a $350$ km trip?",
+          "steps": [
+            {
+              "text": "Write the rate as a fraction: $\\frac{6 \\text{ litres}}{100 \\text{ km}}$."
+            },
+            {
+              "text": "Multiply by the distance so the km cancel: $350 \\text{ km} \\times \\frac{6 \\text{ litres}}{100 \\text{ km}}$.",
+              "try": {
+                "prompt": "How many litres?",
+                "accepted": ["21"],
+                "compute": "350*6/100"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Ratios and proportions",
+          "body": "A ratio $a : b$ splits a total into $a + b$ equal parts. In a proportion $\\frac{a}{b} = \\frac{c}{d}$, cross-multiply: $ad = bc$. Check that the units match on both sides."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p03.ratios-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p03.ratios-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Why is $25\\%$ off and then $10\\%$ off not the same as $35\\%$ off?"],
+      "confidenceCheck": true
+    }
+  ]
+}

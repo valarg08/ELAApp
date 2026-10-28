@@ -41,7 +41,9 @@ export default async function ClassProgressPage({
   const filter: Filter = FILTERS.find((f) => f.id === one(query.show))?.id ?? 'all';
   // Math and Mental Math: the skills × students grid (math-design.md §3.3 C5) instead of the
   // lesson heatmap; Mental Math adds each student's practice (mental-math-design.md Part 9).
-  const skillsView = isMathTrack(track) && one(query.view) === 'skills';
+  // PSAT Math has the lesson heatmap only.
+  const hasSkills = isMathTrack(track) && track !== 'PSAT';
+  const skillsView = hasSkills && one(query.view) === 'skills';
   const [klass, progress, mathSkills, mentalSkills] = await Promise.all([
     serverApi(`/teacher/classes/${classId}`, ClassSummary),
     serverApi(
@@ -112,7 +114,7 @@ export default async function ClassProgressPage({
 
         <TrackTabs current={track} hrefFor={(t) => href({ track: t })} />
 
-        {isMathTrack(track) && (
+        {hasSkills && (
           <nav aria-label={track === 'MATH' ? 'Math view' : 'Mental Math view'}>
             <ul className="flex flex-wrap gap-2">
               {[

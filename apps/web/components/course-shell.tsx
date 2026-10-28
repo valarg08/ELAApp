@@ -11,7 +11,7 @@ import type { ReactNode } from 'react';
 import { serverApi } from '@/lib/server-api';
 import { SidePanel } from './course-frame';
 import { navFocus } from './course-styles';
-import { MathFactSheets } from './math-fact-sheets';
+import { MathFactSheets, PsatReviewLink } from './math-fact-sheets';
 import { MentalCheatSheets } from './mental-cheat-sheets';
 import { ProgressBar } from './progress-bar';
 
@@ -221,6 +221,7 @@ export async function CourseShell({
           {extra}
           {track === 'MATH' && <MathFactSheets />}
           {track === 'MENTAL' && <MentalCheatSheets />}
+          {track === 'PSAT' && <PsatReviewLink />}
         </SidePanel>
       </aside>
     </div>

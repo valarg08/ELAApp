@@ -34,9 +34,16 @@ import { SafetyService } from '../safety/safety.service.js';
 import { MathContentService } from './math-content.service.js';
 import { aiDeclined, aiFailure } from '../ai/ai-error.js';
 
-/** Quill's student group for a problem: Mental Math keys start with "n" (tests are Math). */
-const audienceOf = (activityKey: string) =>
-  trackOfActivityKey(activityKey) === 'MENTAL' ? ('mental' as const) : ('amc' as const);
+/** Quill's student group for a track. */
+const audienceOfTrack = (track: string) =>
+  track === 'MENTAL'
+    ? ('mental' as const)
+    : track === 'PSAT'
+      ? ('psat' as const)
+      : ('amc' as const);
+
+/** Quill's student group for a problem: Mental Math keys start "n", PSAT "p" (tests are Math). */
+const audienceOf = (activityKey: string) => audienceOfTrack(trackOfActivityKey(activityKey));
 
 const unavailable = () =>
   new AppError(
@@ -273,7 +280,7 @@ export class MathTutorService {
           cardTitle: card.title,
           cardText: cardText(card),
           attempt: req.attempt,
-          audience: unit.track === 'MENTAL' ? 'mental' : 'amc',
+          audience: audienceOfTrack(unit.track),
         },
         {
           kind: 'tutor',

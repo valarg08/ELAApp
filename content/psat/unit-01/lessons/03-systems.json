@@ -1,0 +1,95 @@
+{
+  "slug": "psat-systems",
+  "order": 3,
+  "title": "Systems & Inequalities",
+  "estMinutes": 30,
+  "focusSkills": ["systems-inequalities"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Adult tickets cost $\\$12$ and child tickets $\\$7$. A family paid $\\$50$ for $5$ tickets. How could you find how many of each they bought?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Two ways to solve a system",
+          "body": "Substitution: solve one equation for a variable and put it into the other. Elimination: scale the equations so one variable has opposite coefficients, then add them. Either way, find the other variable and check both equations."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: elimination",
+          "problem": "Solve $3x + 2y = 16$ and $5x - 2y = 8$.",
+          "steps": [
+            {
+              "text": "The $y$ terms are $+2y$ and $-2y$: add the equations.",
+              "try": {
+                "prompt": "Adding gives $8x$ equals what?",
+                "accepted": ["24"],
+                "compute": "16+8"
+              }
+            },
+            {
+              "text": "So $x = 3$. Put it into the first equation: $9 + 2y = 16$.",
+              "try": {
+                "prompt": "What is $y$?",
+                "accepted": ["3.5", "7/2"],
+                "compute": "(16-9)/2"
+              }
+            },
+            {
+              "text": "Check the second: $15 - 7 = 8$ ✓."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the ticket problem",
+          "problem": "Adult tickets cost $\\$12$ and child tickets $\\$7$. A family paid $\\$50$ for $5$ tickets. How many adult tickets did they buy?",
+          "steps": [
+            {
+              "text": "Let $a$ be adult tickets and $c$ child tickets: $a + c = 5$ and $12a + 7c = 50$."
+            },
+            {
+              "text": "Substitute $c = 5 - a$: $12a + 35 - 7a = 50$, so $5a = 15$.",
+              "try": {
+                "prompt": "What is $a$?",
+                "accepted": ["3"],
+                "compute": "15/5"
+              }
+            },
+            {
+              "text": "So $3$ adult and $2$ child tickets: $36 + 14 = 50$ ✓."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "How many solutions? And inequalities",
+          "body": "Two lines meet once when their slopes differ, never when they are parallel, and everywhere when they are the same line. In an inequality, multiplying or dividing by a negative number flips the sign: $-3x > 12$ gives $x < -4$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p01.systems-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p01.systems-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["When would you choose substitution, and when elimination?"],
+      "confidenceCheck": true
+    }
+  ]
+}

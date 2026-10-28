@@ -1,0 +1,100 @@
+{
+  "slug": "psat-statistics",
+  "order": 2,
+  "title": "Statistics & Data",
+  "estMinutes": 30,
+  "focusSkills": ["statistics"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "Five friends earn $10$, $12$, $12$, $15$ and $200$ dollars a week. What is a \"typical\" amount? Would you use the mean or the median?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Centre and spread",
+          "body": "Mean $=$ sum $\\div$ count. The median is the middle value in order (the mean of the two middle ones when the count is even). Range $=$ largest $-$ smallest. Standard deviation measures how spread out the data is around the mean: bunched data has a smaller one."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: an outlier",
+          "problem": "Five friends earn $10$, $12$, $12$, $15$ and $200$ dollars a week. Find the mean and the median.",
+          "steps": [
+            {
+              "text": "Add them: $10 + 12 + 12 + 15 + 200 = 249$.",
+              "try": {
+                "prompt": "What is the mean?",
+                "accepted": ["49.8"],
+                "compute": "249/5"
+              }
+            },
+            {
+              "text": "In order, the median is the third value.",
+              "try": {
+                "prompt": "What is the median?",
+                "accepted": ["12"],
+                "compute": "12"
+              }
+            },
+            {
+              "text": "The $200$ pulls the mean far up, but the median barely moves: here the median is the better \"typical\" value."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a missing value",
+          "problem": "The mean of $4$ test scores is $82$. What score on a fifth test makes the mean $85$?",
+          "steps": [
+            {
+              "text": "Turn each mean into a total. The four scores total $4 \\times 82 = 328$."
+            },
+            {
+              "text": "Five scores with mean $85$ total $5 \\times 85$.",
+              "try": {
+                "prompt": "What is that total?",
+                "accepted": ["425"],
+                "compute": "5*85"
+              }
+            },
+            {
+              "text": "The fifth score is the difference.",
+              "try": {
+                "prompt": "What score is needed?",
+                "accepted": ["97"],
+                "compute": "425-328"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Samples and conclusions",
+          "body": "A random sample lets you generalise to the population it was chosen from, with a margin of error; a bigger sample gives a smaller margin of error. Only a randomised experiment shows cause and effect. In an observational study a link (correlation) does not prove that one thing causes the other."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p03.statistics-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p03.statistics-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["Describe a situation where the median tells you more than the mean."],
+      "confidenceCheck": true
+    }
+  ]
+}

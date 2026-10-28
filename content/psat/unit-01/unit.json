@@ -1,0 +1,12 @@
+{
+  "number": 1,
+  "slug": "psat-algebra",
+  "title": "Algebra",
+  "summary": "Linear equations, linear functions and their graphs, and systems of equations and inequalities: the biggest part of the PSAT math section.",
+  "bigIdeas": [
+    "Do the same thing to both sides of an equation, and check your answer by putting it back in.",
+    "In $y = mx + b$, the slope $m$ is a rate and $b$ is the starting amount.",
+    "Two lines meet once, never (parallel) or everywhere (the same line)."
+  ],
+  "published": true
+}

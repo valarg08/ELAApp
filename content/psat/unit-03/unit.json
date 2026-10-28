@@ -1,0 +1,12 @@
+{
+  "number": 3,
+  "slug": "psat-data-analysis",
+  "title": "Problem-Solving & Data Analysis",
+  "summary": "Ratios, rates, percents and units; mean, median and spread; samples and conclusions; probability and two-way tables.",
+  "bigIdeas": [
+    "A percent change is a multiplier: up $p\\%$ is $\\times (1 + \\frac{p}{100})$.",
+    "An outlier moves the mean much more than the median.",
+    "\"Given\" in a probability question picks the row or column you divide by."
+  ],
+  "published": true
+}

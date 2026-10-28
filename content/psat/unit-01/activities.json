@@ -1,0 +1,529 @@
+[
+  {
+    "key": "p01.linear-practice",
+    "type": "PROBLEMS",
+    "title": "Linear equations",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "expression-value",
+        "prompt": "If $4x - 7 = 21$, what is the value of $2x + 3$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["17"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "7",
+              "why": "That is $x$. The question asks for $2x + 3$."
+            }
+          ]
+        },
+        "hints": [
+          "Solve for $x$ first, or notice that $2x$ is half of $4x$.",
+          "$4x = 28$, so $2x = 14$."
+        ],
+        "solution": "Add $7$: $4x = 28$, so $x = 7$ and $2x + 3 = 14 + 3 = 17$.",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "(21+7)/2+3"
+      },
+      {
+        "id": "fractions",
+        "prompt": "Solve $\\frac{x}{3} + 2 = \\frac{x}{2} - 1$.",
+        "answer": {
+          "kind": "value",
+          "accepted": ["18"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "3",
+              "why": "Multiply EVERY term by $6$, including the $2$ and the $1$."
+            }
+          ]
+        },
+        "hints": [
+          "Multiply every term by $6$, the common denominator.",
+          "$2x + 12 = 3x - 6$. Now get $x$ alone."
+        ],
+        "solution": "Multiply every term by $6$: $2x + 12 = 3x - 6$. Subtract $2x$ and add $6$: $x = 18$. Check: $6 + 2 = 8$ and $9 - 1 = 8$ ✓.",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "(12+6)/(3-2)"
+      },
+      {
+        "id": "plumber",
+        "prompt": "A plumber charges a $\\$60$ call-out fee plus $\\$45$ an hour. A job cost $\\$262.50$. How many hours did the plumber work?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["4.5", "9/2"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "262.5/45",
+              "why": "Take away the $\\$60$ fee first: only the rest is paid by the hour."
+            }
+          ]
+        },
+        "hints": ["Write $60 + 45h = 262.50$.", "Subtract $60$ first, then divide by $45$."],
+        "solution": "$60 + 45h = 262.50$, so $45h = 202.50$ and $h = 4.5$ hours.",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "(262.5-60)/45"
+      },
+      {
+        "id": "no-solution",
+        "prompt": "In the equation $5x + 3 = kx - 2$, $k$ is a constant. For what value of $k$ does the equation have no solution?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["5"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "-5",
+              "why": "The $x$ terms must cancel, so the coefficients must be EQUAL."
+            }
+          ]
+        },
+        "hints": [
+          "An equation has no solution when the $x$ terms cancel and leave something false.",
+          "The $x$ terms cancel when $5x$ and $kx$ are the same."
+        ],
+        "solution": "With $k = 5$, subtracting $5x$ leaves $3 = -2$, which is false, so there is no solution. Any other $k$ gives exactly one solution.",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "5"
+      }
+    ]
+  },
+  {
+    "key": "p01.linear-set",
+    "type": "PROBLEM_SET",
+    "title": "Linear equations: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "brackets",
+        "prompt": "If $2(x + 5) = 18$, what is the value of $x$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$6.5$", "$9$", "$13$"],
+          "correct": "A",
+          "why": {
+            "B": "$2(x + 5)$ is $2x + 10$: multiply both terms in the bracket.",
+            "C": "That is $x + 5$. Subtract $5$ to get $x$.",
+            "D": "Divide by $2$ before subtracting $5$: $x + 5 = 9$."
+          }
+        },
+        "solution": "Divide by $2$: $x + 5 = 9$, so $x = 4$, choice (A). Check: $2 \\times 9 = 18$ ✓.",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "18/2-5"
+      },
+      {
+        "id": "fraction-equation",
+        "prompt": "Which value of $x$ satisfies $\\frac{3x - 1}{4} = 5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$\\frac{19}{3}$", "$7$", "$21$"],
+          "correct": "C",
+          "why": {
+            "A": "Multiply both sides by $4$ first: $3x - 1 = 20$.",
+            "B": "Multiply both sides by $4$ first: $3x - 1 = 20$, not $3x = 19$.",
+            "D": "That is $3x + 1$. Solve $3x = 21$ for $x$."
+          }
+        },
+        "solution": "Multiply by $4$: $3x - 1 = 20$, so $3x = 21$ and $x = 7$, choice (C).",
+        "skill": "linear-equations",
+        "difficulty": 1,
+        "compute": "(5*4+1)/3"
+      },
+      {
+        "id": "taxi-model",
+        "prompt": "A taxi charges $\\$3.50$ plus $\\$2.25$ per mile. Which equation gives the cost $C$, in dollars, of a ride of $m$ miles?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$C = 3.50m + 2.25$",
+            "$C = 2.25m + 3.50$",
+            "$C = 5.75m$",
+            "$C = 3.50(m + 2.25)$"
+          ],
+          "correct": "B",
+          "why": {
+            "A": "The per-mile price multiplies $m$; the fixed $\\$3.50$ is added once.",
+            "C": "The $\\$3.50$ is paid once, not for every mile.",
+            "D": "This multiplies the fixed fee by the miles."
+          }
+        },
+        "solution": "Each mile adds $\\$2.25$, so $2.25m$, plus the fixed $\\$3.50$: $C = 2.25m + 3.50$, choice (B).",
+        "skill": "linear-equations",
+        "difficulty": 1
+      },
+      {
+        "id": "infinitely-many",
+        "prompt": "For what value of $c$ does $3(2x - c) = 6x - 12$ have infinitely many solutions?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$-4$", "$2$", "$4$", "$12$"],
+          "correct": "C",
+          "why": {
+            "A": "$-3c = -12$: dividing by $-3$ gives a positive number.",
+            "D": "That is $3c$. Divide by $3$."
+          }
+        },
+        "solution": "Expand: $6x - 3c = 6x - 12$. Both sides match for every $x$ when $3c = 12$, so $c = 4$, choice (C).",
+        "skill": "linear-equations",
+        "difficulty": 2,
+        "compute": "12/3"
+      }
+    ]
+  },
+  {
+    "key": "p01.functions-practice",
+    "type": "PROBLEMS",
+    "title": "Linear functions",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "slope",
+        "prompt": "What is the slope of the line through $(-1, 4)$ and $(3, -8)$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["-3"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "3",
+              "why": "The line goes DOWN as $x$ goes up, so the slope is negative."
+            },
+            {
+              "value": "-1/3",
+              "why": "Slope is the change in $y$ divided by the change in $x$, not the other way round."
+            }
+          ]
+        },
+        "hints": [
+          "Slope $= \\frac{y_2 - y_1}{x_2 - x_1}$.",
+          "The change in $y$ is $-8 - 4 = -12$."
+        ],
+        "solution": "$m = \\frac{-8 - 4}{3 - (-1)} = \\frac{-12}{4} = -3$.",
+        "skill": "linear-functions",
+        "difficulty": 1,
+        "compute": "(-8-4)/(3-(-1))"
+      },
+      {
+        "id": "intercept",
+        "prompt": "The line $3x + 4y = 24$ crosses the $y$-axis at $(0, b)$. What is $b$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["6"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "8",
+              "why": "That is where it crosses the $x$-axis. Put $x = 0$, not $y = 0$."
+            }
+          ]
+        },
+        "hints": ["On the $y$-axis, $x = 0$.", "$4y = 24$."],
+        "solution": "Put $x = 0$: $4y = 24$, so $y = 6$ and $b = 6$.",
+        "skill": "linear-functions",
+        "difficulty": 1,
+        "compute": "24/4"
+      },
+      {
+        "id": "perpendicular",
+        "prompt": "Line $\\ell$ is perpendicular to $y = \\frac{1}{4}x - 3$ and passes through $(2, 1)$. What is the $y$-intercept of line $\\ell$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["9"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "-7",
+              "why": "A perpendicular slope is the negative reciprocal: $-4$, not $4$."
+            }
+          ]
+        },
+        "hints": [
+          "Perpendicular slopes multiply to $-1$, so line $\\ell$ has slope $-4$.",
+          "Put $(2, 1)$ into $y = -4x + b$."
+        ],
+        "solution": "Slope $-4$: $1 = -4(2) + b$, so $b = 9$ and $\\ell$ is $y = -4x + 9$.",
+        "skill": "linear-functions",
+        "difficulty": 2,
+        "compute": "1+4*2"
+      },
+      {
+        "id": "tank",
+        "prompt": "A water tank holds $500$ litres and drains at a constant rate. After $8$ minutes it holds $340$ litres. How many litres will it hold after $20$ minutes?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["100"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "160",
+              "why": "That is how much drained in $8$ minutes. Find the rate per minute first."
+            }
+          ]
+        },
+        "hints": [
+          "It lost $160$ litres in $8$ minutes: how many per minute?",
+          "It loses $20$ litres a minute: $V = 500 - 20t$."
+        ],
+        "solution": "Rate: $\\frac{160}{8} = 20$ litres a minute, so $V = 500 - 20t$. At $t = 20$: $500 - 400 = 100$ litres.",
+        "skill": "linear-functions",
+        "difficulty": 2,
+        "compute": "500-20*(500-340)/8"
+      }
+    ]
+  },
+  {
+    "key": "p01.functions-set",
+    "type": "PROBLEM_SET",
+    "title": "Linear functions: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "two-points",
+        "prompt": "Line $k$ passes through $(0, 3)$ and $(2, 11)$. Which equation defines line $k$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$y = 3x + 4$", "$y = 4x + 3$", "$y = 4x + 11$", "$y = 8x + 3$"],
+          "correct": "B",
+          "why": {
+            "A": "The slope and the intercept are swapped.",
+            "C": "The $y$-intercept is where $x = 0$: the point $(0, 3)$.",
+            "D": "Divide the change in $y$, $8$, by the change in $x$, $2$."
+          }
+        },
+        "solution": "Slope $\\frac{11 - 3}{2 - 0} = 4$ and intercept $3$: $y = 4x + 3$, choice (B).",
+        "skill": "linear-functions",
+        "difficulty": 1
+      },
+      {
+        "id": "plant",
+        "prompt": "A plant is $6$ cm tall and grows $1.5$ cm a week. After how many weeks will it be $24$ cm tall?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$12$", "$16$", "$18$"],
+          "correct": "B",
+          "why": {
+            "C": "Take away the starting $6$ cm first.",
+            "D": "That is how much it must grow. Divide by $1.5$ cm a week."
+          }
+        },
+        "solution": "$6 + 1.5w = 24$, so $1.5w = 18$ and $w = 12$, choice (B).",
+        "skill": "linear-functions",
+        "difficulty": 1,
+        "compute": "(24-6)/1.5"
+      },
+      {
+        "id": "parallel",
+        "prompt": "Which line is parallel to $2x - 5y = 10$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$y = \\frac{2}{5}x + 1$",
+            "$y = -\\frac{2}{5}x + 1$",
+            "$y = \\frac{5}{2}x + 1$",
+            "$y = -\\frac{5}{2}x + 1$"
+          ],
+          "correct": "A",
+          "why": {
+            "B": "Solving $-5y = -2x + 10$ gives $y = \\frac{2}{5}x - 2$: the slope is positive.",
+            "D": "That slope is perpendicular, not parallel."
+          }
+        },
+        "solution": "Solve for $y$: $y = \\frac{2}{5}x - 2$, slope $\\frac{2}{5}$. A parallel line has the same slope, choice (A).",
+        "skill": "linear-functions",
+        "difficulty": 2
+      },
+      {
+        "id": "flyers",
+        "prompt": "The cost $C$, in dollars, of printing $n$ flyers is $C = 0.08n + 35$. By how many dollars does the cost go up when an order grows from $500$ to $800$ flyers?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$24$", "$35$", "$59$", "$99$"],
+          "correct": "A",
+          "why": {
+            "C": "The $\\$35$ is paid once, whatever the size: it cancels.",
+            "D": "That is the cost of $800$ flyers, not the increase."
+          }
+        },
+        "solution": "Each extra flyer adds $\\$0.08$, so $300$ more add $0.08 \\times 300 = 24$ dollars, choice (A).",
+        "skill": "linear-functions",
+        "difficulty": 2,
+        "compute": "0.08*(800-500)"
+      }
+    ]
+  },
+  {
+    "key": "p01.systems-practice",
+    "type": "PROBLEMS",
+    "title": "Systems & inequalities",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "substitution",
+        "prompt": "If $y = 2x - 1$ and $3x + y = 19$, what is $x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["4"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "7",
+              "why": "That is $y$. The question asks for $x$."
+            }
+          ]
+        },
+        "hints": ["Put $2x - 1$ in place of $y$ in the second equation.", "$3x + 2x - 1 = 19$."],
+        "solution": "Substitute: $5x - 1 = 19$, so $x = 4$ (and $y = 7$).",
+        "skill": "systems-inequalities",
+        "difficulty": 1,
+        "compute": "20/5"
+      },
+      {
+        "id": "sum-trick",
+        "prompt": "If $4a + 3b = 25$ and $2a + b = 11$, what is $a + b$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["7"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "4",
+              "why": "That is $a$. Find $b$ too, or subtract the equations to get $2a + 2b$ directly."
+            }
+          ]
+        },
+        "hints": ["Subtract the second equation from the first.", "$2a + 2b = 14$."],
+        "solution": "Subtract: $2a + 2b = 14$, so $a + b = 7$. (Here $a = 4$ and $b = 3$.)",
+        "skill": "systems-inequalities",
+        "difficulty": 2,
+        "compute": "(25-11)/2"
+      },
+      {
+        "id": "inequality",
+        "prompt": "What is the greatest integer $x$ with $5 - 2x > -9$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["6"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "7",
+              "why": "$x$ must be LESS than $7$, so $7$ itself does not work."
+            }
+          ]
+        },
+        "hints": ["Subtract $5$: $-2x > -14$.", "Dividing by $-2$ flips the sign: $x < 7$."],
+        "solution": "$-2x > -14$, so $x < 7$ (the sign flips). The greatest integer is $6$.",
+        "skill": "systems-inequalities",
+        "difficulty": 2,
+        "compute": "7-1"
+      },
+      {
+        "id": "no-solution",
+        "prompt": "The system $6x + ky = 5$ and $3x + 2y = 9$ has no solution. What is $k$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["4"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "2",
+              "why": "The $x$ coefficient doubled from $3$ to $6$, so the $y$ coefficient doubles too."
+            }
+          ]
+        },
+        "hints": [
+          "No solution means parallel lines: the same slope.",
+          "Doubling $3x + 2y$ gives $6x + 4y$."
+        ],
+        "solution": "Parallel lines need matching coefficients: $6x + 4y$ is double $3x + 2y$, so $k = 4$ (and $5 \\ne 18$, so they never meet).",
+        "skill": "systems-inequalities",
+        "difficulty": 2,
+        "compute": "2*2"
+      }
+    ]
+  },
+  {
+    "key": "p01.systems-set",
+    "type": "PROBLEM_SET",
+    "title": "Systems & inequalities: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "solve-pair",
+        "prompt": "What is the solution $(x, y)$ of $x + y = 10$ and $x - y = 4$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$(3, 7)$", "$(6, 4)$", "$(7, 3)$", "$(14, -4)$"],
+          "correct": "C",
+          "why": {
+            "A": "The values are swapped: here $x - y = -4$.",
+            "B": "Check: $6 - 4 = 2$, not $4$."
+          }
+        },
+        "solution": "Add: $2x = 14$, so $x = 7$ and $y = 3$, choice (C).",
+        "skill": "systems-inequalities",
+        "difficulty": 1
+      },
+      {
+        "id": "shirts",
+        "prompt": "A store sold $40$ shirts, some at $\\$15$ and the rest at $\\$25$, for $\\$760$ in all. How many $\\$25$ shirts were sold?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$20$", "$24$", "$30$"],
+          "correct": "A",
+          "why": {
+            "C": "That is the number of $\\$15$ shirts.",
+            "D": "Not every shirt cost $\\$25$: you can’t just divide $760$ by $25$."
+          }
+        },
+        "solution": "$s + t = 40$ and $15s + 25t = 760$. Then $15(40 - t) + 25t = 760$, so $600 + 10t = 760$ and $t = 16$, choice (A).",
+        "skill": "systems-inequalities",
+        "difficulty": 2,
+        "compute": "(760-15*40)/(25-15)"
+      },
+      {
+        "id": "inequality-pair",
+        "prompt": "Which value of $x$ satisfies both $3x - 7 \\le 2x + 1$ and $x > 5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$8$", "$9$"],
+          "correct": "C",
+          "why": {
+            "A": "$4$ is not greater than $5$.",
+            "B": "$x > 5$ does not include $5$ itself.",
+            "D": "The first inequality gives $x \\le 8$."
+          }
+        },
+        "solution": "The first gives $x \\le 8$, so $5 < x \\le 8$. Only $8$ works, choice (C).",
+        "skill": "systems-inequalities",
+        "difficulty": 1,
+        "compute": "8"
+      },
+      {
+        "id": "infinitely-many",
+        "prompt": "For what value of $k$ do $2x - 3y = 7$ and $kx - 9y = 21$ have infinitely many solutions?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$3$", "$6$", "$9$"],
+          "correct": "C",
+          "why": {
+            "B": "That is the multiplier from the first equation to the second. Multiply $2$ by it."
+          }
+        },
+        "solution": "Multiply the first equation by $3$: $6x - 9y = 21$. It is the same line when $k = 6$, choice (C).",
+        "skill": "systems-inequalities",
+        "difficulty": 2,
+        "compute": "2*3"
+      }
+    ]
+  }
+]

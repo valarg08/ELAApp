@@ -12,12 +12,13 @@ const TRACKS: { track: Track; emoji: string }[] = [
   { track: 'ESSAY', emoji: '📝' },
   { track: 'MATH', emoji: '📐' },
   { track: 'MENTAL', emoji: '🧠' },
+  { track: 'PSAT', emoji: '🎯' },
 ];
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
 
 /**
- * A student's start page (after signing in and the logo, DESIGN.md §6.2): the three tracks with
+ * A student's start page (after signing in and the logo, DESIGN.md §6.2): the tracks with
  * progress in each and a link to the unit they're working on. `?track=` (the track tabs) goes
  * straight to that track's current unit.
  */
@@ -38,7 +39,10 @@ export default async function Start({ searchParams }: PageProps<'/start'>) {
   return (
     <div className="flex w-full flex-1 flex-col gap-8 px-4 py-6 md:px-6">
       <h1 className="text-4xl font-bold">Welcome, {me.displayName}! 👋</h1>
-      <ul aria-label="Learning tracks" className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <ul
+        aria-label="Learning tracks"
+        className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5"
+      >
         {TRACKS.map(({ track, emoji }, i) => {
           const units = lists[i] ?? [];
           const done = units.reduce((n, u) => n + u.completedLessons, 0);

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "linear-equations",
+    "label": "Linear equations",
+    "strand": "algebra",
+    "units": [1]
+  },
+  {
+    "id": "linear-functions",
+    "label": "Linear functions & graphs",
+    "strand": "algebra",
+    "units": [1]
+  },
+  {
+    "id": "systems-inequalities",
+    "label": "Systems & inequalities",
+    "strand": "algebra",
+    "units": [1]
+  },
+  {
+    "id": "quadratics",
+    "label": "Quadratics",
+    "strand": "algebra",
+    "units": [2]
+  },
+  {
+    "id": "exponential-models",
+    "label": "Exponents & exponential models",
+    "strand": "algebra",
+    "units": [2]
+  },
+  {
+    "id": "functions-equations",
+    "label": "Functions & nonlinear equations",
+    "strand": "algebra",
+    "units": [2]
+  },
+  {
+    "id": "ratios-percents",
+    "label": "Ratios, rates & percents",
+    "strand": "strategy",
+    "units": [3]
+  },
+  {
+    "id": "statistics",
+    "label": "Statistics & data",
+    "strand": "counting",
+    "units": [3]
+  },
+  {
+    "id": "probability-tables",
+    "label": "Probability & two-way tables",
+    "strand": "counting",
+    "units": [3]
+  },
+  {
+    "id": "area-volume",
+    "label": "Angles, area & volume",
+    "strand": "geometry",
+    "units": [4]
+  },
+  {
+    "id": "right-triangles-trig",
+    "label": "Right triangles & trigonometry",
+    "strand": "geometry",
+    "units": [4]
+  },
+  {
+    "id": "circles",
+    "label": "Circles",
+    "strand": "geometry",
+    "units": [4]
+  }
+]

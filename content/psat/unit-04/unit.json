@@ -1,0 +1,12 @@
+{
+  "number": 4,
+  "slug": "psat-geometry-trig",
+  "title": "Geometry & Trigonometry",
+  "summary": "Angles, area and volume; right triangles and trigonometry; circles, arcs, radians and circle equations.",
+  "bigIdeas": [
+    "Scaling lengths by $k$ scales area by $k^2$ and volume by $k^3$.",
+    "SOH CAH TOA: sine, cosine and tangent are ratios of sides in a right triangle.",
+    "An arc or sector with central angle $\\theta^\\circ$ is $\\frac{\\theta}{360}$ of the whole circle."
+  ],
+  "published": true
+}

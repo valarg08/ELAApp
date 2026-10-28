@@ -1,0 +1,495 @@
+[
+  {
+    "key": "p03.ratios-practice",
+    "type": "PROBLEMS",
+    "title": "Ratios & percents",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "percent-of",
+        "prompt": "What is $35\\%$ of $240$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["84"],
+          "form": "any",
+          "mistakes": []
+        },
+        "hints": ["$35\\% = 0.35$.", "$10\\%$ of $240$ is $24$."],
+        "solution": "$0.35 \\times 240 = 84$.",
+        "skill": "ratios-percents",
+        "difficulty": 1,
+        "compute": "0.35*240"
+      },
+      {
+        "id": "percent-change",
+        "prompt": "A price rose from $\\$80$ to $\\$92$. By what percent did it rise?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["15"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "12",
+              "why": "That is the rise in dollars. Divide it by the OLD price and multiply by $100$."
+            }
+          ]
+        },
+        "hints": ["The rise is $\\$12$.", "Divide by the original $\\$80$."],
+        "solution": "$\\frac{92 - 80}{80} \\times 100 = \\frac{12}{80} \\times 100 = 15\\%$.",
+        "skill": "ratios-percents",
+        "difficulty": 1,
+        "compute": "(92-80)/80*100"
+      },
+      {
+        "id": "ratio-share",
+        "prompt": "Red and blue marbles are in the ratio $3 : 5$. There are $64$ marbles. How many are blue?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["40"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "24",
+              "why": "That is the red marbles: $3$ of the $8$ parts."
+            }
+          ]
+        },
+        "hints": ["$3 : 5$ is $8$ equal parts.", "One part is $64 \\div 8 = 8$."],
+        "solution": "One part is $\\frac{64}{8} = 8$ marbles; blue is $5$ parts: $40$.",
+        "skill": "ratios-percents",
+        "difficulty": 1,
+        "compute": "64*5/8"
+      },
+      {
+        "id": "reverse-percent",
+        "prompt": "After a $20\\%$ discount, a game costs $\\$36$. What was the original price, in dollars?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["45"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "43.2",
+              "why": "$\\$36$ is $80\\%$ of the original: divide by $0.8$ instead of adding $20\\%$."
+            }
+          ]
+        },
+        "hints": ["After $20\\%$ off, $80\\%$ of the price is left.", "$0.8p = 36$."],
+        "solution": "$0.8p = 36$, so $p = \\frac{36}{0.8} = 45$ dollars. Check: $20\\%$ of $45$ is $9$, and $45 - 9 = 36$ ✓.",
+        "skill": "ratios-percents",
+        "difficulty": 2,
+        "compute": "36/0.8"
+      }
+    ]
+  },
+  {
+    "key": "p03.ratios-set",
+    "type": "PROBLEM_SET",
+    "title": "Ratios & percents: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "recipe",
+        "prompt": "A recipe uses $2$ cups of flour for $12$ cookies. How many cups are needed for $30$ cookies?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$4$", "$5$", "$6$", "$20$"],
+          "correct": "B",
+          "why": {
+            "C": "Scale by $\\frac{30}{12} = 2.5$, not $3$.",
+            "D": "Set up the proportion $\\frac{2}{12} = \\frac{c}{30}$."
+          }
+        },
+        "solution": "$\\frac{2}{12} = \\frac{c}{30}$, so $c = \\frac{60}{12} = 5$ cups, choice (B).",
+        "skill": "ratios-percents",
+        "difficulty": 1,
+        "compute": "2*30/12"
+      },
+      {
+        "id": "up-down",
+        "prompt": "A shirt costs $\\$40$. Its price goes up $10\\%$, then the new price goes down $10\\%$. What is the final price, in dollars?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$36$", "$39.60$", "$40$", "$44$"],
+          "correct": "B",
+          "why": {
+            "C": "The $10\\%$ decrease is taken from the higher price, $\\$44$.",
+            "D": "That is the price after the increase only."
+          }
+        },
+        "solution": "$40 \\times 1.1 = 44$, then $44 \\times 0.9 = 39.60$, choice (B).",
+        "skill": "ratios-percents",
+        "difficulty": 2,
+        "compute": "40*1.1*0.9"
+      },
+      {
+        "id": "speed",
+        "prompt": "A runner covers $1500$ metres in $5$ minutes. What is the speed in kilometres per hour?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$12$", "$18$", "$300$"],
+          "correct": "C",
+          "why": {
+            "D": "That is metres per minute. Change to km per hour.",
+            "A": "$1.5$ km in $5$ minutes is $12$ lots of $5$ minutes in an hour."
+          }
+        },
+        "solution": "$1500$ m $= 1.5$ km in $\\frac{5}{60}$ hour: $1.5 \\times 12 = 18$ km/h, choice (C).",
+        "skill": "ratios-percents",
+        "difficulty": 2,
+        "compute": "1.5*60/5"
+      },
+      {
+        "id": "walkers",
+        "prompt": "In a class, $40\\%$ of the students walk to school. If $18$ students walk, how many students are in the class?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7.2$", "$30$", "$45$", "$58$"],
+          "correct": "C",
+          "why": {
+            "A": "That is $40\\%$ of $18$. Here $18$ is the $40\\%$."
+          }
+        },
+        "solution": "$0.4n = 18$, so $n = 45$, choice (C).",
+        "skill": "ratios-percents",
+        "difficulty": 1,
+        "compute": "18/0.4"
+      }
+    ]
+  },
+  {
+    "key": "p03.statistics-practice",
+    "type": "PROBLEMS",
+    "title": "Statistics",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "mean",
+        "prompt": "What is the mean of $7$, $11$, $4$, $15$ and $8$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["9"],
+          "form": "any",
+          "mistakes": []
+        },
+        "hints": ["Add the five numbers.", "The sum is $45$."],
+        "solution": "$\\frac{7 + 11 + 4 + 15 + 8}{5} = \\frac{45}{5} = 9$.",
+        "skill": "statistics",
+        "difficulty": 1,
+        "compute": "(7+11+4+15+8)/5"
+      },
+      {
+        "id": "median",
+        "prompt": "What is the median of $3$, $9$, $14$, $6$, $11$ and $20$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["10"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "14",
+              "why": "Put the values in order first."
+            }
+          ]
+        },
+        "hints": [
+          "In order: $3, 6, 9, 11, 14, 20$.",
+          "With six values, take the mean of the middle two."
+        ],
+        "solution": "In order: $3, 6, 9, 11, 14, 20$. The middle two are $9$ and $11$, so the median is $10$.",
+        "skill": "statistics",
+        "difficulty": 1,
+        "compute": "(9+11)/2"
+      },
+      {
+        "id": "missing-value",
+        "prompt": "The mean of six numbers is $15$. Five of them are $10$, $12$, $18$, $20$ and $14$. What is the sixth?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["16"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "15",
+              "why": "Turn the mean into a total first: $6 \\times 15 = 90$."
+            }
+          ]
+        },
+        "hints": [
+          "The six numbers add up to $6 \\times 15 = 90$.",
+          "The five you know add up to $74$."
+        ],
+        "solution": "Total $= 90$; the five add to $74$; the sixth is $90 - 74 = 16$.",
+        "skill": "statistics",
+        "difficulty": 2,
+        "compute": "6*15-(10+12+18+20+14)"
+      },
+      {
+        "id": "range",
+        "prompt": "The data set $5, 8, 9, 12, 16$ gets a new value, $30$. By how much does the range increase?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["14"],
+          "form": "any",
+          "mistakes": []
+        },
+        "hints": ["The old range is $16 - 5$.", "The new range is $30 - 5$."],
+        "solution": "Old range $16 - 5 = 11$; new range $30 - 5 = 25$. It increases by $14$.",
+        "skill": "statistics",
+        "difficulty": 1,
+        "compute": "(30-5)-(16-5)"
+      }
+    ]
+  },
+  {
+    "key": "p03.statistics-set",
+    "type": "PROBLEM_SET",
+    "title": "Statistics: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "median-change",
+        "prompt": "Which change to the data set $2, 4, 6, 8, 100$ would change its median?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "Changing $100$ to $10$",
+            "Changing $2$ to $0$",
+            "Adding the value $50$",
+            "Changing $8$ to $9$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "The middle value is still $6$.",
+            "B": "The middle value is still $6$.",
+            "D": "The middle value is still $6$."
+          }
+        },
+        "solution": "The median is $6$. Adding $50$ makes six values, $2, 4, 6, 8, 50, 100$, with median $\\frac{6 + 8}{2} = 7$, choice (C).",
+        "skill": "statistics",
+        "difficulty": 2
+      },
+      {
+        "id": "removed",
+        "prompt": "The mean of $5$ numbers is $20$. When one number is removed, the mean of the other four is $18$. What number was removed?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$2$", "$19$", "$28$", "$38$"],
+          "correct": "C",
+          "why": {
+            "A": "Compare the totals, not the means: $100 - 72$."
+          }
+        },
+        "solution": "Totals: $5 \\times 20 = 100$ and $4 \\times 18 = 72$. The removed number is $28$, choice (C).",
+        "skill": "statistics",
+        "difficulty": 2,
+        "compute": "5*20-4*18"
+      },
+      {
+        "id": "spread",
+        "prompt": "Data set A is $10, 20, 30, 40, 50$ and data set B is $28, 29, 30, 31, 32$. Which statement is true?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "They have the same mean, and A has the larger standard deviation.",
+            "They have the same mean, and B has the larger standard deviation.",
+            "A has the larger mean.",
+            "B has the larger mean."
+          ],
+          "correct": "A",
+          "why": {
+            "B": "B’s values are bunched near $30$, so its spread is smaller.",
+            "C": "Both means are $30$.",
+            "D": "Both means are $30$."
+          }
+        },
+        "solution": "Both have mean $30$. A’s values are much farther from $30$, so A has the larger standard deviation, choice (A).",
+        "skill": "statistics",
+        "difficulty": 1
+      },
+      {
+        "id": "conclusion",
+        "prompt": "Researchers chose $200$ adults at random in one city and found that those who walk every day tend to have lower blood pressure. Which conclusion is best supported?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "Walking every day lowers blood pressure for all adults.",
+            "Walking every day lowers blood pressure for adults in that city.",
+            "In that city, adults who walk every day tend to have lower blood pressure.",
+            "In every city, adults who walk every day have lower blood pressure."
+          ],
+          "correct": "C",
+          "why": {
+            "A": "This was not an experiment, so it can’t show cause, and the sample is from one city only.",
+            "B": "This was not an experiment: it shows a link, not that walking causes it.",
+            "D": "The sample came from one city only."
+          }
+        },
+        "solution": "A random sample lets you generalise to that city, but an observational study shows a link, not cause and effect: choice (C).",
+        "skill": "statistics",
+        "difficulty": 2
+      }
+    ]
+  },
+  {
+    "key": "p03.probability-practice",
+    "type": "PROBLEMS",
+    "title": "Probability",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "basic",
+        "prompt": "A bag has $4$ red, $6$ blue and $10$ green counters. One is picked at random. What is the probability it is blue?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["3/10", "0.3"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "6/14",
+              "why": "Divide by ALL the counters, $20$."
+            }
+          ]
+        },
+        "hints": ["There are $20$ counters in all."],
+        "solution": "$P(\\text{blue}) = \\frac{6}{20} = \\frac{3}{10}$.",
+        "skill": "probability-tables",
+        "difficulty": 1,
+        "compute": "6/20"
+      },
+      {
+        "id": "complement",
+        "prompt": "The probability of rain tomorrow is $0.35$. What is the probability it does not rain?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["0.65", "13/20"],
+          "form": "any",
+          "mistakes": []
+        },
+        "hints": ["$P(\\text{not } A) = 1 - P(A)$."],
+        "solution": "$1 - 0.35 = 0.65$.",
+        "skill": "probability-tables",
+        "difficulty": 1,
+        "compute": "1-0.35"
+      },
+      {
+        "id": "conditional",
+        "prompt": "Of $120$ people surveyed, $45$ prefer tea, and $27$ of the tea drinkers are under $30$. A tea drinker is picked at random. What is the probability they are under $30$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["3/5", "0.6"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "27/120",
+              "why": "\"A tea drinker is picked\": divide by the $45$ tea drinkers, not everyone."
+            }
+          ]
+        },
+        "hints": ["Only the $45$ tea drinkers can be picked."],
+        "solution": "$\\frac{27}{45} = \\frac{3}{5}$.",
+        "skill": "probability-tables",
+        "difficulty": 2,
+        "compute": "27/45"
+      },
+      {
+        "id": "independent",
+        "prompt": "A fair coin is flipped and a fair six-sided die is rolled. What is the probability of heads and a number greater than $4$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["1/6"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "5/6",
+              "why": "For two independent events, MULTIPLY the probabilities."
+            }
+          ]
+        },
+        "hints": [
+          "$P(\\text{heads}) = \\frac{1}{2}$ and $P(5 \\text{ or } 6) = \\frac{2}{6}$.",
+          "Multiply them."
+        ],
+        "solution": "$\\frac{1}{2} \\times \\frac{2}{6} = \\frac{1}{6}$.",
+        "skill": "probability-tables",
+        "difficulty": 2,
+        "compute": "1/2*2/6"
+      }
+    ]
+  },
+  {
+    "key": "p03.probability-set",
+    "type": "PROBLEM_SET",
+    "title": "Probability: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "spinner",
+        "prompt": "A spinner has $8$ equal sections numbered $1$ to $8$. What is the probability of spinning a number greater than $5$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\frac{1}{8}$", "$\\frac{3}{8}$", "$\\frac{1}{2}$", "$\\frac{5}{8}$"],
+          "correct": "B",
+          "why": {
+            "D": "That is the probability of $5$ or less.",
+            "C": "Greater than $5$ means $6$, $7$ or $8$: three sections."
+          }
+        },
+        "solution": "$6$, $7$ and $8$: $3$ of $8$ sections, so $\\frac{3}{8}$, choice (B).",
+        "skill": "probability-tables",
+        "difficulty": 1,
+        "compute": "3/8"
+      },
+      {
+        "id": "languages",
+        "prompt": "In a school, $60$ students take Spanish and $40$ take French; no one takes both. $15$ of the Spanish students and $10$ of the French students are in Grade 10. A Grade 10 student is picked at random. What is the probability they take French?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\frac{1}{10}$", "$\\frac{1}{4}$", "$\\frac{2}{5}$", "$\\frac{2}{3}$"],
+          "correct": "C",
+          "why": {
+            "B": "That is the fraction of French students in Grade 10. Here you pick from the Grade 10 students.",
+            "D": "Compare the French students with ALL $25$ Grade 10 students, not with the Spanish ones."
+          }
+        },
+        "solution": "There are $15 + 10 = 25$ Grade 10 students and $10$ take French: $\\frac{10}{25} = \\frac{2}{5}$, choice (C).",
+        "skill": "probability-tables",
+        "difficulty": 2,
+        "compute": "10/25"
+      },
+      {
+        "id": "faulty",
+        "prompt": "A quality check finds that $2\\%$ of light bulbs are faulty. About how many faulty bulbs would you expect in a batch of $1500$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$3$", "$20$", "$30$", "$300$"],
+          "correct": "C",
+          "why": {
+            "D": "$2\\%$ is $0.02$, not $0.2$."
+          }
+        },
+        "solution": "$0.02 \\times 1500 = 30$, choice (C).",
+        "skill": "probability-tables",
+        "difficulty": 1,
+        "compute": "0.02*1500"
+      },
+      {
+        "id": "two-sixes",
+        "prompt": "Two fair six-sided dice are rolled. What is the probability that both show a $6$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\frac{1}{36}$", "$\\frac{1}{12}$", "$\\frac{1}{6}$", "$\\frac{1}{3}$"],
+          "correct": "A",
+          "why": {
+            "D": "For independent events, multiply the probabilities: don’t add them.",
+            "C": "That is the chance for one die."
+          }
+        },
+        "solution": "$\\frac{1}{6} \\times \\frac{1}{6} = \\frac{1}{36}$, choice (A).",
+        "skill": "probability-tables",
+        "difficulty": 1,
+        "compute": "1/36"
+      }
+    ]
+  }
+]

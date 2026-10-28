@@ -1,0 +1,496 @@
+[
+  {
+    "key": "p04.area-practice",
+    "type": "PROBLEMS",
+    "title": "Area & volume",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "straight-line",
+        "prompt": "Two angles on a straight line measure $3x$ and $2x + 30$ degrees. What is $x$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["30"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "66",
+              "why": "Angles on a straight line add up to $180^\\circ$, not $360^\\circ$."
+            }
+          ]
+        },
+        "hints": ["$3x + 2x + 30 = 180$."],
+        "solution": "$5x + 30 = 180$, so $5x = 150$ and $x = 30$.",
+        "skill": "area-volume",
+        "difficulty": 1,
+        "compute": "150/5"
+      },
+      {
+        "id": "triangle-area",
+        "prompt": "A triangle has base $14$ and height $9$. What is its area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["63"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "126",
+              "why": "A triangle is half of a rectangle: $\\frac{1}{2}bh$."
+            }
+          ]
+        },
+        "hints": ["Area $= \\frac{1}{2}bh$."],
+        "solution": "$\\frac{1}{2} \\times 14 \\times 9 = 63$.",
+        "skill": "area-volume",
+        "difficulty": 1,
+        "compute": "14*9/2"
+      },
+      {
+        "id": "surface-area",
+        "prompt": "A box measures $5$ by $4$ by $3$. What is its surface area?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["94"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "60",
+              "why": "That is the volume. The surface area adds up the six faces."
+            }
+          ]
+        },
+        "hints": [
+          "There are three pairs of faces: $5 \\times 4$, $5 \\times 3$ and $4 \\times 3$."
+        ],
+        "solution": "$2(20 + 15 + 12) = 2 \\times 47 = 94$.",
+        "skill": "area-volume",
+        "difficulty": 2,
+        "compute": "2*(5*4+5*3+4*3)"
+      },
+      {
+        "id": "scale-volume",
+        "prompt": "A cube has volume $27$. Each edge is doubled. What is the new volume?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["216"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "54",
+              "why": "Volume uses three lengths: doubling each one multiplies the volume by $2^3 = 8$."
+            }
+          ]
+        },
+        "hints": ["Each edge was $3$; now it is $6$."],
+        "solution": "The edge goes from $3$ to $6$, so the volume is $6^3 = 216$ (that is $27 \\times 8$).",
+        "skill": "area-volume",
+        "difficulty": 2,
+        "compute": "27*2^3"
+      }
+    ]
+  },
+  {
+    "key": "p04.area-set",
+    "type": "PROBLEM_SET",
+    "title": "Area & volume: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "third-angle",
+        "prompt": "Two angles of a triangle measure $48^\\circ$ and $67^\\circ$. What is the third angle, in degrees?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$55$", "$65$", "$115$", "$245$"],
+          "correct": "B",
+          "why": {
+            "C": "That is the sum of the two angles. Subtract it from $180$.",
+            "D": "A triangle’s angles add up to $180^\\circ$, not $360^\\circ$."
+          }
+        },
+        "solution": "$180 - 48 - 67 = 65$, choice (B).",
+        "skill": "area-volume",
+        "difficulty": 1,
+        "compute": "180-48-67"
+      },
+      {
+        "id": "circumference",
+        "prompt": "A circle has area $49\\pi$. What is its circumference?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$7\\pi$", "$14\\pi$", "$49\\pi$", "$98\\pi$"],
+          "correct": "B",
+          "why": {
+            "A": "The radius is $7$; the circumference is $2\\pi r$.",
+            "D": "Find the radius first: $r^2 = 49$."
+          }
+        },
+        "solution": "$\\pi r^2 = 49\\pi$, so $r = 7$ and the circumference is $2\\pi \\times 7 = 14\\pi$, choice (B).",
+        "skill": "area-volume",
+        "difficulty": 1,
+        "compute": "14*pi"
+      },
+      {
+        "id": "cone",
+        "prompt": "A cone has radius $3$ and height $8$. What is its volume?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$8\\pi$", "$24\\pi$", "$72\\pi$", "$96\\pi$"],
+          "correct": "B",
+          "why": {
+            "C": "That is the cylinder. A cone is $\\frac{1}{3}$ of it."
+          }
+        },
+        "solution": "$\\frac{1}{3}\\pi \\times 3^2 \\times 8 = 24\\pi$, choice (B).",
+        "skill": "area-volume",
+        "difficulty": 2,
+        "compute": "pi*3^2*8/3"
+      },
+      {
+        "id": "pool",
+        "prompt": "A rectangular pool is $10$ m long, $4$ m wide and $2$ m deep. How many cubic metres of water fill it?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$16$", "$40$", "$80$", "$160$"],
+          "correct": "C",
+          "why": {
+            "A": "Multiply the three lengths; don’t add them.",
+            "B": "That is the area of the bottom. Multiply by the depth."
+          }
+        },
+        "solution": "$10 \\times 4 \\times 2 = 80$ cubic metres, choice (C).",
+        "skill": "area-volume",
+        "difficulty": 1,
+        "compute": "10*4*2"
+      }
+    ]
+  },
+  {
+    "key": "p04.trig-practice",
+    "type": "PROBLEMS",
+    "title": "Right triangles & trigonometry",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "hypotenuse",
+        "prompt": "A right triangle has legs $9$ and $12$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["15"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "21",
+              "why": "Square, add, then take the square root: $\\sqrt{81 + 144}$."
+            }
+          ]
+        },
+        "hints": ["$9^2 + 12^2 = c^2$.", "$81 + 144 = 225$."],
+        "solution": "$c = \\sqrt{81 + 144} = \\sqrt{225} = 15$ (a $3, 4, 5$ triangle times $3$).",
+        "skill": "right-triangles-trig",
+        "difficulty": 1,
+        "compute": "sqrt(9^2+12^2)"
+      },
+      {
+        "id": "leg",
+        "prompt": "A right triangle has hypotenuse $26$ and one leg $10$. How long is the other leg?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["24"],
+          "form": "any",
+          "mistakes": []
+        },
+        "hints": ["$10^2 + b^2 = 26^2$.", "$b^2 = 676 - 100$."],
+        "solution": "$b = \\sqrt{676 - 100} = \\sqrt{576} = 24$ (a $5, 12, 13$ triangle doubled).",
+        "skill": "right-triangles-trig",
+        "difficulty": 1,
+        "compute": "sqrt(26^2-10^2)"
+      },
+      {
+        "id": "sine",
+        "prompt": "In right triangle $PQR$ the right angle is at $R$, $PR = 8$ and $PQ = 17$. What is $\\sin Q$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["8/17"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "15/17",
+              "why": "That is $\\cos Q$. Sine uses the side OPPOSITE $Q$, which is $PR$."
+            }
+          ]
+        },
+        "hints": ["$PQ$ is the hypotenuse.", "The side opposite $Q$ is $PR$."],
+        "solution": "$\\sin Q = \\frac{\\text{opposite}}{\\text{hypotenuse}} = \\frac{PR}{PQ} = \\frac{8}{17}$.",
+        "skill": "right-triangles-trig",
+        "difficulty": 2,
+        "compute": "8/17"
+      },
+      {
+        "id": "special",
+        "prompt": "In a $30^\\circ$-$60^\\circ$-$90^\\circ$ triangle the shortest side is $7$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["14"],
+          "form": "any",
+          "mistakes": []
+        },
+        "hints": ["The sides are $x$, $x\\sqrt{3}$ and $2x$."],
+        "solution": "The hypotenuse is twice the shortest side: $14$.",
+        "skill": "right-triangles-trig",
+        "difficulty": 1,
+        "compute": "2*7"
+      }
+    ]
+  },
+  {
+    "key": "p04.trig-set",
+    "type": "PROBLEM_SET",
+    "title": "Right triangles & trigonometry: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "legs",
+        "prompt": "A right triangle has legs $8$ and $15$. How long is the hypotenuse?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$17$", "$23$", "$\\sqrt{161}$", "$289$"],
+          "correct": "A",
+          "why": {
+            "B": "Square the legs before adding.",
+            "C": "Add the squares; don’t subtract them.",
+            "D": "That is $c^2$. Take the square root."
+          }
+        },
+        "solution": "$\\sqrt{64 + 225} = \\sqrt{289} = 17$, choice (A).",
+        "skill": "right-triangles-trig",
+        "difficulty": 1,
+        "compute": "sqrt(8^2+15^2)"
+      },
+      {
+        "id": "tan-to-sin",
+        "prompt": "In right triangle $XYZ$ with the right angle at $Z$, $\\tan X = \\frac{3}{4}$. What is $\\sin X$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$\\frac{3}{5}$", "$\\frac{4}{5}$", "$\\frac{3}{4}$", "$\\frac{4}{3}$"],
+          "correct": "A",
+          "why": {
+            "B": "That is $\\cos X$.",
+            "C": "That is $\\tan X$."
+          }
+        },
+        "solution": "Opposite $3$ and adjacent $4$ give hypotenuse $5$, so $\\sin X = \\frac{3}{5}$, choice (A).",
+        "skill": "right-triangles-trig",
+        "difficulty": 2,
+        "compute": "3/5"
+      },
+      {
+        "id": "cofunction",
+        "prompt": "If $\\sin x^\\circ = 0.6$, what is $\\cos(90 - x)^\\circ$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$0.4$", "$0.6$", "$0.8$", "$1.6$"],
+          "correct": "B",
+          "why": {
+            "C": "That would be $\\cos x^\\circ$. Here the angle is $90 - x$.",
+            "A": "Sine and cosine don’t add up to $1$."
+          }
+        },
+        "solution": "The sine of an angle equals the cosine of its complement, so $\\cos(90 - x)^\\circ = 0.6$, choice (B).",
+        "skill": "right-triangles-trig",
+        "difficulty": 1,
+        "compute": "0.6"
+      },
+      {
+        "id": "diagonal",
+        "prompt": "A square has a diagonal of length $10$. What is its side length?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5$", "$5\\sqrt{2}$", "$10\\sqrt{2}$", "$20$"],
+          "correct": "B",
+          "why": {
+            "A": "The diagonal is $\\sqrt{2}$ times the side, not twice.",
+            "C": "Divide by $\\sqrt{2}$; don’t multiply."
+          }
+        },
+        "solution": "A diagonal splits the square into two $45^\\circ$-$45^\\circ$-$90^\\circ$ triangles, so $s\\sqrt{2} = 10$ and $s = \\frac{10}{\\sqrt{2}} = 5\\sqrt{2}$, choice (B).",
+        "skill": "right-triangles-trig",
+        "difficulty": 2,
+        "compute": "5*sqrt(2)"
+      }
+    ]
+  },
+  {
+    "key": "p04.circles-practice",
+    "type": "PROBLEMS",
+    "title": "Circles",
+    "instructions": "Type each answer and press Check. Stuck? Open a hint. A wrong answer shows why, and every problem has a worked solution.",
+    "problems": [
+      {
+        "id": "radius",
+        "prompt": "A circle has circumference $18\\pi$. What is its radius?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["9"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "18",
+              "why": "That is the diameter. The circumference is $2\\pi r$: divide by $2\\pi$."
+            }
+          ]
+        },
+        "hints": ["$2\\pi r = 18\\pi$."],
+        "solution": "$2\\pi r = 18\\pi$, so $r = 9$.",
+        "skill": "circles",
+        "difficulty": 1,
+        "compute": "18/2"
+      },
+      {
+        "id": "arc",
+        "prompt": "A circle has radius $10$. An arc has a central angle of $72^\\circ$, and its length is $k\\pi$. What is $k$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["4"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "20",
+              "why": "That is the whole circumference over $\\pi$. Take $\\frac{72}{360}$ of it."
+            }
+          ]
+        },
+        "hints": ["The whole circumference is $20\\pi$.", "$\\frac{72}{360} = \\frac{1}{5}$."],
+        "solution": "The arc is $\\frac{72}{360} = \\frac{1}{5}$ of $20\\pi$: $4\\pi$, so $k = 4$.",
+        "skill": "circles",
+        "difficulty": 2,
+        "compute": "72/360*2*10"
+      },
+      {
+        "id": "sector",
+        "prompt": "A sector of a circle with radius $6$ has a central angle of $120^\\circ$, and its area is $k\\pi$. What is $k$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["12"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "4",
+              "why": "Area uses $\\pi r^2 = 36\\pi$, not the circumference."
+            }
+          ]
+        },
+        "hints": ["The whole area is $36\\pi$.", "$\\frac{120}{360} = \\frac{1}{3}$."],
+        "solution": "$\\frac{1}{3} \\times 36\\pi = 12\\pi$, so $k = 12$.",
+        "skill": "circles",
+        "difficulty": 2,
+        "compute": "120/360*6^2"
+      },
+      {
+        "id": "centre",
+        "prompt": "The circle $(x + 4)^2 + (y - 1)^2 = 49$ has centre $(h, k)$. What is $h + k$?",
+        "answer": {
+          "kind": "value",
+          "accepted": ["-3"],
+          "form": "any",
+          "mistakes": [
+            {
+              "value": "5",
+              "why": "$(x + 4)^2$ means $h = -4$: the sign flips."
+            }
+          ]
+        },
+        "hints": ["Compare with $(x - h)^2 + (y - k)^2 = r^2$.", "$x + 4 = x - (-4)$."],
+        "solution": "The centre is $(-4, 1)$, so $h + k = -3$.",
+        "skill": "circles",
+        "difficulty": 1,
+        "compute": "-4+1"
+      }
+    ]
+  },
+  {
+    "key": "p04.circles-set",
+    "type": "PROBLEM_SET",
+    "title": "Circles: PSAT questions",
+    "instructions": "Four PSAT-style questions with choices (A) to (D), easiest first. You can leave a question blank. Your answers are marked when you hand in the set, and you'll see a worked solution for each question.",
+    "problems": [
+      {
+        "id": "radius-from-equation",
+        "prompt": "What is the radius of the circle $(x - 2)^2 + (y + 5)^2 = 36$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$6$", "$18$", "$36$", "$\\sqrt{29}$"],
+          "correct": "A",
+          "why": {
+            "C": "That is $r^2$. Take the square root.",
+            "B": "Take the square root of $36$, don’t halve it."
+          }
+        },
+        "solution": "$r^2 = 36$, so $r = 6$, choice (A).",
+        "skill": "circles",
+        "difficulty": 1,
+        "compute": "sqrt(36)"
+      },
+      {
+        "id": "radians",
+        "prompt": "How many radians is $135^\\circ$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$\\frac{\\pi}{4}$",
+            "$\\frac{2\\pi}{3}$",
+            "$\\frac{3\\pi}{4}$",
+            "$\\frac{5\\pi}{4}$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "That is $45^\\circ$.",
+            "D": "That is $225^\\circ$."
+          }
+        },
+        "solution": "$135 \\times \\frac{\\pi}{180} = \\frac{3\\pi}{4}$, choice (C).",
+        "skill": "circles",
+        "difficulty": 1,
+        "compute": "135*pi/180"
+      },
+      {
+        "id": "quarter",
+        "prompt": "A circle has diameter $20$. What is the area of a sector with a central angle of $90^\\circ$?",
+        "answer": {
+          "kind": "choice",
+          "choices": ["$5\\pi$", "$25\\pi$", "$50\\pi$", "$100\\pi$"],
+          "correct": "B",
+          "why": {
+            "D": "That is the whole circle. A $90^\\circ$ sector is a quarter of it.",
+            "A": "That is a quarter of the circumference, not of the area."
+          }
+        },
+        "solution": "The radius is $10$, so the circle’s area is $100\\pi$; a quarter is $25\\pi$, choice (B).",
+        "skill": "circles",
+        "difficulty": 1,
+        "compute": "pi*10^2/4"
+      },
+      {
+        "id": "equation",
+        "prompt": "Which is an equation of the circle with centre $(-1, 3)$ and radius $4$?",
+        "answer": {
+          "kind": "choice",
+          "choices": [
+            "$(x - 1)^2 + (y + 3)^2 = 16$",
+            "$(x + 1)^2 + (y - 3)^2 = 4$",
+            "$(x + 1)^2 + (y - 3)^2 = 16$",
+            "$(x - 1)^2 + (y - 3)^2 = 16$"
+          ],
+          "correct": "C",
+          "why": {
+            "A": "The signs inside the brackets are the opposite of the centre’s.",
+            "B": "The right side is $r^2 = 16$.",
+            "D": "For $h = -1$ the bracket is $(x + 1)$."
+          }
+        },
+        "solution": "$(x - (-1))^2 + (y - 3)^2 = 4^2$, which is $(x + 1)^2 + (y - 3)^2 = 16$, choice (C).",
+        "skill": "circles",
+        "difficulty": 1
+      }
+    ]
+  }
+]

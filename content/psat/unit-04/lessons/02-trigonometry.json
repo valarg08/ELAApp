@@ -1,0 +1,100 @@
+{
+  "slug": "psat-trigonometry",
+  "order": 2,
+  "title": "Right Triangles & Trigonometry",
+  "estMinutes": 30,
+  "focusSkills": ["right-triangles-trig"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A $10$ m ladder leans against a wall with its foot $6$ m from the wall. How high up the wall does it reach?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Pythagoras and special triangles",
+          "body": "In a right triangle, $a^2 + b^2 = c^2$, where $c$ is the hypotenuse (opposite the right angle). Common triples: $3, 4, 5$ and $5, 12, 13$ and their multiples. Special triangles: $45^\\circ$-$45^\\circ$-$90^\\circ$ has sides $x, x, x\\sqrt{2}$; $30^\\circ$-$60^\\circ$-$90^\\circ$ has sides $x, x\\sqrt{3}, 2x$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the ladder",
+          "problem": "A $10$ m ladder leans against a wall with its foot $6$ m from the wall. How high does it reach?",
+          "steps": [
+            {
+              "text": "The ladder is the hypotenuse: $6^2 + h^2 = 10^2$.",
+              "try": {
+                "prompt": "What is $h^2$?",
+                "accepted": ["64"],
+                "compute": "10^2-6^2"
+              }
+            },
+            {
+              "text": "Take the square root.",
+              "try": {
+                "prompt": "What is $h$, in metres?",
+                "accepted": ["8"],
+                "compute": "sqrt(64)"
+              }
+            },
+            {
+              "text": "A $6, 8, 10$ triangle is a $3, 4, 5$ triangle doubled."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "SOH CAH TOA",
+          "body": "For an acute angle $\\theta$ in a right triangle: $\\sin\\theta = \\frac{\\text{opposite}}{\\text{hypotenuse}}$, $\\cos\\theta = \\frac{\\text{adjacent}}{\\text{hypotenuse}}$ and $\\tan\\theta = \\frac{\\text{opposite}}{\\text{adjacent}}$. The two acute angles add up to $90^\\circ$, so $\\sin x^\\circ = \\cos(90 - x)^\\circ$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a trig ratio",
+          "problem": "In right triangle $ABC$ the right angle is at $C$, $AC = 5$ and $BC = 12$. Find $\\sin A$.",
+          "steps": [
+            {
+              "text": "First the hypotenuse: $AB^2 = 5^2 + 12^2 = 169$.",
+              "try": {
+                "prompt": "What is $AB$?",
+                "accepted": ["13"],
+                "compute": "sqrt(169)"
+              }
+            },
+            {
+              "text": "The side opposite $A$ is $BC = 12$.",
+              "try": {
+                "prompt": "What is $\\sin A$?",
+                "accepted": ["12/13"],
+                "compute": "12/13"
+              }
+            },
+            {
+              "text": "For angle $B$, $BC$ is the adjacent side, so $\\cos B = \\frac{12}{13}$ too: $\\sin A = \\cos B$ because $A + B = 90^\\circ$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p04.trig-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p04.trig-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you decide which side is opposite and which is adjacent?"],
+      "confidenceCheck": true
+    }
+  ]
+}

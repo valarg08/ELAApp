@@ -98,10 +98,13 @@ export const MathSkillsFile = z.array(MathSkill).min(1).max(150);
 export const ChoiceLetter = z.enum(CHOICE_LETTERS);
 export const AnswerFormId = z.enum(ANSWER_FORMS);
 
-/** The five AMC choices (A–E), each TeX or plain text, and the right letter. */
+/** The five AMC choices (A–E) or the four PSAT ones (A–D), each TeX or plain text, and the right letter. */
 export const ChoiceAnswer = z.object({
   kind: z.literal('choice'),
-  choices: z.tuple([text(200), text(200), text(200), text(200), text(200)]),
+  choices: z.union([
+    z.tuple([text(200), text(200), text(200), text(200), text(200)]),
+    z.tuple([text(200), text(200), text(200), text(200)]),
+  ]),
   correct: ChoiceLetter,
   /** Why a wrong choice is wrong, shown the moment it is picked (no AI needed). */
   why: z.partialRecord(ChoiceLetter, text(300)).optional(),
@@ -410,7 +413,10 @@ function answerErrors(at: string, p: MathProblem, vars?: Readonly<Vars>): string
       const same = values.filter((v) => v && equal(v, right)).length;
       if (same !== 1) errors.push(`${at}: the right value appears in ${same} choices`);
     }
-    if (new Set(p.answer.choices).size !== 5) errors.push(`${at}: two choices are the same`);
+    if (new Set(p.answer.choices).size !== p.answer.choices.length)
+      errors.push(`${at}: two choices are the same`);
+    if (CHOICE_LETTERS.indexOf(p.answer.correct) >= p.answer.choices.length)
+      errors.push(`${at}: the right letter ${p.answer.correct} has no choice`);
     if (p.answer.why?.[p.answer.correct])
       errors.push(`${at}: "why" explains the right letter ${p.answer.correct}`);
   } else {

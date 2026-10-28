@@ -1,0 +1,90 @@
+{
+  "slug": "psat-circles",
+  "order": 3,
+  "title": "Circles",
+  "estMinutes": 30,
+  "focusSkills": ["circles"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A pizza with a $14$-inch diameter is cut into $8$ equal slices. How would you find the length of crust on one slice?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Circle facts",
+          "body": "Area $\\pi r^2$ and circumference $2\\pi r$. A full turn is $360^\\circ$, or $2\\pi$ radians, so $180^\\circ = \\pi$ radians. An arc with central angle $\\theta^\\circ$ is $\\frac{\\theta}{360}$ of the circle: its length is $\\frac{\\theta}{360} \\cdot 2\\pi r$ and its sector’s area is $\\frac{\\theta}{360} \\cdot \\pi r^2$."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: one slice of pizza",
+          "problem": "A pizza has diameter $14$ inches and is cut into $8$ equal slices. Find the crust length of one slice, in terms of $\\pi$.",
+          "steps": [
+            {
+              "text": "The radius is $7$, so the whole circumference is $2\\pi \\times 7 = 14\\pi$."
+            },
+            {
+              "text": "One slice is $\\frac{1}{8}$ of the circle.",
+              "try": {
+                "prompt": "The crust is what number times $\\pi$?",
+                "accepted": ["7/4", "1.75"],
+                "compute": "14/8"
+              }
+            },
+            {
+              "text": "So one slice has $\\frac{7}{4}\\pi \\approx 5.5$ inches of crust."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: the equation of a circle",
+          "problem": "Find the centre and radius of $x^2 - 6x + y^2 + 4y = 12$.",
+          "steps": [
+            {
+              "text": "Complete the square: $x^2 - 6x = (x - 3)^2 - 9$ and $y^2 + 4y = (y + 2)^2 - 4$."
+            },
+            {
+              "text": "So $(x - 3)^2 + (y + 2)^2 = 12 + 9 + 4$.",
+              "try": {
+                "prompt": "What is $r^2$?",
+                "accepted": ["25"],
+                "compute": "12+9+4"
+              }
+            },
+            {
+              "text": "The centre is $(3, -2)$ and the radius is $5$."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Circle equations and radians",
+          "body": "A circle with centre $(h, k)$ and radius $r$ is $(x - h)^2 + (y - k)^2 = r^2$. Watch the signs: $(x + 2)^2$ means $h = -2$. To change degrees to radians, multiply by $\\frac{\\pi}{180}$: $90^\\circ = \\frac{\\pi}{2}$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p04.circles-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p04.circles-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How are arc length and sector area alike, and how are they different?"],
+      "confidenceCheck": true
+    }
+  ]
+}

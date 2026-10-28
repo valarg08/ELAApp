@@ -1,0 +1,108 @@
+{
+  "slug": "psat-linear-equations",
+  "order": 1,
+  "title": "Linear Equations",
+  "estMinutes": 30,
+  "focusSkills": ["linear-equations"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "A phone plan costs $\\$25$ a month plus $\\$0.10$ for each text. Your bill is $\\$31$. How many texts did you send, and how did you work it out?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Solving a linear equation",
+          "body": "Do the same thing to both sides until the variable is alone: undo adding or subtracting first, then multiplying or dividing. Clear fractions by multiplying every term by the common denominator. Always check by putting your answer back in."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: brackets on both sides",
+          "problem": "Solve $3(x - 4) = 5x + 2$.",
+          "steps": [
+            {
+              "text": "Expand the bracket: $3x - 12 = 5x + 2$."
+            },
+            {
+              "text": "Subtract $3x$ from both sides: $-12 = 2x + 2$. Then subtract $2$ from both sides.",
+              "try": {
+                "prompt": "What is $2x$?",
+                "accepted": ["-14"],
+                "compute": "-12-2"
+              }
+            },
+            {
+              "text": "Divide both sides by $2$.",
+              "try": {
+                "prompt": "What is $x$?",
+                "accepted": ["-7"],
+                "compute": "-14/2"
+              }
+            },
+            {
+              "text": "Check: $3(-7 - 4) = -33$ and $5(-7) + 2 = -33$ ✓."
+            }
+          ]
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: a word problem",
+          "problem": "A gym charges a $\\$40$ joining fee plus $\\$15$ a month. After how many months will the total paid be $\\$175$?",
+          "steps": [
+            {
+              "text": "Let $m$ be the number of months. The fee is the starting amount and $\\$15$ is the rate: $40 + 15m = 175$."
+            },
+            {
+              "text": "Subtract $40$ from both sides.",
+              "try": {
+                "prompt": "What is $15m$?",
+                "accepted": ["135"],
+                "compute": "175-40"
+              }
+            },
+            {
+              "text": "Divide by $15$.",
+              "try": {
+                "prompt": "What is $m$?",
+                "accepted": ["9"],
+                "compute": "135/15"
+              }
+            },
+            {
+              "text": "After $9$ months: $40 + 15 \\times 9 = 175$ ✓."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "No solution or infinitely many",
+          "body": "Collect the $x$ terms on one side. If they cancel and leave something false like $4 = 7$, there is no solution. If they leave something always true like $4 = 4$, every number is a solution. So $ax + b = cx + d$ has no solution when $a = c$ and $b \\ne d$."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p01.linear-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p01.linear-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": [
+        "Which step do you most often forget when you solve an equation, and how will you remember it?"
+      ],
+      "confidenceCheck": true
+    }
+  ]
+}

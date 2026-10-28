@@ -3,6 +3,20 @@ import Link from 'next/link';
 import { serverApi } from '@/lib/server-api';
 import { cyanFocus } from './course-styles';
 
+/** PSAT Math's review sheet, below the bars in the Progress panel (psat-design.md). */
+export function PsatReviewLink() {
+  return (
+    <section aria-labelledby="psat-review" className="mt-5 border-t border-brand/30 pt-4">
+      <h3 id="psat-review" className="text-sm font-semibold">
+        Fact sheet
+      </h3>
+      <Link href="/psat/review" className={`mt-1 block text-sm text-brand underline ${cyanFocus}`}>
+        PSAT review
+      </Link>
+    </section>
+  );
+}
+
 /** The Math fact sheets (formulas and key facts per unit), below the bars in the Progress panel. */
 export async function MathFactSheets() {
   const home = await serverApi('/math/home', MathHome);

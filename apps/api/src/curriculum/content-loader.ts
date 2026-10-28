@@ -62,6 +62,7 @@ const TRACK_FOLDERS: { folder: string; track: Track; required: boolean }[] = [
   { folder: 'essay', track: 'ESSAY', required: false },
   { folder: 'math', track: 'MATH', required: false },
   { folder: 'mental', track: 'MENTAL', required: false },
+  { folder: 'psat', track: 'PSAT', required: false },
 ];
 
 /** Figures are drawn SVG only: no scripts, event handlers, links, embedded HTML or outside files. */
@@ -326,6 +327,38 @@ async function loadMentalExtras(
 }
 
 /**
+ * PSAT Math's track-wide file (psat-design.md): content/psat/skills.json, checked against the
+ * PSAT units' problems and lesson focus skills (the Math checks).
+ */
+async function psatErrors(root: string, units: LoadedUnit[]): Promise<string[]> {
+  const errors: string[] = [];
+  const psatUnits = units.filter((u) => u.track === 'PSAT');
+  const skills =
+    (await readJson(
+      path.join(root, 'psat', 'skills.json'),
+      'psat/skills.json',
+      MathSkillsFile,
+      errors,
+      createHash('sha256'),
+    )) ?? [];
+  if (skills.length === 0 && !errors.some((e) => e.startsWith('psat/skills.json')))
+    errors.push('psat/skills.json: missing (PSAT Math names its skills there)');
+  errors.push(
+    ...validateMathContent(
+      { skills, tests: [], facts: {} },
+      psatUnits.map((u) => ({
+        number: u.unit.number,
+        lessonCount: u.lessons.length,
+        problems: problemsOf(u.activities).map(({ p }) => p),
+        focusSkills: u.lessons.flatMap((l) => l.focusSkills),
+        mockTests: [],
+      })),
+    ).map((e) => e.replace(/^math\//, 'psat/')),
+  );
+  return errors;
+}
+
+/**
  * Read and validate every unit under `<root>/units/unit-XX/` (Story Writing),
  * `<root>/essay/unit-XX/` (Essay Writing) and `<root>/math/unit-XX/` (Math):
  *   unit.json (required), activities.json (optional), lessons/*.json (optional),
@@ -363,6 +396,7 @@ export async function loadContent(root = defaultContentDir()): Promise<LoadResul
     result.errors.push(...extras.errors);
     result.mental = extras.mental;
   }
+  if (units.some((u) => u.track === 'PSAT')) result.errors.push(...(await psatErrors(root, units)));
   return result;
 }
 

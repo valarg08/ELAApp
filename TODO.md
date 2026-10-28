@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-10-25 (Mental Math teacher view: skills & practice on the class progress page).
+Last updated: 2026-10-28 (PSAT Math track: PS0 + PS1, four units with lessons, practice and four-choice PSAT questions).
 
 ## Done so far
 
@@ -16,6 +16,7 @@ Last updated: 2026-10-25 (Mental Math teacher view: skills & practice on the cla
 - [x] MN0–MN1: the Mental Math track (fourth tab, levels, cheat sheets, tips) and Unit 1 Number Bonds (mental-math-design.md)
 - [x] MN2–MN15: Mental Math Units 2–15 (all 15 units built)
 - [x] MN-practice: Mental Math daily review and streaks, speed sprints, level and placement checks, parent guide, skill mastery
+- [x] PS0 + PS1: the PSAT Math track (fifth tab, `/psat`, the review sheet) and Units 1–4, 3 lessons each (psat-design.md)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -77,6 +78,12 @@ Number sense for ages 7–14, one unit per phase. Original problems only; typed 
 - [x] **MN-teacher** The teacher's Mental Math skills & practice view (class progress page: practice table, weakest skills, skills grid)
 - [x] **MN-practice** Daily review and streaks, speed sprints with personal bests, level checks with badges, the placement check, the parent guide page, mastery per Mental Math skill, a separate Mental Math mistakes list
 
+## 1d. PSAT Math track (psat-design.md)
+
+- [x] **PS0** Foundation: track `PSAT`, `/psat`, four-choice answers, `content/psat/skills.json`, the review sheet in the track, Quill audience
+- [x] **PS1** Units 1–4 (Algebra, Advanced Math, Problem-Solving & Data Analysis, Geometry & Trigonometry), 3 lessons each, published
+- [ ] Later: a PSAT error log and daily review, timed practice modules and a full practice test, typed answers in the challenge sets, more lessons, a teacher skills view
+
 ## 2. Teacher dashboard: rest of P5 (§11)
 
 - [ ] **Review queue** (§11.4): tabs for AI drafts to approve, projects to grade, returned for revision, and peer reviews to moderate; flagged items first.
@@ -115,6 +122,7 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
 - [ ] Mental Math practice: `GET /mental/progress` (students only; teachers 403), the `mental-*` start keys on `/math/tests` (level check 403 until the level is done; review 409 on a second try the same day), `placementOutcome` and `MentalStart` (startUnit only goes up; `classAvailability` `openThrough`), `trackKeyFilter` (Mental Math mistakes never in the AMC error log or review, and the other way round), sprint best (most right, then fastest), `reviewStreak`, `currentUnit`; one Playwright run through a sprint and the placement check.
 - [ ] Mental Math teacher view: `GET /teacher/classes/:classId/mental-skills` (students 403; another teacher's class 404; only skills with answers; badges, streak, sprint best and start level per student), the class progress page's Mental Math "Skills & practice" view (axe).
 - [ ] Math PSAT review sheet and open units: `GET /math/psat-facts` (signed out 401; students 404 until a Math unit is published), the loader checks for `content/math/psat-facts.json` (TeX, unknown skills), `classAvailability` (every published Math unit open; other tracks still in order).
+- [ ] PSAT Math: the tests owed in psat-design.md §5 (open units, `trackKeyFilter('PSAT')`, four-choice answers, the loader checks, axe on `/psat`, one Playwright run).
 - [ ] Admin: authorisation for every `/admin` endpoint, the AI budget pause on live checks, `estimateCostCents` (DESIGN.md §11.9).
 - [ ] The analyzer, Coach and rubric unit tests listed under each E-phase (E1–E15) and SL-phase.
 - [ ] math-check unit tests (values, parsing, answer forms, TeX choices) and `problemErrors` / figure-sanitiser tests (M0).

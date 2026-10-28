@@ -1,0 +1,80 @@
+{
+  "slug": "psat-probability",
+  "order": 3,
+  "title": "Probability & Two-Way Tables",
+  "estMinutes": 30,
+  "focusSkills": ["probability-tables"],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "variant": "question",
+      "prompt": "In a survey, $30$ of $50$ students like sport. If you pick one student at random, how likely are they to like sport? What changes if you only pick from students who also like music?",
+      "placeholder": "I think…"
+    },
+    {
+      "id": "learn",
+      "type": "mini_lesson",
+      "cards": [
+        {
+          "kind": "definition",
+          "title": "Probability",
+          "body": "Probability $=$ favourable outcomes $\\div$ all equally likely outcomes, a number from $0$ to $1$. $P(\\text{not } A) = 1 - P(A)$. For independent events, multiply: $P(A \\text{ and } B) = P(A) \\cdot P(B)$."
+        },
+        {
+          "kind": "example",
+          "title": "Reading a two-way table",
+          "text": "A survey of $80$ students: of the $50$ who play a sport, $20$ also play an instrument; of the $30$ who don’t play a sport, $12$ play an instrument. So $32$ students play an instrument in all, and $48$ don’t.",
+          "note": "A two-way table puts sport / no sport in the rows and instrument / no instrument in the columns, with the totals at the ends."
+        },
+        {
+          "kind": "worked-example",
+          "title": "Worked example: \"given\" picks the group",
+          "problem": "In the survey of $80$ students, $50$ play a sport ($20$ of them play an instrument) and $30$ don’t ($12$ of them play an instrument). A student who plays an instrument is picked at random. What is the probability they play a sport?",
+          "steps": [
+            {
+              "text": "\"Picked from the instrument players\" means only they count.",
+              "try": {
+                "prompt": "How many play an instrument?",
+                "accepted": ["32"],
+                "compute": "20+12"
+              }
+            },
+            {
+              "text": "Of those, $20$ play a sport.",
+              "try": {
+                "prompt": "What is the probability?",
+                "accepted": ["5/8", "0.625"],
+                "compute": "20/32"
+              }
+            },
+            {
+              "text": "Not $\\frac{20}{80}$ and not $\\frac{20}{50}$: divide by the group you pick from."
+            }
+          ]
+        },
+        {
+          "kind": "definition",
+          "title": "Expected counts",
+          "body": "If an outcome has probability $p$ and you repeat the experiment $n$ times, expect about $np$ of them. Out of $600$ rolls of a fair die, expect about $100$ sixes."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "guided_practice",
+      "activityKeys": ["p03.probability-practice"]
+    },
+    {
+      "id": "challenge",
+      "type": "challenge",
+      "activityKey": "p03.probability-set"
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "prompts": ["How do you decide which total to divide by in a two-way table question?"],
+      "confidenceCheck": true
+    }
+  ]
+}
