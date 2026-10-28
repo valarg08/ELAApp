@@ -3,12 +3,13 @@
 :root {
   /* "education network" palette (color-hex.com 11191): deep teal #043345, teal #0d9aac,
      cyan #00b6c7, green #009966, mint #00ff99. Text colours are darkened for 4.5:1 contrast. */
-  --background: #f1f7f8;
+  --background: #f8fbfc;
   --foreground: #043345;
   --muted: #3f6370; /* a grey-teal between the deep teal and the teal */
   --card: #ffffff;
   --border: #c9e1e6;
   --brand: #043345;
+  --primary: #0b7f8f; /* button fills: a lighter teal, white text 4.7:1 */
   --accent: #0d9aac; /* decoration only (borders, bars): 3.3:1 on white, too light for text */
   --cyan: #00b6c7; /* the Progress panel, with deep teal text (5.4:1) */
   --green: #009966; /* progress bar fill on light backgrounds */
@@ -28,6 +29,7 @@
   --color-card: var(--card);
   --color-border: var(--border);
   --color-brand: var(--brand);
+  --color-primary: var(--primary);
   --color-accent: var(--accent);
   --color-cyan: var(--cyan);
   --color-green: var(--green);

@@ -6,7 +6,7 @@ import type { ComponentProps, ReactNode } from 'react';
 const focus = 'focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand';
 
 const buttonStyles = {
-  primary: 'bg-brand text-white hover:opacity-90 disabled:opacity-50',
+  primary: 'bg-primary text-white hover:opacity-90 disabled:opacity-50',
   secondary: 'border border-border bg-card text-foreground hover:bg-background disabled:opacity-50',
   danger: 'border border-bad text-bad bg-card hover:bg-background disabled:opacity-50',
 } as const;
