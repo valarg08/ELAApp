@@ -90,6 +90,10 @@ export default async function MathHome() {
             <p className="text-lg font-bold">My skills</p>
             <p className="text-muted">Mastery, danger zones and how sure you were</p>
           </Link>
+          <Link href="/math/facts/psat" className={tile}>
+            <p className="text-lg font-bold">PSAT review</p>
+            <p className="text-muted">The PSAT math facts on one printable sheet</p>
+          </Link>
         </div>
 
         {stages.length > 0 && home?.currentStage && (
