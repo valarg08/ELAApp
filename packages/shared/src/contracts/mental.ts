@@ -11,6 +11,27 @@ export const MENTAL_PLACEMENT_PER_LEVEL = 3;
 export const MENTAL_LEVEL_CHECK_SIZE = 10;
 /** Right answers out of MENTAL_LEVEL_CHECK_SIZE to pass a level check (and earn its badge). */
 export const MENTAL_LEVEL_PASS = 9;
+/** The timed test after each unit: 20 problems in 25 minutes. */
+export const MENTAL_UNIT_TEST_SIZE = 20;
+export const MENTAL_UNIT_TEST_SECONDS = 25 * 60;
+
+/** "mental-unit-5" → 5. */
+export const mentalUnitOf = (key: string) => {
+  const m = /^mental-unit-(\d{1,2})$/.exec(key);
+  return m ? Number(m[1]) : null;
+};
+
+/** A unit test card: it opens when every lesson of the unit is finished. */
+export const MentalUnitTest = z.object({
+  unit: z.number(),
+  title: z.string(),
+  unlocked: z.boolean(),
+  /** The best score so far (right answers out of MENTAL_UNIT_TEST_SIZE). */
+  best: z.number().nullable(),
+  openAttemptId: z.string().nullable(),
+  lastAttemptId: z.string().nullable(),
+});
+export type MentalUnitTest = z.infer<typeof MentalUnitTest>;
 
 /** A level check card: it opens when every unit of the level is finished. */
 export const MentalLevelCheck = z.object({
@@ -43,6 +64,8 @@ export const MentalPractice = z.object({
     lastAttemptId: z.string().nullable(),
   }),
   levelChecks: z.array(MentalLevelCheck),
+  /** One per published unit, in unit order. */
+  unitTests: z.array(MentalUnitTest),
 });
 export type MentalPractice = z.infer<typeof MentalPractice>;
 

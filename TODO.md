@@ -75,6 +75,7 @@ Number sense for ages 7–14, one unit per phase. Original problems only; typed 
 - [x] **MN4–MN7** Level 2: Front-End, Multiplication Anchors, Benchmarks, Missing Number Thinking
 - [x] **MN8–MN11** Level 3: Fractions/Decimals/Percentages, Divisibility 2–11, Estimation, Smart Multiplication
 - [x] **MN12–MN15** Level 4: Squares to 30², Difference of Squares, Vedic Patterns, Speed & Accuracy Systems
+- [x] **MN-unit-tests** A timed test after every unit: 20 questions in 25 minutes, the timer in the side panel
 - [x] **MN-teacher** The teacher's Mental Math skills & practice view (class progress page: practice table, weakest skills, skills grid)
 - [x] **MN-practice** Daily review and streaks, speed sprints with personal bests, level checks with badges, the placement check, the parent guide page, mastery per Mental Math skill, a separate Mental Math mistakes list
 
@@ -120,6 +121,7 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
 - [ ] Mental Math: `GET /mental/home` (students only; teachers 403), `GET /mental/cheat-sheets/:unitNumber` (unpublished units 404 for students), the loader checks for `content/mental` (levels order, unknown skills, cheat sheet of a missing unit), the Quill audience line in the three Math analyzers, `SimpleAnswers` in the answer box.
 - [ ] Mental Math Units 4–15: `UnitCard` `previousNumber` (a locked unit names the last built unit before it), one Playwright run through a Level 4 unit check.
 - [ ] Mental Math practice: `GET /mental/progress` (students only; teachers 403), the `mental-*` start keys on `/math/tests` (level check 403 until the level is done; review 409 on a second try the same day), `placementOutcome` and `MentalStart` (startUnit only goes up; `classAvailability` `openThrough`), `trackKeyFilter` (Mental Math mistakes never in the AMC error log or review, and the other way round), sprint best (most right, then fastest), `reviewStreak`, `currentUnit`; one Playwright run through a sprint and the placement check.
+- [ ] Mental Math unit tests: `mental-unit-N` locked until the unit's lessons are done (403), 20 items from that unit only with a 25-minute limit, `practice.unitTests` best and open attempt, `mental.unitTest.previousBest`, the side timer (`SIDE_TIMER_ID`) shown from md up and the header clock on phones (axe).
 - [ ] Mental Math teacher view: `GET /teacher/classes/:classId/mental-skills` (students 403; another teacher's class 404; only skills with answers; badges, streak, sprint best and start level per student), the class progress page's Mental Math "Skills & practice" view (axe).
 - [ ] Math PSAT review sheet and open units: `GET /math/psat-facts` (signed out 401; students 404 until a Math unit is published), the loader checks for `content/math/psat-facts.json` (TeX, unknown skills), `classAvailability` (every published Math unit open; other tracks still in order).
 - [ ] PSAT Math: the tests owed in psat-design.md §5 (open units, `trackKeyFilter('PSAT')`, four-choice answers, the loader checks, axe on `/psat`, one Playwright run).

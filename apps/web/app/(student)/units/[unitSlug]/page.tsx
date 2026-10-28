@@ -1,4 +1,9 @@
-import { UnitDetail, unitLabel } from '@storyforge/shared';
+import {
+  MENTAL_UNIT_TEST_SECONDS,
+  MENTAL_UNIT_TEST_SIZE,
+  UnitDetail,
+  unitLabel,
+} from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MathText } from '@/components/math-text';
@@ -121,9 +126,43 @@ export default async function UnitPage({ params }: PageProps<'/units/[unitSlug]'
                 ))}
               </ol>
             </section>
+
+            {unit.track === 'MENTAL' && <MentalUnitTestCard unit={unit} />}
           </>
         )}
       </div>
     </CourseShell>
+  );
+}
+
+/** Mental Math: the timed test after the unit, open once every lesson is finished. */
+function MentalUnitTestCard({ unit }: { unit: UnitDetail }) {
+  const done = unit.lessons.length > 0 && unit.lessons.every((l) => l.completed);
+  const body = (
+    <>
+      <p className="text-lg font-bold">
+        <span aria-hidden="true">⏱️ </span>Unit {unit.number} test
+      </p>
+      <p className="mt-1">
+        {MENTAL_UNIT_TEST_SIZE} questions in {MENTAL_UNIT_TEST_SECONDS / 60} minutes, with the timer
+        in the side panel.
+      </p>
+      <p className="mt-1 text-sm text-muted">
+        {done ? 'Ready when you are!' : 'Opens when you finish every lesson of this unit.'}
+      </p>
+    </>
+  );
+  const base = 'block rounded-2xl border-2 border-dashed bg-card p-5';
+  return done ? (
+    <Link
+      href={`/mental/tests/mental-unit-${unit.number}`}
+      className={`${base} border-accent shadow-sm transition hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand`}
+    >
+      {body}
+    </Link>
+  ) : (
+    <div className={`${base} border-border opacity-70`} aria-disabled="true">
+      {body}
+    </div>
   );
 }

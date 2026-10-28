@@ -1,6 +1,9 @@
 import {
   MENTAL_SPRINT_MIN,
+  MENTAL_UNIT_TEST_SECONDS,
+  MENTAL_UNIT_TEST_SIZE,
   type MentalLevelCheck,
+  type MentalUnitTest,
   MentalHome as MentalHomeView,
   UnitSummary,
 } from '@storyforge/shared';
@@ -21,7 +24,8 @@ export const dynamic = 'force-dynamic';
  * The Mental Math track (mental-math-design.md): number sense for ages 7–14 in four levels by age,
  * each unit one pattern. Units not written yet show as coming soon; the cheat sheets and the day's
  * tip sit in the Progress panel. Practice: the daily review with its streak, speed sprints with a
- * personal best, the placement check, and a level check (with a badge) after each level.
+ * personal best, the placement check, a timed test after each unit and a level check (with a badge)
+ * after each level.
  */
 export default async function MentalHome() {
   const [me, units, home] = await Promise.all([
@@ -192,6 +196,13 @@ export default async function MentalHome() {
                 );
               })}
             </ol>
+            {practice && (
+              <UnitTests
+                tests={practice.unitTests.filter((t) =>
+                  level.units.some((u) => u.number === t.unit),
+                )}
+              />
+            )}
             {practice?.levelChecks
               .filter((c) => c.level === level.number)
               .map((c) => (
@@ -231,6 +242,49 @@ function PracticeCard({
         <p className="mt-1 text-sm text-muted">{extra}</p>
       </Link>
     </li>
+  );
+}
+
+/** The timed test after each unit of a level: locked until the unit's lessons are done. */
+function UnitTests({ tests }: { tests: MentalUnitTest[] }) {
+  if (tests.length === 0) return null;
+  return (
+    <div className="rounded-2xl border border-border bg-card p-4">
+      <p className="font-semibold">
+        <span aria-hidden="true">⏱️ </span>Unit tests
+        <span className="font-normal text-muted">
+          {' '}
+          · {MENTAL_UNIT_TEST_SIZE} questions in {MENTAL_UNIT_TEST_SECONDS / 60} minutes
+        </span>
+      </p>
+      <ul className="mt-2 flex flex-wrap gap-2">
+        {tests.map((t) => (
+          <li key={t.unit}>
+            {t.unlocked ? (
+              <Link
+                href={`/mental/tests/mental-unit-${t.unit}`}
+                className="inline-flex min-h-11 items-center rounded-xl border border-border px-3 text-sm hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              >
+                Unit {t.unit} test
+                {t.best !== null && (
+                  <span className="ml-1 text-muted">
+                    · best {t.best}/{MENTAL_UNIT_TEST_SIZE}
+                  </span>
+                )}
+              </Link>
+            ) : (
+              <span
+                className="inline-flex min-h-11 items-center rounded-xl border border-dashed border-border px-3 text-sm text-muted"
+                aria-disabled="true"
+              >
+                <span aria-hidden="true">🔒 </span>Unit {t.unit} test
+                <span className="sr-only"> (finish the unit's lessons first)</span>
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

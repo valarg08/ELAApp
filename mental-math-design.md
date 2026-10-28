@@ -69,6 +69,7 @@ The last lesson of each unit is the **⭐ unit check**: a warm-up, then 8 typed 
 - Unit check: 8 questions drawn from a larger pool, 100% to pass, new numbers on each try.
 - Every answer goes to the answer record (MathAnswerLog) with its skill; `/mental/progress` shows mastery per skill (New, Learning, Strong, Mastered) by unit.
 - Level check: 10 questions spread over the level's unit checks; it opens when every unit of the level is done; 9 right earns the level badge.
+- Unit test (MN-unit-tests): a timed test after every unit, 20 questions in 25 minutes (`MENTAL_UNIT_TEST_SIZE`, `MENTAL_UNIT_TEST_SECONDS`), start key `mental-unit-N`, kind `mental-unit`. It opens when every lesson of the unit is finished; the problems come from the unit's practice and ⭐ check, one skill at a time so every pattern comes up, templates with fresh numbers, easiest first. No hints and no pass mark: the result shows the score and the best before it, and it can be taken again. The countdown sits at the top of the Progress panel (with a time bar and "N of 20 answered"); on phones it stays in the page header. Links: the unit page, and a "Unit tests" row under each level on `/mental`.
 - Placement check: 12 questions, 3 from each level's unit checks, easiest first. The start level is the first level with fewer than 2 of its 3 right; the units before that level open (it never closes units already open).
 - Mistakes in challenges and checks go to the Mental Math mistakes list (`/mental/mistakes`), kept apart from the AMC error log.
 
@@ -123,5 +124,6 @@ The last lesson of each unit is the **⭐ unit check**: a warm-up, then 8 typed 
 - Each of Units 4–15 has the Unit 1 format: 4 lessons (hook, 3 cards with a worked example, 5 typed practice problems with hints and wrong-answer notes, a 5-question challenge without hints, reflection) and the ⭐ check (8 questions, 100%), a cheat sheet and 5 tips.
 - A locked Mental Math card names the last built unit before it ("Finish Mental Math Unit 1 first" on Unit 4) while Units 2–3 are not built.
 - **MN2–MN3 (done):** Level 1 — Unit 2 Doubling & Halving (doubles, near doubles, halves, double one and halve the other), Unit 3 Compensation (add 9 and 19, add near a ten, take away near a ten, same difference), in the same format. All 15 units are now built.
+- **MN-unit-tests (done):** a 20-question, 25-minute test after every unit with the timer in the side panel.
 - **MN-practice (done):** the daily review with streaks, speed sprints with personal bests, level checks with badges, the placement check (`MentalStart`), the parent guide page, mastery per Mental Math skill, and a separate Mental Math mistakes list. The Mental Math track is complete.
 - **MN-teacher (done):** the teacher's Mental Math skills & practice view on the class progress page (Part 9).

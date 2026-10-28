@@ -29,6 +29,7 @@ export async function CourseShell({
   lessonId,
   wide = false,
   extra,
+  panelTop,
   children,
 }: {
   track: Track;
@@ -39,6 +40,8 @@ export async function CourseShell({
   wide?: boolean;
   /** More for the Progress panel, below the progress bars (the Math home's fact sheets). */
   extra?: ReactNode;
+  /** For the top of the Progress panel (a timed test's clock). */
+  panelTop?: ReactNode;
   children: ReactNode;
 }) {
   const [units, unit] = await Promise.all([
@@ -217,6 +220,7 @@ export async function CourseShell({
         className="order-last md:order-none md:overflow-y-auto md:[&>div]:min-h-full"
       >
         <SidePanel name="progress" title="Progress" side="right" tone="cyan" collapsible={wide}>
+          {panelTop}
           {progress}
           {extra}
           {track === 'MATH' && <MathFactSheets />}

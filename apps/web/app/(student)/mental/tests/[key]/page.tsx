@@ -6,8 +6,11 @@ import {
   MENTAL_SPRINT_MIN,
   MENTAL_SPRINT_SECONDS,
   MENTAL_SPRINT_SIZE,
+  MENTAL_UNIT_TEST_SECONDS,
+  MENTAL_UNIT_TEST_SIZE,
   MentalHome,
   MentalStartKey,
+  mentalUnitOf,
 } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -18,7 +21,10 @@ import { serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
 
-/** The start page of a Mental Math review, sprint, placement or level check (mental-math-design.md). */
+/**
+ * The start page of a Mental Math review, sprint, placement, level check or unit test
+ * (mental-math-design.md).
+ */
 export default async function MentalTestPage({ params }: PageProps<'/mental/tests/[key]'>) {
   const { key } = await params;
   const parsed = MentalStartKey.safeParse(key);
@@ -54,6 +60,16 @@ export default async function MentalTestPage({ params }: PageProps<'/mental/test
     carryOn = practice.placement.openAttemptId;
     label = carryOn ? 'Carry on' : practice.placement.lastAttemptId ? 'Take it again' : 'Start';
     lastAttemptId = practice.placement.lastAttemptId;
+  } else if (mentalUnitOf(parsed.data)) {
+    const unit = mentalUnitOf(parsed.data)!;
+    const card = practice.unitTests.find((c) => c.unit === unit);
+    if (!card) notFound();
+    title = `Unit ${unit} test: ${card.title}`;
+    about = `${MENTAL_UNIT_TEST_SIZE} questions from Unit ${unit}, easiest first, in ${MENTAL_UNIT_TEST_SECONDS / 60} minutes. The timer runs in the side panel; skip any you are stuck on and come back. When time runs out, the test is handed in for you. Each try gives you new numbers.`;
+    if (!card.unlocked) blocked = `Finish every lesson of Unit ${unit} first.`;
+    carryOn = card.openAttemptId;
+    label = carryOn ? 'Carry on' : card.lastAttemptId ? 'Take it again' : 'Start the test';
+    lastAttemptId = card.lastAttemptId;
   } else {
     const level = Number(parsed.data.slice('mental-level-'.length));
     const card = practice.levelChecks.find((c) => c.level === level);

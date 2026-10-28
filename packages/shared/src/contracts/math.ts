@@ -351,6 +351,7 @@ export const MATH_TEST_KINDS = [
   'mental-sprint',
   'mental-placement',
   'mental-level',
+  'mental-unit',
 ] as const;
 export const MathTestKind = z.enum(MATH_TEST_KINDS);
 export type MathTestKind = z.infer<typeof MathTestKind>;
@@ -364,6 +365,22 @@ export const MENTAL_START_KEYS = [
   'mental-level-2',
   'mental-level-3',
   'mental-level-4',
+  // A timed test after each unit ("mental-unit-5" is Unit 5's).
+  'mental-unit-1',
+  'mental-unit-2',
+  'mental-unit-3',
+  'mental-unit-4',
+  'mental-unit-5',
+  'mental-unit-6',
+  'mental-unit-7',
+  'mental-unit-8',
+  'mental-unit-9',
+  'mental-unit-10',
+  'mental-unit-11',
+  'mental-unit-12',
+  'mental-unit-13',
+  'mental-unit-14',
+  'mental-unit-15',
 ] as const;
 export const MentalStartKey = z.enum(MENTAL_START_KEYS);
 export type MentalStartKey = z.infer<typeof MentalStartKey>;
@@ -514,6 +531,11 @@ export const TestResult = z.object({
       levelCheck: z
         .object({ level: z.number(), passed: z.boolean(), needed: z.number() })
         .nullable(),
+      /** A unit test: the unit and the best score before this one (null: the first try). */
+      unitTest: z
+        .object({ unit: z.number(), previousBest: z.number().nullable() })
+        .nullable()
+        .default(null),
     })
     .nullable()
     .default(null),

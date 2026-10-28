@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { z } from 'zod';
 import { CourseShell } from '@/components/course-shell';
-import { MathAttempt } from '@/features/math/test-player';
+import { MathAttempt, SIDE_TIMER_ID } from '@/features/math/test-player';
 import { serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
@@ -18,7 +18,7 @@ export default async function MentalAttemptPage({ params }: PageProps<'/mental/a
   if (!attempt || !isMentalKind(attempt.kind)) notFound();
 
   return (
-    <CourseShell track="MENTAL">
+    <CourseShell track="MENTAL" panelTop={<div id={SIDE_TIMER_ID} />}>
       <div className="flex flex-col gap-6">
         <Link href="/mental" className="text-brand underline">
           ← Mental Math

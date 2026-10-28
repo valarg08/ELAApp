@@ -226,6 +226,15 @@ function MentalOutcome({
             : 'Begin with Mental Math Unit 1.'}
         </p>
       )}
+      {mental.unitTest && (
+        <p className="text-lg">
+          {mental.unitTest.previousBest === null
+            ? 'Your first try at this unit test. Take it again any time to beat your score.'
+            : result.correct > mental.unitTest.previousBest
+              ? `🏆 Better than your best before (${mental.unitTest.previousBest} right)!`
+              : `Your best so far: ${mental.unitTest.previousBest} right. Practise the skills you missed, then try again.`}
+        </p>
+      )}
       {mental.levelCheck && (
         <p className={`text-lg font-semibold ${mental.levelCheck.passed ? 'text-ok' : ''}`}>
           {mental.levelCheck.passed

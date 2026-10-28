@@ -21,6 +21,7 @@ import {
   type SaveTestAnswerResponse,
   TARGET_DIFFICULTY,
   MENTAL_SPRINT_SECONDS,
+  MENTAL_UNIT_TEST_SECONDS,
   TIME_SINK_SECONDS,
   type TestItemFeedback,
   type TestResult,
@@ -29,6 +30,7 @@ import {
   isMentalKind,
   isMockKey,
   markAnswer,
+  mentalUnitOf,
   newSeed,
   pointsFor,
   pointsIfGuessesBlank,
@@ -196,6 +198,13 @@ export class MathTestsService {
         kind: 'mental-placement',
         items: await this.mental.placementItems(),
         timeLimitSeconds: null,
+      };
+    const unit = mentalUnitOf(key);
+    if (unit)
+      return {
+        kind: 'mental-unit',
+        items: await this.mental.unitItems(user, unit),
+        timeLimitSeconds: MENTAL_UNIT_TEST_SECONDS,
       };
     const level = mentalLevelOf(key);
     if (level)
@@ -743,7 +752,9 @@ export class MathTestsService {
       return this.mental.titles(
         kind,
         attempt.testKey,
-        await this.mental.levelTitle(attempt.testKey),
+        kind === 'mental-unit'
+          ? await this.mental.unitTitle(attempt.testKey)
+          : await this.mental.levelTitle(attempt.testKey),
       );
     const test = await this.content.test(attempt.testKey);
     return { title: test?.title ?? 'Test', instructions: test?.instructions ?? '' };

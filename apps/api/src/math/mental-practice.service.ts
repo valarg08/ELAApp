@@ -10,6 +10,8 @@ import {
   MENTAL_SPRINT_MIN,
   MENTAL_SPRINT_SECONDS,
   MENTAL_SPRINT_SIZE,
+  MENTAL_UNIT_TEST_SECONDS,
+  MENTAL_UNIT_TEST_SIZE,
   type MathProblem,
   MathSkillsFile,
   type MathTestItem,
@@ -18,8 +20,10 @@ import {
   MentalLevelsFile,
   type MentalPractice,
   type MentalProgress,
+  type MentalUnitTest,
   type ProblemVerdict,
   type TestResult,
+  mentalUnitOf,
   newSeed,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
@@ -194,6 +198,49 @@ export class MentalPracticeService {
     return finished ? null : `Finish every unit of Level ${level} first.`;
   }
 
+  /** Why a unit test is locked (null when open): every lesson of the unit must be finished. */
+  async unitLock(user: AuthUser, unit: number, done?: Set<string>): Promise<string | null> {
+    const row = (await this.publishedUnits()).find((u) => u.number === unit);
+    if (!row) return 'This unit does not exist.';
+    const completed = done ?? (await this.curriculum.completedLessons(user));
+    const finished = row.lessons.length > 0 && row.lessons.every((l) => completed.has(l.id));
+    return finished ? null : `Finish every lesson of Unit ${unit} first.`;
+  }
+
+  /**
+   * A unit test: MENTAL_UNIT_TEST_SIZE problems from the unit's practice and its ⭐ check, every
+   * skill of the unit first, templates with fresh numbers, easiest first.
+   */
+  async unitItems(user: AuthUser, unit: number): Promise<MathTestItem[]> {
+    const locked = await this.unitLock(user, unit);
+    if (locked) throw new AppError(HttpStatus.FORBIDDEN, ErrorCode.UNIT_LOCKED, 'Not yet', locked);
+    const pool = (await this.content.pool(user, 'MENTAL')).filter((p) => p.unitNumber === unit);
+    if (pool.length === 0) throw unprocessable('This unit has no problems yet.');
+    const bySkill = new Map<string, PoolProblem[]>();
+    for (const p of shuffled(pool))
+      bySkill.set(p.problem.skill, [...(bySkill.get(p.problem.skill) ?? []), p]);
+    // Take one per skill in turn, so every pattern of the unit comes up.
+    const picked: PoolProblem[] = [];
+    const queues = shuffled([...bySkill.values()]);
+    while (picked.length < MENTAL_UNIT_TEST_SIZE && queues.some((q) => q.length > 0))
+      for (const q of queues) {
+        const p = q.shift();
+        if (p && picked.length < MENTAL_UNIT_TEST_SIZE) picked.push(p);
+      }
+    // A small unit: templates come back with new numbers.
+    const templates = pool.filter((p) => p.problem.template);
+    while (picked.length < MENTAL_UNIT_TEST_SIZE && templates.length > 0)
+      picked.push(templates[picked.length % templates.length]!);
+    return picked
+      .toSorted((a, b) => a.problem.difficulty - b.problem.difficulty)
+      .map((p) => this.item(p.activityKey, p.problem, p.lessonId));
+  }
+
+  async unitTitle(testKey: string): Promise<string | undefined> {
+    const unit = mentalUnitOf(testKey);
+    return (await this.publishedUnits()).find((u) => u.number === unit)?.title;
+  }
+
   /** A level check: problems from every unit check of the level, spread across the units. */
   async levelItems(user: AuthUser, level: number): Promise<MathTestItem[]> {
     const locked = await this.levelLock(user, level);
@@ -236,6 +283,13 @@ export class MentalPracticeService {
         title: 'Placement check',
         instructions: `${MENTAL_PLACEMENT_PER_LEVEL} questions from each level, easiest first. No timer and no hints: just do what you can. Your result shows the level to start at and opens its units.`,
       };
+    if (kind === 'mental-unit') {
+      const unit = mentalUnitOf(testKey) ?? 0;
+      return {
+        title: `Unit ${unit} test${levelTitle ? `: ${levelTitle}` : ''}`,
+        instructions: `${MENTAL_UNIT_TEST_SIZE} questions from Unit ${unit} in ${MENTAL_UNIT_TEST_SECONDS / 60} minutes, no hints. Skip any you are stuck on and come back; the test is handed in when time runs out.`,
+      };
+    }
     const level = mentalLevelOf(testKey) ?? 0;
     return {
       title: `Level ${level} check${levelTitle ? `: ${levelTitle}` : ''}`,
@@ -299,6 +353,19 @@ export class MentalPracticeService {
       newBest = sprints.length > 1 && top?.id === attempt.id && (attempt.correct ?? 0) > 0;
     }
     const level = mentalLevelOf(attempt.testKey);
+    const unit = kind === 'mental-unit' ? mentalUnitOf(attempt.testKey) : null;
+    let previousBest: number | null = null;
+    if (unit) {
+      const earlier = await this.db.client.mathTestAttempt.findMany({
+        where: {
+          studentId: attempt.studentId,
+          testKey: attempt.testKey,
+          submittedAt: { not: null, lt: attempt.submittedAt ?? new Date() },
+        },
+        select: { correct: true },
+      });
+      if (earlier.length) previousBest = Math.max(...earlier.map((a) => a.correct ?? 0));
+    }
     return {
       seconds: elapsed(attempt),
       best,
@@ -312,6 +379,7 @@ export class MentalPracticeService {
               needed: MENTAL_LEVEL_PASS,
             }
           : null,
+      unitTest: unit ? { unit, previousBest } : null,
     };
   }
 
@@ -343,7 +411,7 @@ export class MentalPracticeService {
       this.db.client.mathTestAttempt.findMany({
         where: {
           studentId: user.id,
-          kind: { in: ['mental-sprint', 'mental-placement', 'mental-level'] },
+          kind: { in: ['mental-sprint', 'mental-placement', 'mental-level', 'mental-unit'] },
         },
         orderBy: { startedAt: 'desc' },
       }),
@@ -372,6 +440,19 @@ export class MentalPracticeService {
         lastAttemptId: done[0]?.id ?? null,
       });
     }
+    const unitTests: MentalUnitTest[] = [];
+    for (const unit of await this.publishedUnits()) {
+      const mine = attempts.filter((a) => a.testKey === `mental-unit-${unit.number}`);
+      const done = mine.filter((a) => a.submittedAt);
+      unitTests.push({
+        unit: unit.number,
+        title: unit.title,
+        unlocked: !(await this.unitLock(user, unit.number, completed)),
+        best: done.length ? Math.max(...done.map((a) => a.correct ?? 0)) : null,
+        openAttemptId: mine.find((a) => !a.submittedAt)?.id ?? null,
+        lastAttemptId: done[0]?.id ?? null,
+      });
+    }
     return {
       review: {
         due: Math.min(MENTAL_REVIEW_SIZE, Math.min(dueRedos, 3) + dueSkills),
@@ -390,6 +471,7 @@ export class MentalPracticeService {
         lastAttemptId: placements.find((a) => a.submittedAt)?.id ?? null,
       },
       levelChecks,
+      unitTests,
     };
   }
 

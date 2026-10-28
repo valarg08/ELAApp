@@ -11,7 +11,8 @@ import {
   isMentalKind,
 } from '@storyforge/shared';
 import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { createPortal } from 'react-dom';
 import { MathText } from '@/components/math-text';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
@@ -22,6 +23,10 @@ import { SimpleAnswers } from './simple-answers';
 import { TestResultView } from './test-result';
 
 const PROMPT_KEY = 'storyforge.math.skipPrompt';
+/** A page can hold this element (the Progress panel's top): the countdown then shows there. */
+export const SIDE_TIMER_ID = 'test-side-timer';
+
+const noSubscribe = () => () => {};
 
 const message = (e: unknown, fallback: string) =>
   e instanceof ApiError ? e.userMessage : fallback;
@@ -248,6 +253,13 @@ export function TestPlayer({
     !dismissed.has(index) &&
     secondsHere >= SKIP_PROMPT_SECONDS;
   const locked = Boolean(fb);
+  // The side slot lives outside this component (none while rendering on the server).
+  const side = useSyncExternalStore(
+    noSubscribe,
+    () => document.getElementById(SIDE_TIMER_ID),
+    () => null,
+  );
+  const low = left !== null && left <= Math.min(300, view.timeLimitSeconds! / 3);
 
   return (
     <div className="flex flex-col gap-6">
@@ -258,16 +270,43 @@ export function TestPlayer({
         </div>
         {left !== null && (
           <p
-            className={`font-mono text-xl font-semibold tabular-nums ${left <= Math.min(300, view.timeLimitSeconds! / 3) ? 'text-warn' : 'text-muted'}`}
+            className={`font-mono text-xl font-semibold tabular-nums ${low ? 'text-warn' : 'text-muted'} ${side ? 'md:hidden' : ''}`}
           >
             <span className="sr-only">Time left: </span>
             {clock(left)}
-            <span className="sr-only" aria-live="polite">
-              {left === 300 ? 'Five minutes left.' : left === 60 ? 'One minute left.' : ''}
-            </span>
+          </p>
+        )}
+        {left !== null && (
+          <p className="sr-only" aria-live="polite">
+            {left === 300 ? 'Five minutes left.' : left === 60 ? 'One minute left.' : ''}
           </p>
         )}
       </div>
+      {left !== null &&
+        side &&
+        createPortal(
+          <section
+            aria-label="Timer"
+            className={`mb-5 hidden rounded-xl border-2 bg-card p-4 text-center md:block ${low ? 'border-warn' : 'border-brand/30'}`}
+          >
+            <p className="text-sm font-semibold">Time left</p>
+            <p
+              className={`font-mono text-4xl font-bold tabular-nums ${low ? 'text-warn' : 'text-brand'}`}
+            >
+              {clock(left)}
+            </p>
+            <div aria-hidden="true" className="mt-2 h-2 overflow-hidden rounded-full bg-background">
+              <div
+                className={`h-full rounded-full ${low ? 'bg-warn' : 'bg-primary'}`}
+                style={{ width: `${(100 * left) / view.timeLimitSeconds!}%` }}
+              />
+            </div>
+            <p className="mt-2 text-sm">
+              {answeredCount} of {n} answered
+            </p>
+          </section>,
+          side,
+        )}
 
       {view.facts.length > 0 && (
         <details className="rounded-2xl border border-border bg-card p-4" open>
