@@ -54,7 +54,7 @@ export async function CourseShell({
   const chapterNav = (
     <nav aria-label="Chapters">
       {unitSlug && (
-        <Link href={TRACK_HOME[track]} className={`text-sm text-white underline ${navFocus}`}>
+        <Link href={TRACK_HOME[track]} className={`text-sm text-brand underline ${navFocus}`}>
           ← {TRACK_NAMES[track]}
         </Link>
       )}
@@ -68,7 +68,7 @@ export async function CourseShell({
                 <Link
                   href={`/units/${u.slug}`}
                   aria-current={current && !lessonId ? 'page' : undefined}
-                  className={`flex gap-2 rounded-xl px-2 text-sm hover:bg-white/10 ${navFocus} ${current ? 'min-h-11 items-start bg-white/15 py-2 font-semibold' : 'min-h-9 items-center py-1'}`}
+                  className={`flex gap-2 rounded-xl px-2 text-sm hover:bg-brand/10 ${navFocus} ${current ? 'min-h-11 items-start bg-brand/10 py-2 font-semibold' : 'min-h-9 items-center py-1'}`}
                 >
                   <span aria-hidden="true" className="w-4 shrink-0">
                     {done ? '✓' : ''}
@@ -76,9 +76,7 @@ export async function CourseShell({
                   {/* Only the open unit shows its label line and lessons; the others stay one line. */}
                   {current ? (
                     <span>
-                      <span className="block text-xs text-white/80">
-                        {unitLabel(track, u.number)}
-                      </span>
+                      <span className="block text-xs text-muted">{unitLabel(track, u.number)}</span>
                       {u.title}
                       {done && <span className="sr-only"> (completed)</span>}
                     </span>
@@ -92,7 +90,7 @@ export async function CourseShell({
                   )}
                 </Link>
               ) : (
-                <p className="flex min-h-9 items-center gap-2 px-2 py-1 text-sm text-white/75">
+                <p className="flex min-h-9 items-center gap-2 px-2 py-1 text-sm text-muted">
                   <span aria-hidden="true" className="w-4 shrink-0">
                     🔒
                   </span>
@@ -107,12 +105,12 @@ export async function CourseShell({
               {current && unit?.available && unit.lessons.length > 0 && (
                 <ol
                   aria-label={`${unit.title} lessons`}
-                  className="mt-1 mb-2 ml-6 border-l border-white/30"
+                  className="mt-1 mb-2 ml-6 border-l border-brand/30"
                 >
                   {unit.lessons.map((l) => (
                     <li key={l.id}>
                       {l.locked ? (
-                        <p className="py-1.5 pl-3 text-sm text-white/75">
+                        <p className="py-1.5 pl-3 text-sm text-muted">
                           <span aria-hidden="true">🔒 </span>
                           {l.order}. {l.title}
                           <span className="sr-only"> (locked)</span>
@@ -121,10 +119,10 @@ export async function CourseShell({
                         <Link
                           href={`/lessons/${l.id}`}
                           aria-current={l.id === lessonId ? 'page' : undefined}
-                          className={`-ml-px flex min-h-11 items-center gap-1 border-l-2 py-1.5 pl-3 text-sm hover:underline ${navFocus} ${l.id === lessonId ? 'border-white font-semibold' : 'border-transparent'}`}
+                          className={`-ml-px flex min-h-11 items-center gap-1 border-l-2 py-1.5 pl-3 text-sm hover:underline ${navFocus} ${l.id === lessonId ? 'border-brand font-semibold' : 'border-transparent'}`}
                         >
                           {l.completed && (
-                            <span aria-hidden="true" className="text-mint">
+                            <span aria-hidden="true" className="text-ok">
                               ✓
                             </span>
                           )}
@@ -209,7 +207,7 @@ export async function CourseShell({
 
       <main
         id="course-main"
-        className="min-w-0 rounded-2xl border border-border bg-page-panel p-4 shadow-sm md:overflow-y-auto md:p-6"
+        className="min-w-0 rounded-2xl border border-border bg-card p-4 shadow-sm md:overflow-y-auto md:p-6"
       >
         {children}
       </main>

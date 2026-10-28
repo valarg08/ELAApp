@@ -8,11 +8,11 @@ export function ProgressBar({
   value: number;
   max: number;
   label: string;
-  /** On the cyan Progress panel: a deep teal bar on a light track. */
+  /** On the Progress panel: a deep teal bar on a white track. */
   onCyan?: boolean;
 }) {
   const colours = onCyan
-    ? 'bg-white/60 [&::-moz-progress-bar]:bg-brand [&::-webkit-progress-bar]:bg-white/60 [&::-webkit-progress-value]:bg-brand'
+    ? 'bg-white [&::-moz-progress-bar]:bg-brand [&::-webkit-progress-bar]:bg-white [&::-webkit-progress-value]:bg-brand'
     : 'bg-border [&::-moz-progress-bar]:bg-green [&::-webkit-progress-bar]:bg-border [&::-webkit-progress-value]:bg-green';
   return (
     <progress

@@ -16,8 +16,9 @@
   --ok: #007a52; /* the palette's green #009966, darkened for text */
   --warn: #b45309;
   --bad: #cd4236;
-  /* Course frame panels: deep teal Chapters (--brand), a light tint of the cyan for the page, cyan Progress. */
-  --page-panel: #ccf0f4;
+  /* Course frame panels: light teal Chapters and light cyan Progress (deep teal text), a white page. */
+  --nav-panel: #e6f2f4;
+  --progress-panel: #dcf4f7;
 }
 
 @theme inline {
@@ -34,7 +35,8 @@
   --color-ok: var(--ok);
   --color-warn: var(--warn);
   --color-bad: var(--bad);
-  --color-page-panel: var(--page-panel);
+  --color-nav-panel: var(--nav-panel);
+  --color-progress-panel: var(--progress-panel);
 }
 
 body {

@@ -33,7 +33,7 @@ function writeCollapsed(key: string, value: boolean) {
 }
 
 /**
- * A side panel of the course frame (deep teal Chapters on the left, cyan Progress on the right), with its
+ * A side panel of the course frame (light teal Chapters on the left, light cyan Progress on the right), with its
  * content rendered once. With `mobileFold` (Chapters) a button shows the content on phones. With
  * `collapsible` (the writing workspace) a button folds the panel to a slim rail on wider screens,
  * remembered in this browser; CourseShell's grid narrows the column when it sees `data-folded`.
@@ -53,7 +53,7 @@ export function SidePanel({
   side: 'left' | 'right';
   collapsible: boolean;
   mobileFold?: boolean;
-  /** Deep teal with white text (Chapters) or cyan with deep teal text (Progress). */
+  /** Light teal (Chapters) or light cyan (Progress), both with deep teal text. */
   tone?: 'teal' | 'cyan';
   children: ReactNode;
 }) {
@@ -78,7 +78,7 @@ export function SidePanel({
       onClick={() => writeCollapsed(key, !collapsed)}
       aria-expanded={!folded}
       aria-controls={id}
-      className={`hidden min-h-11 min-w-11 items-center justify-center rounded-xl text-lg font-semibold hover:bg-white/20 md:inline-flex ${focus}`}
+      className={`hidden min-h-11 min-w-11 items-center justify-center rounded-xl text-lg font-semibold hover:bg-brand/10 md:inline-flex ${focus}`}
     >
       <span aria-hidden="true">{folded ? fromEdge : toEdge}</span>
       <span className="sr-only">
