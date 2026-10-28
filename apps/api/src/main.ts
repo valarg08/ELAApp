@@ -11,6 +11,11 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const env = app.get<Env>(ENV);
   configureApp(app, env.WEB_ORIGIN);
+  // The web app's proxy reuses idle connections; Node's 5 s default closes them first and the
+  // proxy then fails with ECONNRESET (seen on student login), so keep them open longer.
+  const server = app.getHttpServer();
+  server.keepAliveTimeout = 65_000;
+  server.headersTimeout = 66_000;
   await app.listen(env.API_PORT);
   Logger.log(`API ready at http://localhost:${env.API_PORT}/${API_PREFIX}`, 'Bootstrap');
 }
