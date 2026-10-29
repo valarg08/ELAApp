@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 290" width="720" height="290" role="img" aria-label="PEMDAS as steps with × ÷ together and + − together, and 18 − 2 × (1 + 3)² ÷ 4 worked to 10">
+<title>PEMDAS as steps with × ÷ together and + − together, and 18 − 2 × (1 + 3)² ÷ 4 worked to 10</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="26" text-anchor="start">PEMDAS</text><rect class="l fv" x="20" y="44" width="250" height="40" rx="6"/><text class="vt" x="34" y="70" text-anchor="start">P</text><text x="82" y="70" text-anchor="start">Parentheses</text><rect class="l fb" x="44" y="94" width="250" height="40" rx="6"/><text class="bt" x="58" y="120" text-anchor="start">E</text><text x="106" y="120" text-anchor="start">Exponents</text><rect class="l fh" x="68" y="144" width="250" height="40" rx="6"/><text class="ht" x="82" y="170" text-anchor="start">M D</text><text x="130" y="170" text-anchor="start">× and ÷, left to right</text><rect class="l fa" x="92" y="194" width="250" height="40" rx="6"/><text class="at" x="106" y="220" text-anchor="start">A S</text><text x="154" y="220" text-anchor="start">+ and −, left to right</text><text class="t" x="400" y="26" text-anchor="start">Work it one step at a time</text><text x="400" y="64" text-anchor="start">18 − 2 × (1 + 3)² ÷ 4</text><text x="400" y="100" text-anchor="start">= 18 − 2 × 4² ÷ 4</text><text class="vt" x="620" y="100" text-anchor="start">P</text><text x="400" y="136" text-anchor="start">= 18 − 2 × 16 ÷ 4</text><text class="bt" x="620" y="136" text-anchor="start">E</text><text x="400" y="172" text-anchor="start">= 18 − 32 ÷ 4</text><text class="ht" x="620" y="172" text-anchor="start">× comes first</text><text x="400" y="208" text-anchor="start">= 18 − 8</text><text class="ht" x="620" y="208" text-anchor="start">÷</text><text class="at" x="400" y="244" text-anchor="start">= 10</text><text class="at" x="620" y="244" text-anchor="start">−</text>
+</svg>

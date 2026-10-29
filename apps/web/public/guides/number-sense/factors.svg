@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 295" width="680" height="295" role="img" aria-label="A factor tree for 84 = 2² × 3 × 7, and the multiples of 6 and 8 meeting first at 24, their LCM">
+<title>A factor tree for 84 = 2² × 3 × 7, and the multiples of 6 and 8 meeting first at 24, their LCM</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="26" text-anchor="start">Factor tree</text><text class="t" x="170" y="70" text-anchor="middle">84</text><line class="l" x1="160" y1="80" x2="110" y2="116"/><line class="l" x1="180" y1="80" x2="230" y2="116"/><text class="t" x="100" y="136" text-anchor="middle">4</text><text class="t" x="240" y="136" text-anchor="middle">21</text><line class="l" x1="92" y1="146" x2="70" y2="182"/><line class="l" x1="108" y1="146" x2="130" y2="182"/><line class="l" x1="232" y1="146" x2="210" y2="182"/><line class="l" x1="248" y1="146" x2="270" y2="182"/><circle class="a fa" cx="64" cy="197" r="17"/><text class="at" x="64" y="202" text-anchor="middle">2</text><circle class="a fa" cx="136" cy="197" r="17"/><text class="at" x="136" y="202" text-anchor="middle">2</text><circle class="a fa" cx="204" cy="197" r="17"/><text class="at" x="204" y="202" text-anchor="middle">3</text><circle class="a fa" cx="276" cy="197" r="17"/><text class="at" x="276" y="202" text-anchor="middle">7</text><text class="t" x="170" y="252" text-anchor="middle">84 = 2 × 2 × 3 × 7 = 2² × 3 × 7</text><text class="s" x="170" y="276" text-anchor="middle">every branch ends in a prime</text><text class="t" x="380" y="26" text-anchor="start">Least common multiple</text><text class="t" x="380" y="74" text-anchor="start">6:</text><text class="t" x="380" y="124" text-anchor="start">8:</text><text x="430" y="74" text-anchor="middle">6</text><text x="476" y="74" text-anchor="middle">12</text><text x="522" y="74" text-anchor="middle">18</text><text class="ht" x="568" y="74" text-anchor="middle">24</text><text x="614" y="74" text-anchor="middle">30</text><text x="430" y="124" text-anchor="middle">8</text><text x="476" y="124" text-anchor="middle">16</text><text class="ht" x="522" y="124" text-anchor="middle">24</text><text x="568" y="124" text-anchor="middle">32</text><text x="614" y="124" text-anchor="middle">40</text><circle class="h" cx="568" cy="69" r="18"/><circle class="h" cx="522" cy="119" r="18"/><text x="380" y="176" text-anchor="start">LCM(6, 8) = 24, the first shared multiple</text><text class="at" x="380" y="214" text-anchor="start">1/6 + 3/8 = 4/24 + 9/24 = 13/24</text>
+</svg>

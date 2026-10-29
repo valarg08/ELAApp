@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" role="img" aria-label="Place values of 572,938.164, and 4.6283 rounded to the nearest hundredth: the next digit 8 is 5 or more, so 4.63">
+<title>Place values of 572,938.164, and 4.6283 rounded to the nearest hundredth: the next digit 8 is 5 or more, so 4.63</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="26" text-anchor="start">Place values</text><text class="t" x="60" y="70" text-anchor="middle">5</text><text class="s" transform="translate(64,86) rotate(40)" text-anchor="start">hundred thousands</text><text class="t" x="122" y="70" text-anchor="middle">7</text><text class="s" transform="translate(126,86) rotate(40)" text-anchor="start">ten thousands</text><text class="t" x="184" y="70" text-anchor="middle">2</text><text class="s" transform="translate(188,86) rotate(40)" text-anchor="start">thousands</text><text class="t" x="246" y="70" text-anchor="middle">9</text><text class="s" transform="translate(250,86) rotate(40)" text-anchor="start">hundreds</text><text class="t" x="308" y="70" text-anchor="middle">3</text><text class="s" transform="translate(312,86) rotate(40)" text-anchor="start">tens</text><text class="t" x="370" y="70" text-anchor="middle">8</text><text class="s" transform="translate(374,86) rotate(40)" text-anchor="start">ones</text><text class="t" x="432" y="70" text-anchor="middle">.</text><text class="t" x="494" y="70" text-anchor="middle">1</text><text class="s" transform="translate(498,86) rotate(40)" text-anchor="start">tenths</text><text class="t" x="556" y="70" text-anchor="middle">6</text><text class="s" transform="translate(560,86) rotate(40)" text-anchor="start">hundredths</text><text class="t" x="618" y="70" text-anchor="middle">4</text><text class="s" transform="translate(622,86) rotate(40)" text-anchor="start">thousandths</text><text class="t" x="20" y="216" text-anchor="start">Round 4.6283 to the nearest hundredth</text><text x="60" y="256" text-anchor="middle">4</text><text x="90" y="256" text-anchor="middle">.</text><text x="120" y="256" text-anchor="middle">6</text><text class="at" x="150" y="256" text-anchor="middle">2</text><text class="ht" x="180" y="256" text-anchor="middle">8</text><text x="210" y="256" text-anchor="middle">3</text><rect class="l fa" x="137" y="234" width="26" height="30" rx="6"/><rect class="l fh" x="167" y="234" width="26" height="30" rx="6"/><text class="ht" x="180" y="288" text-anchor="middle">8 ≥ 5</text><text x="290" y="248" text-anchor="start">digit to the right is 5–9 → round up</text><text class="at" x="290" y="272" text-anchor="start">4.6283 ≈ 4.63</text><text class="s" x="290" y="296" text-anchor="start">(0–4 → round down: keep the digit)</text>
+</svg>

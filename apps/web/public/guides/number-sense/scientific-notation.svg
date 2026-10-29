@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 310" width="600" height="310" role="img" aria-label="3.2 × 10⁵ = 320,000 with the decimal point hopping 5 places right, and 0.00061 = 6.1 × 10⁻⁴ with the point hopping 4 places">
+<title>3.2 × 10⁵ = 320,000 with the decimal point hopping 5 places right, and 0.00061 = 6.1 × 10⁻⁴ with the point hopping 4 places</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="26" text-anchor="start">a × 10ⁿ with 1 ≤ a &lt; 10</text><text class="t" x="71" y="118" text-anchor="middle">3</text><text class="t" x="93" y="118" text-anchor="middle">2</text><text class="s" x="115" y="118" text-anchor="middle">0</text><text class="s" x="137" y="118" text-anchor="middle">0</text><text class="s" x="159" y="118" text-anchor="middle">0</text><text class="s" x="181" y="118" text-anchor="middle">0</text><circle class="dot" cx="82" cy="120" r="3"/><path class="h" d="M82,96 Q93,74 104,96"/><path class="h" d="M104,96 Q115,74 126,96"/><path class="h" d="M126,96 Q137,74 148,96"/><path class="h" d="M148,96 Q159,74 170,96"/><path class="h" d="M170,96 Q181,74 192,96"/><circle class="ht" cx="192" cy="120" r="4"/><text x="212" y="118" text-anchor="start">3.2 × 10⁵ = 320,000</text><text class="s" x="212" y="140" text-anchor="start">n = 5 > 0 → point moves 5 right</text><text class="s" x="71" y="218" text-anchor="middle">0</text><text class="s" x="93" y="218" text-anchor="middle">0</text><text class="s" x="115" y="218" text-anchor="middle">0</text><text class="s" x="137" y="218" text-anchor="middle">0</text><text class="t" x="159" y="218" text-anchor="middle">6</text><text class="t" x="181" y="218" text-anchor="middle">1</text><circle class="dot" cx="82" cy="220" r="3"/><path class="a" d="M82,196 Q93,174 104,196"/><path class="a" d="M104,196 Q115,174 126,196"/><path class="a" d="M126,196 Q137,174 148,196"/><path class="a" d="M148,196 Q159,174 170,196"/><circle class="at" cx="170" cy="220" r="4"/><text x="212" y="218" text-anchor="start">0.00061 = 6.1 × 10⁻⁴</text><text class="s" x="212" y="240" text-anchor="start">point moved 4 right → n = −4</text><text class="s" x="20" y="290" text-anchor="start">Big numbers → positive n; numbers between 0 and 1 → negative n</text>
+</svg>

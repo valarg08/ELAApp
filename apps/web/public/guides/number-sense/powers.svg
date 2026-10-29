@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="700" height="260" role="img" aria-label="5³ = 5 × 5 × 5 with base and exponent labelled; (−2)⁴ = 16 but −2⁴ = −16; the product, quotient and power-of-a-power rules">
+<title>5³ = 5 × 5 × 5 with base and exponent labelled; (−2)⁴ = 16 but −2⁴ = −16; the product, quotient and power-of-a-power rules</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text x="60" y="90" style="font-size:44px;font-weight:700" class="at">5</text><text x="88" y="62" style="font-size:24px;font-weight:700" class="ht">3</text><text class="at" x="74" y="124" text-anchor="middle">base</text><text class="ht" x="100" y="36" text-anchor="middle">exponent</text><text x="130" y="80" text-anchor="start">= 5 × 5 × 5 = 125</text><text class="s" x="130" y="104" text-anchor="start">three factors of the base</text><text class="t" x="30" y="170" text-anchor="start">Brackets decide the base</text><text class="at" x="30" y="202" text-anchor="start">(−2)⁴ = (−2)(−2)(−2)(−2) = 16</text><text class="ht" x="30" y="232" text-anchor="start">−2⁴ = −(2 · 2 · 2 · 2) = −16</text><text class="t" x="420" y="40" text-anchor="start">Same base rules</text><rect class="l fv" x="420" y="64" width="260" height="46" rx="6"/><text class="vt" x="434" y="93" text-anchor="start">aᵐ × aⁿ = aᵐ⁺ⁿ</text><text x="570" y="93" text-anchor="start">3² × 3³ = 3⁵</text><rect class="l fv" x="420" y="122" width="260" height="46" rx="6"/><text class="vt" x="434" y="151" text-anchor="start">aᵐ ÷ aⁿ = aᵐ⁻ⁿ</text><text x="570" y="151" text-anchor="start">7⁶ ÷ 7⁴ = 7²</text><rect class="l fv" x="420" y="180" width="260" height="46" rx="6"/><text class="vt" x="434" y="209" text-anchor="start">(aᵐ)ⁿ = aᵐⁿ</text><text x="570" y="209" text-anchor="start">(5²)³ = 5⁶</text>
+</svg>

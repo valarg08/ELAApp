@@ -19,6 +19,7 @@ import { ProgressBar } from './progress-bar';
 const PSAT_GUIDES = [
   { href: '/psat/geometry', title: 'Geometry', icon: '📐' },
   { href: '/psat/algebra', title: 'Algebra', icon: '🧮' },
+  { href: '/psat/number-sense', title: 'Number Sense', icon: '🔢' },
 ];
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
