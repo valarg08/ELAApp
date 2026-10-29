@@ -266,6 +266,33 @@ const PRACTICE: Guide['practice'] = [
   },
 ];
 
+const REVIEW: Guide['review'] = [
+  ['Complementary / supplementary', 'add to 90° / add to 180°'],
+  ['Vertical angles', 'equal'],
+  [
+    'Parallel lines',
+    'Z (alternate interior) equal · F (corresponding) equal · C (co-interior) add to 180°',
+  ],
+  ['Triangle angle sum', '180°'],
+  ['Exterior angle', '= sum of the two opposite interior angles'],
+  ['Congruence tests', 'SSS, SAS (angle between), ASA, HL; never SSA'],
+  ['Similarity tests', 'AA, SAS~, SSS~; matching sides in ratio k'],
+  ['Pythagoras', 'a² + b² = c² (c = hypotenuse)'],
+  ['Midpoint', '((x₁ + x₂)/2, (y₁ + y₂)/2)'],
+  ['Distance', '√((x₂ − x₁)² + (y₂ − y₁)²)'],
+  [
+    'Circle angles',
+    'same segment equal · centre = 2 × circumference · tangent–chord = opposite segment',
+  ],
+  ['Rectangle', 'A = lw, P = 2l + 2w'],
+  ['Circle', 'A = πr², C = 2πr = πd'],
+  ['Rectangular prism', 'SA = 2lw + 2lh + 2wh, V = lwh'],
+  ['Cylinder', 'SA = 2πr² + 2πrh, V = πr²h'],
+  ['Translation (a, b)', '(x + a, y + b)'],
+  ['Dilation k (origin)', '(kx, ky)'],
+  ['Reflections', 'x-axis (x, −y) · y-axis (−x, y) · y = x (y, x)'],
+];
+
 /** The PSAT geometry guide: ten must-know topics, summarised in our own words from a JensenMath video. */
 const GEOMETRY: Guide = {
   title: 'Geometry',
@@ -278,6 +305,7 @@ const GEOMETRY: Guide = {
   },
   topics: TOPICS,
   figures: FIGURES,
+  review: REVIEW,
   practice: PRACTICE,
 };
 

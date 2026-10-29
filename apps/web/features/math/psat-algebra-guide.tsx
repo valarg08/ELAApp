@@ -246,6 +246,25 @@ const PRACTICE: Guide['practice'] = [
   { q: 'Solve x² − 6x + 7 = 0 with the quadratic formula.', a: 'x = 3 ± √2' },
 ];
 
+const REVIEW: Guide['review'] = [
+  ['Like terms', 'same variables, same exponents; add the coefficients'],
+  ['Distributive property', 'a(x + y) = ax + ay'],
+  ['Equations', 'same operation on both sides; undo + and − first, then × and ÷'],
+  ['Inequalities', 'flip the sign when × or ÷ by a negative; ( ) excludes, [ ] includes'],
+  ['Function notation', 'f(a) = the output when x = a'],
+  ['Vertical line test', 'crosses once at most → a function'],
+  ['Slope-intercept form', 'y = mx + b; m = rise ÷ run, b = y-intercept'],
+  ['Systems', 'graphing (crossing point), substitution, elimination'],
+  ['Exponents', 'aᵐ · aⁿ = aᵐ⁺ⁿ · aᵐ ÷ aⁿ = aᵐ⁻ⁿ · (aᵐ)ⁿ = aᵐⁿ'],
+  ['Multiplying', 'every term × every term; FOIL for two binomials'],
+  [
+    'Factoring',
+    'common factor; x² + bx + c: sum b, product c; ax² + bx + c: sum b, product ac, then group',
+  ],
+  ['Vertex', 'x = −b ÷ 2a'],
+  ['Quadratic formula', 'x = (−b ± √(b² − 4ac)) ÷ 2a'],
+];
+
 /** The PSAT algebra guide: ten must-know topics, summarised in our own words from a JensenMath video. */
 const ALGEBRA: Guide = {
   title: 'Algebra',
@@ -258,6 +277,7 @@ const ALGEBRA: Guide = {
   },
   topics: TOPICS,
   figures: FIGURES,
+  review: REVIEW,
   practice: PRACTICE,
 };
 

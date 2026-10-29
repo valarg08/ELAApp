@@ -25,6 +25,8 @@ export type Guide = {
   topics: Topic[];
   /** Topic id → its diagram (our own drawing) and description. */
   figures: Record<string, { file: string; alt: string }>;
+  /** The formula review sheet: [topic, rule] rows, every rule on one page. */
+  review: [string, string][];
   practice: { q: string; a: string }[];
 };
 
@@ -98,6 +100,11 @@ export function StudyGuide({ guide }: { guide: Guide }) {
             </li>
           ))}
           <li>
+            <a href="#review" className="text-brand underline">
+              Formula review sheet
+            </a>
+          </li>
+          <li>
             <a href="#practice" className="text-brand underline">
               Practice questions
             </a>
@@ -149,6 +156,19 @@ export function StudyGuide({ guide }: { guide: Guide }) {
           {t.tip && <Note label="Watch out">{t.tip}</Note>}
         </section>
       ))}
+
+      <section id="review" aria-labelledby="review-h" className="break-inside-avoid">
+        <h2 id="review-h" className="text-2xl font-semibold">
+          Formula review sheet
+        </h2>
+        <p className="mt-1 text-muted">
+          Every rule in this guide on one page, for the night before a test.
+        </p>
+        <DataTable
+          caption={`${guide.title} rules`}
+          table={{ head: ['Topic', 'Rule'], rows: guide.review }}
+        />
+      </section>
 
       <section id="practice" aria-labelledby="practice-h">
         <h2 id="practice-h" className="text-2xl font-semibold">
