@@ -1,4 +1,5 @@
-import { type Guide, StudyGuide, type Topic } from './study-guide';
+import { NUMBER_SENSE_PROBLEMS } from './psat-number-sense-problems';
+import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
 const FIGURES: Guide['figures'] = {
   integers: {
@@ -251,11 +252,12 @@ const PRACTICE: Guide['practice'] = [
   { q: 'Evaluate 24 ÷ 4 × 3 − (5 − 2)².', a: '6 × 3 − 9 = 18 − 9 = 9' },
 ];
 
-const NUMBER_SENSE: Guide = {
+export const NUMBER_SENSE: Guide = {
   title: 'Number Sense',
   blurb:
     'The ten number skills every PSAT topic leans on, from integers to the order of operations, in our own words, with a diagram, a review sheet and practice questions.',
   folder: 'number-sense',
+  href: '/psat/number-sense',
   video: {
     url: 'https://www.youtube.com/watch?v=JnAYdGXgwjo',
     label: 'JensenMath, “Number Sense - Top 10 Must Knows” on YouTube',
@@ -264,9 +266,15 @@ const NUMBER_SENSE: Guide = {
   figures: FIGURES,
   review: REVIEW,
   practice: PRACTICE,
+  problems: NUMBER_SENSE_PROBLEMS,
 };
 
 /** The number sense study guide in the PSAT Math track (psat-design.md). */
 export function PsatNumberSenseGuide() {
   return <StudyGuide guide={NUMBER_SENSE} />;
+}
+
+/** One Number Sense chapter as a sub-module: its notes and 25 problems. */
+export function PsatNumberSenseTopic({ topicId }: { topicId: string }) {
+  return <GuideTopicPage guide={NUMBER_SENSE} topicId={topicId} />;
 }

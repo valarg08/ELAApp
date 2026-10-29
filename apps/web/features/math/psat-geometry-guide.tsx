@@ -299,6 +299,7 @@ const GEOMETRY: Guide = {
   blurb:
     'Ten must-know geometry topics with formulas, worked examples and practice. Each topic links to its part of the video.',
   folder: 'geometry',
+  href: '/psat/geometry',
   video: {
     url: 'https://www.youtube.com/watch?v=O-tQVdNwPT0',
     label: 'JensenMath, “All of GEOMETRY in 40 minutes!” on YouTube',

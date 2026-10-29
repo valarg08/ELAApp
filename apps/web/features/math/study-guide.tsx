@@ -1,6 +1,11 @@
+import type { AnswerForm } from '@storyforge/math-check';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { GuidePractice } from './guide-practice';
 import { PrintButton } from './print-button';
+
+/** A sub-module problem: a typed answer (a math-check expression) and the worked steps. */
+export type GuideProblem = { q: string; a: string; form?: AnswerForm; steps: string[] };
 
 export type Table = { head: string[]; rows: string[][] };
 
@@ -28,6 +33,10 @@ export type Guide = {
   /** The formula review sheet: [topic, rule] rows, every rule on one page. */
   review: [string, string][];
   practice: { q: string; a: string }[];
+  /** The guide's page; each topic with problems is a sub-module at `${href}/${topic id}`. */
+  href: string;
+  /** Topic id → its sub-module's problems, simple to complex. */
+  problems?: Record<string, GuideProblem[]>;
 };
 
 function DataTable({ caption, table }: { caption: string; table: Table }) {
@@ -69,13 +78,104 @@ function Note({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
+/** One topic: its video link, diagram, notes, tables and tips. */
+function TopicBody({ guide, t }: { guide: Guide; t: Topic }) {
+  const [m = 0, s = 0] = t.start.split(':').map(Number);
+  const fig = guide.figures[t.id];
+  return (
+    <>
+      <p className="text-sm">
+        <a
+          href={`${guide.video.url}&t=${m * 60 + s}s`}
+          className="text-brand underline"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Watch from {t.start}
+          <span className="sr-only"> (opens YouTube in a new tab)</span>
+        </a>
+      </p>
+      {fig && (
+        // A link to the full-size drawing, for narrow columns.
+        <a
+          href={`/guides/${guide.folder}/${fig.file}.svg`}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-3 block max-w-3xl rounded-lg"
+        >
+          {/* Static SVGs from public/; next/image adds nothing for them. */}
+          {/* oxlint-disable-next-line nextjs/no-img-element */}
+          <img
+            src={`/guides/${guide.folder}/${fig.file}.svg`}
+            alt={fig.alt}
+            className="h-auto w-full"
+          />
+          <span className="sr-only"> (opens full size in a new tab)</span>
+        </a>
+      )}
+      <p className="mt-2 text-lg">{t.intro}</p>
+      {t.rules && (
+        <ul className="mt-2 ml-5 flex list-disc flex-col gap-1 text-lg">
+          {t.rules.map((r) => (
+            <li key={r}>{r}</li>
+          ))}
+        </ul>
+      )}
+      {t.tables?.map((tb) => (
+        <DataTable key={tb.caption} {...tb} />
+      ))}
+      {t.example && <Note label="Example">{t.example}</Note>}
+      {t.tip && <Note label="Watch out">{t.tip}</Note>}
+    </>
+  );
+}
+
+/**
+ * A guide topic as its own sub-module page (psat-design.md): the notes, then its problems, with
+ * links to the previous and next sub-modules.
+ */
+export function GuideTopicPage({ guide, topicId }: { guide: Guide; topicId: string }) {
+  const i = guide.topics.findIndex((t) => t.id === topicId);
+  const t = guide.topics[i];
+  const problems = guide.problems?.[topicId];
+  if (!t || !problems) return null;
+  const prev = guide.topics[i - 1];
+  const next = guide.topics[i + 1];
+  return (
+    <div className="flex flex-col gap-8">
+      <Link href={guide.href} className="text-brand underline print:hidden">
+        ← {guide.title} study guide
+      </Link>
+      <section aria-labelledby={`${t.id}-h`}>
+        <p className="text-sm font-semibold tracking-widest text-brand uppercase">
+          {guide.title} · sub-module {i + 1} of {guide.topics.length}
+        </p>
+        <h1 id={`${t.id}-h`} className="text-4xl font-bold">
+          {t.title}
+        </h1>
+        <TopicBody guide={guide} t={t} />
+      </section>
+      <GuidePractice storageKey={`guide:${guide.folder}:${t.id}`} problems={problems} />
+      <nav aria-label="Sub-modules" className="flex flex-wrap justify-between gap-3 print:hidden">
+        {prev ? (
+          <Link href={`${guide.href}/${prev.id}`} className="text-brand underline">
+            ← {i}. {prev.title}
+          </Link>
+        ) : (
+          <span />
+        )}
+        {next && (
+          <Link href={`${guide.href}/${next.id}`} className="text-brand underline">
+            {i + 2}. {next.title} →
+          </Link>
+        )}
+      </nav>
+    </div>
+  );
+}
+
 /** A PSAT study guide page (psat-design.md): topics with diagrams, notes and practice. */
 export function StudyGuide({ guide }: { guide: Guide }) {
-  /** "1:23" → a link to that point in the video. */
-  const at = (t: string) => {
-    const [m = 0, s = 0] = t.split(':').map(Number);
-    return `${guide.video.url}&t=${m * 60 + s}s`;
-  };
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
@@ -117,43 +217,17 @@ export function StudyGuide({ guide }: { guide: Guide }) {
           <h2 id={`${t.id}-h`} className="text-2xl font-semibold">
             {i + 1}. {t.title}
           </h2>
-          <p className="text-sm">
-            <a href={at(t.start)} className="text-brand underline" target="_blank" rel="noreferrer">
-              Watch from {t.start}
-              <span className="sr-only"> (opens YouTube in a new tab)</span>
-            </a>
-          </p>
-          {guide.figures[t.id] && (
-            // A link to the full-size drawing, for narrow columns.
-            <a
-              href={`/guides/${guide.folder}/${guide.figures[t.id]!.file}.svg`}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-3 block max-w-3xl rounded-lg"
-            >
-              {/* Static SVGs from public/; next/image adds nothing for them. */}
-              {/* oxlint-disable-next-line nextjs/no-img-element */}
-              <img
-                src={`/guides/${guide.folder}/${guide.figures[t.id]!.file}.svg`}
-                alt={guide.figures[t.id]!.alt}
-                className="h-auto w-full"
-              />
-              <span className="sr-only"> (opens full size in a new tab)</span>
-            </a>
+          <TopicBody guide={guide} t={t} />
+          {guide.problems?.[t.id] && (
+            <p className="mt-3 print:hidden">
+              <Link
+                href={`${guide.href}/${t.id}`}
+                className="inline-flex min-h-11 items-center rounded-xl border-2 border-brand px-4 font-semibold text-brand hover:bg-brand/10"
+              >
+                Practice: {guide.problems[t.id]!.length} problems →
+              </Link>
+            </p>
           )}
-          <p className="mt-2 text-lg">{t.intro}</p>
-          {t.rules && (
-            <ul className="mt-2 ml-5 flex list-disc flex-col gap-1 text-lg">
-              {t.rules.map((r) => (
-                <li key={r}>{r}</li>
-              ))}
-            </ul>
-          )}
-          {t.tables?.map((tb) => (
-            <DataTable key={tb.caption} {...tb} />
-          ))}
-          {t.example && <Note label="Example">{t.example}</Note>}
-          {t.tip && <Note label="Watch out">{t.tip}</Note>}
         </section>
       ))}
 

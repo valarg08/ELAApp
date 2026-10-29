@@ -271,6 +271,7 @@ const ALGEBRA: Guide = {
   blurb:
     'Ten must-know algebra topics with rules, worked examples and practice. Each topic links to its part of the video.',
   folder: 'algebra',
+  href: '/psat/algebra',
   video: {
     url: 'https://www.youtube.com/watch?v=ueUr7xGOCNc',
     label: 'JensenMath, “All of ALGEBRA in under 1 hour” on YouTube',

@@ -11,15 +11,29 @@ import type { ReactNode } from 'react';
 import { serverApi } from '@/lib/server-api';
 import { SidePanel } from './course-frame';
 import { navFocus } from './course-styles';
+import { NUMBER_SENSE } from '@/features/math/psat-number-sense-guide';
 import { MathFactSheets, PsatReviewLink } from './math-fact-sheets';
 import { MentalCheatSheets } from './mental-cheat-sheets';
 import { ProgressBar } from './progress-bar';
 
-/** PSAT Math study guides, below the units in the Chapters menu. */
-const PSAT_GUIDES = [
+/** PSAT Math study guides, below the units in the Chapters menu; a guide's sub-modules unfold on its pages. */
+const PSAT_GUIDES: {
+  href: string;
+  title: string;
+  icon: string;
+  subs?: { href: string; title: string }[];
+}[] = [
   { href: '/psat/geometry', title: 'Geometry', icon: '📐' },
   { href: '/psat/algebra', title: 'Algebra', icon: '🧮' },
-  { href: '/psat/number-sense', title: 'Number Sense', icon: '🔢' },
+  {
+    href: NUMBER_SENSE.href,
+    title: 'Number Sense',
+    icon: '🔢',
+    subs: NUMBER_SENSE.topics.map((t) => ({
+      href: `${NUMBER_SENSE.href}/${t.id}`,
+      title: t.title,
+    })),
+  },
 ];
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
@@ -171,6 +185,24 @@ export async function CourseShell({
                   </span>
                   {g.title}
                 </Link>
+                {g.subs && navCurrent?.startsWith(g.href) && (
+                  <ol
+                    aria-label={`${g.title} sub-modules`}
+                    className="mt-1 mb-2 ml-6 border-l border-brand/30"
+                  >
+                    {g.subs.map((sub, i) => (
+                      <li key={sub.href}>
+                        <Link
+                          href={sub.href}
+                          aria-current={sub.href === navCurrent ? 'page' : undefined}
+                          className={`-ml-px flex min-h-11 items-center border-l-2 py-1.5 pl-3 text-sm hover:underline ${navFocus} ${sub.href === navCurrent ? 'border-brand font-semibold' : 'border-transparent'}`}
+                        >
+                          {i + 1}. {sub.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ol>
+                )}
               </li>
             ))}
           </ul>
