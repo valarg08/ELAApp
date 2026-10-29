@@ -1,3 +1,4 @@
+import { GEOMETRY_MIDDLE } from './psat-geometry-middle';
 import { GEOMETRY_PROBLEMS } from './psat-geometry-problems';
 import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
@@ -310,6 +311,7 @@ export const GEOMETRY: Guide = {
   review: REVIEW,
   practice: PRACTICE,
   problems: GEOMETRY_PROBLEMS,
+  middleProblems: GEOMETRY_MIDDLE,
 };
 
 export function PsatGeometryGuide() {

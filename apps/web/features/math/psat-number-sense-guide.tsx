@@ -1,3 +1,4 @@
+import { NUMBER_SENSE_MIDDLE } from './psat-number-sense-middle';
 import { NUMBER_SENSE_PROBLEMS } from './psat-number-sense-problems';
 import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
@@ -267,6 +268,7 @@ export const NUMBER_SENSE: Guide = {
   review: REVIEW,
   practice: PRACTICE,
   problems: NUMBER_SENSE_PROBLEMS,
+  middleProblems: NUMBER_SENSE_MIDDLE,
 };
 
 /** The number sense study guide in the PSAT Math track (psat-design.md). */

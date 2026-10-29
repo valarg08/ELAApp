@@ -1,3 +1,4 @@
+import { ALGEBRA_MIDDLE } from './psat-algebra-middle';
 import { ALGEBRA_PROBLEMS } from './psat-algebra-problems';
 import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
@@ -282,6 +283,7 @@ export const ALGEBRA: Guide = {
   review: REVIEW,
   practice: PRACTICE,
   problems: ALGEBRA_PROBLEMS,
+  middleProblems: ALGEBRA_MIDDLE,
 };
 
 export function PsatAlgebraGuide() {

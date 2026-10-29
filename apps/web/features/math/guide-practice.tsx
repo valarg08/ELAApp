@@ -7,27 +7,27 @@ import {
   readAnswer,
   type AnswerCheck,
 } from '@storyforge/math-check';
-import { useCallback, useMemo, useState, useSyncExternalStore } from 'react';
+import { useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { AnswerBox } from './answer-box';
 import type { GuideProblem } from './guide-problem';
 
 /** Problems 1–8, 9–17 and 18–25: the guide's problems run from simple to complex. */
 const level = (i: number) => (i < 8 ? 'Warm-up' : i < 17 ? 'Core' : 'Challenge');
 
-// Solved problems, kept in this browser only (the page still works when storage is blocked).
+// Solved problems and the chosen level, kept in this browser only (the page still works when storage is blocked).
 const listeners = new Set<() => void>();
 const memory = new Map<string, string>();
 
-function readSolved(key: string): string {
+function readStored(key: string, fallback: string): string {
   if (memory.has(key)) return memory.get(key)!;
   try {
-    return localStorage.getItem(key) ?? '[]';
+    return localStorage.getItem(key) ?? fallback;
   } catch {
-    return '[]';
+    return fallback;
   }
 }
 
-function writeSolved(key: string, value: string) {
+function writeStored(key: string, value: string) {
   memory.set(key, value);
   try {
     localStorage.setItem(key, value);
@@ -37,29 +37,124 @@ function writeSolved(key: string, value: string) {
   for (const l of listeners) l();
 }
 
+const subscribe = (listener: () => void) => {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+};
+
+/** A value kept in this browser (the server render uses `fallback`). */
+function useStored(key: string, fallback: string): string {
+  return useSyncExternalStore(
+    subscribe,
+    () => readStored(key, fallback),
+    () => fallback,
+  );
+}
+
+/** One level's problems; `storageKey` keeps its solved problems apart from the other level's. */
+export type GuideLevel = {
+  id: string;
+  label: string;
+  storageKey: string;
+  /** A line about the level, under its intro. */
+  note?: string;
+  problems: GuideProblem[];
+};
+
 /**
- * A study-guide sub-module's problems (psat-design.md): typed answers checked in the browser with
- * math-check; a wrong answer shows the worked steps. Which problems are solved is kept in this
- * browser only (a per-viewer convenience).
+ * A study-guide sub-module's problems (psat-design.md), at one or more levels (Middle school,
+ * PSAT) picked with tabs: typed answers checked in the browser with math-check; a wrong answer
+ * shows the worked steps. Solved problems and the chosen level are kept in this browser only.
  */
-export function GuidePractice({
+export function GuidePractice({ levels }: { levels: GuideLevel[] }) {
+  const stored = useStored('guide:level', levels[0]?.id ?? '');
+  const current = levels.find((l) => l.id === stored) ?? levels[0];
+  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  if (!current) return null;
+  if (levels.length === 1)
+    return (
+      <section id="problems" aria-labelledby="problems-h" className="flex flex-col gap-4">
+        <ProblemSet storageKey={current.storageKey} problems={current.problems} idPrefix="" />
+      </section>
+    );
+
+  function pick(i: number) {
+    const l = levels[(i + levels.length) % levels.length]!;
+    writeStored('guide:level', l.id);
+    tabs.current[(i + levels.length) % levels.length]?.focus();
+  }
+
+  return (
+    <section id="problems" aria-labelledby="problems-h" className="flex flex-col gap-4">
+      <h2 id="problems-h" className="text-2xl font-semibold">
+        Practice problems
+      </h2>
+      <div role="tablist" aria-label="Level" className="flex flex-wrap gap-2">
+        {levels.map((l, i) => {
+          const on = l.id === current.id;
+          return (
+            <button
+              key={l.id}
+              ref={(el) => {
+                tabs.current[i] = el;
+              }}
+              type="button"
+              role="tab"
+              id={`level-${l.id}`}
+              aria-selected={on}
+              aria-controls={`panel-${l.id}`}
+              tabIndex={on ? 0 : -1}
+              onClick={() => pick(i)}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowRight') pick(i + 1);
+                if (e.key === 'ArrowLeft') pick(i - 1);
+              }}
+              className={`min-h-11 rounded-xl border-2 px-4 font-semibold focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand ${on ? 'border-brand bg-brand text-white' : 'border-border hover:border-brand'}`}
+            >
+              {l.label}
+            </button>
+          );
+        })}
+      </div>
+      {levels.map((l) => (
+        <div
+          key={l.id}
+          role="tabpanel"
+          id={`panel-${l.id}`}
+          aria-labelledby={`level-${l.id}`}
+          hidden={l.id !== current.id}
+          className="flex flex-col gap-4"
+        >
+          <ProblemSet
+            storageKey={l.storageKey}
+            problems={l.problems}
+            idPrefix={`${l.id}-`}
+            label={l.label}
+            note={l.note}
+          />
+        </div>
+      ))}
+    </section>
+  );
+}
+
+/** One level's problems with its solved count. */
+function ProblemSet({
   storageKey,
   problems,
+  idPrefix,
+  label,
+  note,
 }: {
   storageKey: string;
   problems: GuideProblem[];
+  idPrefix: string;
+  label?: string;
+  note?: string;
 }) {
-  const subscribe = useCallback((listener: () => void) => {
-    listeners.add(listener);
-    return () => {
-      listeners.delete(listener);
-    };
-  }, []);
-  const raw = useSyncExternalStore(
-    subscribe,
-    () => readSolved(storageKey),
-    () => '[]',
-  );
+  const raw = useStored(storageKey, '[]');
   const solved = useMemo(() => {
     try {
       const v = JSON.parse(raw) as unknown;
@@ -70,16 +165,22 @@ export function GuidePractice({
   }, [raw]);
 
   const markSolved = (i: number) => {
-    if (!solved.includes(i)) writeSolved(storageKey, JSON.stringify([...solved, i]));
+    if (!solved.includes(i)) writeStored(storageKey, JSON.stringify([...solved, i]));
   };
-  const reset = () => writeSolved(storageKey, '[]');
+  const reset = () => writeStored(storageKey, '[]');
+  // With level tabs the section heading is "Practice problems"; each level gets an h3.
+  const Heading = label ? 'h3' : 'h2';
 
   return (
-    <section id="problems" aria-labelledby="problems-h" className="flex flex-col gap-4">
+    <>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 id="problems-h" className="text-2xl font-semibold">
+        <Heading
+          id={label ? undefined : 'problems-h'}
+          className={label ? 'text-xl font-semibold' : 'text-2xl font-semibold'}
+        >
+          {label ? `${label}: ` : ''}
           {problems.length} problems
-        </h2>
+        </Heading>
         <p className="font-semibold" aria-live="polite">
           {solved.length} of {problems.length} solved
         </p>
@@ -88,11 +189,13 @@ export function GuidePractice({
         From simple to complex: warm-up (1–8), core (9–17), challenge (18–25). Type your answer and
         press Check; if it is wrong you will see how to solve it, step by step.
       </p>
+      {note && <p className="text-muted">{note}</p>}
       <ol className="flex flex-col gap-4">
         {problems.map((pr, i) => (
           <ProblemCard
             key={pr.q}
             n={i + 1}
+            idPrefix={idPrefix}
             problem={pr}
             solved={solved.includes(i)}
             onSolved={() => markSolved(i)}
@@ -108,17 +211,19 @@ export function GuidePractice({
           Start these problems again
         </button>
       )}
-    </section>
+    </>
   );
 }
 
 function ProblemCard({
   n,
+  idPrefix,
   problem,
   solved,
   onSolved,
 }: {
   n: number;
+  idPrefix: string;
   problem: GuideProblem;
   solved: boolean;
   onSolved: () => void;
@@ -144,11 +249,12 @@ function ProblemCard({
     if (r.status === 'wrong') setShowSteps(true);
   }
 
-  const headingId = `problem-${n}`;
+  const headingId = `${idPrefix}problem-${n}`;
   return (
     <li className={`rounded-2xl border p-4 ${solved ? 'border-ok' : 'border-border'}`}>
       <p id={headingId} className="text-sm font-semibold text-muted">
         Problem {n} · {level(n - 1)}
+        {problem.std && <span> · B.E.S.T. {problem.std}</span>}
         {solved && <span className="text-ok"> · ✓ solved</span>}
       </p>
       <p className="mt-1 text-lg">{problem.q}</p>

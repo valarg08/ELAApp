@@ -34,6 +34,8 @@ export type Guide = {
   href: string;
   /** Topic id → its sub-module's problems, simple to complex. */
   problems?: Record<string, GuideProblem[]>;
+  /** Topic id → easier problems for middle schoolers, tagged with Florida B.E.S.T. benchmarks (grades 6–8). */
+  middleProblems?: Record<string, GuideProblem[]>;
 };
 
 function DataTable({ caption, table }: { caption: string; table: Table }) {
@@ -135,6 +137,7 @@ export function GuideTopicPage({ guide, topicId }: { guide: Guide; topicId: stri
   const i = guide.topics.findIndex((t) => t.id === topicId);
   const t = guide.topics[i];
   const problems = guide.problems?.[topicId];
+  const middle = guide.middleProblems?.[topicId];
   if (!t || !problems) return null;
   const prev = guide.topics[i - 1];
   const next = guide.topics[i + 1];
@@ -152,7 +155,22 @@ export function GuideTopicPage({ guide, topicId }: { guide: Guide; topicId: stri
         </h1>
         <TopicBody guide={guide} t={t} />
       </section>
-      <GuidePractice storageKey={`guide:${guide.folder}:${t.id}`} problems={problems} />
+      <GuidePractice
+        levels={[
+          ...(middle
+            ? [
+                {
+                  id: 'ms',
+                  label: 'Middle school',
+                  storageKey: `guide:${guide.folder}:${t.id}:ms`,
+                  note: "Aligned to Florida's B.E.S.T. math benchmarks for grades 6–8; each problem names the benchmark it practises.",
+                  problems: middle,
+                },
+              ]
+            : []),
+          { id: 'psat', label: 'PSAT', storageKey: `guide:${guide.folder}:${t.id}`, problems },
+        ]}
+      />
       <nav aria-label="Sub-modules" className="flex flex-wrap justify-between gap-3 print:hidden">
         {prev ? (
           <Link href={`${guide.href}/${prev.id}`} className="text-brand underline">
@@ -221,7 +239,9 @@ export function StudyGuide({ guide }: { guide: Guide }) {
                 href={`${guide.href}/${t.id}`}
                 className="inline-flex min-h-11 items-center rounded-xl border-2 border-brand px-4 font-semibold text-brand hover:bg-brand/10"
               >
-                Practice: {guide.problems[t.id]!.length} problems →
+                Practice:{' '}
+                {guide.problems[t.id]!.length + (guide.middleProblems?.[t.id]?.length ?? 0)}{' '}
+                problems{guide.middleProblems?.[t.id] ? ' (middle school and PSAT)' : ''} →
               </Link>
             </p>
           )}
