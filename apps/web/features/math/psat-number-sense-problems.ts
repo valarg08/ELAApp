@@ -1,12 +1,4 @@
-import type { GuideProblem } from './study-guide';
-
-/** One problem: the question, the accepted answer (a math-check expression), the worked steps. */
-const p = (q: string, a: string, steps: string[], form?: GuideProblem['form']): GuideProblem => ({
-  q,
-  a,
-  steps,
-  ...(form ? { form } : {}),
-});
+import { guideProblem as p, type GuideProblem } from './guide-problem';
 
 /** 25 problems per Number Sense chapter, simple to complex: 1–8 warm-up, 9–17 core, 18–25 challenge. */
 export const NUMBER_SENSE_PROBLEMS: Record<string, GuideProblem[]> = {

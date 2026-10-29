@@ -1,11 +1,8 @@
-import type { AnswerForm } from '@storyforge/math-check';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import type { GuideProblem } from './guide-problem';
 import { GuidePractice } from './guide-practice';
 import { PrintButton } from './print-button';
-
-/** A sub-module problem: a typed answer (a math-check expression) and the worked steps. */
-export type GuideProblem = { q: string; a: string; form?: AnswerForm; steps: string[] };
 
 export type Table = { head: string[]; rows: string[][] };
 

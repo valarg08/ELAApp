@@ -1,4 +1,5 @@
-import { type Guide, StudyGuide, type Topic } from './study-guide';
+import { ALGEBRA_PROBLEMS } from './psat-algebra-problems';
+import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
 const FIGURES: Guide['figures'] = {
   expressions: {
@@ -266,7 +267,7 @@ const REVIEW: Guide['review'] = [
 ];
 
 /** The PSAT algebra guide: ten must-know topics, summarised in our own words from a JensenMath video. */
-const ALGEBRA: Guide = {
+export const ALGEBRA: Guide = {
   title: 'Algebra',
   blurb:
     'Ten must-know algebra topics with rules, worked examples and practice. Each topic links to its part of the video.',
@@ -280,8 +281,14 @@ const ALGEBRA: Guide = {
   figures: FIGURES,
   review: REVIEW,
   practice: PRACTICE,
+  problems: ALGEBRA_PROBLEMS,
 };
 
 export function PsatAlgebraGuide() {
   return <StudyGuide guide={ALGEBRA} />;
+}
+
+/** One Algebra chapter as a sub-module: its notes and 25 problems. */
+export function PsatAlgebraTopic({ topicId }: { topicId: string }) {
+  return <GuideTopicPage guide={ALGEBRA} topicId={topicId} />;
 }

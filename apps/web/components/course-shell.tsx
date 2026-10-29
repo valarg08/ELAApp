@@ -11,30 +11,26 @@ import type { ReactNode } from 'react';
 import { serverApi } from '@/lib/server-api';
 import { SidePanel } from './course-frame';
 import { navFocus } from './course-styles';
+import { ALGEBRA } from '@/features/math/psat-algebra-guide';
+import { GEOMETRY } from '@/features/math/psat-geometry-guide';
 import { NUMBER_SENSE } from '@/features/math/psat-number-sense-guide';
 import { MathFactSheets, PsatReviewLink } from './math-fact-sheets';
 import { MentalCheatSheets } from './mental-cheat-sheets';
 import { ProgressBar } from './progress-bar';
 
 /** PSAT Math study guides, below the units in the Chapters menu; a guide's sub-modules unfold on its pages. */
-const PSAT_GUIDES: {
-  href: string;
-  title: string;
-  icon: string;
-  subs?: { href: string; title: string }[];
-}[] = [
-  { href: '/psat/geometry', title: 'Geometry', icon: '📐' },
-  { href: '/psat/algebra', title: 'Algebra', icon: '🧮' },
-  {
-    href: NUMBER_SENSE.href,
-    title: 'Number Sense',
-    icon: '🔢',
-    subs: NUMBER_SENSE.topics.map((t) => ({
-      href: `${NUMBER_SENSE.href}/${t.id}`,
-      title: t.title,
-    })),
-  },
-];
+const PSAT_GUIDES = [
+  { guide: GEOMETRY, icon: '📐' },
+  { guide: ALGEBRA, icon: '🧮' },
+  { guide: NUMBER_SENSE, icon: '🔢' },
+].map(({ guide, icon }) => ({
+  href: guide.href,
+  title: guide.title,
+  icon,
+  subs: guide.topics
+    .filter((t) => guide.problems?.[t.id])
+    .map((t) => ({ href: `${guide.href}/${t.id}`, title: t.title })),
+}));
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
 
@@ -185,7 +181,7 @@ export async function CourseShell({
                   </span>
                   {g.title}
                 </Link>
-                {g.subs && navCurrent?.startsWith(g.href) && (
+                {g.subs.length > 0 && navCurrent?.startsWith(g.href) && (
                   <ol
                     aria-label={`${g.title} sub-modules`}
                     className="mt-1 mb-2 ml-6 border-l border-brand/30"

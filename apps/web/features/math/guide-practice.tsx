@@ -1,9 +1,15 @@
 'use client';
 
-import { checkAnswer, type AnswerCheck } from '@storyforge/math-check';
+import {
+  approx,
+  checkAnswer,
+  contentValue,
+  readAnswer,
+  type AnswerCheck,
+} from '@storyforge/math-check';
 import { useCallback, useMemo, useState, useSyncExternalStore } from 'react';
 import { AnswerBox } from './answer-box';
-import type { GuideProblem } from './study-guide';
+import type { GuideProblem } from './guide-problem';
 
 /** Problems 1–8, 9–17 and 18–25: the guide's problems run from simple to complex. */
 const level = (i: number) => (i < 8 ? 'Warm-up' : i < 17 ? 'Core' : 'Challenge');
@@ -122,7 +128,17 @@ function ProblemCard({
   const [showSteps, setShowSteps] = useState(false);
 
   function check() {
-    const r = checkAnswer(value, [problem.a], problem.form);
+    let r = checkAnswer(value, [problem.a], problem.form);
+    // A rounded decimal for an exact answer (12π, 3√5): close, but we want the exact form.
+    if (r.status === 'wrong' && /pi|sqrt/.test(problem.a)) {
+      const read = readAnswer(value);
+      const exact = approx(contentValue(problem.a));
+      if (read.ok && Math.abs(approx(read.value) - exact) <= 0.01 * Math.max(1, Math.abs(exact)))
+        r = {
+          status: 'form',
+          message: `Close! That rounds the exact answer — write it exactly, using ${problem.a.includes('pi') ? 'π' : '√'}.`,
+        };
+    }
     setResult(r);
     if (r.status === 'correct') onSolved();
     if (r.status === 'wrong') setShowSteps(true);

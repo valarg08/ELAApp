@@ -1,4 +1,5 @@
-import { type Guide, StudyGuide, type Topic } from './study-guide';
+import { GEOMETRY_PROBLEMS } from './psat-geometry-problems';
+import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
 const FIGURES: Guide['figures'] = {
   angles: {
@@ -294,7 +295,7 @@ const REVIEW: Guide['review'] = [
 ];
 
 /** The PSAT geometry guide: ten must-know topics, summarised in our own words from a JensenMath video. */
-const GEOMETRY: Guide = {
+export const GEOMETRY: Guide = {
   title: 'Geometry',
   blurb:
     'Ten must-know geometry topics with formulas, worked examples and practice. Each topic links to its part of the video.',
@@ -308,8 +309,14 @@ const GEOMETRY: Guide = {
   figures: FIGURES,
   review: REVIEW,
   practice: PRACTICE,
+  problems: GEOMETRY_PROBLEMS,
 };
 
 export function PsatGeometryGuide() {
   return <StudyGuide guide={GEOMETRY} />;
+}
+
+/** One Geometry chapter as a sub-module: its notes and 25 problems. */
+export function PsatGeometryTopic({ topicId }: { topicId: string }) {
+  return <GuideTopicPage guide={GEOMETRY} topicId={topicId} />;
 }
