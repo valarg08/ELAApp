@@ -10,6 +10,7 @@ import {
   MENTAL_SPRINT_MIN,
   MENTAL_SPRINT_SECONDS,
   MENTAL_SPRINT_SIZE,
+  MENTAL_UNIT_TEST_PASS,
   MENTAL_UNIT_TEST_SECONDS,
   MENTAL_UNIT_TEST_SIZE,
   type MathProblem,
@@ -287,7 +288,7 @@ export class MentalPracticeService {
       const unit = mentalUnitOf(testKey) ?? 0;
       return {
         title: `Unit ${unit} test${levelTitle ? `: ${levelTitle}` : ''}`,
-        instructions: `${MENTAL_UNIT_TEST_SIZE} questions from Unit ${unit} in ${MENTAL_UNIT_TEST_SECONDS / 60} minutes, no hints. Skip any you are stuck on and come back; the test is handed in when time runs out.`,
+        instructions: `${MENTAL_UNIT_TEST_SIZE} questions from Unit ${unit} in ${MENTAL_UNIT_TEST_SECONDS / 60} minutes, no hints. Get all ${MENTAL_UNIT_TEST_PASS} right to pass. Skip any you are stuck on and come back; the test is handed in when time runs out.`,
       };
     }
     const level = mentalLevelOf(testKey) ?? 0;
@@ -379,7 +380,14 @@ export class MentalPracticeService {
               needed: MENTAL_LEVEL_PASS,
             }
           : null,
-      unitTest: unit ? { unit, previousBest } : null,
+      unitTest: unit
+        ? {
+            unit,
+            passed: rows.filter((r) => r.verdict === 'correct').length >= MENTAL_UNIT_TEST_PASS,
+            needed: MENTAL_UNIT_TEST_PASS,
+            previousBest,
+          }
+        : null,
     };
   }
 
@@ -449,6 +457,7 @@ export class MentalPracticeService {
         title: unit.title,
         unlocked: !(await this.unitLock(user, unit.number, completed)),
         best: done.length ? Math.max(...done.map((a) => a.correct ?? 0)) : null,
+        passed: done.some((a) => (a.correct ?? 0) >= MENTAL_UNIT_TEST_PASS),
         openAttemptId: mine.find((a) => !a.submittedAt)?.id ?? null,
         lastAttemptId: done[0]?.id ?? null,
       });

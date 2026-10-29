@@ -1,5 +1,6 @@
 import {
   MENTAL_SPRINT_MIN,
+  MENTAL_UNIT_TEST_PASS,
   MENTAL_UNIT_TEST_SECONDS,
   MENTAL_UNIT_TEST_SIZE,
   type MentalLevelCheck,
@@ -254,7 +255,8 @@ function UnitTests({ tests }: { tests: MentalUnitTest[] }) {
         <span aria-hidden="true">⏱️ </span>Unit tests
         <span className="font-normal text-muted">
           {' '}
-          · {MENTAL_UNIT_TEST_SIZE} questions in {MENTAL_UNIT_TEST_SECONDS / 60} minutes
+          · {MENTAL_UNIT_TEST_SIZE} questions in {MENTAL_UNIT_TEST_SECONDS / 60} minutes, all{' '}
+          {MENTAL_UNIT_TEST_PASS} right to pass
         </span>
       </p>
       <ul className="mt-2 flex flex-wrap gap-2">
@@ -265,7 +267,9 @@ function UnitTests({ tests }: { tests: MentalUnitTest[] }) {
                 href={`/mental/tests/mental-unit-${t.unit}`}
                 className="inline-flex min-h-11 items-center rounded-xl border border-border px-3 text-sm hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
+                {t.passed && <span aria-hidden="true">✅ </span>}
                 Unit {t.unit} test
+                {t.passed && <span className="sr-only"> (passed)</span>}
                 {t.best !== null && (
                   <span className="ml-1 text-muted">
                     · best {t.best}/{MENTAL_UNIT_TEST_SIZE}

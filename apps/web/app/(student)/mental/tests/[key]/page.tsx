@@ -6,6 +6,7 @@ import {
   MENTAL_SPRINT_MIN,
   MENTAL_SPRINT_SECONDS,
   MENTAL_SPRINT_SIZE,
+  MENTAL_UNIT_TEST_PASS,
   MENTAL_UNIT_TEST_SECONDS,
   MENTAL_UNIT_TEST_SIZE,
   MentalHome,
@@ -65,7 +66,7 @@ export default async function MentalTestPage({ params }: PageProps<'/mental/test
     const card = practice.unitTests.find((c) => c.unit === unit);
     if (!card) notFound();
     title = `Unit ${unit} test: ${card.title}`;
-    about = `${MENTAL_UNIT_TEST_SIZE} questions from Unit ${unit}, easiest first, in ${MENTAL_UNIT_TEST_SECONDS / 60} minutes. The timer runs in the side panel; skip any you are stuck on and come back. When time runs out, the test is handed in for you. Each try gives you new numbers.`;
+    about = `${MENTAL_UNIT_TEST_SIZE} questions from Unit ${unit}, easiest first, in ${MENTAL_UNIT_TEST_SECONDS / 60} minutes. Get all ${MENTAL_UNIT_TEST_PASS} right to pass. The timer runs in the side panel; skip any you are stuck on and come back. When time runs out, the test is handed in for you. Each try gives you new numbers.`;
     if (!card.unlocked) blocked = `Finish every lesson of Unit ${unit} first.`;
     carryOn = card.openAttemptId;
     label = carryOn ? 'Carry on' : card.lastAttemptId ? 'Take it again' : 'Start the test';

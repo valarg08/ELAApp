@@ -1,4 +1,5 @@
 import {
+  MENTAL_UNIT_TEST_PASS,
   MENTAL_UNIT_TEST_SECONDS,
   MENTAL_UNIT_TEST_SIZE,
   UnitDetail,
@@ -145,7 +146,7 @@ function MentalUnitTestCard({ unit }: { unit: UnitDetail }) {
       </p>
       <p className="mt-1">
         {MENTAL_UNIT_TEST_SIZE} questions in {MENTAL_UNIT_TEST_SECONDS / 60} minutes, with the timer
-        in the side panel.
+        in the side panel. Get all {MENTAL_UNIT_TEST_PASS} right to pass.
       </p>
       <p className="mt-1 text-sm text-muted">
         {done ? 'Ready when you are!' : 'Opens when you finish every lesson of this unit.'}

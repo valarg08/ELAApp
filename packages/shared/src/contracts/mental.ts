@@ -14,6 +14,8 @@ export const MENTAL_LEVEL_PASS = 9;
 /** The timed test after each unit: 20 problems in 25 minutes. */
 export const MENTAL_UNIT_TEST_SIZE = 20;
 export const MENTAL_UNIT_TEST_SECONDS = 25 * 60;
+/** Right answers to pass a unit test: all of them. */
+export const MENTAL_UNIT_TEST_PASS = 20;
 
 /** "mental-unit-5" → 5. */
 export const mentalUnitOf = (key: string) => {
@@ -28,6 +30,8 @@ export const MentalUnitTest = z.object({
   unlocked: z.boolean(),
   /** The best score so far (right answers out of MENTAL_UNIT_TEST_SIZE). */
   best: z.number().nullable(),
+  /** Some try reached MENTAL_UNIT_TEST_PASS. */
+  passed: z.boolean(),
   openAttemptId: z.string().nullable(),
   lastAttemptId: z.string().nullable(),
 });

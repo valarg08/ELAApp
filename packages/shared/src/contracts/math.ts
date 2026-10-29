@@ -531,9 +531,14 @@ export const TestResult = z.object({
       levelCheck: z
         .object({ level: z.number(), passed: z.boolean(), needed: z.number() })
         .nullable(),
-      /** A unit test: the unit and the best score before this one (null: the first try). */
+      /** A unit test: the unit, the pass, and the best score before this one (null: the first try). */
       unitTest: z
-        .object({ unit: z.number(), previousBest: z.number().nullable() })
+        .object({
+          unit: z.number(),
+          passed: z.boolean(),
+          needed: z.number(),
+          previousBest: z.number().nullable(),
+        })
         .nullable()
         .default(null),
     })
