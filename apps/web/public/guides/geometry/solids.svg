@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 245" width="790" height="245" role="img" aria-label="A 6 by 3 by 2 box with surface area 72 and volume 36; a cylinder of radius 5 and height 9; the cylinder net is two circles and a rectangle 2 pi r long">
+<title>A 6 by 3 by 2 box with surface area 72 and volume 36; a cylinder of radius 5 and height 9; the cylinder net is two circles and a rectangle 2 pi r long</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<g transform="translate(30 0)"><text class="t" x="125" y="22" text-anchor="middle">Rectangular prism</text><polygon class="l fa" points="30,100 180,100 220,70 70,70"/><polygon class="l fa" points="180,100 220,70 220,130 180,160"/><polygon class="l fa" points="30,100 180,100 180,160 30,160"/><line class="d" x1="70" y1="70" x2="70" y2="130"/><line class="d" x1="70" y1="130" x2="220" y2="130"/><line class="d" x1="70" y1="130" x2="30" y2="160"/><text x="105" y="180" text-anchor="middle">l = 6</text><text x="22" y="135" text-anchor="end">h = 2</text><text x="212" y="160" text-anchor="start">w = 3</text><text class="at" x="125" y="210" text-anchor="middle">SA = 2lw + 2lh + 2wh = 72</text><text class="ht" x="125" y="232" text-anchor="middle">V = lwh = 36</text></g><text class="t" x="360" y="22" text-anchor="middle">Cylinder</text><path class="l fa" d="M310,60 L310,170 A50,14 0 0 0 410,170 L410,60"/><ellipse class="l fa" cx="360" cy="60" rx="50" ry="14"/><path class="d" d="M310,170 A50,14 0 0 1 410,170"/><line class="h" x1="360" y1="60" x2="410" y2="60"/><text class="ht" x="385" y="40" text-anchor="middle">r = 5</text><text x="418" y="120" text-anchor="start">h = 9</text><text class="at" x="360" y="210" text-anchor="middle">SA = 2πr² + 2πrh = 140π</text><text class="ht" x="360" y="232" text-anchor="middle">V = πr²h = 225π</text><text class="t" x="600" y="22" text-anchor="middle">Its net</text><circle class="l fa" cx="530" cy="62" r="22"/><circle class="l fa" cx="530" cy="178" r="22"/><rect class="l fh" x="490" y="86" width="220" height="70"/><text class="ht" x="600" y="126" text-anchor="middle">length = 2πr</text><text x="718" y="126" text-anchor="start">h</text><text class="s" x="600" y="232" text-anchor="middle">two circles + a rectangle</text>
+</svg>

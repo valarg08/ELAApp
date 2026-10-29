@@ -22,6 +22,50 @@ type Topic = {
   tip?: string;
 };
 
+/** Each topic's diagram in public/guides/geometry (our own drawings), with its description. */
+const FIGURES: Record<string, { file: string; alt: string }> = {
+  angles: {
+    file: 'angles',
+    alt: 'Parallel lines cut by a transversal: Z angles equal, C angles add to 180°, F angles equal; vertical angles equal.',
+  },
+  triangles: {
+    file: 'triangles',
+    alt: 'Equilateral, isosceles and scalene triangles, and an exterior angle equal to x + y.',
+  },
+  congruent: {
+    file: 'congruence',
+    alt: 'The congruence tests SSS, SAS, ASA and HL, with the equal parts highlighted.',
+  },
+  similar: {
+    file: 'similar',
+    alt: 'Similar triangles with sides 4 and 8 (scale factor 2), and a bow-tie where AB ∥ DE makes △ABC ~ △DEC.',
+  },
+  pythagoras: {
+    file: 'pythagoras',
+    alt: 'A 3-4-5 right triangle with squares on each side: 9 + 16 = 25.',
+  },
+  coordinates: {
+    file: 'coordinates',
+    alt: 'A(−2, 4) and B(6, −4) on a grid, midpoint M(2, 0), and legs of 8 and 8 giving the distance 8√2.',
+  },
+  circles: {
+    file: 'circles',
+    alt: 'Parts of a circle (radius, diameter, chord, tangent, arc), the angle at the centre twice the angle at the circumference, and the tangent–chord angle equal to the angle in the opposite segment.',
+  },
+  area: {
+    file: 'area',
+    alt: 'An 8 cm by 4 cm rectangle with area 32 cm² and perimeter 24 cm, and a circle of radius 3 in with area 9π and circumference 6π.',
+  },
+  solids: {
+    file: 'solids',
+    alt: 'A 6 × 3 × 2 box (surface area 72, volume 36), a cylinder with r = 5 and h = 9, and the cylinder unrolled into two circles and a rectangle 2πr long.',
+  },
+  transformations: {
+    file: 'transformations',
+    alt: 'Triangle A(1, 1), B(4, 1), C(2, 4) on a grid, translated by (1, −4), dilated by 2 and reflected in the y-axis.',
+  },
+};
+
 const TOPICS: Topic[] = [
   {
     id: 'angles',
@@ -334,6 +378,24 @@ export function PsatGeometryGuide() {
               <span className="sr-only"> (opens YouTube in a new tab)</span>
             </a>
           </p>
+          {FIGURES[t.id] && (
+            // A link to the full-size drawing, for narrow columns.
+            <a
+              href={`/guides/geometry/${FIGURES[t.id]!.file}.svg`}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 block max-w-3xl rounded-lg"
+            >
+              {/* Static SVGs from public/; next/image adds nothing for them. */}
+              {/* oxlint-disable-next-line nextjs/no-img-element */}
+              <img
+                src={`/guides/geometry/${FIGURES[t.id]!.file}.svg`}
+                alt={FIGURES[t.id]!.alt}
+                className="h-auto w-full"
+              />
+              <span className="sr-only"> (opens full size in a new tab)</span>
+            </a>
+          )}
           <p className="mt-2 text-lg">{t.intro}</p>
           {t.rules && (
             <ul className="mt-2 ml-5 flex list-disc flex-col gap-1 text-lg">

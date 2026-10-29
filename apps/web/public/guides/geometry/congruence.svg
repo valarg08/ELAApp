@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 265" width="900" height="265" role="img" aria-label="Congruence tests SSS, SAS, ASA and HL, with the equal parts highlighted">
+<title>Congruence tests SSS, SAS, ASA and HL, with the equal parts highlighted</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="110" y="22" text-anchor="middle">SSS</text><text class="s" x="110" y="222" text-anchor="middle">3 pairs of sides</text><polygon class="l fa" points="25,190 195,190 80,65"/><line class="h" x1="25" y1="190" x2="195" y2="190"/><line class="h" x1="195" y1="190" x2="80" y2="65"/><line class="h" x1="80" y1="65" x2="25" y2="190"/><text class="t" x="335" y="22" text-anchor="middle">SAS</text><text class="s" x="335" y="222" text-anchor="middle">2 sides + the angle between</text><polygon class="l fa" points="250,190 420,190 305,65"/><line class="h" x1="250" y1="190" x2="420" y2="190"/><line class="h" x1="250" y1="190" x2="305" y2="65"/><path class="h" d="M274,190 A24,24 0 0 0 259.7,168"/><text class="t" x="560" y="22" text-anchor="middle">ASA</text><text class="s" x="560" y="222" text-anchor="middle">2 angles + a side</text><polygon class="l fa" points="475,190 645,190 530,65"/><line class="h" x1="475" y1="190" x2="645" y2="190"/><path class="h" d="M499,190 A24,24 0 0 0 484.7,168"/><path class="h" d="M621,190 A24,24 0 0 1 628.8,172.3"/><text class="t" x="785" y="22" text-anchor="middle">HL</text><text class="s" x="785" y="222" text-anchor="middle">right triangle: hypotenuse + leg</text><polygon class="l fa" points="715,190 865,190 715,60"/><path class="l" d="M727,190 L727,178 L715,178"/><line class="h" x1="865" y1="190" x2="715" y2="60"/><line class="h" x1="715" y1="190" x2="865" y2="190"/><text class="s" x="450" y="252" text-anchor="middle">Orange parts match the same parts of the other triangle. SSA (angle not between) is not a test.</text>
+</svg>

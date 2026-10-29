@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 235" width="900" height="235" role="img" aria-label="Equilateral, isosceles and scalene triangles, and the exterior angle equal to the sum of the two opposite interior angles">
+<title>Equilateral, isosceles and scalene triangles, and the exterior angle equal to the sum of the two opposite interior angles</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="110" y="22" text-anchor="middle">Equilateral</text><polygon class="l fa" points="30,190 190,190 110,51.4"/><line class="l" x1="110" y1="198" x2="110" y2="182"/><line class="l" x1="156.9" y1="116.7" x2="143.1" y2="124.7"/><line class="l" x1="63.1" y1="116.7" x2="76.9" y2="124.7"/><path class="h" d="M48,190 A18,18 0 0 0 39,174.4"/><path class="h" d="M181,174.4 A18,18 0 0 0 172,190"/><path class="h" d="M101,67 A18,18 0 0 0 119,67"/><text class="s" x="110" y="222" text-anchor="middle">3 equal sides, all angles 60°</text><text class="t" x="330" y="22" text-anchor="middle">Isosceles</text><polygon class="l fa" points="260,190 400,190 330,50"/><line class="l" x1="300.8" y1="126.3" x2="286.5" y2="119.1"/><line class="l" x1="303.5" y1="120.9" x2="289.2" y2="113.7"/><line class="l" x1="373.5" y1="119.1" x2="359.2" y2="126.3"/><line class="l" x1="370.8" y1="113.7" x2="356.5" y2="120.9"/><path class="h" d="M280,190 A20,20 0 0 0 268.9,172.1"/><path class="h" d="M391.1,172.1 A20,20 0 0 0 380,190"/><text class="s" x="330" y="222" text-anchor="middle">2 equal sides, base angles equal</text><text class="t" x="550" y="22" text-anchor="middle">Scalene</text><polygon class="l fa" points="470,190 630,190 515,70"/><line class="l" x1="550" y1="198" x2="550" y2="182"/><line class="l" x1="580.4" y1="126.6" x2="568.8" y2="137.7"/><line class="l" x1="576.2" y1="122.3" x2="564.6" y2="133.4"/><line class="l" x1="487.1" y1="121.6" x2="502.1" y2="127.2"/><line class="l" x1="485" y1="127.2" x2="500" y2="132.8"/><line class="l" x1="482.9" y1="132.8" x2="497.9" y2="138.4"/><text class="s" x="550" y="222" text-anchor="middle">no equal sides or angles</text><text class="t" x="780" y="22" text-anchor="middle">Exterior angle</text><polygon class="l fa" points="680,190 810,190 730,70"/><line class="d" x1="810" y1="190" x2="890" y2="190"/><path class="a" d="M702,190 A22,22 0 0 0 688.5,169.7"/><text class="at" x="711.6" y="173.9" text-anchor="middle">x</text><path class="a" d="M722.3,88.5 A20,20 0 0 0 741.1,86.6"/><text class="at" x="733.5" y="110.8" text-anchor="middle">y</text><path class="h" d="M834,190 A24,24 0 0 0 796.7,170"/><text class="ht" x="831.7" y="154.4" text-anchor="middle">x + y</text><text class="s" x="780" y="222" text-anchor="middle">outside angle = x + y</text>
+</svg>

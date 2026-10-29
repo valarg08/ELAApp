@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 365" width="640" height="365" role="img" aria-label="Pythagorean theorem: squares on the legs, 9 and 16, add to the square on the hypotenuse, 25">
+<title>Pythagorean theorem: squares on the legs, 9 and 16, add to the square on the hypotenuse, 25</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<polygon class="l fa" points="150,140 150,230 60,230 60,140"/><text class="at" x="105" y="190" text-anchor="middle">a² = 9</text><polygon class="l fa" points="150,230 270,230 270,350 150,350"/><text class="at" x="210" y="296" text-anchor="middle">b² = 16</text><polygon class="l fh" points="270,230 150,140 240,20 360,110"/><text class="ht" x="255" y="130" text-anchor="middle">c² = 25</text><polygon class="l" points="150,230 270,230 150,140"/><path class="l" d="M162,230 L162,218 L150,218"/><text x="158" y="200" text-anchor="start">a = 3</text><text x="210" y="250" text-anchor="middle">b = 4</text><text class="ht" x="250" y="168" text-anchor="middle">c = 5</text><text class="t" x="400" y="150" text-anchor="start">a² + b² = c²</text><text x="400" y="176" text-anchor="start">9 + 16 = 25</text><text class="s" x="400" y="210" text-anchor="start">c = hypotenuse,</text><text class="s" x="400" y="228" text-anchor="start">opposite the right angle</text><text class="s" x="400" y="262" text-anchor="start">Triples: 3-4-5, 5-12-13, 8-15-17</text>
+</svg>

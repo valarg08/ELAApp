@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320" role="img" aria-label="Triangle A(1,1), B(4,1), C(2,4) translated by (1, -4), dilated by 2 and reflected in the y-axis on a grid">
+<title>Triangle A(1,1), B(4,1), C(2,4) translated by (1, -4), dilated by 2 and reflected in the y-axis on a grid</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<line class="g" x1="20" y1="20" x2="20" y2="306"/><line class="g" x1="42" y1="20" x2="42" y2="306"/><line class="g" x1="64" y1="20" x2="64" y2="306"/><line class="g" x1="86" y1="20" x2="86" y2="306"/><line class="g" x1="108" y1="20" x2="108" y2="306"/><line class="ax" x1="130" y1="20" x2="130" y2="306"/><line class="g" x1="152" y1="20" x2="152" y2="306"/><line class="g" x1="174" y1="20" x2="174" y2="306"/><line class="g" x1="196" y1="20" x2="196" y2="306"/><line class="g" x1="218" y1="20" x2="218" y2="306"/><line class="g" x1="240" y1="20" x2="240" y2="306"/><line class="g" x1="262" y1="20" x2="262" y2="306"/><line class="g" x1="284" y1="20" x2="284" y2="306"/><line class="g" x1="306" y1="20" x2="306" y2="306"/><line class="g" x1="328" y1="20" x2="328" y2="306"/><line class="g" x1="20" y1="306" x2="328" y2="306"/><line class="g" x1="20" y1="284" x2="328" y2="284"/><line class="g" x1="20" y1="262" x2="328" y2="262"/><line class="g" x1="20" y1="240" x2="328" y2="240"/><line class="ax" x1="20" y1="218" x2="328" y2="218"/><line class="g" x1="20" y1="196" x2="328" y2="196"/><line class="g" x1="20" y1="174" x2="328" y2="174"/><line class="g" x1="20" y1="152" x2="328" y2="152"/><line class="g" x1="20" y1="130" x2="328" y2="130"/><line class="g" x1="20" y1="108" x2="328" y2="108"/><line class="g" x1="20" y1="86" x2="328" y2="86"/><line class="g" x1="20" y1="64" x2="328" y2="64"/><line class="g" x1="20" y1="42" x2="328" y2="42"/><line class="g" x1="20" y1="20" x2="328" y2="20"/><polygon class="v fv" points="174,174 306,174 218,42"/><polygon class="b fb" points="108,196 42,196 86,130"/><polygon class="h fh" points="174,284 240,284 196,218"/><polygon class="a fa" points="152,196 218,196 174,130"/><text class="t" x="370" y="40" text-anchor="start">A(1, 1), B(4, 1), C(2, 4)</text><text class="at" x="370" y="80" text-anchor="start">Original</text><text class="s" x="370" y="100" text-anchor="start">(x, y)</text><text class="ht" x="370" y="128" text-anchor="start">Translate by (1, −4)</text><text class="s" x="370" y="148" text-anchor="start">(x + 1, y − 4)</text><text class="vt" x="370" y="176" text-anchor="start">Dilate by 2 (origin)</text><text class="s" x="370" y="196" text-anchor="start">(2x, 2y)</text><text class="bt" x="370" y="224" text-anchor="start">Reflect in the y-axis</text><text class="s" x="370" y="244" text-anchor="start">(−x, y)</text><text class="s" x="370" y="290" text-anchor="start">x-axis: (x, −y) · y = x: (y, x)</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240" role="img" aria-label="Rectangle 8 by 4 centimetres with area 32 and perimeter 24; circle of radius 3 inches with area 9 pi and circumference 6 pi">
+<title>Rectangle 8 by 4 centimetres with area 32 and perimeter 24; circle of radius 3 inches with area 9 pi and circumference 6 pi</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="160" y="22" text-anchor="middle">Rectangle</text><rect class="l fa" x="60" y="50" width="200" height="100"/><text x="160" y="172" text-anchor="middle">8 cm</text><text x="52" y="105" text-anchor="end">4 cm</text><text class="at" x="160" y="205" text-anchor="middle">A = 8 × 4 = 32 cm²</text><text class="ht" x="160" y="228" text-anchor="middle">P = 2(8) + 2(4) = 24 cm</text><text class="t" x="420" y="22" text-anchor="middle">Circle</text><circle class="l fa" cx="420" cy="110" r="70"/><line class="h" x1="420" y1="110" x2="490" y2="110"/><circle class="dot" cx="420" cy="110" r="4"/><text class="ht" x="455" y="102" text-anchor="middle">r = 3 in</text><text class="at" x="420" y="205" text-anchor="middle">A = πr² = 9π ≈ 28.3 in²</text><text class="ht" x="420" y="228" text-anchor="middle">C = 2πr = 6π ≈ 18.8 in</text><text class="s" x="560" y="90" text-anchor="start">Area: units²</text><text class="s" x="560" y="112" text-anchor="start">Perimeter: units</text><text class="s" x="560" y="134" text-anchor="start">Given d? r = d ÷ 2</text>
+</svg>

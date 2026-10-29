@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 250" width="900" height="250" role="img" aria-label="Parts of a circle; the angle at the centre is twice the angle at the circumference; the tangent-chord angle equals the angle in the opposite segment">
+<title>Parts of a circle; the angle at the centre is twice the angle at the circumference; the tangent-chord angle equals the angle in the opposite segment</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="130" y="22" text-anchor="middle">Parts of a circle</text><circle class="l" cx="130" cy="145" r="90"/><line class="b" x1="55" y1="55" x2="215" y2="55"/><text class="bt" x="222" y="59" text-anchor="start">tangent</text><line class="a" x1="40" y1="145" x2="220" y2="145"/><text class="at" x="178" y="138" text-anchor="middle">diameter</text><line class="h" x1="130" y1="145" x2="198.9" y2="87.1"/><text class="ht" x="196" y="122" text-anchor="start">radius</text><line class="v" x1="99.2" y1="229.6" x2="198.9" y2="202.9"/><text class="vt" x="152" y="220" text-anchor="middle">chord</text><path class="h" d="M52.1,190 A90,90 0 0 1 45.4,114.2"/><text class="ht" x="30" y="150" text-anchor="end">arc</text><circle class="dot" cx="130" cy="145" r="4"/><circle class="dot" cx="130" cy="55" r="4"/><text class="t" x="450" y="22" text-anchor="middle">Angle at centre = 2 × angle</text><text class="t" x="450" y="40" text-anchor="middle">at circumference</text><circle class="l" cx="450" cy="145" r="90"/><line class="d" x1="405" y1="222.9" x2="495" y2="222.9"/><line class="l" x1="450" y1="55" x2="405" y2="222.9"/><line class="l" x1="450" y1="55" x2="495" y2="222.9"/><line class="a" x1="450" y1="145" x2="405" y2="222.9"/><line class="a" x1="450" y1="145" x2="495" y2="222.9"/><path class="h" d="M444.8,74.3 A20,20 0 0 0 455.2,74.3"/><text class="ht" x="450" y="96" text-anchor="middle">x</text><path class="a" d="M440,162.3 A20,20 0 0 0 460,162.3"/><text class="at" x="450" y="188" text-anchor="middle">2x</text><circle class="dot" cx="450" cy="145" r="4"/><text class="t" x="770" y="22" text-anchor="middle">Tangent–chord angle = angle</text><text class="t" x="770" y="40" text-anchor="middle">in the opposite segment</text><circle class="l" cx="770" cy="135" r="90"/><line class="b" x1="660" y1="225" x2="880" y2="225"/><line class="l" x1="770" y1="225" x2="847.9" y2="90"/><line class="l" x1="685.4" y1="104.2" x2="770" y2="225"/><line class="l" x1="685.4" y1="104.2" x2="847.9" y2="90"/><path class="h" d="M794,225 A24,24 0 0 0 782,204.2"/><text class="ht" x="806.4" y="209" text-anchor="middle">x</text><path class="h" d="M698,122.2 A22,22 0 0 0 707.3,102.3"/><text class="ht" x="721.7" y="126.1" text-anchor="middle">x</text>
+</svg>

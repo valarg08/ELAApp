@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 235" width="960" height="235" role="img" aria-label="Parallel lines cut by a transversal: Z angles equal, C angles add to 180 degrees, F angles equal; vertical angles equal">
+<title>Parallel lines cut by a transversal: Z angles equal, C angles add to 180 degrees, F angles equal; vertical angles equal</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="120" y="22" text-anchor="middle">Alternate interior (Z)</text><text class="s" x="120" y="40" text-anchor="middle">equal</text><line class="l" x1="15" y1="85" x2="225" y2="85"/><line class="l" x1="15" y1="175" x2="225" y2="175"/><path class="l" d="M200,79 L208,85 L200,91"/><path class="l" d="M200,169 L208,175 L200,181"/><line class="l" x1="83.2" y1="55" x2="172.6" y2="225"/><path class="h" d="M15,85 L98.9,85 L146.3,175 L225,175"/><path class="h" d="M78.9,85 A20,20 0 0 0 108.2,102.7"/><text class="ht" x="80.3" y="120.8" text-anchor="middle">x</text><path class="h" d="M166.3,175 A20,20 0 0 0 137,157.3"/><text class="ht" x="164.9" y="149.2" text-anchor="middle">x</text><text class="t" x="360" y="22" text-anchor="middle">Co-interior (C)</text><text class="s" x="360" y="40" text-anchor="middle">add to 180°</text><line class="l" x1="255" y1="85" x2="465" y2="85"/><line class="l" x1="255" y1="175" x2="465" y2="175"/><path class="l" d="M440,79 L448,85 L440,91"/><path class="l" d="M440,169 L448,175 L440,181"/><line class="l" x1="323.2" y1="55" x2="412.6" y2="225"/><path class="h" d="M255,85 L338.9,85 L386.3,175 L255,175"/><path class="h" d="M318.9,85 A20,20 0 0 0 348.2,102.7"/><text class="ht" x="320.3" y="120.8" text-anchor="middle">x</text><path class="h" d="M366.3,175 A20,20 0 0 1 377,157.3"/><text class="ht" x="353.8" y="160.4" text-anchor="middle">y</text><text class="ht" x="310" y="212" text-anchor="middle">x + y = 180°</text><text class="t" x="600" y="22" text-anchor="middle">Corresponding (F)</text><text class="s" x="600" y="40" text-anchor="middle">equal</text><line class="l" x1="495" y1="85" x2="705" y2="85"/><line class="l" x1="495" y1="175" x2="705" y2="175"/><path class="l" d="M680,79 L688,85 L680,91"/><path class="l" d="M680,169 L688,175 L680,181"/><line class="l" x1="563.2" y1="55" x2="652.6" y2="225"/><path class="h" d="M705,85 L578.9,85 L626.3,175 M626.3,175 L705,175"/><path class="h" d="M598.9,85 A20,20 0 0 1 588.2,102.7"/><text class="ht" x="609.7" y="108.6" text-anchor="middle">x</text><path class="h" d="M646.3,175 A20,20 0 0 1 635.6,192.7"/><text class="ht" x="657.1" y="198.6" text-anchor="middle">x</text><text class="t" x="840" y="22" text-anchor="middle">Vertical angles</text><text class="s" x="840" y="40" text-anchor="middle">equal</text><line class="l" x1="750" y1="75" x2="930" y2="185"/><line class="l" x1="750" y1="185" x2="930" y2="75"/><path class="h" d="M821.2,118.5 A22,22 0 0 0 821.2,141.5"/><text class="ht" x="800" y="135" text-anchor="middle">x</text><path class="h" d="M858.8,118.5 A22,22 0 0 1 858.8,141.5"/><text class="ht" x="880" y="135" text-anchor="middle">x</text><path class="a" d="M821.2,118.5 A22,22 0 0 1 858.8,118.5"/><text class="at" x="840" y="95" text-anchor="middle">y</text><path class="a" d="M821.2,141.5 A22,22 0 0 0 858.8,141.5"/><text class="at" x="840" y="175" text-anchor="middle">y</text>
+</svg>
