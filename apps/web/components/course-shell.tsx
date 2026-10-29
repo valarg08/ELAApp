@@ -15,6 +15,9 @@ import { MathFactSheets, PsatReviewLink } from './math-fact-sheets';
 import { MentalCheatSheets } from './mental-cheat-sheets';
 import { ProgressBar } from './progress-bar';
 
+/** PSAT Math study guides, below the units in the Chapters menu. */
+const PSAT_GUIDES = [{ href: '/psat/geometry', title: 'Geometry' }];
+
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
 
 /**
@@ -30,6 +33,7 @@ export async function CourseShell({
   wide = false,
   extra,
   panelTop,
+  navCurrent,
   children,
 }: {
   track: Track;
@@ -42,6 +46,8 @@ export async function CourseShell({
   extra?: ReactNode;
   /** For the top of the Progress panel (a timed test's clock). */
   panelTop?: ReactNode;
+  /** The page open in the Chapters menu's extra links (PSAT study guides). */
+  navCurrent?: string;
   children: ReactNode;
 }) {
   const [units, unit] = await Promise.all([
@@ -143,6 +149,29 @@ export async function CourseShell({
           );
         })}
       </ol>
+      {track === 'PSAT' && (
+        <div className="mt-4 border-t border-brand/30 pt-3">
+          <h3 id="psat-guides" className="px-2 text-xs font-semibold text-muted uppercase">
+            Study guides
+          </h3>
+          <ul aria-labelledby="psat-guides" className="mt-1 flex flex-col gap-1">
+            {PSAT_GUIDES.map((g) => (
+              <li key={g.href}>
+                <Link
+                  href={g.href}
+                  aria-current={g.href === navCurrent ? 'page' : undefined}
+                  className={`flex min-h-9 items-center gap-2 rounded-xl px-2 py-1 text-sm hover:bg-brand/10 ${navFocus} ${g.href === navCurrent ? 'bg-brand/10 font-semibold' : ''}`}
+                >
+                  <span aria-hidden="true" className="w-4 shrink-0">
+                    📐
+                  </span>
+                  {g.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 

@@ -133,3 +133,5 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
 ## Known issues to revisit
 
 The Known misses lists in DESIGN.md §9.12 record each Essay unit's analyzer limits. For example, the Coach misses subject–verb agreement after a long subject, and a narrative hook without a time phrase reads as plain.
+
+- Tests owed (PSAT geometry study guide): axe on `/psat/geometry`; the Chapters menu shows "Study guides → Geometry" only on PSAT pages, marked current on the guide.
