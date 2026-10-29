@@ -16,7 +16,10 @@ import { MentalCheatSheets } from './mental-cheat-sheets';
 import { ProgressBar } from './progress-bar';
 
 /** PSAT Math study guides, below the units in the Chapters menu. */
-const PSAT_GUIDES = [{ href: '/psat/geometry', title: 'Geometry' }];
+const PSAT_GUIDES = [
+  { href: '/psat/geometry', title: 'Geometry', icon: '📐' },
+  { href: '/psat/algebra', title: 'Algebra', icon: '🧮' },
+];
 
 const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
 
@@ -163,7 +166,7 @@ export async function CourseShell({
                   className={`flex min-h-9 items-center gap-2 rounded-xl px-2 py-1 text-sm hover:bg-brand/10 ${navFocus} ${g.href === navCurrent ? 'bg-brand/10 font-semibold' : ''}`}
                 >
                   <span aria-hidden="true" className="w-4 shrink-0">
-                    📐
+                    {g.icon}
                   </span>
                   {g.title}
                 </Link>

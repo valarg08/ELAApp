@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 285" width="580" height="285" role="img" aria-label="The lines y = −x + 6 and y = 2x − 3 crossing at (3, 3), the solution of the system">
+<title>The lines y = −x + 6 and y = 2x − 3 crossing at (3, 3), the solution of the system</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<line class="g" x1="30" y1="20" x2="30" y2="270"/><line class="ax" x1="55" y1="20" x2="55" y2="270"/><line class="g" x1="80" y1="20" x2="80" y2="270"/><line class="g" x1="105" y1="20" x2="105" y2="270"/><line class="g" x1="130" y1="20" x2="130" y2="270"/><line class="g" x1="155" y1="20" x2="155" y2="270"/><line class="g" x1="180" y1="20" x2="180" y2="270"/><line class="g" x1="205" y1="20" x2="205" y2="270"/><line class="g" x1="30" y1="270" x2="205" y2="270"/><line class="g" x1="30" y1="245" x2="205" y2="245"/><line class="g" x1="30" y1="220" x2="205" y2="220"/><line class="ax" x1="30" y1="195" x2="205" y2="195"/><line class="g" x1="30" y1="170" x2="205" y2="170"/><line class="g" x1="30" y1="145" x2="205" y2="145"/><line class="g" x1="30" y1="120" x2="205" y2="120"/><line class="g" x1="30" y1="95" x2="205" y2="95"/><line class="g" x1="30" y1="70" x2="205" y2="70"/><line class="g" x1="30" y1="45" x2="205" y2="45"/><line class="g" x1="30" y1="20" x2="205" y2="20"/><line class="a" x1="30" y1="20" x2="205" y2="195"/><line class="h" x1="55" y1="270" x2="180" y2="20"/><circle class="dot" cx="130" cy="120" r="6"/><text class="t" x="140" y="125" text-anchor="start">(3, 3)</text><text class="at" x="250" y="50" text-anchor="start">x + y = 6  →  y = −x + 6</text><text class="ht" x="250" y="78" text-anchor="start">2x − y = 3  →  y = 2x − 3</text><text class="t" x="250" y="120" text-anchor="start">They cross at (3, 3), so x = 3, y = 3</text><text class="s" x="250" y="156" text-anchor="start">Elimination: add the equations</text><text class="s" x="250" y="176" text-anchor="start">3x = 9 → x = 3, then y = 3</text><text class="s" x="250" y="206" text-anchor="start">Substitution: y = 6 − x into the other</text><text class="s" x="250" y="226" text-anchor="start">2x − (6 − x) = 3 → x = 3</text>
+</svg>

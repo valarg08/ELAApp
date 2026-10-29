@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 270" width="600" height="270" role="img" aria-label="The line y = (2/3)x − 1 starting at the y-intercept (0, −1), with a rise of 2 and run of 3 to (3, 1)">
+<title>The line y = (2/3)x − 1 starting at the y-intercept (0, −1), with a rise of 2 and run of 3 to (3, 1)</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<line class="g" x1="30" y1="20" x2="30" y2="230"/><line class="g" x1="60" y1="20" x2="60" y2="230"/><line class="g" x1="90" y1="20" x2="90" y2="230"/><line class="g" x1="120" y1="20" x2="120" y2="230"/><line class="ax" x1="150" y1="20" x2="150" y2="230"/><line class="g" x1="180" y1="20" x2="180" y2="230"/><line class="g" x1="210" y1="20" x2="210" y2="230"/><line class="g" x1="240" y1="20" x2="240" y2="230"/><line class="g" x1="270" y1="20" x2="270" y2="230"/><line class="g" x1="300" y1="20" x2="300" y2="230"/><line class="g" x1="30" y1="230" x2="300" y2="230"/><line class="g" x1="30" y1="200" x2="300" y2="200"/><line class="g" x1="30" y1="170" x2="300" y2="170"/><line class="g" x1="30" y1="140" x2="300" y2="140"/><line class="ax" x1="30" y1="110" x2="300" y2="110"/><line class="g" x1="30" y1="80" x2="300" y2="80"/><line class="g" x1="30" y1="50" x2="300" y2="50"/><line class="g" x1="30" y1="20" x2="300" y2="20"/><line class="a" x1="30" y1="219.99999999999997" x2="300" y2="40"/><path class="h" d="M150,140 L150,80 L240,80"/><text class="ht" x="144" y="110" text-anchor="end">rise 2</text><text class="ht" x="195" y="72" text-anchor="middle">run 3</text><circle class="dot" cx="150" cy="140" r="5"/><circle class="dot" cx="240" cy="80" r="5"/><circle class="dot" cx="60" cy="200" r="5"/><text class="s" x="158" y="158" text-anchor="start">(0, −1)</text><text class="s" x="248" y="98" text-anchor="start">(3, 1)</text><text class="s" x="68" y="218" text-anchor="start">(−3, −3)</text><text class="t" x="340" y="50" text-anchor="start">y = mx + b</text><text class="at" x="340" y="80" text-anchor="start">y = (2/3)x − 1</text><text x="340" y="116" text-anchor="start">b = −1: start at (0, −1)</text><text class="ht" x="340" y="142" text-anchor="start">m = 2/3: up 2, right 3</text><text class="s" x="340" y="178" text-anchor="start">slope = rise ÷ run</text>
+</svg>

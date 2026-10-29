@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240" role="img" aria-label="A balance scale with 3x − 4 on one pan and 11 on the other; adding 4 then dividing by 3 on both sides gives x = 5">
+<title>A balance scale with 3x − 4 on one pan and 11 on the other; adding 4 then dividing by 3 on both sides gives x = 5</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="170" y="24" text-anchor="middle">Keep it balanced</text><polygon class="l fa" points="170,150 150,190 190,190"/><line class="l" x1="50" y1="150" x2="290" y2="150"/><line class="l" x1="70" y1="150" x2="70" y2="120"/><line class="l" x1="270" y1="150" x2="270" y2="120"/><rect class="l fh" x="25" y="80" width="90" height="40" rx="6"/><rect class="l fh" x="225" y="80" width="90" height="40" rx="6"/><text class="ht" x="70" y="106" text-anchor="middle">3x − 4</text><text class="ht" x="270" y="106" text-anchor="middle">11</text><text class="s" x="170" y="222" text-anchor="middle">do the same to both sides</text><text class="t" x="380" y="70" text-anchor="start">3x − 4 = 11</text><text class="t" x="380" y="114" text-anchor="start">3x = 15</text><text class="ht" x="560" y="114" text-anchor="start">+4 both sides</text><text class="at" x="380" y="158" text-anchor="start">x = 5</text><text class="ht" x="560" y="158" text-anchor="start">÷3 both sides</text><text class="s" x="380" y="202" text-anchor="start">Check: 3(5) − 4 = 11 ✓</text><text class="s" x="380" y="40" text-anchor="start">Undo + and − first, then × and ÷</text>
+</svg>

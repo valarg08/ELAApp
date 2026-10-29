@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 240" width="680" height="240" role="img" aria-label="Number lines: x > 3 with an open circle at 3 and an arrow right; x ≥ −3 with a closed circle at −3 and an arrow right">
+<title>Number lines: x > 3 with an open circle at 3 and an arrow right; x ≥ −3 with a closed circle at −3 and an arrow right</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="46" text-anchor="start">3x − 2 > 7  →  x > 3</text><text class="ht" x="640" y="46" text-anchor="end">open circle · (3, ∞)</text><line class="l" x1="50" y1="80" x2="640" y2="80"/><path class="l" d="M637,74 L645,80 L637,86"/><line class="l" x1="70" y1="74" x2="70" y2="86"/><text class="s" x="70" y="106" text-anchor="middle">−5</text><line class="l" x1="120" y1="74" x2="120" y2="86"/><text class="s" x="120" y="106" text-anchor="middle">−4</text><line class="l" x1="170" y1="74" x2="170" y2="86"/><text class="s" x="170" y="106" text-anchor="middle">−3</text><line class="l" x1="220" y1="74" x2="220" y2="86"/><text class="s" x="220" y="106" text-anchor="middle">−2</text><line class="l" x1="270" y1="74" x2="270" y2="86"/><text class="s" x="270" y="106" text-anchor="middle">−1</text><line class="l" x1="320" y1="74" x2="320" y2="86"/><text class="s" x="320" y="106" text-anchor="middle">0</text><line class="l" x1="370" y1="74" x2="370" y2="86"/><text class="s" x="370" y="106" text-anchor="middle">1</text><line class="l" x1="420" y1="74" x2="420" y2="86"/><text class="s" x="420" y="106" text-anchor="middle">2</text><line class="l" x1="470" y1="74" x2="470" y2="86"/><text class="s" x="470" y="106" text-anchor="middle">3</text><line class="l" x1="520" y1="74" x2="520" y2="86"/><text class="s" x="520" y="106" text-anchor="middle">4</text><line class="l" x1="570" y1="74" x2="570" y2="86"/><text class="s" x="570" y="106" text-anchor="middle">5</text><line class="l" x1="620" y1="74" x2="620" y2="86"/><text class="s" x="620" y="106" text-anchor="middle">6</text><line class="h" x1="478" y1="80" x2="636" y2="80"/><path class="h" d="M633,74 L641,80 L633,86"/><circle class="h" cx="470" cy="80" r="8"/><text class="t" x="20" y="156" text-anchor="start">−2x + 5 ≤ 11  →  x ≥ −3 (÷ by −2 flips the sign)</text><text class="at" x="640" y="156" text-anchor="end">closed circle · [−3, ∞)</text><line class="l" x1="50" y1="190" x2="640" y2="190"/><path class="l" d="M637,184 L645,190 L637,196"/><line class="l" x1="70" y1="184" x2="70" y2="196"/><text class="s" x="70" y="216" text-anchor="middle">−5</text><line class="l" x1="120" y1="184" x2="120" y2="196"/><text class="s" x="120" y="216" text-anchor="middle">−4</text><line class="l" x1="170" y1="184" x2="170" y2="196"/><text class="s" x="170" y="216" text-anchor="middle">−3</text><line class="l" x1="220" y1="184" x2="220" y2="196"/><text class="s" x="220" y="216" text-anchor="middle">−2</text><line class="l" x1="270" y1="184" x2="270" y2="196"/><text class="s" x="270" y="216" text-anchor="middle">−1</text><line class="l" x1="320" y1="184" x2="320" y2="196"/><text class="s" x="320" y="216" text-anchor="middle">0</text><line class="l" x1="370" y1="184" x2="370" y2="196"/><text class="s" x="370" y="216" text-anchor="middle">1</text><line class="l" x1="420" y1="184" x2="420" y2="196"/><text class="s" x="420" y="216" text-anchor="middle">2</text><line class="l" x1="470" y1="184" x2="470" y2="196"/><text class="s" x="470" y="216" text-anchor="middle">3</text><line class="l" x1="520" y1="184" x2="520" y2="196"/><text class="s" x="520" y="216" text-anchor="middle">4</text><line class="l" x1="570" y1="184" x2="570" y2="196"/><text class="s" x="570" y="216" text-anchor="middle">5</text><line class="l" x1="620" y1="184" x2="620" y2="196"/><text class="s" x="620" y="216" text-anchor="middle">6</text><line class="a" x1="170" y1="190" x2="636" y2="190"/><path class="a" d="M633,184 L641,190 L633,196"/><circle class="fa" cx="170" cy="190" r="8" style="fill-opacity:1"/>
+</svg>

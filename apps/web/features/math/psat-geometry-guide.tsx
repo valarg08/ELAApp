@@ -1,29 +1,6 @@
-import Link from 'next/link';
-import type { ReactNode } from 'react';
-import { PrintButton } from './print-button';
+import { type Guide, StudyGuide, type Topic } from './study-guide';
 
-const VIDEO = 'https://www.youtube.com/watch?v=O-tQVdNwPT0';
-/** "1:23" → a link to that point in the video. */
-const at = (t: string) => {
-  const [m = 0, s = 0] = t.split(':').map(Number);
-  return `${VIDEO}&t=${m * 60 + s}s`;
-};
-
-type Table = { head: string[]; rows: string[][] };
-
-type Topic = {
-  id: string;
-  title: string;
-  start: string;
-  intro: string;
-  tables?: { caption: string; table: Table }[];
-  rules?: string[];
-  example?: string;
-  tip?: string;
-};
-
-/** Each topic's diagram in public/guides/geometry (our own drawings), with its description. */
-const FIGURES: Record<string, { file: string; alt: string }> = {
+const FIGURES: Guide['figures'] = {
   angles: {
     file: 'angles',
     alt: 'Parallel lines cut by a transversal: Z angles equal, C angles add to 180°, F angles equal; vertical angles equal.',
@@ -249,7 +226,7 @@ const TOPICS: Topic[] = [
   },
 ];
 
-const PRACTICE: { q: string; a: string }[] = [
+const PRACTICE: Guide['practice'] = [
   { q: 'An angle is 38°. Find its complement and supplement.', a: '52° and 142°' },
   {
     q: 'Alternate interior angles measure (3x + 10)° and (5x − 30)°. Find x and the angle.',
@@ -289,154 +266,21 @@ const PRACTICE: { q: string; a: string }[] = [
   },
 ];
 
-function DataTable({ caption, table }: { caption: string; table: Table }) {
-  return (
-    <div className="mt-3 overflow-x-auto">
-      <table className="w-full border-collapse text-left">
-        <caption className="mb-1 text-left font-semibold">{caption}</caption>
-        <thead>
-          <tr>
-            {table.head.map((h) => (
-              <th key={h} scope="col" className="border-b border-border px-2 py-1 text-sm">
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {table.rows.map((r) => (
-            <tr key={r[0]}>
-              {r.map((c, i) => (
-                <td key={i} className="border-b border-border px-2 py-1">
-                  {c}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
+/** The PSAT geometry guide: ten must-know topics, summarised in our own words from a JensenMath video. */
+const GEOMETRY: Guide = {
+  title: 'Geometry',
+  blurb:
+    'Ten must-know geometry topics with formulas, worked examples and practice. Each topic links to its part of the video.',
+  folder: 'geometry',
+  video: {
+    url: 'https://www.youtube.com/watch?v=O-tQVdNwPT0',
+    label: 'JensenMath, “All of GEOMETRY in 40 minutes!” on YouTube',
+  },
+  topics: TOPICS,
+  figures: FIGURES,
+  practice: PRACTICE,
+};
 
-function Note({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <p className="mt-3">
-      <span className="font-semibold">{label}: </span>
-      {children}
-    </p>
-  );
-}
-
-/**
- * The PSAT geometry study guide (psat-design.md): ten must-know topics with formulas, examples and
- * practice, summarised in our own words from a JensenMath video, with links to its chapters.
- */
 export function PsatGeometryGuide() {
-  return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
-        <Link href="/psat" className="text-brand underline">
-          ← PSAT Math
-        </Link>
-        <PrintButton />
-      </div>
-      <div>
-        <p className="text-sm font-semibold tracking-widest text-brand uppercase">Study guide</p>
-        <h1 className="text-4xl font-bold">Geometry</h1>
-        <p className="mt-2 text-muted">
-          Ten must-know geometry topics with formulas, worked examples and practice. Each topic
-          links to its part of the video.
-        </p>
-      </div>
-
-      <nav aria-label="Topics">
-        <ol className="ml-5 grid list-decimal gap-1 sm:grid-cols-2">
-          {TOPICS.map((t) => (
-            <li key={t.id}>
-              <a href={`#${t.id}`} className="text-brand underline">
-                {t.title}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a href="#practice" className="text-brand underline">
-              Practice questions
-            </a>
-          </li>
-        </ol>
-      </nav>
-
-      {TOPICS.map((t, i) => (
-        <section key={t.id} id={t.id} aria-labelledby={`${t.id}-h`} className="break-inside-avoid">
-          <h2 id={`${t.id}-h`} className="text-2xl font-semibold">
-            {i + 1}. {t.title}
-          </h2>
-          <p className="text-sm">
-            <a href={at(t.start)} className="text-brand underline" target="_blank" rel="noreferrer">
-              Watch from {t.start}
-              <span className="sr-only"> (opens YouTube in a new tab)</span>
-            </a>
-          </p>
-          {FIGURES[t.id] && (
-            // A link to the full-size drawing, for narrow columns.
-            <a
-              href={`/guides/geometry/${FIGURES[t.id]!.file}.svg`}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-3 block max-w-3xl rounded-lg"
-            >
-              {/* Static SVGs from public/; next/image adds nothing for them. */}
-              {/* oxlint-disable-next-line nextjs/no-img-element */}
-              <img
-                src={`/guides/geometry/${FIGURES[t.id]!.file}.svg`}
-                alt={FIGURES[t.id]!.alt}
-                className="h-auto w-full"
-              />
-              <span className="sr-only"> (opens full size in a new tab)</span>
-            </a>
-          )}
-          <p className="mt-2 text-lg">{t.intro}</p>
-          {t.rules && (
-            <ul className="mt-2 ml-5 flex list-disc flex-col gap-1 text-lg">
-              {t.rules.map((r) => (
-                <li key={r}>{r}</li>
-              ))}
-            </ul>
-          )}
-          {t.tables?.map((tb) => (
-            <DataTable key={tb.caption} {...tb} />
-          ))}
-          {t.example && <Note label="Example">{t.example}</Note>}
-          {t.tip && <Note label="Watch out">{t.tip}</Note>}
-        </section>
-      ))}
-
-      <section id="practice" aria-labelledby="practice-h">
-        <h2 id="practice-h" className="text-2xl font-semibold">
-          Practice questions
-        </h2>
-        <p className="mt-1 text-muted">Try each one, then open it to check your answer.</p>
-        <ol className="mt-3 ml-5 flex list-decimal flex-col gap-2 text-lg">
-          {PRACTICE.map((p) => (
-            <li key={p.q}>
-              <details>
-                <summary className="cursor-pointer">{p.q}</summary>
-                <p className="mt-1 font-semibold text-ok">{p.a}</p>
-              </details>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <p className="text-sm text-muted">
-        Source:{' '}
-        <a href={VIDEO} className="underline" target="_blank" rel="noreferrer">
-          JensenMath, &ldquo;All of GEOMETRY in 40 minutes!&rdquo; on YouTube
-          <span className="sr-only"> (opens in a new tab)</span>
-        </a>
-        . The notes and questions here are our own.
-      </p>
-    </div>
-  );
+  return <StudyGuide guide={GEOMETRY} />;
 }

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 275" width="600" height="275" role="img" aria-label="The parabola y = x² − 4x + 3 with vertex (2, −1), roots at x = 1 and x = 3, and axis of symmetry x = 2">
+<title>The parabola y = x² − 4x + 3 with vertex (2, −1), roots at x = 1 and x = 3, and axis of symmetry x = 2</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<line class="g" x1="30" y1="20" x2="30" y2="260"/><line class="ax" x1="60" y1="20" x2="60" y2="260"/><line class="g" x1="90" y1="20" x2="90" y2="260"/><line class="g" x1="120" y1="20" x2="120" y2="260"/><line class="g" x1="150" y1="20" x2="150" y2="260"/><line class="g" x1="180" y1="20" x2="180" y2="260"/><line class="g" x1="210" y1="20" x2="210" y2="260"/><line class="g" x1="30" y1="260" x2="210" y2="260"/><line class="g" x1="30" y1="230" x2="210" y2="230"/><line class="ax" x1="30" y1="200" x2="210" y2="200"/><line class="g" x1="30" y1="170" x2="210" y2="170"/><line class="g" x1="30" y1="140" x2="210" y2="140"/><line class="g" x1="30" y1="110" x2="210" y2="110"/><line class="g" x1="30" y1="80" x2="210" y2="80"/><line class="g" x1="30" y1="50" x2="210" y2="50"/><line class="g" x1="30" y1="20" x2="210" y2="20"/><path class="a" d="M42,27.2 L43.5,34.9 L45,42.5 L46.5,49.9 L48,57.2 L49.5,64.3 L51,71.3 L52.5,78.1 L54,84.8 L55.5,91.3 L57,97.7 L58.5,103.9 L60,110 L61.5,115.9 L63,121.7 L64.5,127.3 L66,132.8 L67.5,138.1 L69,143.3 L70.5,148.3 L72,153.2 L73.5,157.9 L75,162.5 L76.5,166.9 L78,171.2 L79.5,175.3 L81,179.3 L82.5,183.1 L84,186.8 L85.5,190.3 L87,193.7 L88.5,196.9 L90,200 L91.5,202.9 L93,205.7 L94.5,208.3 L96,210.8 L97.5,213.1 L99,215.3 L100.5,217.3 L102,219.2 L103.5,220.9 L105,222.5 L106.5,223.9 L108,225.2 L109.5,226.3 L111,227.3 L112.5,228.1 L114,228.8 L115.5,229.3 L117,229.7 L118.5,229.9 L120,230 L121.5,229.9 L123,229.7 L124.5,229.3 L126,228.8 L127.5,228.1 L129,227.3 L130.5,226.3 L132,225.2 L133.5,223.9 L135,222.5 L136.5,220.9 L138,219.2 L139.5,217.3 L141,215.3 L142.5,213.1 L144,210.8 L145.5,208.3 L147,205.7 L148.5,202.9 L150,200 L151.5,196.9 L153,193.7 L154.5,190.3 L156,186.8 L157.5,183.1 L159,179.3 L160.5,175.3 L162,171.2 L163.5,166.9 L165,162.5 L166.5,157.9 L168,153.2 L169.5,148.3 L171,143.3 L172.5,138.1 L174,132.8 L175.5,127.3 L177,121.7 L178.5,115.9 L180,110 L181.5,103.9 L183,97.7 L184.5,91.3 L186,84.8 L187.5,78.1 L189,71.3 L190.5,64.3 L192,57.2 L193.5,49.9 L195,42.5 L196.5,34.9 L198,27.2"/><line class="d" x1="120" y1="20" x2="120" y2="260"/><circle class="dot" cx="120" cy="230" r="6"/><circle class="dot" cx="90" cy="200" r="6"/><circle class="dot" cx="150" cy="200" r="6"/><text class="ht" x="130" y="248" text-anchor="start">vertex (2, −1)</text><text class="s" x="82" y="190" text-anchor="end">(1, 0)</text><text class="s" x="158" y="190" text-anchor="start">(3, 0)</text><text class="t" x="260" y="40" text-anchor="start">y = x² − 4x + 3</text><text x="260" y="74" text-anchor="start">Vertex: x = −b ÷ 2a = 4 ÷ 2 = 2</text><text x="260" y="98" text-anchor="start">y = 4 − 8 + 3 = −1</text><text class="at" x="260" y="134" text-anchor="start">Roots: (x − 1)(x − 3) = 0</text><text class="at" x="260" y="158" text-anchor="start">x = 1 or x = 3</text><text class="s" x="260" y="194" text-anchor="start">a > 0: opens up, vertex is the minimum</text><text class="s" x="260" y="214" text-anchor="start">the dashed line x = 2 is the axis of symmetry</text>
+</svg>

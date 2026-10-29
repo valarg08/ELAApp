@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 265" width="720" height="265" role="img" aria-label="Like terms sorted into groups and collected to −2x² + 2x + 5; the distributive property 2(x + 5) = 2x + 10">
+<title>Like terms sorted into groups and collected to −2x² + 2x + 5; the distributive property 2(x + 5) = 2x + 10</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="190" y="24" text-anchor="middle">Collect like terms</text><text x="190" y="56" text-anchor="middle">4x² + 3x − 6x² + 5 − x</text><rect class="l fa" x="30" y="76" width="100" height="70" rx="6"/><text class="at" x="80" y="116" text-anchor="middle">4x²  −6x²</text><line class="l" x1="80" y1="150" x2="80" y2="170"/><path class="l" d="M74,164 L80,172 L86,164"/><text class="at" x="80" y="194" text-anchor="middle">−2x²</text><rect class="l fh" x="150" y="76" width="100" height="70" rx="6"/><text class="ht" x="200" y="116" text-anchor="middle">3x  −x</text><line class="l" x1="200" y1="150" x2="200" y2="170"/><path class="l" d="M194,164 L200,172 L206,164"/><text class="ht" x="200" y="194" text-anchor="middle">+2x</text><rect class="l fv" x="270" y="76" width="100" height="70" rx="6"/><text class="vt" x="320" y="116" text-anchor="middle">5</text><line class="l" x1="320" y1="150" x2="320" y2="170"/><path class="l" d="M314,164 L320,172 L326,164"/><text class="vt" x="320" y="194" text-anchor="middle">+5</text><text class="t" x="190" y="232" text-anchor="middle">= −2x² + 2x + 5</text><text class="s" x="190" y="254" text-anchor="middle">same variable part → add the coefficients</text><text class="t" x="560" y="24" text-anchor="middle">Distribute</text><text class="ht" x="480" y="100" text-anchor="middle">2</text><text x="500" y="100" text-anchor="middle">(</text><text x="518" y="100" text-anchor="middle">x</text><text x="540" y="100" text-anchor="middle">+</text><text x="562" y="100" text-anchor="middle">5</text><text x="580" y="100" text-anchor="middle">)</text><path class="h" d="M482,84 Q500,52 516,84"/><path class="h" d="M482,84 Q522,30 560,84"/><text x="560" y="150" text-anchor="middle">= 2·x + 2·5 = 2x + 10</text><text class="ht" x="560" y="196" text-anchor="middle">−3(x − 1) = −3x + 3</text><text class="s" x="560" y="220" text-anchor="middle">the sign goes in with the number</text>
+</svg>
