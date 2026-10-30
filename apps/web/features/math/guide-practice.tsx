@@ -9,6 +9,7 @@ import {
 } from '@storyforge/math-check';
 import { useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { AnswerBox } from './answer-box';
+import { ProblemFigure } from './guide-figure';
 import type { GuideProblem } from './guide-problem';
 
 /** Problems 1–8, 9–17 and 18–25: the guide's problems run from simple to complex. */
@@ -258,6 +259,7 @@ function ProblemCard({
         {solved && <span className="text-ok"> · ✓ solved</span>}
       </p>
       <p className="mt-1 text-lg">{problem.q}</p>
+      {problem.fig && <ProblemFigure fig={problem.fig} />}
       <div className="mt-3 flex flex-wrap items-end gap-3">
         <AnswerBox
           value={value}

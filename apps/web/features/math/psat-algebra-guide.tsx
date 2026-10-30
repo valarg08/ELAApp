@@ -1,5 +1,7 @@
+import { ALGEBRA_FIGS, ALGEBRA_MIDDLE_FIGS } from './psat-algebra-figures';
 import { ALGEBRA_MIDDLE } from './psat-algebra-middle';
 import { ALGEBRA_PROBLEMS } from './psat-algebra-problems';
+import { attachFigures } from './guide-problem';
 import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
 const FIGURES: Guide['figures'] = {
@@ -282,8 +284,8 @@ export const ALGEBRA: Guide = {
   figures: FIGURES,
   review: REVIEW,
   practice: PRACTICE,
-  problems: ALGEBRA_PROBLEMS,
-  middleProblems: ALGEBRA_MIDDLE,
+  problems: attachFigures(ALGEBRA_PROBLEMS, ALGEBRA_FIGS),
+  middleProblems: attachFigures(ALGEBRA_MIDDLE, ALGEBRA_MIDDLE_FIGS),
 };
 
 export function PsatAlgebraGuide() {

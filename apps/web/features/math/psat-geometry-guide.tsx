@@ -1,5 +1,7 @@
+import { GEOMETRY_FIGS, GEOMETRY_MIDDLE_FIGS } from './psat-geometry-figures';
 import { GEOMETRY_MIDDLE } from './psat-geometry-middle';
 import { GEOMETRY_PROBLEMS } from './psat-geometry-problems';
+import { attachFigures } from './guide-problem';
 import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
 const FIGURES: Guide['figures'] = {
@@ -310,8 +312,8 @@ export const GEOMETRY: Guide = {
   figures: FIGURES,
   review: REVIEW,
   practice: PRACTICE,
-  problems: GEOMETRY_PROBLEMS,
-  middleProblems: GEOMETRY_MIDDLE,
+  problems: attachFigures(GEOMETRY_PROBLEMS, GEOMETRY_FIGS),
+  middleProblems: attachFigures(GEOMETRY_MIDDLE, GEOMETRY_MIDDLE_FIGS),
 };
 
 export function PsatGeometryGuide() {
