@@ -218,6 +218,7 @@ model User {
   mathAnswers       MathAnswerLog[]
   mathSkillStates   MathSkillState[]
   mathTestAttempts  MathTestAttempt[]
+  satAttempts       SatAttempt[]
   mathPastPapers    MathPastPaper[]
   mentalStart       MentalStart?
   stats             StudentStats?
@@ -445,6 +446,22 @@ model MathTestAttempt {
   total            Int
 
   @@index([studentId, kind, startedAt])
+}
+
+/// A weekly SAT Math test (sat-design.md): two timed modules, module 2 chosen from the module 1
+/// result. One attempt per student per week; `state` is validated with Zod (SatStoredState).
+model SatAttempt {
+  id          String    @id @default(cuid())
+  studentId   String
+  student     User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  week        Int
+  state       Json
+  startedAt   DateTime  @default(now())
+  submittedAt DateTime?
+  correct     Int?
+  total       Int
+
+  @@unique([studentId, week])
 }
 
 /// Where a student starts Mental Math after the placement check (mental-math-design.md): every unit

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "w01-m1-01",
+    "prompt": "If $3x + 5 = 20$, what is the value of $x$?",
+    "answer": { "kind": "choice", "choices": ["3", "5", "15", "25/3"], "correct": "B" },
+    "solution": "Subtract 5 from both sides: $3x = 15$. Divide by 3: $x = 5$.",
+    "skill": "linear-equations-1",
+    "difficulty": 1
+  },
+  {
+    "id": "w01-m1-02",
+    "prompt": "A jacket regularly costs \\$80. It is on sale for 25% off. What is the sale price, in dollars?",
+    "answer": { "kind": "value", "accepted": ["60"], "form": "any", "mistakes": [] },
+    "solution": "25% of 80 is 20, so the sale price is $80 - 20 = 60$ dollars.",
+    "skill": "percentages",
+    "difficulty": 1,
+    "compute": "80*(1-1/4)"
+  },
+  {
+    "id": "w01-m1-03",
+    "prompt": "The function $f$ is defined by $f(x) = 4x - 7$. What is the value of $f(6)$?",
+    "answer": { "kind": "choice", "choices": ["13", "17", "24", "31"], "correct": "B" },
+    "solution": "Put $x = 6$ in: $4(6) - 7 = 24 - 7 = 17$.",
+    "skill": "linear-functions",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m1-04",
+    "prompt": "A bag has 4 red marbles, 6 blue marbles and 5 green marbles. One marble is chosen at random. What is the probability that it is not blue?",
+    "answer": { "kind": "choice", "choices": ["2/5", "3/5", "4/15", "2/3"], "correct": "B" },
+    "solution": "There are 15 marbles and $4 + 5 = 9$ are not blue, so the probability is $\\frac{9}{15} = \\frac{3}{5}$.",
+    "skill": "probability",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m1-05",
+    "prompt": "A right triangle has legs of length 9 and 12. What is the length of its hypotenuse?",
+    "answer": { "kind": "value", "accepted": ["15"], "form": "any", "mistakes": [] },
+    "solution": "By the Pythagorean theorem, $c^2 = 9^2 + 12^2 = 81 + 144 = 225$, so $c = 15$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 2,
+    "compute": "sqrt(9^2+12^2)"
+  },
+  {
+    "id": "w01-m1-06",
+    "prompt": "$2x + y = 11$ and $x - y = 1$. What is the value of $x$?",
+    "answer": { "kind": "value", "accepted": ["4"], "form": "any", "mistakes": [] },
+    "solution": "Add the two equations: $3x = 12$, so $x = 4$. (Check: $y = 3$, and $2(4) + 3 = 11$.)",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "(11+1)/3"
+  }
+]

@@ -13,12 +13,20 @@ import {
   MathStagesFile,
   MathTestFile,
   MentalLevelsFile,
+  SAT_MODULE_KEYS,
+  SatModuleFile,
+  type SatModuleKey,
+  type SatQuestion,
+  SatWeekFile,
   type Track,
   type UnitBundle,
   UnitContent,
   checkedVariants,
   isMathTrack,
   mentalLevelErrors,
+  problemErrors,
+  satDomainOfSkill,
+  satWeekPlan,
   splitMath,
   validateMathContent,
   validateUnitBundle,
@@ -358,6 +366,113 @@ async function psatErrors(root: string, units: LoadedUnit[]): Promise<string[]> 
   return errors;
 }
 
+/** One SAT week: its three modules, ready to serve (sat-design.md §4). */
+export interface LoadedSatWeek {
+  week: number;
+  title: string;
+  sample: boolean;
+  minutes: number;
+  modules: Record<SatModuleKey, SatQuestion[]>;
+}
+
+const SAT_MODULE_FILES: Record<SatModuleKey, string> = {
+  m1: 'module-1.json',
+  'm2-easy': 'module-2-easy.json',
+  'm2-hard': 'module-2-hard.json',
+};
+
+/**
+ * SAT Math's weekly tests (sat-design.md): content/sat/week-XX/{week.json, module-1.json,
+ * module-2-easy.json, module-2-hard.json, figures/*.svg}. Checks the questions like Math problems
+ * (answers proved by `compute`, TeX renders), four choices, easier-to-harder order and, for a real
+ * (not sample) week, 22 questions per module in the week's content-area plan. A missing folder is fine.
+ */
+export async function loadSatContent(
+  root = defaultContentDir(),
+): Promise<{ weeks: LoadedSatWeek[]; errors: string[] }> {
+  const errors: string[] = [];
+  const weeks: LoadedSatWeek[] = [];
+  const dirs = (await readdir(path.join(root, 'sat'), { withFileTypes: true }).catch(() => []))
+    .filter((e) => e.isDirectory() && /^week-\d{2}$/.test(e.name))
+    .map((e) => e.name)
+    .sort();
+  for (const name of dirs) {
+    const dir = path.join(root, 'sat', name);
+    const hash = createHash('sha256');
+    const at = `sat/${name}`;
+    const info = await readJson(
+      path.join(dir, 'week.json'),
+      `${at}/week.json`,
+      SatWeekFile,
+      errors,
+      hash,
+    );
+    if (!info) {
+      if (!errors.some((e) => e.startsWith(`${at}/week.json`)))
+        errors.push(`${at}/week.json: missing`);
+      continue;
+    }
+    if (name !== `week-${String(info.week).padStart(2, '0')}`)
+      errors.push(`${at}/week.json: "week" is ${info.week} but the folder is ${name}`);
+    const modules = {} as Record<SatModuleKey, SatQuestion[]>;
+    const ids = new Set<string>();
+    const plan = satWeekPlan(info.week);
+    for (const key of SAT_MODULE_KEYS) {
+      const rel = `${at}/${SAT_MODULE_FILES[key]}`;
+      const list = await readJson(
+        path.join(dir, SAT_MODULE_FILES[key]),
+        rel,
+        SatModuleFile,
+        errors,
+        hash,
+      );
+      if (!list) {
+        if (!errors.some((e) => e.startsWith(rel))) errors.push(`${rel}: missing`);
+        modules[key] = [];
+        continue;
+      }
+      modules[key] = list;
+      const counts: Record<string, number> = {};
+      let last = 0;
+      for (const q of list) {
+        const where = `${rel}/${q.id}`;
+        if (ids.has(q.id)) errors.push(`${where}: the id is used twice in the week`);
+        ids.add(q.id);
+        counts[satDomainOfSkill(q.skill)] = (counts[satDomainOfSkill(q.skill)] ?? 0) + 1;
+        if (q.difficulty < last) errors.push(`${where}: a module goes from easier to harder`);
+        last = q.difficulty;
+        if (q.answer.kind === 'choice' && q.answer.choices.length !== 4)
+          errors.push(`${where}: SAT questions have four choices (A–D)`);
+        // A SAT question is a Math problem without hints or a template.
+        const asProblem = { ...q, hints: [] } as unknown as MathProblem;
+        errors.push(...(await inlineFigure(dir, where, asProblem, hash)));
+        errors.push(...problemErrors(rel, asProblem));
+        errors.push(...problemTexErrors(where, asProblem));
+      }
+      if (!info.sample) {
+        if (list.length !== 22)
+          errors.push(`${rel}: a week's module has 22 questions, not ${list.length}`);
+        const want = key === 'm1' ? plan[0] : plan[1];
+        for (const [domain, n] of Object.entries(want))
+          if ((counts[domain] ?? 0) !== n)
+            errors.push(
+              `${rel}: week ${info.week} needs ${n} ${domain} questions, has ${counts[domain] ?? 0}`,
+            );
+      }
+    }
+    weeks.push({
+      week: info.week,
+      title: info.title,
+      sample: info.sample,
+      minutes: info.minutes,
+      modules,
+    });
+  }
+  const numbers = weeks.map((w) => w.week);
+  if (new Set(numbers).size !== numbers.length) errors.push('sat: two weeks share a number');
+  return { weeks, errors };
+}
+
 /**
  * Read and validate every unit under `<root>/units/unit-XX/` (Story Writing),
  * `<root>/essay/unit-XX/` (Essay Writing) and `<root>/math/unit-XX/` (Math):
@@ -397,6 +512,7 @@ export async function loadContent(root = defaultContentDir()): Promise<LoadResul
     result.mental = extras.mental;
   }
   if (units.some((u) => u.track === 'PSAT')) result.errors.push(...(await psatErrors(root, units)));
+  result.errors.push(...(await loadSatContent(root)).errors);
   return result;
 }
 

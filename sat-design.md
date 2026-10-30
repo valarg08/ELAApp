@@ -45,8 +45,13 @@ Module 1 raw score ≥ 14 of 22 → harder module 2; otherwise the easier one. T
 ## 6. Build order
 
 - **S0** (done): the tab, `/sat`, `/start` card, track `SAT` in the database and shared constants, this document, the rules page.
-- **S1** test player: two timed modules, server-side clock, navigator, mark for review, cross-out, typed answers, reference sheet, calculator, saving and resuming.
-- **S2** adaptive routing, the 200–800 estimate, results by area and skill, review with worked solutions, the mistakes list.
+- **S1** (done): the test player and its engine.
+  - Table `SatAttempt` (one per student per week, `state` checked with Zod); API at `/sat/*` (`SatModule`: weeks, start, get, autosave, hand in); students only, other students' attempts answer 404.
+  - Content: `content/sat/week-XX/{week.json, module-1.json, module-2-easy.json, module-2-hard.json, figures/}` read on the server (`SatContentService`, 30 s cache), never copied to the database, checked by `content:check` (Math problem checks, four choices, easier-to-harder order, and for a real week 22 questions per module in the week's area plan). Week 1 is a short sample (`"sample": true`, 6/5/5 questions, 12 minutes) for trying the player.
+  - Rules in code: the clock is the server's; any request after a module's deadline hands that module in (module 2 then opens with a fresh clock); typed answers follow `satTypedError`/`satTypedMatches` (5 characters, 6 if negative, no mixed numbers, a decimal of 3+ places may be rounded or cut); answers and solutions are sent only after the test.
+  - Pages: `/sat` (weeks), `/sat/week/[week]` (the rules, then Start/Continue), `/sat/test/[id]` (player, then result with the raw score by module and every question's solution).
+  - Player: question list and check-your-work screen, mark for review, cross out choices, hide the clock (it returns at 5 minutes), reference sheet, calculator, rules dialog, autosave.
+- **S2** the 200–800 estimate, results by area and skill, review with worked solutions, the mistakes list.
 - **S3** weekly schedule and the teacher start date.
 - **S4+** content, one week at a time (weeks 1–4 first).
 - **S-teacher** class results by area and skill.

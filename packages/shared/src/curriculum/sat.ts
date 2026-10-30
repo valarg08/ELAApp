@@ -1,3 +1,7 @@
+import { approx, contentValue, equal, readAnswer } from '@storyforge/math-check';
+import { z } from 'zod';
+import { MathAnswer, MathFigure } from './math.js';
+
 /**
  * SAT Math (sat-design.md): the digital SAT's Math section as a weekly practice test, for students
  * in grades 8–10. The format and rules follow the College Board's digital SAT; the content areas
@@ -145,6 +149,148 @@ export const SAT_RULES: { title: string; items: string[] }[] = [
       'You take one full test each week. Your score is an estimate on the 200 to 800 scale for the Math section, because the real conversion is secret; trust the trend more than any single number.',
       'After the test you see every question with its worked solution, and your results by content area and skill.',
       'All our questions are written by us. They follow the SAT style but are never copied from the College Board.',
+    ],
+  },
+];
+
+// ───────── Questions, weeks and the rules the code enforces ─────────
+
+const SKILL_IDS = SAT_DOMAINS.flatMap((d) => d.skills.map((s) => s.id)) as [
+  SatSkillId,
+  ...SatSkillId[],
+];
+export const SatSkill = z.enum(SKILL_IDS);
+
+/** The domain a skill belongs to. */
+export const satDomainOfSkill = (skill: SatSkillId): SatDomainId =>
+  SAT_DOMAINS.find((d) => (d.skills as readonly { id: string }[]).some((s) => s.id === skill))!.id;
+
+const satText = (max: number) => z.string().trim().min(1).max(max);
+
+/**
+ * One SAT question (content/sat/week-XX/module-*.json). Like a Math problem, minus hints and
+ * templates: `difficulty` runs 1 (easy) to 3 (hard) and a module lists its questions from easier to
+ * harder. `compute` proves a typed answer right when content:check runs.
+ */
+export const SatQuestion = z.object({
+  id: z.string().regex(/^[a-z0-9][a-z0-9-]*$/, 'Use lowercase letters, numbers and dashes'),
+  prompt: satText(1500),
+  figure: MathFigure.optional(),
+  answer: MathAnswer,
+  solution: satText(3000),
+  skill: SatSkill,
+  difficulty: z.number().int().min(1).max(3),
+  compute: satText(300).optional(),
+});
+export type SatQuestion = z.infer<typeof SatQuestion>;
+
+export const SAT_MODULE_KEYS = ['m1', 'm2-easy', 'm2-hard'] as const;
+export const SatModuleKey = z.enum(SAT_MODULE_KEYS);
+export type SatModuleKey = z.infer<typeof SatModuleKey>;
+
+/** A module's file: its questions in the order they are asked. */
+export const SatModuleFile = z.array(SatQuestion).min(1).max(22);
+
+/** content/sat/week-XX/week.json. A `sample` week may be short; a real week has 3 × 22 questions. */
+export const SatWeekFile = z.object({
+  week: z.number().int().min(1).max(52),
+  title: satText(80),
+  sample: z.boolean().default(false),
+  /** Minutes per module (35 in a real week). */
+  minutes: z.number().int().min(1).max(35).default(35),
+});
+export type SatWeekFile = z.infer<typeof SatWeekFile>;
+
+/** A typed answer is accepted when it reads as a number or fraction of at most this many characters. */
+export const SAT_TYPED_MAX = 5;
+export const SAT_TYPED_MAX_NEGATIVE = 6;
+
+/**
+ * The digital SAT's rules for a typed (student-produced) answer: a whole number, decimal or
+ * fraction, at most 5 characters (6 when negative); no mixed numbers, percent signs, units or
+ * commas. Returns what is wrong, or null when the answer can be checked.
+ */
+export function satTypedError(input: string): string | null {
+  const v = input.trim();
+  if (!v) return null;
+  if (/^-?\d+\s+\d+\/\d+$/.test(v))
+    return 'Do not type a mixed number. Type a fraction like 7/2 or a decimal like 3.5.';
+  if (/[%$,]/.test(v)) return 'Do not type percent signs, dollar signs or commas.';
+  if (!/^[-\d./]+$/.test(v)) return 'Use digits, a decimal point, a fraction bar or a minus sign.';
+  if (!/^-?(\d+\.?\d*|\.\d+|\d+\/\d+)$/.test(v)) return 'That is not a number or a fraction.';
+  if (v.includes('/') && /\/0+$/.test(v)) return 'A fraction cannot have 0 on the bottom.';
+  const max = v.startsWith('-') ? SAT_TYPED_MAX_NEGATIVE : SAT_TYPED_MAX;
+  if (v.length > max)
+    return `Too long: at most ${SAT_TYPED_MAX} characters, or ${SAT_TYPED_MAX_NEGATIVE} for a negative answer.`;
+  return null;
+}
+
+/**
+ * Whether a typed answer is right: equal to an accepted value, or (like the real test) a decimal of
+ * at least 3 places that is the accepted value rounded or cut to that many places.
+ */
+export function satTypedMatches(input: string, accepted: readonly string[]): boolean {
+  const v = input.trim();
+  if (!v || satTypedError(v)) return false;
+  const read = readAnswer(v);
+  if (!read.ok) return false;
+  const decimals = /^-?\d*\.(\d+)$/.exec(v)?.[1]?.length ?? 0;
+  const typed = Number(v);
+  return accepted.some((a) => {
+    try {
+      const value = contentValue(a);
+      if (equal(read.value, value)) return true;
+      if (decimals < 3) return false;
+      const exact = approx(value);
+      const scale = 10 ** decimals;
+      const near = (n: number) => Math.abs(n - typed) < 1e-9;
+      return near(Math.round(exact * scale) / scale) || near(Math.trunc(exact * scale) / scale);
+    } catch {
+      return false;
+    }
+  });
+}
+
+/** Module 1 sends a student to the harder module 2 at this share of right answers (14 of 22). */
+export const SAT_HARD_SHARE = 14 / 22;
+
+/** Which module 2 follows module 1, from the module 1 result. */
+export const satNextModule = (correct: number, total: number): 'm2-easy' | 'm2-hard' =>
+  total > 0 && correct >= Math.ceil(total * SAT_HARD_SHARE - 1e-9) ? 'm2-hard' : 'm2-easy';
+
+/** The reference sheet shown beside every question (TeX in $…$): area, volume, triangles. */
+export const SAT_REFERENCE: { title: string; facts: string[] }[] = [
+  {
+    title: 'Area and perimeter',
+    facts: [
+      'Rectangle: $A = \\ell w$',
+      'Triangle: $A = \\tfrac{1}{2}bh$',
+      'Circle: $A = \\pi r^2$ and $C = 2\\pi r$',
+    ],
+  },
+  {
+    title: 'Volume',
+    facts: [
+      'Rectangular prism: $V = \\ell w h$',
+      'Cylinder: $V = \\pi r^2 h$',
+      'Sphere: $V = \\tfrac{4}{3}\\pi r^3$',
+      'Cone: $V = \\tfrac{1}{3}\\pi r^2 h$',
+      'Pyramid: $V = \\tfrac{1}{3}\\ell w h$',
+    ],
+  },
+  {
+    title: 'Triangles',
+    facts: [
+      'Pythagorean theorem: $a^2 + b^2 = c^2$',
+      '45°-45°-90° triangle: sides $x$, $x$, $x\\sqrt{2}$',
+      '30°-60°-90° triangle: sides $x$, $x\\sqrt{3}$, $2x$',
+    ],
+  },
+  {
+    title: 'Angles',
+    facts: [
+      'The angles of a triangle add to $180°$.',
+      'A circle has $360°$, and a straight line $180°$.',
     ],
   },
 ];

@@ -17,6 +17,7 @@ export * from './curriculum/math.js';
 export * from './curriculum/math-content.js';
 export * from './curriculum/math-mastery.js';
 export * from './curriculum/sat.js';
+export * from './contracts/sat.js';
 export * from './contracts/curriculum.js';
 export * from './contracts/writing.js';
 export * from './contracts/feedback.js';

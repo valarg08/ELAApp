@@ -138,3 +138,4 @@ The Known misses lists in DESIGN.md §9.12 record each Essay unit's analyzer lim
 
 - Tests owed (SAT S0): axe on `/sat`; `/start?track=SAT` redirects to `/sat`; the SAT tab shows on every track tabs bar; `satWeekPlan` gives 44 questions per week (odd 19/9/11/5, even 18/9/11/6) and 22 per module; `ActivityKey` accepts "s01." keys.
 - [ ] SAT S1–S4 and S-teacher (sat-design.md §6).
+- Tests owed (SAT S1): an authorisation test for every `/sat/*` endpoint (student only; another student's attempt answers 404); `satTypedError`/`satTypedMatches` (5/6 characters, mixed numbers, 1/3 as .333); `satNextModule` (14 of 22 → harder); a module past its deadline is handed in on the next request and module 2 starts with a full clock; answers and solutions are absent from a module's JSON; axe on `/sat/week/1`, the player (question, check-your-work and dialogs) and the result; `loadSatContent` reports a wrong `compute`, a 3-choice question and a harder-then-easier module.

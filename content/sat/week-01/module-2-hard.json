@@ -1,0 +1,45 @@
+[
+  {
+    "id": "w01-m2h-01",
+    "prompt": "What is the positive solution to the equation $x^2 - 5x - 14 = 0$?",
+    "answer": { "kind": "choice", "choices": ["2", "5", "7", "14"], "correct": "C" },
+    "solution": "Factor: $(x - 7)(x + 2) = 0$, so $x = 7$ or $x = -2$. The positive solution is 7.",
+    "skill": "nonlinear-equations",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m2h-02",
+    "prompt": "A town’s population increases by 20% in the first year and then by 50% in the second year. By what percent has the population increased over the two years?",
+    "answer": { "kind": "value", "accepted": ["80"], "form": "any", "mistakes": [] },
+    "solution": "The population is multiplied by $1.2 \\times 1.5 = 1.8$, an increase of 80%.",
+    "skill": "percentages",
+    "difficulty": 2,
+    "compute": "(1.2*1.5-1)*100"
+  },
+  {
+    "id": "w01-m2h-03",
+    "prompt": "$3x + 2y = 16$ and $x - 2y = 0$. What is the value of $x + y$?",
+    "answer": { "kind": "value", "accepted": ["6"], "form": "any", "mistakes": [] },
+    "solution": "Add the equations: $4x = 16$, so $x = 4$. Then $4 - 2y = 0$ gives $y = 2$. So $x + y = 6$.",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "4+2"
+  },
+  {
+    "id": "w01-m2h-04",
+    "prompt": "The function $g(x) = x^2 - 6x + 11$ has a minimum value. What is that minimum value?",
+    "answer": { "kind": "choice", "choices": ["2", "3", "5", "11"], "correct": "A" },
+    "solution": "Complete the square: $x^2 - 6x + 11 = (x - 3)^2 + 2$. A square is never negative, so the minimum is 2 (at $x = 3$).",
+    "skill": "nonlinear-functions",
+    "difficulty": 3
+  },
+  {
+    "id": "w01-m2h-05",
+    "prompt": "In a triangle, the largest angle is 4 times the smallest angle, and the third angle measures 60°. What is the measure of the smallest angle, in degrees?",
+    "answer": { "kind": "value", "accepted": ["24"], "form": "any", "mistakes": [] },
+    "solution": "Let the smallest angle be $s$. Then $s + 4s + 60 = 180$, so $5s = 120$ and $s = 24$. (The largest angle is 96°, which is larger than 60°.)",
+    "skill": "lines-angles-triangles",
+    "difficulty": 3,
+    "compute": "(180-60)/5"
+  }
+]

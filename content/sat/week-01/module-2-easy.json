@@ -1,0 +1,47 @@
+[
+  {
+    "id": "w01-m2e-01",
+    "prompt": "If $5x - 2 = 18$, what is the value of $x$?",
+    "answer": { "kind": "choice", "choices": ["3", "4", "5", "20"], "correct": "B" },
+    "solution": "Add 2 to both sides: $5x = 20$. Divide by 5: $x = 4$.",
+    "skill": "linear-equations-1",
+    "difficulty": 1
+  },
+  {
+    "id": "w01-m2e-02",
+    "prompt": "A car travels 150 miles in 3 hours at a constant speed. How many miles does it travel in 5 hours at that speed?",
+    "answer": { "kind": "value", "accepted": ["250"], "form": "any", "mistakes": [] },
+    "solution": "The speed is $150 \\div 3 = 50$ miles per hour, so in 5 hours it travels $50 \\times 5 = 250$ miles.",
+    "skill": "ratios-rates",
+    "difficulty": 1,
+    "compute": "150/3*5"
+  },
+  {
+    "id": "w01-m2e-03",
+    "prompt": "A data set is 3, 7, 7, 9, 14. What is the mean of the data set?",
+    "answer": { "kind": "choice", "choices": ["7", "8", "9", "14"], "correct": "B" },
+    "solution": "The sum is $3 + 7 + 7 + 9 + 14 = 40$. Divide by 5: the mean is 8.",
+    "skill": "one-variable-data",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m2e-04",
+    "prompt": "Which expression is equivalent to $3(x + 4) - 2x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$x + 12$", "$5x + 12$", "$x + 4$", "$5x + 4$"],
+      "correct": "A"
+    },
+    "solution": "Distribute: $3x + 12 - 2x$. Combine like terms: $x + 12$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m2e-05",
+    "prompt": "Which of the following values of $x$ satisfies the inequality $2x + 3 > 11$?",
+    "answer": { "kind": "choice", "choices": ["2", "3", "4", "5"], "correct": "D" },
+    "solution": "Subtract 3: $2x > 8$, so $x > 4$. Only 5 is greater than 4. (At $x = 4$ both sides are equal, which is not greater.)",
+    "skill": "linear-inequalities",
+    "difficulty": 2
+  }
+]

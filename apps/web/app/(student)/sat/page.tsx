@@ -1,8 +1,15 @@
-import { SAT_DOMAINS, SAT_FORMAT, SAT_RULES, satWeekPlan } from '@storyforge/shared';
+import {
+  SAT_DOMAINS,
+  SAT_FORMAT,
+  SAT_RULES,
+  SatWeekSummary,
+  satWeekPlan,
+} from '@storyforge/shared';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { CourseShell } from '@/components/course-shell';
 import { TrackTabs } from '@/components/track-tabs';
-import { getMe } from '@/lib/server-api';
+import { getMe, serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,6 +24,7 @@ const perWeek = (domain: (typeof SAT_DOMAINS)[number]['id'], week: number) =>
 export default async function SatHome() {
   const me = await getMe();
   if (!me) redirect('/join');
+  const weeks = (await serverApi('/sat/weeks', SatWeekSummary.array())) ?? [];
 
   return (
     <CourseShell track="SAT">
@@ -59,18 +67,40 @@ export default async function SatHome() {
           </div>
         </section>
 
-        <section
-          aria-labelledby="sat-week"
-          className="rounded-2xl border-2 border-accent bg-card p-5 shadow-sm"
-        >
+        <section aria-labelledby="sat-week" className="flex flex-col gap-3">
           <h2 id="sat-week" className="text-2xl font-semibold">
-            This week’s test
+            Your weekly tests
           </h2>
-          <p className="mt-1 text-muted">
-            The weekly tests are on their way: {SAT_FORMAT.totalQuestions} questions in{' '}
-            {SAT_FORMAT.totalMinutes} minutes, two modules of {SAT_FORMAT.questionsPerModule}. The
-            first one will appear here.
-          </p>
+          {weeks.length === 0 ? (
+            <p className="text-muted">
+              The weekly tests are on their way: {SAT_FORMAT.totalQuestions} questions in{' '}
+              {SAT_FORMAT.totalMinutes} minutes, two modules of {SAT_FORMAT.questionsPerModule}. The
+              first one will appear here.
+            </p>
+          ) : (
+            <ol className="grid gap-4 sm:grid-cols-2">
+              {weeks.map((w) => (
+                <li key={w.week}>
+                  <Link
+                    href={`/sat/week/${w.week}`}
+                    className="block rounded-2xl border-2 border-accent bg-card p-5 shadow-sm transition hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                  >
+                    <p className="text-sm font-semibold tracking-widest text-brand uppercase">
+                      Week {w.week}
+                    </p>
+                    <p className="mt-1 text-xl font-bold">{w.title}</p>
+                    <p className="mt-1 text-muted">
+                      {w.status === 'done'
+                        ? `Done: ${w.correct} of ${w.total} right. See the review`
+                        : w.status === 'in-progress'
+                          ? 'In progress. Continue the test'
+                          : `${w.questions} questions, ${w.minutes} minutes a module. Start the test`}
+                    </p>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          )}
         </section>
 
         <section aria-labelledby="sat-covers" className="flex flex-col gap-3">
