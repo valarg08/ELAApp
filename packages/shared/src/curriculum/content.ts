@@ -35,26 +35,26 @@ const id = z.string().regex(/^[a-z0-9][a-z0-9-]*$/, 'Use lowercase letters, numb
 // ───────── Activities ─────────
 
 /** The learning tracks (DESIGN.md §9.12, §9.13, mental-math-design.md, psat-design.md). */
-export const TRACKS = ['STORY', 'ESSAY', 'MATH', 'MENTAL', 'PSAT'] as const;
+export const TRACKS = ['STORY', 'ESSAY', 'MATH', 'MENTAL', 'PSAT', 'SAT'] as const;
 export const Track = z.enum(TRACKS);
 export type Track = z.infer<typeof Track>;
 
 /**
  * Tracks built on the Math engine (problems checked with math-check, worked examples, fact sheets):
- * Math (AMC 10), Mental Math and PSAT Math.
+ * Math (AMC 10), Mental Math, PSAT Math and SAT Math.
  */
 export const isMathTrack = (track: Track): boolean =>
-  track === 'MATH' || track === 'MENTAL' || track === 'PSAT';
+  track === 'MATH' || track === 'MENTAL' || track === 'PSAT' || track === 'SAT';
 
 /**
  * Activity keys start with the unit: "u01." in Story Writing, "e01." in Essay Writing, "m01." in
- * Math, "n01." in Mental Math (number sense), "p01." in PSAT Math.
+ * Math, "n01." in Mental Math (number sense), "p01." in PSAT Math, "s01." in SAT Math.
  */
 export const ActivityKey = z
   .string()
   .regex(
-    /^[uemnp]\d{2}\.[a-z0-9][a-z0-9-]*$/,
-    'Activity keys look like "u01.sort-show-tell" (or "e01.…" in Essay Writing, "m01.…" in Math, "n01.…" in Mental Math, "p01.…" in PSAT Math)',
+    /^[uemnps]\d{2}\.[a-z0-9][a-z0-9-]*$/,
+    'Activity keys look like "u01.sort-show-tell" (or "e01.…" in Essay Writing, "m01.…" in Math, "n01.…" in Mental Math, "p01.…" in PSAT Math, "s01.…" in SAT Math)',
   );
 
 const KEY_LETTER: Record<Track, string> = {
@@ -63,6 +63,7 @@ const KEY_LETTER: Record<Track, string> = {
   MATH: 'm',
   MENTAL: 'n',
   PSAT: 'p',
+  SAT: 's',
 };
 
 /** The track an activity belongs to, from its key ("e01." is Essay Writing, "m01." Math, "n01." Mental Math). */
@@ -75,7 +76,9 @@ export const trackOfActivityKey = (key: string): Track =>
         ? 'MENTAL'
         : key.startsWith('p')
           ? 'PSAT'
-          : 'STORY';
+          : key.startsWith('s')
+            ? 'SAT'
+            : 'STORY';
 
 /** The prefix every activity key of a unit starts with. */
 export const activityKeyPrefix = (track: Track, unitNumber: number) =>
@@ -1040,6 +1043,7 @@ export const MAX_UNITS: Record<Track, number> = {
   MATH: 15,
   MENTAL: 15,
   PSAT: 15,
+  SAT: 15,
 };
 
 export const UnitContent = z.object({

@@ -119,13 +119,14 @@ enum ActivityType {
 }
 
 // The learning tracks (DESIGN.md §9.12, §9.13, mental-math-design.md, psat-design.md): creative
-// writing, essay writing, math (AMC 10), mental math (number sense, ages 7–14) and PSAT math.
+// writing, essay writing, math (AMC 10), mental math (number sense, ages 7–14), PSAT math and SAT math.
 enum Track {
   STORY
   ESSAY
   MATH
   MENTAL
   PSAT
+  SAT
 }
 
 enum ArtifactType {

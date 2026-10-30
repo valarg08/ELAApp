@@ -136,6 +136,7 @@ export const UNIT_WORD: Record<Track, string> = {
   MATH: 'Math Unit',
   MENTAL: 'Mental Math Unit',
   PSAT: 'PSAT Unit',
+  SAT: 'SAT Unit',
 };
 
 /** "Unit 3" in Story Writing, "Essay Unit 3" in Essay Writing, "Math Unit 3" in Math. */
@@ -148,6 +149,7 @@ export const TRACK_HOME: Record<Track, string> = {
   MATH: '/math',
   MENTAL: '/mental',
   PSAT: '/psat',
+  SAT: '/sat',
 };
 
 /** Each track's name, as on its tab. */
@@ -157,4 +159,5 @@ export const TRACK_NAMES: Record<Track, string> = {
   MATH: 'Math (AMC 10)',
   MENTAL: 'Mental Math',
   PSAT: 'PSAT Math',
+  SAT: 'SAT Math',
 };

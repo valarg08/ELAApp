@@ -41,8 +41,8 @@ export default async function ClassProgressPage({
   const filter: Filter = FILTERS.find((f) => f.id === one(query.show))?.id ?? 'all';
   // Math and Mental Math: the skills × students grid (math-design.md §3.3 C5) instead of the
   // lesson heatmap; Mental Math adds each student's practice (mental-math-design.md Part 9).
-  // PSAT Math has the lesson heatmap only.
-  const hasSkills = isMathTrack(track) && track !== 'PSAT';
+  // PSAT and SAT Math have the lesson heatmap only (SAT class results come later).
+  const hasSkills = isMathTrack(track) && track !== 'PSAT' && track !== 'SAT';
   const skillsView = hasSkills && one(query.view) === 'skills';
   const [klass, progress, mathSkills, mentalSkills] = await Promise.all([
     serverApi(`/teacher/classes/${classId}`, ClassSummary),

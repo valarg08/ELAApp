@@ -7,6 +7,7 @@ const TABS: { track: Track; label: string; emoji: string }[] = [
   { track: 'MATH', label: 'Math (AMC 10)', emoji: '📐' },
   { track: 'MENTAL', label: 'Mental Math', emoji: '🧠' },
   { track: 'PSAT', label: 'PSAT Math', emoji: '🎯' },
+  { track: 'SAT', label: 'SAT Math', emoji: '🏆' },
 ];
 
 /**
