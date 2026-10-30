@@ -1,5 +1,10 @@
 import { Body, Controller, Get, HttpCode, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
-import { type SatAttemptView, SaveSatRequest, type SatWeekSummary } from '@storyforge/shared';
+import {
+  type SatAttemptView,
+  type SatMistake,
+  SaveSatRequest,
+  type SatWeekSummary,
+} from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { CurrentUser, Roles } from '../auth/decorators.js';
 import { SatService } from './sat.service.js';
@@ -13,6 +18,13 @@ export class SatController {
   @Get('weeks')
   weeks(@CurrentUser() user: AuthUser): Promise<SatWeekSummary[]> {
     return this.sat.weeks(user);
+  }
+
+  /** The questions missed in finished tests (the SAT's own mistakes list). */
+  @Roles('STUDENT')
+  @Get('mistakes')
+  mistakes(@CurrentUser() user: AuthUser): Promise<SatMistake[]> {
+    return this.sat.mistakes(user);
   }
 
   @Roles('STUDENT')

@@ -460,6 +460,8 @@ model SatAttempt {
   submittedAt DateTime?
   correct     Int?
   total       Int
+  /// The estimated 200–800 Math score, set when the test is handed in.
+  score       Int?
 
   @@unique([studentId, week])
 }

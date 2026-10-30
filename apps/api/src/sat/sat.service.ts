@@ -2,6 +2,11 @@ import { Injectable } from '@nestjs/common';
 import type { SatAttempt } from '@storyforge/db';
 import {
   ErrorCode,
+  SAT_DOMAINS,
+  SAT_WEIGHT,
+  type SatBreakdown,
+  type SatMistake,
+  type SatScore,
   type SatAttemptView,
   type SatModuleKey,
   type SatModuleView,
@@ -13,7 +18,9 @@ import {
   SatStoredState,
   type SatWeekSummary,
   type SaveSatRequest,
+  satDomainOfSkill,
   satNextModule,
+  satScoreEstimate,
   satTypedMatches,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
@@ -79,6 +86,7 @@ export class SatService {
         attemptId: a?.id ?? null,
         correct: a?.correct ?? null,
         total: a?.submittedAt ? a.total : null,
+        score: a?.score ?? null,
       };
     });
   }
@@ -223,14 +231,37 @@ export class SatService {
     const done = state.modules.length === 2 && state.modules.every((m) => m.submittedAt);
     const correct = done ? state.modules.reduce((n, m) => n + (m.correct ?? 0), 0) : null;
     const total = done ? state.modules.reduce((n, m) => n + m.ids.length, 0) : row.total;
-    void week;
     return this.db.client.satAttempt.update({
       where: { id: row.id },
       data: {
         state: SatStoredState.parse(state),
-        ...(done ? { submittedAt: new Date(state.modules[1]!.submittedAt!), correct, total } : {}),
+        ...(done
+          ? {
+              submittedAt: new Date(state.modules[1]!.submittedAt!),
+              correct,
+              total,
+              score: this.scoreOf(state, week).estimate,
+            }
+          : {}),
       },
     });
+  }
+
+  /** The score estimate from the difficulty-weighted points earned (sat-design.md §5). */
+  private scoreOf(state: SatStoredState, week: LoadedSatWeek): SatScore {
+    let earned = 0;
+    let possible = 0;
+    for (const mod of state.modules) {
+      const byId = new Map(week.modules[mod.key].map((q) => [q.id, q]));
+      for (const qid of mod.ids) {
+        const q = byId.get(qid);
+        if (!q) continue;
+        const w = SAT_WEIGHT[q.difficulty] ?? 1;
+        possible += w;
+        if (isRight(q, mod.answers[qid])) earned += w;
+      }
+    }
+    return satScoreEstimate(state.modules[1]?.key === 'm2-hard', earned, possible);
   }
 
   // ───────── Views ─────────
@@ -299,6 +330,30 @@ export class SatService {
         ];
       });
     });
+    const areas: SatBreakdown[] = SAT_DOMAINS.map((d) => ({
+      id: d.id,
+      label: d.label,
+      correct: 0,
+      total: 0,
+    }));
+    const skills = SAT_DOMAINS.flatMap((d) =>
+      d.skills.map((k) => ({
+        id: k.id as string,
+        label: k.label as string,
+        domain: d.id as string,
+        correct: 0,
+        total: 0,
+      })),
+    );
+    for (const r of review) {
+      const skill = skills.find((k) => k.id === r.skill);
+      const area = areas.find((a) => a.id === skill?.domain);
+      for (const t of [skill, area]) {
+        if (!t) continue;
+        t.total += 1;
+        if (r.correct) t.correct += 1;
+      }
+    }
     return {
       phase: 'done',
       id: row.id,
@@ -309,7 +364,49 @@ export class SatService {
       modules: state.modules.map((m) => ({ correct: m.correct ?? 0, total: m.ids.length })),
       variant: state.modules[1]?.key === 'm2-hard' ? 'hard' : 'easy',
       submittedAt: state.modules[1]?.submittedAt ?? new Date().toISOString(),
+      score: this.scoreOf(state, week),
+      areas: areas.filter((a) => a.total > 0),
+      skills: skills.filter((k) => k.total > 0),
       review,
     };
+  }
+
+  /** Every question the student missed or left blank in finished tests, newest test first. */
+  async mistakes(user: AuthUser): Promise<SatMistake[]> {
+    this.studentOnly(user);
+    const rows = await this.db.client.satAttempt.findMany({
+      where: { studentId: user.id, submittedAt: { not: null } },
+      orderBy: { submittedAt: 'desc' },
+    });
+    const seen = new Set<string>();
+    const out: SatMistake[] = [];
+    for (const row of rows) {
+      const week = await this.content.week(row.week);
+      if (!week) continue;
+      const view = this.resultView(row, SatStoredState.parse(row.state), week);
+      for (const r of view.review) {
+        if (r.correct || seen.has(r.id)) continue;
+        seen.add(r.id);
+        const skill = r.skill as Parameters<typeof satDomainOfSkill>[0];
+        const domain = SAT_DOMAINS.find((d) => d.id === satDomainOfSkill(skill));
+        out.push({
+          id: r.id,
+          week: row.week,
+          title: week.title,
+          skill: r.skill,
+          skillLabel: domain?.skills.find((k) => k.id === r.skill)?.label ?? r.skill,
+          domain: domain?.id ?? '',
+          domainLabel: domain?.label ?? '',
+          difficulty: r.difficulty,
+          prompt: r.prompt,
+          ...(r.figure ? { figure: r.figure } : {}),
+          ...(r.choices ? { choices: r.choices } : {}),
+          yourAnswer: r.yourAnswer,
+          correctAnswer: r.correctAnswer,
+          solution: r.solution,
+        });
+      }
+    }
+    return out;
   }
 }

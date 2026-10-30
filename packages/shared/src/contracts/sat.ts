@@ -63,6 +63,15 @@ export const SatReviewItem = z.object({
 });
 export type SatReviewItem = z.infer<typeof SatReviewItem>;
 
+/** Right answers out of the questions asked, for a content area or a skill. */
+export const SatBreakdown = z.object({
+  id: z.string(),
+  label: z.string(),
+  correct: z.number().int(),
+  total: z.number().int(),
+});
+export type SatBreakdown = z.infer<typeof SatBreakdown>;
+
 /** The finished test. */
 export const SatResult = z.object({
   phase: z.literal('done'),
@@ -75,6 +84,11 @@ export const SatResult = z.object({
   modules: z.array(z.object({ correct: z.number().int(), total: z.number().int() })),
   variant: z.enum(['easy', 'hard']),
   submittedAt: z.string(),
+  /** The estimated Math score (200–800) with the band it probably lies in. */
+  score: z.object({ estimate: z.number().int(), low: z.number().int(), high: z.number().int() }),
+  /** Right answers by content area and by skill, for the questions asked. */
+  areas: z.array(SatBreakdown),
+  skills: z.array(SatBreakdown.extend({ domain: z.string() })),
   review: z.array(SatReviewItem),
 });
 export type SatResult = z.infer<typeof SatResult>;
@@ -93,6 +107,7 @@ export const SatWeekSummary = z.object({
   attemptId: z.string().nullable(),
   correct: z.number().int().nullable(),
   total: z.number().int().nullable(),
+  score: z.number().int().nullable(),
 });
 export type SatWeekSummary = z.infer<typeof SatWeekSummary>;
 
@@ -112,3 +127,23 @@ export type SatStoredModule = z.infer<typeof SatStoredModule>;
 
 export const SatStoredState = z.object({ modules: z.array(SatStoredModule).min(1).max(2) });
 export type SatStoredState = z.infer<typeof SatStoredState>;
+
+/** A question the student got wrong or left blank, from a finished test. */
+export const SatMistake = z.object({
+  id: z.string(),
+  week: z.number().int(),
+  title: z.string(),
+  skill: z.string(),
+  skillLabel: z.string(),
+  domain: z.string(),
+  domainLabel: z.string(),
+  difficulty: z.number().int(),
+  prompt: z.string(),
+  figure: MathFigure.optional(),
+  choices: z.array(z.string()).optional(),
+  yourAnswer: z.string().nullable(),
+  correctAnswer: z.string(),
+  solution: z.string(),
+});
+export type SatMistake = z.infer<typeof SatMistake>;
+export const SatMistakes = z.array(SatMistake);

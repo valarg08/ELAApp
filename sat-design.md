@@ -51,7 +51,10 @@ Module 1 raw score ≥ 14 of 22 → harder module 2; otherwise the easier one. T
   - Rules in code: the clock is the server's; any request after a module's deadline hands that module in (module 2 then opens with a fresh clock); typed answers follow `satTypedError`/`satTypedMatches` (5 characters, 6 if negative, no mixed numbers, a decimal of 3+ places may be rounded or cut); answers and solutions are sent only after the test.
   - Pages: `/sat` (weeks), `/sat/week/[week]` (the rules, then Start/Continue), `/sat/test/[id]` (player, then result with the raw score by module and every question's solution).
   - Player: question list and check-your-work screen, mark for review, cross out choices, hide the clock (it returns at 5 minutes), reference sheet, calculator, rules dialog, autosave.
-- **S2** the 200–800 estimate, results by area and skill, review with worked solutions, the mistakes list.
+- **S2** (done): the score estimate, results by area and skill, the mistakes list.
+  - Estimate (`satScoreEstimate`, stored in `SatAttempt.score`): the share of difficulty-weighted points earned (difficulty 1/2/3 count 1/1.5/2) is placed on 200–600 after the easier module 2 and 400–800 after the harder one, rounded to 10, with a band of 40 either side. Always shown as our estimate, not an official score.
+  - The result page shows the score and band, the raw score by module, a table by content area and by skill (with bars), "Work on next" (up to 3 skills under 60%), and every question's solution.
+  - `/sat/mistakes` (`GET /sat/mistakes`): every question missed or left blank in finished tests, newest first, one entry per question, by content area, with the answer and solution behind a button. It is the SAT's own list; the Math error log is not used.
 - **S3** weekly schedule and the teacher start date.
 - **S4+** content, one week at a time (weeks 1–4 first).
 - **S-teacher** class results by area and skill.

@@ -1,6 +1,6 @@
 'use client';
 
-import { SAT_DOMAINS, type SatResult } from '@storyforge/shared';
+import { SAT_DOMAINS, type SatBreakdown, type SatResult } from '@storyforge/shared';
 import { useState } from 'react';
 import { MathText } from '@/components/math-text';
 import { Button, ButtonLink } from '@/components/ui';
@@ -18,12 +18,30 @@ const skillLabel = (id: string) =>
 export function SatResultView({ result }: { result: SatResult }) {
   const [onlyWrong, setOnlyWrong] = useState(false);
   const shown = result.review.filter((r) => !onlyWrong || !r.correct);
+  // The skills below 60% right, weakest first (a skill with a single question counts too).
+  const weak = result.skills
+    .filter((k) => k.correct / k.total < 0.6)
+    .toSorted((a, b) => a.correct / a.total - b.correct / b.total)
+    .slice(0, 3);
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-6">
       <header>
         <p className="text-sm font-semibold tracking-widest text-brand uppercase">Test finished</p>
         <h1 className="text-3xl font-bold">{result.title}</h1>
-        <p className="mt-2 text-xl">
+        <div className="mt-3 rounded-2xl border-2 border-accent bg-card p-5 shadow-sm">
+          <p className="text-sm font-semibold tracking-widest text-muted uppercase">
+            Estimated Math score
+          </p>
+          <p className="text-5xl font-bold">{result.score.estimate}</p>
+          <p className="mt-1">
+            Probably between {result.score.low} and {result.score.high} on the 200–800 scale.
+          </p>
+          <p className="mt-1 text-sm text-muted">
+            This is our estimate, not an official score: the College Board does not publish how it
+            converts answers to scores. Watch the trend from week to week more than any one number.
+          </p>
+        </div>
+        <p className="mt-3 text-xl">
           You got <strong>{result.correct}</strong> of <strong>{result.total}</strong> right.
         </p>
         <ul className="mt-2 ml-5 list-disc text-muted">
@@ -37,6 +55,9 @@ export function SatResultView({ result }: { result: SatResult }) {
         </ul>
         <div className="mt-4 flex flex-wrap gap-2">
           <ButtonLink href="/sat">Back to SAT Math</ButtonLink>
+          <ButtonLink href="/sat/mistakes" variant="secondary">
+            My mistakes
+          </ButtonLink>
           <Button
             variant="secondary"
             aria-pressed={onlyWrong}
@@ -46,6 +67,34 @@ export function SatResultView({ result }: { result: SatResult }) {
           </Button>
         </div>
       </header>
+
+      <section aria-labelledby="sat-areas" className="flex flex-col gap-3">
+        <h2 id="sat-areas" className="text-2xl font-semibold">
+          Results by content area
+        </h2>
+        <Breakdown rows={result.areas} what="Content area" />
+      </section>
+
+      <section aria-labelledby="sat-skills" className="flex flex-col gap-3">
+        <h2 id="sat-skills" className="text-2xl font-semibold">
+          Results by skill
+        </h2>
+        <Breakdown rows={result.skills} what="Skill" />
+        {weak.length > 0 ? (
+          <div className="rounded-2xl border border-border bg-card p-4">
+            <p className="font-semibold">Work on next</p>
+            <ul className="mt-1 ml-5 list-disc">
+              {weak.map((k) => (
+                <li key={k.id}>
+                  {k.label} ({k.correct} of {k.total})
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p className="text-muted">No weak skill showed up this week. Keep going.</p>
+        )}
+      </section>
 
       <section aria-labelledby="sat-review" className="flex flex-col gap-4">
         <h2 id="sat-review" className="text-2xl font-semibold">
@@ -105,6 +154,54 @@ export function SatResultView({ result }: { result: SatResult }) {
           ))}
         </ol>
       </section>
+    </div>
+  );
+}
+
+/** Right answers by area or skill, with a bar for each. */
+function Breakdown({ rows, what }: { rows: SatBreakdown[]; what: string }) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse text-left">
+        <caption className="sr-only">{what}: right answers out of the questions asked</caption>
+        <thead>
+          <tr>
+            <th scope="col" className="border-b border-border px-2 py-2">
+              {what}
+            </th>
+            <th scope="col" className="border-b border-border px-2 py-2">
+              Right
+            </th>
+            <th scope="col" className="border-b border-border px-2 py-2">
+              Share
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => {
+            const share = Math.round((r.correct / r.total) * 100);
+            return (
+              <tr key={r.id}>
+                <th scope="row" className="border-b border-border px-2 py-2 font-normal">
+                  {r.label}
+                </th>
+                <td className="border-b border-border px-2 py-2 whitespace-nowrap">
+                  {r.correct} of {r.total}
+                </td>
+                <td className="w-40 border-b border-border px-2 py-2">
+                  {share}%
+                  <span
+                    aria-hidden="true"
+                    className="mt-1 block h-2 overflow-hidden rounded-full bg-border"
+                  >
+                    <span className="block h-full bg-brand" style={{ width: `${share}%` }} />
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }

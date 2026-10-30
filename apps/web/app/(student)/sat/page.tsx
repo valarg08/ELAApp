@@ -91,7 +91,7 @@ export default async function SatHome() {
                     <p className="mt-1 text-xl font-bold">{w.title}</p>
                     <p className="mt-1 text-muted">
                       {w.status === 'done'
-                        ? `Done: ${w.correct} of ${w.total} right. See the review`
+                        ? `Done: ${w.correct} of ${w.total} right${w.score ? `, score about ${w.score}` : ''}. See the review`
                         : w.status === 'in-progress'
                           ? 'In progress. Continue the test'
                           : `${w.questions} questions, ${w.minutes} minutes a module. Start the test`}
@@ -101,6 +101,12 @@ export default async function SatHome() {
               ))}
             </ol>
           )}
+          <p>
+            <Link href="/sat/mistakes" className="text-brand underline">
+              My mistakes
+            </Link>{' '}
+            collects every question you missed.
+          </p>
         </section>
 
         <section aria-labelledby="sat-covers" className="flex flex-col gap-3">

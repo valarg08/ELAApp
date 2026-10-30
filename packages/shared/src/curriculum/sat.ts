@@ -294,3 +294,27 @@ export const SAT_REFERENCE: { title: string; facts: string[] }[] = [
     ],
   },
 ];
+
+// ───────── The score estimate (sat-design.md §5) ─────────
+
+/** A question counts more the harder it is: difficulty 1, 2, 3 are worth 1, 1.5, 2. */
+export const SAT_WEIGHT: Record<number, number> = { 1: 1, 2: 1.5, 3: 2 };
+
+export interface SatScore {
+  estimate: number;
+  low: number;
+  high: number;
+}
+
+/**
+ * Our estimate of the 200–800 Math score (the College Board does not publish its conversion). The
+ * share of the difficulty-weighted points earned is placed on a 400-point range that depends on
+ * the module 2 the student reached: 200–600 after the easier one, 400–800 after the harder one.
+ * Rounded to 10, with a band of 40 either side.
+ */
+export function satScoreEstimate(hardPath: boolean, earned: number, possible: number): SatScore {
+  const share = possible > 0 ? earned / possible : 0;
+  const raw = (hardPath ? 400 : 200) + 400 * share;
+  const tidy = (n: number) => Math.min(800, Math.max(200, Math.round(n / 10) * 10));
+  return { estimate: tidy(raw), low: tidy(raw - 40), high: tidy(raw + 40) };
+}
