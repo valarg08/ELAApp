@@ -58,3 +58,13 @@ Module 1 raw score ≥ 14 of 22 → harder module 2; otherwise the easier one. T
 - **S3** weekly schedule and the teacher start date.
 - **S4+** content, one week at a time (weeks 1–4 first).
 - **S-teacher** class results by area and skill.
+
+## 7. Adaptive practice (S2b)
+
+The weekly test is adaptive only the way the real SAT is (module 2 follows module 1). Separately, `/sat/practice` gives short untimed sets that adapt to the student's weak skills.
+
+- A set is `SAT_PRACTICE_SIZE` (10) questions, or fewer when the bank is smaller; the bank is every question of every weekly test (so it grows each week). Each question is checked at once and shown with its solution; a typed answer must follow the SAT typing rules.
+- A skill's standing is its accuracy over the latest 8 answers (finished tests and practice together). `satStartLevel`: below 50% starts at 1 (easier), 80% or more at 3 (harder), otherwise (and when untried) 2.
+- `satPickNext` chooses a skill at random with weight 1.2 minus its accuracy (0.7 when untried, a fifth of that if it was just asked), then the question in it closest to the skill's level, preferring questions missed before and avoiding ones already solved. In a set a skill's level goes up one after a right answer and down one after a wrong one (`satNextLevel`).
+- Stored in `SatPracticeSession` (`state` checked with Zod); API `GET /sat/practice/skills`, `POST /sat/practice/start`, `GET /sat/practice/:id` (resumes), `POST /sat/practice/:id/answer`; students only, another student's set answers 404. Question answers and solutions are sent only after the question is answered.
+- Pages: `/sat/practice` (skills weakest first, Start), `/sat/practice/[id]` (the set, then a summary).

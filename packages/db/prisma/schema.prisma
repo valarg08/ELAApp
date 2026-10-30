@@ -219,6 +219,7 @@ model User {
   mathSkillStates   MathSkillState[]
   mathTestAttempts  MathTestAttempt[]
   satAttempts       SatAttempt[]
+  satPractice       SatPracticeSession[]
   mathPastPapers    MathPastPaper[]
   mentalStart       MentalStart?
   stats             StudentStats?
@@ -464,6 +465,20 @@ model SatAttempt {
   score       Int?
 
   @@unique([studentId, week])
+}
+
+/// A set of adaptive SAT practice questions (sat-design.md §7); `state` is validated with Zod
+/// (SatPracticeState).
+model SatPracticeSession {
+  id         String    @id @default(cuid())
+  studentId  String
+  student    User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  size       Int
+  state      Json
+  startedAt  DateTime  @default(now())
+  finishedAt DateTime?
+
+  @@index([studentId, startedAt])
 }
 
 /// Where a student starts Mental Math after the placement check (mental-math-design.md): every unit

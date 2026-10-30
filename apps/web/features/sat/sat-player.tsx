@@ -380,7 +380,7 @@ function QuestionGrid({
 }
 
 /** A question: its words, the figure and either the four choices or the box for a typed answer. */
-function Question({
+export function Question({
   q,
   value,
   struck,

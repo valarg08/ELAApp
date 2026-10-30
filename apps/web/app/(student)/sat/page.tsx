@@ -109,6 +109,24 @@ export default async function SatHome() {
           </p>
         </section>
 
+        <section
+          aria-labelledby="sat-practice"
+          className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+        >
+          <h2 id="sat-practice" className="text-2xl font-semibold">
+            Adaptive practice
+          </h2>
+          <p className="mt-1 text-muted">
+            Short sets with no clock that go where you are weakest. Each question is checked at
+            once, and a skill gets harder when you get it right and easier when you do not.
+          </p>
+          <p className="mt-3">
+            <Link href="/sat/practice" className="font-semibold text-brand underline">
+              Start adaptive practice
+            </Link>
+          </p>
+        </section>
+
         <section aria-labelledby="sat-covers" className="flex flex-col gap-3">
           <h2 id="sat-covers" className="text-2xl font-semibold">
             What the test covers

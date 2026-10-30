@@ -147,3 +147,70 @@ export const SatMistake = z.object({
 });
 export type SatMistake = z.infer<typeof SatMistake>;
 export const SatMistakes = z.array(SatMistake);
+
+// ───────── Adaptive practice (sat-design.md §7) ─────────
+
+/** A practice question: like a test question, with its skill and the level it is at. */
+export const SatPracticeQuestion = SatQuestionPublic.extend({
+  /** 1-based number in the set. */
+  number: z.number().int(),
+  skill: z.string(),
+  skillLabel: z.string(),
+  /** 1 (easier) to 3 (harder). */
+  level: z.number().int(),
+});
+export type SatPracticeQuestion = z.infer<typeof SatPracticeQuestion>;
+
+export const SatPracticeSummary = z.object({
+  right: z.number().int(),
+  total: z.number().int(),
+  skills: z.array(
+    z.object({
+      id: z.string(),
+      label: z.string(),
+      right: z.number().int(),
+      total: z.number().int(),
+    }),
+  ),
+});
+export type SatPracticeSummary = z.infer<typeof SatPracticeSummary>;
+
+/** A practice set: the question to answer now, or the summary once it is over. */
+export const SatPracticeView = z.object({
+  id: z.string(),
+  size: z.number().int(),
+  answered: z.number().int(),
+  question: SatPracticeQuestion.nullable(),
+  summary: SatPracticeSummary.nullable(),
+});
+export type SatPracticeView = z.infer<typeof SatPracticeView>;
+
+export const SatPracticeAnswerRequest = z.object({
+  questionId: z.string().max(80),
+  answer: z.string().max(40),
+});
+export type SatPracticeAnswerRequest = z.infer<typeof SatPracticeAnswerRequest>;
+
+/** The answer's result and the set moved on to its next question. */
+export const SatPracticeResponse = z.object({
+  correct: z.boolean(),
+  correctAnswer: z.string(),
+  solution: z.string(),
+  next: SatPracticeView,
+});
+export type SatPracticeResponse = z.infer<typeof SatPracticeResponse>;
+
+/** A skill's standing, for the practice page: weakest first. */
+export const SatSkillStanding = z.object({
+  id: z.string(),
+  label: z.string(),
+  domain: z.string(),
+  domainLabel: z.string(),
+  /** Share of the latest answers right (0–100), or null when never tried. */
+  accuracy: z.number().int().nullable(),
+  answered: z.number().int(),
+  /** The level practice starts this skill at. */
+  level: z.number().int(),
+});
+export type SatSkillStanding = z.infer<typeof SatSkillStanding>;
+export const SatSkillStandings = z.array(SatSkillStanding);
