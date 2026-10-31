@@ -168,7 +168,7 @@ Geometry basics come in Stage 3 because the unit order is kept; the diagnostic s
   - `MathText` uses KaTeX with MathML output (`math-style: normal` makes inline fractions readable).
   - `TrackText` makes Learn cards math-aware only in the Math track.
   - The card tutor ("Explain it another way" on Learn cards) is hidden in Math, because it is a writing tutor; Quill works per problem instead.
-- **Answer box:** helper buttons √ π a/b xⁿ ( ) and a live "We read: …" from math-check.
+- **Answer box:** helper buttons √ π a/b xⁿ ( ) and a hint from math-check only when the answer cannot be read; it never echoes the value read (that would give the answer away).
 - **`ProblemView`** shows the prompt, the figure and either the choices (radios, "Clear my choice" in marked sets) or the answer box.
   - Figures render as an `<img>` with a data: URI and the alt text on a white card, so an SVG can never run script and stays visible in dark mode.
 - **`Problems` practice:** check, hints one at a time, and "Show me the solution" after a try or a hint. "Why was mine wrong?" appears after a readable wrong answer, "Explain it another way" after it is solved, and "Add to my error log" after a miss or after "Show me".

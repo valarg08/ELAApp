@@ -1,11 +1,8 @@
 'use client';
 
-import { type AnswerForm, FORM_LABELS, approx, format, readAnswer } from '@storyforge/math-check';
+import { type AnswerForm, FORM_LABELS, readAnswer } from '@storyforge/math-check';
 import { useEffect, useId, useRef } from 'react';
 import { useSimpleAnswers } from './simple-answers';
-
-/** A plain number like "100.5" or "-3": echoed as a decimal, not as 201/2. */
-const PLAIN_NUMBER = /^\s*-?(\d+\.?\d*|\.\d+)\s*$/;
 
 /** Helper buttons insert these at the cursor (DESIGN.md §9.13). */
 const HELPERS: { insert: string; label: string; name: string }[] = [
@@ -18,8 +15,8 @@ const HELPERS: { insert: string; label: string; name: string }[] = [
 ];
 
 /**
- * A typed answer: a plain box, helper buttons for √ π / ^ and brackets, and a live "We read…"
- * preview from math-check so the student sees how their answer is understood before checking.
+ * A typed answer: a plain box, helper buttons for √ π / ^ and brackets, and a hint from math-check
+ * when the answer cannot be read. It never shows the value it read: that would give the answer away.
  * Mental Math (SimpleAnswers) shows only the box: its answers are plain numbers.
  */
 export function AnswerBox({
@@ -109,7 +106,7 @@ export function AnswerBox({
       <p id={`${id}-read`} className="min-h-6 text-sm text-muted" aria-live="polite">
         {read
           ? read.ok
-            ? `We read: ${PLAIN_NUMBER.test(value) ? String(approx(read.value)) : format(read.value)}`
+            ? ''
             : `${read.message}.`
           : simple
             ? 'Type a number.'
