@@ -211,6 +211,7 @@ function ModulePlayer({
             struck={work.struck[q.id] ?? []}
             onChange={(v) => setAnswer(q.id, v)}
             onStrike={(letter) => toggleStrike(q.id, letter)}
+            onEnter={() => (index === questions.length - 1 ? setScreen('check') : go(index + 1))}
           />
         </section>
       ) : (
@@ -386,16 +387,34 @@ export function Question({
   struck,
   onChange,
   onStrike,
+  onEnter,
 }: {
   q: SatQuestionPublic;
   value: string;
   struck: string[];
   onChange: (value: string) => void;
   onStrike: (letter: string) => void;
+  /** Enter in the answer box (or on a choice) does this, like pressing the main button. */
+  onEnter?: () => void;
 }) {
   const error = q.kind === 'typed' ? satTypedError(value) : null;
+  const root = useRef<HTMLDivElement>(null);
+  // A new question starts with the answer box (or the chosen / first choice) ready to use.
+  useEffect(() => {
+    const box = root.current?.querySelector<HTMLInputElement>(
+      'input[type=radio]:checked, input:not([type=radio])',
+    );
+    (box ?? root.current?.querySelector<HTMLInputElement>('input[type=radio]'))?.focus();
+    // Runs when the question changes; q.id is the trigger, not a value read inside.
+    // oxlint-disable-next-line react/exhaustive-deps
+  }, [q.id]);
+  const enter = (e: React.KeyboardEvent) => {
+    if (e.key !== 'Enter' || !onEnter) return;
+    e.preventDefault();
+    onEnter();
+  };
   return (
-    <div className="flex flex-col gap-4">
+    <div ref={root} className="flex flex-col gap-4">
       <p className="text-lg">
         <MathText text={q.prompt} />
       </p>
@@ -421,6 +440,7 @@ export function Question({
                     checked={on}
                     onChange={() => onChange(letter)}
                     onClick={() => on && onChange('')}
+                    onKeyDown={enter}
                     className="sr-only"
                   />
                   <span
@@ -456,6 +476,7 @@ export function Question({
             <input
               value={value}
               onChange={(e) => onChange(e.target.value)}
+              onKeyDown={enter}
               maxLength={12}
               autoComplete="off"
               spellCheck={false}

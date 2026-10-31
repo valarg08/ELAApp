@@ -90,6 +90,7 @@ export function SatPractice({ initial }: { initial: SatPracticeView }) {
   if (!q) return null;
 
   const typedProblem = q.kind === 'typed' ? satTypedError(value) : null;
+  const canCheck = !busy && !!value.trim() && !typedProblem;
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-4 py-4">
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-3">
@@ -130,6 +131,7 @@ export function SatPractice({ initial }: { initial: SatPracticeView }) {
             !feedback &&
             setStruck((s) => (s.includes(letter) ? s.filter((l) => l !== letter) : [...s, letter]))
           }
+          onEnter={() => (feedback ? next() : canCheck ? void check() : undefined)}
         />
         <ErrorMessage message={error} />
         {feedback ? (
@@ -156,7 +158,7 @@ export function SatPractice({ initial }: { initial: SatPracticeView }) {
               {feedback.next.summary ? 'See my results' : 'Next question'}
             </Button>
           ) : (
-            <Button onClick={() => void check()} disabled={busy || !value.trim() || !!typedProblem}>
+            <Button onClick={() => void check()} disabled={!canCheck}>
               {busy ? 'Checking…' : 'Check my answer'}
             </Button>
           )}
