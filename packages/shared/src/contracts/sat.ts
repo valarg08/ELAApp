@@ -154,6 +154,48 @@ export const SatMistake = z.object({
 export type SatMistake = z.infer<typeof SatMistake>;
 export const SatMistakes = z.array(SatMistake);
 
+// ───────── The teacher's class results (sat-design.md §8) ─────────
+
+/** One student's standing in one weekly test. */
+export const SatClassCell = z.object({
+  status: z.enum(['new', 'in-progress', 'done']),
+  score: z.number().int().nullable(),
+  correct: z.number().int().nullable(),
+  total: z.number().int().nullable(),
+});
+export type SatClassCell = z.infer<typeof SatClassCell>;
+
+export const SatClassStudent = z.object({
+  id: z.string(),
+  displayName: z.string(),
+  /** One cell for each week, in the order of `weeks`. */
+  cells: z.array(SatClassCell),
+  /** The mean of the finished weeks' estimated scores. */
+  average: z.number().int().nullable(),
+  /** The student's weakest skill over their finished tests. */
+  weakest: z
+    .object({ label: z.string(), correct: z.number().int(), total: z.number().int() })
+    .nullable(),
+});
+export type SatClassStudent = z.infer<typeof SatClassStudent>;
+
+/** A class's SAT results: scores by student and week, and right answers by area and skill. */
+export const SatClassResults = z.object({
+  weeks: z.array(z.object({ week: z.number().int(), title: z.string() })),
+  students: z.array(SatClassStudent),
+  /** The mean estimated score of the students who finished each week. */
+  weekAverages: z.array(z.number().int().nullable()),
+  areas: z.array(SatBreakdown),
+  skills: z.array(
+    SatBreakdown.extend({
+      domain: z.string(),
+      /** Students who got under 60% of this skill's questions right. */
+      studentsBelow: z.number().int(),
+    }),
+  ),
+});
+export type SatClassResults = z.infer<typeof SatClassResults>;
+
 // ───────── Adaptive practice (sat-design.md §7) ─────────
 
 /** A practice question: like a test question, with its skill and the level it is at. */

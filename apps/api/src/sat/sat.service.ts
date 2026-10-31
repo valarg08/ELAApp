@@ -54,7 +54,7 @@ export const isRight = (q: SatQuestion, answer: string | undefined): boolean => 
 };
 
 /** Whether an attempt asks questions its week no longer has (the week's content was replaced). */
-const isOutdated = (row: SatAttempt, week: LoadedSatWeek): boolean => {
+export const isOutdated = (row: SatAttempt, week: LoadedSatWeek): boolean => {
   const state = SatStoredState.safeParse(row.state);
   if (!state.success) return true;
   return state.data.modules.some((m) => {
@@ -426,6 +426,14 @@ export class SatService {
       skills: skills.filter((k) => k.total > 0),
       review,
     };
+  }
+
+  /** A finished attempt's result, or null when it is not finished or its content was replaced. */
+  async resultFor(row: SatAttempt): Promise<SatResult | null> {
+    if (!row.submittedAt) return null;
+    const week = await this.content.week(row.week);
+    if (!week || isOutdated(row, week)) return null;
+    return this.resultView(row, SatStoredState.parse(row.state), week);
   }
 
   /** Every question the student missed or left blank in finished tests, newest test first. */

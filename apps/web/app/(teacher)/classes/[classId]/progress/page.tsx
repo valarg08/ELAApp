@@ -4,6 +4,7 @@ import {
   ClassProgress,
   ClassSummary,
   INACTIVE_DAYS,
+  SatClassResults,
   type LessonCell,
   type StudentProgressRow,
   Track,
@@ -16,6 +17,7 @@ import { TrackTabs } from '@/components/track-tabs';
 import { Card, PageShell } from '@/components/ui';
 import { ClassMentalPractice } from '@/features/math/class-mental-practice';
 import { ClassSkillsGrid } from '@/features/math/class-skills-grid';
+import { ClassSatResults } from '@/features/sat/class-sat-results';
 import { serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
@@ -41,10 +43,10 @@ export default async function ClassProgressPage({
   const filter: Filter = FILTERS.find((f) => f.id === one(query.show))?.id ?? 'all';
   // Math and Mental Math: the skills × students grid (math-design.md §3.3 C5) instead of the
   // lesson heatmap; Mental Math adds each student's practice (mental-math-design.md Part 9).
-  // PSAT and SAT Math have the lesson heatmap only (SAT class results come later).
+  // PSAT Math has the lesson heatmap only; SAT Math shows the class's weekly test results.
   const hasSkills = isMathTrack(track) && track !== 'PSAT' && track !== 'SAT';
   const skillsView = hasSkills && one(query.view) === 'skills';
-  const [klass, progress, mathSkills, mentalSkills] = await Promise.all([
+  const [klass, progress, mathSkills, mentalSkills, satResults] = await Promise.all([
     serverApi(`/teacher/classes/${classId}`, ClassSummary),
     serverApi(
       `/teacher/classes/${classId}/progress?track=${track}${unitParam ? `&unit=${encodeURIComponent(unitParam)}` : ''}`,
@@ -56,6 +58,7 @@ export default async function ClassProgressPage({
     skillsView && track === 'MENTAL'
       ? serverApi(`/teacher/classes/${classId}/mental-skills`, ClassMentalSkills)
       : null,
+    track === 'SAT' ? serverApi(`/teacher/classes/${classId}/sat-results`, SatClassResults) : null,
   ]);
   if (!klass || !progress) notFound();
 
@@ -146,7 +149,13 @@ export default async function ClassProgressPage({
           </nav>
         )}
 
-        {skillsView && track === 'MENTAL' ? (
+        {track === 'SAT' ? (
+          satResults ? (
+            <ClassSatResults classId={classId} data={satResults} />
+          ) : (
+            <p className="text-muted">Could not load the SAT results.</p>
+          )
+        ) : skillsView && track === 'MENTAL' ? (
           mentalSkills ? (
             <>
               <ClassMentalPractice data={mentalSkills} />
