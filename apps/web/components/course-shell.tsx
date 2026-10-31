@@ -16,6 +16,7 @@ import { navFocus } from './course-styles';
 import { ALGEBRA } from '@/features/math/psat-algebra-guide';
 import { GEOMETRY } from '@/features/math/psat-geometry-guide';
 import { NUMBER_SENSE } from '@/features/math/psat-number-sense-guide';
+import { QUADRATICS } from '@/features/math/psat-quadratics-guide';
 import { MathFactSheets, PsatReviewLink } from './math-fact-sheets';
 import { MentalCheatSheets } from './mental-cheat-sheets';
 import { ProgressBar } from './progress-bar';
@@ -26,6 +27,7 @@ const PSAT_GUIDES = [
   { guide: GEOMETRY, icon: '📐' },
   { guide: ALGEBRA, icon: '🧮' },
   { guide: NUMBER_SENSE, icon: '🔢' },
+  { guide: QUADRATICS, icon: '📈' },
 ].map(({ guide, icon }) => ({
   href: guide.href,
   title: guide.title,

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 275" width="600" height="275" role="img" aria-label="The parabola y = ½(x + 2)(x − 6) crossing the x-axis at −2 and 6, with the axis of symmetry x = 2 halfway between and the vertex (2, −8).">
+<title>The parabola y = ½(x + 2)(x − 6) crossing the x-axis at −2 and 6, with the axis of symmetry x = 2 halfway between and the vertex (2, −8).</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+.dh{fill:#ea580c}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="30" text-anchor="start">y = a(x − m)(x − n)</text><text class="at" x="20" y="58" text-anchor="start">x-intercepts m and n</text><text class="ht" x="20" y="80" text-anchor="start">axis x = (m + n) ÷ 2</text><text x="20" y="118" text-anchor="start">y = ½(x + 2)(x − 6)</text><text class="at" x="20" y="144" text-anchor="start">y = 0: x = −2 or x = 6</text><text class="ht" x="20" y="166" text-anchor="start">axis: (−2 + 6) ÷ 2 = 2</text><text class="vt" x="20" y="188" text-anchor="start">x = 2: ½(4)(−4) = −8</text><text class="vt" x="20" y="214" text-anchor="start">vertex (2, −8)</text><line class="g" x1="330" y1="20" x2="330" y2="255"/><line class="g" x1="350.4" y1="20" x2="350.4" y2="255"/><line class="g" x1="370.8" y1="20" x2="370.8" y2="255"/><line class="g" x1="391.3" y1="20" x2="391.3" y2="255"/><line class="ax" x1="411.7" y1="20" x2="411.7" y2="255"/><line class="g" x1="432.1" y1="20" x2="432.1" y2="255"/><line class="g" x1="452.5" y1="20" x2="452.5" y2="255"/><line class="g" x1="472.9" y1="20" x2="472.9" y2="255"/><line class="g" x1="493.3" y1="20" x2="493.3" y2="255"/><line class="g" x1="513.8" y1="20" x2="513.8" y2="255"/><line class="g" x1="534.2" y1="20" x2="534.2" y2="255"/><line class="g" x1="554.6" y1="20" x2="554.6" y2="255"/><line class="g" x1="575" y1="20" x2="575" y2="255"/><line class="g" x1="330" y1="255" x2="575" y2="255"/><line class="g" x1="330" y1="228.9" x2="575" y2="228.9"/><line class="g" x1="330" y1="202.8" x2="575" y2="202.8"/><line class="g" x1="330" y1="176.7" x2="575" y2="176.7"/><line class="g" x1="330" y1="150.6" x2="575" y2="150.6"/><line class="ax" x1="330" y1="124.4" x2="575" y2="124.4"/><line class="g" x1="330" y1="98.3" x2="575" y2="98.3"/><line class="g" x1="330" y1="72.2" x2="575" y2="72.2"/><line class="g" x1="330" y1="46.1" x2="575" y2="46.1"/><line class="g" x1="330" y1="20" x2="575" y2="20"/><polyline class="b" fill="none" points="338.2,24.2 340.2,31.4 342.3,38.5 344.3,45.5 346.3,52.4 348.4,59.1 350.4,65.7 352.5,72.2 354.5,78.5 356.5,84.7 358.6,90.8 360.6,96.7 362.7,102.5 364.7,108.2 366.8,113.7 368.8,119.2 370.8,124.4 372.9,129.6 374.9,134.6 377,139.5 379,144.3 381,148.9 383.1,153.4 385.1,157.8 387.2,162 389.2,166.2 391.3,170.1 393.3,174 395.3,177.7 397.4,181.3 399.4,184.8 401.5,188.1 403.5,191.3 405.5,194.4 407.6,197.3 409.6,200.1 411.7,202.8 413.7,205.3 415.8,207.7 417.8,210 419.8,212.2 421.9,214.2 423.9,216.1 426,217.9 428,219.5 430,221 432.1,222.4 434.1,223.6 436.2,224.7 438.2,225.7 440.3,226.5 442.3,227.3 444.3,227.8 446.4,228.3 448.4,228.6 450.5,228.8 452.5,228.9 454.5,228.8 456.6,228.6 458.6,228.3 460.7,227.8 462.7,227.3 464.8,226.5 466.8,225.7 468.8,224.7 470.9,223.6 472.9,222.4 475,221 477,219.5 479,217.9 481.1,216.1 483.1,214.2 485.2,212.2 487.2,210 489.3,207.7 491.3,205.3 493.3,202.8 495.4,200.1 497.4,197.3 499.5,194.4 501.5,191.3 503.5,188.1 505.6,184.8 507.6,181.3 509.7,177.7 511.7,174 513.8,170.1 515.8,166.2 517.8,162 519.9,157.8 521.9,153.4 524,148.9 526,144.3 528,139.5 530.1,134.6 532.1,129.6 534.2,124.4 536.2,119.2 538.2,113.7 540.3,108.2 542.3,102.5 544.4,96.7 546.4,90.8 548.5,84.7 550.5,78.5 552.5,72.2 554.6,65.7 556.6,59.1 558.7,52.4 560.7,45.5 562.7,38.5 564.8,31.4 566.8,24.2"/><line class="d" x1="452.5" y1="20" x2="452.5" y2="255"/><circle class="dot" cx="370.8" cy="124.4" r="5.5"/><circle class="dot" cx="534.2" cy="124.4" r="5.5"/><circle class="dh" cx="452.5" cy="228.9" r="5.5"/><text class="s" x="370.8" y="103.6" text-anchor="middle">−2</text><text class="s" x="534.2" y="103.6" text-anchor="middle">6</text><text class="vt" x="458.6" y="238" text-anchor="start">(2, −8)</text>
+</svg>

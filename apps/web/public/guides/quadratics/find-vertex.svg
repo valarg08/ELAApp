@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 275" width="600" height="275" role="img" aria-label="The parabola y = 2x² − 12x + 10 with vertex (3, −8) found three ways: completing the square, averaging the x-intercepts 1 and 5, and using x = −b ÷ 2a.">
+<title>The parabola y = 2x² − 12x + 10 with vertex (3, −8) found three ways: completing the square, averaging the x-intercepts 1 and 5, and using x = −b ÷ 2a.</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linejoin:round}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+.dh{fill:#ea580c}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:15px}
+.s{font-size:13px;fill:#64748b}
+.ht{fill:#c2410c;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.v{stroke:#a78bfa}.b{stroke:#60a5fa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.ht{fill:#fb923c}.at{fill:#2dd4bf}.vt{fill:#a78bfa}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="28" text-anchor="start">y = 2x² − 12x + 10</text><text class="at" x="20" y="58" text-anchor="start">1. Complete the square</text><text class="s" x="20" y="78" text-anchor="start">2(x² − 6x + 9) − 18 + 10</text><text x="20" y="96" text-anchor="start">= 2(x − 3)² − 8</text><text class="bt" x="20" y="126" text-anchor="start">2. Average the x-intercepts</text><text class="s" x="20" y="146" text-anchor="start">2(x − 1)(x − 5): (1 + 5) ÷ 2 = 3</text><text class="ht" x="20" y="176" text-anchor="start">3. x = −b ÷ 2a</text><text class="s" x="20" y="196" text-anchor="start">12 ÷ 4 = 3</text><text class="s" x="20" y="228" text-anchor="start">Then y = 2(9) − 36 + 10 = −8</text><text class="vt" x="20" y="250" text-anchor="start">vertex (3, −8)</text><line class="g" x1="330" y1="20" x2="330" y2="255"/><line class="ax" x1="360.6" y1="20" x2="360.6" y2="255"/><line class="g" x1="391.3" y1="20" x2="391.3" y2="255"/><line class="g" x1="421.9" y1="20" x2="421.9" y2="255"/><line class="g" x1="452.5" y1="20" x2="452.5" y2="255"/><line class="g" x1="483.1" y1="20" x2="483.1" y2="255"/><line class="g" x1="513.8" y1="20" x2="513.8" y2="255"/><line class="g" x1="544.4" y1="20" x2="544.4" y2="255"/><line class="g" x1="575" y1="20" x2="575" y2="255"/><line class="g" x1="330" y1="246" x2="575" y2="246"/><line class="ax" x1="330" y1="200.8" x2="575" y2="200.8"/><line class="g" x1="330" y1="155.6" x2="575" y2="155.6"/><line class="g" x1="330" y1="110.4" x2="575" y2="110.4"/><line class="g" x1="330" y1="65.2" x2="575" y2="65.2"/><line class="g" x1="330" y1="20" x2="575" y2="20"/><polyline class="v" fill="none" points="330,92.3 332,97.1 334.1,101.8 336.1,106.4 338.2,110.9 340.2,115.4 342.3,119.8 344.3,124.1 346.3,128.3 348.4,132.4 350.4,136.5 352.5,140.5 354.5,144.4 356.5,148.2 358.6,151.9 360.6,155.6 362.7,159.2 364.7,162.6 366.8,166.1 368.8,169.4 370.8,172.6 372.9,175.8 374.9,178.9 377,181.9 379,184.9 381,187.7 383.1,190.5 385.1,193.2 387.2,195.8 389.2,198.3 391.3,200.8 393.3,203.1 395.3,205.4 397.4,207.6 399.4,209.8 401.5,211.8 403.5,213.8 405.5,215.7 407.6,217.5 409.6,219.2 411.7,220.9 413.7,222.4 415.8,223.9 417.8,225.3 419.8,226.6 421.9,227.9 423.9,229 426,230.1 428,231.1 430,232.1 432.1,232.9 434.1,233.7 436.2,234.4 438.2,235 440.3,235.5 442.3,235.9 444.3,236.3 446.4,236.6 448.4,236.8 450.5,236.9 452.5,236.9 454.5,236.9 456.6,236.8 458.6,236.6 460.7,236.3 462.7,235.9 464.8,235.5 466.8,235 468.8,234.4 470.9,233.7 472.9,232.9 475,232.1 477,231.1 479,230.1 481.1,229 483.1,227.9 485.2,226.6 487.2,225.3 489.3,223.9 491.3,222.4 493.3,220.9 495.4,219.2 497.4,217.5 499.5,215.7 501.5,213.8 503.5,211.8 505.6,209.8 507.6,207.6 509.7,205.4 511.7,203.1 513.8,200.8 515.8,198.3 517.8,195.8 519.9,193.2 521.9,190.5 524,187.7 526,184.9 528,181.9 530.1,178.9 532.1,175.8 534.2,172.6 536.2,169.4 538.3,166.1 540.3,162.6 542.3,159.2 544.4,155.6 546.4,151.9 548.5,148.2 550.5,144.4 552.5,140.5 554.6,136.5 556.6,132.4 558.7,128.3 560.7,124.1 562.7,119.8 564.8,115.4 566.8,110.9 568.9,106.4 570.9,101.8 573,97.1 575,92.3"/><line class="d" x1="452.5" y1="20" x2="452.5" y2="255"/><circle class="dh" cx="452.5" cy="236.9" r="5.5"/><circle class="dot" cx="391.3" cy="200.8" r="5.5"/><circle class="dot" cx="513.8" cy="200.8" r="5.5"/><text class="ht" x="461.7" y="236.9" text-anchor="start">(3, −8)</text>
+</svg>
