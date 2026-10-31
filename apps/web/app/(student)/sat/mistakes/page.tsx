@@ -18,7 +18,7 @@ export default async function SatMistakesPage() {
   const mistakes = (await serverApi('/sat/mistakes', SatMistakes)) ?? [];
 
   return (
-    <CourseShell track="SAT">
+    <CourseShell track="SAT" navCurrent="/sat/mistakes">
       <div className="flex flex-col gap-6">
         <Link href="/sat" className="text-brand underline">
           ← SAT Math

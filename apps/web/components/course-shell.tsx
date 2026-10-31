@@ -1,5 +1,7 @@
 import {
   TRACK_HOME,
+  SatSkillStandings,
+  SatWeekSummary,
   TRACK_NAMES,
   type Track,
   UnitDetail,
@@ -17,6 +19,7 @@ import { NUMBER_SENSE } from '@/features/math/psat-number-sense-guide';
 import { MathFactSheets, PsatReviewLink } from './math-fact-sheets';
 import { MentalCheatSheets } from './mental-cheat-sheets';
 import { ProgressBar } from './progress-bar';
+import { SatChapterNav, SatProgress } from './sat-side';
 
 /** PSAT Math study guides, below the units in the Chapters menu; a guide's sub-modules unfold on its pages. */
 const PSAT_GUIDES = [
@@ -64,9 +67,11 @@ export async function CourseShell({
   navCurrent?: string;
   children: ReactNode;
 }) {
-  const [units, unit] = await Promise.all([
+  const [units, unit, satWeeks, satSkills] = await Promise.all([
     serverApi(`/units?track=${track}`, UnitSummary.array()),
     unitSlug ? serverApi(`/units/${encodeURIComponent(unitSlug)}`, UnitDetail) : null,
+    track === 'SAT' ? serverApi('/sat/weeks', SatWeekSummary.array()) : null,
+    track === 'SAT' ? serverApi('/sat/practice/skills', SatSkillStandings) : null,
   ]);
   const chapters = units ?? [];
   const lesson = lessonId ? unit?.lessons.find((l) => l.id === lessonId) : undefined;
@@ -265,7 +270,11 @@ export async function CourseShell({
     >
       <aside className="md:overflow-y-auto md:[&>div]:min-h-full">
         <SidePanel name="chapters" title="Chapters" side="left" collapsible={wide} mobileFold>
-          {chapterNav}
+          {track === 'SAT' ? (
+            <SatChapterNav weeks={satWeeks ?? []} current={navCurrent} />
+          ) : (
+            chapterNav
+          )}
         </SidePanel>
       </aside>
 
@@ -282,7 +291,11 @@ export async function CourseShell({
       >
         <SidePanel name="progress" title="Progress" side="right" tone="cyan" collapsible={wide}>
           {panelTop}
-          {progress}
+          {track === 'SAT' ? (
+            <SatProgress weeks={satWeeks ?? []} skills={satSkills ?? []} />
+          ) : (
+            progress
+          )}
           {extra}
           {track === 'MATH' && <MathFactSheets />}
           {track === 'MENTAL' && <MentalCheatSheets />}

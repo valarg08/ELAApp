@@ -19,7 +19,7 @@ export default async function SatPracticePage() {
   const skills = (await serverApi('/sat/practice/skills', SatSkillStandings)) ?? [];
 
   return (
-    <CourseShell track="SAT">
+    <CourseShell track="SAT" navCurrent="/sat/practice">
       <div className="flex flex-col gap-6">
         <Link href="/sat" className="text-brand underline">
           ← SAT Math

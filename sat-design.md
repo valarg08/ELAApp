@@ -75,3 +75,11 @@ The weekly test is adaptive only the way the real SAT is (module 2 follows modul
 - `satPickNext` chooses a skill at random with weight 1.2 minus its accuracy (0.7 when untried, a fifth of that if it was just asked), then the question in it closest to the skill's level, preferring questions missed before and avoiding ones already solved. In a set a skill's level goes up one after a right answer and down one after a wrong one (`satNextLevel`).
 - Stored in `SatPracticeSession` (`state` checked with Zod); API `GET /sat/practice/skills`, `POST /sat/practice/start`, `GET /sat/practice/:id` (resumes), `POST /sat/practice/:id/answer`; students only, another student's set answers 404. Question answers and solutions are sent only after the question is answered.
 - Pages: `/sat/practice` (skills weakest first, Start), `/sat/practice/[id]` (the set, then a summary).
+
+## 9. The side panels (CourseShell, SAT tab)
+
+Every SAT page except the timed test (the player) sits in `CourseShell` with SAT's own panels (`components/sat-side.tsx`):
+
+- **Chapters (left):** SAT Math home, Rules of the SAT, the weekly tests (each with ✓ finished and its score, ▶ in progress, 🔒 and the day it opens, or "Not started"; the newest open one is marked "this week"), Adaptive practice and My mistakes. The open page carries `aria-current`; pages pass `navCurrent` (`/sat`, `/sat/week/N`, `/sat/practice`, `/sat/mistakes`).
+- **Progress (right):** weekly tests finished (a bar and "x of y"), the latest estimated score and the average, and "Skills to work on" (up to 3 skills under 70% right, from the practice standings) with a link to practise them.
+- Data: `/sat/weeks` and `/sat/practice/skills`, fetched by CourseShell for the SAT track. `/sat/week/[week]` moved into CourseShell so the menu stays on screen on the "Before you begin" page.

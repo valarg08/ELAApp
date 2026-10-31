@@ -1,7 +1,8 @@
 import { SAT_FORMAT, SAT_RULES, SatWeekSummary } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-import { ButtonLink, PageShell } from '@/components/ui';
+import { CourseShell } from '@/components/course-shell';
+import { ButtonLink } from '@/components/ui';
 import { StartSatTest } from '@/features/sat/sat-start';
 import { getMe, serverApi } from '@/lib/server-api';
 
@@ -31,7 +32,7 @@ export default async function SatWeekPage({ params }: { params: Promise<{ week: 
   if (!info) notFound();
 
   return (
-    <PageShell width="max-w-4xl">
+    <CourseShell track="SAT" navCurrent={`/sat/week/${week}`}>
       <div className="flex flex-col gap-6">
         <Link href="/sat" className="text-brand underline">
           ← SAT Math
@@ -107,6 +108,6 @@ export default async function SatWeekPage({ params }: { params: Promise<{ week: 
           )}
         </section>
       </div>
-    </PageShell>
+    </CourseShell>
   );
 }

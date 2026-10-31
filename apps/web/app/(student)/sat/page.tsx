@@ -39,7 +39,7 @@ export default async function SatHome() {
   const history = weeks.filter((w) => w.status === 'done' && w.score !== null);
 
   return (
-    <CourseShell track="SAT">
+    <CourseShell track="SAT" navCurrent="/sat">
       <div className="flex flex-col gap-8">
         <div>
           <h1 className="text-4xl font-bold">SAT Math</h1>
