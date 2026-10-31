@@ -1,0 +1,308 @@
+[
+  {
+    "id": "w03-m2h-01",
+    "prompt": "The point $(a, 5)$ lies on the line $5x - 2y = 20$. What is the value of $a$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["6", "2", "4", "10"],
+      "correct": "A"
+    },
+    "solution": "Substitute $y = 5$: $5a - 10 = 20$, so $5a = 30$ and $a = 6$.",
+    "skill": "linear-equations-2",
+    "difficulty": 2,
+    "compute": "(20+10)/5"
+  },
+  {
+    "id": "w03-m2h-02",
+    "prompt": "The function $f$ is linear, with $f(3) = 4$ and $f(7) = 16$. What is the value of $f(5)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["8", "10", "9", "12"],
+      "correct": "B"
+    },
+    "solution": "The value of $f(5)$ is halfway between $f(3)$ and $f(7)$, because 5 is halfway between 3 and 7: $\\frac{4 + 16}{2} = 10$.",
+    "skill": "linear-functions",
+    "difficulty": 2,
+    "compute": "(4+16)/2"
+  },
+  {
+    "id": "w03-m2h-03",
+    "prompt": "A rectangle has a width of 5 and a length of $l$. Its perimeter must be less than 40. Which inequality represents this condition?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$2(5 + l) < 40$", "$5l < 40$", "$5 + l < 40$", "$2(5l) < 40$"],
+      "correct": "A"
+    },
+    "solution": "The perimeter is twice the sum of the width and the length, $2(5 + l)$. It must be less than 40, so $2(5 + l) < 40$.",
+    "skill": "linear-inequalities",
+    "difficulty": 2
+  },
+  {
+    "id": "w03-m2h-04",
+    "prompt": "The value, in dollars, of an investment after $t$ years is $V(t) = 500(1.1)^t$. What is the value of the investment after 2 years?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["605", "550", "600", "660"],
+      "correct": "A"
+    },
+    "solution": "$V(2) = 500(1.1)^2 = 500 \\times 1.21 = 605$ dollars.",
+    "skill": "nonlinear-functions",
+    "difficulty": 2,
+    "compute": "500*1.1^2"
+  },
+  {
+    "id": "w03-m2h-05",
+    "prompt": "In a survey, 45 of the 60 students said they like pizza. What percent of the students surveyed like pizza?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["45%", "75%", "60%", "80%"],
+      "correct": "B"
+    },
+    "solution": "$\\frac{45}{60} = 0.75 = 75\\%$.",
+    "skill": "percentages",
+    "difficulty": 2
+  },
+  {
+    "id": "w03-m2h-06",
+    "prompt": "If $\\frac{x + 3}{2} + \\frac{2x - 1}{3} = 7$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "7", "11", "5"],
+      "correct": "D"
+    },
+    "solution": "Multiply every term by 6: $3(x + 3) + 2(2x - 1) = 42$. So $3x + 9 + 4x - 2 = 42$, which gives $7x + 7 = 42$ and $x = 5$.",
+    "skill": "linear-equations-1",
+    "difficulty": 3,
+    "compute": "5"
+  },
+  {
+    "id": "w03-m2h-07",
+    "prompt": "$7 - 2(3 - x) = 4x - 5$. What is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["3"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Distribute: $7 - 6 + 2x = 4x - 5$, so $1 + 2x = 4x - 5$. Then $6 = 2x$ and $x = 3$.",
+    "skill": "linear-equations-1",
+    "difficulty": 3,
+    "compute": "6/2"
+  },
+  {
+    "id": "w03-m2h-08",
+    "prompt": "A school sold 150 tickets to a play for a total of \\$1,100. Student tickets cost \\$5 each and adult tickets cost \\$10 each. How many student tickets were sold?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["70", "90", "80", "100"],
+      "correct": "C"
+    },
+    "solution": "Let $s$ be the number of student tickets. Adult tickets number $150 - s$, so $5s + 10(150 - s) = 1100$. Then $1500 - 5s = 1100$, so $5s = 400$ and $s = 80$.",
+    "skill": "linear-equations-2",
+    "difficulty": 3,
+    "compute": "(1500-1100)/5"
+  },
+  {
+    "id": "w03-m2h-09",
+    "prompt": "A water tank holds 120 gallons and drains at a constant rate. After 5 minutes it holds 90 gallons. How many gallons does it hold after 12 minutes?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["48"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "It drains $120 - 90 = 30$ gallons in 5 minutes, which is 6 gallons per minute. After 12 minutes it has drained $6 \\times 12 = 72$ gallons, so it holds $120 - 72 = 48$ gallons.",
+    "skill": "linear-functions",
+    "difficulty": 3,
+    "compute": "120-6*12"
+  },
+  {
+    "id": "w03-m2h-10",
+    "prompt": "For which value of $c$ does the system of equations $3x - y = 4$ and $6x - 2y = c$ have infinitely many solutions?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["2", "4", "12", "8"],
+      "correct": "D"
+    },
+    "solution": "Doubling the first equation gives $6x - 2y = 8$. The two equations describe the same line only if $c = 8$.",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "8"
+  },
+  {
+    "id": "w03-m2h-11",
+    "prompt": "$x + y = 11$ and $0.2x + 0.5y = 3.7$. What is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["6"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Substitute $y = 11 - x$: $0.2x + 0.5(11 - x) = 3.7$, so $0.2x + 5.5 - 0.5x = 3.7$. Then $-0.3x = -1.8$ and $x = 6$.",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "1.8/0.3"
+  },
+  {
+    "id": "w03-m2h-12",
+    "prompt": "Which expression is equivalent to $\\frac{x^2 + 5x + 6}{x + 2}$, for $x \\neq -2$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$x + 2$", "$x + 6$", "$x + 3$", "$x^2 + 3$"],
+      "correct": "C"
+    },
+    "solution": "Factor the numerator: $x^2 + 5x + 6 = (x + 2)(x + 3)$. Dividing by $x + 2$ leaves $x + 3$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 3
+  },
+  {
+    "id": "w03-m2h-13",
+    "prompt": "The equation $(x - 4)^2 = 36$ has two solutions. What is the sum of the two solutions?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["-8", "8", "6", "10"],
+      "correct": "B"
+    },
+    "solution": "Take square roots: $x - 4 = 6$ or $x - 4 = -6$, so $x = 10$ or $x = -2$. Their sum is $10 + (-2) = 8$.",
+    "skill": "nonlinear-equations",
+    "difficulty": 3,
+    "compute": "10+(-2)"
+  },
+  {
+    "id": "w03-m2h-14",
+    "prompt": "The length of a rectangle is 4 more than its width, and its area is 96. What is the length of the rectangle?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["8", "10", "14", "12"],
+      "correct": "D"
+    },
+    "solution": "Let the width be $w$. Then $w(w + 4) = 96$, so $w^2 + 4w - 96 = 0$, which factors as $(w + 12)(w - 8) = 0$. The width is 8, so the length is $8 + 4 = 12$.",
+    "skill": "nonlinear-equations",
+    "difficulty": 3,
+    "compute": "12"
+  },
+  {
+    "id": "w03-m2h-15",
+    "prompt": "Two cars leave the same point at the same time. One travels north at 40 miles per hour and the other travels east at 30 miles per hour. How many miles apart are the cars after 2 hours?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["50", "70", "100", "140"],
+      "correct": "C"
+    },
+    "solution": "After 2 hours one car is 80 miles north and the other is 60 miles east. The distance between them is $\\sqrt{80^2 + 60^2} = \\sqrt{10000} = 100$ miles.",
+    "skill": "ratios-rates",
+    "difficulty": 3,
+    "compute": "sqrt(80^2+60^2)"
+  },
+  {
+    "id": "w03-m2h-16",
+    "prompt": "A \\$200 jacket is discounted by 25%. Then a 10% sales tax is added to the discounted price. What is the final price, in dollars?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["165"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "After the discount the price is $200 \\times 0.75 = 150$ dollars. Adding 10% tax gives $150 \\times 1.10 = 165$ dollars.",
+    "skill": "percentages",
+    "difficulty": 3,
+    "compute": "200*0.75*1.1"
+  },
+  {
+    "id": "w03-m2h-17",
+    "prompt": "The bar graph shows the scores of 20 students on a quiz. What is the median score?",
+    "figure": {
+      "file": "bars-scores.svg",
+      "alt": "Bar graph of quiz scores: score 6, 2 students; score 7, 5 students; score 8, 7 students; score 9, 4 students; score 10, 2 students.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["7", "7.5", "9", "8"],
+      "correct": "D"
+    },
+    "solution": "The numbers of students at each score are 2, 5, 7, 4 and 2, which add up to 20. The 10th and 11th scores in order are both 8, because the first 7 scores are 6 or 7 and scores 8 cover places 8 to 14. So the median is 8.",
+    "skill": "one-variable-data",
+    "difficulty": 3
+  },
+  {
+    "id": "w03-m2h-18",
+    "prompt": "The scatterplot shows a data set and its line of best fit. According to the line of best fit, which of the following is closest to the predicted value of $y$ when $x = 12$?",
+    "figure": {
+      "file": "scatter-line-12.svg",
+      "alt": "Scatterplot of 8 points rising from about 9 to about 22 as x goes from 1 to 9. A line of best fit passes through (0, 8) and (10, 23).",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["26", "23", "24", "30"],
+      "correct": "A"
+    },
+    "solution": "The line passes through $(0, 8)$ and $(10, 23)$, so its slope is $\\frac{23 - 8}{10} = 1.5$ and its equation is $y = 1.5x + 8$. For $x = 12$: $y = 1.5(12) + 8 = 26$.",
+    "skill": "two-variable-data",
+    "difficulty": 3,
+    "compute": "8+1.5*12"
+  },
+  {
+    "id": "w03-m2h-19",
+    "prompt": "A bag has 3 red marbles and 5 blue marbles. One marble is chosen at random and not replaced. Then a second marble is chosen. What is the probability that the first marble is red and the second marble is blue?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["15/56"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The first marble is red with probability $\\frac{3}{8}$. Then 5 blue marbles remain among 7, so the second is blue with probability $\\frac{5}{7}$. Together: $\\frac{3}{8} \\times \\frac{5}{7} = \\frac{15}{56}$.",
+    "skill": "probability",
+    "difficulty": 3,
+    "compute": "3/8*5/7"
+  },
+  {
+    "id": "w03-m2h-20",
+    "prompt": "A right triangle has a hypotenuse of length 13 and one leg of length 5. What is the area of the triangle?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["30"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The other leg is $\\sqrt{13^2 - 5^2} = \\sqrt{144} = 12$. The area is $\\frac{1}{2} \\times 5 \\times 12 = 30$.",
+    "skill": "area-volume",
+    "difficulty": 3,
+    "compute": "5*sqrt(13^2-5^2)/2"
+  },
+  {
+    "id": "w03-m2h-21",
+    "prompt": "In the figure, a quarter of a circle with radius 6 is drawn inside a square with side length 6, and the rest of the square is shaded. What is the area of the shaded region?",
+    "figure": {
+      "file": "square-quarter.svg",
+      "alt": "A square with side length 6. A quarter circle of radius 6, centered at the bottom-left corner, is drawn inside it. The part of the square outside the quarter circle is shaded.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["$36 - 36\\pi$", "$36 - 18\\pi$", "$36 - 9\\pi$", "$9\\pi$"],
+      "correct": "C"
+    },
+    "solution": "The square has area $6^2 = 36$. The quarter circle has area $\\frac{1}{4}\\pi (6)^2 = 9\\pi$. The shaded region is the part of the square outside the quarter circle: $36 - 9\\pi$.",
+    "skill": "area-volume",
+    "difficulty": 3
+  },
+  {
+    "id": "w03-m2h-22",
+    "prompt": "In the figure, the measure of angle $A$ of triangle $ABC$ is $50°$, and the exterior angle at $C$ measures $120°$. What is the measure of angle $B$?",
+    "figure": {
+      "file": "triangle-exterior.svg",
+      "alt": "Triangle ABC with angle A marked 50 degrees. Side BC is extended past C by a dashed segment, and the exterior angle at C, between the extension and side CA, is marked 120 degrees.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["$50°$", "$70°$", "$60°$", "$130°$"],
+      "correct": "B"
+    },
+    "solution": "An exterior angle equals the sum of the two remote interior angles: $120° = 50° + B$, so $B = 70°$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 3
+  }
+]

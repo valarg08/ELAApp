@@ -1,0 +1,304 @@
+[
+  {
+    "id": "w03-m2e-01",
+    "prompt": "If $5(x - 1) = 30$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["5", "6", "35", "7"],
+      "correct": "D"
+    },
+    "solution": "Divide both sides by 5: $x - 1 = 6$. Add 1: $x = 7$.",
+    "skill": "linear-equations-1",
+    "difficulty": 1,
+    "compute": "30/5+1"
+  },
+  {
+    "id": "w03-m2e-02",
+    "prompt": "If $0.5x + 2 = 7$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["10", "4.5", "9", "14"],
+      "correct": "A"
+    },
+    "solution": "Subtract 2: $0.5x = 5$. Divide by 0.5: $x = 10$.",
+    "skill": "linear-equations-1",
+    "difficulty": 1,
+    "compute": "(7-2)/0.5"
+  },
+  {
+    "id": "w03-m2e-03",
+    "prompt": "Which expression is equivalent to $3x^2 + 5x^2 - 2x^2$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$6x^4$", "$6x^2$", "$10x^2$", "$6x$"],
+      "correct": "B"
+    },
+    "solution": "Combine the like terms: $3 + 5 - 2 = 6$, so the expression is $6x^2$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 1
+  },
+  {
+    "id": "w03-m2e-04",
+    "prompt": "What is the positive solution of the equation $x^2 = 144$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["14", "24", "72", "12"],
+      "correct": "D"
+    },
+    "solution": "The positive number whose square is 144 is 12.",
+    "skill": "nonlinear-equations",
+    "difficulty": 1,
+    "compute": "12"
+  },
+  {
+    "id": "w03-m2e-05",
+    "prompt": "How many minutes are in 3.5 hours?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["35", "180", "210", "350"],
+      "correct": "C"
+    },
+    "solution": "There are 60 minutes in an hour, so 3.5 hours is $3.5 \\times 60 = 210$ minutes.",
+    "skill": "ratios-rates",
+    "difficulty": 1,
+    "compute": "3.5*60"
+  },
+  {
+    "id": "w03-m2e-06",
+    "prompt": "What is 45% of 80?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["36"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "$0.45 \\times 80 = 36$.",
+    "skill": "percentages",
+    "difficulty": 1,
+    "compute": "80*45/100"
+  },
+  {
+    "id": "w03-m2e-07",
+    "prompt": "What is the area of a circle with a radius of 3?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$3\\pi$", "$6\\pi$", "$9\\pi$", "$18\\pi$"],
+      "correct": "C"
+    },
+    "solution": "Area $= \\pi r^2 = \\pi (3)^2 = 9\\pi$.",
+    "skill": "area-volume",
+    "difficulty": 1
+  },
+  {
+    "id": "w03-m2e-08",
+    "prompt": "Two angles form a straight line. One of the angles measures $115°$. What is the measure of the other angle?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$75°$", "$65°$", "$115°$", "$245°$"],
+      "correct": "B"
+    },
+    "solution": "Angles on a straight line add to $180°$, so the other angle is $180° - 115° = 65°$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 1
+  },
+  {
+    "id": "w03-m2e-09",
+    "prompt": "A line has the equation $y = 3x - 4$. For what value of $x$ is $y = 14$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["6"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Set $3x - 4 = 14$. Add 4: $3x = 18$, so $x = 6$.",
+    "skill": "linear-equations-2",
+    "difficulty": 2,
+    "compute": "(14+4)/3"
+  },
+  {
+    "id": "w03-m2e-10",
+    "prompt": "A bakery sells muffins for \\$3 each and cookies for \\$2 each. Sam buys 4 muffins and spends a total of \\$18. How many cookies did Sam buy?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["4", "6", "3", "9"],
+      "correct": "C"
+    },
+    "solution": "The muffins cost $4 \\times 3 = 12$ dollars, so the cookies cost $18 - 12 = 6$ dollars. At \\$2 each, that is 3 cookies.",
+    "skill": "linear-equations-2",
+    "difficulty": 2,
+    "compute": "(18-4*3)/2"
+  },
+  {
+    "id": "w03-m2e-11",
+    "prompt": "The function $f$ is linear, with $f(1) = 5$, $f(2) = 8$ and $f(3) = 11$. What is the value of $f(10)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["27", "32", "30", "35"],
+      "correct": "B"
+    },
+    "solution": "The values increase by 3 each time $x$ increases by 1, so the slope is 3. From $x = 1$ to $x = 10$ is 9 steps, so $f(10) = 5 + 3 \\times 9 = 32$.",
+    "skill": "linear-functions",
+    "difficulty": 2,
+    "compute": "5+3*9"
+  },
+  {
+    "id": "w03-m2e-12",
+    "prompt": "A line in the $xy$-plane passes through the point $(0, 5)$ and has slope $-2$. Which equation represents the line?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$y = 5x - 2$", "$y = 2x + 5$", "$y = -2x - 5$", "$y = -2x + 5$"],
+      "correct": "D"
+    },
+    "solution": "The $y$-intercept is 5 and the slope is $-2$, so $y = -2x + 5$.",
+    "skill": "linear-functions",
+    "difficulty": 2
+  },
+  {
+    "id": "w03-m2e-13",
+    "prompt": "If $x + 2y = 11$ and $x - 2y = 3$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["7", "4", "5", "14"],
+      "correct": "A"
+    },
+    "solution": "Add the equations: $2x = 14$, so $x = 7$.",
+    "skill": "systems",
+    "difficulty": 2,
+    "compute": "14/2"
+  },
+  {
+    "id": "w03-m2e-14",
+    "prompt": "$y = x + 4$ and $2x + y = 16$. What is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["4"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Substitute $y = x + 4$: $2x + x + 4 = 16$, so $3x = 12$ and $x = 4$.",
+    "skill": "systems",
+    "difficulty": 2,
+    "compute": "(16-4)/3"
+  },
+  {
+    "id": "w03-m2e-15",
+    "prompt": "What is the greatest integer value of $x$ that satisfies the inequality $3x - 5 < 10$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "5", "4", "6"],
+      "correct": "C"
+    },
+    "solution": "Add 5: $3x < 15$. Divide by 3: $x < 5$. The greatest integer less than 5 is 4.",
+    "skill": "linear-inequalities",
+    "difficulty": 2,
+    "compute": "4"
+  },
+  {
+    "id": "w03-m2e-16",
+    "prompt": "If $2^x = 32$, what is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["5"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Count the factors of 2: $2^5 = 2 \\times 2 \\times 2 \\times 2 \\times 2 = 32$, so $x = 5$.",
+    "skill": "nonlinear-equations",
+    "difficulty": 2,
+    "compute": "5"
+  },
+  {
+    "id": "w03-m2e-17",
+    "prompt": "The function $f$ is defined by $f(x) = x^2 - 3x$. What is the value of $f(4)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["4", "1", "7", "28"],
+      "correct": "A"
+    },
+    "solution": "$f(4) = 16 - 12 = 4$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 2,
+    "compute": "4^2-3*4"
+  },
+  {
+    "id": "w03-m2e-18",
+    "prompt": "A store takes 20% off every price in a sale. A pair of shoes has an original price of \\$60. What is the sale price, in dollars?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["12", "48", "40", "52"],
+      "correct": "B"
+    },
+    "solution": "20% of 60 is 12, so the sale price is $60 - 12 = 48$ dollars.",
+    "skill": "percentages",
+    "difficulty": 2,
+    "compute": "60*0.8"
+  },
+  {
+    "id": "w03-m2e-19",
+    "prompt": "The bar graph shows how many pets each of 20 students owns. How many of the students own at least 2 pets?",
+    "figure": {
+      "file": "bars-pets.svg",
+      "alt": "Bar graph of the number of students by number of pets: 0 pets, 5 students; 1 pet, 8 students; 2 pets, 4 students; 3 pets, 3 students.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["4", "8", "12", "7"],
+      "correct": "D"
+    },
+    "solution": "The students with at least 2 pets are the 4 with 2 pets and the 3 with 3 pets: $4 + 3 = 7$.",
+    "skill": "one-variable-data",
+    "difficulty": 2,
+    "compute": "4+3"
+  },
+  {
+    "id": "w03-m2e-20",
+    "prompt": "The scatterplot shows the high temperature on 10 days and the number of cups of hot chocolate a cafe sold each day. Which of the following best describes the association shown?",
+    "figure": {
+      "file": "scatter-cocoa.svg",
+      "alt": "Scatterplot of 10 days: high temperature in degrees (10 to 40) on the x-axis and cups of hot chocolate sold on the y-axis. The points fall from about 40 cups at 10 degrees to about 5 cups at 38 degrees.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": [
+        "Higher temperatures tend to go with fewer cups sold.",
+        "Higher temperatures tend to go with more cups sold.",
+        "Temperature and cups sold are not related.",
+        "The cafe sold the same number of cups every day."
+      ],
+      "correct": "A"
+    },
+    "solution": "The points fall from the upper left to the lower right: as the temperature rises, the number of cups sold tends to fall. This is a negative association.",
+    "skill": "two-variable-data",
+    "difficulty": 2
+  },
+  {
+    "id": "w03-m2e-21",
+    "prompt": "The probability that it rains tomorrow is 0.35. What is the probability that it does not rain tomorrow?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["0.65"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The probabilities of an event and of its opposite add to 1, so the probability that it does not rain is $1 - 0.35 = 0.65$.",
+    "skill": "probability",
+    "difficulty": 2,
+    "compute": "1-0.35"
+  },
+  {
+    "id": "w03-m2e-22",
+    "prompt": "A right triangle has legs of length 6 and 8. What is the area of the triangle?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["24"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The legs are the base and the height: $\\frac{1}{2} \\times 6 \\times 8 = 24$.",
+    "skill": "area-volume",
+    "difficulty": 2,
+    "compute": "6*8/2"
+  }
+]

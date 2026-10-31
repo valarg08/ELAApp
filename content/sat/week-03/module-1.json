@@ -1,0 +1,309 @@
+[
+  {
+    "id": "w03-m1-01",
+    "prompt": "If $9 - 2x = 1$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "5", "-4", "4"],
+      "correct": "D"
+    },
+    "solution": "Subtract 9 from both sides: $-2x = -8$. Divide by $-2$: $x = 4$.",
+    "skill": "linear-equations-1",
+    "difficulty": 1,
+    "compute": "(9-1)/2"
+  },
+  {
+    "id": "w03-m1-02",
+    "prompt": "A gym charges a \\$15 joining fee plus \\$20 per month. Which equation gives the total cost $C$, in dollars, after $m$ months?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$C = 15 + 20m$", "$C = 20 + 15m$", "$C = 35m$", "$C = 15m - 20$"],
+      "correct": "A"
+    },
+    "solution": "The joining fee, \\$15, is paid once, and each month adds \\$20, so $C = 15 + 20m$.",
+    "skill": "linear-equations-2",
+    "difficulty": 1
+  },
+  {
+    "id": "w03-m1-03",
+    "prompt": "The function $f$ is defined by $f(x) = 4x - 9$. What is the value of $f(6)$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["15"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "$f(6) = 4(6) - 9 = 24 - 9 = 15$.",
+    "skill": "linear-functions",
+    "difficulty": 1,
+    "compute": "4*6-9"
+  },
+  {
+    "id": "w03-m1-04",
+    "prompt": "Which expression is equivalent to $7x - 3(x - 2)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$4x - 6$", "$10x - 6$", "$4x + 6$", "$4x - 2$"],
+      "correct": "C"
+    },
+    "solution": "Distribute the $-3$: $7x - 3x + 6 = 4x + 6$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 1
+  },
+  {
+    "id": "w03-m1-05",
+    "prompt": "A 15-ounce bag of trail mix costs \\$6. At the same price per ounce, how much, in dollars, would a 25-ounce bag cost?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["9", "12", "10", "15"],
+      "correct": "C"
+    },
+    "solution": "The price is $6 \\div 15 = 0.40$ dollars per ounce, so 25 ounces cost $0.40 \\times 25 = 10$ dollars.",
+    "skill": "ratios-rates",
+    "difficulty": 1,
+    "compute": "6/15*25"
+  },
+  {
+    "id": "w03-m1-06",
+    "prompt": "$\\frac{x}{5} - 3 = 4$. What is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["35"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Add 3 to both sides: $\\frac{x}{5} = 7$. Multiply by 5: $x = 35$.",
+    "skill": "linear-equations-1",
+    "difficulty": 2,
+    "compute": "(4+3)*5"
+  },
+  {
+    "id": "w03-m1-07",
+    "prompt": "The equation $4x + 5y = 40$ is graphed in the $xy$-plane. What is the $y$-coordinate of the point where the graph crosses the $y$-axis?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["5", "10", "8", "40"],
+      "correct": "C"
+    },
+    "solution": "On the $y$-axis $x = 0$, so $5y = 40$ and $y = 8$.",
+    "skill": "linear-equations-2",
+    "difficulty": 2,
+    "compute": "40/5"
+  },
+  {
+    "id": "w03-m1-08",
+    "prompt": "If $3x + y = 17$ and $x = 4$, what is the value of $y$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "8", "29", "5"],
+      "correct": "D"
+    },
+    "solution": "Substitute $x = 4$: $12 + y = 17$, so $y = 5$.",
+    "skill": "systems",
+    "difficulty": 2,
+    "compute": "17-12"
+  },
+  {
+    "id": "w03-m1-09",
+    "prompt": "Which of the following is the solution to the inequality $4 - 3x \\le 13$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$x \\ge -3$", "$x \\le -3$", "$x \\ge 3$", "$x \\le 3$"],
+      "correct": "A"
+    },
+    "solution": "Subtract 4: $-3x \\le 9$. Divide by $-3$ and reverse the inequality sign: $x \\ge -3$.",
+    "skill": "linear-inequalities",
+    "difficulty": 2
+  },
+  {
+    "id": "w03-m1-10",
+    "prompt": "Which expression is equivalent to $(x - 3)(x + 6)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$x^2 - 18$", "$x^2 + 3x - 18$", "$x^2 + 9x - 18$", "$x^2 + 3x + 18$"],
+      "correct": "B"
+    },
+    "solution": "Expand: $x^2 + 6x - 3x - 18 = x^2 + 3x - 18$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 2
+  },
+  {
+    "id": "w03-m1-11",
+    "prompt": "What is the positive solution of the equation $5x^2 = 80$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["4"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Divide by 5: $x^2 = 16$. So $x = 4$ or $x = -4$, and the positive solution is 4.",
+    "skill": "nonlinear-equations",
+    "difficulty": 2,
+    "compute": "sqrt(80/5)"
+  },
+  {
+    "id": "w03-m1-12",
+    "prompt": "A square has a perimeter of 28. What is the area of the square?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["14", "28", "196", "49"],
+      "correct": "D"
+    },
+    "solution": "Each side is $28 \\div 4 = 7$, so the area is $7^2 = 49$.",
+    "skill": "nonlinear-equations",
+    "difficulty": 2,
+    "compute": "(28/4)^2"
+  },
+  {
+    "id": "w03-m1-13",
+    "prompt": "The function $h$ is defined by $h(x) = 3^x$. What is the value of $h(4)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["81", "12", "64", "243"],
+      "correct": "A"
+    },
+    "solution": "$h(4) = 3^4 = 3 \\times 3 \\times 3 \\times 3 = 81$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 2,
+    "compute": "3^4"
+  },
+  {
+    "id": "w03-m1-14",
+    "prompt": "The price of a bike increases from \\$120 to \\$150. By what percent does the price increase?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["25"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The increase is $150 - 120 = 30$ dollars. As a share of the original price, $\\frac{30}{120} = 0.25 = 25\\%$.",
+    "skill": "percentages",
+    "difficulty": 2,
+    "compute": "(150-120)/120*100"
+  },
+  {
+    "id": "w03-m1-15",
+    "prompt": "The bar graph shows the number of books each of 5 students read. What is the median number of books read?",
+    "figure": {
+      "file": "bars-books.svg",
+      "alt": "Bar graph of books read: Ana 4, Ben 7, Cara 3, Dev 9, Eli 5.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["4", "5", "5.6", "7"],
+      "correct": "B"
+    },
+    "solution": "In order the values are 3, 4, 5, 7, 9. The middle value is 5. (The mean is 5.6, not the median.)",
+    "skill": "one-variable-data",
+    "difficulty": 2,
+    "compute": "5"
+  },
+  {
+    "id": "w03-m1-16",
+    "prompt": "The scatterplot shows the age and the price of 9 used cars, with the line of best fit. Which of the following is closest to the slope of the line of best fit?",
+    "figure": {
+      "file": "scatter-cars.svg",
+      "alt": "Scatterplot of 9 used cars: age in years (1 to 9) on the x-axis and price in thousands of dollars on the y-axis. The points fall from about 19 to about 10. A line of best fit passes through (0, 20) and (10, 10).",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["$-10$", "$1$", "$20$", "$-1$"],
+      "correct": "D"
+    },
+    "solution": "The line goes from $(0, 20)$ to $(10, 10)$. The slope is $\\frac{10 - 20}{10 - 0} = -1$ (the price falls about 1 thousand dollars for each year of age).",
+    "skill": "two-variable-data",
+    "difficulty": 2
+  },
+  {
+    "id": "w03-m1-17",
+    "prompt": "A card is chosen at random from 20 cards numbered 1 through 20. What is the probability that the number on the card is a multiple of 5?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["1/5", "1/4", "1/10", "1/20"],
+      "correct": "A"
+    },
+    "solution": "The multiples of 5 are 5, 10, 15 and 20: 4 of the 20 cards. The probability is $\\frac{4}{20} = \\frac{1}{5}$.",
+    "skill": "probability",
+    "difficulty": 2,
+    "compute": "4/20"
+  },
+  {
+    "id": "w03-m1-18",
+    "prompt": "A rectangular fish tank is 40 cm long, 25 cm wide and 30 cm tall. How many cubic centimeters of water does it hold when it is completely full?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3000", "1500", "30000", "95"],
+      "correct": "C"
+    },
+    "solution": "Volume = length × width × height $= 40 \\times 25 \\times 30 = 30000$ cubic centimeters.",
+    "skill": "area-volume",
+    "difficulty": 2,
+    "compute": "40*25*30"
+  },
+  {
+    "id": "w03-m1-19",
+    "prompt": "The graph of the linear function $g$ is shown. What is the value of $g(5)$?",
+    "figure": {
+      "file": "graph-g.svg",
+      "alt": "Graph of a straight line passing through the points (0, 3), (1, 5), (2, 7) and (3, 9).",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["10", "13", "11", "15"],
+      "correct": "B"
+    },
+    "solution": "The line passes through $(0, 3)$ and $(1, 5)$, so the slope is 2 and $g(x) = 2x + 3$. Then $g(5) = 2(5) + 3 = 13$.",
+    "skill": "linear-functions",
+    "difficulty": 3,
+    "compute": "2*5+3"
+  },
+  {
+    "id": "w03-m1-20",
+    "prompt": "$2x + 3y = 7$ and $4x - 3y = 5$. What is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["2"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Add the equations: $6x = 12$, so $x = 2$. (Then $y = 1$.)",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "12/6"
+  },
+  {
+    "id": "w03-m1-21",
+    "prompt": "A tutor charges a one-time \\$20 fee plus \\$35 per hour. What is the greatest number of whole hours that can be booked with \\$290?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["7"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The cost is $20 + 35h \\le 290$, so $35h \\le 270$ and $h \\le 7.7$. The greatest whole number of hours is 7.",
+    "skill": "linear-inequalities",
+    "difficulty": 3,
+    "compute": "floor((290-20)/35)"
+  },
+  {
+    "id": "w03-m1-22",
+    "prompt": "In the figure, two parallel lines are cut by a transversal. What is the value of $x$?",
+    "figure": {
+      "file": "transversal-alternate.svg",
+      "alt": "Two parallel horizontal lines cut by a slanted transversal. Below the upper line and to the left of the transversal an angle is marked (3x + 5) degrees. Above the lower line and to the right of the transversal an angle is marked (2x + 25) degrees.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["15", "20", "25", "30"],
+      "correct": "B"
+    },
+    "solution": "The two marked angles are alternate interior angles, so they are equal: $3x + 5 = 2x + 25$. Subtract $2x$ and 5: $x = 20$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 3,
+    "compute": "25-5"
+  }
+]
