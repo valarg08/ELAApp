@@ -19,6 +19,8 @@ import {
   SPRINT_SIZE,
   type SaveTestAnswerRequest,
   type SaveTestAnswerResponse,
+  type StepSprintRequest,
+  type StepSprintResponse,
   TARGET_DIFFICULTY,
   MENTAL_SPRINT_SECONDS,
   MENTAL_TARGET,
@@ -460,6 +462,7 @@ export class MathTestsService {
       );
 
     const saved: MathTestAnswer = {
+      ...(previous?.stepped ? { stepped: true } : {}),
       answer: body.answer,
       seconds: body.seconds,
       flagged: body.flagged,
@@ -477,6 +480,57 @@ export class MathTestsService {
       data: { answers: { ...answers, [String(body.index)]: saved } },
     });
     return { saved: true, feedback };
+  }
+
+  /**
+   * A Mental Math sprint adapts as it goes: once a problem is answered, the next one that is still
+   * blank is swapped for one in the same skill that is a step harder after a right answer, a step
+   * easier after a wrong one. Each answer steps once.
+   */
+  async step(user: AuthUser, id: string, body: StepSprintRequest): Promise<StepSprintResponse> {
+    const attempt = await this.own(user, id);
+    if (attempt.submittedAt) throw this.closed();
+    if (this.expired(attempt)) {
+      await this.finish(user, attempt);
+      throw new AppError(
+        HttpStatus.CONFLICT,
+        ErrorCode.QUIZ_ATTEMPT_CLOSED,
+        "Time's up",
+        'Time ran out, so the test was handed in.',
+      );
+    }
+    const none = { replaced: null };
+    if (attempt.kind !== 'mental-sprint') return none;
+    const items = Items.parse(attempt.items);
+    const answers = Answers.catch({}).parse(attempt.answers);
+    const here = items[body.index];
+    const next = items[body.index + 1];
+    const given = answers[String(body.index)];
+    if (!here || !next || !given?.answer || given.stepped) return none;
+    if (answers[String(body.index + 1)]?.answer) return none;
+    const problem = await this.resolveOne(here);
+    if (!problem) return none;
+    const verdict = markAnswer(problem, given.answer).verdict;
+    const target =
+      verdict === 'correct'
+        ? Math.min(3, problem.difficulty + 1)
+        : verdict === 'form'
+          ? problem.difficulty
+          : Math.max(1, problem.difficulty - 1);
+    const swap = await this.mental.stepItem(user, next, target, items);
+    const replacement = swap ? await this.resolveOne(swap) : null;
+    await this.db.client.mathTestAttempt.update({
+      where: { id: attempt.id },
+      data: {
+        answers: { ...answers, [String(body.index)]: { ...given, stepped: true } },
+        ...(swap && replacement
+          ? { items: items.map((it, i) => (i === body.index + 1 ? swap : it)) }
+          : {}),
+      },
+    });
+    return swap && replacement
+      ? { replaced: { index: body.index + 1, problem: publicProblem(replacement) } }
+      : none;
   }
 
   /** Check one review answer: redos go through the error log; the rest into the answer record. */

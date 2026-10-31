@@ -126,7 +126,7 @@ Source: `packages/shared/src/curriculum/mental-adaptive.ts`. Unit tests, level c
 - **Web:** `/mental/progress` shows each skill's standing next to its mastery.
 - **Practise my weak skills** (MN-adapt-2, kind `mental-weak`, start key `mental-weak`, instant-checked, no timer or score): the 3 weakest skills among the answered skills of finished lessons (needs practice first, then lowest accuracy), 4 problems each, climbing easy to harder (1,1,2,2 for a skill that needs practice, otherwise 1,2,2,3), new numbers when a template comes back, the skills taking turns. A card on `/mental`, a link on `/mental/progress`, `practice.weak` in `GET /mental/home`.
 - **Teachers:** the Skills & practice table has a "Needs practice" column (the skills at the shaky standing); `standings` per student in `ClassMentalSkills`.
-- Not done: steps inside a sprint (the sprint's list is built at the start; changing it as the student answers needs a change to the shared test engine).
+- **Steps inside a sprint** (MN-adapt-3): moving on from a sprint problem saves the answer and calls `POST /math/tests/attempts/:id/step`. The next problem that is still blank is swapped for one in the same skill (`MentalPracticeService.stepItem`): a step harder after a right answer, a step easier after a wrong one, the same level for a right value in the wrong form (difficulty 1–3, new numbers for templates). Each answer steps once (`stepped` on the saved answer); answered problems never change. The sprint player keeps the problems in state and swaps the one returned; the result shows the problems actually asked. Other test kinds answer `replaced: null`.
 
 ## Phases
 
@@ -142,4 +142,5 @@ Source: `packages/shared/src/curriculum/mental-adaptive.ts`. Unit tests, level c
 - **MN-practice (done):** the daily review with streaks, speed sprints with personal bests, level checks with badges, the placement check (`MentalStart`), the parent guide page, mastery per Mental Math skill, and a separate Mental Math mistakes list. The Mental Math track is complete.
 - **MN-adapt-1 (done):** the standing per skill, adaptive daily review and sprints, standing on My skills.
 - **MN-adapt-2 (done):** Practise my weak skills, the teacher "Needs practice" column.
+- **MN-adapt-3 (done):** steps inside a sprint.
 - **MN-teacher (done):** the teacher's Mental Math skills & practice view on the class progress page (Part 9).

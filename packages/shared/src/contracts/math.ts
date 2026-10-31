@@ -412,6 +412,8 @@ export const MathTestAnswer = z.object({
   flagged: z.boolean().default(false),
   /** Instant-check kinds (the reviews): set when the answer was checked. */
   verdict: ProblemVerdict.optional(),
+  /** Mental Math sprints: the next problem was already chosen from this answer. */
+  stepped: z.boolean().optional(),
 });
 export type MathTestAnswer = z.infer<typeof MathTestAnswer>;
 
@@ -469,6 +471,16 @@ export const SaveTestAnswerResponse = z.object({
   feedback: TestItemFeedback.nullable(),
 });
 export type SaveTestAnswerResponse = z.infer<typeof SaveTestAnswerResponse>;
+
+/** A Mental Math sprint steps: the problem after `index` is chosen from how `index` went. */
+export const StepSprintRequest = z.object({ index: z.number().int().min(0).max(40) });
+export type StepSprintRequest = z.infer<typeof StepSprintRequest>;
+
+export const StepSprintResponse = z.object({
+  /** The problem now at `index` + 1, or null when the next problem stays as it was. */
+  replaced: z.object({ index: z.number(), problem: MathProblemPublic }).nullable(),
+});
+export type StepSprintResponse = z.infer<typeof StepSprintResponse>;
 
 export const TestReviewItem = TestItemFeedback.extend({
   number: z.number(),

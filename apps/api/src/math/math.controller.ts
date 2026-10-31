@@ -29,6 +29,8 @@ import {
   type RedoResponse,
   SaveTestAnswerRequest,
   type SaveTestAnswerResponse,
+  StepSprintRequest,
+  type StepSprintResponse,
   type SimilarProblemResponse,
   SubmitProblemSetRequest,
   type TestResult,
@@ -241,6 +243,18 @@ export class MathController {
     @Body({ schema: SaveTestAnswerRequest }) body: SaveTestAnswerRequest,
   ): Promise<SaveTestAnswerResponse> {
     return this.tests.answer(user, id, body);
+  }
+
+  /** Mental Math sprints: choose the next problem from how this one went. */
+  @Roles('STUDENT')
+  @Post('math/tests/attempts/:id/step')
+  @HttpCode(200)
+  stepSprint(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+    @Body({ schema: StepSprintRequest }) body: StepSprintRequest,
+  ): Promise<StepSprintResponse> {
+    return this.tests.step(user, id, body);
   }
 
   @Roles('STUDENT')

@@ -268,6 +268,36 @@ export class MentalPracticeService {
       .map((p) => this.item(p.activityKey, p.problem, p.lessonId));
   }
 
+  /**
+   * The problem that replaces `next` in a sprint: the same skill, as near `target` difficulty as
+   * possible (a template comes back with new numbers). Null when the skill has nothing else.
+   */
+  async stepItem(
+    user: AuthUser,
+    next: MathTestItem,
+    target: number,
+    items: readonly MathTestItem[],
+  ): Promise<MathTestItem | null> {
+    const pool = await this.content.pool(user, 'MENTAL');
+    const skill = pool.find(
+      (p) => p.activityKey === next.activityKey && p.problem.id === next.problemId,
+    )?.problem.skill;
+    if (!skill) return null;
+    const taken = new Set(items.map((i) => `${i.activityKey}/${i.problemId}`));
+    const best = shuffled(
+      pool.filter(
+        (p) =>
+          p.problem.skill === skill &&
+          (p.problem.template || !taken.has(`${p.activityKey}/${p.problem.id}`)),
+      ),
+    ).toSorted(
+      (a, b) =>
+        Math.abs(a.problem.difficulty - target) - Math.abs(b.problem.difficulty - target) ||
+        Number(!a.problem.template) - Number(!b.problem.template),
+    )[0];
+    return best ? this.item(best.activityKey, best.problem, best.lessonId) : null;
+  }
+
   /** Placement: a few problems from each level's unit checks, Level 1 first. */
   async placementItems(): Promise<MathTestItem[]> {
     const levels = await this.levels();

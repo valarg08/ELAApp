@@ -6,6 +6,7 @@ import {
   MathTestView,
   SKIP_PROMPT_SECONDS,
   SaveTestAnswerResponse,
+  StepSprintResponse,
   type TestItemFeedback,
   TestResult,
   isMentalKind,
@@ -66,10 +67,11 @@ export function TestPlayer({
   view: MathTestView;
   onFinished: (r: TestResult) => void;
 }) {
-  const n = view.problems.length;
+  const [problems, setProblems] = useState(view.problems);
+  const n = problems.length;
   const base = `/math/tests/attempts/${encodeURIComponent(view.attemptId)}`;
   const [index, setIndex] = useState(() => {
-    const first = view.problems.findIndex((_, i) => !view.answers[String(i)]?.answer);
+    const first = problems.findIndex((_, i) => !view.answers[String(i)]?.answer);
     return first === -1 ? 0 : first;
   });
   const [answers, setAnswers] = useState<Record<string, MathTestAnswer>>(view.answers);
@@ -149,9 +151,23 @@ export function TestPlayer({
     dirty.current.add(index);
   }
 
-  function go(i: number) {
+  /**
+   * Go to another problem. A Mental Math sprint adapts: leaving a problem for the next one saves
+   * the answer first, and the server may swap that next problem for an easier or harder one.
+   */
+  async function go(i: number) {
     if (i === index || i < 0 || i >= n) return;
     settleTime();
+    if (view.kind === 'mental-sprint' && i === index + 1 && answersRef.current[key]?.answer) {
+      try {
+        await flush();
+        const r = await apiJson(`${base}/step`, StepSprintResponse, 'POST', { index });
+        const swap = r.replaced;
+        if (swap) setProblems((all) => all.map((p, at) => (at === swap.index ? swap.problem : p)));
+      } catch {
+        // The sprint carries on with the problem it had.
+      }
+    }
     setIndex(i);
     setConfirming(false);
   }
@@ -237,8 +253,8 @@ export function TestPlayer({
     return () => clearInterval(t);
   }, [deadline]);
 
-  const problem = view.problems[index]!;
-  const answeredCount = view.problems.filter(
+  const problem = problems[index]!;
+  const answeredCount = problems.filter(
     (_, i) => answers[String(i)]?.answer || feedback[String(i)],
   ).length;
   const blanks = n - answeredCount;
@@ -324,7 +340,7 @@ export function TestPlayer({
 
       <nav aria-label="Questions">
         <ol className="flex flex-wrap gap-2">
-          {view.problems.map((_, i) => {
+          {problems.map((_, i) => {
             const a = answers[String(i)];
             const f = feedback[String(i)];
             const state = f
@@ -338,7 +354,7 @@ export function TestPlayer({
               <li key={i}>
                 <button
                   type="button"
-                  onClick={() => go(i)}
+                  onClick={() => void go(i)}
                   aria-current={i === index ? 'step' : undefined}
                   aria-label={`Question ${i + 1}, ${state}${a?.flagged ? ', flagged' : ''}${view.redo[i] ? ', a redo' : ''}`}
                   className={`relative h-11 w-11 rounded-lg border-2 font-semibold focus-visible:outline-3 focus-visible:outline-brand ${
@@ -378,7 +394,11 @@ export function TestPlayer({
           answer={current?.answer ?? ''}
           onAnswer={(v) => update({ answer: v })}
           onSubmit={
-            view.instant ? () => void checkNow() : index < n - 1 ? () => go(index + 1) : undefined
+            view.instant
+              ? () => void checkNow()
+              : index < n - 1
+                ? () => void go(index + 1)
+                : undefined
           }
           focus
           disabled={locked || busy}
@@ -393,7 +413,7 @@ export function TestPlayer({
         {showSkipPrompt && (
           <div className="flex flex-wrap items-center gap-3 rounded-xl border border-warn/50 bg-background p-3">
             <output className="font-semibold">{MATH_COPY.skipPrompt}</output>
-            <Button variant="secondary" onClick={() => go(nextOpen())}>
+            <Button variant="secondary" onClick={() => void go(nextOpen())}>
               Skip for now
             </Button>
             <Button variant="secondary" onClick={() => setDismissed((d) => new Set(d).add(index))}>
@@ -417,16 +437,16 @@ export function TestPlayer({
               {busy ? 'Checking…' : 'Check'}
             </Button>
           )}
-          <Button variant="secondary" disabled={index === 0} onClick={() => go(index - 1)}>
+          <Button variant="secondary" disabled={index === 0} onClick={() => void go(index - 1)}>
             ← Previous
           </Button>
           {index < n - 1 && (
-            <Button variant="secondary" onClick={() => go(index + 1)}>
+            <Button variant="secondary" onClick={() => void go(index + 1)}>
               Next →
             </Button>
           )}
           {!view.instant && !current?.answer && blanks > 1 && (
-            <Button variant="secondary" onClick={() => go(nextOpen())}>
+            <Button variant="secondary" onClick={() => void go(nextOpen())}>
               Skip
             </Button>
           )}
