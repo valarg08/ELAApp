@@ -21,6 +21,7 @@ import {
   type SaveTestAnswerResponse,
   TARGET_DIFFICULTY,
   MENTAL_SPRINT_SECONDS,
+  MENTAL_TARGET,
   MENTAL_UNIT_TEST_SECONDS,
   TIME_SINK_SECONDS,
   type TestItemFeedback,
@@ -341,18 +342,36 @@ export class MathTestsService {
       orderBy: { dueAt: 'asc' },
     });
     const used = new Set(items.map((i) => `${i.activityKey}/${i.problemId}`));
+    // Mental Math adapts: a skill that needs practice comes up even before it is due (and twice,
+    // the second time with new numbers), and the difficulty follows where the student stands.
+    const standings = track === 'MENTAL' ? await this.mental.standings(user.id) : null;
+    const shaky = (skill: string) => standings?.get(skill) === 'shaky';
+    const later = states.filter((s) => s.dueAt > now);
     // Due skills first, then the soonest due, one problem per skill (interleaved, never blocked).
     const ordered = [
       ...states.filter((s) => s.dueAt <= now),
-      ...states.filter((s) => s.dueAt > now),
+      ...later.filter((s) => shaky(s.skill)),
+      ...later.filter((s) => !shaky(s.skill)),
     ];
     for (const state of ordered) {
       if (items.length >= REVIEW_SIZE) break;
-      const level = levels.get(state.skill)?.level ?? 'new';
-      const p = this.pick(pool, state.skill, TARGET_DIFFICULTY[level], used);
+      const standing = standings?.get(state.skill);
+      const target = standing
+        ? MENTAL_TARGET[standing]
+        : TARGET_DIFFICULTY[levels.get(state.skill)?.level ?? 'new'];
+      const p = this.pick(pool, state.skill, target, used);
       if (!p) continue;
       used.add(`${p.activityKey}/${p.problem.id}`);
       items.push(this.poolItem(p));
+      if (shaky(state.skill) && items.length < REVIEW_SIZE) {
+        const again = this.pick(
+          pool.filter((x) => x.problem.template),
+          state.skill,
+          target,
+          new Set(),
+        );
+        if (again) items.push(this.poolItem(again));
+      }
     }
     if (items.length === 0)
       throw new AppError(

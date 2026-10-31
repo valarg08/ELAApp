@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { MentalLevelsFile } from '../curriculum/math-content.js';
+import { MentalStanding } from '../curriculum/mental-adaptive.js';
 import { MasteryLevel } from './math.js';
 
 export const MENTAL_REVIEW_SIZE = 6;
@@ -102,6 +103,8 @@ export const MentalProgress = z.object({
           skill: z.string(),
           label: z.string(),
           level: MasteryLevel,
+          /** Where practice treats the skill: it picks harder problems as this rises. */
+          standing: MentalStanding,
           accuracy: z.number().nullable(),
           answered: z.number(),
         }),

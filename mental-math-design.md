@@ -114,6 +114,18 @@ The last lesson of each unit is the **⭐ unit check**: a warm-up, then 8 typed 
 - **Practice:** the Math test engine (`MathTestAttempt`, `MathTestsService`, TestPlayer and TestResult) with kinds `mental-review`, `mental-sprint`, `mental-placement`, `mental-level` (start keys `mental-review`, `mental-sprint`, `mental-placement`, `mental-level-1`…`4`; the review's key is `mental-review:YYYY-MM-DD`). `MentalPracticeService` (apps/api/src/math) picks the items and works out bests, badges and the placement. `MentalStart` (one row per student: level, startUnit) opens units up to startUnit through `classAvailability`'s `openThrough`. Mental Math activity keys start with `n`; `trackKeyFilter` keeps the error log, redos and review of the two tracks apart (`GET /math/error-log?track=mental`). `GET /mental/progress` (students) gives streak, sprint best, badges and skill mastery; `GET /mental/home` adds `practice`. Teachers: `GET /teacher/classes/:classId/mental-skills` (`ClassMentalSkills`, `MentalTeacherController`; another teacher's class answers 404).
 - **Web:** `/mental` (CourseShell, levels with unit cards, Keep going, pattern tip), `/mental/cheat-sheets/[unit]` (printable), the unit page shows "💡 Pattern tips", CourseShell's Progress panel shows the tip of the day and the cheat sheets on every Mental Math page. The answer box hides the √ π / ^ helpers in Mental Math lessons and tests (`SimpleAnswers`). Practice: a Practice section and a level check card after each level on `/mental`, `/mental/tests/[key]` (start pages), `/mental/attempts/[id]` (player and result, no confidence chips), `/mental/progress` (My skills), `/mental/mistakes`, `/mental/parents` (parent guide). `/start` and the home choose the current unit with `currentUnit` (the unit in progress, else the last open unit with lessons left).
 
+## Adaptive practice
+
+Source: `packages/shared/src/curriculum/mental-adaptive.ts`. Unit tests, level checks and the placement check stay fixed so scores can be compared; the daily review and the sprints adapt.
+
+- **Standing per skill** (`mentalStanding`), from the latest 10 answers in `MathAnswerLog`: *Just starting* (under 3 answers), *Needs practice* (under 60% credit, or the last two wrong), *Solid*, *Fast and sure* (80%+ with the latest 3 answers right and unaided, 4 at Level 1; at Levels 3–4 also within the time limits `MENTAL_FAST_SECONDS`). Hints halve a right answer.
+- **Difficulty** follows the standing (`MENTAL_TARGET`: new and shaky 1, solid 2, fast 3).
+- **Daily review:** due skills first, then skills that need practice even if not due (a second problem with new numbers), then the rest; difficulty from the standing.
+- **Sprints:** skills are drawn at random with weights (`MENTAL_WEIGHT`: needs practice 3, new 2, solid 1, fast 0.5), each problem near the target difficulty; easier ones first.
+- **Pacing by age:** Level 1 needs 4 right in a row to be fast and speed never counts; speed counts only at Levels 3–4.
+- **Web:** `/mental/progress` shows each skill's standing next to its mastery.
+- Later (MN-adapt-2): a "Practise my weak skills" session, standing labels in the teacher grid, steps inside a sprint.
+
 ## Phases
 
 - **MN0 (done):** the track, tab, `/mental` home, levels, cheat sheets, tips, loader/sync, API, Quill audience.
@@ -126,4 +138,5 @@ The last lesson of each unit is the **⭐ unit check**: a warm-up, then 8 typed 
 - **MN2–MN3 (done):** Level 1 — Unit 2 Doubling & Halving (doubles, near doubles, halves, double one and halve the other), Unit 3 Compensation (add 9 and 19, add near a ten, take away near a ten, same difference), in the same format. All 15 units are now built.
 - **MN-unit-tests (done):** a 20-question, 25-minute test after every unit with the timer in the side panel.
 - **MN-practice (done):** the daily review with streaks, speed sprints with personal bests, level checks with badges, the placement check (`MentalStart`), the parent guide page, mastery per Mental Math skill, and a separate Mental Math mistakes list. The Mental Math track is complete.
+- **MN-adapt-1 (done):** the standing per skill, adaptive daily review and sprints, standing on My skills.
 - **MN-teacher (done):** the teacher's Mental Math skills & practice view on the class progress page (Part 9).

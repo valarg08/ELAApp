@@ -1,4 +1,4 @@
-import { MASTERY_LABELS, MentalProgress } from '@storyforge/shared';
+import { MASTERY_LABELS, MENTAL_STANDING_LABELS, MentalProgress } from '@storyforge/shared';
 import Link from 'next/link';
 import { CourseShell } from '@/components/course-shell';
 import { TrackTabs } from '@/components/track-tabs';
@@ -30,6 +30,10 @@ export default async function MentalProgressPage() {
           <p className="mt-2 text-lg text-muted">
             Every pattern you practise, from New to Mastered. A skill gets stronger with right
             answers on different days, so keep up the daily review.
+          </p>
+          <p className="mt-2 text-muted">
+            Your review and sprints adapt: skills that need practice come up more often with easier
+            problems, and skills that are solid and fast get harder ones.
           </p>
         </div>
         <TrackTabs current="MENTAL" />
@@ -76,6 +80,9 @@ export default async function MentalProgressPage() {
                       <span>{s.label}</span>
                       <span className="text-right text-sm">
                         <strong>{MASTERY_LABELS[s.level]}</strong>
+                        {s.standing !== 'new' && (
+                          <span className="block">{MENTAL_STANDING_LABELS[s.standing]}</span>
+                        )}
                         {s.accuracy !== null && (
                           <span className="block text-muted">
                             {s.accuracy}% · {s.answered} answered

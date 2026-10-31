@@ -8,6 +8,7 @@ import {
   MENTAL_PLACEMENT_PER_LEVEL,
   MENTAL_REVIEW_SIZE,
   MENTAL_SPRINT_MIN,
+  MENTAL_TARGET,
   MENTAL_SPRINT_SECONDS,
   MENTAL_SPRINT_SIZE,
   MENTAL_UNIT_TEST_PASS,
@@ -21,9 +22,12 @@ import {
   MentalLevelsFile,
   type MentalPractice,
   type MentalProgress,
+  type MentalStanding,
   type MentalUnitTest,
   type ProblemVerdict,
   type TestResult,
+  mentalPickSkills,
+  mentalStanding,
   mentalUnitOf,
   newSeed,
 } from '@storyforge/shared';
@@ -132,30 +136,63 @@ export class MentalPracticeService {
 
   // ───────── Planning ─────────
 
-  /** Quick problems (easier ones first) from finished lessons, a mix of skills. */
+  /**
+   * Where the student stands in each Mental Math skill (skills without answers are New). The
+   * level a skill belongs to (1–4) sets how many right answers in a row and how much speed count.
+   */
+  async standings(studentId: string): Promise<Map<string, MentalStanding>> {
+    const [skills, levels, rows] = await Promise.all([
+      this.skills(),
+      this.levels(),
+      this.mastery.rows([studentId]),
+    ]);
+    const levelOfUnit = new Map(levels.flatMap((l) => l.units.map((u) => [u.number, l.number])));
+    const mine = rows.get(studentId) ?? [];
+    return new Map(
+      skills.map((s) => [
+        s.id,
+        mentalStanding(
+          mine.filter((r) => r.skill === s.id),
+          levelOfUnit.get(s.units[0] ?? 0) ?? 2,
+        ),
+      ]),
+    );
+  }
+
+  /**
+   * Quick problems from finished lessons. Skills are drawn at random, favouring the ones that need
+   * practice, and each problem is near the difficulty the student is ready for in that skill:
+   * easy while a skill is new or shaky, harder once it is solid and fast. Easier ones come first.
+   */
   async sprintItems(user: AuthUser): Promise<MathTestItem[]> {
     const pool = await this.content.pool(user, 'MENTAL');
-    const easy = pool.filter((p) => p.problem.difficulty <= 2);
-    const source = easy.length >= MENTAL_SPRINT_MIN ? easy : pool;
-    if (source.length < MENTAL_SPRINT_MIN)
+    if (pool.length < MENTAL_SPRINT_MIN)
       throw unprocessable('Finish a Mental Math lesson first: sprints use what you have learned.');
+    const standings = await this.standings(user.id);
+    const bySkill = new Map<string, PoolProblem[]>();
+    for (const p of pool)
+      bySkill.set(p.problem.skill, [...(bySkill.get(p.problem.skill) ?? []), p]);
+    const known = new Map<string, MentalStanding>(
+      [...bySkill.keys()].map((s) => [s, standings.get(s) ?? 'new']),
+    );
     const picked: PoolProblem[] = [];
-    const skills = new Set<string>();
-    for (const p of shuffled(source)) {
-      if (picked.length >= MENTAL_SPRINT_SIZE) break;
-      if (!skills.has(p.problem.skill)) {
-        picked.push(p);
-        skills.add(p.problem.skill);
+    const near = (skill: string) => {
+      const target = MENTAL_TARGET[known.get(skill) ?? 'new'];
+      return shuffled(bySkill.get(skill) ?? [])
+        .filter((p) => !picked.includes(p) || p.problem.template)
+        .toSorted(
+          (a, b) =>
+            Math.abs(a.problem.difficulty - target) - Math.abs(b.problem.difficulty - target) ||
+            Number(!a.problem.template) - Number(!b.problem.template),
+        )[0];
+    };
+    // Each round gives every chosen skill one problem; a short pool goes round again (templates
+    // come back with new numbers).
+    for (let round = 0; round < 3 && picked.length < MENTAL_SPRINT_SIZE; round += 1) {
+      for (const skill of mentalPickSkills(known, MENTAL_SPRINT_SIZE - picked.length)) {
+        const p = near(skill);
+        if (p) picked.push(p);
       }
-    }
-    // Top up with the rest; templates can come back with new numbers.
-    const templates = source.filter((p) => p.problem.template);
-    for (const p of [
-      ...shuffled(source.filter((x) => !picked.includes(x))),
-      ...shuffled(templates),
-    ]) {
-      if (picked.length >= MENTAL_SPRINT_SIZE) break;
-      if (!picked.includes(p) || p.problem.template) picked.push(p);
     }
     return picked
       .toSorted((a, b) => a.problem.difficulty - b.problem.difficulty)
@@ -486,11 +523,12 @@ export class MentalPracticeService {
 
   /** Mastery per Mental Math skill, grouped by unit, with the streak, sprint best and badges. */
   async progress(user: AuthUser): Promise<MentalProgress> {
-    const [skills, levels, units, practice] = await Promise.all([
+    const [skills, levels, units, practice, standings] = await Promise.all([
       this.skills(),
       this.mastery.studentLevels(user.id),
       this.publishedUnits(),
       this.practice(user),
+      this.standings(user.id),
     ]);
     return {
       streak: practice.review.streak,
@@ -507,6 +545,7 @@ export class MentalPracticeService {
               skill: s.id,
               label: s.label,
               level: m?.level ?? 'new',
+              standing: standings.get(s.id) ?? 'new',
               accuracy: m?.accuracy ?? null,
               answered: m?.answered ?? 0,
             };
