@@ -1,4 +1,4 @@
-import { QUADRATICS_MIDDLE } from './psat-quadratics-middle';
+import { QUADRATICS_ALGEBRA1 } from './psat-quadratics-algebra1';
 import { QUADRATICS_PROBLEMS } from './psat-quadratics-problems';
 import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
@@ -288,7 +288,12 @@ export const QUADRATICS: Guide = {
   review: REVIEW,
   practice: PRACTICE,
   problems: QUADRATICS_PROBLEMS,
-  middleProblems: QUADRATICS_MIDDLE,
+  middleProblems: QUADRATICS_ALGEBRA1,
+  middleLevel: {
+    id: 'a1',
+    label: 'Algebra 1 (grade 9)',
+    note: "Aligned to Florida's B.E.S.T. Algebra 1 benchmarks (MA.912); each problem names the benchmark it practises. These follow the video's topics at the level of the Algebra 1 end-of-course exam.",
+  },
 };
 
 export function PsatQuadraticsGuide() {

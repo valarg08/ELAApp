@@ -36,6 +36,8 @@ export type Guide = {
   problems?: Record<string, GuideProblem[]>;
   /** Topic id → easier problems for middle schoolers, tagged with Florida B.E.S.T. benchmarks (grades 6–8). */
   middleProblems?: Record<string, GuideProblem[]>;
+  /** The easier level's name and note when it is not middle school (Quadratics is a grade 9, Algebra 1 level). */
+  middleLevel?: { id: string; label: string; note: string };
 };
 
 function DataTable({ caption, table }: { caption: string; table: Table }) {
@@ -160,10 +162,12 @@ export function GuideTopicPage({ guide, topicId }: { guide: Guide; topicId: stri
           ...(middle
             ? [
                 {
-                  id: 'ms',
-                  label: 'Middle school',
-                  storageKey: `guide:${guide.folder}:${t.id}:ms`,
-                  note: "Aligned to Florida's B.E.S.T. math benchmarks for grades 6–8; each problem names the benchmark it practises.",
+                  id: guide.middleLevel?.id ?? 'ms',
+                  label: guide.middleLevel?.label ?? 'Middle school',
+                  storageKey: `guide:${guide.folder}:${t.id}:${guide.middleLevel?.id ?? 'ms'}`,
+                  note:
+                    guide.middleLevel?.note ??
+                    "Aligned to Florida's B.E.S.T. math benchmarks for grades 6–8; each problem names the benchmark it practises.",
                   problems: middle,
                 },
               ]
@@ -241,7 +245,11 @@ export function StudyGuide({ guide }: { guide: Guide }) {
               >
                 Practice:{' '}
                 {guide.problems[t.id]!.length + (guide.middleProblems?.[t.id]?.length ?? 0)}{' '}
-                problems{guide.middleProblems?.[t.id] ? ' (middle school and PSAT)' : ''} →
+                problems
+                {guide.middleProblems?.[t.id]
+                  ? ` (${(guide.middleLevel?.label ?? 'middle school').toLowerCase()} and PSAT)`
+                  : ''}{' '}
+                →
               </Link>
             </p>
           )}
