@@ -124,7 +124,9 @@ Source: `packages/shared/src/curriculum/mental-adaptive.ts`. Unit tests, level c
 - **Sprints:** skills are drawn at random with weights (`MENTAL_WEIGHT`: needs practice 3, new 2, solid 1, fast 0.5), each problem near the target difficulty; easier ones first.
 - **Pacing by age:** Level 1 needs 4 right in a row to be fast and speed never counts; speed counts only at Levels 3–4.
 - **Web:** `/mental/progress` shows each skill's standing next to its mastery.
-- Later (MN-adapt-2): a "Practise my weak skills" session, standing labels in the teacher grid, steps inside a sprint.
+- **Practise my weak skills** (MN-adapt-2, kind `mental-weak`, start key `mental-weak`, instant-checked, no timer or score): the 3 weakest skills among the answered skills of finished lessons (needs practice first, then lowest accuracy), 4 problems each, climbing easy to harder (1,1,2,2 for a skill that needs practice, otherwise 1,2,2,3), new numbers when a template comes back, the skills taking turns. A card on `/mental`, a link on `/mental/progress`, `practice.weak` in `GET /mental/home`.
+- **Teachers:** the Skills & practice table has a "Needs practice" column (the skills at the shaky standing); `standings` per student in `ClassMentalSkills`.
+- Not done: steps inside a sprint (the sprint's list is built at the start; changing it as the student answers needs a change to the shared test engine).
 
 ## Phases
 
@@ -139,4 +141,5 @@ Source: `packages/shared/src/curriculum/mental-adaptive.ts`. Unit tests, level c
 - **MN-unit-tests (done):** a 20-question, 25-minute test after every unit with the timer in the side panel.
 - **MN-practice (done):** the daily review with streaks, speed sprints with personal bests, level checks with badges, the placement check (`MentalStart`), the parent guide page, mastery per Mental Math skill, and a separate Mental Math mistakes list. The Mental Math track is complete.
 - **MN-adapt-1 (done):** the standing per skill, adaptive daily review and sprints, standing on My skills.
+- **MN-adapt-2 (done):** Practise my weak skills, the teacher "Needs practice" column.
 - **MN-teacher (done):** the teacher's Mental Math skills & practice view on the class progress page (Part 9).

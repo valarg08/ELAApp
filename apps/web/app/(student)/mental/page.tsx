@@ -134,6 +134,17 @@ export default async function MentalHome() {
                 }
               />
               <PracticeCard
+                href="/mental/tests/mental-weak"
+                emoji="🎯"
+                title="Practise my weak skills"
+                line={
+                  practice.weak.skills.length === 0
+                    ? 'Opens after your first answers'
+                    : practice.weak.skills.map((s) => s.label).join(', ')
+                }
+                extra="Easy first, then harder"
+              />
+              <PracticeCard
                 href="/mental/tests/mental-placement"
                 emoji="🧭"
                 title="Placement check"

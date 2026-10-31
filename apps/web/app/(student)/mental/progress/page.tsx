@@ -33,7 +33,10 @@ export default async function MentalProgressPage() {
           </p>
           <p className="mt-2 text-muted">
             Your review and sprints adapt: skills that need practice come up more often with easier
-            problems, and skills that are solid and fast get harder ones.
+            problems, and skills that are solid and fast get harder ones.{' '}
+            <Link href="/mental/tests/mental-weak" className="text-brand underline">
+              Practise my weak skills
+            </Link>
           </p>
         </div>
         <TrackTabs current="MENTAL" />

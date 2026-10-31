@@ -9,6 +9,7 @@ import {
   MENTAL_UNIT_TEST_PASS,
   MENTAL_UNIT_TEST_SECONDS,
   MENTAL_UNIT_TEST_SIZE,
+  MENTAL_WEAK_PER_SKILL,
   MentalHome,
   MentalStartKey,
   mentalUnitOf,
@@ -55,6 +56,15 @@ export default async function MentalTestPage({ params }: PageProps<'/mental/test
       blocked = 'Finish a Mental Math lesson first: sprints use what you have learned.';
     label = 'Start the sprint';
     lastAttemptId = practice.sprint.lastAttemptId;
+  } else if (parsed.data === 'mental-weak') {
+    const skills = practice.weak.skills;
+    title = 'Practise my weak skills';
+    about = `${MENTAL_WEAK_PER_SKILL} questions on each of the skills you find hardest, starting easy and getting harder. Each answer is checked straight away. No timer and no score: it is just practice, and you can do it as often as you like.`;
+    if (skills.length === 0)
+      blocked =
+        'Answer a few questions in a lesson or the review first, and this will find the skills to work on.';
+    else about += ` Right now: ${skills.map((s) => s.label).join(', ')}.`;
+    label = 'Start practising';
   } else if (parsed.data === 'mental-placement') {
     title = 'Placement check';
     about = `Not sure where to start? Answer ${MENTAL_PLACEMENT_PER_LEVEL} questions from each of the four levels, easiest first. There is no timer and no hints: just do what you can and leave the rest blank. Your result shows the level to start at and opens its units.`;

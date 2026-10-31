@@ -349,6 +349,7 @@ export const MATH_TEST_KINDS = [
   // Mental Math (mental-math-design.md): the daily review, speed sprints, placement and level checks.
   'mental-review',
   'mental-sprint',
+  'mental-weak',
   'mental-placement',
   'mental-level',
   'mental-unit',
@@ -360,6 +361,7 @@ export type MathTestKind = z.infer<typeof MathTestKind>;
 export const MENTAL_START_KEYS = [
   'mental-review',
   'mental-sprint',
+  'mental-weak',
   'mental-placement',
   'mental-level-1',
   'mental-level-2',

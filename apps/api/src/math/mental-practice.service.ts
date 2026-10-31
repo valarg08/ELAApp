@@ -1,6 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import type { MathTestAttempt } from '@storyforge/db';
 import {
+  type AnswerRow,
   type ClassMentalSkills,
   ErrorCode,
   MENTAL_LEVEL_CHECK_SIZE,
@@ -9,6 +10,8 @@ import {
   MENTAL_REVIEW_SIZE,
   MENTAL_SPRINT_MIN,
   MENTAL_TARGET,
+  MENTAL_WEAK_PER_SKILL,
+  MENTAL_WEAK_SKILLS,
   MENTAL_SPRINT_SECONDS,
   MENTAL_SPRINT_SIZE,
   MENTAL_UNIT_TEST_PASS,
@@ -141,13 +144,14 @@ export class MentalPracticeService {
    * level a skill belongs to (1–4) sets how many right answers in a row and how much speed count.
    */
   async standings(studentId: string): Promise<Map<string, MentalStanding>> {
-    const [skills, levels, rows] = await Promise.all([
-      this.skills(),
-      this.levels(),
-      this.mastery.rows([studentId]),
-    ]);
+    const rows = await this.mastery.rows([studentId]);
+    return this.standingsOf(rows.get(studentId) ?? []);
+  }
+
+  /** The same from answer rows already loaded (for a whole class). */
+  async standingsOf(mine: readonly AnswerRow[]): Promise<Map<string, MentalStanding>> {
+    const [skills, levels] = await Promise.all([this.skills(), this.levels()]);
     const levelOfUnit = new Map(levels.flatMap((l) => l.units.map((u) => [u.number, l.number])));
-    const mine = rows.get(studentId) ?? [];
     return new Map(
       skills.map((s) => [
         s.id,
@@ -157,6 +161,71 @@ export class MentalPracticeService {
         ),
       ]),
     );
+  }
+
+  /**
+   * The skills "Practise my weak skills" works on: among the skills of finished lessons that the
+   * student has answered, those that need practice first, then the lowest accuracy.
+   */
+  async weakSkills(user: AuthUser, pool?: PoolProblem[]) {
+    const [skills, standings, levels, finished] = await Promise.all([
+      this.skills(),
+      this.standings(user.id),
+      this.mastery.studentLevels(user.id),
+      pool ?? this.content.pool(user, 'MENTAL'),
+    ]);
+    const inPool = new Set(finished.map((p) => p.problem.skill));
+    return skills
+      .filter((s) => inPool.has(s.id) && (levels.get(s.id)?.answered ?? 0) > 0)
+      .map((s) => ({
+        skill: s.id,
+        label: s.label,
+        standing: standings.get(s.id) ?? ('new' as const),
+        accuracy: levels.get(s.id)?.accuracy ?? 100,
+      }))
+      .toSorted(
+        (a, b) =>
+          Number(b.standing === 'shaky') - Number(a.standing === 'shaky') ||
+          a.accuracy - b.accuracy,
+      )
+      .slice(0, MENTAL_WEAK_SKILLS);
+  }
+
+  /**
+   * "Practise my weak skills": a few problems on each of the weakest skills, checked straight
+   * away. Each skill climbs from easy to harder (easier for a skill that needs practice), with new
+   * numbers when a pattern comes back, and the skills take turns.
+   */
+  async weakItems(user: AuthUser): Promise<MathTestItem[]> {
+    const pool = await this.content.pool(user, 'MENTAL');
+    const weak = await this.weakSkills(user, pool);
+    if (weak.length === 0)
+      throw unprocessable(
+        'Do a few questions first: this practice works on the skills you find hard.',
+      );
+    const ladders = weak.map((w) => {
+      const own = pool.filter((p) => p.problem.skill === w.skill);
+      const steps = w.standing === 'shaky' || w.standing === 'new' ? [1, 1, 2, 2] : [1, 2, 2, 3];
+      const taken: PoolProblem[] = [];
+      for (const target of steps.slice(0, MENTAL_WEAK_PER_SKILL)) {
+        const next = shuffled(own)
+          .filter((p) => !taken.includes(p) || p.problem.template)
+          .toSorted(
+            (a, b) =>
+              Math.abs(a.problem.difficulty - target) - Math.abs(b.problem.difficulty - target) ||
+              Number(!a.problem.template) - Number(!b.problem.template),
+          )[0];
+        if (next) taken.push(next);
+      }
+      return taken;
+    });
+    const items: MathTestItem[] = [];
+    for (let i = 0; i < MENTAL_WEAK_PER_SKILL; i += 1)
+      for (const ladder of ladders) {
+        const p = ladder[i];
+        if (p) items.push(this.item(p.activityKey, p.problem, p.lessonId));
+      }
+    return items;
   }
 
   /**
@@ -310,6 +379,12 @@ export class MentalPracticeService {
         title: 'Today’s review',
         instructions:
           'A short mix from the Mental Math lessons you have finished: mistakes to redo first, then skills that are due. Each answer is checked straight away.',
+      };
+    if (kind === 'mental-weak')
+      return {
+        title: 'Practise my weak skills',
+        instructions:
+          'A few questions on each of the skills you find hardest, starting easy and getting harder. Each answer is checked straight away, with the worked solution. There is no timer and no score: it is just practice.',
       };
     if (kind === 'mental-sprint')
       return {
@@ -499,7 +574,9 @@ export class MentalPracticeService {
         lastAttemptId: done[0]?.id ?? null,
       });
     }
+    const weak = await this.weakSkills(user, pool);
     return {
+      weak: { skills: weak.map((w) => ({ skill: w.skill, label: w.label })) },
       review: {
         due: Math.min(MENTAL_REVIEW_SIZE, Math.min(dueRedos, 3) + dueSkills),
         doneToday: doneToday > 0,
@@ -596,6 +673,7 @@ export class MentalPracticeService {
     for (const e of enrollments) {
       const mine = rows.get(e.studentId) ?? [];
       const levels = this.mastery.levels(mine);
+      const standings = await this.standingsOf(mine);
       const sprints = attempts.filter(
         (a) => a.studentId === e.studentId && a.kind === 'mental-sprint',
       );
@@ -623,6 +701,9 @@ export class MentalPracticeService {
           shown.map((s) => [s.skill, levels.get(s.skill)?.level ?? 'new']),
         ),
         answered: new Set(mine.map((r) => r.skill)),
+        standings: Object.fromEntries(
+          shown.map((s) => [s.skill, standings.get(s.skill) ?? ('new' as const)]),
+        ),
         startLevel: startOf.get(e.studentId) ?? null,
         badges,
         streak: await reviewStreak(this.db, e.studentId, 'mental-review'),

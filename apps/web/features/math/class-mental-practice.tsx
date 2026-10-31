@@ -1,4 +1,4 @@
-import type { ClassMentalSkills } from '@storyforge/shared';
+import { type ClassMentalSkills, MENTAL_STANDING_LABELS } from '@storyforge/shared';
 import { clock } from './copy';
 
 const midnight = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
@@ -9,6 +9,27 @@ function LastPractice({ at }: { at: string | null }) {
   const days = Math.round((midnight(new Date()) - midnight(new Date(at))) / (24 * 60 * 60 * 1000));
   return (
     <time dateTime={at}>{days <= 0 ? 'Today' : days === 1 ? 'Yesterday' : `${days} days ago`}</time>
+  );
+}
+
+/** The skills a student's practice treats as needing work (adaptive practice's standing). */
+function NeedsPractice({
+  student,
+  skills,
+}: {
+  student: ClassMentalSkills['students'][number];
+  skills: ClassMentalSkills['skills'];
+}) {
+  const shaky = skills.filter((k) => student.standings[k.skill] === 'shaky');
+  if (shaky.length === 0) return <span className="text-muted">None</span>;
+  return (
+    <span title={MENTAL_STANDING_LABELS.shaky}>
+      {shaky
+        .slice(0, 3)
+        .map((k) => k.label)
+        .join(', ')}
+      {shaky.length > 3 && ` and ${shaky.length - 3} more`}
+    </span>
   );
 }
 
@@ -54,6 +75,9 @@ export function ClassMentalPractice({ data }: { data: ClassMentalSkills }) {
                   Best sprint
                 </th>
                 <th scope="col" className="p-3 font-semibold">
+                  Needs practice
+                </th>
+                <th scope="col" className="p-3 font-semibold">
                   Last practice
                 </th>
               </tr>
@@ -97,6 +121,9 @@ export function ClassMentalPractice({ data }: { data: ClassMentalSkills }) {
                     ) : (
                       <span className="text-muted">Not yet</span>
                     )}
+                  </td>
+                  <td className="p-3">
+                    <NeedsPractice student={s} skills={data.skills} />
                   </td>
                   <td className="p-3 whitespace-nowrap">
                     <LastPractice at={s.lastPracticeAt} />

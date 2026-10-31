@@ -61,7 +61,7 @@ const Answers = z.record(z.string(), MathTestAnswer);
 const GRACE_MS = 30_000;
 
 /** Instant-check kinds: each answer is checked as it is given. */
-const INSTANT: readonly MathTestKind[] = ['review', 'light-review', 'mental-review'];
+const INSTANT: readonly MathTestKind[] = ['review', 'light-review', 'mental-review', 'mental-weak'];
 /** Once-a-day kinds (their attempt key carries the day). */
 const DAILY = ['review', 'light-review', 'mental-review'] as const;
 const isDaily = (key: string): key is (typeof DAILY)[number] =>
@@ -186,6 +186,12 @@ export class MathTestsService {
       return {
         kind: 'mental-review',
         items: await this.reviewItems(user, 'MENTAL'),
+        timeLimitSeconds: null,
+      };
+    if (key === 'mental-weak')
+      return {
+        kind: 'mental-weak',
+        items: await this.mental.weakItems(user),
         timeLimitSeconds: null,
       };
     if (key === 'mental-sprint')

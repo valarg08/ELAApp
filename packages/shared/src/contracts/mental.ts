@@ -4,6 +4,9 @@ import { MentalStanding } from '../curriculum/mental-adaptive.js';
 import { MasteryLevel } from './math.js';
 
 export const MENTAL_REVIEW_SIZE = 6;
+/** "Practise my weak skills": this many skills, with this many problems each. */
+export const MENTAL_WEAK_SKILLS = 3;
+export const MENTAL_WEAK_PER_SKILL = 4;
 export const MENTAL_SPRINT_SIZE = 10;
 export const MENTAL_SPRINT_SECONDS = 180;
 /** Problems a sprint needs to choose from (from finished lessons). */
@@ -62,6 +65,8 @@ export const MentalPractice = z.object({
     best: z.object({ correct: z.number(), seconds: z.number() }).nullable(),
     lastAttemptId: z.string().nullable(),
   }),
+  /** The skills "Practise my weak skills" would work on now (empty: nothing answered yet). */
+  weak: z.object({ skills: z.array(z.object({ skill: z.string(), label: z.string() })) }),
   placement: z.object({
     level: z.number().nullable(),
     startUnit: z.number().nullable(),
@@ -124,6 +129,8 @@ export const ClassMentalSkills = z.object({
       studentId: z.string(),
       displayName: z.string(),
       levels: z.record(z.string(), MasteryLevel),
+      /** Where practice treats each skill (the same skills as `levels`). */
+      standings: z.record(z.string(), MentalStanding),
       /** The placement check's starting level (null: not taken). */
       startLevel: z.number().nullable(),
       /** Levels whose check is passed. */
