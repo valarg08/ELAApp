@@ -1,0 +1,304 @@
+[
+  {
+    "id": "w04-m1-01",
+    "prompt": "If $3x + 7 = 31$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["7", "9", "8", "24"],
+      "correct": "C"
+    },
+    "solution": "Subtract 7 from both sides: $3x = 24$. Divide by 3: $x = 8$.",
+    "skill": "linear-equations-1",
+    "difficulty": 1,
+    "compute": "(31-7)/3"
+  },
+  {
+    "id": "w04-m1-02",
+    "prompt": "A gym charges a sign-up fee of \\$25 plus \\$12 per month. Which equation gives the total cost $C$, in dollars, after $m$ months?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$C = 12 + 25m$", "$C = 37m$", "$C = 25(12 + m)$", "$C = 25 + 12m$"],
+      "correct": "D"
+    },
+    "solution": "The fee of \\$25 is paid once, and \\$12 is added for each of the $m$ months, so $C = 25 + 12m$.",
+    "skill": "linear-equations-2",
+    "difficulty": 1
+  },
+  {
+    "id": "w04-m1-03",
+    "prompt": "Which expression is equivalent to $4(x - 3) + 2x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$6x - 3$", "$2x - 12$", "$6x + 12$", "$6x - 12$"],
+      "correct": "D"
+    },
+    "solution": "Distribute: $4x - 12 + 2x$. Combine like terms: $6x - 12$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 1
+  },
+  {
+    "id": "w04-m1-04",
+    "prompt": "A hose fills a 60-liter tank in 4 minutes. At this rate, how many minutes does it take to fill a 135-liter tank?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["9"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The hose delivers $60 \\div 4 = 15$ liters per minute, so a 135-liter tank takes $135 \\div 15 = 9$ minutes.",
+    "skill": "ratios-rates",
+    "difficulty": 1,
+    "compute": "135/(60/4)"
+  },
+  {
+    "id": "w04-m1-05",
+    "prompt": "A spinner has 8 equal sections numbered 1 through 8. What is the probability that the spinner lands on a number greater than 5?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["3/8"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The numbers greater than 5 are 6, 7 and 8, which is 3 of the 8 equal sections, so the probability is $\\frac{3}{8}$ (or 0.375).",
+    "skill": "probability",
+    "difficulty": 1,
+    "compute": "3/8"
+  },
+  {
+    "id": "w04-m1-06",
+    "prompt": "$\\frac{2x - 1}{3} = 7$. What is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["7", "11", "10", "22"],
+      "correct": "B"
+    },
+    "solution": "Multiply both sides by 3: $2x - 1 = 21$. Add 1: $2x = 22$, so $x = 11$.",
+    "skill": "linear-equations-1",
+    "difficulty": 2,
+    "compute": "(7*3+1)/2"
+  },
+  {
+    "id": "w04-m1-07",
+    "prompt": "A school store sells pencils for \\$0.50 each and notebooks for \\$3 each. Priya buys 6 pencils and some notebooks for a total of \\$12. How many notebooks did Priya buy?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["3"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The 6 pencils cost $6 \\times 0.50 = 3$ dollars, so the notebooks cost $12 - 3 = 9$ dollars. At \\$3 each, Priya bought $9 \\div 3 = 3$ notebooks.",
+    "skill": "linear-equations-2",
+    "difficulty": 2,
+    "compute": "(12-0.5*6)/3"
+  },
+  {
+    "id": "w04-m1-08",
+    "prompt": "The function $h$ is defined by $h(x) = 5x - 7$. For what value of $x$ is $h(x) = 18$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["5", "2.2", "4", "25"],
+      "correct": "A"
+    },
+    "solution": "Set $5x - 7 = 18$. Add 7: $5x = 25$. Divide by 5: $x = 5$.",
+    "skill": "linear-functions",
+    "difficulty": 2,
+    "compute": "(18+7)/5"
+  },
+  {
+    "id": "w04-m1-09",
+    "prompt": "If $x + y = 9$ and $x - y = 3$, what is the value of $y$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["6", "3", "9", "12"],
+      "correct": "B"
+    },
+    "solution": "Add the equations: $2x = 12$, so $x = 6$. Then $y = 9 - 6 = 3$. (Or subtract the equations: $2y = 6$.)",
+    "skill": "systems",
+    "difficulty": 2,
+    "compute": "(9-3)/2"
+  },
+  {
+    "id": "w04-m1-10",
+    "prompt": "What is the positive solution of the equation $x^2 - 9 = 40$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["7", "3", "31", "49"],
+      "correct": "A"
+    },
+    "solution": "Add 9: $x^2 = 49$. So $x = 7$ or $x = -7$, and the positive solution is 7.",
+    "skill": "nonlinear-equations",
+    "difficulty": 2,
+    "compute": "sqrt(40+9)"
+  },
+  {
+    "id": "w04-m1-11",
+    "prompt": "The function $f$ is defined by $f(x) = 2x^2 - x + 3$. What is the value of $f(-2)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["-3", "7", "13", "9"],
+      "correct": "C"
+    },
+    "solution": "$f(-2) = 2(-2)^2 - (-2) + 3 = 8 + 2 + 3 = 13$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 2,
+    "compute": "2*(-2)^2-(-2)+3"
+  },
+  {
+    "id": "w04-m1-12",
+    "prompt": "A school fundraiser raised \\$480 last year. This year it raised 25% more than last year. How much, in dollars, did it raise this year?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["120", "360", "505", "600"],
+      "correct": "D"
+    },
+    "solution": "This year's amount is 125% of last year's: $480 \\times 1.25 = 600$ dollars.",
+    "skill": "percentages",
+    "difficulty": 2,
+    "compute": "480*1.25"
+  },
+  {
+    "id": "w04-m1-13",
+    "prompt": "What is the median of the data set 9, 4, 15, 7, 12?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["9", "7", "9.4", "12"],
+      "correct": "A"
+    },
+    "solution": "Order the values: 4, 7, 9, 12, 15. The middle value is 9. (The number 9.4 is the mean, not the median.)",
+    "skill": "one-variable-data",
+    "difficulty": 2,
+    "compute": "9"
+  },
+  {
+    "id": "w04-m1-14",
+    "prompt": "The scatterplot shows the hours per day a plant lamp is on and the plant's growth in a week, in millimeters, for 9 plants. The line of best fit is $y = 4x + 6$. According to the line, what is the predicted growth, in millimeters, for a plant whose lamp is on 7 hours per day?",
+    "figure": {
+      "file": "scatter-lamp.svg",
+      "alt": "Scatterplot of 9 points with hours of lamp light per day from 1 to 9 on the x-axis and growth in millimeters on the y-axis. The points rise from about 11 at 1 hour to about 41 at 9 hours. A line of best fit passes through (0, 6) and (10, 46).",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["7", "28", "34", "46"],
+      "correct": "C"
+    },
+    "solution": "Substitute $x = 7$ into the equation of the line: $y = 4(7) + 6 = 28 + 6 = 34$.",
+    "skill": "two-variable-data",
+    "difficulty": 2,
+    "compute": "4*7+6"
+  },
+  {
+    "id": "w04-m1-15",
+    "prompt": "The bar graph shows the number of customers a cafe had on each of five days. What was the mean number of customers per day?",
+    "figure": {
+      "file": "bars-customers.svg",
+      "alt": "Bar graph of customers by day: Monday 14, Tuesday 22, Wednesday 18, Thursday 10, Friday 26.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["16", "18", "20", "90"],
+      "correct": "B"
+    },
+    "solution": "The total is $14 + 22 + 18 + 10 + 26 = 90$ customers over 5 days, so the mean is $90 \\div 5 = 18$.",
+    "skill": "one-variable-data",
+    "difficulty": 2,
+    "compute": "(14+22+18+10+26)/5"
+  },
+  {
+    "id": "w04-m1-16",
+    "prompt": "A cylinder has a radius of 3 and a height of 10. What is the volume of the cylinder?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$30\\pi$", "$60\\pi$", "$300\\pi$", "$90\\pi$"],
+      "correct": "D"
+    },
+    "solution": "Volume $= \\pi r^2 h = \\pi (3^2)(10) = 90\\pi$.",
+    "skill": "area-volume",
+    "difficulty": 2
+  },
+  {
+    "id": "w04-m1-17",
+    "prompt": "A right triangle has legs of length 9 and 12. What is the length of its hypotenuse?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["15"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "By the Pythagorean theorem, the hypotenuse is $\\sqrt{9^2 + 12^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 2,
+    "compute": "sqrt(9^2+12^2)"
+  },
+  {
+    "id": "w04-m1-18",
+    "prompt": "The three angles of the triangle shown measure $x°$, $2x°$ and $3x°$. What is the measure of the largest angle?",
+    "figure": {
+      "file": "angles-ratio.svg",
+      "alt": "A triangle with its three angles marked x degrees at the lower left, 2x degrees at the lower right and 3x degrees at the top.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["$90°$", "$30°$", "$60°$", "$120°$"],
+      "correct": "A"
+    },
+    "solution": "The angles of a triangle add to $180°$: $x + 2x + 3x = 6x = 180$, so $x = 30$. The largest angle is $3x = 90°$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 2
+  },
+  {
+    "id": "w04-m1-19",
+    "prompt": "A line has a slope of $-2$ and passes through the point $(3, 1)$. At which point does the line cross the $y$-axis?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$(0, -7)$", "$(0, -5)$", "$(0, 7)$", "$(0, 5)$"],
+      "correct": "C"
+    },
+    "solution": "Use $y = -2x + b$ with the point $(3, 1)$: $1 = -6 + b$, so $b = 7$. The line crosses the $y$-axis at $(0, 7)$.",
+    "skill": "linear-functions",
+    "difficulty": 3
+  },
+  {
+    "id": "w04-m1-20",
+    "prompt": "$3x + 2y = 22$ and $5x - 2y = 18$. What is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["5"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Add the equations to eliminate $y$: $8x = 40$, so $x = 5$. (Then $y = \\frac{7}{2}$.)",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "40/8"
+  },
+  {
+    "id": "w04-m1-21",
+    "prompt": "A hiker starts with 20 liters of water and uses 1.5 liters each hour. She wants at least 5 liters left at the end. What is the greatest whole number of hours she can hike?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["10"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "After $h$ hours she has $20 - 1.5h$ liters, and this must be at least 5: $20 - 1.5h \\ge 5$. So $1.5h \\le 15$ and $h \\le 10$. The greatest whole number of hours is 10.",
+    "skill": "linear-inequalities",
+    "difficulty": 3,
+    "compute": "(20-5)/1.5"
+  },
+  {
+    "id": "w04-m1-22",
+    "prompt": "A ball is thrown upward from a height of 2 meters. Its height, in meters, after $t$ seconds is $h = -5t^2 + 20t + 2$. What is the height of the ball after 3 seconds?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["15", "17", "47", "62"],
+      "correct": "B"
+    },
+    "solution": "Substitute $t = 3$: $h = -5(9) + 20(3) + 2 = -45 + 60 + 2 = 17$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 3,
+    "compute": "-5*3^2+20*3+2"
+  }
+]

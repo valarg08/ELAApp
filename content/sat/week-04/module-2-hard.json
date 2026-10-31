@@ -1,0 +1,320 @@
+[
+  {
+    "id": "w04-m2h-01",
+    "prompt": "In the equation $5(x - 3) + a = 2x + 9$, $a$ is a constant and $x = 4$ is a solution. What is the value of $a$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["-12", "12", "3", "20"],
+      "correct": "B"
+    },
+    "solution": "Substitute $x = 4$: $5(1) + a = 8 + 9$, so $5 + a = 17$ and $a = 12$.",
+    "skill": "linear-equations-1",
+    "difficulty": 2,
+    "compute": "(2*4+9)-5*(4-3)"
+  },
+  {
+    "id": "w04-m2h-02",
+    "prompt": "The graph shows a segment of the linear function $f$, which passes through the points $(2, 11)$ and $(6, 3)$. What is the value of $f(0)$?",
+    "figure": {
+      "file": "line-segment.svg",
+      "alt": "A segment of a line on a coordinate grid from the point (2, 11) at the upper left to the point (6, 3) at the lower right, sloping downward.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["15", "7", "13", "19"],
+      "correct": "A"
+    },
+    "solution": "The slope is $\\frac{3 - 11}{6 - 2} = -2$. Going from $x = 2$ back to $x = 0$ is 2 steps to the left, so $f(0) = 11 + 2 \\times 2 = 15$.",
+    "skill": "linear-functions",
+    "difficulty": 2,
+    "compute": "11+2*2"
+  },
+  {
+    "id": "w04-m2h-03",
+    "prompt": "The equation $x^2 - 6x + c = 0$, where $c$ is a constant, has exactly one solution. What is the value of $c$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["9", "3", "6", "36"],
+      "correct": "A"
+    },
+    "solution": "One solution means the discriminant is 0: $(-6)^2 - 4(1)(c) = 0$, so $36 = 4c$ and $c = 9$. (Check: $x^2 - 6x + 9 = (x - 3)^2$.)",
+    "skill": "nonlinear-equations",
+    "difficulty": 2,
+    "compute": "6^2/4"
+  },
+  {
+    "id": "w04-m2h-04",
+    "prompt": "Each number in a data set is increased by 4. Which of the following statements about the new data set, compared with the original, must be true?",
+    "answer": {
+      "kind": "choice",
+      "choices": [
+        "The mean and the standard deviation both increase by 4.",
+        "The mean stays the same and the standard deviation increases by 4.",
+        "The mean and the standard deviation both stay the same.",
+        "The mean increases by 4 and the standard deviation stays the same."
+      ],
+      "correct": "D"
+    },
+    "solution": "Adding 4 to every value shifts the whole data set up by 4, so the mean increases by 4. The spread does not change, so the standard deviation stays the same.",
+    "skill": "one-variable-data",
+    "difficulty": 2
+  },
+  {
+    "id": "w04-m2h-05",
+    "prompt": "Events $A$ and $B$ are independent. The probability of $A$ is 0.4 and the probability of $B$ is 0.5. What is the probability that $A$ or $B$ (or both) occurs?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["0.2", "0.45", "0.7", "0.9"],
+      "correct": "C"
+    },
+    "solution": "For independent events, $P(A \\text{ and } B) = 0.4 \\times 0.5 = 0.2$. Then $P(A \\text{ or } B) = 0.4 + 0.5 - 0.2 = 0.7$.",
+    "skill": "probability",
+    "difficulty": 2,
+    "compute": "0.4+0.5-0.4*0.5"
+  },
+  {
+    "id": "w04-m2h-06",
+    "prompt": "$\\frac{3}{x - 2} = \\frac{5}{x + 4}$, where $x \\neq 2$ and $x \\neq -4$. What is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["-11", "1", "11", "7"],
+      "correct": "C"
+    },
+    "solution": "Cross-multiply: $3(x + 4) = 5(x - 2)$, so $3x + 12 = 5x - 10$. Then $22 = 2x$ and $x = 11$. (Check: $\\frac{3}{9} = \\frac{5}{15}$.)",
+    "skill": "linear-equations-1",
+    "difficulty": 3,
+    "compute": "22/2"
+  },
+  {
+    "id": "w04-m2h-07",
+    "prompt": "In the $xy$-plane, the line $kx + 5y = 20$ has a slope of $-2$. What is the value of $k$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["-10", "-2", "4", "10"],
+      "correct": "D"
+    },
+    "solution": "Solve for $y$: $5y = -kx + 20$, so $y = -\\frac{k}{5}x + 4$. The slope is $-\\frac{k}{5} = -2$, so $k = 10$.",
+    "skill": "linear-equations-2",
+    "difficulty": 3,
+    "compute": "2*5"
+  },
+  {
+    "id": "w04-m2h-08",
+    "prompt": "At a fair, 3 rides and 4 games cost \\$31 in total, and 5 rides and 2 games cost \\$33 in total. Every ride costs the same amount and every game costs the same amount. What is the cost, in dollars, of 2 rides and 3 games?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["22"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Let a ride cost $r$ and a game cost $g$: $3r + 4g = 31$ and $5r + 2g = 33$. Double the second equation: $10r + 4g = 66$. Subtract the first: $7r = 35$, so $r = 5$. Then $4g = 16$ and $g = 4$. Two rides and 3 games cost $2(5) + 3(4) = 22$ dollars.",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "2*5+3*4"
+  },
+  {
+    "id": "w04-m2h-09",
+    "prompt": "In the $xy$-plane, a line passes through the point $(-2, 1)$ and is perpendicular to the line $y = 2x + 3$. Which equation represents the line?",
+    "answer": {
+      "kind": "choice",
+      "choices": [
+        "$y = 2x + 5$",
+        "$y = -2x - 3$",
+        "$y = -\\frac{1}{2}x$",
+        "$y = \\frac{1}{2}x + 2$"
+      ],
+      "correct": "C"
+    },
+    "solution": "The slope of a perpendicular line is the negative reciprocal of 2, which is $-\\frac{1}{2}$. Using $1 = -\\frac{1}{2}(-2) + b$ gives $1 = 1 + b$, so $b = 0$ and the line is $y = -\\frac{1}{2}x$.",
+    "skill": "linear-functions",
+    "difficulty": 3
+  },
+  {
+    "id": "w04-m2h-10",
+    "prompt": "The sum of the ages of a mother and her daughter is 48 years. In 6 years, the mother will be 3 times as old as her daughter will be then. How old, in years, is the daughter now?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["9"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Let the mother be $m$ and the daughter $d$. Then $m + d = 48$ and $m + 6 = 3(d + 6)$, so $m = 3d + 12$. Substitute: $3d + 12 + d = 48$, so $4d = 36$ and $d = 9$.",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "(48-12)/4"
+  },
+  {
+    "id": "w04-m2h-11",
+    "prompt": "How many integers $x$ satisfy the inequality $-3 < 2x + 1 \\le 9$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["6"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Subtract 1 from all parts: $-4 < 2x \\le 8$. Divide by 2: $-2 < x \\le 4$. The integers are $-1, 0, 1, 2, 3, 4$, which is 6 integers.",
+    "skill": "linear-inequalities",
+    "difficulty": 3,
+    "compute": "4-(0-2)"
+  },
+  {
+    "id": "w04-m2h-12",
+    "prompt": "What is the sum of the solutions of the equation $|2x - 5| = 9$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["-2", "5", "7", "9"],
+      "correct": "B"
+    },
+    "solution": "Either $2x - 5 = 9$, so $x = 7$, or $2x - 5 = -9$, so $x = -2$. The sum is $7 + (-2) = 5$.",
+    "skill": "linear-equations-1",
+    "difficulty": 3,
+    "compute": "7-2"
+  },
+  {
+    "id": "w04-m2h-13",
+    "prompt": "Which expression is equivalent to $(3x + 2)(x - 4) - x(x + 1)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$2x^2 - 9x - 8$", "$2x^2 - 11x + 8$", "$4x^2 - 11x - 8$", "$2x^2 - 11x - 8$"],
+      "correct": "D"
+    },
+    "solution": "Expand the first product: $3x^2 - 12x + 2x - 8 = 3x^2 - 10x - 8$. Subtract $x(x + 1) = x^2 + x$: $3x^2 - 10x - 8 - x^2 - x = 2x^2 - 11x - 8$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 3
+  },
+  {
+    "id": "w04-m2h-14",
+    "prompt": "The system of equations $y = 2x + 1$ and $y = x^2 - 2$ has two solutions $(x, y)$. What is the sum of the $x$-coordinates of the two solutions?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["2"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Set the expressions equal: $x^2 - 2 = 2x + 1$, so $x^2 - 2x - 3 = 0$. This factors as $(x - 3)(x + 1) = 0$, so $x = 3$ or $x = -1$. The sum is $3 + (-1) = 2$.",
+    "skill": "nonlinear-equations",
+    "difficulty": 3,
+    "compute": "3-1"
+  },
+  {
+    "id": "w04-m2h-15",
+    "prompt": "The graph of the quadratic function $f$ is a parabola with its vertex at $(-1, 8)$ that passes through the point $(0, 6)$. What is the product of the $x$-intercepts of the parabola?",
+    "figure": {
+      "file": "parabola.svg",
+      "alt": "A downward-opening parabola on a coordinate grid with its highest point (vertex) at (-1, 8) and passing through the point (0, 6).",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "value",
+      "accepted": ["-3"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "In vertex form, $f(x) = a(x + 1)^2 + 8$. Since $f(0) = 6$: $a + 8 = 6$, so $a = -2$. Set $-2(x + 1)^2 + 8 = 0$: $(x + 1)^2 = 4$, so $x = 1$ or $x = -3$. The product of the $x$-intercepts is $1 \\times (-3) = -3$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 3,
+    "compute": "1*(0-3)"
+  },
+  {
+    "id": "w04-m2h-16",
+    "prompt": "The amount of a medicine in a patient's blood is cut in half every 3 hours. The patient starts with 400 milligrams. How many milligrams are in the blood after 9 hours?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["50"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Nine hours is 3 periods of 3 hours, so the amount is halved 3 times: $400 \\times \\left(\\frac{1}{2}\\right)^3 = 400 \\times \\frac{1}{8} = 50$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 3,
+    "compute": "400*0.5^3"
+  },
+  {
+    "id": "w04-m2h-17",
+    "prompt": "A boat travels 24 kilometers downstream in 2 hours. It then returns the same 24 kilometers upstream in 3 hours. The boat's own speed and the current stay constant. What is the speed of the current, in kilometers per hour?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["1", "4", "2", "10"],
+      "correct": "C"
+    },
+    "solution": "Downstream speed is $24 \\div 2 = 12$ km/h (boat plus current) and upstream speed is $24 \\div 3 = 8$ km/h (boat minus current). The current is half the difference: $\\frac{12 - 8}{2} = 2$ km/h.",
+    "skill": "ratios-rates",
+    "difficulty": 3,
+    "compute": "(12-8)/2"
+  },
+  {
+    "id": "w04-m2h-18",
+    "prompt": "In a class, 60% of the students are girls, and 25% of the girls play soccer. If 6 girls in the class play soccer, how many students are in the class?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["24", "40", "36", "48"],
+      "correct": "B"
+    },
+    "solution": "The 6 soccer players are 25% of the girls, so there are $6 \\div 0.25 = 24$ girls. The girls are 60% of the class, so the class has $24 \\div 0.6 = 40$ students.",
+    "skill": "percentages",
+    "difficulty": 3,
+    "compute": "6/0.25/0.6"
+  },
+  {
+    "id": "w04-m2h-19",
+    "prompt": "The scatterplot shows 9 data points and a line of best fit that passes through $(0, 12)$ and $(10, 52)$. One data point is $(7, 45)$. What is the difference between the actual $y$-value of this point and the $y$-value predicted by the line of best fit at $x = 7$?",
+    "figure": {
+      "file": "scatter-residual.svg",
+      "alt": "Scatterplot of 9 points rising from about 18 at x = 1 to about 50 at x = 9, with a line of best fit from (0, 12) to (10, 52). The point at x = 7 is at height 45, above the line.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["5", "3", "7", "40"],
+      "correct": "A"
+    },
+    "solution": "The line has slope $\\frac{52 - 12}{10 - 0} = 4$, so at $x = 7$ it predicts $12 + 4(7) = 40$. The actual value is 45, so the difference is $45 - 40 = 5$.",
+    "skill": "two-variable-data",
+    "difficulty": 3,
+    "compute": "45-(12+4*7)"
+  },
+  {
+    "id": "w04-m2h-20",
+    "prompt": "A cone has a base radius of 6 and a slant height of 10. What is the volume of the cone?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$60\\pi$", "$96\\pi$", "$120\\pi$", "$288\\pi$"],
+      "correct": "B"
+    },
+    "solution": "The height satisfies $h^2 + 6^2 = 10^2$, so $h = 8$. The volume is $\\frac{1}{3}\\pi r^2 h = \\frac{1}{3}\\pi (36)(8) = 96\\pi$.",
+    "skill": "area-volume",
+    "difficulty": 3
+  },
+  {
+    "id": "w04-m2h-21",
+    "prompt": "In triangle $ABC$, segment $DE$ is parallel to side $BC$, with $D$ on $AB$ and $E$ on $AC$. $AD = 4$, $DB = 2$ and $DE = 6$. What is the length of $BC$?",
+    "figure": {
+      "file": "similar-triangles.svg",
+      "alt": "Triangle ABC with A at the top and B and C at the bottom. A dashed segment DE parallel to BC joins D on AB to E on AC. AD is labelled 4, DB is labelled 2 and DE is labelled 6.",
+      "scale": "not-to-scale"
+    },
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "8", "12", "9"],
+      "correct": "D"
+    },
+    "solution": "Triangles $ADE$ and $ABC$ are similar. $AB = 4 + 2 = 6$, so $\\frac{DE}{BC} = \\frac{AD}{AB} = \\frac{4}{6}$. Then $\\frac{6}{BC} = \\frac{2}{3}$, so $BC = 9$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 3,
+    "compute": "6*6/4"
+  },
+  {
+    "id": "w04-m2h-22",
+    "prompt": "A solid sphere with a radius of 3 is completely submerged in water in a cylindrical tank with a base radius of 6. No water spills out. By how many units does the water level rise?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["1", "2", "3", "9"],
+      "correct": "A"
+    },
+    "solution": "The water rises by a volume equal to the sphere's volume, $\\frac{4}{3}\\pi (3)^3 = 36\\pi$. The tank's base has area $\\pi (6)^2 = 36\\pi$, so the level rises by $\\frac{36\\pi}{36\\pi} = 1$ unit.",
+    "skill": "area-volume",
+    "difficulty": 3,
+    "compute": "(4/3*3^3)/(6^2)"
+  }
+]
