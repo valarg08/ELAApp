@@ -1,0 +1,293 @@
+[
+  {
+    "id": "w02-m2e-01",
+    "prompt": "If $5x + 7 = 32$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["5", "4", "6", "25"],
+      "correct": "A"
+    },
+    "solution": "Subtract 7: $5x = 25$. Divide by 5: $x = 5$.",
+    "skill": "linear-equations-1",
+    "difficulty": 1,
+    "compute": "(32-7)/5"
+  },
+  {
+    "id": "w02-m2e-02",
+    "prompt": "If $2(x + 3) = 18$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "9", "6", "12"],
+      "correct": "C"
+    },
+    "solution": "Divide both sides by 2: $x + 3 = 9$. Then $x = 6$.",
+    "skill": "linear-equations-1",
+    "difficulty": 1,
+    "compute": "18/2-3"
+  },
+  {
+    "id": "w02-m2e-03",
+    "prompt": "$y = 3x - 2$. What is the value of $y$ when $x = 6$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["16"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Substitute $x = 6$: $y = 3(6) - 2 = 18 - 2 = 16$.",
+    "skill": "linear-equations-2",
+    "difficulty": 1,
+    "compute": "3*6-2"
+  },
+  {
+    "id": "w02-m2e-04",
+    "prompt": "The function $g$ is defined by $g(x) = 5x - 3$. What is the value of $g(2)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["2", "10", "13", "7"],
+      "correct": "D"
+    },
+    "solution": "$g(2) = 5(2) - 3 = 10 - 3 = 7$.",
+    "skill": "linear-functions",
+    "difficulty": 1,
+    "compute": "5*2-3"
+  },
+  {
+    "id": "w02-m2e-05",
+    "prompt": "Which expression is equivalent to $5x + 2x - 4x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$11x$", "$7x$", "$3x^2$", "$3x$"],
+      "correct": "D"
+    },
+    "solution": "Combine the like terms: $5 + 2 - 4 = 3$, so the expression is $3x$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 1
+  },
+  {
+    "id": "w02-m2e-06",
+    "prompt": "What is the positive solution of the equation $x^2 = 81$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "40.5", "9", "81"],
+      "correct": "C"
+    },
+    "solution": "The positive number whose square is 81 is 9.",
+    "skill": "nonlinear-equations",
+    "difficulty": 1,
+    "compute": "9"
+  },
+  {
+    "id": "w02-m2e-07",
+    "prompt": "A cyclist travels 36 miles in 3 hours. At the same speed, how many miles does the cyclist travel in 5 hours?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["45", "48", "72", "60"],
+      "correct": "D"
+    },
+    "solution": "The speed is $36 \\div 3 = 12$ miles per hour, so in 5 hours the cyclist travels $12 \\times 5 = 60$ miles.",
+    "skill": "ratios-rates",
+    "difficulty": 1,
+    "compute": "36/3*5"
+  },
+  {
+    "id": "w02-m2e-08",
+    "prompt": "What is 30% of 150?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["45"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "$0.30 \\times 150 = 45$.",
+    "skill": "percentages",
+    "difficulty": 1,
+    "compute": "150*30/100"
+  },
+  {
+    "id": "w02-m2e-09",
+    "prompt": "What is the area of a rectangle with a length of 12 and a width of 5?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["17", "60", "34", "120"],
+      "correct": "B"
+    },
+    "solution": "Area = length × width $= 12 \\times 5 = 60$.",
+    "skill": "area-volume",
+    "difficulty": 1,
+    "compute": "12*5"
+  },
+  {
+    "id": "w02-m2e-10",
+    "prompt": "Two angles of a triangle measure $45°$ and $85°$. What is the measure of the third angle?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$40°$", "$60°$", "$130°$", "$50°$"],
+      "correct": "D"
+    },
+    "solution": "The angles of a triangle add to $180°$, so the third angle is $180° - 45° - 85° = 50°$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 1
+  },
+  {
+    "id": "w02-m2e-11",
+    "prompt": "Maria has \\$50. She buys 4 books that all cost the same amount and has \\$18 left. How much, in dollars, did each book cost?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["7", "8", "9", "12"],
+      "correct": "B"
+    },
+    "solution": "She spent $50 - 18 = 32$ dollars on 4 books, so each book cost $32 \\div 4 = 8$ dollars.",
+    "skill": "linear-equations-2",
+    "difficulty": 2,
+    "compute": "(50-18)/4"
+  },
+  {
+    "id": "w02-m2e-12",
+    "prompt": "The function $f$ is linear, with $f(0) = 4$, $f(1) = 7$ and $f(2) = 10$. Which equation defines $f$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$f(x) = 3x + 4$", "$f(x) = 4x + 3$", "$f(x) = x + 4$", "$f(x) = 3x + 7$"],
+      "correct": "A"
+    },
+    "solution": "The value increases by 3 each time $x$ increases by 1, so the slope is 3. Since $f(0) = 4$, the $y$-intercept is 4: $f(x) = 3x + 4$.",
+    "skill": "linear-functions",
+    "difficulty": 2
+  },
+  {
+    "id": "w02-m2e-13",
+    "prompt": "If $x + y = 15$ and $x = 2y$, what is the value of $y$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "7.5", "5", "10"],
+      "correct": "C"
+    },
+    "solution": "Substitute $x = 2y$: $2y + y = 15$, so $3y = 15$ and $y = 5$.",
+    "skill": "systems",
+    "difficulty": 2,
+    "compute": "15/3"
+  },
+  {
+    "id": "w02-m2e-14",
+    "prompt": "$x + 2y = 11$ and $x = 3$. What is the value of $y$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["4"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Substitute $x = 3$: $3 + 2y = 11$, so $2y = 8$ and $y = 4$.",
+    "skill": "systems",
+    "difficulty": 2,
+    "compute": "(11-3)/2"
+  },
+  {
+    "id": "w02-m2e-15",
+    "prompt": "Which of the following values of $x$ satisfies the inequality $4x - 5 > 15$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "6", "4", "5"],
+      "correct": "B"
+    },
+    "solution": "Add 5: $4x > 20$. Divide by 4: $x > 5$. Only 6 is greater than 5. (At $x = 5$ both sides are equal, which is not greater.)",
+    "skill": "linear-inequalities",
+    "difficulty": 2
+  },
+  {
+    "id": "w02-m2e-16",
+    "prompt": "Which expression is equivalent to $(x + 5)(x - 2)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$x^2 + 3x - 10$", "$x^2 - 10$", "$x^2 + 7x - 10$", "$x^2 + 3x + 10$"],
+      "correct": "A"
+    },
+    "solution": "Expand: $x^2 - 2x + 5x - 10 = x^2 + 3x - 10$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 2
+  },
+  {
+    "id": "w02-m2e-17",
+    "prompt": "The function $f$ is defined by $f(x) = x^2 - 4x + 3$. What is the value of $f(5)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "8", "12", "18"],
+      "correct": "B"
+    },
+    "solution": "$f(5) = 25 - 20 + 3 = 8$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 2,
+    "compute": "5^2-4*5+3"
+  },
+  {
+    "id": "w02-m2e-18",
+    "prompt": "The function $g$ is defined by $g(x) = 2^x$. What is the value of $g(5)$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["32"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "$g(5) = 2^5 = 2 \\times 2 \\times 2 \\times 2 \\times 2 = 32$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 2,
+    "compute": "2^5"
+  },
+  {
+    "id": "w02-m2e-19",
+    "prompt": "What is the range of the data set 7, 12, 3, 20, 15?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["17", "3", "12", "20"],
+      "correct": "A"
+    },
+    "solution": "The range is the greatest value minus the least value: $20 - 3 = 17$.",
+    "skill": "one-variable-data",
+    "difficulty": 2,
+    "compute": "20-3"
+  },
+  {
+    "id": "w02-m2e-20",
+    "prompt": "A scatterplot shows a positive association between the number of hours of sunlight a plant receives each day and the plant's height. Which of the following best describes this association?",
+    "answer": {
+      "kind": "choice",
+      "choices": [
+        "Plants that receive more hours of sunlight tend to be shorter.",
+        "The number of hours of sunlight and the height are not related.",
+        "Plants that receive more hours of sunlight tend to be taller.",
+        "Every plant that receives more sunlight is taller than every plant that receives less."
+      ],
+      "correct": "C"
+    },
+    "solution": "A positive association means that as one variable increases the other tends to increase. It describes a tendency, not a rule that holds for every single plant.",
+    "skill": "two-variable-data",
+    "difficulty": 2
+  },
+  {
+    "id": "w02-m2e-21",
+    "prompt": "A bag contains 3 red marbles, 5 blue marbles and 2 green marbles. One marble is chosen at random. What is the probability that the marble is blue?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["1/2"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "There are $3 + 5 + 2 = 10$ marbles and 5 are blue, so the probability is $\\frac{5}{10} = \\frac{1}{2}$ (or 0.5).",
+    "skill": "probability",
+    "difficulty": 2,
+    "compute": "5/10"
+  },
+  {
+    "id": "w02-m2e-22",
+    "prompt": "A rectangular box has a volume of 360 cubic inches. Its base measures 12 inches by 5 inches. What is the height of the box, in inches?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["6"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Volume = length × width × height, so $360 = 12 \\times 5 \\times h = 60h$. Then $h = 6$.",
+    "skill": "area-volume",
+    "difficulty": 2,
+    "compute": "360/(12*5)"
+  }
+]

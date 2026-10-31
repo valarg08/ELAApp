@@ -1,0 +1,288 @@
+[
+  {
+    "id": "w02-m2h-01",
+    "prompt": "If $\\frac{x + 4}{2} = \\frac{x - 1}{3}$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["-14", "-10", "-2", "14"],
+      "correct": "A"
+    },
+    "solution": "Cross-multiply: $3(x + 4) = 2(x - 1)$, so $3x + 12 = 2x - 2$. Then $x = -14$.",
+    "skill": "linear-equations-1",
+    "difficulty": 2,
+    "compute": "-14"
+  },
+  {
+    "id": "w02-m2h-02",
+    "prompt": "At which point does the line $2x + 5y = 30$ cross the $x$-axis?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$(0, 6)$", "$(0, 15)$", "$(15, 0)$", "$(6, 0)$"],
+      "correct": "C"
+    },
+    "solution": "On the $x$-axis $y = 0$, so $2x = 30$ and $x = 15$. The point is $(15, 0)$.",
+    "skill": "linear-equations-2",
+    "difficulty": 2
+  },
+  {
+    "id": "w02-m2h-03",
+    "prompt": "The function $f$ is linear, with $f(1) = 7$ and $f(4) = 19$. What is the value of $f(10)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["31", "40", "47", "43"],
+      "correct": "D"
+    },
+    "solution": "The slope is $\\frac{19 - 7}{4 - 1} = 4$. From $x = 1$ to $x = 10$ is 9 steps, so $f(10) = 7 + 4 \\times 9 = 43$.",
+    "skill": "linear-functions",
+    "difficulty": 2,
+    "compute": "7+4*9"
+  },
+  {
+    "id": "w02-m2h-04",
+    "prompt": "How many solutions does the system of equations $y = 2x + 3$ and $y = 2x - 5$ have?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["No solutions", "Exactly one", "Exactly two", "Infinitely many"],
+      "correct": "A"
+    },
+    "solution": "Both lines have slope 2 but different $y$-intercepts (3 and $-5$), so they are parallel and never meet.",
+    "skill": "systems",
+    "difficulty": 2
+  },
+  {
+    "id": "w02-m2h-05",
+    "prompt": "Which expression is equivalent to $(2x - 3)^2$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$4x^2 + 9$", "$4x^2 - 12x + 9$", "$4x^2 - 6x + 9$", "$2x^2 - 12x + 9$"],
+      "correct": "B"
+    },
+    "solution": "Expand: $(2x - 3)(2x - 3) = 4x^2 - 6x - 6x + 9 = 4x^2 - 12x + 9$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 2
+  },
+  {
+    "id": "w02-m2h-06",
+    "prompt": "A solution is made by mixing concentrate and water in the ratio $2 : 7$. How many liters of water are needed to make 45 liters of the solution?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["10", "35", "30", "40"],
+      "correct": "B"
+    },
+    "solution": "The 45 liters are split into $2 + 7 = 9$ equal parts of 5 liters. Water is 7 parts, so $7 \\times 5 = 35$ liters.",
+    "skill": "ratios-rates",
+    "difficulty": 2,
+    "compute": "45*7/9"
+  },
+  {
+    "id": "w02-m2h-07",
+    "prompt": "A cylinder has a radius of 4 and a height of 5. What is the volume of the cylinder?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$20\\pi$", "$80\\pi$", "$40\\pi$", "$160\\pi$"],
+      "correct": "B"
+    },
+    "solution": "Volume $= \\pi r^2 h = \\pi (16)(5) = 80\\pi$.",
+    "skill": "area-volume",
+    "difficulty": 2
+  },
+  {
+    "id": "w02-m2h-08",
+    "prompt": "$4(2x - 3) = 3(x + 6) + 5$. What is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["7"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Distribute: $8x - 12 = 3x + 18 + 5$, so $8x - 12 = 3x + 23$. Then $5x = 35$ and $x = 7$.",
+    "skill": "linear-equations-1",
+    "difficulty": 3,
+    "compute": "(18+5+12)/5"
+  },
+  {
+    "id": "w02-m2h-09",
+    "prompt": "A farmer has chickens and cows. Together there are 40 animals with a total of 100 legs. How many cows does the farmer have?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["15", "10", "20", "30"],
+      "correct": "B"
+    },
+    "solution": "If all 40 animals were chickens there would be 80 legs. Each cow adds 2 more legs, so there are $\\frac{100 - 80}{2} = 10$ cows.",
+    "skill": "linear-equations-2",
+    "difficulty": 3,
+    "compute": "(100-2*40)/2"
+  },
+  {
+    "id": "w02-m2h-10",
+    "prompt": "A taxi charges a fixed fee plus a constant amount per mile. A 3-mile ride costs \\$11 and a 7-mile ride costs \\$19. How much, in dollars, does a 10-mile ride cost?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["25"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The extra 4 miles cost $19 - 11 = 8$ dollars, so each mile costs \\$2. From 7 miles to 10 miles is 3 more miles, so the ride costs $19 + 3 \\times 2 = 25$ dollars.",
+    "skill": "linear-functions",
+    "difficulty": 3,
+    "compute": "19+3*2"
+  },
+  {
+    "id": "w02-m2h-11",
+    "prompt": "$5x - 2y = 4$ and $3x + 2y = 20$. What is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["3"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Add the equations: $8x = 24$, so $x = 3$. (Then $y = \\frac{11}{2}$.)",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "24/8"
+  },
+  {
+    "id": "w02-m2h-12",
+    "prompt": "A student has scored 78, 90 and 84 on three tests. What is the minimum score the student needs on a fourth test to have an average of at least 85 on all four tests?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["85", "86", "88", "90"],
+      "correct": "C"
+    },
+    "solution": "The four scores must add to at least $4 \\times 85 = 340$. The first three add to 252, so the fourth must be at least $340 - 252 = 88$.",
+    "skill": "linear-inequalities",
+    "difficulty": 3,
+    "compute": "340-252"
+  },
+  {
+    "id": "w02-m2h-13",
+    "prompt": "Which expression is equivalent to $\\frac{x^2 - 16}{x - 4}$, for $x \\neq 4$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$x - 4$", "$x^2 - 4$", "$x + 16$", "$x + 4$"],
+      "correct": "D"
+    },
+    "solution": "Factor the numerator: $x^2 - 16 = (x - 4)(x + 4)$. Divide by $x - 4$: $x + 4$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 3
+  },
+  {
+    "id": "w02-m2h-14",
+    "prompt": "$x^2 - 10x + 25 = 49$. What is the greater solution of the equation?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["12"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The left side is $(x - 5)^2$, so $(x - 5)^2 = 49$ and $x - 5 = 7$ or $x - 5 = -7$. The solutions are 12 and $-2$; the greater is 12.",
+    "skill": "nonlinear-equations",
+    "difficulty": 3,
+    "compute": "5+7"
+  },
+  {
+    "id": "w02-m2h-15",
+    "prompt": "The side length of a square is increased by 3, and the area of the square increases by 45. What was the original side length of the square?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["6", "4", "7.5", "9"],
+      "correct": "A"
+    },
+    "solution": "With original side $s$: $(s + 3)^2 - s^2 = 45$. Expanding, $6s + 9 = 45$, so $s = 6$.",
+    "skill": "nonlinear-equations",
+    "difficulty": 3,
+    "compute": "(45-9)/6"
+  },
+  {
+    "id": "w02-m2h-16",
+    "prompt": "The function $f$ is defined by $f(x) = 2(x - 3)^2 + 4$. For which of the following values of $x$ does $f(x) = 12$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["4", "7", "5", "9"],
+      "correct": "C"
+    },
+    "solution": "Set $2(x - 3)^2 + 4 = 12$, so $(x - 3)^2 = 4$ and $x - 3 = 2$ or $-2$, giving $x = 5$ or $x = 1$. Only 5 is listed.",
+    "skill": "nonlinear-functions",
+    "difficulty": 3
+  },
+  {
+    "id": "w02-m2h-17",
+    "prompt": "A store raises the price of a game by 30% and then gives a 20% discount on the new price. The final price is \\$78. What was the original price, in dollars?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["75"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The price is multiplied by $1.3 \\times 0.8 = 1.04$. So the original price is $78 \\div 1.04 = 75$ dollars.",
+    "skill": "percentages",
+    "difficulty": 3,
+    "compute": "78/(1.3*0.8)"
+  },
+  {
+    "id": "w02-m2h-18",
+    "prompt": "The mean of a data set of 6 numbers is 20. A seventh number is added, and the mean of the 7 numbers is 22. What is the seventh number?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["22", "28", "42", "34"],
+      "correct": "D"
+    },
+    "solution": "The first six add to $6 \\times 20 = 120$. All seven add to $7 \\times 22 = 154$. So the seventh number is $154 - 120 = 34$.",
+    "skill": "one-variable-data",
+    "difficulty": 3,
+    "compute": "22*7-20*6"
+  },
+  {
+    "id": "w02-m2h-19",
+    "prompt": "A line of best fit for the value $y$, in thousands of dollars, of a car that is $x$ years old is $y = -1.8x + 24$. According to the model, at what age, in years, will the car's value be 6 thousand dollars?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["10", "8", "12", "13.3"],
+      "correct": "A"
+    },
+    "solution": "Solve $-1.8x + 24 = 6$: $-1.8x = -18$, so $x = 10$ years.",
+    "skill": "two-variable-data",
+    "difficulty": 3,
+    "compute": "(24-6)/1.8"
+  },
+  {
+    "id": "w02-m2h-20",
+    "prompt": "Of 80 students, 50 take music and 30 take art. Ten students take both. If a student who takes music is chosen at random, what is the probability that the student also takes art?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["1/5"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "There are 50 students who take music, and 10 of them also take art. The probability is $\\frac{10}{50} = \\frac{1}{5}$ (or 0.2).",
+    "skill": "probability",
+    "difficulty": 3,
+    "compute": "10/50"
+  },
+  {
+    "id": "w02-m2h-21",
+    "prompt": "A rectangular box has dimensions 3 by 4 by 12. What is the length of the longest diagonal inside the box, from one corner to the opposite corner?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["12", "14", "13", "19"],
+      "correct": "C"
+    },
+    "solution": "The diagonal is $\\sqrt{3^2 + 4^2 + 12^2} = \\sqrt{9 + 16 + 144} = \\sqrt{169} = 13$.",
+    "skill": "area-volume",
+    "difficulty": 3,
+    "compute": "sqrt(3^2+4^2+12^2)"
+  },
+  {
+    "id": "w02-m2h-22",
+    "prompt": "In right triangle $ABC$, angle $C$ is the right angle, $AC = 8$ and $BC = 6$. What is the length of the altitude from $C$ to side $AB$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["4", "5", "6.4", "4.8"],
+      "correct": "D"
+    },
+    "solution": "The hypotenuse is $AB = 10$. The area is $\\frac{1}{2}(8)(6) = 24$, and also $\\frac{1}{2}(10)h$. So $5h = 24$ and $h = 4.8$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 3,
+    "compute": "8*6/10"
+  }
+]

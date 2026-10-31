@@ -61,7 +61,8 @@ Module 1 raw score ≥ 14 of 22 → harder module 2; otherwise the easier one. T
   - A locked week shows "Opens <day>" and cannot be started (403 with the date); a test already started stays open, and earlier weeks stay available to catch up. The newest open week is marked "This week".
   - `/sat` shows "Your scores": a small line chart and a table of the estimated score for each finished week.
 - **S4** (Week 1 done): `content/sat/week-01` is a real week: 66 original questions (module 1, easier module 2, harder module 2) in the odd-week plan (19/9/11/5), 6 typed questions in module 1 and 5–6 in each module 2, every module ordered easier to harder (difficulty 1–3), each skill at least once, every typed answer and numeric choice proved by `compute` in `content:check`. It replaced the short sample week; an attempt whose questions changed (different ids or a different module size) counts as outdated and the week starts over.
-- **S4+** the next weeks, one at a time (week 2 uses the even-week plan 18/9/11/6), each reviewed by a teacher before it is used.
+- **S4** (Week 2 done): `content/sat/week-02`, an even-week test (18/9/11/6: module 1 is 9/4/6/3, each module 2 is 9/5/5/3), 66 new original questions built the same way; a typed answer or numeric choice is always a plain number (units go in the question) so `compute` can prove it.
+- **S4+** the next weeks, one at a time (odd weeks use the 19/9/11/5 plan, even weeks 18/9/11/6), each reviewed by a teacher before it is used.
 - **S-teacher** class results by area and skill.
 
 ## 7. Adaptive practice (S2b)
