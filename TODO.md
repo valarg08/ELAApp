@@ -17,6 +17,7 @@ Last updated: 2026-10-28 (PSAT Math track: PS0 + PS1, four units with lessons, p
 - [x] MN2–MN15: Mental Math Units 2–15 (all 15 units built)
 - [x] MN-practice: Mental Math daily review and streaks, speed sprints, level and placement checks, parent guide, skill mastery
 - [x] PS0 + PS1: the PSAT Math track (fifth tab, `/psat`, the review sheet) and Units 1–4, 3 lessons each (psat-design.md)
+- [x] Factoring study guide (`/psat/factoring`): the average method, six chapters with Algebra 1 and PSAT problem sets (psat-design.md)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -83,6 +84,7 @@ Number sense for ages 7–14, one unit per phase. Original problems only; typed 
 
 - [x] **PS0** Foundation: track `PSAT`, `/psat`, four-choice answers, `content/psat/skills.json`, the review sheet in the track, Quill audience
 - [x] **PS1** Units 1–4 (Algebra, Advanced Math, Problem-Solving & Data Analysis, Geometry & Trigonometry), 3 lessons each, published
+- [x] **Factoring study guide** (`/psat/factoring`): six chapters on the average method, Algebra 1 and PSAT problem sets
 - [ ] Later: a PSAT error log and daily review, timed practice modules and a full practice test, typed answers in the challenge sets, more lessons, a teacher skills view
 
 ## 2. Teacher dashboard: rest of P5 (§11)
@@ -134,6 +136,7 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
 
 The Known misses lists in DESIGN.md §9.12 record each Essay unit's analyzer limits. For example, the Coach misses subject–verb agreement after a long subject, and a narrative hook without a time phrase reads as plain.
 
+- Tests owed (PSAT factoring study guide): axe on `/psat/factoring` and one sub-module (for example `/psat/factoring/average`); the Chapters menu lists Factoring under Study guides on PSAT pages. The answer check is `apps/web/features/math/psat-factoring.spec.ts` (every problem's answer passes `checkAnswer` with its form, and its steps end with "Answer:").
 - Tests owed (PSAT geometry study guide): axe on `/psat/geometry`, `/psat/algebra`, `/psat/number-sense` and a sub-module of each guide (e.g. `/psat/number-sense/fractions`, `/psat/geometry/circles`, `/psat/algebra/quadratics`); a unit test that every guide problem's answer (all three guides) passes `checkAnswer` (with its form) and its steps end with "Answer:"; a wrong answer shows the steps, a right one counts as solved; the Chapters menu shows "Study guides → Geometry" only on PSAT pages, marked current on the guide; the level tabs (Middle school / PSAT) switch with arrow keys, keep separate solved counts, and every middle-school problem has a B.E.S.T. benchmark tag and passes `checkAnswer`; every Geometry/Algebra figure renders (no exceptions) with a `figcaption`, and figure maps only name problems 1–25 of an existing chapter.
 
 - Tests owed (SAT S0): axe on `/sat`; `/start?track=SAT` redirects to `/sat`; the SAT tab shows on every track tabs bar; `satWeekPlan` gives 44 questions per week (odd 19/9/11/5, even 18/9/11/6) and 22 per module; `ActivityKey` accepts "s01." keys.

@@ -45,6 +45,20 @@ node tools/content-generators/quadratics/verify2.cjs
   Florida B.E.S.T. Algebra 1 benchmarks (the codes come from a third-party list; a teacher should check them).
 - `build.cjs` checks every set (25 per chapter, answers readable by math-check, no repeated questions).
 
+## PSAT Factoring guide (`factoring/`)
+
+Generates the problem files and diagrams of `/psat/factoring` (the average method):
+
+```bash
+node tools/content-generators/factoring/build.cjs   # writes psat-factoring-problems.ts and psat-factoring-algebra1.ts
+pnpm exec prettier --write apps/web/features/math/psat-factoring-*.ts
+node tools/content-generators/factoring/figs.cjs    # writes public/guides/factoring/*.svg
+```
+
+- Six chapters, 25 problems each at Algebra 1 and at PSAT. Every answer is computed and checked with math-check.
+- Algebra 1 problems are tagged MA.912.AR.1.7; a teacher should check that code.
+- The video's six examples stay in the notes. Practice problems are separate.
+
 ## Guide diagrams (`guide-diagrams/`)
 
 `alg-svg.mjs`, `geo-svg.mjs`, `ns-svg.mjs` (with `svg-kit.mjs`) drew the diagrams of the PSAT Algebra, Geometry

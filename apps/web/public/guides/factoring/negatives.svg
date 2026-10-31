@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="The factor pair for x² − 6x − 91: 7 and −13 are each 10 away from the average −3, so the factors are (x + 7)(x − 13).">
+<title>The factor pair for x² − 6x − 91: 7 and −13 are each 10 away from the average −3, so the factors are (x + 7)(x − 13).</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.a{stroke:#0d9488;stroke-width:3;fill:none}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linecap:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none}
+.fa{fill:#0d9488;fill-opacity:.14}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fb{fill:#2563eb;fill-opacity:.12}
+.dot{fill:#334155}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:16px}
+.s{font-size:13px;fill:#64748b}
+.at{fill:#0f766e;font-weight:700}
+.ht{fill:#c2410c;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l{stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.b{stroke:#60a5fa}
+.at{fill:#2dd4bf}.ht{fill:#fb923c}.bt{fill:#60a5fa}}
+</style>
+<rect class="fh" x="16" y="36" width="220" height="160" rx="8"/>
+<text class="t" x="20" y="28">Average −3</text>
+<text class="ht" x="126" y="62" text-anchor="middle">x² − 6x − 91</text>
+<text class="s" x="126" y="88" text-anchor="middle">half of −6 is −3</text>
+<text x="126" y="114" text-anchor="middle">(−3)² − k² = −91</text>
+<text x="126" y="140" text-anchor="middle">k² = 100, k = 10</text>
+<text class="ht" x="126" y="174" text-anchor="middle">(x + 7)(x − 13)</text>
+<text class="s" x="400" y="80" text-anchor="middle">−3 + 10 = 7</text>
+<text class="s" x="400" y="110" text-anchor="middle">−3 − 10 = −13</text>
+<text x="400" y="150" text-anchor="middle">7 × −13 = −91</text>
+<text class="s" x="400" y="190" text-anchor="middle">opposite signs, because the product is negative</text>
+</svg>
