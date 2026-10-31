@@ -1,47 +1,289 @@
 [
   {
     "id": "w01-m2e-01",
-    "prompt": "If $5x - 2 = 18$, what is the value of $x$?",
-    "answer": { "kind": "choice", "choices": ["3", "4", "5", "20"], "correct": "B" },
-    "solution": "Add 2 to both sides: $5x = 20$. Divide by 5: $x = 4$.",
+    "prompt": "If $7x + 3 = 38$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["4", "5", "6", "7"],
+      "correct": "B"
+    },
+    "solution": "Subtract 3: $7x = 35$. Divide by 7: $x = 5$.",
     "skill": "linear-equations-1",
-    "difficulty": 1
+    "difficulty": 1,
+    "compute": "(38-3)/7"
   },
   {
     "id": "w01-m2e-02",
-    "prompt": "A car travels 150 miles in 3 hours at a constant speed. How many miles does it travel in 5 hours at that speed?",
-    "answer": { "kind": "value", "accepted": ["250"], "form": "any", "mistakes": [] },
-    "solution": "The speed is $150 \\div 3 = 50$ miles per hour, so in 5 hours it travels $50 \\times 5 = 250$ miles.",
-    "skill": "ratios-rates",
+    "prompt": "If $3(x - 2) = 12$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["2", "4", "10", "6"],
+      "correct": "D"
+    },
+    "solution": "Divide both sides by 3: $x - 2 = 4$. Then $x = 6$.",
+    "skill": "linear-equations-1",
     "difficulty": 1,
-    "compute": "150/3*5"
+    "compute": "12/3+2"
   },
   {
     "id": "w01-m2e-03",
-    "prompt": "A data set is 3, 7, 7, 9, 14. What is the mean of the data set?",
-    "answer": { "kind": "choice", "choices": ["7", "8", "9", "14"], "correct": "B" },
-    "solution": "The sum is $3 + 7 + 7 + 9 + 14 = 40$. Divide by 5: the mean is 8.",
-    "skill": "one-variable-data",
-    "difficulty": 2
+    "prompt": "$y = 2x + 1$. What is the value of $y$ when $x = 7$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["15"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Substitute $x = 7$: $y = 2(7) + 1 = 15$.",
+    "skill": "linear-equations-2",
+    "difficulty": 1,
+    "compute": "2*7+1"
   },
   {
     "id": "w01-m2e-04",
-    "prompt": "Which expression is equivalent to $3(x + 4) - 2x$?",
+    "prompt": "The function $h$ is defined by $h(x) = 2x - 5$. What is the value of $h(4)$?",
     "answer": {
       "kind": "choice",
-      "choices": ["$x + 12$", "$5x + 12$", "$x + 4$", "$5x + 4$"],
-      "correct": "A"
+      "choices": ["1", "8", "3", "13"],
+      "correct": "C"
     },
-    "solution": "Distribute: $3x + 12 - 2x$. Combine like terms: $x + 12$.",
-    "skill": "equivalent-expressions",
-    "difficulty": 2
+    "solution": "$h(4) = 2(4) - 5 = 8 - 5 = 3$.",
+    "skill": "linear-functions",
+    "difficulty": 1,
+    "compute": "2*4-5"
   },
   {
     "id": "w01-m2e-05",
-    "prompt": "Which of the following values of $x$ satisfies the inequality $2x + 3 > 11$?",
-    "answer": { "kind": "choice", "choices": ["2", "3", "4", "5"], "correct": "D" },
-    "solution": "Subtract 3: $2x > 8$, so $x > 4$. Only 5 is greater than 4. (At $x = 4$ both sides are equal, which is not greater.)",
+    "prompt": "Which expression is equivalent to $4x + 6x - 3x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$13x$", "$5x$", "$7x$", "$7x^2$"],
+      "correct": "C"
+    },
+    "solution": "Combine the like terms: $4 + 6 - 3 = 7$, so the expression is $7x$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 1
+  },
+  {
+    "id": "w01-m2e-06",
+    "prompt": "The scale on a map is 1 inch : 25 miles. Two towns are 4 inches apart on the map. What is the actual distance between the towns?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["100 miles", "29 miles", "50 miles", "125 miles"],
+      "correct": "A"
+    },
+    "solution": "Each inch stands for 25 miles, so 4 inches stand for $4 \\times 25 = 100$ miles.",
+    "skill": "ratios-rates",
+    "difficulty": 1
+  },
+  {
+    "id": "w01-m2e-07",
+    "prompt": "What is 15% of 240?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["36"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "$0.15 \\times 240 = 36$.",
+    "skill": "percentages",
+    "difficulty": 1,
+    "compute": "240*15/100"
+  },
+  {
+    "id": "w01-m2e-08",
+    "prompt": "What is the mean of the numbers 4, 6, 9, 11 and 20?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["9", "10", "11", "12"],
+      "correct": "B"
+    },
+    "solution": "The sum is $4 + 6 + 9 + 11 + 20 = 50$. Divide by 5: the mean is 10.",
+    "skill": "one-variable-data",
+    "difficulty": 1,
+    "compute": "50/5"
+  },
+  {
+    "id": "w01-m2e-09",
+    "prompt": "What is the area of a triangle with a base of 10 and a height of 7?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["17", "30", "35", "70"],
+      "correct": "C"
+    },
+    "solution": "Area $= \\frac{1}{2} \\times 10 \\times 7 = 35$.",
+    "skill": "area-volume",
+    "difficulty": 1,
+    "compute": "10*7/2"
+  },
+  {
+    "id": "w01-m2e-10",
+    "prompt": "In a right triangle, one acute angle measures $35°$. What is the measure of the other acute angle?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$45°$", "$55°$", "$65°$", "$145°$"],
+      "correct": "B"
+    },
+    "solution": "The two acute angles of a right triangle add to $90°$, so the other angle is $90° - 35° = 55°$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 1
+  },
+  {
+    "id": "w01-m2e-11",
+    "prompt": "A taxi company charges \\$3 plus \\$2 for each mile. If a ride costs \\$19, how many miles was the ride?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["8", "6", "9", "11"],
+      "correct": "A"
+    },
+    "solution": "The cost is $3 + 2m = 19$. So $2m = 16$ and $m = 8$.",
+    "skill": "linear-equations-2",
+    "difficulty": 2,
+    "compute": "(19-3)/2"
+  },
+  {
+    "id": "w01-m2e-12",
+    "prompt": "A line in the $xy$-plane has slope 3 and passes through the point $(1, 2)$. Which equation represents the line?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$y = 3x + 2$", "$y = 3x - 1$", "$y = x + 3$", "$y = 3x + 1$"],
+      "correct": "B"
+    },
+    "solution": "Use $y - 2 = 3(x - 1)$, which gives $y = 3x - 3 + 2 = 3x - 1$. (Check: at $x = 1$, $y = 2$.)",
+    "skill": "linear-functions",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m2e-13",
+    "prompt": "If $x + y = 9$ and $x - y = 3$, what is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["3", "5", "12", "6"],
+      "correct": "D"
+    },
+    "solution": "Add the equations: $2x = 12$, so $x = 6$.",
+    "skill": "systems",
+    "difficulty": 2,
+    "compute": "(9+3)/2"
+  },
+  {
+    "id": "w01-m2e-14",
+    "prompt": "$y = 2x$ and $x + y = 21$. What is the value of $y$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["14"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Substitute $y = 2x$: $x + 2x = 21$, so $x = 7$. Then $y = 2(7) = 14$.",
+    "skill": "systems",
+    "difficulty": 2,
+    "compute": "21*2/3"
+  },
+  {
+    "id": "w01-m2e-15",
+    "prompt": "Which of the following is the solution to the inequality $3x - 4 \\le 11$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$x \\le 5$", "$x \\ge 5$", "$x \\le 7/3$", "$x < 5$"],
+      "correct": "A"
+    },
+    "solution": "Add 4: $3x \\le 15$. Divide by 3: $x \\le 5$.",
     "skill": "linear-inequalities",
     "difficulty": 2
+  },
+  {
+    "id": "w01-m2e-16",
+    "prompt": "What are all the solutions to the equation $x^2 = 49$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["7 only", "7 and $-7$", "49 and $-49$", "24.5 and $-24.5$"],
+      "correct": "B"
+    },
+    "solution": "Both $7^2$ and $(-7)^2$ equal 49, so $x = 7$ or $x = -7$.",
+    "skill": "nonlinear-equations",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m2e-17",
+    "prompt": "What is the positive solution of $x^2 - 4x - 12 = 0$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["6"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Factor: $(x - 6)(x + 2) = 0$, so $x = 6$ or $x = -2$. The positive solution is 6.",
+    "skill": "nonlinear-equations",
+    "difficulty": 2,
+    "compute": "(4+sqrt(64))/2"
+  },
+  {
+    "id": "w01-m2e-18",
+    "prompt": "The function $f$ is defined by $f(x) = x^2 + 3$. What is the value of $f(-4)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["13", "-13", "11", "19"],
+      "correct": "D"
+    },
+    "solution": "$f(-4) = (-4)^2 + 3 = 16 + 3 = 19$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 2,
+    "compute": "(-4)^2+3"
+  },
+  {
+    "id": "w01-m2e-19",
+    "prompt": "A shirt originally priced at \\$40 is on sale for \\$30. The sale price is what percent less than the original price?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["10%", "30%", "25%", "33%"],
+      "correct": "C"
+    },
+    "solution": "The price dropped by $40 - 30 = 10$ dollars. As a share of the original price, $\\frac{10}{40} = 25\\%$.",
+    "skill": "percentages",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m2e-20",
+    "prompt": "The trend line for a scatterplot has the equation $y = 4x + 10$. What does the number 4 represent in this model?",
+    "answer": {
+      "kind": "choice",
+      "choices": [
+        "The predicted value of $y$ when $x = 0$",
+        "The predicted value of $x$ when $y = 0$",
+        "The average of the $x$-values",
+        "The predicted increase in $y$ for each 1-unit increase in $x$"
+      ],
+      "correct": "D"
+    },
+    "solution": "The number 4 is the slope of the trend line: for every increase of 1 in $x$, the model predicts $y$ to increase by 4. (The 10 is the predicted $y$ when $x = 0$.)",
+    "skill": "two-variable-data",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m2e-21",
+    "prompt": "A fair six-sided die is rolled once. What is the probability of rolling a number greater than 4?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["1/3", "1/6", "1/2", "2/3"],
+      "correct": "A"
+    },
+    "solution": "The numbers greater than 4 are 5 and 6, so 2 of the 6 equally likely outcomes. The probability is $\\frac{2}{6} = \\frac{1}{3}$.",
+    "skill": "probability",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m2e-22",
+    "prompt": "A cube has a total surface area of 150. What is the length of one edge of the cube?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["5"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "A cube has 6 equal faces, so each face has area $150 \\div 6 = 25$. The edge length is $\\sqrt{25} = 5$.",
+    "skill": "area-volume",
+    "difficulty": 2,
+    "compute": "sqrt(150/6)"
   }
 ]

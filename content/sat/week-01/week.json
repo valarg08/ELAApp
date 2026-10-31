@@ -1,6 +1,6 @@
 {
   "week": 1,
-  "title": "Sample week (a short test)",
-  "sample": true,
-  "minutes": 12
+  "title": "Week 1",
+  "sample": false,
+  "minutes": 35
 }

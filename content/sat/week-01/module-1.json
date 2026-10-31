@@ -1,53 +1,287 @@
 [
   {
     "id": "w01-m1-01",
-    "prompt": "If $3x + 5 = 20$, what is the value of $x$?",
-    "answer": { "kind": "choice", "choices": ["3", "5", "15", "25/3"], "correct": "B" },
-    "solution": "Subtract 5 from both sides: $3x = 15$. Divide by 3: $x = 5$.",
+    "prompt": "What value of $x$ satisfies the equation $4x - 9 = 15$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["2", "6", "4", "9"],
+      "correct": "B"
+    },
+    "solution": "Add 9 to both sides: $4x = 24$. Divide by 4: $x = 6$.",
     "skill": "linear-equations-1",
-    "difficulty": 1
+    "difficulty": 1,
+    "compute": "(15+9)/4"
   },
   {
     "id": "w01-m1-02",
-    "prompt": "A jacket regularly costs \\$80. It is on sale for 25% off. What is the sale price, in dollars?",
-    "answer": { "kind": "value", "accepted": ["60"], "form": "any", "mistakes": [] },
-    "solution": "25% of 80 is 20, so the sale price is $80 - 20 = 60$ dollars.",
-    "skill": "percentages",
+    "prompt": "$\\frac{x}{3} + 5 = 11$. What is the value of $x$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["6", "14", "33", "18"],
+      "correct": "D"
+    },
+    "solution": "Subtract 5 from both sides: $\\frac{x}{3} = 6$. Multiply by 3: $x = 18$.",
+    "skill": "linear-equations-1",
     "difficulty": 1,
-    "compute": "80*(1-1/4)"
+    "compute": "(11-5)*3"
   },
   {
     "id": "w01-m1-03",
-    "prompt": "The function $f$ is defined by $f(x) = 4x - 7$. What is the value of $f(6)$?",
-    "answer": { "kind": "choice", "choices": ["13", "17", "24", "31"], "correct": "B" },
-    "solution": "Put $x = 6$ in: $4(6) - 7 = 24 - 7 = 17$.",
-    "skill": "linear-functions",
-    "difficulty": 2
+    "prompt": "The equation $2x + 3y = 18$ is true when $x = 3$. What is the value of $y$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["4", "3", "6", "12"],
+      "correct": "A"
+    },
+    "solution": "Substitute $x = 3$: $6 + 3y = 18$, so $3y = 12$ and $y = 4$.",
+    "skill": "linear-equations-2",
+    "difficulty": 1,
+    "compute": "(18-6)/3"
   },
   {
     "id": "w01-m1-04",
-    "prompt": "A bag has 4 red marbles, 6 blue marbles and 5 green marbles. One marble is chosen at random. What is the probability that it is not blue?",
-    "answer": { "kind": "choice", "choices": ["2/5", "3/5", "4/15", "2/3"], "correct": "B" },
-    "solution": "There are 15 marbles and $4 + 5 = 9$ are not blue, so the probability is $\\frac{9}{15} = \\frac{3}{5}$.",
-    "skill": "probability",
-    "difficulty": 2
+    "prompt": "The function $f$ is defined by $f(x) = 3x + 2$. What is the value of $f(5)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["13", "17", "15", "21"],
+      "correct": "B"
+    },
+    "solution": "$f(5) = 3(5) + 2 = 15 + 2 = 17$.",
+    "skill": "linear-functions",
+    "difficulty": 1,
+    "compute": "3*5+2"
   },
   {
     "id": "w01-m1-05",
-    "prompt": "A right triangle has legs of length 9 and 12. What is the length of its hypotenuse?",
-    "answer": { "kind": "value", "accepted": ["15"], "form": "any", "mistakes": [] },
-    "solution": "By the Pythagorean theorem, $c^2 = 9^2 + 12^2 = 81 + 144 = 225$, so $c = 15$.",
-    "skill": "lines-angles-triangles",
-    "difficulty": 2,
-    "compute": "sqrt(9^2+12^2)"
+    "prompt": "Which expression is equivalent to $2(3x - 4) + 5$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$6x + 1$", "$6x - 3$", "$5x + 1$", "$6x - 13$"],
+      "correct": "B"
+    },
+    "solution": "Distribute: $6x - 8 + 5 = 6x - 3$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 1
   },
   {
     "id": "w01-m1-06",
-    "prompt": "$2x + y = 11$ and $x - y = 1$. What is the value of $x$?",
-    "answer": { "kind": "value", "accepted": ["4"], "form": "any", "mistakes": [] },
-    "solution": "Add the two equations: $3x = 12$, so $x = 4$. (Check: $y = 3$, and $2(4) + 3 = 11$.)",
+    "prompt": "A recipe uses 3 cups of flour for every 2 cups of sugar. How many cups of flour are needed for 8 cups of sugar?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["12"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The ratio of flour to sugar is $3 : 2$. With 8 cups of sugar (4 times as much), flour is $3 \\times 4 = 12$ cups.",
+    "skill": "ratios-rates",
+    "difficulty": 1,
+    "compute": "8*3/2"
+  },
+  {
+    "id": "w01-m1-07",
+    "prompt": "What is the median of the data set 6, 9, 3, 12, 5?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["5", "7", "9", "6"],
+      "correct": "D"
+    },
+    "solution": "Order the values: 3, 5, 6, 9, 12. The middle value is 6. (The mean is 7, not the median.)",
+    "skill": "one-variable-data",
+    "difficulty": 1
+  },
+  {
+    "id": "w01-m1-08",
+    "prompt": "A school store sells pens for \\$2 each and notebooks for \\$5 each. A student spends exactly \\$31 on 3 notebooks and some pens. How many pens did the student buy?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["6", "9", "8", "11"],
+      "correct": "C"
+    },
+    "solution": "The notebooks cost $3 \\times 5 = 15$ dollars, so the pens cost $31 - 15 = 16$ dollars. At \\$2 each, that is $16 \\div 2 = 8$ pens.",
+    "skill": "linear-equations-2",
+    "difficulty": 2,
+    "compute": "(31-3*5)/2"
+  },
+  {
+    "id": "w01-m1-09",
+    "prompt": "A line has slope $-2$ and passes through the point $(0, 7)$. What is the $x$-coordinate of the point where the line crosses the $x$-axis?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["-7/2", "7", "14", "7/2"],
+      "correct": "D"
+    },
+    "solution": "The equation of the line is $y = -2x + 7$. On the $x$-axis $y = 0$, so $2x = 7$ and $x = \\frac{7}{2}$.",
+    "skill": "linear-functions",
+    "difficulty": 2,
+    "compute": "7/2"
+  },
+  {
+    "id": "w01-m1-10",
+    "prompt": "If $x + y = 12$ and $x - y = 4$, what is the value of $xy$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["32", "16", "24", "48"],
+      "correct": "A"
+    },
+    "solution": "Add the equations: $2x = 16$, so $x = 8$. Then $y = 12 - 8 = 4$, and $xy = 8 \\times 4 = 32$.",
+    "skill": "systems",
+    "difficulty": 2,
+    "compute": "8*4"
+  },
+  {
+    "id": "w01-m1-11",
+    "prompt": "Which of the following is the solution to the inequality $5 - 2x > 11$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$x > -3$", "$x < 3$", "$x < -3$", "$x > 3$"],
+      "correct": "C"
+    },
+    "solution": "Subtract 5: $-2x > 6$. Divide by $-2$ and reverse the inequality sign: $x < -3$.",
+    "skill": "linear-inequalities",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m1-12",
+    "prompt": "Which expression is equivalent to $x^2 - 9$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$(x - 3)^2$", "$(x + 3)^2$", "$(x - 9)(x + 1)$", "$(x - 3)(x + 3)$"],
+      "correct": "D"
+    },
+    "solution": "This is a difference of squares: $x^2 - 3^2 = (x - 3)(x + 3)$.",
+    "skill": "equivalent-expressions",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m1-13",
+    "prompt": "What is the positive solution of $x^2 - 3x - 10 = 0$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["5"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Factor: $(x - 5)(x + 2) = 0$, so $x = 5$ or $x = -2$. The positive solution is 5.",
+    "skill": "nonlinear-equations",
+    "difficulty": 2,
+    "compute": "(3+sqrt(49))/2"
+  },
+  {
+    "id": "w01-m1-14",
+    "prompt": "The function $g$ is defined by $g(x) = (x - 2)^2 - 5$. What is the minimum value of $g(x)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["$-2$", "$2$", "$-5$", "$5$"],
+      "correct": "C"
+    },
+    "solution": "A square is never negative, so $(x - 2)^2 \\ge 0$ and $g(x) \\ge -5$. The minimum value is $-5$, at $x = 2$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m1-15",
+    "prompt": "A price is increased by 20%. Then the new price is decreased by 20%. The final price is what percent of the original price?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["100%", "96%", "99%", "104%"],
+      "correct": "B"
+    },
+    "solution": "The price is multiplied by $1.20$ and then by $0.80$: $1.2 \\times 0.8 = 0.96$, which is 96% of the original.",
+    "skill": "percentages",
+    "difficulty": 2
+  },
+  {
+    "id": "w01-m1-16",
+    "prompt": "A line of best fit for a scatterplot relating hours studied, $x$, to test score, $y$, is $y = 5x + 60$. According to this model, what is the predicted score for a student who studies 6 hours?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["90", "66", "80", "120"],
+      "correct": "A"
+    },
+    "solution": "Substitute $x = 6$: $y = 5(6) + 60 = 90$.",
+    "skill": "two-variable-data",
+    "difficulty": 2,
+    "compute": "5*6+60"
+  },
+  {
+    "id": "w01-m1-17",
+    "prompt": "A rectangular prism has a length of 6, a width of 4 and a volume of 120. What is its height?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["5"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "Volume = length × width × height, so $120 = 6 \\times 4 \\times h$. Then $24h = 120$ and $h = 5$.",
+    "skill": "area-volume",
+    "difficulty": 2,
+    "compute": "120/(6*4)"
+  },
+  {
+    "id": "w01-m1-18",
+    "prompt": "$3x + 2y = 19$ and $x - y = 3$. What is the value of $x$?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["5"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "From the second equation $y = x - 3$. Substitute: $3x + 2(x - 3) = 19$, so $5x - 6 = 19$ and $5x = 25$, giving $x = 5$.",
     "skill": "systems",
     "difficulty": 3,
-    "compute": "(11+1)/3"
+    "compute": "(19+6)/5"
+  },
+  {
+    "id": "w01-m1-19",
+    "prompt": "A gym charges a \\$25 joining fee plus \\$12 per month. What is the greatest number of whole months Sam can pay for with a budget of \\$150?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["10"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The total cost is $25 + 12m$, which must be at most 150. So $12m \\le 125$ and $m \\le 10.4$. The greatest whole number of months is 10.",
+    "skill": "linear-inequalities",
+    "difficulty": 3,
+    "compute": "floor((150-25)/12)"
+  },
+  {
+    "id": "w01-m1-20",
+    "prompt": "The length of a rectangle is 3 more than its width, and its area is 70. What is the width of the rectangle?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["7", "5", "10", "13"],
+      "correct": "A"
+    },
+    "solution": "Let the width be $w$. Then $w(w + 3) = 70$, so $w^2 + 3w - 70 = 0$, which factors as $(w + 10)(w - 7) = 0$. The width is 7 (the other solution is negative).",
+    "skill": "nonlinear-equations",
+    "difficulty": 3,
+    "compute": "7"
+  },
+  {
+    "id": "w01-m1-21",
+    "prompt": "A bag has 5 red marbles and 3 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both marbles are red?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["25/64", "5/16", "5/14", "1/2"],
+      "correct": "C"
+    },
+    "solution": "The first marble is red with probability $\\frac{5}{8}$. Then 4 red marbles remain among 7, so the second is red with probability $\\frac{4}{7}$. Together: $\\frac{5}{8} \\times \\frac{4}{7} = \\frac{20}{56} = \\frac{5}{14}$.",
+    "skill": "probability",
+    "difficulty": 3
+  },
+  {
+    "id": "w01-m1-22",
+    "prompt": "In triangle $ABC$, the measure of angle $A$ is $60°$ and the measure of angle $B$ is twice the measure of angle $C$. What is the measure of angle $B$, in degrees?",
+    "answer": {
+      "kind": "value",
+      "accepted": ["80"],
+      "form": "any",
+      "mistakes": []
+    },
+    "solution": "The angles add to $180°$, so $B + C = 120°$. Since $B = 2C$, $3C = 120°$ and $C = 40°$. Then $B = 80°$.",
+    "skill": "lines-angles-triangles",
+    "difficulty": 3,
+    "compute": "2*120/3"
   }
 ]

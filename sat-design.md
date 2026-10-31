@@ -60,7 +60,8 @@ Module 1 raw score ≥ 14 of 22 → harder module 2; otherwise the easier one. T
   - A teacher sets the day week 1 opens for a class (`Class.settings.satStartDate`, "YYYY-MM-DD", on the class page: `GET/PUT /teacher/classes/:classId/sat-schedule`); week N opens N−1 weeks (7 days each) later, by the class's time zone. No date means every week is open. A student follows the newest class they joined that has a date.
   - A locked week shows "Opens <day>" and cannot be started (403 with the date); a test already started stays open, and earlier weeks stay available to catch up. The newest open week is marked "This week".
   - `/sat` shows "Your scores": a small line chart and a table of the estimated score for each finished week.
-- **S4+** content, one week at a time (weeks 1–4 first).
+- **S4** (Week 1 done): `content/sat/week-01` is a real week: 66 original questions (module 1, easier module 2, harder module 2) in the odd-week plan (19/9/11/5), 6 typed questions in module 1 and 5–6 in each module 2, every module ordered easier to harder (difficulty 1–3), each skill at least once, every typed answer and numeric choice proved by `compute` in `content:check`. It replaced the short sample week; an attempt whose questions changed (different ids or a different module size) counts as outdated and the week starts over.
+- **S4+** the next weeks, one at a time (week 2 uses the even-week plan 18/9/11/6), each reviewed by a teacher before it is used.
 - **S-teacher** class results by area and skill.
 
 ## 7. Adaptive practice (S2b)

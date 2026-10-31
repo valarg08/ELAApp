@@ -53,6 +53,16 @@ export const isRight = (q: SatQuestion, answer: string | undefined): boolean => 
     : satTypedMatches(answer, q.answer.accepted);
 };
 
+/** Whether an attempt asks questions its week no longer has (the week's content was replaced). */
+const isOutdated = (row: SatAttempt, week: LoadedSatWeek): boolean => {
+  const state = SatStoredState.safeParse(row.state);
+  if (!state.success) return true;
+  return state.data.modules.some((m) => {
+    const have = new Set(week.modules[m.key].map((q) => q.id));
+    return m.ids.length !== have.size || m.ids.some((id) => !have.has(id));
+  });
+};
+
 /** The right answer for the review: a letter, or the first accepted value. */
 const correctText = (q: SatQuestion): string =>
   q.answer.kind === 'choice' ? q.answer.correct : (q.answer.accepted[0] ?? '');
@@ -99,7 +109,7 @@ export class SatService {
     const rows = weeks
       .toSorted((x, y) => x.week - y.week)
       .map((w) => {
-        const a = attempts.find((x) => x.week === w.week);
+        const a = attempts.find((x) => x.week === w.week && !isOutdated(x, w));
         const opens = schedule ? satWeekOpens(schedule.startDate, w.week) : null;
         const open = opens === null || today === null || satWeekIsOpen(opens, today);
         return {
@@ -130,9 +140,14 @@ export class SatService {
     this.studentOnly(user);
     const week = await this.content.week(weekNumber);
     if (!week) throw notFound(ErrorCode.NOT_FOUND, 'That test does not exist.');
-    const existing = await this.db.client.satAttempt.findUnique({
+    let existing = await this.db.client.satAttempt.findUnique({
       where: { studentId_week: { studentId: user.id, week: weekNumber } },
     });
+    // A test whose questions were replaced (a sample week made real) starts over.
+    if (existing && isOutdated(existing, week)) {
+      await this.db.client.satAttempt.delete({ where: { id: existing.id } });
+      existing = null;
+    }
     if (existing) return this.settleAndView(existing);
     const schedule = await this.scheduleOf(user.id);
     if (schedule) {
@@ -209,7 +224,8 @@ export class SatService {
 
   private async weekOf(row: SatAttempt): Promise<LoadedSatWeek> {
     const week = await this.content.week(row.week);
-    if (!week) throw notFound(ErrorCode.NOT_FOUND, 'That test is no longer available.');
+    if (!week || isOutdated(row, week))
+      throw notFound(ErrorCode.NOT_FOUND, 'That test is no longer available.');
     return week;
   }
 
@@ -423,7 +439,7 @@ export class SatService {
     const out: SatMistake[] = [];
     for (const row of rows) {
       const week = await this.content.week(row.week);
-      if (!week) continue;
+      if (!week || isOutdated(row, week)) continue;
       const view = this.resultView(row, SatStoredState.parse(row.state), week);
       for (const r of view.review) {
         if (r.correct || seen.has(r.id)) continue;
