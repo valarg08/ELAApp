@@ -2,9 +2,10 @@
 
 import { CHOICE_LETTERS } from '@storyforge/math-check';
 import type { MathProblemPublic } from '@storyforge/shared';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { MathText } from '@/components/math-text';
 import { AnswerBox } from './answer-box';
+import { focusAnswer } from './focus';
 
 const svgSrc = (svg: string) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 
@@ -80,6 +81,7 @@ export function ProblemView({
   onSubmit,
   disabled,
   allowBlank,
+  focus = false,
 }: {
   problem: MathProblemPublic;
   number?: number;
@@ -89,10 +91,16 @@ export function ProblemView({
   disabled?: boolean;
   /** Marked sets and tests: a chosen answer can be cleared to leave the problem blank. */
   allowBlank?: boolean;
+  /** One question on the page: put the keyboard on its answer box (or choice) when it appears. */
+  focus?: boolean;
 }) {
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (focus && !disabled) focusAnswer(root.current);
+  }, [focus, disabled]);
   const name = `problem-${problem.id}-${problem.seed ?? ''}-${number ?? ''}`;
   return (
-    <div className="flex flex-col gap-4">
+    <div ref={root} className="flex flex-col gap-4">
       <p className="text-lg leading-relaxed">
         {number !== undefined && <span className="mr-2 font-bold text-muted">{number}.</span>}
         <MathText text={problem.prompt} />
@@ -118,6 +126,12 @@ export function ProblemView({
                   checked={checked}
                   disabled={disabled}
                   onChange={() => onAnswer(letter)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && onSubmit) {
+                      e.preventDefault();
+                      onSubmit();
+                    }
+                  }}
                   className="h-5 w-5 accent-brand"
                 />
                 <span className="font-semibold">({letter})</span>
@@ -142,6 +156,7 @@ export function ProblemView({
           onSubmit={onSubmit}
           form={problem.form}
           disabled={disabled}
+          focusOnMount={focus}
         />
       )}
     </div>

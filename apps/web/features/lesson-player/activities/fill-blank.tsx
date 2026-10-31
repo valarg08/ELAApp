@@ -100,6 +100,7 @@ export function FillBlank({
           </fieldset>
         ) : (
           <form
+            key={index}
             className="flex flex-wrap items-end gap-3"
             onSubmit={(e) => {
               e.preventDefault();
@@ -111,6 +112,7 @@ export function FillBlank({
                 Word for the blank
               </label>
               <input
+                ref={focusOnMount}
                 id={`${id}-answer`}
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}

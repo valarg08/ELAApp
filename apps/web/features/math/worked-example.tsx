@@ -111,6 +111,7 @@ function StepView({
           }}
           onSubmit={check}
           form={step.try.form}
+          focusOnMount
         />
         {message && (
           <output className={`block font-semibold ${message.good ? 'text-ok' : 'text-warn'}`}>

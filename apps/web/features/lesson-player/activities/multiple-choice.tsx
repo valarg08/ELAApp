@@ -1,8 +1,10 @@
 'use client';
 
 import type { ActivityContent } from '@storyforge/shared';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui';
+import { focusAnswer } from '@/features/math/focus';
+import { focusOnMount } from './focus';
 import type { ActivityResult } from './types';
 
 type Activity = Extract<ActivityContent, { type: 'MULTIPLE_CHOICE' }>;
@@ -20,6 +22,13 @@ export function MultipleChoice({
   const [wrongTries, setWrongTries] = useState(0);
   const [attempts, setAttempts] = useState(0);
   const [solved, setSolved] = useState(false);
+  const group = useRef<HTMLFieldSetElement>(null);
+  // Each new question starts with the keyboard on its choices.
+  useEffect(() => {
+    focusAnswer(group.current);
+    // Runs when the question changes; qIndex is the trigger, not a value read inside.
+    // oxlint-disable-next-line react/exhaustive-deps
+  }, [qIndex]);
   const question = activity.questions[qIndex];
   if (!question) return null;
   const isLast = qIndex === activity.questions.length - 1;
@@ -46,7 +55,7 @@ export function MultipleChoice({
   const name = `${activity.key}-${question.id}`;
   return (
     <div className="flex flex-col gap-4">
-      <fieldset className="flex flex-col gap-3" disabled={solved}>
+      <fieldset ref={group} className="flex flex-col gap-3" disabled={solved}>
         <legend className="mb-2 text-lg font-semibold">
           {activity.questions.length > 1 && (
             <span className="mr-2 text-sm text-muted">
@@ -70,6 +79,12 @@ export function MultipleChoice({
                 value={o.id}
                 checked={choice === o.id}
                 onChange={() => setChoice(o.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    check();
+                  }
+                }}
                 className="h-5 w-5 accent-brand"
               />
               <span>{o.text}</span>
@@ -93,7 +108,7 @@ export function MultipleChoice({
       </div>
 
       {solved ? (
-        <Button onClick={next} className="self-start">
+        <Button ref={focusOnMount} onClick={next} className="self-start">
           {isLast ? 'Done' : 'Next question'}
         </Button>
       ) : (

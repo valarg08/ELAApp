@@ -377,7 +377,10 @@ export function TestPlayer({
           number={index + 1}
           answer={current?.answer ?? ''}
           onAnswer={(v) => update({ answer: v })}
-          onSubmit={view.instant ? () => void checkNow() : undefined}
+          onSubmit={
+            view.instant ? () => void checkNow() : index < n - 1 ? () => go(index + 1) : undefined
+          }
+          focus
           disabled={locked || busy}
           allowBlank={!view.instant}
         />

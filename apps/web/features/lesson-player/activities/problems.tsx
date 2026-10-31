@@ -284,6 +284,7 @@ export function Problems({
           }}
           onSubmit={check}
           disabled={finished}
+          focus
         />
       ) : (
         <p className="text-muted">Loading the problem…</p>

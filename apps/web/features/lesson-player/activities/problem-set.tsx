@@ -15,6 +15,7 @@ import { Button, ErrorMessage } from '@/components/ui';
 import { MathText } from '@/components/math-text';
 import { MATH_COPY } from '@/features/math/copy';
 import { ConfidenceChips } from '@/features/math/practice-tools';
+import { focusAnswer } from '@/features/math/focus';
 import { ProblemView } from '@/features/math/problem-view';
 import { QuillMath } from '@/features/math/quill-math';
 import { ApiError, apiJson } from '@/lib/api-client';
@@ -53,6 +54,7 @@ export function ProblemSet({
   const [status, setStatus] = useState<ProblemSetStatus | null>(null);
   const [attempt, setAttempt] = useState<ProblemSetAttemptView | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const list = useRef<HTMLOListElement>(null);
   const [confidence, setConfidence] = useState<Record<string, MathConfidence>>({});
   const [result, setResult] = useState<ProblemSetResult | null>(null);
   const [busy, setBusy] = useState(false);
@@ -144,7 +146,7 @@ export function ProblemSet({
             />
           )}
         </div>
-        <ol className="flex flex-col gap-8">
+        <ol ref={list} className="flex flex-col gap-8">
           {attempt.problems.map((p, i) => (
             <li key={p.id} className="border-b border-border pb-6 last:border-b-0">
               <ProblemView
@@ -152,6 +154,7 @@ export function ProblemSet({
                 number={i + 1}
                 answer={answers[p.id] ?? ''}
                 onAnswer={(v) => setAnswers((a) => ({ ...a, [p.id]: v }))}
+                onSubmit={() => focusAnswer(list.current?.children[i + 1])}
                 allowBlank
               />
               {answers[p.id]?.trim() && (

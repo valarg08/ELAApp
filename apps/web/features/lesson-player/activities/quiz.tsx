@@ -4,6 +4,7 @@ import { type LessonActivity, QuizAttemptView, QuizResult, QuizStatus } from '@s
 import { useEffect, useState } from 'react';
 import { Button, ErrorMessage } from '@/components/ui';
 import { ApiError, apiJson } from '@/lib/api-client';
+import { focusAnswer } from '@/features/math/focus';
 import { focusOnMount } from './focus';
 import type { ActivityResult } from './types';
 
@@ -131,6 +132,18 @@ export function Quiz({
                       value={o.id}
                       checked={answers[q.id] === o.id}
                       onChange={() => setAnswers((a) => ({ ...a, [q.id]: o.id }))}
+                      onKeyDown={(e) => {
+                        if (e.key !== 'Enter') return;
+                        e.preventDefault();
+                        // Enter goes to the next question's choices; on the last one it hands the quiz in.
+                        const groups = [
+                          ...(e.currentTarget.closest('ol')?.querySelectorAll('fieldset') ?? []),
+                        ];
+                        const next =
+                          groups[groups.indexOf(e.currentTarget.closest('fieldset')!) + 1];
+                        if (next) focusAnswer(next);
+                        else if (!busy && answered === attempt.questions.length) void submit();
+                      }}
                       className="h-5 w-5 accent-brand"
                     />
                     <span>{o.text}</span>

@@ -1,7 +1,7 @@
 'use client';
 
 import { type AnswerForm, FORM_LABELS, approx, format, readAnswer } from '@storyforge/math-check';
-import { useId, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 import { useSimpleAnswers } from './simple-answers';
 
 /** A plain number like "100.5" or "-3": echoed as a decimal, not as 201/2. */
@@ -29,6 +29,7 @@ export function AnswerBox({
   form = 'any',
   disabled,
   label = 'Your answer',
+  focusOnMount = false,
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -36,11 +37,16 @@ export function AnswerBox({
   form?: AnswerForm;
   disabled?: boolean;
   label?: string;
+  /** Focus the box when it appears (a new question), so typing can start at once. */
+  focusOnMount?: boolean;
 }) {
   const id = useId();
   const simple = useSimpleAnswers();
   const input = useRef<HTMLInputElement>(null);
   const read = value.trim() ? readAnswer(value) : null;
+  useEffect(() => {
+    if (focusOnMount) input.current?.focus();
+  }, [focusOnMount]);
 
   function insert(text: string) {
     const el = input.current;

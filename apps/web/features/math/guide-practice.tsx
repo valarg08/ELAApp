@@ -9,6 +9,7 @@ import {
 } from '@storyforge/math-check';
 import { useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { AnswerBox } from './answer-box';
+import { focusAnswer } from './focus';
 import { ProblemFigure } from './guide-figure';
 import type { GuideProblem } from './guide-problem';
 
@@ -169,6 +170,12 @@ function ProblemSet({
     if (!solved.includes(i)) writeStored(storageKey, JSON.stringify([...solved, i]));
   };
   const reset = () => writeStored(storageKey, '[]');
+  const list = useRef<HTMLOListElement>(null);
+  // A right answer moves the keyboard on to the next problem's answer box.
+  const solvedAt = (i: number) => {
+    markSolved(i);
+    requestAnimationFrame(() => focusAnswer(list.current?.children[i + 1]));
+  };
   // With level tabs the section heading is "Practice problems"; each level gets an h3.
   const Heading = label ? 'h3' : 'h2';
 
@@ -191,7 +198,7 @@ function ProblemSet({
         press Check; if it is wrong you will see how to solve it, step by step.
       </p>
       {note && <p className="text-muted">{note}</p>}
-      <ol className="flex flex-col gap-4">
+      <ol ref={list} className="flex flex-col gap-4">
         {problems.map((pr, i) => (
           <ProblemCard
             key={pr.q}
@@ -199,7 +206,7 @@ function ProblemSet({
             idPrefix={idPrefix}
             problem={pr}
             solved={solved.includes(i)}
-            onSolved={() => markSolved(i)}
+            onSolved={() => solvedAt(i)}
           />
         ))}
       </ol>

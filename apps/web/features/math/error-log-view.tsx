@@ -141,6 +141,7 @@ function Redo({ entry, onUpdate }: { entry: ErrorLogEntry; onUpdate: (e: ErrorLo
         }}
         onSubmit={() => void check()}
         disabled={done}
+        focus
       />
       {!done && (
         <Button
