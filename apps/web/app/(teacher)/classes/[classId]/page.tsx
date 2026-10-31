@@ -1,20 +1,22 @@
-import { ClassSummary, SafetyFlagView, StudentSummary } from '@storyforge/shared';
+import { ClassSummary, SafetyFlagView, SatSchedule, StudentSummary } from '@storyforge/shared';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ButtonLink, PageShell } from '@/components/ui';
 import { serverApi } from '@/lib/server-api';
 import { AiModeSelect } from './ai-mode-select';
 import { Roster } from './roster';
+import { SatScheduleCard } from './sat-schedule';
 import { SelfPacedToggle } from './self-paced-toggle';
 
 export const dynamic = 'force-dynamic';
 
 export default async function ClassPage({ params }: PageProps<'/classes/[classId]'>) {
   const { classId } = await params;
-  const [klass, students, openFlags] = await Promise.all([
+  const [klass, students, openFlags, satSchedule] = await Promise.all([
     serverApi(`/teacher/classes/${classId}`, ClassSummary),
     serverApi(`/teacher/classes/${classId}/students`, StudentSummary.array()),
     serverApi(`/teacher/classes/${classId}/flags?status=OPEN`, SafetyFlagView.array()),
+    serverApi(`/teacher/classes/${classId}/sat-schedule`, SatSchedule),
   ]);
   if (!klass || !students) notFound();
 
@@ -59,6 +61,7 @@ export default async function ClassPage({ params }: PageProps<'/classes/[classId
 
         <SelfPacedToggle classId={klass.id} initial={klass.selfPaced} />
         <AiModeSelect classId={klass.id} initial={klass.aiFeedbackMode} />
+        {satSchedule && <SatScheduleCard classId={klass.id} initial={satSchedule} />}
 
         <Roster classId={klass.id} students={students} />
       </div>

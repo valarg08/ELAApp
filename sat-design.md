@@ -55,7 +55,10 @@ Module 1 raw score ≥ 14 of 22 → harder module 2; otherwise the easier one. T
   - Estimate (`satScoreEstimate`, stored in `SatAttempt.score`): the share of difficulty-weighted points earned (difficulty 1/2/3 count 1/1.5/2) is placed on 200–600 after the easier module 2 and 400–800 after the harder one, rounded to 10, with a band of 40 either side. Always shown as our estimate, not an official score.
   - The result page shows the score and band, the raw score by module, a table by content area and by skill (with bars), "Work on next" (up to 3 skills under 60%), and every question's solution.
   - `/sat/mistakes` (`GET /sat/mistakes`): every question missed or left blank in finished tests, newest first, one entry per question, by content area, with the answer and solution behind a button. It is the SAT's own list; the Math error log is not used.
-- **S3** weekly schedule and the teacher start date.
+- **S3** (done): the weekly schedule.
+  - A teacher sets the day week 1 opens for a class (`Class.settings.satStartDate`, "YYYY-MM-DD", on the class page: `GET/PUT /teacher/classes/:classId/sat-schedule`); week N opens N−1 weeks (7 days each) later, by the class's time zone. No date means every week is open. A student follows the newest class they joined that has a date.
+  - A locked week shows "Opens <day>" and cannot be started (403 with the date); a test already started stays open, and earlier weeks stay available to catch up. The newest open week is marked "This week".
+  - `/sat` shows "Your scores": a small line chart and a table of the estimated score for each finished week.
 - **S4+** content, one week at a time (weeks 1–4 first).
 - **S-teacher** class results by area and skill.
 

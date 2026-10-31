@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { MathFigure } from '../curriculum/math.js';
-import { SatModuleKey } from '../curriculum/sat.js';
+import { SatModuleKey, isSatDate } from '../curriculum/sat.js';
 
 /** The SAT Math weekly test as the API and the page see it (sat-design.md). */
 
@@ -108,6 +108,12 @@ export const SatWeekSummary = z.object({
   correct: z.number().int().nullable(),
   total: z.number().int().nullable(),
   score: z.number().int().nullable(),
+  /** The day the week opens for the student's class (null when the class has no schedule). */
+  opens: z.string().nullable(),
+  /** Not open yet (a test already started stays open). */
+  locked: z.boolean(),
+  /** The newest week that is open: the one to take now. */
+  current: z.boolean(),
 });
 export type SatWeekSummary = z.infer<typeof SatWeekSummary>;
 
@@ -214,3 +220,22 @@ export const SatSkillStanding = z.object({
 });
 export type SatSkillStanding = z.infer<typeof SatSkillStanding>;
 export const SatSkillStandings = z.array(SatSkillStanding);
+
+// ───────── The class schedule (teacher) ─────────
+
+/** A calendar day like 2026-11-02. */
+export const SatDate = z.string().refine(isSatDate, 'Use a real date like 2026-11-02');
+
+export const SetSatScheduleRequest = z.object({ startDate: SatDate.nullable() });
+export type SetSatScheduleRequest = z.infer<typeof SetSatScheduleRequest>;
+
+/** A class's SAT schedule: week 1 opens on the start date, then one week every 7 days. */
+export const SatSchedule = z.object({
+  startDate: SatDate.nullable(),
+  timezone: z.string(),
+  today: SatDate,
+  weeks: z.array(
+    z.object({ week: z.number().int(), title: z.string(), opens: SatDate.nullable() }),
+  ),
+});
+export type SatSchedule = z.infer<typeof SatSchedule>;

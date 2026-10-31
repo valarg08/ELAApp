@@ -7,11 +7,22 @@ import {
 } from '@storyforge/shared';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { ScoreChart } from '@/features/sat/score-chart';
 import { CourseShell } from '@/components/course-shell';
 import { TrackTabs } from '@/components/track-tabs';
 import { getMe, serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
+
+const opensOn = (date: string | null) =>
+  date
+    ? new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC',
+      })
+    : 'soon';
 
 /** Questions a content area gets in a week, over the two modules (odd and even weeks differ). */
 const perWeek = (domain: (typeof SAT_DOMAINS)[number]['id'], week: number) =>
@@ -25,6 +36,7 @@ export default async function SatHome() {
   const me = await getMe();
   if (!me) redirect('/join');
   const weeks = (await serverApi('/sat/weeks', SatWeekSummary.array())) ?? [];
+  const history = weeks.filter((w) => w.status === 'done' && w.score !== null);
 
   return (
     <CourseShell track="SAT">
@@ -83,18 +95,23 @@ export default async function SatHome() {
                 <li key={w.week}>
                   <Link
                     href={`/sat/week/${w.week}`}
-                    className="block rounded-2xl border-2 border-accent bg-card p-5 shadow-sm transition hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                    className={`block rounded-2xl border-2 bg-card p-5 shadow-sm transition hover:border-brand focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand ${
+                      w.current && w.status !== 'done' ? 'border-brand' : 'border-border'
+                    } ${w.locked ? 'opacity-70' : ''}`}
                   >
                     <p className="text-sm font-semibold tracking-widest text-brand uppercase">
                       Week {w.week}
+                      {w.current && w.status !== 'done' && !w.locked ? ' · This week' : ''}
                     </p>
                     <p className="mt-1 text-xl font-bold">{w.title}</p>
                     <p className="mt-1 text-muted">
-                      {w.status === 'done'
-                        ? `Done: ${w.correct} of ${w.total} right${w.score ? `, score about ${w.score}` : ''}. See the review`
-                        : w.status === 'in-progress'
-                          ? 'In progress. Continue the test'
-                          : `${w.questions} questions, ${w.minutes} minutes a module. Start the test`}
+                      {w.locked
+                        ? `Opens ${opensOn(w.opens)}`
+                        : w.status === 'done'
+                          ? `Done: ${w.correct} of ${w.total} right${w.score ? `, score about ${w.score}` : ''}. See the review`
+                          : w.status === 'in-progress'
+                            ? 'In progress. Continue the test'
+                            : `${w.questions} questions, ${w.minutes} minutes a module. Start the test`}
                     </p>
                   </Link>
                 </li>
@@ -108,6 +125,47 @@ export default async function SatHome() {
             collects every question you missed.
           </p>
         </section>
+
+        {history.length > 0 && (
+          <section aria-labelledby="sat-history" className="flex flex-col gap-3">
+            <h2 id="sat-history" className="text-2xl font-semibold">
+              Your scores
+            </h2>
+            <p className="text-muted">
+              Estimated Math scores from your finished weekly tests. Watch the trend, not one week.
+            </p>
+            <ScoreChart points={history.map((w) => ({ week: w.week, score: w.score! }))} />
+            <table className="w-full max-w-md border-collapse text-left">
+              <caption className="sr-only">Estimated score for each finished weekly test</caption>
+              <thead>
+                <tr>
+                  <th scope="col" className="border-b border-border px-2 py-1">
+                    Week
+                  </th>
+                  <th scope="col" className="border-b border-border px-2 py-1">
+                    Right
+                  </th>
+                  <th scope="col" className="border-b border-border px-2 py-1">
+                    Estimated score
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {history.map((w) => (
+                  <tr key={w.week}>
+                    <th scope="row" className="border-b border-border px-2 py-1 font-normal">
+                      {w.week}
+                    </th>
+                    <td className="border-b border-border px-2 py-1">
+                      {w.correct} of {w.total}
+                    </td>
+                    <td className="border-b border-border px-2 py-1 font-semibold">{w.score}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        )}
 
         <section
           aria-labelledby="sat-practice"

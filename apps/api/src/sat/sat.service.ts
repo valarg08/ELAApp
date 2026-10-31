@@ -4,6 +4,7 @@ import {
   ErrorCode,
   SAT_DOMAINS,
   SAT_WEIGHT,
+  isSatDate,
   type SatBreakdown,
   type SatMistake,
   type SatScore,
@@ -21,11 +22,15 @@ import {
   satDomainOfSkill,
   satNextModule,
   satScoreEstimate,
+  satToday,
   satTypedMatches,
+  satWeekIsOpen,
+  satWeekOpens,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { forbidden, notFound } from '../common/app-error.js';
 import type { LoadedSatWeek } from '../curriculum/content-loader.js';
+import { classSettings } from '@storyforge/shared';
 import { DatabaseService } from '../database/database.service.js';
 import { SatContentService } from './sat-content.service.js';
 
@@ -68,27 +73,57 @@ export class SatService {
     if (user.role !== 'STUDENT') throw forbidden('Only students take the SAT tests.');
   }
 
+  /** The student's class schedule: the start date of the newest class that has one, and its zone. */
+  async scheduleOf(studentId: string): Promise<{ startDate: string; timezone: string } | null> {
+    const rows = await this.db.client.enrollment.findMany({
+      where: { studentId, class: { archivedAt: null } },
+      include: { class: true },
+      orderBy: { joinedAt: 'desc' },
+    });
+    for (const e of rows) {
+      const date = (classSettings(e.class.settings) as Record<string, unknown>).satStartDate;
+      if (typeof date === 'string' && isSatDate(date))
+        return { startDate: date, timezone: e.class.timezone };
+    }
+    return null;
+  }
+
   async weeks(user: AuthUser): Promise<SatWeekSummary[]> {
     this.studentOnly(user);
-    const [weeks, attempts] = await Promise.all([
+    const [weeks, attempts, schedule] = await Promise.all([
       this.content.weeks(),
       this.db.client.satAttempt.findMany({ where: { studentId: user.id } }),
+      this.scheduleOf(user.id),
     ]);
-    return weeks.map((w) => {
-      const a = attempts.find((x) => x.week === w.week);
-      return {
-        week: w.week,
-        title: w.title,
-        sample: w.sample,
-        questions: w.modules.m1.length + w.modules['m2-easy'].length,
-        minutes: w.minutes,
-        status: !a ? 'new' : a.submittedAt ? 'done' : 'in-progress',
-        attemptId: a?.id ?? null,
-        correct: a?.correct ?? null,
-        total: a?.submittedAt ? a.total : null,
-        score: a?.score ?? null,
-      };
-    });
+    const today = schedule ? satToday(schedule.timezone) : null;
+    const rows = weeks
+      .toSorted((x, y) => x.week - y.week)
+      .map((w) => {
+        const a = attempts.find((x) => x.week === w.week);
+        const opens = schedule ? satWeekOpens(schedule.startDate, w.week) : null;
+        const open = opens === null || today === null || satWeekIsOpen(opens, today);
+        return {
+          week: w.week,
+          title: w.title,
+          sample: w.sample,
+          questions: w.modules.m1.length + w.modules['m2-easy'].length,
+          minutes: w.minutes,
+          status: !a
+            ? ('new' as const)
+            : a.submittedAt
+              ? ('done' as const)
+              : ('in-progress' as const),
+          attemptId: a?.id ?? null,
+          correct: a?.correct ?? null,
+          total: a?.submittedAt ? a.total : null,
+          score: a?.score ?? null,
+          opens,
+          locked: !open && !a,
+          open,
+        };
+      });
+    const newest = Math.max(0, ...rows.filter((r) => r.open).map((r) => r.week));
+    return rows.map(({ open: _open, ...r }) => ({ ...r, current: r.week === newest }));
   }
 
   async start(user: AuthUser, weekNumber: number): Promise<SatAttemptView> {
@@ -99,6 +134,12 @@ export class SatService {
       where: { studentId_week: { studentId: user.id, week: weekNumber } },
     });
     if (existing) return this.settleAndView(existing);
+    const schedule = await this.scheduleOf(user.id);
+    if (schedule) {
+      const opens = satWeekOpens(schedule.startDate, weekNumber);
+      if (!satWeekIsOpen(opens, satToday(schedule.timezone)))
+        throw forbidden(`This test opens on ${opens}.`);
+    }
 
     const now = new Date();
     const state = SatStoredState.parse({

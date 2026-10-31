@@ -318,3 +318,40 @@ export function satScoreEstimate(hardPath: boolean, earned: number, possible: nu
   const tidy = (n: number) => Math.min(800, Math.max(200, Math.round(n / 10) * 10));
   return { estimate: tidy(raw), low: tidy(raw - 40), high: tidy(raw + 40) };
 }
+
+// ───────── The weekly schedule (sat-design.md §3) ─────────
+
+/** Days are "YYYY-MM-DD" strings; week 1 opens on a class's start date and each week 7 days later. */
+const MS_DAY = 86_400_000;
+const dayNumber = (date: string) =>
+  Date.UTC(Number(date.slice(0, 4)), Number(date.slice(5, 7)) - 1, Number(date.slice(8, 10))) /
+  MS_DAY;
+
+/** Whether a string is a real calendar day like 2026-11-02. */
+export const isSatDate = (value: string): boolean =>
+  /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value) &&
+  new Date(dayNumber(value) * MS_DAY).toISOString().slice(0, 10) === value;
+
+export const satAddDays = (date: string, days: number): string =>
+  new Date((dayNumber(date) + days) * MS_DAY).toISOString().slice(0, 10);
+
+/** The day a week opens, given the class's start date. */
+export const satWeekOpens = (startDate: string, week: number): string =>
+  satAddDays(startDate, (week - 1) * 7);
+
+/** Today's date in a time zone (UTC when the zone is unknown). */
+export function satToday(timezone: string, now: Date = new Date()): string {
+  try {
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: timezone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).format(now);
+  } catch {
+    return now.toISOString().slice(0, 10);
+  }
+}
+
+/** A week is open from its day on ("YYYY-MM-DD" strings compare in order). */
+export const satWeekIsOpen = (opens: string, today: string): boolean => opens <= today;

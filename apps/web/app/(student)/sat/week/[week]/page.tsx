@@ -7,6 +7,16 @@ import { getMe, serverApi } from '@/lib/server-api';
 
 export const dynamic = 'force-dynamic';
 
+const opensOn = (date: string | null) =>
+  date
+    ? new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC',
+      })
+    : 'a later day';
+
 /**
  * The page before a weekly SAT test (sat-design.md): the rules of the test, then Start, Continue
  * or the finished result.
@@ -64,9 +74,14 @@ export default async function SatWeekPage({ params }: { params: Promise<{ week: 
 
         <section aria-labelledby="sat-go" className="flex flex-col gap-3">
           <h2 id="sat-go" className="text-2xl font-semibold">
-            {info.status === 'done' ? 'Your result' : 'Ready?'}
+            {info.locked ? 'Not open yet' : info.status === 'done' ? 'Your result' : 'Ready?'}
           </h2>
-          {info.status === 'done' && info.attemptId ? (
+          {info.locked ? (
+            <p className="text-muted">
+              This test opens on <strong>{opensOn(info.opens)}</strong>. Read the rules now, and
+              come back then.
+            </p>
+          ) : info.status === 'done' && info.attemptId ? (
             <>
               <p>
                 You got {info.correct} of {info.total} right.
