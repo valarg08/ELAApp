@@ -36,7 +36,8 @@ One full test per week (week 1, 2, 3, …), one scored attempt per student per w
 
 - Per week: module 1 (22), an easier module 2 (22) and a harder module 2 (22) = 66 original questions, kept in `content/sat/week-XX/` (keys `s01.` …, slugs `sat-`).
 - Every question has a skill, a difficulty (1–3), a form (choice or typed), the answer, `compute` for computable answers (verified by `content:check`), and worked steps shown in the review.
-- Figures use the shared figure specs (`guide-problem.ts` `Figure`), data tables use the table component, formulas use KaTeX `MathText`.
+- Pictures: a question's `figure` is a plain SVG in `content/sat/week-XX/figures/` with alt text (the data in words, so a screen-reader user can still answer). Weeks 1–2 have 9: scatterplots with and without a line of best fit, a line graph, dot plots, triangles, parallel lines with a transversal. Formulas use KaTeX `MathText`.
+- Review (weeks 1–2, 132 questions): every answer was solved independently, the symbolic choices were checked numerically, keyed letters are balanced (A 24, B 25, C 24, D 24) and the right answer is not usually the longest. Fixed after review: near-twin questions in one test path, easier Module 1 quadratics for grade 8 (hard-path Module 2s keep the Algebra 2 topics), harder Module 2s (about 80% difficulty 3), pictures for data and geometry, weak distractors. A human teacher should still read every question.
 
 ## 5. Adaptive rule (to be tuned)
 

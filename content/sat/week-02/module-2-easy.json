@@ -27,17 +27,17 @@
   },
   {
     "id": "w02-m2e-03",
-    "prompt": "$y = 3x - 2$. What is the value of $y$ when $x = 6$?",
+    "prompt": "$3x + 2y = 12$. What is the value of $x$ when $y = 3$?",
     "answer": {
       "kind": "value",
-      "accepted": ["16"],
+      "accepted": ["2"],
       "form": "any",
       "mistakes": []
     },
-    "solution": "Substitute $x = 6$: $y = 3(6) - 2 = 18 - 2 = 16$.",
+    "solution": "Substitute $y = 3$: $3x + 6 = 12$, so $3x = 6$ and $x = 2$.",
     "skill": "linear-equations-2",
     "difficulty": 1,
-    "compute": "3*6-2"
+    "compute": "(12-2*3)/3"
   },
   {
     "id": "w02-m2e-04",
@@ -69,7 +69,7 @@
     "prompt": "What is the positive solution of the equation $x^2 = 81$?",
     "answer": {
       "kind": "choice",
-      "choices": ["3", "40.5", "9", "81"],
+      "choices": ["3", "18", "9", "81"],
       "correct": "C"
     },
     "solution": "The positive number whose square is 81 is 9.",
@@ -79,16 +79,16 @@
   },
   {
     "id": "w02-m2e-07",
-    "prompt": "A cyclist travels 36 miles in 3 hours. At the same speed, how many miles does the cyclist travel in 5 hours?",
+    "prompt": "A runner travels at a constant speed of 6 meters per second. How many meters does the runner travel in 2 minutes?",
     "answer": {
       "kind": "choice",
-      "choices": ["45", "48", "72", "60"],
+      "choices": ["12", "360", "7200", "720"],
       "correct": "D"
     },
-    "solution": "The speed is $36 \\div 3 = 12$ miles per hour, so in 5 hours the cyclist travels $12 \\times 5 = 60$ miles.",
+    "solution": "Two minutes is $2 \\times 60 = 120$ seconds, so the runner travels $6 \\times 120 = 720$ meters.",
     "skill": "ratios-rates",
     "difficulty": 1,
-    "compute": "36/3*5"
+    "compute": "6*120"
   },
   {
     "id": "w02-m2e-08",
@@ -119,7 +119,12 @@
   },
   {
     "id": "w02-m2e-10",
-    "prompt": "Two angles of a triangle measure $45°$ and $85°$. What is the measure of the third angle?",
+    "prompt": "Two angles of the triangle shown measure $45°$ and $85°$. What is the measure of the third angle?",
+    "figure": {
+      "file": "triangle-angles.svg",
+      "alt": "A triangle with angles of 45 degrees and 85 degrees marked at two vertices, and the third angle marked with a question mark.",
+      "scale": "not-to-scale"
+    },
     "answer": {
       "kind": "choice",
       "choices": ["$40°$", "$60°$", "$130°$", "$50°$"],
@@ -247,7 +252,12 @@
   },
   {
     "id": "w02-m2e-20",
-    "prompt": "A scatterplot shows a positive association between the number of hours of sunlight a plant receives each day and the plant's height. Which of the following best describes this association?",
+    "prompt": "The scatterplot shows the hours of sunlight each of 10 plants receives per day and the height of the plant. Which of the following best describes the association shown?",
+    "figure": {
+      "file": "scatter-rising.svg",
+      "alt": "Scatterplot of 10 points, hours of sunlight from 2 to 10 on the x-axis and plant height in centimeters on the y-axis. The points rise from about 12 cm at 2 hours to about 30 cm at 9.5 hours, with some scatter.",
+      "scale": "not-to-scale"
+    },
     "answer": {
       "kind": "choice",
       "choices": [
@@ -258,7 +268,7 @@
       ],
       "correct": "C"
     },
-    "solution": "A positive association means that as one variable increases the other tends to increase. It describes a tendency, not a rule that holds for every single plant.",
+    "solution": "The points rise from the lower left to the upper right, a positive association: as the hours of sunlight increase, the height tends to increase. It describes a tendency, not a rule that holds for every single plant.",
     "skill": "two-variable-data",
     "difficulty": 2
   },

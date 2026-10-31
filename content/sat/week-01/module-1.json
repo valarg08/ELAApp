@@ -142,44 +142,58 @@
   },
   {
     "id": "w01-m1-12",
-    "prompt": "Which expression is equivalent to $x^2 - 9$?",
+    "prompt": "Which expression is equivalent to $(x + 4)(x + 1)$?",
     "answer": {
       "kind": "choice",
-      "choices": ["$(x - 3)^2$", "$(x + 3)^2$", "$(x - 9)(x + 1)$", "$(x - 3)(x + 3)$"],
+      "choices": ["$x^2 + 4$", "$x^2 + 5x$", "$x^2 + 4x + 1$", "$x^2 + 5x + 4$"],
       "correct": "D"
     },
-    "solution": "This is a difference of squares: $x^2 - 3^2 = (x - 3)(x + 3)$.",
+    "solution": "Expand: $x^2 + x + 4x + 4 = x^2 + 5x + 4$.",
     "skill": "equivalent-expressions",
     "difficulty": 2
   },
   {
     "id": "w01-m1-13",
-    "prompt": "What is the positive solution of $x^2 - 3x - 10 = 0$?",
+    "prompt": "What is the positive solution of the equation $2x^2 - 8 = 0$?",
     "answer": {
       "kind": "value",
-      "accepted": ["5"],
+      "accepted": ["2"],
       "form": "any",
       "mistakes": []
     },
-    "solution": "Factor: $(x - 5)(x + 2) = 0$, so $x = 5$ or $x = -2$. The positive solution is 5.",
+    "solution": "Add 8: $2x^2 = 8$. Divide by 2: $x^2 = 4$, so $x = 2$ or $x = -2$. The positive solution is 2.",
     "skill": "nonlinear-equations",
     "difficulty": 2,
-    "compute": "(3+sqrt(49))/2"
+    "compute": "sqrt(8/2)"
   },
   {
     "id": "w01-m1-14",
-    "prompt": "The function $g$ is defined by $g(x) = (x - 2)^2 - 5$. What is the minimum value of $g(x)$?",
+    "prompt": "The area of a square is 81 square units. What is the perimeter of the square, in units?",
     "answer": {
       "kind": "choice",
-      "choices": ["$-2$", "$2$", "$-5$", "$5$"],
-      "correct": "C"
+      "choices": ["36", "9", "18", "81"],
+      "correct": "A"
     },
-    "solution": "A square is never negative, so $(x - 2)^2 \\ge 0$ and $g(x) \\ge -5$. The minimum value is $-5$, at $x = 2$.",
-    "skill": "nonlinear-functions",
-    "difficulty": 2
+    "solution": "The side length is $\\sqrt{81} = 9$. The perimeter is $4 \\times 9 = 36$.",
+    "skill": "nonlinear-equations",
+    "difficulty": 2,
+    "compute": "4*sqrt(81)"
   },
   {
     "id": "w01-m1-15",
+    "prompt": "The function $g$ is defined by $g(x) = x^2 - 4x$. What is the value of $g(-3)$?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["-3", "3", "21", "9"],
+      "correct": "C"
+    },
+    "solution": "$g(-3) = (-3)^2 - 4(-3) = 9 + 12 = 21$.",
+    "skill": "nonlinear-functions",
+    "difficulty": 2,
+    "compute": "(-3)^2-4*(-3)"
+  },
+  {
+    "id": "w01-m1-16",
     "prompt": "A price is increased by 20%. Then the new price is decreased by 20%. The final price is what percent of the original price?",
     "answer": {
       "kind": "choice",
@@ -191,20 +205,37 @@
     "difficulty": 2
   },
   {
-    "id": "w01-m1-16",
-    "prompt": "A line of best fit for a scatterplot relating hours studied, $x$, to test score, $y$, is $y = 5x + 60$. According to this model, what is the predicted score for a student who studies 6 hours?",
+    "id": "w01-m1-17",
+    "prompt": "The scatterplot shows the hours studied, $x$, and the test score, $y$, for 8 students. The line of best fit is also shown. Which of the following equations best represents the line of best fit?",
+    "figure": {
+      "file": "scatter-study.svg",
+      "alt": "Scatterplot of 8 points: hours studied from 1 to 8 on the x-axis and test score on the y-axis, rising from about 67 to 99. A line of best fit passes through (0, 60) and (8, 100).",
+      "scale": "not-to-scale"
+    },
     "answer": {
       "kind": "choice",
-      "choices": ["90", "66", "80", "120"],
+      "choices": ["$y = 5x + 60$", "$y = 60x + 5$", "$y = 5x + 6$", "$y = 8x + 40$"],
       "correct": "A"
     },
-    "solution": "Substitute $x = 6$: $y = 5(6) + 60 = 90$.",
+    "solution": "The line crosses the $y$-axis at 60 and rises 5 points for each extra hour (it reaches 100 at $x = 8$), so $y = 5x + 60$.",
     "skill": "two-variable-data",
-    "difficulty": 2,
-    "compute": "5*6+60"
+    "difficulty": 2
   },
   {
-    "id": "w01-m1-17",
+    "id": "w01-m1-18",
+    "prompt": "A spinner has 8 equal sections: 3 red, 2 blue and 3 green. The spinner is spun once. What is the probability that it does not land on blue?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["1/4", "3/8", "3/4", "5/8"],
+      "correct": "C"
+    },
+    "solution": "There are $3 + 3 = 6$ sections that are not blue, out of 8. The probability is $\\frac{6}{8} = \\frac{3}{4}$.",
+    "skill": "probability",
+    "difficulty": 2,
+    "compute": "6/8"
+  },
+  {
+    "id": "w01-m1-19",
     "prompt": "A rectangular prism has a length of 6, a width of 4 and a volume of 120. What is its height?",
     "answer": {
       "kind": "value",
@@ -218,7 +249,7 @@
     "compute": "120/(6*4)"
   },
   {
-    "id": "w01-m1-18",
+    "id": "w01-m1-20",
     "prompt": "$3x + 2y = 19$ and $x - y = 3$. What is the value of $x$?",
     "answer": {
       "kind": "value",
@@ -232,7 +263,7 @@
     "compute": "(19+6)/5"
   },
   {
-    "id": "w01-m1-19",
+    "id": "w01-m1-21",
     "prompt": "A gym charges a \\$25 joining fee plus \\$12 per month. What is the greatest number of whole months Sam can pay for with a budget of \\$150?",
     "answer": {
       "kind": "value",
@@ -246,33 +277,13 @@
     "compute": "floor((150-25)/12)"
   },
   {
-    "id": "w01-m1-20",
-    "prompt": "The length of a rectangle is 3 more than its width, and its area is 70. What is the width of the rectangle?",
-    "answer": {
-      "kind": "choice",
-      "choices": ["7", "5", "10", "13"],
-      "correct": "A"
-    },
-    "solution": "Let the width be $w$. Then $w(w + 3) = 70$, so $w^2 + 3w - 70 = 0$, which factors as $(w + 10)(w - 7) = 0$. The width is 7 (the other solution is negative).",
-    "skill": "nonlinear-equations",
-    "difficulty": 3,
-    "compute": "7"
-  },
-  {
-    "id": "w01-m1-21",
-    "prompt": "A bag has 5 red marbles and 3 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both marbles are red?",
-    "answer": {
-      "kind": "choice",
-      "choices": ["25/64", "5/16", "5/14", "1/2"],
-      "correct": "C"
-    },
-    "solution": "The first marble is red with probability $\\frac{5}{8}$. Then 4 red marbles remain among 7, so the second is red with probability $\\frac{4}{7}$. Together: $\\frac{5}{8} \\times \\frac{4}{7} = \\frac{20}{56} = \\frac{5}{14}$.",
-    "skill": "probability",
-    "difficulty": 3
-  },
-  {
     "id": "w01-m1-22",
-    "prompt": "In triangle $ABC$, the measure of angle $A$ is $60°$ and the measure of angle $B$ is twice the measure of angle $C$. What is the measure of angle $B$, in degrees?",
+    "prompt": "In triangle $ABC$ shown, the measure of angle $A$ is $60°$ and the measure of angle $B$ is twice the measure of angle $C$. What is the measure of angle $B$, in degrees?",
+    "figure": {
+      "file": "triangle-abc.svg",
+      "alt": "Triangle ABC with a 60 degree angle marked at vertex A. Angles B and C are not marked.",
+      "scale": "not-to-scale"
+    },
     "answer": {
       "kind": "value",
       "accepted": ["80"],

@@ -118,25 +118,26 @@
   },
   {
     "id": "w02-m1-10",
-    "prompt": "What are the solutions of the equation $x^2 - 5x + 4 = 0$?",
+    "prompt": "What is the positive solution of the equation $3x^2 = 75$?",
     "answer": {
       "kind": "choice",
-      "choices": ["1 and 4", "-1 and -4", "1 and -4", "2 and 2"],
+      "choices": ["5", "15", "25", "10"],
       "correct": "A"
     },
-    "solution": "Factor: $(x - 1)(x - 4) = 0$, so $x = 1$ or $x = 4$.",
+    "solution": "Divide by 3: $x^2 = 25$. So $x = 5$ or $x = -5$, and the positive solution is 5.",
     "skill": "nonlinear-equations",
-    "difficulty": 2
+    "difficulty": 2,
+    "compute": "sqrt(75/3)"
   },
   {
     "id": "w02-m1-11",
-    "prompt": "A ball is thrown so that its height, in meters, after $t$ seconds is $h(t) = -t^2 + 6t$. At what time is the ball at its greatest height?",
+    "prompt": "A population of bacteria doubles every hour. There are 50 bacteria at the start. Which function gives the number of bacteria, $N$, after $t$ hours?",
     "answer": {
       "kind": "choice",
-      "choices": ["1.5 seconds", "6 seconds", "3 seconds", "9 seconds"],
+      "choices": ["$N = 50 + 2t$", "$N = 2(50)^t$", "$N = 50(2)^t$", "$N = 100t$"],
       "correct": "C"
     },
-    "solution": "The greatest height is at the vertex, where $t = -\\frac{6}{2(-1)} = 3$ seconds.",
+    "solution": "Starting at 50 and doubling each hour means multiplying by 2 each hour: $N = 50 \\times 2^t$. After 1 hour that is 100, after 2 hours 200, and so on.",
     "skill": "nonlinear-functions",
     "difficulty": 2
   },
@@ -168,7 +169,12 @@
   },
   {
     "id": "w02-m1-14",
-    "prompt": "A line of best fit for a scatterplot is $y = -2x + 50$. Which of the following is the best interpretation of the slope of this line?",
+    "prompt": "The scatterplot shows a data set and its line of best fit, $y = -2x + 50$. Which of the following is the best interpretation of the slope of this line?",
+    "figure": {
+      "file": "scatter-falling.svg",
+      "alt": "Scatterplot of 8 points that fall from about 47 at x = 2 to about 17 at x = 16. A line of best fit passes through (0, 50) and (18, 14).",
+      "scale": "not-to-scale"
+    },
     "answer": {
       "kind": "choice",
       "choices": [
@@ -250,17 +256,17 @@
   },
   {
     "id": "w02-m1-20",
-    "prompt": "$x^2 = 4x + 21$. What is the positive solution of the equation?",
+    "prompt": "A square has an area of 49. Each side of the square is increased by 3. What is the area of the new square?",
     "answer": {
       "kind": "value",
-      "accepted": ["7"],
+      "accepted": ["100"],
       "form": "any",
       "mistakes": []
     },
-    "solution": "Rewrite as $x^2 - 4x - 21 = 0$ and factor: $(x - 7)(x + 3) = 0$. The solutions are 7 and $-3$, so the positive solution is 7.",
+    "solution": "The original side length is $\\sqrt{49} = 7$. The new side length is $7 + 3 = 10$, so the new area is $10^2 = 100$.",
     "skill": "nonlinear-equations",
     "difficulty": 3,
-    "compute": "(4+sqrt(100))/2"
+    "compute": "(sqrt(49)+3)^2"
   },
   {
     "id": "w02-m1-21",
@@ -278,13 +284,18 @@
   },
   {
     "id": "w02-m1-22",
-    "prompt": "Two parallel lines are cut by a transversal. One of the angles formed measures $(3x + 10)°$, and its corresponding angle measures $70°$. What is the value of $x$?",
+    "prompt": "In the figure, two parallel lines are cut by a transversal. What is the value of $x$?",
+    "figure": {
+      "file": "transversal.svg",
+      "alt": "Two parallel horizontal lines cut by a slanted transversal. At the upper crossing, the angle above the upper line and to the right of the transversal is marked (3x + 10) degrees. At the lower crossing, the corresponding angle above the lower line and to the right is marked 70 degrees.",
+      "scale": "not-to-scale"
+    },
     "answer": {
       "kind": "choice",
       "choices": ["10", "25", "60", "20"],
       "correct": "D"
     },
-    "solution": "Corresponding angles are equal, so $3x + 10 = 70$. Then $3x = 60$ and $x = 20$.",
+    "solution": "The two marked angles are corresponding angles, so they are equal: $3x + 10 = 70$. Then $3x = 60$ and $x = 20$.",
     "skill": "lines-angles-triangles",
     "difficulty": 3,
     "compute": "(70-10)/3"

@@ -39,18 +39,6 @@
   },
   {
     "id": "w02-m2h-04",
-    "prompt": "How many solutions does the system of equations $y = 2x + 3$ and $y = 2x - 5$ have?",
-    "answer": {
-      "kind": "choice",
-      "choices": ["No solutions", "Exactly one", "Exactly two", "Infinitely many"],
-      "correct": "A"
-    },
-    "solution": "Both lines have slope 2 but different $y$-intercepts (3 and $-5$), so they are parallel and never meet.",
-    "skill": "systems",
-    "difficulty": 2
-  },
-  {
-    "id": "w02-m2h-05",
     "prompt": "Which expression is equivalent to $(2x - 3)^2$?",
     "answer": {
       "kind": "choice",
@@ -62,32 +50,7 @@
     "difficulty": 2
   },
   {
-    "id": "w02-m2h-06",
-    "prompt": "A solution is made by mixing concentrate and water in the ratio $2 : 7$. How many liters of water are needed to make 45 liters of the solution?",
-    "answer": {
-      "kind": "choice",
-      "choices": ["10", "35", "30", "40"],
-      "correct": "B"
-    },
-    "solution": "The 45 liters are split into $2 + 7 = 9$ equal parts of 5 liters. Water is 7 parts, so $7 \\times 5 = 35$ liters.",
-    "skill": "ratios-rates",
-    "difficulty": 2,
-    "compute": "45*7/9"
-  },
-  {
-    "id": "w02-m2h-07",
-    "prompt": "A cylinder has a radius of 4 and a height of 5. What is the volume of the cylinder?",
-    "answer": {
-      "kind": "choice",
-      "choices": ["$20\\pi$", "$80\\pi$", "$40\\pi$", "$160\\pi$"],
-      "correct": "B"
-    },
-    "solution": "Volume $= \\pi r^2 h = \\pi (16)(5) = 80\\pi$.",
-    "skill": "area-volume",
-    "difficulty": 2
-  },
-  {
-    "id": "w02-m2h-08",
+    "id": "w02-m2h-05",
     "prompt": "$4(2x - 3) = 3(x + 6) + 5$. What is the value of $x$?",
     "answer": {
       "kind": "value",
@@ -101,7 +64,7 @@
     "compute": "(18+5+12)/5"
   },
   {
-    "id": "w02-m2h-09",
+    "id": "w02-m2h-06",
     "prompt": "A farmer has chickens and cows. Together there are 40 animals with a total of 100 legs. How many cows does the farmer have?",
     "answer": {
       "kind": "choice",
@@ -114,7 +77,7 @@
     "compute": "(100-2*40)/2"
   },
   {
-    "id": "w02-m2h-10",
+    "id": "w02-m2h-07",
     "prompt": "A taxi charges a fixed fee plus a constant amount per mile. A 3-mile ride costs \\$11 and a 7-mile ride costs \\$19. How much, in dollars, does a 10-mile ride cost?",
     "answer": {
       "kind": "value",
@@ -128,7 +91,20 @@
     "compute": "19+3*2"
   },
   {
-    "id": "w02-m2h-11",
+    "id": "w02-m2h-08",
+    "prompt": "In the system of equations $2x + 3y = 12$ and $kx + 6y = 20$, $k$ is a constant. For which value of $k$ does the system have no solution?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["4", "2", "6", "10"],
+      "correct": "A"
+    },
+    "solution": "Doubling the first equation gives $4x + 6y = 24$. If $k = 4$, the second equation is $4x + 6y = 20$, which has the same left side but a different right side. The lines are parallel, so there is no solution.",
+    "skill": "systems",
+    "difficulty": 3,
+    "compute": "4"
+  },
+  {
+    "id": "w02-m2h-09",
     "prompt": "$5x - 2y = 4$ and $3x + 2y = 20$. What is the value of $x$?",
     "answer": {
       "kind": "value",
@@ -142,7 +118,7 @@
     "compute": "24/8"
   },
   {
-    "id": "w02-m2h-12",
+    "id": "w02-m2h-10",
     "prompt": "A student has scored 78, 90 and 84 on three tests. What is the minimum score the student needs on a fourth test to have an average of at least 85 on all four tests?",
     "answer": {
       "kind": "choice",
@@ -155,7 +131,7 @@
     "compute": "340-252"
   },
   {
-    "id": "w02-m2h-13",
+    "id": "w02-m2h-11",
     "prompt": "Which expression is equivalent to $\\frac{x^2 - 16}{x - 4}$, for $x \\neq 4$?",
     "answer": {
       "kind": "choice",
@@ -167,7 +143,7 @@
     "difficulty": 3
   },
   {
-    "id": "w02-m2h-14",
+    "id": "w02-m2h-12",
     "prompt": "$x^2 - 10x + 25 = 49$. What is the greater solution of the equation?",
     "answer": {
       "kind": "value",
@@ -181,7 +157,7 @@
     "compute": "5+7"
   },
   {
-    "id": "w02-m2h-15",
+    "id": "w02-m2h-13",
     "prompt": "The side length of a square is increased by 3, and the area of the square increases by 45. What was the original side length of the square?",
     "answer": {
       "kind": "choice",
@@ -194,7 +170,7 @@
     "compute": "(45-9)/6"
   },
   {
-    "id": "w02-m2h-16",
+    "id": "w02-m2h-14",
     "prompt": "The function $f$ is defined by $f(x) = 2(x - 3)^2 + 4$. For which of the following values of $x$ does $f(x) = 12$?",
     "answer": {
       "kind": "choice",
@@ -206,7 +182,20 @@
     "difficulty": 3
   },
   {
-    "id": "w02-m2h-17",
+    "id": "w02-m2h-15",
+    "prompt": "A chemist has 8 liters of a 40% acid solution. How many liters of a 10% acid solution must be added to make a 20% acid solution?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["8", "16", "12", "24"],
+      "correct": "B"
+    },
+    "solution": "The 8 liters contain $0.4 \\times 8 = 3.2$ liters of acid. Adding $x$ liters of the 10% solution gives $3.2 + 0.1x = 0.2(8 + x) = 1.6 + 0.2x$. So $1.6 = 0.1x$ and $x = 16$.",
+    "skill": "ratios-rates",
+    "difficulty": 3,
+    "compute": "(3.2-1.6)/0.1"
+  },
+  {
+    "id": "w02-m2h-16",
     "prompt": "A store raises the price of a game by 30% and then gives a 20% discount on the new price. The final price is \\$78. What was the original price, in dollars?",
     "answer": {
       "kind": "value",
@@ -220,7 +209,7 @@
     "compute": "78/(1.3*0.8)"
   },
   {
-    "id": "w02-m2h-18",
+    "id": "w02-m2h-17",
     "prompt": "The mean of a data set of 6 numbers is 20. A seventh number is added, and the mean of the 7 numbers is 22. What is the seventh number?",
     "answer": {
       "kind": "choice",
@@ -233,7 +222,7 @@
     "compute": "22*7-20*6"
   },
   {
-    "id": "w02-m2h-19",
+    "id": "w02-m2h-18",
     "prompt": "A line of best fit for the value $y$, in thousands of dollars, of a car that is $x$ years old is $y = -1.8x + 24$. According to the model, at what age, in years, will the car's value be 6 thousand dollars?",
     "answer": {
       "kind": "choice",
@@ -246,8 +235,8 @@
     "compute": "(24-6)/1.8"
   },
   {
-    "id": "w02-m2h-20",
-    "prompt": "Of 80 students, 50 take music and 30 take art. Ten students take both. If a student who takes music is chosen at random, what is the probability that the student also takes art?",
+    "id": "w02-m2h-19",
+    "prompt": "In a group of students, 50 take music, 30 take art and 10 take both. If a student who takes music is chosen at random, what is the probability that the student also takes art?",
     "answer": {
       "kind": "value",
       "accepted": ["1/5"],
@@ -260,7 +249,7 @@
     "compute": "10/50"
   },
   {
-    "id": "w02-m2h-21",
+    "id": "w02-m2h-20",
     "prompt": "A rectangular box has dimensions 3 by 4 by 12. What is the length of the longest diagonal inside the box, from one corner to the opposite corner?",
     "answer": {
       "kind": "choice",
@@ -273,8 +262,25 @@
     "compute": "sqrt(3^2+4^2+12^2)"
   },
   {
+    "id": "w02-m2h-21",
+    "prompt": "The height of a cylinder is twice its radius, and its volume is $128\\pi$. What is the radius of the cylinder?",
+    "answer": {
+      "kind": "choice",
+      "choices": ["2", "4", "8", "16"],
+      "correct": "B"
+    },
+    "solution": "With height $2r$, the volume is $\\pi r^2 (2r) = 2\\pi r^3$. So $2\\pi r^3 = 128\\pi$, $r^3 = 64$ and $r = 4$.",
+    "skill": "area-volume",
+    "difficulty": 3
+  },
+  {
     "id": "w02-m2h-22",
-    "prompt": "In right triangle $ABC$, angle $C$ is the right angle, $AC = 8$ and $BC = 6$. What is the length of the altitude from $C$ to side $AB$?",
+    "prompt": "In the right triangle $ABC$ shown, angle $C$ is the right angle, $AC = 8$ and $BC = 6$. What is the length of the altitude from $C$ to side $AB$ (the dashed segment)?",
+    "figure": {
+      "file": "right-triangle-altitude.svg",
+      "alt": "Right triangle ABC with the right angle at C. Side AC is 8 and side BC is 6. A dashed segment from C meets side AB at a right angle.",
+      "scale": "not-to-scale"
+    },
     "answer": {
       "kind": "choice",
       "choices": ["4", "5", "6.4", "4.8"],
