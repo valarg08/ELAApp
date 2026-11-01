@@ -32,6 +32,9 @@ test('acceptance: a student plays Unit 1, Lesson 1 end to end and progress persi
   const student = await setUpStudent(page);
   await studentLogin(page, student);
 
+  // Students start at /start (every track); the Story Writing unit map is at /home.
+  await page.goto('/home');
+
   // Unit map → unit → lesson.
   await expect(page.getByText('0 of 4 lessons done')).toBeVisible();
   await page.getByRole('link', { name: /Keep going/ }).click();
@@ -96,6 +99,8 @@ test('acceptance: a student plays Unit 1, Lesson 1 end to end and progress persi
   await expect(page.getByTestId('save-status')).toHaveAttribute('data-status', 'saved');
   await expectAccessible(page);
   await page.getByRole('button', { name: 'Submit', exact: true }).click();
+  // Quill's feedback appears first; then on to the reflection.
+  await page.getByRole('button', { name: /Continue to Reflect/ }).click();
 
   // 5. Reflect.
   await page.getByLabel(/proudest of/).fill('"Friends" shows the surprise.');

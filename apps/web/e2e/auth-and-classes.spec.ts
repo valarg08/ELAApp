@@ -39,7 +39,7 @@ test('acceptance: teacher creates a class, adds 3 students, and a student logs i
   await page.getByRole('button', { name: 'Add 3 students', exact: true }).click();
   const credentials = page.getByTestId('credential');
   await expect(credentials).toHaveCount(3);
-  await expect(page.getByRole('table').getByRole('row')).toHaveCount(4); // header + 3
+  await expect(page.getByRole('table').filter({ hasText: 'Maya' }).getByRole('row')).toHaveCount(4); // header + 3
 
   const maya = credentials.filter({ hasText: 'Maya' });
   const username = (await maya.getAttribute('data-username')) ?? '';
@@ -68,6 +68,7 @@ test('acceptance: teacher creates a class, adds 3 students, and a student logs i
 
   await expect(page).toHaveURL(/\/(home|start)$/);
   await expect(page.getByRole('heading', { name: /Welcome, Maya!/ })).toBeVisible();
+  await page.goto('/home');
   await expect(page.getByText('7B Creative Writing')).toBeVisible();
 
   // Students can't open teacher pages.
