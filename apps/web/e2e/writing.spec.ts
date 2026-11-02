@@ -109,8 +109,6 @@ test('acceptance: restore an older version from the history', async ({ page }) =
   await history.getByRole('button', { name: 'Compare with now' }).click();
   await expect(history.getByTestId('diff')).toContainText('[removed:');
   await expect(history.getByTestId('diff')).toContainText('[added:');
-  // Park the pointer: the hovered button is drawn at 90% opacity, which axe measures as low contrast.
-  await page.mouse.move(0, 0);
   await expectAccessible(page);
 
   await history.getByRole('button', { name: 'Restore this version' }).click();
