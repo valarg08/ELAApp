@@ -1,4 +1,4 @@
-import { AdminContentStatus } from '@storyforge/shared';
+import { AdminContentStatus, TRACK_NAMES, type Track } from '@storyforge/shared';
 import { Card, PageShell } from '@/components/ui';
 import { serverApi } from '@/lib/server-api';
 import { cellClass, tableClass } from '../format';
@@ -6,12 +6,8 @@ import { SyncPanel } from './sync-panel';
 
 export const dynamic = 'force-dynamic';
 
-const TRACKS: Record<string, string> = {
-  STORY: 'Story Writing',
-  ESSAY: 'Essay Writing',
-  MATH: 'Math',
-};
 const STATES = { 'in-sync': 'In sync', changed: 'Changed', new: 'Not loaded' } as const;
+const trackName = (track: string) => TRACK_NAMES[track as Track] ?? track;
 
 export default async function ContentPage() {
   const data = await serverApi('/admin/content', AdminContentStatus);
@@ -66,7 +62,7 @@ export default async function ContentPage() {
               <tbody>
                 {data.units.map((u) => (
                   <tr key={`${u.track}-${u.number}`}>
-                    <td className={cellClass}>{TRACKS[u.track] ?? u.track}</td>
+                    <td className={cellClass}>{trackName(u.track)}</td>
                     <th scope="row" className={`${cellClass} font-medium`}>
                       {u.number}. {u.title}
                     </th>

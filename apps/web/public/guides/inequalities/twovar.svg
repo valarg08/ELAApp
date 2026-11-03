@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="The dashed boundary y = (2/3)x + 2 with the region above it shaded, because a test at (0, 0) makes −2x + 3y > 6 false.">
+<title>The dashed boundary y = (2/3)x + 2 with the region above it shaded, because a test at (0, 0) makes −2x + 3y > 6 false.</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#334155;stroke-width:2;fill:none;stroke-dasharray:6 5}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linecap:round}
+.h{stroke:#ea580c;stroke-width:3.5;fill:none;stroke-linecap:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linecap:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none}
+.g{stroke:#cbd5e1;stroke-width:1}
+.ax{stroke:#64748b;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.18}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fb{fill:#2563eb;fill-opacity:.14}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.dot{fill:#334155}
+.open{fill:#fff;stroke:#334155;stroke-width:2}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:16px}
+.s{font-size:13px;fill:#64748b}
+.at{fill:#0f766e;font-weight:700}
+.ht{fill:#c2410c;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l,.d{stroke:#cbd5e1}.open{fill:#0f172a;stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.b{stroke:#60a5fa}.v{stroke:#a78bfa}
+.g{stroke:#334155}.ax{stroke:#94a3b8}
+.at{fill:#2dd4bf}.ht{fill:#fb923c}.bt{fill:#60a5fa}.vt{fill:#a78bfa}}
+</style>
+<text class="t" x="20" y="24">Shade one side</text>
+<rect class="fa" x="300" y="36" width="310" height="190" rx="4"/>
+<line class="d" x1="40" y1="210" x2="280" y2="40"/>
+<text class="at" x="210" y="56">y = (2/3)x + 2</text>
+<circle class="open" cx="88" cy="176" r="6"/>
+<text class="s" x="104" y="180">(0, 0) false</text>
+<text class="s" x="40" y="230">dashed: &gt; so the line is not in</text>
+<text class="s" x="360" y="70">−2x + 3y &gt; 6</text>
+<text class="s" x="360" y="98">isolate y: y &gt; (2/3)x + 2</text>
+<text class="s" x="360" y="126">test (0, 0): 0 &gt; 6 is false</text>
+<text class="s" x="360" y="154">shade the other side</text>
+<text class="s" x="360" y="182">above the dashed line</text>
+</svg>

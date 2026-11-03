@@ -1,7 +1,7 @@
 import { AdminOrg, AdminTeacher } from '@storyforge/shared';
 import { Card, PageShell } from '@/components/ui';
 import { serverApi } from '@/lib/server-api';
-import { cellClass, count, tableClass } from '../format';
+import { cellClass, count, shortDate, tableClass } from '../format';
 import { CreateOrgForm, CreateTeacherForm, TeacherControls } from './school-forms';
 
 export const dynamic = 'force-dynamic';
@@ -90,9 +90,7 @@ export default async function SchoolsPage() {
                     <p className="text-sm text-muted">
                       {t.email} · {count(t.classes)} {t.classes === 1 ? 'class' : 'classes'} ·{' '}
                       {count(t.students)} {t.students === 1 ? 'student' : 'students'} · last login{' '}
-                      {t.lastLoginAt
-                        ? new Date(t.lastLoginAt).toLocaleDateString('en-US')
-                        : 'never'}
+                      {t.lastLoginAt ? shortDate(t.lastLoginAt) : 'never'}
                     </p>
                   </div>
                   <TeacherControls teacher={t} orgs={choices} />

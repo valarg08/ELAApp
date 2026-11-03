@@ -59,6 +59,35 @@ node tools/content-generators/factoring/figs.cjs    # writes public/guides/facto
 - Algebra 1 problems are tagged MA.912.AR.1.7; a teacher should check that code.
 - The video's six examples stay in the notes. Practice problems are separate.
 
+## PSAT Inequalities guide (`inequalities/`)
+
+Generates the problem files and diagrams of `/psat/inequalities`:
+
+```bash
+node tools/content-generators/inequalities/build.cjs   # writes psat-inequalities-problems.ts and psat-inequalities-algebra1.ts
+pnpm exec prettier --write apps/web/features/math/psat-inequalities-*.ts
+node tools/content-generators/inequalities/figs.cjs    # writes public/guides/inequalities/*.svg
+```
+
+- Ten chapters, 25 problems each at Algebra 1 and at PSAT. Every answer is computed and checked with math-check.
+- Algebra 1 problems are tagged MA.912.AR.2.5 (one-variable), AR.2.7 (two-variable), AR.2.8 (systems), AR.5.4 (polynomial) and AR.8.3 (rational); a teacher should check those codes.
+- The video's examples stay in the notes. Practice problems are separate.
+
+## PSAT Radicals guide (`radicals/`)
+
+Generates the problem files and diagrams of `/psat/radicals`:
+
+```bash
+node tools/content-generators/radicals/build.cjs   # writes psat-radicals-problems.ts and psat-radicals-algebra1.ts
+pnpm exec prettier --write apps/web/features/math/psat-radicals-*.ts
+node tools/content-generators/radicals/figs.cjs    # writes public/guides/radicals/*.svg
+```
+
+- Ten chapters, 25 problems each at Algebra 1 and at PSAT. Every answer is computed, then checked a second way with a float, and with math-check (`radical` and `fraction` forms).
+- Only square roots are exact in math-check, so cube-root simplification is asked as integer parts (c and r).
+- Algebra 1 problems are tagged MA.912.NSO.1.1, NSO.1.2, AR.9.1, F.1.2 and NSO.1.4; a teacher should check those codes.
+- The video's examples stay in the notes. Practice problems are separate (the generator has a ban list).
+
 ## Guide diagrams (`guide-diagrams/`)
 
 `alg-svg.mjs`, `geo-svg.mjs`, `ns-svg.mjs` (with `svg-kit.mjs`) drew the diagrams of the PSAT Algebra, Geometry
