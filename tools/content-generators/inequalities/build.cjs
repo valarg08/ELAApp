@@ -177,25 +177,19 @@ function symbolsLevel(ks) {
       ),
     );
     items.push(
-      problem(
-        `Is ${sg(k)} a solution of x ≥ ${sg(k)}? Type 1 for yes, 0 for no.`,
-        intAns(1),
-        [`≥ includes equals, so ${sg(k)} is in the solution set.`],
-      ),
+      problem(`Is ${sg(k)} a solution of x ≥ ${sg(k)}? Type 1 for yes, 0 for no.`, intAns(1), [
+        `≥ includes equals, so ${sg(k)} is in the solution set.`,
+      ]),
     );
     items.push(
-      problem(
-        `Is ${sg(k)} a solution of x > ${sg(k)}? Type 1 for yes, 0 for no.`,
-        intAns(0),
-        [`> does not include equals, so ${sg(k)} is not a solution.`],
-      ),
+      problem(`Is ${sg(k)} a solution of x > ${sg(k)}? Type 1 for yes, 0 for no.`, intAns(0), [
+        `> does not include equals, so ${sg(k)} is not a solution.`,
+      ]),
     );
     items.push(
-      problem(
-        `The interval for x ≤ ${sg(k)} has its finite end at what number?`,
-        intAns(k),
-        [`x ≤ ${sg(k)} is (−∞, ${sg(k)}], so the finite end is ${sg(k)}.`],
-      ),
+      problem(`The interval for x ≤ ${sg(k)} has its finite end at what number?`, intAns(k), [
+        `x ≤ ${sg(k)} is (−∞, ${sg(k)}], so the finite end is ${sg(k)}.`,
+      ]),
     );
     items.push(
       problem(
@@ -283,14 +277,17 @@ function linearItems(as, bs, cs, ops) {
             `The bound is ${sol.d === 1 ? sg(sol.n) : `${sg(sol.n)}/${sol.d}`}.`,
           ];
           const boundAns = fracAns(sol.n, sol.d);
-          items.push(
-            problem(`Solve ${text}. What is the boundary number?`, boundAns, steps),
-          );
+          items.push(problem(`Solve ${text}. What is the boundary number?`, boundAns, steps));
           items.push(
             problem(
               `When graphing the solution of ${text}, is the circle at the bound open (type 1) or closed (type 0)?`,
               intAns(OPEN[sol.op] ? 1 : 0),
-              [...steps, OPEN[sol.op] ? 'The inequality is strict, so the circle is open.' : 'Equals is allowed, so the circle is closed.'],
+              [
+                ...steps,
+                OPEN[sol.op]
+                  ? 'The inequality is strict, so the circle is open.'
+                  : 'Equals is allowed, so the circle is closed.',
+              ],
             ),
           );
           const edge = edgeInt(sol);
@@ -346,14 +343,18 @@ function compoundItems(kind, lefts, rights) {
         problem(
           `Solve ${t1}. In ${t1} ${word} ${t2}, what is this first boundary number?`,
           fracAns(s1.n, s1.d),
-          [`Solve each part on its own. ${t1} has bound ${s1.d === 1 ? sg(s1.n) : `${sg(s1.n)}/${s1.d}`}.`],
+          [
+            `Solve each part on its own. ${t1} has bound ${s1.d === 1 ? sg(s1.n) : `${sg(s1.n)}/${s1.d}`}.`,
+          ],
         ),
       );
       items.push(
         problem(
           `Solve ${t2}. In ${t1} ${word} ${t2}, what is this second boundary number?`,
           fracAns(s2.n, s2.d),
-          [`Solve each part on its own. ${t2} has bound ${s2.d === 1 ? sg(s2.n) : `${sg(s2.n)}/${s2.d}`}.`],
+          [
+            `Solve each part on its own. ${t2} has bound ${s2.d === 1 ? sg(s2.n) : `${sg(s2.n)}/${s2.d}`}.`,
+          ],
         ),
       );
       items.push(
@@ -392,10 +393,11 @@ function absItems(centres, radii, ops) {
       for (const op of ops) {
         const left = h - r;
         const right = h + r;
-        const text = `|x ${h < 0 ? '+ ' + -h : h === 0 ? '' : M + ' ' + h}| ${SYM[op]} ${r}`.replace(
-          '|x |',
-          '|x|',
-        );
+        const text =
+          `|x ${h < 0 ? '+ ' + -h : h === 0 ? '' : M + ' ' + h}| ${SYM[op]} ${r}`.replace(
+            '|x |',
+            '|x|',
+          );
         const pred = (x) => {
           const d = Math.abs(x - h);
           if (op === 'gt') return d > r;
@@ -412,24 +414,16 @@ function absItems(centres, radii, ops) {
           ),
         );
         items.push(
-          problem(
-            `For ${text}, what is the left critical number?`,
-            intAns(left),
-            [
-              `${text} splits at ${sg(h)} − ${r} and ${sg(h)} + ${r}.`,
-              `The left number is ${sg(left)}.`,
-            ],
-          ),
+          problem(`For ${text}, what is the left critical number?`, intAns(left), [
+            `${text} splits at ${sg(h)} − ${r} and ${sg(h)} + ${r}.`,
+            `The left number is ${sg(left)}.`,
+          ]),
         );
         items.push(
-          problem(
-            `For ${text}, what is the right critical number?`,
-            intAns(right),
-            [
-              `${text} splits at ${sg(h)} − ${r} and ${sg(h)} + ${r}.`,
-              `The right number is ${sg(right)}.`,
-            ],
-          ),
+          problem(`For ${text}, what is the right critical number?`, intAns(right), [
+            `${text} splits at ${sg(h)} − ${r} and ${sg(h)} + ${r}.`,
+            `The right number is ${sg(right)}.`,
+          ]),
         );
         items.push(
           problem(
@@ -466,16 +460,20 @@ function twovarItems(slopes, intercepts, ops) {
         );
         if (m !== 0) {
           items.push(
-            problem(
-              `The boundary of ${yline} has slope equal to what number?`,
-              intAns(m),
-              [`The slope of y = ${label.slice(4)} is ${sg(m)}.`],
-            ),
+            problem(`The boundary of ${yline} has slope equal to what number?`, intAns(m), [
+              `The slope of y = ${label.slice(4)} is ${sg(m)}.`,
+            ]),
           );
         }
         const y0 = 0;
         const trueAtOrigin =
-          op === 'gt' ? y0 > m * 0 + b : op === 'ge' ? y0 >= m * 0 + b : op === 'lt' ? y0 < m * 0 + b : y0 <= m * 0 + b;
+          op === 'gt'
+            ? y0 > m * 0 + b
+            : op === 'ge'
+              ? y0 >= m * 0 + b
+              : op === 'lt'
+                ? y0 < m * 0 + b
+                : y0 <= m * 0 + b;
         items.push(
           problem(
             `Is (0, 0) a solution of ${yline}? Type 1 for yes, 0 for no.`,
@@ -487,18 +485,20 @@ function twovarItems(slopes, intercepts, ops) {
           problem(
             `When graphing ${yline}, is the boundary dashed (type 0) or solid (type 1)?`,
             intAns(OPEN[op] ? 0 : 1),
-            [OPEN[op] ? 'Strict inequalities use a dashed boundary.' : '≤ and ≥ use a solid boundary.'],
+            [
+              OPEN[op]
+                ? 'Strict inequalities use a dashed boundary.'
+                : '≤ and ≥ use a solid boundary.',
+            ],
           ),
         );
         const x1 = 2;
         const yBound = m * x1 + b;
         if (Number.isInteger(yBound)) {
           items.push(
-            problem(
-              `On the boundary of ${yline}, what is y when x = 2?`,
-              intAns(yBound),
-              [`y = ${sg(m)} · 2 ${b < 0 ? M : '+'} ${Math.abs(b)} = ${sg(yBound)}.`],
-            ),
+            problem(`On the boundary of ${yline}, what is y when x = 2?`, intAns(yBound), [
+              `y = ${sg(m)} · 2 ${b < 0 ? M : '+'} ${Math.abs(b)} = ${sg(yBound)}.`,
+            ]),
           );
         }
       }
@@ -569,7 +569,10 @@ function systemsItems(pairs) {
       problem(
         `How many of the points (0, 2), (2, 0), (2, 4), (4, 2) and (1, 1) lie in both ${t1} and ${t2}?`,
         intAns(n),
-        ['A point is in the system only when it sits in both shaded regions.', 'Check each listed point.'],
+        [
+          'A point is in the system only when it sits in both shaded regions.',
+          'Check each listed point.',
+        ],
       ),
     );
     items.push(
@@ -611,11 +614,9 @@ function polyItems(rootSets, ops) {
     for (const op of ops) {
       const text = `${name} ${SYM[op]} 0`;
       items.push(
-        problem(
-          `The polynomial in ${text} has a root at what smallest number?`,
-          intAns(uniq[0]),
-          [`Set each factor to 0. The smallest root is ${sg(uniq[0])}.`],
-        ),
+        problem(`The polynomial in ${text} has a root at what smallest number?`, intAns(uniq[0]), [
+          `Set each factor to 0. The smallest root is ${sg(uniq[0])}.`,
+        ]),
       );
       items.push(
         problem(
@@ -628,14 +629,10 @@ function polyItems(rootSets, ops) {
       const hi = uniq[uniq.length - 1] + 3;
       const n = countInts((x) => holdsPoly(polyVal(roots, x), op), lo, hi);
       items.push(
-        problem(
-          `How many integers from ${sg(lo)} to ${sg(hi)} satisfy ${text}?`,
-          intAns(n),
-          [
-            'The roots split the line into intervals. Test a point in each interval.',
-            `Count the integers from ${sg(lo)} to ${sg(hi)} whose sign matches ${SYM[op]} 0.`,
-          ],
-        ),
+        problem(`How many integers from ${sg(lo)} to ${sg(hi)} satisfy ${text}?`, intAns(n), [
+          'The roots split the line into intervals. Test a point in each interval.',
+          `Count the integers from ${sg(lo)} to ${sg(hi)} whose sign matches ${SYM[op]} 0.`,
+        ]),
       );
       const test = uniq[0] - 1;
       const v = polyVal(roots, test);
@@ -643,7 +640,9 @@ function polyItems(rootSets, ops) {
         problem(
           `Is x = ${sg(test)} a solution of ${text}? Type 1 for yes, 0 for no.`,
           intAns(holdsPoly(v, op) ? 1 : 0),
-          [`At x = ${sg(test)} the product is ${sg(v)}, and ${sg(v)} ${SYM[op]} 0 is ${holdsPoly(v, op) ? 'true' : 'false'}.`],
+          [
+            `At x = ${sg(test)} the product is ${sg(v)}, and ${sg(v)} ${SYM[op]} 0 is ${holdsPoly(v, op) ? 'true' : 'false'}.`,
+          ],
         ),
       );
     }
@@ -655,10 +654,11 @@ function rationalItems(pairs, ops) {
   const items = [];
   for (const { z, p } of pairs) {
     if (z === p) continue;
-    const name = `(x ${z < 0 ? '+ ' + -z : z === 0 ? '' : M + ' ' + z})/(x ${p < 0 ? '+ ' + -p : p === 0 ? '' : M + ' ' + p})`.replace(
-      '(x )',
-      'x',
-    );
+    const name =
+      `(x ${z < 0 ? '+ ' + -z : z === 0 ? '' : M + ' ' + z})/(x ${p < 0 ? '+ ' + -p : p === 0 ? '' : M + ' ' + p})`.replace(
+        '(x )',
+        'x',
+      );
     const val = (x) => {
       if (x === p) return null;
       return (x - z) / (x - p);
@@ -671,31 +671,23 @@ function rationalItems(pairs, ops) {
     for (const op of ops) {
       const text = `${name} ${SYM[op]} 0`;
       items.push(
-        problem(
-          `For ${text}, what x-value makes the denominator 0?`,
-          intAns(p),
-          [`The denominator is 0 at x = ${sg(p)}. That vertical asymptote is never a solution.`],
-        ),
+        problem(`For ${text}, what x-value makes the denominator 0?`, intAns(p), [
+          `The denominator is 0 at x = ${sg(p)}. That vertical asymptote is never a solution.`,
+        ]),
       );
       items.push(
-        problem(
-          `For ${text}, what x-value makes the numerator 0?`,
-          intAns(z),
-          [`The numerator is 0 at x = ${sg(z)}. That is a root, included only when equals is allowed.`],
-        ),
+        problem(`For ${text}, what x-value makes the numerator 0?`, intAns(z), [
+          `The numerator is 0 at x = ${sg(z)}. That is a root, included only when equals is allowed.`,
+        ]),
       );
       const lo = Math.min(z, p) - 4;
       const hi = Math.max(z, p) + 4;
       const n = countInts((x) => holds(x, op), lo, hi);
       items.push(
-        problem(
-          `How many integers from ${sg(lo)} to ${sg(hi)} satisfy ${text}?`,
-          intAns(n),
-          [
-            `Critical numbers ${sg(z)} and ${sg(p)} split the line.`,
-            `${sg(p)} is never included. Count the integers whose value is ${SYM[op]} 0.`,
-          ],
-        ),
+        problem(`How many integers from ${sg(lo)} to ${sg(hi)} satisfy ${text}?`, intAns(n), [
+          `Critical numbers ${sg(z)} and ${sg(p)} split the line.`,
+          `${sg(p)} is never included. Count the integers whose value is ${SYM[op]} 0.`,
+        ]),
       );
       const test = p + (p > z ? 1 : -1);
       items.push(
@@ -786,13 +778,13 @@ const a1 = {
   poly: take(
     polyItems(
       [
-        [ -3, 1 ],
-        [ -2, 4 ],
-        [ -4, 0 ],
-        [ 1, 5 ],
-        [ -1, 2, 6 ],
-        [ -5, -1, 3 ],
-        [ 0, 2, 5 ],
+        [-3, 1],
+        [-2, 4],
+        [-4, 0],
+        [1, 5],
+        [-1, 2, 6],
+        [-5, -1, 3],
+        [0, 2, 5],
       ],
       ['ge', 'gt', 'le'],
     ),
@@ -894,13 +886,13 @@ const psat = {
   poly: take(
     polyItems(
       [
-        [ -6, -2, 4 ],
-        [ -3, 1, 7 ],
-        [ -8, 0, 2 ],
-        [ -1, 3, 8 ],
-        [ -5, 2, 6 ],
-        [ -7, -4, 1 ],
-        [ 0, 4, 9 ],
+        [-6, -2, 4],
+        [-3, 1, 7],
+        [-8, 0, 2],
+        [-1, 3, 8],
+        [-5, 2, 6],
+        [-7, -4, 1],
+        [0, 4, 9],
       ],
       ['ge', 'gt', 'le', 'lt'],
     ),
@@ -940,10 +932,12 @@ async function main() {
       const seen = new Set();
       list.forEach((p, i) => {
         const where = `${level}.${id}#${i + 1}`;
-        if (/undefined|NaN|null|\[object/.test(JSON.stringify(p))) problems.push(`${where} bad token`);
+        if (/undefined|NaN|null|\[object/.test(JSON.stringify(p)))
+          problems.push(`${where} bad token`);
         if (seen.has(p.q)) problems.push(`${where} repeats`);
         seen.add(p.q);
-        if (p.steps.some((s) => s.includes('  ') || s.trim() === '')) problems.push(`${where} step spacing`);
+        if (p.steps.some((s) => s.includes('  ') || s.trim() === ''))
+          problems.push(`${where} step spacing`);
         if (!/^Answer: /.test(p.steps.at(-1))) problems.push(`${where} missing Answer`);
         const r = readAnswer(p.a);
         if (!r.ok) problems.push(`${where} answer "${p.a}" ${r.message}`);
@@ -954,7 +948,8 @@ async function main() {
             problems.push(`${where} value ${e.message}`);
           }
         }
-        if (p.form && r.ok && !hasForm(p.a, p.form)) problems.push(`${where} form ${p.form} rejects "${p.a}"`);
+        if (p.form && r.ok && !hasForm(p.a, p.form))
+          problems.push(`${where} form ${p.form} rejects "${p.a}"`);
       });
     }
   }

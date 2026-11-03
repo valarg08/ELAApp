@@ -305,7 +305,11 @@ function irrationalLevel(quads) {
     ];
     const kind = band(i);
     if (kind === 'warm')
-      return problem(`Using the average method on ${name}, what is k²?`, intAns(k2), steps.slice(0, 2));
+      return problem(
+        `Using the average method on ${name}, what is k²?`,
+        intAns(k2),
+        steps.slice(0, 2),
+      );
     if (kind === 'core')
       return problem(
         `Using the average method on ${name}, write k as a square root in simplest form. What number is under the radical?`,
@@ -339,8 +343,7 @@ function imaginaryLevel(quads, mode) {
   return (i) => {
     const { b, c, H, neg, coef, rest } = quads[i];
     const name = expr(1, b, c);
-    const kDisp =
-      rest === 1 ? `${coef === 1 ? '' : coef}i` : `${coef === 1 ? '' : coef}i√${rest}`;
+    const kDisp = rest === 1 ? `${coef === 1 ? '' : coef}i` : `${coef === 1 ? '' : coef}i√${rest}`;
     const steps = [
       `The two numbers add to ${sg(b)}, so their average is ${H}.`,
       `${H}² − ${c} = ${sg(-neg)}, so k² = ${sg(-neg)}.`,
@@ -355,7 +358,11 @@ function imaginaryLevel(quads, mode) {
         steps.slice(0, 1),
       );
     if ((mode === 'a1' && kind === 'core') || (mode === 'psat' && kind === 'warm'))
-      return problem(`Using the average method on ${name}, what is k²?`, intAns(-neg), steps.slice(0, 2));
+      return problem(
+        `Using the average method on ${name}, what is k²?`,
+        intAns(-neg),
+        steps.slice(0, 2),
+      );
     if (mode === 'a1')
       return problem(
         `Using the average method on ${name}, k = i√n in simplest form. What is n?`,
@@ -447,11 +454,20 @@ const sets = {
   },
   leading: {
     a1: buildList(
-      leadingLevel(leadingRows([2, 3], [-5, -4, -2, -1, 1, 2, 4, 5], [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6])),
-      leadingRows([2, 3], [-5, -4, -2, -1, 1, 2, 4, 5], [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]).length,
+      leadingLevel(
+        leadingRows(
+          [2, 3],
+          [-5, -4, -2, -1, 1, 2, 4, 5],
+          [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6],
+        ),
+      ),
+      leadingRows([2, 3], [-5, -4, -2, -1, 1, 2, 4, 5], [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6])
+        .length,
     ),
     psat: buildList(
-      leadingLevel(leadingRows([4, 5, 6], [-7, -5, -3, -1, 1, 3, 5, 7], [-8, -5, -3, -2, 2, 3, 5, 7, 8])),
+      leadingLevel(
+        leadingRows([4, 5, 6], [-7, -5, -3, -1, 1, 3, 5, 7], [-8, -5, -3, -2, 2, 3, 5, 7, 8]),
+      ),
       leadingRows([4, 5, 6], [-7, -5, -3, -1, 1, 3, 5, 7], [-8, -5, -3, -2, 2, 3, 5, 7, 8]).length,
     ),
   },
@@ -491,10 +507,12 @@ async function main() {
       const seen = new Set();
       list.forEach((p, i) => {
         const where = `${level}.${id}#${i + 1}`;
-        if (/undefined|NaN|null|\[object/.test(JSON.stringify(p))) problems.push(`${where} bad token`);
+        if (/undefined|NaN|null|\[object/.test(JSON.stringify(p)))
+          problems.push(`${where} bad token`);
         if (seen.has(p.q)) problems.push(`${where} repeats`);
         seen.add(p.q);
-        if (p.steps.some((s) => s.includes('  ') || s.trim() === '')) problems.push(`${where} step spacing`);
+        if (p.steps.some((s) => s.includes('  ') || s.trim() === ''))
+          problems.push(`${where} step spacing`);
         if (!/^Answer: /.test(p.steps.at(-1))) problems.push(`${where} missing Answer`);
         const r = readAnswer(p.a);
         if (!r.ok) problems.push(`${where} answer "${p.a}" ${r.message}`);
@@ -505,7 +523,8 @@ async function main() {
             problems.push(`${where} value ${e.message}`);
           }
         }
-        if (p.form && r.ok && !hasForm(p.a, p.form)) problems.push(`${where} form ${p.form} rejects "${p.a}"`);
+        if (p.form && r.ok && !hasForm(p.a, p.form))
+          problems.push(`${where} form ${p.form} rejects "${p.a}"`);
       });
     }
   }

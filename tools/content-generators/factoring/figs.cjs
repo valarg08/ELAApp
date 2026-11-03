@@ -36,7 +36,8 @@ ${body}
   fs.writeFileSync(path.join(out, `${name}.svg`), s);
 }
 
-const card = (x, y, w, h, cls) => `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}" rx="8"/>`;
+const card = (x, y, w, h, cls) =>
+  `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}" rx="8"/>`;
 
 svg(
   'average',

@@ -8,7 +8,8 @@ import { loadContent } from './content-loader.js';
  * (DESIGN.md §14.2 P2 "invalid content fails CI").
  */
 describe('repository content', () => {
-  it('is valid', async () => {
+  // The whole repository (six tracks, 300+ lessons) takes longer than the default 20 s to load and validate.
+  it('is valid', { timeout: 120_000 }, async () => {
     const { units, errors } = await loadContent();
     expect(errors).toEqual([]);
     const numbers = (track: string) =>

@@ -169,7 +169,8 @@ svg(
 const px = (x) => 60 + x * 40;
 const py = (y) => 200 - y * 50;
 const curve = [];
-for (let x = 0; x <= 12.01; x += 0.25) curve.push(`${px(x).toFixed(1)},${py(Math.sqrt(x)).toFixed(1)}`);
+for (let x = 0; x <= 12.01; x += 0.25)
+  curve.push(`${px(x).toFixed(1)},${py(Math.sqrt(x)).toFixed(1)}`);
 svg(
   'function',
   'The graph of y equals the square root of x: it starts at the origin, passes through (1, 1), (4, 2) and (9, 3), and rises ever more slowly. The domain is x greater than or equal to 0.',

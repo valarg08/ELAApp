@@ -63,9 +63,7 @@ const VIDEO = [
   'x² + 4x + 5 = 0',
 ];
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const BANNED = VIDEO.map(
-  (s) => new RegExp(`${/^\d/.test(s) ? '(?<!\\d)' : ''}${esc(s)}(?!\\d)`),
-);
+const BANNED = VIDEO.map((s) => new RegExp(`${/^\d/.test(s) ? '(?<!\\d)' : ''}${esc(s)}(?!\\d)`));
 const banned = (q) => BANNED.some((re) => re.test(q));
 
 // ───────── answers ─────────
@@ -151,7 +149,8 @@ const isSq = (n) => n >= 0 && Number.isInteger(Math.sqrt(n));
 const cubeParts = (n) => {
   let out = 1;
   let rest = n;
-  for (let f = 2; f * f * f <= rest; f += 1) while (rest % (f * f * f) === 0) ((rest /= f * f * f), (out *= f));
+  for (let f = 2; f * f * f <= rest; f += 1)
+    while (rest % (f * f * f) === 0) ((rest /= f * f * f), (out *= f));
   return [out, rest];
 };
 const isCube = (n) => Math.round(Math.cbrt(n)) ** 3 === n;
@@ -237,8 +236,20 @@ function whatis(L) {
       ]),
     ),
     (p
-      ? [[4, 4], [4, 5], [5, 3], [6, 2], [4, 6]]
-      : [[4, 2], [4, 3], [5, 2], [6, 2], [4, 5]]
+      ? [
+          [4, 4],
+          [4, 5],
+          [5, 3],
+          [6, 2],
+          [4, 6],
+        ]
+      : [
+          [4, 2],
+          [4, 3],
+          [5, 2],
+          [6, 2],
+          [4, 5],
+        ]
     ).map(([n, k]) =>
       P(`What is ${rt(n, k ** n)}?`, I(k), [
         `Find the number whose power ${n} is ${k ** n}.`,
@@ -301,14 +312,10 @@ function whatis(L) {
         ].map(([b, m]) => {
           const e = b === 8 || b === 27 ? 3 : b === 16 ? 4 : 2;
           const base = Math.round(b ** (1 / e));
-          return P(
-            `What is ${b}^(−${m}/${e})? Write a fraction.`,
-            F(1, base ** m),
-            [
-              `A negative exponent means the reciprocal.`,
-              `${b}^(${m}/${e}) = ${base}^${m} = ${base ** m}.`,
-            ],
-          );
+          return P(`What is ${b}^(−${m}/${e})? Write a fraction.`, F(1, base ** m), [
+            `A negative exponent means the reciprocal.`,
+            `${b}^(${m}/${e}) = ${base}^${m} = ${base ** m}.`,
+          ]);
         })
       : ints(3, 12).map((k) => {
           const n = k * k;
@@ -327,7 +334,10 @@ function whatis(L) {
       return P(
         `How many whole numbers x from −10 to 10 make ${root(2, `x + ${a}`)} a real number?`,
         I(n),
-        [`The radicand must satisfy x + ${a} ≥ 0, so x ≥ ${sg(-a)}.`, `Count the integers from ${sg(-a)} to 10.`],
+        [
+          `The radicand must satisfy x + ${a} ≥ 0, so x ≥ ${sg(-a)}.`,
+          `Count the integers from ${sg(-a)} to 10.`,
+        ],
       );
     }),
     (p ? [27, 64, 125, 343, 512] : [27, 64, 125, 216, 1000]).map((n) =>
@@ -399,20 +409,32 @@ function perfect(L) {
       ]);
     }),
   );
-  const chalSq = (p ? [180, 252, 294, 338, 450, 588, 720] : [8, 12, 18, 20, 24, 27, 28, 45]).map((n) => {
-    const k = ints(1, 400).find((m) => isSq(n * m));
-    return P(`What is the smallest positive whole number you can multiply ${n} by to get a perfect square?`, I(k), [
-      `Factor ${n} and look for primes with an odd power.`,
-      `${n} × ${k} = ${n * k} = ${Math.sqrt(n * k)}².`,
-    ]);
-  });
-  const chalCu = (p ? [18, 24, 36, 40, 54, 100, 135] : [12, 16, 18, 24, 32, 40, 54, 81]).map((n) => {
-    const k = ints(1, 400).find((m) => isCube(n * m));
-    return P(`What is the smallest positive whole number you can multiply ${n} by to get a perfect cube?`, I(k), [
-      `Factor ${n} and look for primes whose power is not a multiple of 3.`,
-      `${n} × ${k} = ${n * k} = ${Math.round(Math.cbrt(n * k))}³.`,
-    ]);
-  });
+  const chalSq = (p ? [180, 252, 294, 338, 450, 588, 720] : [8, 12, 18, 20, 24, 27, 28, 45]).map(
+    (n) => {
+      const k = ints(1, 400).find((m) => isSq(n * m));
+      return P(
+        `What is the smallest positive whole number you can multiply ${n} by to get a perfect square?`,
+        I(k),
+        [
+          `Factor ${n} and look for primes with an odd power.`,
+          `${n} × ${k} = ${n * k} = ${Math.sqrt(n * k)}².`,
+        ],
+      );
+    },
+  );
+  const chalCu = (p ? [18, 24, 36, 40, 54, 100, 135] : [12, 16, 18, 24, 32, 40, 54, 81]).map(
+    (n) => {
+      const k = ints(1, 400).find((m) => isCube(n * m));
+      return P(
+        `What is the smallest positive whole number you can multiply ${n} by to get a perfect cube?`,
+        I(k),
+        [
+          `Factor ${n} and look for primes whose power is not a multiple of 3.`,
+          `${n} × ${k} = ${n * k} = ${Math.round(Math.cbrt(n * k))}³.`,
+        ],
+      );
+    },
+  );
   const sixth = (p ? [200, 1000, 5000, 20000] : [100, 200, 800]).map((x) => {
     const m = ints(1, 10).filter((k) => k ** 6 <= x).length;
     return P(
@@ -433,9 +455,16 @@ function perfect(L) {
 // ───────── 3. Simplifying radicals ─────────
 function simplify(L) {
   const p = L === 'psat';
-  const nsq = (p
-    ? [180, 200, 242, 245, 288, 300, 320, 363, 392, 396, 432, 450, 468, 500, 507, 525, 567, 588, 600, 605, 675, 720, 726, 800, 845]
-    : [12, 18, 20, 24, 27, 28, 32, 40, 44, 45, 48, 52, 54, 56, 63, 72, 75, 76, 88, 90, 96, 98, 99, 108, 112, 117, 120, 125, 128, 147]
+  const nsq = (
+    p
+      ? [
+          180, 200, 242, 245, 288, 300, 320, 363, 392, 396, 432, 450, 468, 500, 507, 525, 567, 588,
+          600, 605, 675, 720, 726, 800, 845,
+        ]
+      : [
+          12, 18, 20, 24, 27, 28, 32, 40, 44, 45, 48, 52, 54, 56, 63, 72, 75, 76, 88, 90, 96, 98,
+          99, 108, 112, 117, 120, 125, 128, 147,
+        ]
   ).filter((n) => sqrtParts(n)[1] !== 1);
   const ncu = p
     ? [54, 108, 128, 162, 189, 192, 250, 256, 297, 320, 375, 432, 500, 686, 864]
@@ -454,10 +483,14 @@ function simplify(L) {
     ),
     nWarm.map((n) => {
       const [c, r] = sqrtParts(n);
-      return P(`Simplify ${root(2, n)} to c${root(2, 'r')} with r as small as possible. What is c?`, I(c), [
-        `${n} = ${c * c} × ${r}.`,
-        `${root(2, n)} = ${root(2, c * c)} × ${root(2, r)} = ${c}${root(2, r)}.`,
-      ]);
+      return P(
+        `Simplify ${root(2, n)} to c${root(2, 'r')} with r as small as possible. What is c?`,
+        I(c),
+        [
+          `${n} = ${c * c} × ${r}.`,
+          `${root(2, n)} = ${root(2, c * c)} × ${root(2, r)} = ${c}${root(2, r)}.`,
+        ],
+      );
     }),
   );
   const core = mix(
@@ -470,33 +503,49 @@ function simplify(L) {
     }),
     nCore.slice(0, 6).map((n) => {
       const [c, r] = sqrtParts(n);
-      return P(`Simplify ${root(2, n)} to c${root(2, 'r')} with r as small as possible. What is r?`, I(r), [
-        `${n} = ${c * c} × ${r}.`,
-        `The ${c * c} comes out as ${c}, and ${r} stays under the radical.`,
-      ]);
+      return P(
+        `Simplify ${root(2, n)} to c${root(2, 'r')} with r as small as possible. What is r?`,
+        I(r),
+        [
+          `${n} = ${c * c} × ${r}.`,
+          `The ${c * c} comes out as ${c}, and ${r} stays under the radical.`,
+        ],
+      );
     }),
   );
   const chal = mix(
     ncu.map((n) => {
       const [c, r] = cubeParts(n);
-      return P(`Simplify ${root(3, n)} to c${root(3, 'r')} with r as small as possible. What is c?`, I(c), [
-        `Look for a perfect cube factor: ${n} = ${c ** 3} × ${r}.`,
-        `${root(3, n)} = ${root(3, c ** 3)} × ${root(3, r)} = ${c}${root(3, r)}.`,
-      ]);
+      return P(
+        `Simplify ${root(3, n)} to c${root(3, 'r')} with r as small as possible. What is c?`,
+        I(c),
+        [
+          `Look for a perfect cube factor: ${n} = ${c ** 3} × ${r}.`,
+          `${root(3, n)} = ${root(3, c ** 3)} × ${root(3, r)} = ${c}${root(3, r)}.`,
+        ],
+      );
     }),
     ncu.map((n) => {
       const [c, r] = cubeParts(n);
-      return P(`Simplify ${root(3, n)} to c${root(3, 'r')} with r as small as possible. What is r?`, I(r), [
-        `Look for a perfect cube factor: ${n} = ${c ** 3} × ${r}.`,
-        `The ${c ** 3} comes out as ${c}, and ${r} stays under the cube root.`,
-      ]);
+      return P(
+        `Simplify ${root(3, n)} to c${root(3, 'r')} with r as small as possible. What is r?`,
+        I(r),
+        [
+          `Look for a perfect cube factor: ${n} = ${c ** 3} × ${r}.`,
+          `The ${c ** 3} comes out as ${c}, and ${r} stays under the cube root.`,
+        ],
+      );
     }),
     nChal.map((n) => {
       const [c, r] = sqrtParts(n);
-      return P(`${root(2, n)} in simplest radical form is c${root(2, 'r')}. What is c + r?`, I(c + r), [
-        `${n} = ${c * c} × ${r}, so ${root(2, n)} = ${c}${root(2, r)}.`,
-        `${c} + ${r} = ${c + r}.`,
-      ]);
+      return P(
+        `${root(2, n)} in simplest radical form is c${root(2, 'r')}. What is c + r?`,
+        I(c + r),
+        [
+          `${n} = ${c * c} × ${r}, so ${root(2, n)} = ${c}${root(2, r)}.`,
+          `${c} + ${r} = ${c + r}.`,
+        ],
+      );
     }),
     ncu.map((n) => {
       const [c, r] = cubeParts(n);
@@ -514,19 +563,94 @@ function simplify(L) {
 function muldiv(L) {
   const p = L === 'psat';
   const sqPairs = p
-    ? [[2, 72], [3, 48], [5, 45], [8, 50], [6, 54], [7, 63], [10, 40], [12, 75], [18, 98], [20, 45]]
-    : [[2, 18], [3, 12], [5, 20], [2, 32], [6, 24], [8, 18], [3, 27], [7, 28], [12, 27], [5, 45]];
+    ? [
+        [2, 72],
+        [3, 48],
+        [5, 45],
+        [8, 50],
+        [6, 54],
+        [7, 63],
+        [10, 40],
+        [12, 75],
+        [18, 98],
+        [20, 45],
+      ]
+    : [
+        [2, 18],
+        [3, 12],
+        [5, 20],
+        [2, 32],
+        [6, 24],
+        [8, 18],
+        [3, 27],
+        [7, 28],
+        [12, 27],
+        [5, 45],
+      ];
   const cuPairs = p
-    ? [[4, 16], [9, 24], [2, 108], [5, 200], [6, 36], [3, 72]]
-    : [[3, 9], [4, 16], [2, 32], [5, 25], [9, 24], [4, 54]];
+    ? [
+        [4, 16],
+        [9, 24],
+        [2, 108],
+        [5, 200],
+        [6, 36],
+        [3, 72],
+      ]
+    : [
+        [3, 9],
+        [4, 16],
+        [2, 32],
+        [5, 25],
+        [9, 24],
+        [4, 54],
+      ];
   const divPairs = p
-    ? [[288, 2], [180, 5], [450, 2], [363, 3], [500, 5], [392, 2]]
-    : [[72, 2], [45, 5], [75, 3], [98, 2], [48, 3], [200, 2], [180, 5], [150, 6]];
+    ? [
+        [288, 2],
+        [180, 5],
+        [450, 2],
+        [363, 3],
+        [500, 5],
+        [392, 2],
+      ]
+    : [
+        [72, 2],
+        [45, 5],
+        [75, 3],
+        [98, 2],
+        [48, 3],
+        [200, 2],
+        [180, 5],
+        [150, 6],
+      ];
   const nonSq = p
-    ? [[6, 14], [10, 15], [14, 21], [15, 35], [22, 33], [26, 39]]
-    : [[6, 10], [2, 6], [3, 6], [10, 5], [2, 14], [7, 14], [6, 15], [12, 5]];
+    ? [
+        [6, 14],
+        [10, 15],
+        [14, 21],
+        [15, 35],
+        [22, 33],
+        [26, 39],
+      ]
+    : [
+        [6, 10],
+        [2, 6],
+        [3, 6],
+        [10, 5],
+        [2, 14],
+        [7, 14],
+        [6, 15],
+        [12, 5],
+      ];
   const warm = mix(
-    [[3, 5], [2, 7], [5, 11], [3, 13], [6, 7], [2, 11]].map(([a, b]) =>
+    [
+      [3, 5],
+      [2, 7],
+      [5, 11],
+      [3, 13],
+      [6, 7],
+      [2, 11],
+    ].map(([a, b]) =>
       P(`${root(2, a)} · ${root(2, b)} = ${root(2, 'n')}. What is n?`, I(a * b), [
         `Same index, so multiply the radicands.`,
         `${a} × ${b} = ${a * b}.`,
@@ -558,9 +682,20 @@ function muldiv(L) {
       `${a * b} = ${c * c} × ${r}, so ${root(2, a * b)} = ${radTxt(c, r)}.`,
     ]);
   });
-  const mixedProd = (p
-    ? [[3, 6, 5, 10], [4, 3, 6, 21], [2, 15, 3, 10], [5, 7, 4, 14]]
-    : [[2, 3, 5, 6], [3, 2, 4, 6], [4, 5, 2, 10], [2, 7, 3, 7]]
+  const mixedProd = (
+    p
+      ? [
+          [3, 6, 5, 10],
+          [4, 3, 6, 21],
+          [2, 15, 3, 10],
+          [5, 7, 4, 14],
+        ]
+      : [
+          [2, 3, 5, 6],
+          [3, 2, 4, 6],
+          [4, 5, 2, 10],
+          [2, 7, 3, 7],
+        ]
   ).map(([c, a, d, b]) => {
     const [o, r] = sqrtParts(a * b);
     return P(
@@ -573,9 +708,25 @@ function muldiv(L) {
       ],
     );
   });
-  const quot = (p
-    ? [[360, 5], [270, 5], [375, 5], [392, 7], [288, 3], [440, 5]]
-    : [[90, 5], [48, 6], [54, 3], [150, 5], [200, 5], [110, 5], [60, 5]]
+  const quot = (
+    p
+      ? [
+          [360, 5],
+          [270, 5],
+          [375, 5],
+          [392, 7],
+          [288, 3],
+          [440, 5],
+        ]
+      : [
+          [90, 5],
+          [48, 6],
+          [54, 3],
+          [150, 5],
+          [200, 5],
+          [110, 5],
+          [60, 5],
+        ]
   ).map(([a, b]) => {
     const [c, r] = sqrtParts(a / b);
     return P(`Write ${root(2, a)} / ${root(2, b)} in simplest radical form.`, E(0, c, r), [
@@ -583,40 +734,74 @@ function muldiv(L) {
       `${a / b} = ${c * c} × ${r}, so ${root(2, a / b)} = ${radTxt(c, r)}.`,
     ]);
   });
-  const mixedQuot = (p
-    ? [[42, 90, 6, 5], [35, 280, 7, 5], [24, 176, 8, 11]]
-    : [[12, 10, 4, 5], [18, 14, 6, 7], [20, 6, 5, 3], [30, 15, 10, 5]]
+  const mixedQuot = (
+    p
+      ? [
+          [42, 90, 6, 5],
+          [35, 280, 7, 5],
+          [24, 176, 8, 11],
+        ]
+      : [
+          [12, 10, 4, 5],
+          [18, 14, 6, 7],
+          [20, 6, 5, 3],
+          [30, 15, 10, 5],
+        ]
   ).map(([c, a, d, b]) => {
     const [o, r] = sqrtParts(a / b);
     const k = (c * o) / d;
     return Number.isInteger(k)
-      ? P(
-          `Write (${c}${root(2, a)})/(${d}${root(2, b)}) in simplest radical form.`,
-          E(0, k, r),
-          [
-            `Divide the coefficients: ${c} ÷ ${d} = ${c / d}.`,
-            `Divide the radicands: ${a} ÷ ${b} = ${a / b} = ${o * o} × ${r}.`,
-            `${c / d} × ${o}${r === 1 ? '' : root(2, r)} = ${radTxt(k, r)}.`,
-          ],
-        )
+      ? P(`Write (${c}${root(2, a)})/(${d}${root(2, b)}) in simplest radical form.`, E(0, k, r), [
+          `Divide the coefficients: ${c} ÷ ${d} = ${c / d}.`,
+          `Divide the radicands: ${a} ÷ ${b} = ${a / b} = ${o * o} × ${r}.`,
+          `${c / d} × ${o}${r === 1 ? '' : root(2, r)} = ${radTxt(k, r)}.`,
+        ])
       : null;
   });
   const core = mix(prodSimple, mixedProd, quot, mixedQuot.filter(Boolean));
-  const cubeProd = (p
-    ? [[3, 4, -5, 2], [2, 3, 5, 9], [-4, 4, 3, 6], [2, 9, 6, 6], [5, 2, -3, 4]]
-    : [[2, 3, 5, 9], [-3, 4, 5, 2], [4, 2, 3, 4], [-2, 6, 3, 36], [3, 5, 2, 25]]
+  const cubeProd = (
+    p
+      ? [
+          [3, 4, -5, 2],
+          [2, 3, 5, 9],
+          [-4, 4, 3, 6],
+          [2, 9, 6, 6],
+          [5, 2, -3, 4],
+        ]
+      : [
+          [2, 3, 5, 9],
+          [-3, 4, 5, 2],
+          [4, 2, 3, 4],
+          [-2, 6, 3, 36],
+          [3, 5, 2, 25],
+        ]
   ).map(([c, a, d, b]) => {
     const k = Math.round(Math.cbrt(a * b));
     if (k ** 3 !== a * b) return null;
-    return P(`What is (${c < 0 ? M : ''}${Math.abs(c)}${root(3, a)})(${d < 0 ? M : ''}${Math.abs(d)}${root(3, b)})?`, I(c * d * k), [
-      `Multiply the coefficients: ${sg(c)} × ${sg(d)} = ${sg(c * d)}.`,
-      `Multiply the radicands: ${a} × ${b} = ${a * b}, and ${root(3, a * b)} = ${k}.`,
-      `${sg(c * d)} × ${k} = ${sg(c * d * k)}.`,
-    ]);
+    return P(
+      `What is (${c < 0 ? M : ''}${Math.abs(c)}${root(3, a)})(${d < 0 ? M : ''}${Math.abs(d)}${root(3, b)})?`,
+      I(c * d * k),
+      [
+        `Multiply the coefficients: ${sg(c)} × ${sg(d)} = ${sg(c * d)}.`,
+        `Multiply the radicands: ${a} × ${b} = ${a * b}, and ${root(3, a * b)} = ${k}.`,
+        `${sg(c * d)} × ${k} = ${sg(c * d * k)}.`,
+      ],
+    );
   });
-  const triple = (p
-    ? [[2, 5, 10], [3, 7, 21], [6, 10, 15], [2, 8, 9]]
-    : [[2, 3, 6], [3, 5, 15], [2, 5, 10], [6, 8, 12]]
+  const triple = (
+    p
+      ? [
+          [2, 5, 10],
+          [3, 7, 21],
+          [6, 10, 15],
+          [2, 8, 9],
+        ]
+      : [
+          [2, 3, 6],
+          [3, 5, 15],
+          [2, 5, 10],
+          [6, 8, 12],
+        ]
   ).map(([a, b, c]) =>
     isSq(a * b * c)
       ? P(`What is ${root(2, a)} · ${root(2, b)} · ${root(2, c)}?`, I(Math.sqrt(a * b * c)), [
@@ -625,15 +810,40 @@ function muldiv(L) {
         ])
       : null,
   );
-  const squared = (p ? [[7, 3], [5, 6], [11, 4], [3, 9]] : [[5, 3], [2, 6], [7, 2], [3, 4]]).map(([c, a]) =>
+  const squared = (
+    p
+      ? [
+          [7, 3],
+          [5, 6],
+          [11, 4],
+          [3, 9],
+        ]
+      : [
+          [5, 3],
+          [2, 6],
+          [7, 2],
+          [3, 4],
+        ]
+  ).map(([c, a]) =>
     P(`What is (${c}${root(2, a)})²?`, I(c * c * a), [
       `Square the coefficient and the root: ${c}² = ${c * c} and (${root(2, a)})² = ${a}.`,
       `${c * c} × ${a} = ${c * c * a}.`,
     ]),
   );
-  const prodTwo = (p
-    ? [[12, 15], [18, 30], [24, 20], [28, 21]]
-    : [[8, 12], [12, 15], [18, 20], [20, 24]]
+  const prodTwo = (
+    p
+      ? [
+          [12, 15],
+          [18, 30],
+          [24, 20],
+          [28, 21],
+        ]
+      : [
+          [8, 12],
+          [12, 15],
+          [18, 20],
+          [20, 24],
+        ]
   ).map(([a, b]) => {
     const [c, r] = sqrtParts(a * b);
     return P(`Write ${root(2, a)} · ${root(2, b)} in simplest radical form.`, E(0, c, r), [
@@ -650,8 +860,22 @@ function addsub(L) {
   const p = L === 'psat';
   const rs = p ? [2, 3, 5, 6, 7, 10, 11] : [2, 3, 5, 6, 7];
   const cs = p
-    ? [[7, 4], [9, 5], [12, 7], [8, 11], [15, 6], [13, 9]]
-    : [[2, 3], [4, 5], [6, 1], [7, 2], [5, 4], [9, 3]];
+    ? [
+        [7, 4],
+        [9, 5],
+        [12, 7],
+        [8, 11],
+        [15, 6],
+        [13, 9],
+      ]
+    : [
+        [2, 3],
+        [4, 5],
+        [6, 1],
+        [7, 2],
+        [5, 4],
+        [9, 3],
+      ];
   const warm = mix(
     cs.map(([a, b], i) => {
       const r = rs[i % rs.length];
@@ -667,12 +891,34 @@ function addsub(L) {
         `Subtract the coefficients: ${a + b} − ${b} = ${a}.`,
       ]);
     }),
-    [[2, 3], [5, 7], [3, 6], [2, 5], [7, 11], [6, 10]].map(([a, b]) =>
-      P(`Can ${term(3, 2, a)} + ${term(4, 2, b)} be combined into one term? Type 1 for yes, 0 for no.`, I(0), [
-        `The radicands ${a} and ${b} are different, so they are not like terms.`,
-      ]),
+    [
+      [2, 3],
+      [5, 7],
+      [3, 6],
+      [2, 5],
+      [7, 11],
+      [6, 10],
+    ].map(([a, b]) =>
+      P(
+        `Can ${term(3, 2, a)} + ${term(4, 2, b)} be combined into one term? Type 1 for yes, 0 for no.`,
+        I(0),
+        [`The radicands ${a} and ${b} are different, so they are not like terms.`],
+      ),
     ),
-    (p ? [[11, 11], [6, 9], [13, 13], [4, 10]] : [[5, 5], [5, 7], [3, 3], [6, 5]]).map(([c1, c2]) => {
+    (p
+      ? [
+          [11, 11],
+          [6, 9],
+          [13, 13],
+          [4, 10],
+        ]
+      : [
+          [5, 5],
+          [5, 7],
+          [3, 3],
+          [6, 5],
+        ]
+    ).map(([c1, c2]) => {
       const same = c1 === c2;
       return P(
         `Can ${term(5, 3, c1)} − ${term(2, 3, c2)} be combined into one term? Type 1 for yes, 0 for no.`,
@@ -698,10 +944,21 @@ function addsub(L) {
       ]),
     ];
   });
-  const uv = (p
-    ? [[3, 4], [2, 5], [4, 6], [3, 7], [5, 2]]
-    : [[2, 3], [1, 4], [3, 2], [2, 5], [4, 1]]
-  );
+  const uv = p
+    ? [
+        [3, 4],
+        [2, 5],
+        [4, 6],
+        [3, 7],
+        [5, 2],
+      ]
+    : [
+        [2, 3],
+        [1, 4],
+        [3, 2],
+        [2, 5],
+        [4, 1],
+      ];
   const coreSimp = uv.flatMap(([u, v], i) => {
     const r = rs[i % rs.length];
     const a = u * u * r;
@@ -720,25 +977,68 @@ function addsub(L) {
     ];
   });
   const core = mix(coreLike, coreSimp.filter(Boolean));
-  const three = (p
-    ? [[2, 3, 5, 2], [4, 2, 3, 3], [3, 5, 2, 6], [2, 4, 3, 5]]
-    : [[2, 3, 1, 2], [3, 2, 1, 3], [1, 4, 2, 5], [2, 1, 3, 2], [4, 1, 2, 3]]
+  const three = (
+    p
+      ? [
+          [2, 3, 5, 2],
+          [4, 2, 3, 3],
+          [3, 5, 2, 6],
+          [2, 4, 3, 5],
+        ]
+      : [
+          [2, 3, 1, 2],
+          [3, 2, 1, 3],
+          [1, 4, 2, 5],
+          [2, 1, 3, 2],
+          [4, 1, 2, 3],
+        ]
   ).map(([u, v, w, r]) => {
-    const t = [[u * u * r, 1], [v * v * r, 1], [w * w * r, -1]];
+    const t = [
+      [u * u * r, 1],
+      [v * v * r, 1],
+      [w * w * r, -1],
+    ];
     const total = u + v - w;
-    return P(`Simplify ${root(2, t[0][0])} + ${root(2, t[1][0])} − ${root(2, t[2][0])}.`, E(0, total, r), [
-      `Simplify each: ${radTxt(u, r)}, ${radTxt(v, r)}, ${radTxt(w, r)}.`,
-      `Combine: ${u} + ${v} − ${w} = ${total}.`,
-    ]);
+    return P(
+      `Simplify ${root(2, t[0][0])} + ${root(2, t[1][0])} − ${root(2, t[2][0])}.`,
+      E(0, total, r),
+      [
+        `Simplify each: ${radTxt(u, r)}, ${radTxt(v, r)}, ${radTxt(w, r)}.`,
+        `Combine: ${u} + ${v} − ${w} = ${total}.`,
+      ],
+    );
   });
-  const fo = (p
-    ? [[5, 2], [6, 3], [7, 5], [4, 7], [3, 11]]
-    : [[3, 2], [4, 3], [2, 5], [5, 2], [6, 3]]
-  );
+  const fo = p
+    ? [
+        [5, 2],
+        [6, 3],
+        [7, 5],
+        [4, 7],
+        [3, 11],
+      ]
+    : [
+        [3, 2],
+        [4, 3],
+        [2, 5],
+        [5, 2],
+        [6, 3],
+      ];
   // (√a + b)(√a − b): a is not a perfect square, so the root stays a root.
   const conjSet = p
-    ? [[5, 6], [7, 4], [11, 3], [13, 5], [10, 7]]
-    : [[2, 3], [3, 2], [5, 4], [7, 3], [6, 5]];
+    ? [
+        [5, 6],
+        [7, 4],
+        [11, 3],
+        [13, 5],
+        [10, 7],
+      ]
+    : [
+        [2, 3],
+        [3, 2],
+        [5, 4],
+        [7, 3],
+        [6, 5],
+      ];
   const conj = conjSet.map(([a, b]) =>
     P(`What is (${root(2, a)} + ${b})(${root(2, a)} − ${b})?`, I(a - b * b), [
       `A sum times a difference: (x + y)(x − y) = x² − y².`,
@@ -751,16 +1051,29 @@ function addsub(L) {
       `That is ${a * a + r} + ${2 * a}${root(2, r)}.`,
     ]),
   );
-  const foil = (p
-    ? [[3, 2, 2, 5, 3], [2, 5, 3, 1, 7], [4, 1, 2, 3, 6]]
-    : [[2, 1, 3, 4, 2], [1, 3, 2, 1, 3], [3, 2, 1, 2, 5]]
+  const foil = (
+    p
+      ? [
+          [3, 2, 2, 5, 3],
+          [2, 5, 3, 1, 7],
+          [4, 1, 2, 3, 6],
+        ]
+      : [
+          [2, 1, 3, 4, 2],
+          [1, 3, 2, 1, 3],
+          [3, 2, 1, 2, 5],
+        ]
   ).map(([a, b, c, d, r]) => {
     const N = a * c * r + b * d;
     const s = a * d + b * c;
-    return P(`Write (${a === 1 ? '' : a}${root(2, r)} + ${b})(${c === 1 ? '' : c}${root(2, r)} + ${d}) in simplest form.`, E(N, s, r), [
-      `FOIL: ${a * c}·${r} + ${a * d}${root(2, r)} + ${b * c}${root(2, r)} + ${b * d}.`,
-      `${a * c * r} + ${b * d} = ${N} and ${a * d} + ${b * c} = ${s}.`,
-    ]);
+    return P(
+      `Write (${a === 1 ? '' : a}${root(2, r)} + ${b})(${c === 1 ? '' : c}${root(2, r)} + ${d}) in simplest form.`,
+      E(N, s, r),
+      [
+        `FOIL: ${a * c}·${r} + ${a * d}${root(2, r)} + ${b * c}${root(2, r)} + ${b * d}.`,
+        `${a * c * r} + ${b * d} = ${N} and ${a * d} + ${b * c} = ${s}.`,
+      ],
+    );
   });
   const chal = mix(three, conj, sqBin, foil);
   return { warm, core, chal };
@@ -773,21 +1086,59 @@ function rationalize(L) {
   const as = p ? [4, 9, 12, 15, 18, 21, 22, 30] : [1, 2, 3, 4, 5, 6, 8, 10];
   const warm = mix(
     bs.map((b) =>
-      P(`To rationalize 1/${root(2, b)}, multiply top and bottom by ${root(2, b)}. What is the new denominator?`, I(b), [
-        `${root(2, b)} × ${root(2, b)} = ${b}.`,
-      ]),
+      P(
+        `To rationalize 1/${root(2, b)}, multiply top and bottom by ${root(2, b)}. What is the new denominator?`,
+        I(b),
+        [`${root(2, b)} × ${root(2, b)} = ${b}.`],
+      ),
     ),
-    (p ? [[5, 3], [7, 2], [6, 5], [8, 3], [9, 7], [11, 6]] : [[3, 2], [5, 6], [4, 3], [2, 5], [6, 2], [7, 3]]).map(([c, d]) =>
+    (p
+      ? [
+          [5, 3],
+          [7, 2],
+          [6, 5],
+          [8, 3],
+          [9, 7],
+          [11, 6],
+        ]
+      : [
+          [3, 2],
+          [5, 6],
+          [4, 3],
+          [2, 5],
+          [6, 2],
+          [7, 3],
+        ]
+    ).map(([c, d]) =>
       P(`What is (${c} + ${root(2, d)})(${c} − ${root(2, d)})?`, I(c * c - d), [
         `x² − y² with x = ${c} and y = ${root(2, d)}.`,
         `${c * c} − ${d} = ${c * c - d}.`,
       ]),
     ),
-    (p ? [[5, 3], [7, 2], [6, 5], [8, 3], [9, 7]] : [[3, 2], [5, 6], [4, 3], [2, 5], [6, 2]]).map(([c, d]) =>
-      P(`To rationalize 1/(${c} + ${root(2, d)}), you multiply top and bottom by ${c} − ${root(2, d)}. What is the new denominator?`, I(c * c - d), [
-        `(${c} + ${root(2, d)})(${c} − ${root(2, d)}) = ${c * c} − ${d}.`,
-        `That is ${c * c - d}.`,
-      ]),
+    (p
+      ? [
+          [5, 3],
+          [7, 2],
+          [6, 5],
+          [8, 3],
+          [9, 7],
+        ]
+      : [
+          [3, 2],
+          [5, 6],
+          [4, 3],
+          [2, 5],
+          [6, 2],
+        ]
+    ).map(([c, d]) =>
+      P(
+        `To rationalize 1/(${c} + ${root(2, d)}), you multiply top and bottom by ${c} − ${root(2, d)}. What is the new denominator?`,
+        I(c * c - d),
+        [
+          `(${c} + ${root(2, d)})(${c} − ${root(2, d)}) = ${c * c} − ${d}.`,
+          `That is ${c * c - d}.`,
+        ],
+      ),
     ),
   );
   const single = as.flatMap((a) =>
@@ -800,7 +1151,21 @@ function rationalize(L) {
       ]);
     }),
   );
-  const sqrtOver = (p ? [[5, 7], [3, 11], [7, 5], [2, 13]] : [[3, 5], [2, 3], [5, 7], [3, 2]]).map(([a, b]) => {
+  const sqrtOver = (
+    p
+      ? [
+          [5, 7],
+          [3, 11],
+          [7, 5],
+          [2, 13],
+        ]
+      : [
+          [3, 5],
+          [2, 3],
+          [5, 7],
+          [3, 2],
+        ]
+  ).map(([a, b]) => {
     const v = E(0, 1, a * b, b);
     return P(`Rationalize the denominator of ${root(2, a)}/${root(2, b)}.`, v, [
       `Multiply top and bottom by ${root(2, b)}.`,
@@ -810,8 +1175,22 @@ function rationalize(L) {
   });
   const core = mix(single, sqrtOver);
   const conjSets = p
-    ? [[6, 5, 2], [10, 4, 3], [12, 5, 3], [8, 3, 2], [14, 6, 5], [21, 5, 6]]
-    : [[6, 3, 2], [4, 3, 5], [10, 4, 7], [5, 4, 3], [8, 5, 3], [12, 4, 2]];
+    ? [
+        [6, 5, 2],
+        [10, 4, 3],
+        [12, 5, 3],
+        [8, 3, 2],
+        [14, 6, 5],
+        [21, 5, 6],
+      ]
+    : [
+        [6, 3, 2],
+        [4, 3, 5],
+        [10, 4, 7],
+        [5, 4, 3],
+        [8, 5, 3],
+        [12, 4, 2],
+      ];
   const conj = conjSets.flatMap(([a, c, d]) => {
     const D = c * c - d;
     if (D === 0) return [];
@@ -824,9 +1203,20 @@ function rationalize(L) {
       ]),
     ];
   });
-  const twoRoots = (p
-    ? [[6, 7, 3], [10, 5, 2], [12, 11, 2], [8, 6, 2]]
-    : [[4, 5, 3], [6, 7, 2], [3, 6, 3], [10, 5, 3]]
+  const twoRoots = (
+    p
+      ? [
+          [6, 7, 3],
+          [10, 5, 2],
+          [12, 11, 2],
+          [8, 6, 2],
+        ]
+      : [
+          [4, 5, 3],
+          [6, 7, 2],
+          [3, 6, 3],
+          [10, 5, 3],
+        ]
   ).map(([a, b, c]) => {
     const D = b - c;
     return P(
@@ -840,10 +1230,14 @@ function rationalize(L) {
   });
   const denomOnly = conjSets.map(([a, c, d]) => {
     const D = c * c - d;
-    return P(`After rationalizing ${a}/(${c} − ${root(2, d)}), what is the new denominator?`, I(D), [
-      `Multiply top and bottom by ${c} + ${root(2, d)}.`,
-      `(${c} − ${root(2, d)})(${c} + ${root(2, d)}) = ${c * c} − ${d} = ${D}.`,
-    ]);
+    return P(
+      `After rationalizing ${a}/(${c} − ${root(2, d)}), what is the new denominator?`,
+      I(D),
+      [
+        `Multiply top and bottom by ${c} + ${root(2, d)}.`,
+        `(${c} − ${root(2, d)})(${c} + ${root(2, d)}) = ${c * c} − ${d} = ${D}.`,
+      ],
+    );
   });
   const chal = mix(conj, denomOnly, twoRoots);
   return { warm, core, chal };
@@ -855,9 +1249,7 @@ function equations(L) {
   const ks = p ? [6, 7, 8, 9, 11, 12, 13] : [2, 3, 4, 5, 6, 7, 8, 9];
   const as = p ? [-11, -7, -4, 5, 8, 12] : [-5, -3, -2, 2, 4, 6, 7];
   const warm = mix(
-    ks.map((k) =>
-      P(`Solve √x = ${k}.`, I(k * k), [`Square both sides.`, `x = ${k}² = ${k * k}.`]),
-    ),
+    ks.map((k) => P(`Solve √x = ${k}.`, I(k * k), [`Square both sides.`, `x = ${k}² = ${k * k}.`])),
     as.map((a, i) => {
       const k = ks[i % ks.length];
       return P(`Solve ${root(2, xa(a))} = ${k}.`, I(k * k - a), [
@@ -877,26 +1269,32 @@ function equations(L) {
       const right = k * k - a;
       const t = i % 2 === 0 ? right : right + 1;
       const ok = t + a === k * k;
-      return P(`Is x = ${sg(t)} a solution of ${root(2, xa(a))} = ${k}? Type 1 for yes, 0 for no.`, I(ok ? 1 : 0), [
-        `Square both sides: ${xa(a)} should equal ${k * k}.`,
-        ok
-          ? `At x = ${sg(t)} the radicand is ${sg(t + a)} = ${k * k}, so x = ${sg(t)} works.`
-          : `At x = ${sg(t)} the radicand is ${sg(t + a)}, not ${k * k}, so x = ${sg(t)} does not work.`,
-      ]);
+      return P(
+        `Is x = ${sg(t)} a solution of ${root(2, xa(a))} = ${k}? Type 1 for yes, 0 for no.`,
+        I(ok ? 1 : 0),
+        [
+          `Square both sides: ${xa(a)} should equal ${k * k}.`,
+          ok
+            ? `At x = ${sg(t)} the radicand is ${sg(t + a)} = ${k * k}, so x = ${sg(t)} works.`
+            : `At x = ${sg(t)} the radicand is ${sg(t + a)}, not ${k * k}, so x = ${sg(t)} does not work.`,
+        ],
+      );
     }),
   );
   const core = mix(
-    ks.flatMap((k) => [2, 3].map((a) => {
-      const b = k % 2 === 0 ? 1 : 3;
-      const total = k * k - b;
-      if (total % a !== 0) return null;
-      const x = total / a;
-      return P(`Solve ${root(2, lin(a, b))} = ${k}.`, I(x), [
-        `Square both sides: ${lin(a, b)} = ${k * k}.`,
-        `${a}x = ${k * k - b}, so x = ${x}.`,
-        `Check: ${root(2, a * x + b)} = ${k}. ✓`,
-      ]);
-    })),
+    ks.flatMap((k) =>
+      [2, 3].map((a) => {
+        const b = k % 2 === 0 ? 1 : 3;
+        const total = k * k - b;
+        if (total % a !== 0) return null;
+        const x = total / a;
+        return P(`Solve ${root(2, lin(a, b))} = ${k}.`, I(x), [
+          `Square both sides: ${lin(a, b)} = ${k * k}.`,
+          `${a}x = ${k * k - b}, so x = ${x}.`,
+          `Check: ${root(2, a * x + b)} = ${k}. ✓`,
+        ]);
+      }),
+    ),
     ks.map((k, i) => {
       const a = as[i % as.length];
       const c = [1, 2, 3][i % 3];
@@ -908,15 +1306,29 @@ function equations(L) {
         `x = ${sg(x)}.`,
       ]);
     }),
-    ks.slice(0, 6).map((k, i) =>
-      P(`How many solutions does ${root(2, xa([2, 4, 6, 8, 3, 5][i]))} = ${sg(-k)} have?`, I(0), [
-        `A principal square root is never negative.`,
-        `It cannot equal ${sg(-k)}, so there are 0 solutions.`,
-      ]),
-    ),
+    ks
+      .slice(0, 6)
+      .map((k, i) =>
+        P(`How many solutions does ${root(2, xa([2, 4, 6, 8, 3, 5][i]))} = ${sg(-k)} have?`, I(0), [
+          `A principal square root is never negative.`,
+          `It cannot equal ${sg(-k)}, so there are 0 solutions.`,
+        ]),
+      ),
     (p
-      ? [[3, 2, 1, 8], [5, 1, 2, 13], [4, 7, 1, 22], [6, 2, 3, 14], [3, -2, 1, 6]]
-      : [[2, 1, 1, 7], [2, 3, 1, 8], [4, 1, 2, 9], [3, 5, 1, 13], [5, 2, 3, 6]]
+      ? [
+          [3, 2, 1, 8],
+          [5, 1, 2, 13],
+          [4, 7, 1, 22],
+          [6, 2, 3, 14],
+          [3, -2, 1, 6],
+        ]
+      : [
+          [2, 1, 1, 7],
+          [2, 3, 1, 8],
+          [4, 1, 2, 9],
+          [3, 5, 1, 13],
+          [5, 2, 3, 6],
+        ]
     ).map(([a, b, c, d]) => {
       const x = (d - b) / (a - c);
       if (!Number.isInteger(x) || a * x + b < 0) return null;
@@ -929,9 +1341,24 @@ function equations(L) {
   );
   // √(x + a) = x − b
   // Choose b and the good root rOk (at least b + 2); the other root is rBad = 2b + 1 − rOk, below b.
-  const quads = (p
-    ? [[3, 7], [4, 8], [5, 9], [6, 10], [5, 8], [4, 9]]
-    : [[1, 3], [2, 5], [3, 6], [2, 4], [4, 7], [1, 4]]
+  const quads = (
+    p
+      ? [
+          [3, 7],
+          [4, 8],
+          [5, 9],
+          [6, 10],
+          [5, 8],
+          [4, 9],
+        ]
+      : [
+          [1, 3],
+          [2, 5],
+          [3, 6],
+          [2, 4],
+          [4, 7],
+          [1, 4],
+        ]
   )
     .map(([b, rOk]) => {
       const rBad = 2 * b + 1 - rOk;
@@ -949,11 +1376,15 @@ function equations(L) {
     ]);
   });
   const extra = quads.map(({ rOk, rBad, a, b }) =>
-    P(`Squaring ${root(2, xa(a))} = ${xa(-b)} gives two roots. What is the extraneous root?`, I(rBad), [
-      `Square both sides: ${xa(a)} = (${xa(-b)})², so ${fac(rBad)}${fac(rOk)} = 0.`,
-      `x = ${rOk} gives ${xa(-b)} = ${rOk - b} ≥ 0, so it works.`,
-      `x = ${sg(rBad)} gives ${xa(-b)} = ${sg(rBad - b)} < 0, so it is extraneous.`,
-    ]),
+    P(
+      `Squaring ${root(2, xa(a))} = ${xa(-b)} gives two roots. What is the extraneous root?`,
+      I(rBad),
+      [
+        `Square both sides: ${xa(a)} = (${xa(-b)})², so ${fac(rBad)}${fac(rOk)} = 0.`,
+        `x = ${rOk} gives ${xa(-b)} = ${rOk - b} ≥ 0, so it works.`,
+        `x = ${sg(rBad)} gives ${xa(-b)} = ${sg(rBad - b)} < 0, so it is extraneous.`,
+      ],
+    ),
   );
   const uu = (p ? [4, 5, 6, 7, 8] : [3, 4, 5, 6, 2]).map((u) => {
     const k = u * u - u;
@@ -970,12 +1401,17 @@ function equations(L) {
 // ───────── 8. The radical function ─────────
 function gridFn(h, k, sign = 1) {
   const pts = [];
-  for (let t = 0; t <= 16; t += 1) pts.push([h + t / 2, k + (sign * Math.sqrt(t / 2)) ]);
+  for (let t = 0; t <= 16; t += 1) pts.push([h + t / 2, k + sign * Math.sqrt(t / 2)]);
   return {
     kind: 'grid',
     x: [h - 3, h + 9],
     y: [Math.min(k, k + sign * 3) - 2, Math.max(k, k + sign * 3) + 2],
-    lines: [{ pts: pts.map(([x, y]) => [Math.round(x * 100) / 100, Math.round(y * 100) / 100]), label: 'f' }],
+    lines: [
+      {
+        pts: pts.map(([x, y]) => [Math.round(x * 100) / 100, Math.round(y * 100) / 100]),
+        label: 'f',
+      },
+    ],
     pts: [{ at: [h, k], label: `(${sg(h)}, ${sg(k)})` }],
     free: true,
   };
@@ -991,10 +1427,15 @@ function fn(L) {
   const ks = p ? [-6, -4, 3, 5, 7, -2] : [-3, -2, 1, 2, 4, 5];
   const warm = mix(
     hs.map((h, i) =>
-      P(`${fx(h, 0)}: the graph starts at what x-value?`, I(h), [
-        `The radicand ${xa(-h)} must be at least 0.`,
-        `So x ≥ ${sg(h)}, and the graph starts at x = ${sg(h)}.`,
-      ], { fig: gridFn(h, 0) }),
+      P(
+        `${fx(h, 0)}: the graph starts at what x-value?`,
+        I(h),
+        [
+          `The radicand ${xa(-h)} must be at least 0.`,
+          `So x ≥ ${sg(h)}, and the graph starts at x = ${sg(h)}.`,
+        ],
+        { fig: gridFn(h, 0) },
+      ),
     ),
     hs.map((h, i) => {
       const k = ks[i];
@@ -1021,10 +1462,15 @@ function fn(L) {
   const core = mix(
     hs.map((h, i) => {
       const k = ks[i];
-      return P(`The graph of ${fx(h, k)} starts at the point (h, k). What is h + k?`, I(h + k), [
-        `The graph starts where the radicand is 0: x = ${sg(h)}, and there y = ${sg(k)}.`,
-        `${sg(h)} + ${sg(k)} = ${sg(h + k)}.`,
-      ], { fig: gridFn(h, k) });
+      return P(
+        `The graph of ${fx(h, k)} starts at the point (h, k). What is h + k?`,
+        I(h + k),
+        [
+          `The graph starts where the radicand is 0: x = ${sg(h)}, and there y = ${sg(k)}.`,
+          `${sg(h)} + ${sg(k)} = ${sg(h + k)}.`,
+        ],
+        { fig: gridFn(h, k) },
+      );
     }),
     hs.map((h, i) => {
       const k = ks[i];
@@ -1034,19 +1480,34 @@ function fn(L) {
         `f = ${m} ${k < 0 ? '−' : '+'} ${Math.abs(k)} = ${sg(m + k)}.`,
       ]);
     }),
-    [[2, 6], [3, 5], [4, 9], [5, 4], [2, -8], [3, 12]].map(([a, b]) => {
+    [
+      [2, 6],
+      [3, 5],
+      [4, 9],
+      [5, 4],
+      [2, -8],
+      [3, 12],
+    ].map(([a, b]) => {
       const x = F(-b, a);
-      return P(`What is the smallest x for which ${root(2, lin(a, b))} is a real number? Write a fraction if needed.`, x, [
-        `Need ${lin(a, b)} ≥ 0.`,
-        `${a}x ≥ ${sg(-b)}, so x ≥ ${x.disp}.`,
-      ]);
+      return P(
+        `What is the smallest x for which ${root(2, lin(a, b))} is a real number? Write a fraction if needed.`,
+        x,
+        [`Need ${lin(a, b)} ≥ 0.`, `${a}x ≥ ${sg(-b)}, so x ≥ ${x.disp}.`],
+      );
     }),
-    [[1, 6], [2, 8], [3, 9], [1, 3], [4, 5]].map(([a, b]) => {
+    [
+      [1, 6],
+      [2, 8],
+      [3, 9],
+      [1, 3],
+      [4, 5],
+    ].map(([a, b]) => {
       const x = F(b, a);
-      return P(`What is the largest x for which ${root(2, `${b} − ${a === 1 ? '' : a}x`)} is a real number? Write a fraction if needed.`, x, [
-        `Need ${b} − ${a === 1 ? '' : a}x ≥ 0.`,
-        `${a === 1 ? '' : a}x ≤ ${b}, so x ≤ ${x.disp}.`,
-      ]);
+      return P(
+        `What is the largest x for which ${root(2, `${b} − ${a === 1 ? '' : a}x`)} is a real number? Write a fraction if needed.`,
+        x,
+        [`Need ${b} − ${a === 1 ? '' : a}x ≥ 0.`, `${a === 1 ? '' : a}x ≤ ${b}, so x ≤ ${x.disp}.`],
+      );
     }),
   );
   const chal = mix(
@@ -1068,10 +1529,14 @@ function fn(L) {
     }),
     hs.map((h, i) => {
       const n = ints(-10, 20).filter((x) => x - h >= 0 && isSq(x - h)).length;
-      return P(`How many whole numbers x from −10 to 20 give a whole-number output for ${fx(h, 0)}?`, I(n), [
-        `The radicand must be at least 0 and a perfect square.`,
-        `${xa(-h)} is a perfect square for ${n} whole numbers in that range.`,
-      ]);
+      return P(
+        `How many whole numbers x from −10 to 20 give a whole-number output for ${fx(h, 0)}?`,
+        I(n),
+        [
+          `The radicand must be at least 0 and a perfect square.`,
+          `${xa(-h)} is a perfect square for ${n} whole numbers in that range.`,
+        ],
+      );
     }),
     hs.map((h, i) => {
       const a = [2, 3, 2, 4, 3, 2][i];
@@ -1097,7 +1562,10 @@ function imaginary(L) {
       P('What is i²?', I(-1), [`By definition i = √(−1), so i² = −1.`]),
       P('What is i⁴?', I(1), [`i⁴ = (i²)² = (−1)² = 1.`]),
       P('i³ = c·i. What is c?', I(-1), [`i³ = i² × i = −1 × i = −i.`, `So c = −1.`]),
-      P('What is i × i × i × i × i × i?', I(-1), [`Six factors of i is i⁶.`, `i⁶ = (i²)³ = (−1)³ = −1.`]),
+      P('What is i × i × i × i × i × i?', I(-1), [
+        `Six factors of i is i⁶.`,
+        `i⁶ = (i²)³ = (−1)³ = −1.`,
+      ]),
     ],
     sqs.map((k) =>
       P(`${root(2, -(k * k))} = c·i. What is c?`, I(k), [
@@ -1105,11 +1573,39 @@ function imaginary(L) {
         `So c = ${k}.`,
       ]),
     ),
-    (p ? [[5, 7], [-3, 11], [9, -4], [-6, -2]] : [[3, 4], [5, 2], [-1, 6], [7, -3]]).map(([a, b]) =>
+    (p
+      ? [
+          [5, 7],
+          [-3, 11],
+          [9, -4],
+          [-6, -2],
+        ]
+      : [
+          [3, 4],
+          [5, 2],
+          [-1, 6],
+          [7, -3],
+        ]
+    ).map(([a, b]) =>
       P(`What is the real part of ${cx(a, b)}?`, I(a), [`In a + bi the real part is a.`]),
     ),
-    (p ? [[5, 7], [-3, 11], [9, -4], [-6, -2]] : [[3, 4], [5, 2], [-1, 6], [7, -3]]).map(([a, b]) =>
-      P(`What is the imaginary part (the number multiplying i) of ${cx(a, b)}?`, I(b), [`In a + bi the imaginary part is b.`]),
+    (p
+      ? [
+          [5, 7],
+          [-3, 11],
+          [9, -4],
+          [-6, -2],
+        ]
+      : [
+          [3, 4],
+          [5, 2],
+          [-1, 6],
+          [7, -3],
+        ]
+    ).map(([a, b]) =>
+      P(`What is the imaginary part (the number multiplying i) of ${cx(a, b)}?`, I(b), [
+        `In a + bi the imaginary part is b.`,
+      ]),
     ),
   );
   const core = mix(
@@ -1117,9 +1613,7 @@ function imaginary(L) {
       const v = ipow(n);
       const real = v === '1' || v === '−1';
       return P(
-        real
-          ? `What is i^${n}?`
-          : `i^${n} = c·i. What is c?`,
+        real ? `What is i^${n}?` : `i^${n} = c·i. What is c?`,
         I(real ? (v === '1' ? 1 : -1) : v === 'i' ? 1 : -1),
         [
           `The powers of i repeat every 4: i, −1, −i, 1.`,
@@ -1144,7 +1638,18 @@ function imaginary(L) {
             ]),
           ];
     }),
-    (p ? [[3, 5, 4, -2], [-4, 6, 7, 3], [8, -1, -5, 9]] : [[2, 3, 4, 1], [5, -2, 1, 6], [-3, 4, 2, -1]]).flatMap(([a, b, c, d]) => [
+    (p
+      ? [
+          [3, 5, 4, -2],
+          [-4, 6, 7, 3],
+          [8, -1, -5, 9],
+        ]
+      : [
+          [2, 3, 4, 1],
+          [5, -2, 1, 6],
+          [-3, 4, 2, -1],
+        ]
+    ).flatMap(([a, b, c, d]) => [
       P(`What is the real part of (${cx(a, b)}) + (${cx(c, d)})?`, I(a + c), [
         `Add the real parts: ${sg(a)} + ${sg(c)} = ${sg(a + c)}.`,
       ]),
@@ -1153,10 +1658,19 @@ function imaginary(L) {
       ]),
     ]),
   );
-  const prods = (p
-    ? [[3, 2, 4, -5], [2, -3, 5, 1], [4, 1, -2, 6], [5, 3, 2, -1]]
-    : [[1, 2, 3, 1], [2, 1, 1, 3], [3, -1, 2, 2], [2, 3, 1, -2]]
-  );
+  const prods = p
+    ? [
+        [3, 2, 4, -5],
+        [2, -3, 5, 1],
+        [4, 1, -2, 6],
+        [5, 3, 2, -1],
+      ]
+    : [
+        [1, 2, 3, 1],
+        [2, 1, 1, 3],
+        [3, -1, 2, 2],
+        [2, 3, 1, -2],
+      ];
   const chal = mix(
     prods.flatMap(([a, b, c, d]) => [
       P(`What is the real part of (${cx(a, b)})(${cx(c, d)})?`, I(a * c - b * d), [
@@ -1168,15 +1682,40 @@ function imaginary(L) {
         `${sg(a * d)} + ${sg(b * c)} = ${sg(a * d + b * c)}.`,
       ]),
     ]),
-    (p ? [[5, 7], [6, 8], [9, 4], [11, 3]] : [[2, 3], [4, 1], [5, 2], [3, 3]]).map(([a, b]) =>
+    (p
+      ? [
+          [5, 7],
+          [6, 8],
+          [9, 4],
+          [11, 3],
+        ]
+      : [
+          [2, 3],
+          [4, 1],
+          [5, 2],
+          [3, 3],
+        ]
+    ).map(([a, b]) =>
       P(`What is (${cx(a, b)})(${cx(a, -b)})?`, I(a * a + b * b), [
         `A conjugate pair: (a + bi)(a − bi) = a² + b².`,
         `${a * a} + ${b * b} = ${a * a + b * b}.`,
       ]),
     ),
     (p
-      ? [[1, 4, 13], [1, 6, 25], [2, 4, 5], [1, -2, 17], [3, 6, 5]]
-      : [[1, 2, 10], [1, 4, 8], [1, -6, 13], [2, 4, 5], [1, 2, 5]]
+      ? [
+          [1, 4, 13],
+          [1, 6, 25],
+          [2, 4, 5],
+          [1, -2, 17],
+          [3, 6, 5],
+        ]
+      : [
+          [1, 2, 10],
+          [1, 4, 8],
+          [1, -6, 13],
+          [2, 4, 5],
+          [1, 2, 5],
+        ]
     ).flatMap(([a, b, c]) => {
       const D = b * b - 4 * a * c;
       const re = F(-b, 2 * a);
@@ -1218,7 +1757,11 @@ const TRIPLES = [
 ];
 const tri = (a, b, c, hypLabel) => ({
   kind: 'poly',
-  pts: [[0, 0], [a, 0], [0, b]],
+  pts: [
+    [0, 0],
+    [a, 0],
+    [0, b],
+  ],
   s: [String(a), hypLabel ?? '?', String(b)],
   right: [0],
 });
@@ -1226,14 +1769,34 @@ function uses(L) {
   const p = L === 'psat';
   const triples = p ? TRIPLES.slice(4) : TRIPLES.slice(0, 8);
   const odd = p
-    ? [[1, 7], [2, 6], [3, 9], [4, 8], [5, 10], [6, 12], [4, 10], [3, 15]]
-    : [[1, 2], [1, 3], [2, 3], [2, 4], [3, 6], [5, 5], [6, 6], [1, 7]];
+    ? [
+        [1, 7],
+        [2, 6],
+        [3, 9],
+        [4, 8],
+        [5, 10],
+        [6, 12],
+        [4, 10],
+        [3, 15],
+      ]
+    : [
+        [1, 2],
+        [1, 3],
+        [2, 3],
+        [2, 4],
+        [3, 6],
+        [5, 5],
+        [6, 6],
+        [1, 7],
+      ];
   const warm = mix(
     triples.map(([a, b, c]) =>
-      P(`A right triangle has legs ${a} and ${b}. What is the hypotenuse?`, I(c), [
-        `c = √(a² + b²) = √(${a * a} + ${b * b}).`,
-        `${root(2, c * c)} = ${c}.`,
-      ], { fig: tri(a, b, c) }),
+      P(
+        `A right triangle has legs ${a} and ${b}. What is the hypotenuse?`,
+        I(c),
+        [`c = √(a² + b²) = √(${a * a} + ${b * b}).`, `${root(2, c * c)} = ${c}.`],
+        { fig: tri(a, b, c) },
+      ),
     ),
     triples.map(([a, b, c]) =>
       P(`A right triangle has hypotenuse ${c} and one leg ${a}. What is the other leg?`, I(b), [
@@ -1248,31 +1811,56 @@ function uses(L) {
       ]),
     ),
     (p ? [20, 45, 80, 125, 180, 245] : [5, 20, 45, 80, 125]).map((h) =>
-      P(`Free fall: t = √(2h/g). With g = 10 m/s², how many seconds does it take to fall ${h} m?`, I(Math.round(Math.sqrt((2 * h) / 10))), [
-        `t = √(2 × ${h} / 10) = √${(2 * h) / 10}.`,
-        `${root(2, (2 * h) / 10)} = ${Math.round(Math.sqrt((2 * h) / 10))}.`,
-      ]),
+      P(
+        `Free fall: t = √(2h/g). With g = 10 m/s², how many seconds does it take to fall ${h} m?`,
+        I(Math.round(Math.sqrt((2 * h) / 10))),
+        [
+          `t = √(2 × ${h} / 10) = √${(2 * h) / 10}.`,
+          `${root(2, (2 * h) / 10)} = ${Math.round(Math.sqrt((2 * h) / 10))}.`,
+        ],
+      ),
     ),
   );
   const core = mix(
     odd.map(([a, b]) => {
       const [c, r] = sqrtParts(a * a + b * b);
-      return P(`A right triangle has legs ${a} and ${b}. Write the hypotenuse in simplest radical form.`, E(0, c, r), [
-        `c = √(${a * a} + ${b * b}) = ${root(2, a * a + b * b)}.`,
-        `${a * a + b * b} = ${c * c} × ${r}, so c = ${radTxt(c, r)}.`,
-      ], { fig: tri(a, b, 0) });
+      return P(
+        `A right triangle has legs ${a} and ${b}. Write the hypotenuse in simplest radical form.`,
+        E(0, c, r),
+        [
+          `c = √(${a * a} + ${b * b}) = ${root(2, a * a + b * b)}.`,
+          `${a * a + b * b} = ${c * c} × ${r}, so c = ${radTxt(c, r)}.`,
+        ],
+        { fig: tri(a, b, 0) },
+      );
     }),
     (p
-      ? [[-3, -2, 3, 6], [1, -4, 4, -2], [-5, 2, 1, -6], [0, 3, -4, -1], [2, -3, -2, 5]]
-      : [[0, 0, 3, 4], [1, 2, 4, 6], [-2, 1, 4, 5], [0, 0, 5, 12], [2, 3, 8, 7]]
+      ? [
+          [-3, -2, 3, 6],
+          [1, -4, 4, -2],
+          [-5, 2, 1, -6],
+          [0, 3, -4, -1],
+          [2, -3, -2, 5],
+        ]
+      : [
+          [0, 0, 3, 4],
+          [1, 2, 4, 6],
+          [-2, 1, 4, 5],
+          [0, 0, 5, 12],
+          [2, 3, 8, 7],
+        ]
     ).map(([x1, y1, x2, y2]) => {
       const d2 = (x2 - x1) ** 2 + (y2 - y1) ** 2;
       const [c, r] = sqrtParts(d2);
-      return P(`What is the distance between (${sg(x1)}, ${sg(y1)}) and (${sg(x2)}, ${sg(y2)})? Simplest radical form if needed.`, E(0, c, r), [
-        `Δx = ${sg(x2 - x1)}, Δy = ${sg(y2 - y1)}.`,
-        `d = √(${(x2 - x1) ** 2} + ${(y2 - y1) ** 2}) = ${root(2, d2)}.`,
-        r === 1 ? `That is ${c}.` : `${d2} = ${c * c} × ${r}, so d = ${radTxt(c, r)}.`,
-      ]);
+      return P(
+        `What is the distance between (${sg(x1)}, ${sg(y1)}) and (${sg(x2)}, ${sg(y2)})? Simplest radical form if needed.`,
+        E(0, c, r),
+        [
+          `Δx = ${sg(x2 - x1)}, Δy = ${sg(y2 - y1)}.`,
+          `d = √(${(x2 - x1) ** 2} + ${(y2 - y1) ** 2}) = ${root(2, d2)}.`,
+          r === 1 ? `That is ${c}.` : `${d2} = ${c * c} × ${r}, so d = ${radTxt(c, r)}.`,
+        ],
+      );
     }),
     (p ? [7, 9, 11, 13] : [2, 3, 5, 6]).map((s) =>
       P(`What is the diagonal of a square with side ${s}? Simplest radical form.`, E(0, s, 2), [
@@ -1282,36 +1870,60 @@ function uses(L) {
     ),
     (p ? [30, 50, 75, 150] : [12, 18, 27, 32]).map((A) => {
       const [c, r] = sqrtParts(A);
-      return P(`A square has area ${A}. What is its side length in simplest radical form?`, E(0, c, r), [
-        `side = ${root(2, A)}.`,
-        r === 1 ? `That is ${c}.` : `${A} = ${c * c} × ${r}, so side = ${radTxt(c, r)}.`,
-      ]);
+      return P(
+        `A square has area ${A}. What is its side length in simplest radical form?`,
+        E(0, c, r),
+        [
+          `side = ${root(2, A)}.`,
+          r === 1 ? `That is ${c}.` : `${A} = ${c * c} × ${r}, so side = ${radTxt(c, r)}.`,
+        ],
+      );
     }),
   );
-  const sds = (p
-    ? [[[2, 6, 10]], [[1, 3, 5, 7, 9]], [[4, 7, 10]], [[0, 2, 6, 10, 12]], [[1, 5, 6, 7, 11]], [[1, 3, 6, 9, 11]]]
-    : [[[2, 4, 6]], [[3, 6, 9]], [[3, 5, 6, 7, 9]], [[2, 4, 6, 8, 10]], [[5, 8, 11]]]
-  ).map(([xs]) => {
-    const n = xs.length;
-    const mean = xs.reduce((s, v) => s + v, 0) / n;
-    const ss = xs.reduce((s, v) => s + (v - mean) ** 2, 0);
-    const [c, r] = sqrtParts(ss / (n - 1));
-    if (!Number.isInteger(mean) || !Number.isInteger(ss / (n - 1))) return null;
-    return { xs, n, mean, ss, c, r };
-  }).filter(Boolean);
+  const sds = (
+    p
+      ? [
+          [[2, 6, 10]],
+          [[1, 3, 5, 7, 9]],
+          [[4, 7, 10]],
+          [[0, 2, 6, 10, 12]],
+          [[1, 5, 6, 7, 11]],
+          [[1, 3, 6, 9, 11]],
+        ]
+      : [[[2, 4, 6]], [[3, 6, 9]], [[3, 5, 6, 7, 9]], [[2, 4, 6, 8, 10]], [[5, 8, 11]]]
+  )
+    .map(([xs]) => {
+      const n = xs.length;
+      const mean = xs.reduce((s, v) => s + v, 0) / n;
+      const ss = xs.reduce((s, v) => s + (v - mean) ** 2, 0);
+      const [c, r] = sqrtParts(ss / (n - 1));
+      if (!Number.isInteger(mean) || !Number.isInteger(ss / (n - 1))) return null;
+      return { xs, n, mean, ss, c, r };
+    })
+    .filter(Boolean);
   const sdVar = sds.map(({ xs, n, mean, ss }) =>
-    P(`For the data ${xs.join(', ')}, what is the sample variance? (Sum of squared deviations ÷ (n − 1).)`, I(ss / (n - 1)), [
-      `The mean is ${mean}.`,
-      `The squared deviations add to ${ss}.`,
-      `${ss} ÷ ${n - 1} = ${ss / (n - 1)}.`,
-    ]),
+    P(
+      `For the data ${xs.join(', ')}, what is the sample variance? (Sum of squared deviations ÷ (n − 1).)`,
+      I(ss / (n - 1)),
+      [
+        `The mean is ${mean}.`,
+        `The squared deviations add to ${ss}.`,
+        `${ss} ÷ ${n - 1} = ${ss / (n - 1)}.`,
+      ],
+    ),
   );
   const sdRoot = sds.map(({ xs, n, mean, ss, c, r }) =>
-    P(`What is the sample standard deviation of ${xs.join(', ')}? Simplest radical form if needed.`, E(0, c, r), [
-      `The mean is ${mean}, and the squared deviations add to ${ss}.`,
-      `Variance = ${ss} ÷ ${n - 1} = ${ss / (n - 1)}.`,
-      r === 1 ? `s = ${root(2, ss / (n - 1))} = ${c}.` : `s = ${root(2, ss / (n - 1))} = ${radTxt(c, r)}.`,
-    ]),
+    P(
+      `What is the sample standard deviation of ${xs.join(', ')}? Simplest radical form if needed.`,
+      E(0, c, r),
+      [
+        `The mean is ${mean}, and the squared deviations add to ${ss}.`,
+        `Variance = ${ss} ÷ ${n - 1} = ${ss / (n - 1)}.`,
+        r === 1
+          ? `s = ${root(2, ss / (n - 1))} = ${c}.`
+          : `s = ${root(2, ss / (n - 1))} = ${radTxt(c, r)}.`,
+      ],
+    ),
   );
   const fall = (p ? [30, 70, 90, 12] : [10, 15, 30]).map((h) => {
     const q = (2 * h) / 10;
@@ -1319,28 +1931,59 @@ function uses(L) {
     const num = Number.isInteger(q) ? q : null;
     return num === null
       ? null
-      : P(`Free fall: t = √(2h/g), g = 10 m/s². How many seconds to fall ${h} m? Simplest radical form if needed.`, E(0, c, r), [
-          `t = √(2 × ${h} / 10) = ${root(2, num)}.`,
-          r === 1 ? `That is ${c}.` : `${num} = ${c * c} × ${r}, so t = ${radTxt(c, r)}.`,
-        ]);
+      : P(
+          `Free fall: t = √(2h/g), g = 10 m/s². How many seconds to fall ${h} m? Simplest radical form if needed.`,
+          E(0, c, r),
+          [
+            `t = √(2 × ${h} / 10) = ${root(2, num)}.`,
+            r === 1 ? `That is ${c}.` : `${num} = ${c * c} × ${r}, so t = ${radTxt(c, r)}.`,
+          ],
+        );
   });
-  const ladder = (p
-    ? [[26, 10], [25, 7], [41, 9], [29, 20]]
-    : [[13, 5], [10, 6], [17, 8], [25, 7]]
+  const ladder = (
+    p
+      ? [
+          [26, 10],
+          [25, 7],
+          [41, 9],
+          [29, 20],
+        ]
+      : [
+          [13, 5],
+          [10, 6],
+          [17, 8],
+          [25, 7],
+        ]
   ).map(([L2, base]) => {
     const h = Math.round(Math.sqrt(L2 * L2 - base * base));
     return h * h === L2 * L2 - base * base
-      ? P(`A ${L2}-foot ladder leans on a wall with its foot ${base} feet from the wall. How high does it reach?`, I(h), [
-          `The ladder is the hypotenuse: h = √(${L2 * L2} − ${base * base}).`,
-          `${root(2, h * h)} = ${h}.`,
-        ], { fig: { ...tri(base, h, L2), s: [String(base), String(L2), '?'] } })
+      ? P(
+          `A ${L2}-foot ladder leans on a wall with its foot ${base} feet from the wall. How high does it reach?`,
+          I(h),
+          [
+            `The ladder is the hypotenuse: h = √(${L2 * L2} − ${base * base}).`,
+            `${root(2, h * h)} = ${h}.`,
+          ],
+          { fig: { ...tri(base, h, L2), s: [String(base), String(L2), '?'] } },
+        )
       : null;
   });
   const chal = mix(sdVar, sdRoot, fall.filter(Boolean), ladder.filter(Boolean));
   return { warm, core, chal };
 }
 
-const BUILD = { whatis, perfect, simplify, muldiv, addsub, rationalize, equations, function: fn, imaginary, uses };
+const BUILD = {
+  whatis,
+  perfect,
+  simplify,
+  muldiv,
+  addsub,
+  rationalize,
+  equations,
+  function: fn,
+  imaginary,
+  uses,
+};
 
 async function main() {
   const { readAnswer, contentValue, hasForm, approx } = await import(
@@ -1360,8 +2003,10 @@ async function main() {
       out[level][id] = list;
       list.forEach((p, i) => {
         const where = `${level}.${id}#${i + 1}`;
-        if (/undefined|NaN|null|\[object|Infinity/.test(JSON.stringify(p))) problems.push(`${where} bad token`);
-        if (p.steps.some((s) => s.includes('  ') || s.trim() === '')) problems.push(`${where} step spacing`);
+        if (/undefined|NaN|null|\[object|Infinity/.test(JSON.stringify(p)))
+          problems.push(`${where} bad token`);
+        if (p.steps.some((s) => s.includes('  ') || s.trim() === ''))
+          problems.push(`${where} step spacing`);
         const r = readAnswer(p.a);
         if (!r.ok) {
           problems.push(`${where} answer "${p.a}" ${r.message}`);
@@ -1373,7 +2018,8 @@ async function main() {
         } catch (e) {
           problems.push(`${where} value ${e.message}`);
         }
-        if (p.form && !hasForm(p.a, p.form)) problems.push(`${where} form ${p.form} rejects "${p.a}"`);
+        if (p.form && !hasForm(p.a, p.form))
+          problems.push(`${where} form ${p.form} rejects "${p.a}"`);
       });
     }
   }
