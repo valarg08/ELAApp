@@ -20,6 +20,9 @@ import { FACTORING } from '@/features/math/psat-factoring-guide';
 import { INEQUALITIES } from '@/features/math/psat-inequalities-guide';
 import { QUADRATICS } from '@/features/math/psat-quadratics-guide';
 import { RADICALS } from '@/features/math/psat-radicals-guide';
+import { FUNCTIONS } from '@/features/math/psat-functions-guide';
+import { POWERS } from '@/features/math/psat-powers-guide';
+import { FRACTION_EQUATIONS } from '@/features/math/psat-fraction-equations-guide';
 import { MathFactSheets, PsatReviewLink } from './math-fact-sheets';
 import { MentalCheatSheets } from './mental-cheat-sheets';
 import { ProgressBar } from './progress-bar';
@@ -34,6 +37,9 @@ const PSAT_GUIDES = [
   { guide: FACTORING, icon: '✂️' },
   { guide: INEQUALITIES, icon: '≷' },
   { guide: RADICALS, icon: '√' },
+  { guide: FUNCTIONS, icon: 'ƒ' },
+  { guide: POWERS, icon: '10ⁿ' },
+  { guide: FRACTION_EQUATIONS, icon: '½' },
 ].map(({ guide, icon }) => ({
   href: guide.href,
   title: guide.title,

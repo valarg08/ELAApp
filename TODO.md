@@ -3,7 +3,7 @@
 What is left to build, in suggested order. DESIGN.md is the source of truth for every item; section numbers point there.
 Tick an item when it is done, and update DESIGN.md §14.2 and the "Current phase" line in CLAUDE.md as usual.
 
-Last updated: 2026-11-02 (PSAT Radicals study guide).
+Last updated: 2026-11-03 (PSAT Equations with Fractions study guide).
 
 ## Done so far
 
@@ -20,6 +20,9 @@ Last updated: 2026-11-02 (PSAT Radicals study guide).
 - [x] Factoring study guide (`/psat/factoring`): the average method, six chapters with Algebra 1 and PSAT problem sets (psat-design.md)
 - [x] Inequalities study guide (`/psat/inequalities`): ten chapters from the JensenMath inequalities video, Algebra 1 and PSAT problem sets (psat-design.md)
 - [x] Radicals study guide (`/psat/radicals`): ten chapters from the JensenMath radicals video, Algebra 1 and PSAT problem sets (psat-design.md)
+- [x] Functions study guide (`/psat/functions`): ten chapters from the JensenMath functions video, Algebra 1 and PSAT problem sets; a teacher should check the B.E.S.T. codes (psat-design.md)
+- [x] Powers and Scientific Notation study guide (`/psat/powers`): eight chapters from the JensenMath Math 9 video, middle-school and PSAT problem sets; a teacher should check the B.E.S.T. codes (psat-design.md)
+- [x] Equations with Fractions study guide (`/psat/fraction-equations`): seven chapters from the GoTutor Math video, middle-school and PSAT problem sets; a teacher should check the B.E.S.T. codes (psat-design.md)
 
 ## 1. Story Writing content (SL8–SL12): next up
 

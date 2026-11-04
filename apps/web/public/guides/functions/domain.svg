@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="Domain and range from a graph: for a parabola that opens up with its lowest point at height 2, the domain is every real x (how wide it is) and the range is y at least 2 (how high it reaches).">
+<title>Domain and range from a graph: for a parabola that opens up with its lowest point at height 2, the domain is every real x (how wide it is) and the range is y at least 2 (how high it reaches).</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#64748b;stroke-width:1.5;fill:none;stroke-dasharray:6 5}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ax{stroke:#94a3b8;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.18}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fb{fill:#2563eb;fill-opacity:.14}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.dot{fill:#334155}
+.open{fill:#fff;stroke:#334155;stroke-width:2}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:16px}
+.s{font-size:13px;fill:#64748b}
+.big{font-size:20px}
+.at{fill:#0f766e;font-weight:700}
+.ht{fill:#c2410c;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l{stroke:#cbd5e1}.d{stroke:#94a3b8}.open{fill:#0f172a;stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.b{stroke:#60a5fa}.v{stroke:#a78bfa}
+.ax{stroke:#475569}
+.at{fill:#2dd4bf}.ht{fill:#fb923c}.bt{fill:#60a5fa}.vt{fill:#a78bfa}}
+</style>
+<text class="t" x="20" y="26">Domain: how wide. Range: how high.</text>
+<line class="ax" x1="50" y1="183.1" x2="360" y2="183.1"/><line class="ax" x1="205" y1="44" x2="205" y2="214"/><polyline class="a" points="61.6,46.4 63.6,49.2 65.5,52 67.4,54.8 69.4,57.5 71.3,60.2 73.2,62.9 75.2,65.5 77.1,68 79.1,70.6 81,73.1 82.9,75.5 84.9,77.9 86.8,80.3 88.7,82.6 90.7,84.9 92.6,87.2 94.6,89.4 96.5,91.6 98.4,93.7 100.4,95.8 102.3,97.9 104.2,99.9 106.2,101.9 108.1,103.9 110.1,105.8 112,107.7 113.9,109.5 115.9,111.3 117.8,113.1 119.7,114.8 121.7,116.5 123.6,118.1 125.6,119.7 127.5,121.3 129.4,122.8 131.4,124.3 133.3,125.7 135.2,127.1 137.2,128.5 139.1,129.8 141.1,131.1 143,132.4 144.9,133.6 146.9,134.8 148.8,135.9 150.7,137 152.7,138.1 154.6,139.1 156.6,140.1 158.5,141.1 160.4,142 162.4,142.8 164.3,143.7 166.2,144.5 168.2,145.2 170.1,145.9 172.1,146.6 174,147.2 175.9,147.8 177.9,148.4 179.8,148.9 181.7,149.4 183.7,149.8 185.6,150.2 187.6,150.6 189.5,150.9 191.4,151.2 193.4,151.5 195.3,151.7 197.2,151.9 199.2,152 201.1,152.1 203.1,152.2 205,152.2 206.9,152.2 208.9,152.1 210.8,152 212.7,151.9 214.7,151.7 216.6,151.5 218.6,151.2 220.5,150.9 222.4,150.6 224.4,150.3 226.3,149.8 228.2,149.4 230.2,148.9 232.1,148.4 234.1,147.8 236,147.2 237.9,146.6 239.9,145.9 241.8,145.2 243.7,144.5 245.7,143.7 247.6,142.8 249.6,142 251.5,141.1 253.4,140.1 255.4,139.1 257.3,138.1 259.2,137 261.2,135.9 263.1,134.8 265.1,133.6 267,132.4 268.9,131.1 270.9,129.9 272.8,128.5 274.7,127.1 276.7,125.7 278.6,124.3 280.6,122.8 282.5,121.3 284.4,119.7 286.4,118.1 288.3,116.5 290.2,114.8 292.2,113.1 294.1,111.3 296.1,109.5 298,107.7 299.9,105.8 301.9,103.9 303.8,101.9 305.7,99.9 307.7,97.9 309.6,95.9 311.6,93.7 313.5,91.6 315.4,89.4 317.4,87.2 319.3,84.9 321.2,82.6 323.2,80.3 325.1,77.9 327.1,75.5 329,73.1 330.9,70.6 332.9,68 334.8,65.5 336.7,62.9 338.7,60.2 340.6,57.5 342.6,54.8 344.5,52 346.4,49.2 348.4,46.4"/>
+<circle class="dot" cx="205" cy="152.2" r="5"/>
+<line class="h" x1="50" y1="195.1" x2="360" y2="195.1"/>
+<line class="b" x1="191" y1="152.2" x2="191" y2="44"/>
+<text class="ht" x="395" y="86">domain: any real number x</text>
+<text class="s" x="395" y="108">(−∞, ∞)</text>
+<text class="bt" x="395" y="148">range: y ≥ 2</text>
+<text class="s" x="395" y="170">[2, ∞)</text>
+<text class="s" x="395" y="204">round at ∞, square if reached</text>
+</svg>

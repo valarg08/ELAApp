@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="One fraction equal to a number. In the fraction 2x plus 1, over 5, equal to 3, multiply both sides by 5 to get 2x plus 1 equals 15. Then 2x equals 14 and x equals 7.">
+<title>One fraction equal to a number. In the fraction 2x plus 1, over 5, equal to 3, multiply both sides by 5 to get 2x plus 1 equals 15. Then 2x equals 14 and x equals 7.</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#64748b;stroke-width:1.5;fill:none;stroke-dasharray:6 5}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fa{fill:#0d9488;fill-opacity:.15}
+.fh{fill:#ea580c;fill-opacity:.14}
+.fb{fill:#2563eb;fill-opacity:.12}
+text{font:17px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:16px}
+.s{font-size:14px;fill:#64748b}
+.m{font-size:22px}
+.big{font-size:30px;font-weight:600}
+.at{fill:#0f766e;font-weight:700}
+.ht{fill:#c2410c;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l{stroke:#cbd5e1}.d{stroke:#94a3b8}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.b{stroke:#60a5fa}
+.at{fill:#2dd4bf}.ht{fill:#fb923c}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="28">Undo the division: multiply both sides by the denominator</text>
+<text class="big" x="320" y="76" text-anchor="middle">(2x + 1)/5 = 3</text>
+<text class="ht" x="320" y="108" text-anchor="middle">× 5 on both sides</text>
+<rect class="fa" x="150" y="122" width="340" height="44" rx="10"/>
+<text class="m" x="320" y="152" text-anchor="middle">2x + 1 = 15</text>
+<text class="m" x="320" y="192" text-anchor="middle">2x = 14</text>
+<text class="big at" x="320" y="232" text-anchor="middle">x = 7</text>
+</svg>

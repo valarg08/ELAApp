@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="Finding the least common multiple of 6 and 9. The multiples of 6 are 6, 12, 18, 24. The multiples of 9 are 9, 18, 27. The first number in both lists is 18, so the LCM is 18.">
+<title>Finding the least common multiple of 6 and 9. The multiples of 6 are 6, 12, 18, 24. The multiples of 9 are 9, 18, 27. The first number in both lists is 18, so the LCM is 18.</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#64748b;stroke-width:1.5;fill:none;stroke-dasharray:6 5}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fa{fill:#0d9488;fill-opacity:.15}
+.fh{fill:#ea580c;fill-opacity:.14}
+.fb{fill:#2563eb;fill-opacity:.12}
+text{font:17px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:16px}
+.s{font-size:14px;fill:#64748b}
+.m{font-size:22px}
+.big{font-size:30px;font-weight:600}
+.at{fill:#0f766e;font-weight:700}
+.ht{fill:#c2410c;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l{stroke:#cbd5e1}.d{stroke:#94a3b8}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.b{stroke:#60a5fa}
+.at{fill:#2dd4bf}.ht{fill:#fb923c}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="28">Smallest number that both denominators go into</text>
+<text class="s" x="20" y="66">multiples of 6</text>
+<rect class="fa" x="150" y="44" width="70" height="36" rx="8"/><text class="m" x="185" y="70" text-anchor="middle">6</text>
+<rect class="fa" x="230" y="44" width="70" height="36" rx="8"/><text class="m" x="265" y="70" text-anchor="middle">12</text>
+<rect class="fh" x="310" y="44" width="70" height="36" rx="8"/><text class="m" x="345" y="70" text-anchor="middle">18</text>
+<rect class="fa" x="390" y="44" width="70" height="36" rx="8"/><text class="m" x="425" y="70" text-anchor="middle">24</text>
+<text class="s" x="20" y="126">multiples of 9</text>
+<rect class="fb" x="150" y="104" width="70" height="36" rx="8"/><text class="m" x="185" y="130" text-anchor="middle">9</text>
+<rect class="fh" x="310" y="104" width="70" height="36" rx="8"/><text class="m" x="345" y="130" text-anchor="middle">18</text>
+<rect class="fb" x="390" y="104" width="70" height="36" rx="8"/><text class="m" x="425" y="130" text-anchor="middle">27</text>
+<line class="d" x1="345" y1="82" x2="345" y2="102"/>
+<text class="ht" x="345" y="172" text-anchor="middle">first one in both lists: LCM = 18</text>
+<text class="s" x="320" y="212" text-anchor="middle">With big numbers, use prime factors: take the highest power of each prime.</text>
+<text class="s" x="320" y="234" text-anchor="middle">6 = 2 × 3 and 9 = 3², so the LCM is 2 × 3² = 18.</text>
+</svg>

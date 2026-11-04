@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="Even and odd functions. On the left an even function is mirror symmetric about the y-axis, with f(−2) = f(2). On the right an odd function has point symmetry about the origin, with f(−2) the opposite of f(2).">
+<title>Even and odd functions. On the left an even function is mirror symmetric about the y-axis, with f(−2) = f(2). On the right an odd function has point symmetry about the origin, with f(−2) the opposite of f(2).</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#64748b;stroke-width:1.5;fill:none;stroke-dasharray:6 5}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ax{stroke:#94a3b8;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.18}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fb{fill:#2563eb;fill-opacity:.14}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.dot{fill:#334155}
+.open{fill:#fff;stroke:#334155;stroke-width:2}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:16px}
+.s{font-size:13px;fill:#64748b}
+.big{font-size:20px}
+.at{fill:#0f766e;font-weight:700}
+.ht{fill:#c2410c;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l{stroke:#cbd5e1}.d{stroke:#94a3b8}.open{fill:#0f172a;stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.b{stroke:#60a5fa}.v{stroke:#a78bfa}
+.ax{stroke:#475569}
+.at{fill:#2dd4bf}.ht{fill:#fb923c}.bt{fill:#60a5fa}.vt{fill:#a78bfa}}
+</style>
+<text class="t" x="20" y="28">Even: mirror in the y-axis. Odd: turn 180° about the origin.</text>
+<line class="ax" x1="40" y1="150" x2="290" y2="150"/><line class="ax" x1="165" y1="50" x2="165" y2="200"/><polyline class="a" points="40,50 42.1,59.7 44.2,68.7 46.2,77.1 48.3,84.9 50.4,92.2 52.5,98.9 54.6,105.1 56.7,110.7 58.7,115.9 60.8,120.7 62.9,125 65,128.8 67.1,132.3 69.2,135.4 71.2,138.2 73.3,140.6 75.4,142.7 77.5,144.5 79.6,146 81.7,147.2 83.7,148.2 85.8,149 87.9,149.5 90,149.8 92.1,150 94.2,150 96.2,149.8 98.3,149.5 100.4,149 102.5,148.4 104.6,147.8 106.7,147 108.7,146.1 110.8,145.2 112.9,144.3 115,143.2 117.1,142.2 119.2,141.1 121.2,140 123.3,138.9 125.4,137.8 127.5,136.7 129.6,135.6 131.7,134.5 133.7,133.5 135.8,132.5 137.9,131.5 140,130.6 142.1,129.8 144.2,129 146.2,128.3 148.3,127.6 150.4,127 152.5,126.5 154.6,126 156.7,125.7 158.7,125.4 160.8,125.2 162.9,125 165,125 167.1,125 169.2,125.2 171.2,125.4 173.3,125.7 175.4,126 177.5,126.5 179.6,127 181.7,127.6 183.7,128.3 185.8,129 187.9,129.8 190,130.6 192.1,131.5 194.2,132.5 196.2,133.5 198.3,134.5 200.4,135.6 202.5,136.7 204.6,137.8 206.7,138.9 208.7,140 210.8,141.1 212.9,142.2 215,143.2 217.1,144.3 219.2,145.2 221.2,146.1 223.3,147 225.4,147.8 227.5,148.4 229.6,149 231.7,149.5 233.7,149.8 235.8,150 237.9,150 240,149.8 242.1,149.5 244.2,149 246.2,148.2 248.3,147.2 250.4,146 252.5,144.5 254.6,142.7 256.7,140.6 258.7,138.2 260.8,135.4 262.9,132.3 265,128.8 267.1,125 269.2,120.7 271.2,115.9 273.3,110.7 275.4,105.1 277.5,98.9 279.6,92.2 281.7,84.9 283.7,77.1 285.8,68.7 287.9,59.7 290,50"/>
+<circle class="dot" cx="248.3" cy="147.2" r="5"/><circle class="dot" cx="81.7" cy="147.2" r="5"/>
+<text class="at" x="165" y="222" text-anchor="middle">f(−x) = f(x)</text>
+<line class="ax" x1="350" y1="125" x2="600" y2="125"/><line class="ax" x1="475" y1="50" x2="475" y2="200"/><polyline class="h" points="354.2,196.4 356.3,191.8 358.3,187.3 360.4,183 362.5,178.9 364.6,174.9 366.7,171.2 368.7,167.5 370.8,164.1 372.9,160.8 375,157.6 377.1,154.6 379.2,151.7 381.2,149 383.3,146.5 385.4,144 387.5,141.7 389.6,139.5 391.7,137.5 393.7,135.6 395.8,133.8 397.9,132.1 400,130.6 402.1,129.1 404.2,127.8 406.2,126.5 408.3,125.4 410.4,124.4 412.5,123.4 414.6,122.6 416.7,121.9 418.7,121.2 420.8,120.6 422.9,120.1 425,119.7 427.1,119.4 429.2,119.1 431.2,118.9 433.3,118.8 435.4,118.7 437.5,118.7 439.6,118.7 441.7,118.8 443.7,118.9 445.8,119.1 447.9,119.4 450,119.6 452.1,120 454.2,120.3 456.2,120.7 458.3,121.1 460.4,121.5 462.5,122 464.6,122.5 466.7,122.9 468.7,123.5 470.8,124 472.9,124.5 475,125 477.1,125.5 479.2,126 481.2,126.5 483.3,127 485.4,127.5 487.5,128 489.6,128.5 491.7,128.9 493.7,129.3 495.8,129.7 497.9,130 500,130.3 502.1,130.6 504.2,130.9 506.2,131.1 508.3,131.2 510.4,131.3 512.5,131.3 514.6,131.3 516.7,131.3 518.7,131.1 520.8,130.9 522.9,130.6 525,130.3 527.1,129.9 529.2,129.4 531.2,128.8 533.3,128.2 535.4,127.4 537.5,126.6 539.6,125.6 541.7,124.6 543.8,123.5 545.8,122.2 547.9,120.9 550,119.5 552.1,117.9 554.2,116.2 556.3,114.4 558.3,112.5 560.4,110.5 562.5,108.3 564.6,106 566.7,103.6 568.7,101 570.8,98.3 572.9,95.4 575,92.4 577.1,89.2 579.2,85.9 581.2,82.5 583.3,78.9 585.4,75.1 587.5,71.1 589.6,67 591.7,62.7 593.7,58.2 595.8,53.6"/>
+<circle class="dot" cx="558.3" cy="112.5" r="5"/><circle class="dot" cx="391.7" cy="137.5" r="5"/>
+<text class="ht" x="475" y="222" text-anchor="middle">f(−x) = −f(x)</text>
+</svg>

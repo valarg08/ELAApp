@@ -9,7 +9,8 @@ export type Table = { head: string[]; rows: string[][] };
 export type Topic = {
   id: string;
   title: string;
-  start: string;
+  /** Where the topic starts in the video (m:ss). Left out when the video has no chapter times. */
+  start?: string;
   intro: string;
   tables?: { caption: string; table: Table }[];
   rules?: string[];
@@ -81,18 +82,18 @@ function Note({ label, children }: { label: string; children: ReactNode }) {
 
 /** One topic: its video link, diagram, notes, tables and tips. */
 function TopicBody({ guide, t }: { guide: Guide; t: Topic }) {
-  const [m = 0, s = 0] = t.start.split(':').map(Number);
+  const [m = 0, s = 0] = (t.start ?? '').split(':').map(Number);
   const fig = guide.figures[t.id];
   return (
     <>
       <p className="text-sm">
         <a
-          href={`${guide.video.url}&t=${m * 60 + s}s`}
+          href={t.start ? `${guide.video.url}&t=${m * 60 + s}s` : guide.video.url}
           className="text-brand underline"
           target="_blank"
           rel="noreferrer"
         >
-          Watch from {t.start}
+          {t.start ? `Watch from ${t.start}` : 'Watch the video'}
           <span className="sr-only"> (opens YouTube in a new tab)</span>
         </a>
       </p>

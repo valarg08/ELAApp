@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="A function and its inverse are mirror images across the line y = x. The graphs of 2 to the x and log base 2 of x are shown with the line y = x, and the point (3, 8) on one matches the point (8, 3) on the other.">
+<title>A function and its inverse are mirror images across the line y = x. The graphs of 2 to the x and log base 2 of x are shown with the line y = x, and the point (3, 8) on one matches the point (8, 3) on the other.</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#64748b;stroke-width:1.5;fill:none;stroke-dasharray:6 5}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.v{stroke:#7c3aed;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ax{stroke:#94a3b8;stroke-width:1.5}
+.fa{fill:#0d9488;fill-opacity:.18}
+.fh{fill:#ea580c;fill-opacity:.16}
+.fb{fill:#2563eb;fill-opacity:.14}
+.fv{fill:#7c3aed;fill-opacity:.12}
+.dot{fill:#334155}
+.open{fill:#fff;stroke:#334155;stroke-width:2}
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:16px}
+.s{font-size:13px;fill:#64748b}
+.big{font-size:20px}
+.at{fill:#0f766e;font-weight:700}
+.ht{fill:#c2410c;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+.vt{fill:#6d28d9;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l{stroke:#cbd5e1}.d{stroke:#94a3b8}.open{fill:#0f172a;stroke:#cbd5e1}.dot{fill:#cbd5e1}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.b{stroke:#60a5fa}.v{stroke:#a78bfa}
+.ax{stroke:#475569}
+.at{fill:#2dd4bf}.ht{fill:#fb923c}.bt{fill:#60a5fa}.vt{fill:#a78bfa}}
+</style>
+<text class="t" x="290" y="40">An inverse swaps x and y</text>
+<line class="ax" x1="40" y1="175.5" x2="260" y2="175.5"/><line class="ax" x1="100" y1="30" x2="100" y2="230"/>
+<line class="d" x1="40" y1="230" x2="260" y2="30"/>
+<polyline class="a" points="40,173.2 41,173.1 42,173 43,172.9 44,172.8 45,172.8 46,172.7 47,172.6 48,172.5 49,172.3 50,172.2 51,172.1 52,172 53,171.9 54,171.8 55,171.6 56,171.5 57,171.4 58,171.2 59,171.1 60,170.9 61,170.7 62,170.6 63,170.4 64,170.2 65,170 66,169.9 67,169.7 68,169.5 69,169.2 70,169 71,168.8 72,168.6 73,168.3 74,168.1 75,167.8 76,167.5 77,167.3 78,167 79,166.7 80,166.4 81,166 82,165.7 83,165.4 84,165 85,164.6 86,164.3 87,163.9 88,163.5 89,163 90,162.6 91,162.1 92,161.7 93,161.2 94,160.7 95,160.2 96,159.6 97,159.1 98,158.5 99,157.9 100,157.3 101,156.6 102,156 103,155.3 104,154.6 105,153.8 106,153.1 107,152.3 108,151.5 109,150.6 110,149.7 111,148.8 112,147.9 113,146.9 114,145.9 115,144.9 116,143.8 117,142.7 118,141.5 119,140.3 120,139.1 121,137.8 122,136.5 123,135.1 124,133.7 125,132.2 126,130.7 127,129.1 128,127.5 129,125.8 130,124 131,122.2 132,120.3 133,118.4 134,116.4 135,114.3 136,112.1 137,109.9 138,107.6 139,105.2 140,102.7 141,100.2 142,97.5 143,94.8 144,91.9 145,89 146,85.9 147,82.8 148,79.5 149,76.1 150,72.6 151,69 152,65.2 153,61.3 154,57.3 155,53.1 156,48.8 157,44.4 158,39.7 159,35 160,30"/><polyline class="h" points="102.6,229 103.6,220.4 104.6,214 105.6,208.8 106.6,204.5 107.6,200.8 108.6,197.6 109.6,194.7 110.6,192.1 111.6,189.7 112.6,187.6 113.6,185.6 114.6,183.7 115.6,182 116.6,180.3 117.6,178.8 118.6,177.4 119.6,176 120.6,174.7 121.6,173.4 122.6,172.2 123.6,171.1 124.6,170 125.6,169 126.6,168 127.6,167 128.6,166.1 129.6,165.2 130.6,164.3 131.6,163.5 132.6,162.6 133.6,161.8 134.6,161.1 135.6,160.3 136.6,159.6 137.6,158.9 138.6,158.2 139.6,157.5 140.6,156.9 141.6,156.2 142.6,155.6 143.6,155 144.6,154.4 145.6,153.8 146.6,153.3 147.6,152.7 148.6,152.2 149.6,151.6 150.6,151.1 151.6,150.6 152.6,150.1 153.6,149.6 154.6,149.1 155.6,148.6 156.6,148.2 157.6,147.7 158.6,147.3 159.6,146.8 160.6,146.4 161.6,145.9 162.6,145.5 163.6,145.1 164.6,144.7 165.6,144.3 166.6,143.9 167.6,143.5 168.6,143.1 169.6,142.7 170.6,142.4 171.6,142 172.6,141.6 173.6,141.3 174.6,140.9 175.6,140.6 176.6,140.2 177.6,139.9 178.6,139.6 179.6,139.2 180.6,138.9 181.6,138.6 182.6,138.3 183.6,137.9 184.6,137.6 185.6,137.3 186.6,137 187.6,136.7 188.6,136.4 189.6,136.1 190.6,135.8 191.6,135.5 192.6,135.3 193.6,135 194.6,134.7 195.6,134.4 196.6,134.1 197.6,133.9 198.6,133.6 199.6,133.3 200.6,133.1 201.6,132.8 202.6,132.6 203.6,132.3 204.6,132.1 205.6,131.8 206.6,131.6 207.6,131.3 208.6,131.1 209.6,130.8 210.6,130.6 211.6,130.4 212.6,130.1 213.6,129.9 214.6,129.7 215.6,129.4 216.6,129.2 217.6,129 218.6,128.8 219.6,128.5 220.6,128.3 221.6,128.1 222.6,127.9 223.6,127.7 224.6,127.5 225.6,127.3 226.6,127.1 227.6,126.8 228.6,126.6 229.6,126.4 230.6,126.2 231.6,126 232.6,125.8 233.6,125.6 234.6,125.4 235.6,125.2 236.6,125.1 237.6,124.9 238.6,124.7 239.6,124.5 240.6,124.3 241.6,124.1 242.6,123.9 243.6,123.7 244.6,123.6 245.6,123.4 246.6,123.2 247.6,123 248.6,122.8 249.6,122.7 250.6,122.5 251.6,122.3 252.6,122.2 253.6,122 254.6,121.8 255.6,121.6 256.6,121.5 257.6,121.3 258.6,121.1 259.6,121"/>
+<circle class="dot" cx="160" cy="30" r="5"/><circle class="dot" cx="260" cy="120.9" r="5"/>
+<text class="s" x="168" y="32">(3, 8)</text>
+<text class="s" x="220" y="138.9">(8, 3)</text>
+<text class="at" x="132" y="48.2">f</text>
+<text class="ht" x="220" y="150">f⁻¹</text>
+<text class="s" x="212" y="64.5">y = x</text>
+<text x="290" y="84">f(a) = b  means  f⁻¹(b) = a</text>
+<text x="290" y="114">f⁻¹(f(x)) = x</text>
+<text class="s" x="290" y="144">f⁻¹ is not 1/f(x): the −1 is not an exponent</text>
+<text class="s" x="290" y="176">to find it: swap x and y, then solve for y</text>
+<text class="s" x="290" y="204">only a one-to-one function has an inverse function</text>
+</svg>

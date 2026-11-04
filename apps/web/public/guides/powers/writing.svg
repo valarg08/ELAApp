@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="Three ways to write the same thing: the expanded form 7 times 7 times 7 times 7, the power 7 to the 4, and the value 2401.">
+<title>Three ways to write the same thing: the expanded form 7 times 7 times 7 times 7, the power 7 to the 4, and the value 2401.</title>
+<style>
+.l{stroke:#334155;stroke-width:2;fill:none;stroke-linejoin:round}
+.d{stroke:#64748b;stroke-width:1.5;fill:none;stroke-dasharray:6 5}
+.a{stroke:#0d9488;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.h{stroke:#ea580c;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.b{stroke:#2563eb;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fa{fill:#0d9488;fill-opacity:.15}
+.fh{fill:#ea580c;fill-opacity:.14}
+.fb{fill:#2563eb;fill-opacity:.12}
+text{font:17px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:16px}
+.s{font-size:14px;fill:#64748b}
+.m{font-size:22px}
+.big{font-size:34px;font-weight:600}
+.huge{font-size:72px;font-weight:700}
+.at{fill:#0f766e;font-weight:700}
+.ht{fill:#c2410c;font-weight:700}
+.bt{fill:#1d4ed8;font-weight:700}
+@media (prefers-color-scheme:dark){
+.l{stroke:#cbd5e1}.d{stroke:#94a3b8}text{fill:#e2e8f0}.s{fill:#94a3b8}
+.a{stroke:#2dd4bf}.h{stroke:#fb923c}.b{stroke:#60a5fa}
+.at{fill:#2dd4bf}.ht{fill:#fb923c}.bt{fill:#60a5fa}}
+</style>
+<text class="t" x="20" y="28">Same number, three ways</text>
+<rect class="fa" x="30" y="60" width="180" height="90" rx="10"/>
+<text class="s" x="120" y="82" text-anchor="middle">expanded</text><text class="m" x="120" y="124" text-anchor="middle">7 × 7 × 7 × 7</text>
+<rect class="fh" x="230" y="60" width="180" height="90" rx="10"/>
+<text class="s" x="320" y="82" text-anchor="middle">power</text><text class="big" x="320" y="128" text-anchor="middle">7⁴</text>
+<rect class="fb" x="430" y="60" width="180" height="90" rx="10"/>
+<text class="s" x="520" y="82" text-anchor="middle">value</text><text class="big" x="520" y="128" text-anchor="middle">2401</text>
+<text class="m" x="220" y="113" text-anchor="middle">=</text><text class="m" x="420" y="113" text-anchor="middle">=</text>
+<text class="s" x="320" y="190" text-anchor="middle">Count the factors to get the exponent. Multiply them out to get the value.</text>
+<text class="s" x="320" y="214" text-anchor="middle">4 factors of 7 → 7⁴</text>
+</svg>

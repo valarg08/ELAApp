@@ -88,8 +88,55 @@ node tools/content-generators/radicals/figs.cjs    # writes public/guides/radica
 - Algebra 1 problems are tagged MA.912.NSO.1.1, NSO.1.2, AR.9.1, F.1.2 and NSO.1.4; a teacher should check those codes.
 - The video's examples stay in the notes. Practice problems are separate (the generator has a ban list).
 
+## PSAT Functions guide (`functions/`)
+
+Generates the problem files and diagrams of `/psat/functions`:
+
+```bash
+node tools/content-generators/functions/build.cjs   # writes psat-functions-problems.ts and psat-functions-algebra1.ts
+pnpm exec prettier --write apps/web/features/math/psat-functions-*.ts
+node tools/content-generators/functions/figs.cjs    # writes public/guides/functions/*.svg
+```
+
+- Ten chapters, 25 problems each at Algebra 1 and at PSAT. Every answer is computed from the functions themselves, then checked a second way with a float, and with math-check.
+- Typed answers are whole numbers or fractions (yes/no is 1/0, even/odd/neither is 1/2/0, +∞/−∞ is 1/−1).
+- Algebra 1 problems are tagged MA.912.F.1.1–F.1.6, F.2.1 and F.2.2; the codes were assigned from memory, so a teacher should check them.
+- The video's examples stay in the notes. Practice problems are separate (the generator has a ban list).
+
+## PSAT Powers and Scientific Notation guide (`powers/`)
+
+Generates the problem files and diagrams of `/psat/powers`:
+
+```bash
+node tools/content-generators/powers/build.cjs   # writes psat-powers-problems.ts and psat-powers-middle.ts
+node tools/content-generators/powers/build.cjs --list   # prints every question and answer for a read-through
+pnpm exec prettier --write apps/web/features/math/psat-powers-*.ts
+node tools/content-generators/powers/figs.cjs    # writes public/guides/powers/*.svg
+```
+
+- Eight chapters, 25 problems each at middle-school level and at PSAT level. Every answer is computed, then checked a second way with a float, and with math-check (`fraction` and `decimal` forms).
+- Questions are unique across all chapters of a level.
+- Middle-school problems are tagged MA.7.NSO.1.1, MA.8.NSO.1.3, MA.8.NSO.1.4 and MA.8.NSO.1.7 (checked against the FLDOE Grade 8 guide); a teacher should check that each chapter fits its code.
+- The video's examples stay in the notes. Practice problems are separate (the generator has a ban list).
+
 ## Guide diagrams (`guide-diagrams/`)
 
 `alg-svg.mjs`, `geo-svg.mjs`, `ns-svg.mjs` (with `svg-kit.mjs`) drew the diagrams of the PSAT Algebra, Geometry
 and Number Sense guides. Each takes the output folder as its first argument (see `apps/web/public/guides/`).
 These were copied as they were and have not been re-run since.
+
+## PSAT Equations with Fractions guide (`fraction-equations/`)
+
+Generates the problem files and diagrams of `/psat/fraction-equations`:
+
+```bash
+node tools/content-generators/fraction-equations/build.cjs   # writes psat-fraction-equations-problems.ts and psat-fraction-equations-middle.ts
+node tools/content-generators/fraction-equations/build.cjs --list   # prints every question and answer for a read-through
+pnpm exec prettier --write apps/web/features/math/psat-fraction-equations-*.ts
+node tools/content-generators/fraction-equations/figs.cjs    # writes public/guides/fraction-equations/*.svg
+```
+
+- Seven chapters, 25 problems each at middle-school level and at PSAT level. Each equation is built from a chosen solution, solved again with exact fractions, and the answer is plugged into both sides; math-check also accepts it (`fraction` form).
+- Typed answers are whole numbers or fractions (yes/no is 1/0).
+- Middle-school problems are tagged MA.6.NSO.3.1 (LCM chapter) and MA.8.AR.2.1 (the rest); a teacher should check that each chapter fits its code.
+- The video's examples stay in the notes. Practice problems are separate (the generator has a ban list).
