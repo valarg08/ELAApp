@@ -14,7 +14,7 @@ type Learn = LessonSteps[1];
 
 /**
  * Mini-lesson cards, one at a time. Clue-hunt cards need every clue found (or "Show me"); the POV
- * simulator needs every version read. In the Math track, $…$ in the cards is typeset (KaTeX).
+ * simulator needs every version read (`freeNav`, used by PSAT, skips that: every card can be passed). In the Math track, $…$ in the cards is typeset (KaTeX).
  */
 export function LearnStep({
   step,
@@ -23,12 +23,14 @@ export function LearnStep({
   onComplete,
   lessonId,
   math = false,
-}: StepProps<Learn> & { lessonId: string; math?: boolean }) {
+  freeNav = false,
+}: StepProps<Learn> & { lessonId: string; math?: boolean; freeNav?: boolean }) {
   const [index, setIndex] = useState(0);
   const [cardDone, setCardDone] = useState<boolean[]>(
     step.cards.map(
       (c) =>
         done ||
+        freeNav ||
         (c.kind !== 'clue-hunt' && c.kind !== 'pov-simulator' && c.kind !== 'worked-example'),
     ),
   );

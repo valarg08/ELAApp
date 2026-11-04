@@ -129,6 +129,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
             <LearnStep
               lessonId={lesson.id}
               math={isMathTrack(lesson.unit.track)}
+              freeNav={lesson.unit.track === 'PSAT'}
               step={learn}
               done={done('learn')}
               busy={busy}
