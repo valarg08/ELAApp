@@ -23,6 +23,7 @@ Last updated: 2026-11-03 (PSAT Equations with Fractions study guide).
 - [x] Functions study guide (`/psat/functions`): ten chapters from the JensenMath functions video, Algebra 1 and PSAT problem sets; a teacher should check the B.E.S.T. codes (psat-design.md)
 - [x] Powers and Scientific Notation study guide (`/psat/powers`): eight chapters from the JensenMath Math 9 video, middle-school and PSAT problem sets; a teacher should check the B.E.S.T. codes (psat-design.md)
 - [x] Equations with Fractions study guide (`/psat/fraction-equations`): seven chapters from the GoTutor Math video, middle-school and PSAT problem sets; a teacher should check the B.E.S.T. codes (psat-design.md)
+- [x] Exponent Rules study guide (`/psat/exponent-rules`): nine rule chapters from the GoTutor Math video, 50 problems each from easy to hard, and a 50-problem final test that mixes every rule (psat-design.md)
 
 ## 1. Story Writing content (SL8–SL12): next up
 
@@ -134,6 +135,7 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
 - [ ] Mental Math teacher view: `GET /teacher/classes/:classId/mental-skills` (students 403; another teacher's class 404; only skills with answers; badges, streak, sprint best and start level per student), the class progress page's Mental Math "Skills & practice" view (axe).
 - [ ] Math PSAT review sheet and open units: `GET /math/psat-facts` (signed out 401; students 404 until a Math unit is published), the loader checks for `content/math/psat-facts.json` (TeX, unknown skills), `classAvailability` (every published Math unit open; other tracks still in order).
 - [ ] PSAT Math: the tests owed in psat-design.md §5 (open units, `trackKeyFilter('PSAT')`, four-choice answers, the loader checks, axe on `/psat`, one Playwright run).
+- Tests owed (Exponent Rules guide): axe on `/psat/exponent-rules` and a chapter page; a unit test that every problem in `psat-exponent-rules-problems.ts` has 50 per chapter, passes `checkAnswer` with its form, and ends its steps with "Answer:"; the Warm-up / Core / Challenge labels follow the set length (`level(i, total)` in `guide-practice.tsx`, 25 and 50 problem sets); the Chapters menu lists Exponent Rules under Study guides.
 - Tests owed (admin Curriculum page): `GET /admin/content` needs an authorisation test (admin only), the status comes from the worker thread and is reused for ten minutes, a sync clears it, and the API answers `/health` while the check runs (the check takes about 40 s).
 - [ ] Admin: authorisation for every `/admin` endpoint, the AI budget pause on live checks, `estimateCostCents` (DESIGN.md §11.9).
 - [ ] The analyzer, Coach and rubric unit tests listed under each E-phase (E1–E15) and SL-phase.

@@ -13,8 +13,9 @@ import { focusAnswer } from './focus';
 import { ProblemFigure } from './guide-figure';
 import type { GuideProblem } from './guide-problem';
 
-/** Problems 1–8, 9–17 and 18–25: the guide's problems run from simple to complex. */
-const level = (i: number) => (i < 8 ? 'Warm-up' : i < 17 ? 'Core' : 'Challenge');
+/** The first third of a set is warm-up, the middle is core, the rest challenge (1–8, 9–17, 18–25 of 25; 1–16, 17–34, 35–50 of 50). */
+const level = (i: number, total: number) =>
+  i < Math.round(total * 0.32) ? 'Warm-up' : i < Math.round(total * 0.68) ? 'Core' : 'Challenge';
 
 // Solved problems and the chosen level, kept in this browser only (the page still works when storage is blocked).
 const listeners = new Set<() => void>();
@@ -203,6 +204,7 @@ function ProblemSet({
           <ProblemCard
             key={pr.q}
             n={i + 1}
+            total={problems.length}
             idPrefix={idPrefix}
             problem={pr}
             solved={solved.includes(i)}
@@ -225,12 +227,14 @@ function ProblemSet({
 
 function ProblemCard({
   n,
+  total,
   idPrefix,
   problem,
   solved,
   onSolved,
 }: {
   n: number;
+  total: number;
   idPrefix: string;
   problem: GuideProblem;
   solved: boolean;
@@ -261,7 +265,7 @@ function ProblemCard({
   return (
     <li className={`rounded-2xl border p-4 ${solved ? 'border-ok' : 'border-border'}`}>
       <p id={headingId} className="text-sm font-semibold text-muted">
-        Problem {n} · {level(n - 1)}
+        Problem {n} · {level(n - 1, total)}
         {problem.std && <span> · B.E.S.T. {problem.std}</span>}
         {solved && <span className="text-ok"> · ✓ solved</span>}
       </p>

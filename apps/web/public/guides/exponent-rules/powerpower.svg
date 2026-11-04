@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="Power of a power: 3 squared, raised to the third power, is three groups of two threes. That is six threes, so the exponents multiply: 3 to the 6.">
+<title>Power of a power: 3 squared, raised to the third power, is three groups of two threes. That is six threes, so the exponents multiply: 3 to the 6.</title>
+<style>
+text{font:16px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:18px}
+.s{font-size:14px;fill:#64748b}
+.big{font-size:26px;font-weight:700}
+.m{text-anchor:middle}
+.e{text-anchor:end}
+.a{fill:#0f766e;font-weight:700}
+.o{fill:#c2410c;font-weight:700}
+.b{fill:#1d4ed8;font-weight:700}
+.chip{fill:#0d9488;fill-opacity:.2;stroke:#0d9488;stroke-width:2}
+.chip2{fill:#ea580c;fill-opacity:.18;stroke:#ea580c;stroke-width:2}
+.chip3{fill:#2563eb;fill-opacity:.16;stroke:#2563eb;stroke-width:2}
+.gone{fill:none;stroke:#94a3b8;stroke-width:2;stroke-dasharray:4 3}
+.box{fill:none;stroke:#64748b;stroke-width:1.5;rx:8}
+.ln{stroke:#334155;stroke-width:2}
+.ar{stroke:#64748b;stroke-width:2;fill:none}
+@media (prefers-color-scheme:dark){
+text{fill:#e2e8f0}.s{fill:#94a3b8}.a{fill:#5eead4}.o{fill:#fdba74}.b{fill:#93c5fd}
+.ln{stroke:#e2e8f0}.box,.ar{stroke:#94a3b8}.gone{stroke:#64748b}
+}
+</style>
+<text x="20" y="34" class="t">Power of a power: multiply the exponents</text><text x="20" y="80" class="big">(3²)³</text><rect x="30" y="104" width="82" height="44" class="box"/><circle cx="52" cy="126" r="11" class="chip"/><text x="52" y="131" class="m" style="font-size:13px">3</text><circle cx="80" cy="126" r="11" class="chip"/><text x="80" y="131" class="m" style="font-size:13px">3</text><rect x="126" y="104" width="82" height="44" class="box"/><circle cx="148" cy="126" r="11" class="chip2"/><text x="148" y="131" class="m" style="font-size:13px">3</text><circle cx="176" cy="126" r="11" class="chip2"/><text x="176" y="131" class="m" style="font-size:13px">3</text><rect x="222" y="104" width="82" height="44" class="box"/><circle cx="244" cy="126" r="11" class="chip3"/><text x="244" y="131" class="m" style="font-size:13px">3</text><circle cx="272" cy="126" r="11" class="chip3"/><text x="272" y="131" class="m" style="font-size:13px">3</text><text x="30" y="172" class="s">3 groups</text><text x="126" y="172" class="s">each group is 3²</text><text x="330" y="132" class="b">=  six factors of 3  =  3⁶</text><text x="20" y="224" class="a">(aᵐ)ⁿ = aᵐⁿ    (2 · 3 = 6)</text>
+</svg>

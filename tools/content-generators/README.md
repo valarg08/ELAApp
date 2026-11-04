@@ -119,6 +119,20 @@ node tools/content-generators/powers/figs.cjs    # writes public/guides/powers/*
 - Middle-school problems are tagged MA.7.NSO.1.1, MA.8.NSO.1.3, MA.8.NSO.1.4 and MA.8.NSO.1.7 (checked against the FLDOE Grade 8 guide); a teacher should check that each chapter fits its code.
 - The video's examples stay in the notes. Practice problems are separate (the generator has a ban list).
 
+## PSAT Exponent Rules guide (`exponent-rules/`)
+
+Generates the problem file and diagrams of `/psat/exponent-rules` (nine rules and a final test, 50 problems each):
+
+```bash
+node tools/content-generators/exponent-rules/build.cjs   # writes psat-exponent-rules-problems.ts
+pnpm exec prettier --write apps/web/features/math/psat-exponent-rules-problems.ts
+node tools/content-generators/exponent-rules/figs.cjs    # writes public/guides/exponent-rules/*.svg
+```
+
+- `lib.cjs`: a tiny expression tree that prints with superscripts and is solved by exact monomial arithmetic, plus the step writer (it names the rule used at each node). `chapters.cjs`: the ten chapters, 1–16 warm-up, 17–34 core, 35–50 challenge.
+- `build.cjs` checks every problem three ways (numeric substitution, an independent evaluation of the question text, math-check), plus 50 per chapter, no repeated questions and none of the video's own examples.
+- Answers are numbers (math-check has no variables), so letter problems ask for an exponent, the coefficient, c + n or m + n, or the numerator and denominator numbers.
+
 ## Guide diagrams (`guide-diagrams/`)
 
 `alg-svg.mjs`, `geo-svg.mjs`, `ns-svg.mjs` (with `svg-kit.mjs`) drew the diagrams of the PSAT Algebra, Geometry

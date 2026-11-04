@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="The zero exponent: powers of 3 go 27, 9, 3 as the exponent drops from 3 to 1, each step divided by 3. The next step divides 3 by 3 to get 1, so 3 to the 0 is 1.">
+<title>The zero exponent: powers of 3 go 27, 9, 3 as the exponent drops from 3 to 1, each step divided by 3. The next step divides 3 by 3 to get 1, so 3 to the 0 is 1.</title>
+<style>
+text{font:16px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:18px}
+.s{font-size:14px;fill:#64748b}
+.big{font-size:26px;font-weight:700}
+.m{text-anchor:middle}
+.e{text-anchor:end}
+.a{fill:#0f766e;font-weight:700}
+.o{fill:#c2410c;font-weight:700}
+.b{fill:#1d4ed8;font-weight:700}
+.chip{fill:#0d9488;fill-opacity:.2;stroke:#0d9488;stroke-width:2}
+.chip2{fill:#ea580c;fill-opacity:.18;stroke:#ea580c;stroke-width:2}
+.chip3{fill:#2563eb;fill-opacity:.16;stroke:#2563eb;stroke-width:2}
+.gone{fill:none;stroke:#94a3b8;stroke-width:2;stroke-dasharray:4 3}
+.box{fill:none;stroke:#64748b;stroke-width:1.5;rx:8}
+.ln{stroke:#334155;stroke-width:2}
+.ar{stroke:#64748b;stroke-width:2;fill:none}
+@media (prefers-color-scheme:dark){
+text{fill:#e2e8f0}.s{fill:#94a3b8}.a{fill:#5eead4}.o{fill:#fdba74}.b{fill:#93c5fd}
+.ln{stroke:#e2e8f0}.box,.ar{stroke:#94a3b8}.gone{stroke:#64748b}
+}
+</style>
+<text x="20" y="34" class="t">Any non-zero base to the power 0 is 1</text><text x="60" y="100" class="big m">3³</text><text x="60" y="130" class="m ">= 27</text><text x="200" y="100" class="big m">3²</text><text x="200" y="130" class="m ">= 9</text><text x="340" y="100" class="big m">3¹</text><text x="340" y="130" class="m ">= 3</text><text x="480" y="100" class="big m">3⁰</text><text x="480" y="130" class="m o">= 1</text><path d="M88 82 H112" class="ar"/><text x="100" y="72" class="s m">÷ 3</text><path d="M228 82 H252" class="ar"/><text x="240" y="72" class="s m">÷ 3</text><path d="M368 82 H392" class="ar"/><text x="380" y="72" class="s m">÷ 3</text><text x="20" y="190">Each step down divides by 3, so 3⁰ = 3 ÷ 3 = 1.</text><text x="20" y="224" class="a">a⁰ = 1    (a ≠ 0; 0⁰ is not defined)</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="Power of a product: 3 times x, cubed, is 3x times 3x times 3x. Regroup the numbers and the letters: three threes and three x, which is 3 cubed times x cubed, or 27 x cubed.">
+<title>Power of a product: 3 times x, cubed, is 3x times 3x times 3x. Regroup the numbers and the letters: three threes and three x, which is 3 cubed times x cubed, or 27 x cubed.</title>
+<style>
+text{font:16px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:18px}
+.s{font-size:14px;fill:#64748b}
+.big{font-size:26px;font-weight:700}
+.m{text-anchor:middle}
+.e{text-anchor:end}
+.a{fill:#0f766e;font-weight:700}
+.o{fill:#c2410c;font-weight:700}
+.b{fill:#1d4ed8;font-weight:700}
+.chip{fill:#0d9488;fill-opacity:.2;stroke:#0d9488;stroke-width:2}
+.chip2{fill:#ea580c;fill-opacity:.18;stroke:#ea580c;stroke-width:2}
+.chip3{fill:#2563eb;fill-opacity:.16;stroke:#2563eb;stroke-width:2}
+.gone{fill:none;stroke:#94a3b8;stroke-width:2;stroke-dasharray:4 3}
+.box{fill:none;stroke:#64748b;stroke-width:1.5;rx:8}
+.ln{stroke:#334155;stroke-width:2}
+.ar{stroke:#64748b;stroke-width:2;fill:none}
+@media (prefers-color-scheme:dark){
+text{fill:#e2e8f0}.s{fill:#94a3b8}.a{fill:#5eead4}.o{fill:#fdba74}.b{fill:#93c5fd}
+.ln{stroke:#e2e8f0}.box,.ar{stroke:#94a3b8}.gone{stroke:#64748b}
+}
+</style>
+<text x="20" y="34" class="t">Power of a product: every factor gets the exponent</text><text x="20" y="80" class="big">(3x)³</text><text x="20" y="124" class="a">(3x)(3x)(3x)</text><text x="20" y="154">= (3 · 3 · 3)(x · x · x)</text><text x="20" y="184" class="b">= 3³ · x³ = 27x³</text><rect x="330" y="96" width="290" height="104" class="box"/><text x="345" y="124" class="s">Works for any number of factors:</text><text x="345" y="152" class="o">(abc)ⁿ = aⁿ · bⁿ · cⁿ</text><text x="345" y="182" class="s">(−2y)⁴ = 16y⁴</text><text x="20" y="224" class="a">(ab)ⁿ = aⁿbⁿ</text>
+</svg>
