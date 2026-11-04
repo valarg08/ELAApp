@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="The parallel line and angle facts on one page: parallel slopes are equal, perpendicular slopes are negative reciprocals, alternate and corresponding angles are equal, consecutive interior angles add to 180, complementary add to 90, supplementary add to 180, and polygon angles add to (n − 2) times 180.">
+<title>The parallel line and angle facts on one page: parallel slopes are equal, perpendicular slopes are negative reciprocals, alternate and corresponding angles are equal, consecutive interior angles add to 180, complementary add to 90, supplementary add to 180, and polygon angles add to (n − 2) times 180.</title>
+<style>
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:17px}
+.s{font-size:13px;fill:#64748b}
+.big{font-size:22px;font-weight:700}
+.n{font-size:14px;font-weight:700}
+.m{text-anchor:middle}
+.a{fill:#0f766e;font-weight:700}
+.o{fill:#c2410c;font-weight:700}
+.b{fill:#1d4ed8;font-weight:700}
+.ln{stroke:#334155;stroke-width:2.5;fill:none;stroke-linecap:round}
+.th{stroke:#2563eb;stroke-width:2.5;fill:none;stroke-linecap:round}
+.ar{stroke:#334155;stroke-width:1.8;fill:none}
+.wa{fill:#0d9488;fill-opacity:.35}
+.wo{fill:#ea580c;fill-opacity:.32}
+.wb{fill:#2563eb;fill-opacity:.25}
+.box{fill:none;stroke:#64748b;stroke-width:1.5}
+.sh{fill:#e2e8f0;fill-opacity:.0;stroke:#334155;stroke-width:2.5;stroke-linejoin:round}
+@media (prefers-color-scheme:dark){
+text{fill:#e2e8f0}.s{fill:#94a3b8}.a{fill:#5eead4}.o{fill:#fdba74}.b{fill:#93c5fd}
+.ln,.ar,.sh{stroke:#e2e8f0}.box{stroke:#94a3b8}.th{stroke:#93c5fd}
+}
+</style>
+<text x="20" y="26" class="t">The facts on one page</text><rect x="20" y="42" width="600" height="24" rx="6" class="box"/><text x="32" y="59">Parallel lines</text><text x="380" y="59" class="a">equal slopes</text><rect x="20" y="70" width="600" height="24" rx="6" class="box"/><text x="32" y="87">Perpendicular lines</text><text x="380" y="87" class="o">slopes: negative reciprocals</text><rect x="20" y="98" width="600" height="24" rx="6" class="box"/><text x="32" y="115">Alternate, corresponding, vertical</text><text x="380" y="115" class="a">equal</text><rect x="20" y="126" width="600" height="24" rx="6" class="box"/><text x="32" y="143">Consecutive interior, linear pair</text><text x="380" y="143" class="o">add up to 180°</text><rect x="20" y="154" width="600" height="24" rx="6" class="box"/><text x="32" y="171">Complementary</text><text x="380" y="171" class="b">add up to 90°</text><rect x="20" y="182" width="600" height="24" rx="6" class="box"/><text x="32" y="199">Supplementary</text><text x="380" y="199" class="o">add up to 180°</text><rect x="20" y="210" width="600" height="24" rx="6" class="box"/><text x="32" y="227">Polygon, n sides</text><text x="380" y="227" class="a">(n − 2) × 180°</text>
+</svg>

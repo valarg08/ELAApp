@@ -135,6 +135,20 @@ node tools/content-generators/exponent-rules/figs.cjs    # writes public/guides/
 - `build.cjs` checks every problem three ways (numeric substitution, an independent evaluation of the question text, math-check), plus 50 per chapter, no repeated questions and none of the video's own examples.
 - Answers are numbers (math-check has no variables), so letter problems ask for an exponent, the coefficient, c + n or m + n, or the numerator and denominator numbers.
 
+## PSAT Parallel Lines and Angles guide (`parallel-lines/`)
+
+Generates the problem file and diagrams of `/psat/parallel-lines` (ten chapters and a final test, 50 problems each):
+
+```bash
+node tools/content-generators/parallel-lines/build.cjs   # writes psat-parallel-lines-problems.ts (--list prints every question and answer)
+pnpm exec prettier --write apps/web/features/math/psat-parallel-lines-problems.ts
+node tools/content-generators/parallel-lines/figs.cjs    # writes public/guides/parallel-lines/*.svg
+```
+
+- `lib.cjs`: the eight angles of a transversal (which angle is which, how any two are related, and a geometric measure from the rays for checking), exact fractions and the worded steps. `chapters.cjs`: the problem families (transversal, algebra with x, complementary and supplementary, polygons, slopes). `plans.cjs`: the tiers of each chapter, 1–16 warm-up, 17–34 core, 35–50 challenge.
+- `build.cjs` runs every problem's own check (an independent angle measure, or the solution substituted back) and math-check, and enforces 50 per chapter and no repeated question across the guide.
+- Transversal problems use the `transversal` figure with the angles numbered 1–8, leaning like ∠2.
+
 ## Guide diagrams (`guide-diagrams/`)
 
 `alg-svg.mjs`, `geo-svg.mjs`, `ns-svg.mjs` (with `svg-kit.mjs`) drew the diagrams of the PSAT Algebra, Geometry

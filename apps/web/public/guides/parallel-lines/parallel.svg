@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="Parallel lines never meet and have the same slope. Perpendicular lines meet at 90 degrees and their slopes are negative reciprocals: a slope of 2 pairs with a slope of negative one half.">
+<title>Parallel lines never meet and have the same slope. Perpendicular lines meet at 90 degrees and their slopes are negative reciprocals: a slope of 2 pairs with a slope of negative one half.</title>
+<style>
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:17px}
+.s{font-size:13px;fill:#64748b}
+.big{font-size:22px;font-weight:700}
+.n{font-size:14px;font-weight:700}
+.m{text-anchor:middle}
+.a{fill:#0f766e;font-weight:700}
+.o{fill:#c2410c;font-weight:700}
+.b{fill:#1d4ed8;font-weight:700}
+.ln{stroke:#334155;stroke-width:2.5;fill:none;stroke-linecap:round}
+.th{stroke:#2563eb;stroke-width:2.5;fill:none;stroke-linecap:round}
+.ar{stroke:#334155;stroke-width:1.8;fill:none}
+.wa{fill:#0d9488;fill-opacity:.35}
+.wo{fill:#ea580c;fill-opacity:.32}
+.wb{fill:#2563eb;fill-opacity:.25}
+.box{fill:none;stroke:#64748b;stroke-width:1.5}
+.sh{fill:#e2e8f0;fill-opacity:.0;stroke:#334155;stroke-width:2.5;stroke-linejoin:round}
+@media (prefers-color-scheme:dark){
+text{fill:#e2e8f0}.s{fill:#94a3b8}.a{fill:#5eead4}.o{fill:#fdba74}.b{fill:#93c5fd}
+.ln,.ar,.sh{stroke:#e2e8f0}.box{stroke:#94a3b8}.th{stroke:#93c5fd}
+}
+</style>
+<text x="20" y="30" class="t">Parallel and perpendicular lines</text><line x1="145.8" y1="48.4" x2="74.2" y2="191.6" class="ln"/><line x1="245.8" y1="48.4" x2="174.2" y2="191.6" class="th"/><text x="40" y="232" class="a">parallel: same slope (2 and 2)</text><line x1="510.2" y1="54.5" x2="429.8" y2="215.5" class="ln"/><line x1="559.4" y1="179.7" x2="380.6" y2="90.3" class="th"/><path d="M478.9 117.1 L496.8 126.1 L487.9 143.9" class="ar"/><text x="500" y="56" class="s">slope 2</text><text x="556" y="190" class="s">slope −1/2</text><text x="330" y="232" class="o">perpendicular: slopes 2 and −1/2</text>
+</svg>

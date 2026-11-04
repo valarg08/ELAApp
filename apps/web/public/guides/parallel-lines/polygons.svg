@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="The interior angles of a polygon add up to the number of sides minus 2, times 180. A triangle (3 sides) is 180, a quadrilateral (4 sides) is 360 and a pentagon (5 sides) is 540.">
+<title>The interior angles of a polygon add up to the number of sides minus 2, times 180. A triangle (3 sides) is 180, a quadrilateral (4 sides) is 360 and a pentagon (5 sides) is 540.</title>
+<style>
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:17px}
+.s{font-size:13px;fill:#64748b}
+.big{font-size:22px;font-weight:700}
+.n{font-size:14px;font-weight:700}
+.m{text-anchor:middle}
+.a{fill:#0f766e;font-weight:700}
+.o{fill:#c2410c;font-weight:700}
+.b{fill:#1d4ed8;font-weight:700}
+.ln{stroke:#334155;stroke-width:2.5;fill:none;stroke-linecap:round}
+.th{stroke:#2563eb;stroke-width:2.5;fill:none;stroke-linecap:round}
+.ar{stroke:#334155;stroke-width:1.8;fill:none}
+.wa{fill:#0d9488;fill-opacity:.35}
+.wo{fill:#ea580c;fill-opacity:.32}
+.wb{fill:#2563eb;fill-opacity:.25}
+.box{fill:none;stroke:#64748b;stroke-width:1.5}
+.sh{fill:#e2e8f0;fill-opacity:.0;stroke:#334155;stroke-width:2.5;stroke-linejoin:round}
+@media (prefers-color-scheme:dark){
+text{fill:#e2e8f0}.s{fill:#94a3b8}.a{fill:#5eead4}.o{fill:#fdba74}.b{fill:#93c5fd}
+.ln,.ar,.sh{stroke:#e2e8f0}.box{stroke:#94a3b8}.th{stroke:#93c5fd}
+}
+</style>
+<text x="20" y="28" class="t">Sum of the interior angles = (n − 2) × 180°</text><polygon points="60,200 190,200 125,90" class="sh"/><text x="60" y="222" class="a">triangle: 180°</text><text x="60" y="240" class="s">(3 − 2) × 180</text><polygon points="260,200 380,200 380,100 260,100" class="sh"/><text x="252" y="222" class="o">quadrilateral: 360°</text><text x="252" y="240" class="s">(4 − 2) × 180</text><polygon points="520,200 585,200 605,135 550,90 495,135" class="sh"/><text x="480" y="222" class="b">pentagon: 540°</text><text x="480" y="240" class="s">(5 − 2) × 180</text>
+</svg>

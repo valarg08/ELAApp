@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="Angle word problems: translate the words into an equation, solve for x, then find the angle that was asked for. Complementary angles add up to 90 and supplementary angles add up to 180.">
+<title>Angle word problems: translate the words into an equation, solve for x, then find the angle that was asked for. Complementary angles add up to 90 and supplementary angles add up to 180.</title>
+<style>
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:17px}
+.s{font-size:13px;fill:#64748b}
+.big{font-size:22px;font-weight:700}
+.n{font-size:14px;font-weight:700}
+.m{text-anchor:middle}
+.a{fill:#0f766e;font-weight:700}
+.o{fill:#c2410c;font-weight:700}
+.b{fill:#1d4ed8;font-weight:700}
+.ln{stroke:#334155;stroke-width:2.5;fill:none;stroke-linecap:round}
+.th{stroke:#2563eb;stroke-width:2.5;fill:none;stroke-linecap:round}
+.ar{stroke:#334155;stroke-width:1.8;fill:none}
+.wa{fill:#0d9488;fill-opacity:.35}
+.wo{fill:#ea580c;fill-opacity:.32}
+.wb{fill:#2563eb;fill-opacity:.25}
+.box{fill:none;stroke:#64748b;stroke-width:1.5}
+.sh{fill:#e2e8f0;fill-opacity:.0;stroke:#334155;stroke-width:2.5;stroke-linejoin:round}
+@media (prefers-color-scheme:dark){
+text{fill:#e2e8f0}.s{fill:#94a3b8}.a{fill:#5eead4}.o{fill:#fdba74}.b{fill:#93c5fd}
+.ln,.ar,.sh{stroke:#e2e8f0}.box{stroke:#94a3b8}.th{stroke:#93c5fd}
+}
+</style>
+<text x="20" y="28" class="t">Translate, solve, answer the question asked</text><rect x="20" y="48" width="600" height="60" rx="8" class="box"/><text x="34" y="74">“R and S are complementary, R = 3x + 1, S = 9x − 7”</text><text x="34" y="96" class="a">(3x + 1) + (9x − 7) = 90</text><rect x="20" y="124" width="600" height="60" rx="8" class="box"/><text x="34" y="150">12x − 6 = 90, so 12x = 96 and x = 8</text><text x="34" y="172" class="o">then S = 9(8) − 7 = 65°</text><text x="20" y="218" class="s">Stop at x only when the question asks for x. Otherwise put x back in.</text>
+</svg>

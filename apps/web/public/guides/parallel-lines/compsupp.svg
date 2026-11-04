@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="Complementary angles add up to 90 degrees, as the 30 and 60 degrees inside a right angle do. Supplementary angles add up to 180 degrees, as the 60 and 120 degrees on a straight line do.">
+<title>Complementary angles add up to 90 degrees, as the 30 and 60 degrees inside a right angle do. Supplementary angles add up to 180 degrees, as the 60 and 120 degrees on a straight line do.</title>
+<style>
+text{font:15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
+.t{font-weight:700;font-size:17px}
+.s{font-size:13px;fill:#64748b}
+.big{font-size:22px;font-weight:700}
+.n{font-size:14px;font-weight:700}
+.m{text-anchor:middle}
+.a{fill:#0f766e;font-weight:700}
+.o{fill:#c2410c;font-weight:700}
+.b{fill:#1d4ed8;font-weight:700}
+.ln{stroke:#334155;stroke-width:2.5;fill:none;stroke-linecap:round}
+.th{stroke:#2563eb;stroke-width:2.5;fill:none;stroke-linecap:round}
+.ar{stroke:#334155;stroke-width:1.8;fill:none}
+.wa{fill:#0d9488;fill-opacity:.35}
+.wo{fill:#ea580c;fill-opacity:.32}
+.wb{fill:#2563eb;fill-opacity:.25}
+.box{fill:none;stroke:#64748b;stroke-width:1.5}
+.sh{fill:#e2e8f0;fill-opacity:.0;stroke:#334155;stroke-width:2.5;stroke-linejoin:round}
+@media (prefers-color-scheme:dark){
+text{fill:#e2e8f0}.s{fill:#94a3b8}.a{fill:#5eead4}.o{fill:#fdba74}.b{fill:#93c5fd}
+.ln,.ar,.sh{stroke:#e2e8f0}.box{stroke:#94a3b8}.th{stroke:#93c5fd}
+}
+</style>
+<text x="20" y="28" class="t">Complementary and supplementary</text><path d="M110 190 H230 M110 190 V70" class="ln"/><line x1="110" y1="190" x2="213.92304845413264" y2="130" class="th"/><path d="M110 190 L154.0 190.0 A44 44 0 0 0 148.1 168.0 Z" class="wa"/><path d="M110 190 L148.1 168.0 A44 44 0 0 0 110.0 146.0 Z" class="wo"/><path d="M110 172 h18 v18" class="ar"/><text x="168" y="178" class="a">30°</text><text x="122" y="140" class="o">60°</text><text x="30" y="228" class="a">complementary: add up to 90°</text><line x1="340" y1="190" x2="600" y2="190" class="ln"/><line x1="470" y1="190" x2="525" y2="94.73720558371176" class="th"/><path d="M470 190 L510.0 190.0 A40 40 0 0 0 490.0 155.4 Z" class="wa"/><path d="M470 190 L490.0 155.4 A40 40 0 0 0 430.0 190.0 Z" class="wo"/><text x="500" y="176" class="a">60°</text><text x="420" y="150" class="o">120°</text><text x="340" y="228" class="o">supplementary: add up to 180°</text>
+</svg>
