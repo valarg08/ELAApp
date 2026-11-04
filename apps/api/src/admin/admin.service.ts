@@ -1,5 +1,5 @@
 import { randomBytes } from 'node:crypto';
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable, type OnApplicationBootstrap } from '@nestjs/common';
 import {
   type AdminAiUsage,
   type AdminAnalytics,
@@ -22,12 +22,14 @@ import { PasswordService } from '../auth/password.service.js';
 import { TokenService } from '../auth/token.service.js';
 import { AppError, notFound } from '../common/app-error.js';
 import { AuditService } from '../common/audit.service.js';
-import { loadContent } from '../curriculum/content-loader.js';
+import type { LoadResult } from '../curriculum/content-loader.js';
+import { contentWorkerAvailable, loadContentOffThread } from '../curriculum/content-offthread.js';
 import { syncContent } from '../curriculum/content-sync.js';
 import { DatabaseService } from '../database/database.service.js';
 
 const DAYS = 14;
 const DAY_MS = 86_400_000;
+const CONTENT_CHECK_MS = 600_000;
 /** A deactivated teacher is locked until this date; failed-login locks are much shorter. */
 const DEACTIVATED_UNTIL = new Date('9999-12-31T00:00:00Z');
 
@@ -57,7 +59,10 @@ const emptyTotals = () => ({
  * curriculum sync. Only counts and token totals, never student text.
  */
 @Injectable()
-export class AdminService {
+export class AdminService implements OnApplicationBootstrap {
+  /** The last content check: it takes about 40 s, so the Curriculum page reuses it for a few minutes. */
+  private contentCheck?: { at: number; result: Promise<LoadResult> };
+
   constructor(
     private readonly db: DatabaseService,
     private readonly audit: AuditService,
@@ -65,6 +70,11 @@ export class AdminService {
     private readonly auth: AuthService,
     private readonly passwords: PasswordService,
   ) {}
+
+  /** Start the content check in the background, so the first visit to the Curriculum page is quick. */
+  onApplicationBootstrap(): void {
+    if (contentWorkerAvailable()) this.checkedContent().catch(() => undefined);
+  }
 
   async orgs(): Promise<AdminOrg[]> {
     const orgs = await this.db.client.organization.findMany({
@@ -343,7 +353,7 @@ export class AdminService {
   }
 
   async contentStatus(): Promise<AdminContentStatus> {
-    const { units, errors } = await loadContent();
+    const { units, errors } = await this.checkedContent();
     const inDb = await this.db.client.unit.findMany({
       select: { track: true, number: true, contentHash: true },
     });
@@ -366,15 +376,26 @@ export class AdminService {
     };
   }
 
+  private checkedContent(): Promise<LoadResult> {
+    const now = Date.now();
+    if (!this.contentCheck || now - this.contentCheck.at > CONTENT_CHECK_MS) {
+      const result = loadContentOffThread();
+      result.catch(() => (this.contentCheck = undefined));
+      this.contentCheck = { at: now, result };
+    }
+    return this.contentCheck.result;
+  }
+
   /** Validate /content and, unless it is a dry run, load it into the database (DESIGN.md §9.4). */
   async syncContent(admin: AuthUser, dryRun: boolean): Promise<ContentSyncResponse> {
-    const { units, errors, math, mental } = await loadContent();
+    const { units, errors, math, mental } = await loadContentOffThread();
     const lessons = units.reduce((n, u) => n + u.lessons.length, 0);
     const activities = units.reduce((n, u) => n + u.activities.length, 0);
     if (errors.length > 0 || dryRun) {
       return { dryRun: true, units: units.length, lessons, activities, orphans: [], errors };
     }
     const report = await syncContent(this.db.client, units, math, mental);
+    this.contentCheck = undefined;
     await this.audit.record(admin.id, 'content.sync', 'content', {
       units: report.units,
       lessons: report.lessons,

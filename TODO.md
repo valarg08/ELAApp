@@ -134,6 +134,7 @@ Development since P4a ran without new tests (by agreement). Every phase in DESIG
 - [ ] Mental Math teacher view: `GET /teacher/classes/:classId/mental-skills` (students 403; another teacher's class 404; only skills with answers; badges, streak, sprint best and start level per student), the class progress page's Mental Math "Skills & practice" view (axe).
 - [ ] Math PSAT review sheet and open units: `GET /math/psat-facts` (signed out 401; students 404 until a Math unit is published), the loader checks for `content/math/psat-facts.json` (TeX, unknown skills), `classAvailability` (every published Math unit open; other tracks still in order).
 - [ ] PSAT Math: the tests owed in psat-design.md §5 (open units, `trackKeyFilter('PSAT')`, four-choice answers, the loader checks, axe on `/psat`, one Playwright run).
+- Tests owed (admin Curriculum page): `GET /admin/content` needs an authorisation test (admin only), the status comes from the worker thread and is reused for ten minutes, a sync clears it, and the API answers `/health` while the check runs (the check takes about 40 s).
 - [ ] Admin: authorisation for every `/admin` endpoint, the AI budget pause on live checks, `estimateCostCents` (DESIGN.md §11.9).
 - [ ] The analyzer, Coach and rubric unit tests listed under each E-phase (E1–E15) and SL-phase.
 - [ ] math-check unit tests (values, parsing, answer forms, TeX choices) and `problemErrors` / figure-sanitiser tests (M0).
