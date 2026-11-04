@@ -11,6 +11,8 @@ export type Topic = {
   title: string;
   /** Where the topic starts in the video (m:ss). Left out when the video has no chapter times. */
   start?: string;
+  /** Our own topic, not in the video: no "Watch the video" link. */
+  own?: boolean;
   intro: string;
   tables?: { caption: string; table: Table }[];
   rules?: string[];
@@ -86,17 +88,19 @@ function TopicBody({ guide, t }: { guide: Guide; t: Topic }) {
   const fig = guide.figures[t.id];
   return (
     <>
-      <p className="text-sm">
-        <a
-          href={t.start ? `${guide.video.url}&t=${m * 60 + s}s` : guide.video.url}
-          className="text-brand underline"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {t.start ? `Watch from ${t.start}` : 'Watch the video'}
-          <span className="sr-only"> (opens YouTube in a new tab)</span>
-        </a>
-      </p>
+      {!t.own && (
+        <p className="text-sm">
+          <a
+            href={t.start ? `${guide.video.url}&t=${m * 60 + s}s` : guide.video.url}
+            className="text-brand underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t.start ? `Watch from ${t.start}` : 'Watch the video'}
+            <span className="sr-only"> (opens YouTube in a new tab)</span>
+          </a>
+        </p>
+      )}
       {fig && (
         // A link to the full-size drawing, for narrow columns.
         <a

@@ -1,5 +1,6 @@
 import { POWERS_MIDDLE } from './psat-powers-middle';
 import { POWERS_PROBLEMS } from './psat-powers-problems';
+import { POWERS_SCI_OPS } from './psat-powers-sci-ops';
 import { type Guide, GuideTopicPage, StudyGuide, type Topic } from './study-guide';
 
 const FIGURES: Guide['figures'] = {
@@ -34,6 +35,14 @@ const FIGURES: Guide['figures'] = {
   tosci: {
     file: 'tosci',
     alt: 'Writing in scientific notation. 52,000,000 becomes 5.2 times 10 to the 7, because the decimal point moves 7 places left. 0.00031 becomes 3.1 times 10 to the minus 4, because the decimal point moves 4 places right.',
+  },
+  scimul: {
+    file: 'scimul',
+    alt: 'Multiplying in scientific notation: multiply the coefficients and add the exponents of 10. 5 times 10 cubed times 4 times 10 squared gives 20 times 10 to the 5. Because 20 is 10 or more, move a power of 10 into the exponent: 2 times 10 to the 6.',
+  },
+  scidiv: {
+    file: 'scidiv',
+    alt: 'Dividing in scientific notation: divide the coefficients and subtract the exponents of 10. 2 times 10 to the 8 divided by 4 times 10 cubed gives 0.5 times 10 to the 5. Because 0.5 is less than 1, make the coefficient 10 times bigger and the exponent 1 smaller: 5 times 10 to the 4.',
   },
 };
 
@@ -173,6 +182,39 @@ const TOPICS: Topic[] = [
       '4,567,000,000 → 4.567, and the point moved 9 places left: 4.567 × 10⁹. 0.0004872 → 4.872, moved 4 places right: 4.872 × 10⁻⁴. 812,000 → 8.12 × 10⁵.',
     tip: 'Check the answer by moving the point back: n places in the opposite direction must give the number you started with.',
   },
+  {
+    id: 'scimul',
+    own: true,
+    title: 'Multiplying scientific notation',
+    intro:
+      'This chapter is not in the video. To multiply two numbers in scientific notation, multiply the coefficients and add the exponents of 10 (the product of powers rule). Then check that the coefficient is still between 1 and 10.',
+    rules: [
+      '(a × 10ᵐ)(b × 10ⁿ) = (a · b) × 10ᵐ⁺ⁿ.',
+      'Multiply the coefficients as ordinary numbers, and add the exponents, keeping their signs.',
+      'If a · b is 10 or more, move a power of 10 into the exponent: 20 × 10⁵ = 2 × 10⁶.',
+      'For three or more factors, multiply all the coefficients and add all the exponents.',
+      'Squaring or cubing squares or cubes the coefficient and multiplies the exponent: (3 × 10⁴)² = 9 × 10⁸.',
+    ],
+    example:
+      '(4 × 10³)(6 × 10⁵): 4 · 6 = 24 and 3 + 5 = 8, so 24 × 10⁸, which is 2.4 × 10⁹. With a negative exponent, (2 × 10⁻³)(3 × 10⁻²) = 6 × 10⁻⁵.',
+    tip: 'Add the exponents, never multiply them. And fix the coefficient last: a product such as 24 × 10⁸ is correct but not yet in scientific notation.',
+  },
+  {
+    id: 'scidiv',
+    own: true,
+    title: 'Dividing scientific notation',
+    intro:
+      'This chapter is not in the video. To divide, divide the coefficients and subtract the exponents of 10 (the quotient of powers rule). If the new coefficient is below 1, make it 10 times bigger and the exponent 1 smaller.',
+    rules: [
+      '(a × 10ᵐ) ÷ (b × 10ⁿ) = (a ÷ b) × 10ᵐ⁻ⁿ.',
+      'Subtract the bottom exponent from the top one, keeping the signs: 5 − (−2) = 7.',
+      'If a ÷ b is below 1, write 0.5 × 10⁵ = 5 × 10⁴: the coefficient grows by 10 and the exponent drops by 1.',
+      'If a ÷ b is 10 or more, the exponent goes up instead.',
+      'To ask “how many times larger”, divide the bigger number by the smaller one.',
+    ],
+    example: '(6 × 10⁸) ÷ (2 × 10³) = 3 × 10⁵. And (2 × 10⁸) ÷ (4 × 10³) = 0.5 × 10⁵ = 5 × 10⁴.',
+    tip: 'The order matters: top minus bottom. A wrong order flips the sign of the exponent.',
+  },
 ];
 
 const PRACTICE: Guide['practice'] = [
@@ -190,6 +232,14 @@ const PRACTICE: Guide['practice'] = [
   { q: 'Write 0.0058 in scientific notation.', a: '5.8 × 10⁻³' },
   { q: 'Which is larger, 6 × 10⁻² or 9 × 10⁻³?', a: '6 × 10⁻²' },
   { q: 'How many times larger is 10⁷ than 10⁴?', a: '1,000' },
+  {
+    q: 'Multiply (3 × 10⁴)(5 × 10³) and write it in scientific notation.',
+    a: '15 × 10⁷ = 1.5 × 10⁸',
+  },
+  {
+    q: 'Divide (3 × 10⁶) ÷ (6 × 10²) and write it in scientific notation.',
+    a: '0.5 × 10⁴ = 5 × 10³',
+  },
   { q: 'What is the last digit of 7¹⁰?', a: '9' },
 ];
 
@@ -203,13 +253,15 @@ const REVIEW: Guide['review'] = [
   ['Scientific notation', 'a × 10ⁿ with 1 ≤ |a| < 10 and n a whole number'],
   ['To standard form', 'n > 0: point right n places; n < 0: point left |n| places'],
   ['To scientific', 'point after the first non-zero digit; moved left → +n, moved right → −n'],
+  ['Multiply', '(a × 10ᵐ)(b × 10ⁿ) = ab × 10ᵐ⁺ⁿ; if ab ≥ 10, move a 10 into the exponent'],
+  ['Divide', '(a × 10ᵐ) ÷ (b × 10ⁿ) = (a ÷ b) × 10ᵐ⁻ⁿ; if a ÷ b < 1, ×10 and lower the exponent'],
 ];
 
-/** The PSAT powers guide: eight topics, summarised in our own words from a JensenMath video. */
+/** The PSAT powers guide: eight topics summarised in our own words from a JensenMath video, plus two of our own on scientific-notation arithmetic. */
 export const POWERS: Guide = {
   title: 'Powers and Scientific Notation',
   blurb:
-    'Eight topics on powers, zero and negative exponents, and scientific notation, with rules, worked examples and practice. The video is a Math 9 lesson, so each topic links to the whole video.',
+    'Ten topics on powers, zero and negative exponents, and scientific notation, including multiplying and dividing it, with rules, worked examples and practice. The video is a Math 9 lesson, so each topic links to the whole video; the last two topics are our own.',
   folder: 'powers',
   href: '/psat/powers',
   video: {
@@ -220,7 +272,7 @@ export const POWERS: Guide = {
   figures: FIGURES,
   review: REVIEW,
   practice: PRACTICE,
-  problems: POWERS_PROBLEMS,
+  problems: { ...POWERS_PROBLEMS, ...POWERS_SCI_OPS },
   middleProblems: POWERS_MIDDLE,
   middleLevel: {
     id: 'ms',
@@ -233,7 +285,7 @@ export function PsatPowersGuide() {
   return <StudyGuide guide={POWERS} />;
 }
 
-/** One Powers chapter as a sub-module: its notes and 25 problems. */
+/** One Powers chapter as a sub-module: its notes and 25 problems (50 for the two scientific-notation arithmetic chapters). */
 export function PsatPowersTopic({ topicId }: { topicId: string }) {
   return <GuideTopicPage guide={POWERS} topicId={topicId} />;
 }

@@ -119,6 +119,8 @@ node tools/content-generators/powers/figs.cjs    # writes public/guides/powers/*
 - Middle-school problems are tagged MA.7.NSO.1.1, MA.8.NSO.1.3, MA.8.NSO.1.4 and MA.8.NSO.1.7 (checked against the FLDOE Grade 8 guide); a teacher should check that each chapter fits its code.
 - The video's examples stay in the notes. Practice problems are separate (the generator has a ban list).
 
+- `sci-ops.cjs` builds two chapters that are not in the video, Multiplying and Dividing scientific notation (50 problems each, `psat-powers-sci-ops.ts`): `node tools/content-generators/powers/sci-ops.cjs` (add `--list` to print every question and answer), then `pnpm exec prettier --write apps/web/features/math/psat-powers-sci-ops.ts`. `sci-ops-figs.cjs` draws their two diagrams. Coefficients are exact fractions, then every answer is re-checked with floating-point arithmetic and math-check.
+
 ## PSAT Exponent Rules guide (`exponent-rules/`)
 
 Generates the problem file and diagrams of `/psat/exponent-rules` (nine rules and a final test, 50 problems each):
