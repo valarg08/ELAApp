@@ -15,8 +15,12 @@ text{font:16px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#334155}
 @media (prefers-color-scheme:dark){text{fill:#e2e8f0}.s{fill:#94a3b8}.a{fill:#5eead4}.o{fill:#fdba74}.b{fill:#93c5fd}.box{stroke:#94a3b8}}
 </style>`;
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-const tx = (x, y, s, cls = '') => `<text x="${x}" y="${y}"${cls ? ` class="${cls}"` : ''}>${esc(s)}</text>`;
-const svg = (alt, body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="${esc(alt)}">
+const tx = (x, y, s, cls = '') =>
+  `<text x="${x}" y="${y}"${cls ? ` class="${cls}"` : ''}>${esc(s)}</text>`;
+const svg = (
+  alt,
+  body,
+) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250" role="img" aria-label="${esc(alt)}">
 <title>${esc(alt)}</title>
 ${STYLE}
 ${body}
@@ -30,9 +34,11 @@ const FIGS = {
       tx(20, 32, 'Multiply the coefficients, add the exponents', 't') +
       tx(20, 82, '(5 × 10³)(4 × 10²)', 'big') +
       `<rect x="20" y="104" width="190" height="52" class="box"/>` +
-      tx(34, 128, 'coefficients', 's') + tx(34, 148, '5 × 4 = 20', 'a') +
+      tx(34, 128, 'coefficients', 's') +
+      tx(34, 148, '5 × 4 = 20', 'a') +
       `<rect x="230" y="104" width="190" height="52" class="box"/>` +
-      tx(244, 128, 'exponents of 10', 's') + tx(244, 148, '3 + 2 = 5', 'o') +
+      tx(244, 128, 'exponents of 10', 's') +
+      tx(244, 148, '3 + 2 = 5', 'o') +
       tx(440, 140, '= 20 × 10⁵', 'big') +
       tx(20, 188, '20 is 10 or more, so move one power of 10 into the exponent:', '') +
       tx(20, 220, '20 × 10⁵ = 2 × 10⁶', 'b'),
@@ -43,16 +49,24 @@ const FIGS = {
       tx(20, 32, 'Divide the coefficients, subtract the exponents', 't') +
       tx(20, 82, '(2 × 10⁸) ÷ (4 × 10³)', 'big') +
       `<rect x="20" y="104" width="190" height="52" class="box"/>` +
-      tx(34, 128, 'coefficients', 's') + tx(34, 148, '2 ÷ 4 = 0.5', 'a') +
+      tx(34, 128, 'coefficients', 's') +
+      tx(34, 148, '2 ÷ 4 = 0.5', 'a') +
       `<rect x="230" y="104" width="190" height="52" class="box"/>` +
-      tx(244, 128, 'exponents of 10', 's') + tx(244, 148, '8 − 3 = 5', 'o') +
+      tx(244, 128, 'exponents of 10', 's') +
+      tx(244, 148, '8 − 3 = 5', 'o') +
       tx(440, 140, '= 0.5 × 10⁵', 'big') +
-      tx(20, 188, '0.5 is less than 1, so make it 10 times bigger and the exponent 1 smaller:', '') +
+      tx(
+        20,
+        188,
+        '0.5 is less than 1, so make it 10 times bigger and the exponent 1 smaller:',
+        '',
+      ) +
       tx(20, 220, '0.5 × 10⁵ = 5 × 10⁴', 'b'),
   },
 };
 
 fs.mkdirSync(OUT, { recursive: true });
-for (const [id, f] of Object.entries(FIGS)) fs.writeFileSync(path.join(OUT, `${id}.svg`), svg(f.alt, f.body));
+for (const [id, f] of Object.entries(FIGS))
+  fs.writeFileSync(path.join(OUT, `${id}.svg`), svg(f.alt, f.body));
 console.log('wrote', Object.keys(FIGS).length, 'figures to', OUT);
 module.exports = { FIGS };
