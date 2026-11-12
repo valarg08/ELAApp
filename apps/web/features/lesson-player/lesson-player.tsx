@@ -187,6 +187,8 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
               math={isMathTrack(lesson.unit.track)}
               done={done('reflect')}
               busy={busy}
+              // Out of order (Math), Reflect may not be the step that finishes the lesson.
+              finishesLesson={STEP_IDS.every((s) => s === 'reflect' || completed.includes(s))}
               onComplete={(b) => complete('reflect', b)}
             />
           )}

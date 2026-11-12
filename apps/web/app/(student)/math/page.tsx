@@ -41,8 +41,8 @@ export default async function MathHome() {
           <h1 className="text-4xl font-bold">Math: AMC 10 practice</h1>
           <p className="mt-2 text-lg text-muted">
             Get ready for the AMC 10 with original contest-style problems: algebra, number theory,
-            counting and probability, and geometry. Go at your own pace: each lesson opens when you
-            finish the one before.
+            counting and probability, and geometry. Go at your own pace: every unit, lesson and step
+            is open, so start wherever you like.
           </p>
         </div>
 

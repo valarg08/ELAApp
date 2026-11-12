@@ -17,7 +17,8 @@ export function ReflectStep({
   onComplete,
   lessonId,
   math = false,
-}: StepProps<Reflect> & { lessonId: string; math?: boolean }) {
+  finishesLesson = true,
+}: StepProps<Reflect> & { lessonId: string; math?: boolean; finishesLesson?: boolean }) {
   const [answers, setAnswers] = useState<string[]>(step.prompts.map(() => ''));
   const [confidence, setConfidence] = useState<number | null>(null);
   const [trap, setTrap] = useState<Trap>({ activityKey: '', problemId: '', note: '' });
@@ -91,7 +92,7 @@ export function ReflectStep({
 
       <ErrorMessage message={error} />
       <Button className="self-start" disabled={busy || !ready} onClick={submit}>
-        {busy ? 'Saving…' : done ? 'Save' : 'Finish lesson'}
+        {busy ? 'Saving…' : done ? 'Save' : finishesLesson ? 'Finish lesson' : 'Save and carry on'}
       </Button>
     </div>
   );
