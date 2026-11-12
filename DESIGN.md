@@ -1378,7 +1378,7 @@ Admin dashboard shows token usage and estimated cost per school per day. A budge
 | 4. Writing challenge | `ChallengeStep` | Opens the writing workspace or a unit tool with constraints | Submission submitted |
 | 5. Reflection | `ReflectionStep` | 1–3 prompts, emoji confidence check (😟 😐 🙂 🤩) | Response saved |
 
-The lesson player is a finite-state machine (`xstate`). Students can move back freely; forward requires the completion rule. Progress persists per step.
+The lesson player is a finite-state machine (`xstate`). Students can move back freely; forward requires the completion rule, except in Math (AMC 10), where every step is open from the start (math-design.md). Progress persists per step.
 
 ### 9.2 Lesson content format (`/content/units/unit-01/lessons/03-show-dont-tell.json`)
 

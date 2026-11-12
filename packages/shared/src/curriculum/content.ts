@@ -47,6 +47,14 @@ export const isMathTrack = (track: Track): boolean =>
   track === 'MATH' || track === 'MENTAL' || track === 'PSAT' || track === 'SAT';
 
 /**
+ * Whether the five steps inside a lesson open one at a time. Math (AMC 10) opens them all at once:
+ * a student clicks any step and does it (math-design.md). Every other track keeps hook → learn →
+ * practice → challenge → reflect in order. A lesson still only counts as finished once all five
+ * steps are done, in whatever order they were taken.
+ */
+export const stepsOpenInOrder = (track: Track): boolean => track !== 'MATH';
+
+/**
  * Activity keys start with the unit: "u01." in Story Writing, "e01." in Essay Writing, "m01." in
  * Math, "n01." in Mental Math (number sense), "p01." in PSAT Math, "s01." in SAT Math.
  */

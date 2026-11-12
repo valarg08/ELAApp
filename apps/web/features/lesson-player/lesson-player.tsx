@@ -8,6 +8,7 @@ import {
   type StepId,
   unitLabel,
   isMathTrack,
+  stepsOpenInOrder,
 } from '@storyforge/shared';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -25,8 +26,22 @@ import { ReflectStep } from './steps/reflect-step';
 const FINISHED = STEP_IDS.length;
 
 /**
+ * Where to go after finishing a step: the next step still to do, wrapping round to the start, or
+ * the "Lesson complete!" screen once all five are done. In order, that is simply the step after
+ * this one; out of order (Math), it skips the steps already behind the student.
+ */
+function nextView(stepId: StepId, completedSteps: readonly StepId[]): number {
+  const from = STEP_IDS.indexOf(stepId);
+  const next = [...STEP_IDS.slice(from + 1), ...STEP_IDS.slice(0, from + 1)].find(
+    (s) => !completedSteps.includes(s),
+  );
+  return next ? STEP_IDS.indexOf(next) : FINISHED;
+}
+
+/**
  * The 5-step lesson engine (DESIGN.md §9.1): hook → learn → practice → challenge → reflect.
- * Students may go back freely; moving forward requires finishing the current step.
+ * Students may go back freely; moving forward requires finishing the current step. In Math
+ * (AMC 10) every step is open from the start, so any of the five can be done in any order.
  */
 export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
   const router = useRouter();
@@ -36,7 +51,8 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const canOpen = (i: number) => i <= (firstOpen === -1 ? FINISHED : firstOpen);
+  const inOrder = stepsOpenInOrder(lesson.unit.track);
+  const canOpen = (i: number) => !inOrder || i <= (firstOpen === -1 ? FINISHED : firstOpen);
 
   async function complete(stepId: StepId, body: object) {
     setBusy(true);
@@ -49,7 +65,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
         body,
       );
       setCompleted(progress.completedSteps);
-      setView(STEP_IDS.indexOf(stepId) + 1);
+      setView(nextView(stepId, progress.completedSteps));
       scrollPageTop();
       // Keeps the course progress panel (and, after reflect, the next lesson) up to date.
       router.refresh();

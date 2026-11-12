@@ -15,6 +15,7 @@ import {
   type UnitSummary,
   classSettings,
   publicActivity,
+  stepsOpenInOrder,
 } from '@storyforge/shared';
 import type { AuthUser } from '../auth/auth.types.js';
 import { AppError, forbidden, notFound } from '../common/app-error.js';
@@ -252,7 +253,10 @@ export class CurriculumService {
     };
   }
 
-  /** Record a finished step. Steps must be completed in order; a finished step may be redone. */
+  /**
+   * Record a finished step. Outside Math, steps must be completed in order; a finished step may be
+   * redone. The lesson is finished once all five steps are done, whatever order they came in.
+   */
   async completeStep(
     user: AuthUser,
     lessonId: string,
@@ -263,7 +267,7 @@ export class CurriculumService {
     const stepId = StepId.safeParse(stepIdParam);
     if (!stepId.success) throw notFound(ErrorCode.NOT_FOUND, 'Unknown lesson step.');
 
-    const { lesson, classId } = await this.openLesson(user, lessonId);
+    const { lesson, unit, classId } = await this.openLesson(user, lessonId);
     const steps = LessonSteps.parse(lesson.steps);
     const parsed = STEP_RESPONSE_SCHEMAS[stepId.data].safeParse(body);
     if (!parsed.success) {
@@ -282,7 +286,7 @@ export class CurriculumService {
       })) ?? undefined;
     const done = stepsDone(existing);
     const index = STEP_IDS.indexOf(stepId.data);
-    if (STEP_IDS.slice(0, index).some((s) => !done.includes(s))) {
+    if (stepsOpenInOrder(unit.track) && STEP_IDS.slice(0, index).some((s) => !done.includes(s))) {
       throw new AppError(
         HttpStatus.CONFLICT,
         ErrorCode.STEP_LOCKED,
