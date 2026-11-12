@@ -63,6 +63,14 @@ export const isSelfPaced = (track: Track, classSelfPaced: boolean) =>
   track !== 'STORY' || classSelfPaced;
 
 /**
+ * Whether the lessons inside a unit open one at a time. Math (AMC 10) lessons are all open from the
+ * start: a student picks any lesson of any unit (math-design.md). Every other self-paced track
+ * still opens them in order.
+ */
+export const lessonsOpenInOrder = (track: Track, classSelfPaced: boolean) =>
+  track !== 'MATH' && isSelfPaced(track, classSelfPaced);
+
+/**
  * Availability of every unit for one class and student, walking each track's units in order.
  * The tracks are separate: finishing Story Writing units never opens Essay Writing ones.
  * `openThrough` opens a track's units up to a number as if the earlier ones were done (the Mental
@@ -168,7 +176,7 @@ export class CurriculumService {
             await this.openThrough(user),
           ).get(unit.id) ?? { available: false, lockReason: 'LOCKED' as const, dueAt: null })
         : this.teacherPreview(unit);
-    const lessonLocks = isSelfPaced(unit.track, !!student?.selfPaced);
+    const lessonLocks = lessonsOpenInOrder(unit.track, !!student?.selfPaced);
 
     const progress = await this.progressMap(
       user,
@@ -431,7 +439,7 @@ export class CurriculumService {
 
   /**
    * Load a lesson the user may open. For students: the unit must be available in one of their
-   * classes and, in a self-paced class, the previous lesson must be finished.
+   * classes and, where lessons open in order, the previous lesson must be finished.
    */
   async openLesson(
     user: AuthUser,
@@ -449,7 +457,7 @@ export class CurriculumService {
     }
 
     const klass = await this.resolveStudentClass(user, unit);
-    if (isSelfPaced(unit.track, klass.selfPaced)) {
+    if (lessonsOpenInOrder(unit.track, klass.selfPaced)) {
       const previous = await this.db.client.lesson.findFirst({
         where: { unitId: unit.id, order: { lt: lesson.order } },
         orderBy: { order: 'desc' },

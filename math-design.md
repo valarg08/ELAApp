@@ -66,7 +66,7 @@ Geometry basics come in Stage 3 because the unit order is kept; the diagnostic s
 **The engine (M0, built before the first unit):**
 - **Track `MATH`:**
   - content in `content/math/unit-XX`, activity keys `m01.`, slugs starting `math-`;
-  - always self-paced, like Essay, but every published unit is open from the start (students pick any unit; lessons inside a unit still open in order; a teacher can still hide a unit or schedule it);
+  - always self-paced, like Essay, but every published unit is open from the start, and so is every lesson inside it (students pick any unit and any lesson in it, in any order; a teacher can still hide a unit or schedule it);
   - a third tab, "Math (AMC 10)", in `TrackTabs`;
   - `/math` (Keep going, the 15 unit cards, My progress) and the progress tracker with the five strand badges.
 - **Math rendering:** content and solutions use TeX between `$…$` / `$$…$$`, rendered with **KaTeX** (MathML output for screen readers; content:check rejects TeX that doesn't parse). Answers are typed in a plain box with helper buttons (√, π, fraction bar, ^) and a live typeset preview.
